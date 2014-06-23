@@ -1,0 +1,41 @@
+author:
+    Taylor Fausak
+bug-reports:
+    https://github.com/tfausak/scurry/issues
+build-type:
+    Simple
+cabal-version:
+    >= 1.18
+category:
+    API
+copyright:
+    2014 Taylor Fausak <taylor@fausak.me>
+description:
+    A Haskell client for the <http://strava.github.io/api/ Strava V3 API>.
+extra-source-files:
+    CHANGELOG.md
+    CONTRIBUTING.md
+    LICENSE.txt
+    README.md
+homepage:
+    https://github.com/tfausak/scurry
+license-file:
+    LICENSE.txt
+license:
+    MIT
+maintainer:
+    taylor@fausak.me
+name:
+    scurry
+synopsis:
+    A Haskell client for the Strava V3 API.
+tested-with:
+    GHC == 7.6.3
+version:
+    0.0.0
+
+source-repository head
+    location:
+        git://github.com/tfausak/scurry.git
+    type:
+        git
