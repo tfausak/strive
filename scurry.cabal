@@ -47,5 +47,6 @@ library
         Haskell2010
     exposed-modules:
         Scurry
+        Scurry.Client
     hs-source-dirs:
         library
