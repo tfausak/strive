@@ -1,4 +1,4 @@
-.PHONY: all build clean configure haddock install repl
+.PHONY: all build clean configure format haddock install lint repl
 
 all: install configure build haddock
 
@@ -12,6 +12,10 @@ clean:
 configure:
 	cabal configure
 
+format:
+	git ls-files '*.hs' | xargs -n 1 scan --inplace-modify
+	git ls-files '*.hs' | xargs stylish-haskell --inplace
+
 haddock:
 	cabal haddock
 	# dist/doc/html/scurry/index.html
@@ -19,6 +23,9 @@ haddock:
 install:
 	cabal sandbox init
 	cabal install --only-dependencies
+
+lint:
+	git ls-files '*.hs' | xargs hlint
 
 repl:
 	cabal repl lib:scurry
