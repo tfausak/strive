@@ -63,6 +63,7 @@ library
         Scurry.Objects.Buckets.BucketSummary
         Scurry.Objects.Clubs
         Scurry.Objects.Clubs.ClubDetailed
+        Scurry.Objects.Clubs.ClubSummary
         Scurry.Objects.Comments
         Scurry.Objects.Comments.CommentSummary
         Scurry.Objects.Zones

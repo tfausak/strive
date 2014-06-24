@@ -6,6 +6,7 @@ module Scurry.Actions
     , getClub
     , getComments
     , getCommonFriends
+    , getCurrentClubs
     , getCurrentFollowers
     , getCurrentFriends
     , getFollowers
@@ -21,8 +22,8 @@ import           Data.Monoid             ((<>))
 import           Scurry.Actions.Internal (get, paginate)
 import           Scurry.Client           (Client)
 import           Scurry.Objects          (AthleteSummary, ClubDetailed,
-                                          CommentSummary, PhotoSummary,
-                                          ZoneSummary)
+                                          ClubSummary, CommentSummary,
+                                          PhotoSummary, ZoneSummary)
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> Integer -> IO (Either String AthleteSummary)
@@ -51,6 +52,13 @@ getCommonFriends client athleteId page perPage = get client resource query
   where
     resource = "/athletes/" <> show athleteId <> "/both-following"
     query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/clubs/#get-athletes>
+getCurrentClubs :: Client -> IO (Either String [ClubSummary])
+getCurrentClubs client = get client resource query
+  where
+    resource = "athlete/clubs"
+    query = []
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
 getCurrentFollowers :: Client -> Integer -> Integer -> IO (Either String [AthleteSummary])
