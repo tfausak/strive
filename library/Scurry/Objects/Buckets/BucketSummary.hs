@@ -9,6 +9,7 @@ import           Control.Applicative (empty, (<$>), (<*>))
 import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
                                       (.:))
 
+-- | Summary representation of a distribution bucket.
 data BucketSummary = BucketSummary
     { max  :: Integer
     , min  :: Integer

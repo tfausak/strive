@@ -12,7 +12,7 @@ import           Data.Text               (Text)
 import           Data.Time.Clock         (UTCTime)
 import           Scurry.Objects.Athletes (AthleteSummary)
 
--- | Detailed representation of a club.
+-- | Summary representation of a comment.
 data CommentSummary = CommentSummary
     { activityId    :: Integer
     , athlete       :: AthleteSummary
