@@ -68,6 +68,7 @@ library
         Scurry.Objects.Comments
         Scurry.Objects.Comments.CommentSummary
         Scurry.Objects.Efforts
+        Scurry.Objects.Efforts.EffortLap
         Scurry.Objects.Efforts.EffortSummary
         Scurry.Objects.Gear
         Scurry.Objects.Gear.GearDetailed

@@ -18,6 +18,7 @@ module Scurry.Actions
     , getFriends
     , getGear
     , getKudoers
+    , getLaps
     , getLeaders
     , getPhotos
     , getSegments
@@ -148,6 +149,13 @@ getGear :: Client -> Types.GearId -> IO (Either String Objects.GearDetailed)
 getGear client gearId = get client resource query
   where
     resource = "gear/" <> gearId
+    query = []
+
+-- | <http://strava.github.io/api/v3/activities/#laps>
+getLaps :: Client -> Types.ActivityId -> IO (Either String [Objects.EffortLap])
+getLaps client activityId = get client resource query
+  where
+    resource = "activities/" <> show activityId <> "/laps"
     query = []
 
 -- | <http://strava.github.io/api/v3/kudos/#list>
