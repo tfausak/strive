@@ -25,7 +25,7 @@ data ClubDetailed = ClubDetailed
     , resourceState :: Integer
     , sportType     :: Text
     , state         :: Text
-    }
+    } deriving Show
 
 instance FromJSON ClubDetailed where
     parseJSON (Object o) = ClubDetailed
