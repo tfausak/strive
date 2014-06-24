@@ -3,6 +3,7 @@ module Scurry.Types
     ( ActivityId
     , AthleteId
     , ClubId
+    , EffortId
     , GearId
     , IncludeMarkdown
     , Page
@@ -19,6 +20,9 @@ type AthleteId = Integer
 
 -- | Club ID
 type ClubId = Integer
+
+-- | Effort ID
+type EffortId = Integer
 
 -- | Gear ID
 type GearId = String

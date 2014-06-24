@@ -12,6 +12,7 @@ module Scurry.Actions
     , getCurrentClubs
     , getCurrentFollowers
     , getCurrentFriends
+    , getEffort
     , getEfforts
     , getFollowers
     , getFriends
@@ -100,6 +101,13 @@ getCurrentFriends client page perPage = get client resource query
   where
     resource = "athlete/friends"
     query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/efforts/#retrieve>
+getEffort :: Client -> Types.EffortId -> IO (Either String Objects.EffortSummary)
+getEffort client effortId = get client resource query
+  where
+    resource = "segment_efforts/" <> show effortId
+    query = []
 
 -- | <http://strava.github.io/api/v3/segments/#efforts>
 getEfforts :: Client -> Types.SegmentId -> Maybe (UTCTime, UTCTime) -> Types.Page -> Types.PerPage -> IO (Either String [Objects.EffortSummary])
