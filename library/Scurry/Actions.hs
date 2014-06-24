@@ -24,13 +24,16 @@ module Scurry.Actions
     , getZones
     ) where
 
-import           Data.Aeson              (encode)
+import           Data.Aeson              (decode, encode, (.:))
+import           Data.Aeson.Types        (parseEither)
 import           Data.ByteString.Char8   (pack)
 import           Data.ByteString.Lazy    (toStrict)
 import           Data.List               (intercalate)
 import           Data.Monoid             ((<>))
 import           Data.Time.Clock         (UTCTime)
-import           Scurry.Actions.Internal (get, paginate)
+import           Network.HTTP.Conduit    (responseBody)
+import           Scurry.Actions.Internal (buildRequest, get, makeRequest,
+                                          paginate)
 import           Scurry.Client           (Client)
 import qualified Scurry.Objects          as Objects
 import qualified Scurry.Types            as Types
@@ -162,7 +165,15 @@ getPhotos client activityId = get client resource query
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
 getSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [Objects.SegmentExploration])
-getSegments client (south, west, north, east) activityType minCat maxCat = get client resource query
+getSegments client (south, west, north, east) activityType minCat maxCat = do
+    request <- buildRequest client resource query
+    response <- makeRequest client request
+    let body = responseBody response
+        object = decode body
+        segments = case object of
+            Nothing -> Left ""
+            Just o -> parseEither (.: "segments") o
+    return segments
   where
     resource = "segments/explore"
     query = go
