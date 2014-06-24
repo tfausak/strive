@@ -4,6 +4,7 @@
 module Scurry.Actions
     ( getAthlete
     , getClub
+    , getClubMembers
     , getComments
     , getCommonFriends
     , getCurrentClubs
@@ -38,6 +39,13 @@ getClub client clubId = get client resource query
   where
     resource = "clubs/" <> show clubId
     query = []
+
+-- | <http://strava.github.io/api/v3/clubs/#get-members>
+getClubMembers :: Client -> Integer -> Integer -> Integer -> IO (Either String [AthleteSummary])
+getClubMembers client clubId page perPage = get client resource query
+  where
+    resource = "clubs/" <> show clubId <> "/members"
+    query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/comments/#list>
 getComments :: Client -> Integer -> Bool -> Integer -> Integer -> IO (Either String [CommentSummary])
