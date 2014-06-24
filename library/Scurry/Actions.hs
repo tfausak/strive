@@ -2,6 +2,7 @@
 module Scurry.Actions
     ( getClub
     , getCurrentFriends
+    , getFollowers
     , getFriends
     ) where
 
@@ -22,6 +23,13 @@ getCurrentFriends :: Client -> Integer -> Integer -> IO (Either String [AthleteS
 getCurrentFriends client page perPage = get client resource query
   where
     resource = "athlete/friends"
+    query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/follow/#followers>
+getFollowers :: Client -> Integer -> Integer -> Integer -> IO (Either String [AthleteSummary])
+getFollowers client athleteId page perPage = get client resource query
+  where
+    resource = "athletes/" <> show athleteId <> "/followers"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#friends>

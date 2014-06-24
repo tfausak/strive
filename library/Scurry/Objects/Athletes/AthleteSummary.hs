@@ -18,7 +18,7 @@ data AthleteSummary = AthleteSummary
     , createdAt     :: UTCTime
     , firstname     :: Text
     , follower      :: Maybe Text
-    , friend        :: Text
+    , friend        :: Maybe Text
     , id            :: Integer
     , lastname      :: Text
     , premium       :: Bool
@@ -37,7 +37,7 @@ instance FromJSON AthleteSummary where
         <*> o .: "created_at"
         <*> o .: "firstname"
         <*> o .:? "follower"
-        <*> o .: "friend"
+        <*> o .:? "friend"
         <*> o .: "id"
         <*> o .: "lastname"
         <*> o .: "premium"
