@@ -17,6 +17,7 @@ module Scurry.Actions
     , getGear
     , getKudoers
     , getPhotos
+    , getStarredSegments
     , getZones
     ) where
 
@@ -132,6 +133,13 @@ getPhotos client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/photos"
     query = []
+
+-- | <http://strava.github.io/api/v3/segments/#starred>
+getStarredSegments :: Client -> Types.Page -> Types.PerPage -> IO (Either String [Objects.SegmentSummary])
+getStarredSegments client page perPage = get client resource query
+  where
+    resource = "segments/starred"
+    query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/activities/#zones>
 getZones :: Client -> Types.ActivityId -> IO (Either String [Objects.ZoneSummary])
