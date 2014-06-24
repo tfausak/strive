@@ -70,5 +70,6 @@ library
         Scurry.Objects.Gear.GearDetailed
         Scurry.Objects.Zones
         Scurry.Objects.Zones.ZoneSummary
+        Scurry.Types
     hs-source-dirs:
         library

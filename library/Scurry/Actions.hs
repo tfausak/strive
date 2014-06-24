@@ -24,6 +24,7 @@ import           Data.Monoid             ((<>))
 import           Scurry.Actions.Internal (get, paginate)
 import           Scurry.Client           (Client)
 import qualified Scurry.Objects          as Objects
+import qualified Scurry.Types            as Types
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> Integer -> IO (Either String Objects.AthleteSummary)
@@ -40,21 +41,21 @@ getClub client clubId = get client resource query
     query = []
 
 -- | <http://strava.github.io/api/v3/clubs/#get-members>
-getClubMembers :: Client -> Integer -> Integer -> Integer -> IO (Either String [Objects.AthleteSummary])
+getClubMembers :: Client -> Types.Page -> Types.PerPage -> Integer -> IO (Either String [Objects.AthleteSummary])
 getClubMembers client clubId page perPage = get client resource query
   where
     resource = "clubs/" <> show clubId <> "/members"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/comments/#list>
-getComments :: Client -> Integer -> Bool -> Integer -> Integer -> IO (Either String [Objects.CommentSummary])
+getComments :: Client -> Integer -> Bool -> Types.Page -> Types.PerPage -> IO (Either String [Objects.CommentSummary])
 getComments client activityId includeMarkdown page perPage = get client resource query
   where
     resource = "activities/" <> show activityId <> "/comments"
     query = ("markdown", toStrict (encode includeMarkdown)) : paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#both>
-getCommonFriends :: Client -> Integer -> Integer -> Integer -> IO (Either String [Objects.AthleteSummary])
+getCommonFriends :: Client -> Integer -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getCommonFriends client athleteId page perPage = get client resource query
   where
     resource = "/athletes/" <> show athleteId <> "/both-following"
@@ -68,28 +69,28 @@ getCurrentClubs client = get client resource query
     query = []
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
-getCurrentFollowers :: Client -> Integer -> Integer -> IO (Either String [Objects.AthleteSummary])
+getCurrentFollowers :: Client -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getCurrentFollowers client page perPage = get client resource query
   where
     resource = "athlete/followers"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#friends>
-getCurrentFriends :: Client -> Integer -> Integer -> IO (Either String [Objects.AthleteSummary])
+getCurrentFriends :: Client -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getCurrentFriends client page perPage = get client resource query
   where
     resource = "athlete/friends"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
-getFollowers :: Client -> Integer -> Integer -> Integer -> IO (Either String [Objects.AthleteSummary])
+getFollowers :: Client -> Integer -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getFollowers client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/followers"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#friends>
-getFriends :: Client -> Integer -> Integer -> Integer -> IO (Either String [Objects.AthleteSummary])
+getFriends :: Client -> Integer -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getFriends client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/friends"
@@ -103,7 +104,7 @@ getGear client gearId = get client resource query
     query = []
 
 -- | <http://strava.github.io/api/v3/kudos/#list>
-getKudoers :: Client -> Integer -> Integer -> Integer -> IO (Either String [Objects.AthleteSummary])
+getKudoers :: Client -> Integer -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getKudoers client activityId page perPage = get client resource query
   where
     resource = "activities/" <> show activityId <> "/kudos"

@@ -16,6 +16,7 @@ import           Network.HTTP.Conduit   (Request, Response, httpLbs, parseUrl,
                                          responseBody)
 import           Network.HTTP.Types.URI (SimpleQuery, renderSimpleQuery)
 import           Scurry.Client          (Client (accessToken, httpManager))
+import qualified Scurry.Types           as Types
 
 -- | Build a request by constructing the URL and appending the access token.
 buildRequest :: Client -> String -> SimpleQuery -> IO Request
@@ -42,7 +43,7 @@ makeRequest :: Client -> Request -> IO (Response ByteString)
 makeRequest client request = httpLbs request (httpManager client)
 
 -- | Convert pagination parameters into a query.
-paginate :: Integer -> Integer -> SimpleQuery
+paginate :: Types.Page -> Types.PerPage -> SimpleQuery
 paginate page perPage =
     [ ("page", pack (show page))
     , ("per_page", pack (show perPage))
