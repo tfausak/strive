@@ -7,6 +7,7 @@ module Scurry.Actions
     , getClubMembers
     , getComments
     , getCommonFriends
+    , getCurrentAthlete
     , getCurrentClubs
     , getCurrentFollowers
     , getCurrentFriends
@@ -58,8 +59,15 @@ getComments client activityId includeMarkdown page perPage = get client resource
 getCommonFriends :: Client -> Types.AthleteId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getCommonFriends client athleteId page perPage = get client resource query
   where
-    resource = "/athletes/" <> show athleteId <> "/both-following"
+    resource = "athletes/" <> show athleteId <> "/both-following"
     query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/athlete/#get-details>
+getCurrentAthlete :: Client -> IO (Either String Objects.AthleteDetailed)
+getCurrentAthlete client = get client resource query
+  where
+    resource = "athlete"
+    query = []
 
 -- | <http://strava.github.io/api/v3/clubs/#get-athletes>
 getCurrentClubs :: Client -> IO (Either String [Objects.ClubSummary])

@@ -58,6 +58,7 @@ library
         Scurry.Client
         Scurry.Objects
         Scurry.Objects.Athletes
+        Scurry.Objects.Athletes.AthleteDetailed
         Scurry.Objects.Athletes.AthleteSummary
         Scurry.Objects.Buckets
         Scurry.Objects.Buckets.BucketSummary
@@ -68,6 +69,7 @@ library
         Scurry.Objects.Comments.CommentSummary
         Scurry.Objects.Gear
         Scurry.Objects.Gear.GearDetailed
+        Scurry.Objects.Gear.GearSummary
         Scurry.Objects.Zones
         Scurry.Objects.Zones.ZoneSummary
         Scurry.Types
