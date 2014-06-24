@@ -1,6 +1,7 @@
 -- | Functions for performing actions against the API.
 module Scurry.Actions
-    ( getClub
+    ( getAthlete
+    , getClub
     , getCommonFriends
     , getCurrentFollowers
     , getCurrentFriends
@@ -12,6 +13,13 @@ import           Data.Monoid             ((<>))
 import           Scurry.Actions.Internal (get, paginate)
 import           Scurry.Client           (Client)
 import           Scurry.Objects          (AthleteSummary, ClubDetailed)
+
+-- | <http://strava.github.io/api/v3/athlete/#get-another-details>
+getAthlete :: Client -> Integer -> IO (Either String AthleteSummary)
+getAthlete client athleteId = get client resource query
+  where
+    resource = "athletes/" <> show athleteId
+    query = []
 
 -- | <http://strava.github.io/api/v3/clubs/#get-details>
 getClub :: Client -> Integer -> IO (Either String ClubDetailed)
