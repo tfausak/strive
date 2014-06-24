@@ -8,6 +8,7 @@ module Scurry.Types
     , Page
     , PerPage
     , Resource
+    , SegmentId
     ) where
 
 -- | Activity ID
@@ -33,3 +34,6 @@ type PerPage = Integer
 
 -- | Resource path
 type Resource = String
+
+-- | Segment ID
+type SegmentId = Integer

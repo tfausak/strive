@@ -12,6 +12,7 @@ module Scurry.Actions
     , getCurrentClubs
     , getCurrentFollowers
     , getCurrentFriends
+    , getEfforts
     , getFollowers
     , getFriends
     , getGear
@@ -24,6 +25,7 @@ module Scurry.Actions
 import           Data.Aeson              (encode)
 import           Data.ByteString.Lazy    (toStrict)
 import           Data.Monoid             ((<>))
+import           Data.Time.Clock         (UTCTime)
 import           Scurry.Actions.Internal (get, paginate)
 import           Scurry.Client           (Client)
 import qualified Scurry.Objects          as Objects
@@ -98,6 +100,19 @@ getCurrentFriends client page perPage = get client resource query
   where
     resource = "athlete/friends"
     query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/segments/#efforts>
+getEfforts :: Client -> Types.SegmentId -> Maybe (UTCTime, UTCTime) -> Types.Page -> Types.PerPage -> IO (Either String [Objects.EffortSummary])
+getEfforts client segmentId maybeTimes page perPage = get client resource query
+  where
+    resource = "segments/" <> show segmentId <> "/all_efforts"
+    query = case maybeTimes of
+        Just (startTime, endTime) ->
+            ("start_date_local", toStrict (encode startTime)) :
+            ("end_date_local", toStrict (encode endTime)) :
+            pagination
+        _ -> pagination
+    pagination = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
 getFollowers :: Client -> Types.AthleteId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
