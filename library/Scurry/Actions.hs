@@ -12,6 +12,7 @@ module Scurry.Actions
     , getFriends
     , getKudoers
     , getPhotos
+    , getZones
     ) where
 
 import           Data.Aeson              (encode)
@@ -20,7 +21,8 @@ import           Data.Monoid             ((<>))
 import           Scurry.Actions.Internal (get, paginate)
 import           Scurry.Client           (Client)
 import           Scurry.Objects          (AthleteSummary, ClubDetailed,
-                                          CommentSummary, PhotoSummary)
+                                          CommentSummary, PhotoSummary,
+                                          ZoneSummary)
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> Integer -> IO (Either String AthleteSummary)
@@ -90,4 +92,11 @@ getPhotos :: Client -> Integer -> IO (Either String [PhotoSummary])
 getPhotos client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/photos"
+    query = []
+
+-- | <http://strava.github.io/api/v3/activities/#zones>
+getZones :: Client -> Integer -> IO (Either String [ZoneSummary])
+getZones client activityId = get client resource query
+  where
+    resource = "activities/" <> show activityId <> "/zones"
     query = []

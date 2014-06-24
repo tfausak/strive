@@ -59,9 +59,13 @@ library
         Scurry.Objects
         Scurry.Objects.Athletes
         Scurry.Objects.Athletes.AthleteSummary
+        Scurry.Objects.Buckets
+        Scurry.Objects.Buckets.BucketSummary
         Scurry.Objects.Clubs
         Scurry.Objects.Clubs.ClubDetailed
         Scurry.Objects.Comments
         Scurry.Objects.Comments.CommentSummary
+        Scurry.Objects.Zones
+        Scurry.Objects.Zones.ZoneSummary
     hs-source-dirs:
         library
