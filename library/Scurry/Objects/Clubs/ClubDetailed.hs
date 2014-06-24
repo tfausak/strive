@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | <http://strava.github.io/api/v3/clubs/#detailed-representation-attributes-a-iddetailednbspa>
+-- | <http://strava.github.io/api/v3/clubs/>
 module Scurry.Objects.Clubs.ClubDetailed
     ( ClubDetailed (..)
     ) where
@@ -10,7 +10,7 @@ import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
                                       (.:))
 import           Data.Text           (Text)
 
--- | Detailed club representation.
+-- | <http://strava.github.io/api/v3/clubs/#detailed-representation-attributes-a-iddetailednbspa>
 data ClubDetailed = ClubDetailed
     { city          :: Text
     , clubType      :: Text
@@ -25,7 +25,7 @@ data ClubDetailed = ClubDetailed
     , resourceState :: Integer
     , sportType     :: Text
     , state         :: Text
-    } deriving (Show)
+    }
 
 instance FromJSON ClubDetailed where
     parseJSON (Object o) = ClubDetailed
