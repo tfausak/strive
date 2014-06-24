@@ -38,7 +38,7 @@ instance FromJSON ClubDetailed where
         <*> o .: "name"
         <*> o .: "private"
         <*> o .: "profile"
-        <*> o .: "profileMedium"
+        <*> o .: "profile_medium"
         <*> o .: "resource_state"
         <*> o .: "sport_type"
         <*> o .: "state"
