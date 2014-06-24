@@ -66,6 +66,8 @@ library
         Scurry.Objects.Clubs.ClubSummary
         Scurry.Objects.Comments
         Scurry.Objects.Comments.CommentSummary
+        Scurry.Objects.Gears
+        Scurry.Objects.Gears.GearDetailed
         Scurry.Objects.Zones
         Scurry.Objects.Zones.ZoneSummary
     hs-source-dirs:

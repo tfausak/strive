@@ -12,6 +12,7 @@ module Scurry.Actions
     , getCurrentFriends
     , getFollowers
     , getFriends
+    , getGear
     , getKudoers
     , getPhotos
     , getZones
@@ -24,7 +25,8 @@ import           Scurry.Actions.Internal (get, paginate)
 import           Scurry.Client           (Client)
 import           Scurry.Objects          (AthleteSummary, ClubDetailed,
                                           ClubSummary, CommentSummary,
-                                          PhotoSummary, ZoneSummary)
+                                          GearDetailed, PhotoSummary,
+                                          ZoneSummary)
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> Integer -> IO (Either String AthleteSummary)
@@ -95,6 +97,13 @@ getFriends client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/friends"
     query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/gear/#show>
+getGear :: Client -> String -> IO (Either String GearDetailed)
+getGear client gearId = get client resource query
+  where
+    resource = "gear/" <> gearId
+    query = []
 
 -- | <http://strava.github.io/api/v3/kudos/#list>
 getKudoers :: Client -> Integer -> Integer -> Integer -> IO (Either String [AthleteSummary])
