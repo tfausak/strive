@@ -19,12 +19,15 @@ module Scurry.Actions
     , getGear
     , getKudoers
     , getPhotos
+    , getSegments
     , getStarredSegments
     , getZones
     ) where
 
 import           Data.Aeson              (encode)
+import           Data.ByteString.Char8   (pack)
 import           Data.ByteString.Lazy    (toStrict)
+import           Data.List               (intercalate)
 import           Data.Monoid             ((<>))
 import           Data.Time.Clock         (UTCTime)
 import           Scurry.Actions.Internal (get, paginate)
@@ -156,6 +159,22 @@ getPhotos client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/photos"
     query = []
+
+-- | <http://strava.github.io/api/v3/segments/#explore>
+getSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [Objects.SegmentExploration])
+getSegments client (south, west, north, east) activityType minCat maxCat = get client resource query
+  where
+    resource = "segments/explore"
+    query = go
+        [ ("bounds", Just (pack bounds))
+        , ("activity_type", fmap pack activityType)
+        , ("min_cat", fmap (pack . show) minCat)
+        , ("max_cat", fmap (pack . show) maxCat)
+        ]
+    bounds = intercalate "," (fmap show [south, west, north, east])
+    go [] = []
+    go ((_, Nothing) : xs) = go xs
+    go ((k, Just v) : xs) = (k, v) : go xs
 
 -- | <http://strava.github.io/api/v3/segments/#starred>
 getStarredSegments :: Client -> Types.Page -> Types.PerPage -> IO (Either String [Objects.SegmentSummary])
