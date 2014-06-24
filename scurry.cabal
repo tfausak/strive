@@ -77,5 +77,8 @@ library
         Scurry.Objects.Zones
         Scurry.Objects.Zones.ZoneSummary
         Scurry.Types
+    ghc-options:
+        -Wall
+        -Werror
     hs-source-dirs:
         library
