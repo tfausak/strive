@@ -20,10 +20,10 @@ data AthleteSummary = AthleteSummary
     , follower      :: Maybe Text
     , friend        :: Text
     , id            :: Integer
-    , lastname      :: Bool
-    , premium       :: Text
+    , lastname      :: Text
+    , premium       :: Bool
     , profile       :: Text
-    , profileMedium :: Integer
+    , profileMedium :: Text
     , resourceState :: Integer
     , sex           :: Maybe Char
     , state         :: Text
