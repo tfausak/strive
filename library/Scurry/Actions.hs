@@ -21,6 +21,7 @@ module Scurry.Actions
     , getLaps
     , getLeaders
     , getPhotos
+    , getSegment
     , getSegments
     , getStarredSegments
     , getZones
@@ -195,6 +196,13 @@ getPhotos :: Client -> Types.ActivityId -> IO (Either String [Objects.PhotoSumma
 getPhotos client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/photos"
+    query = []
+
+-- | <http://strava.github.io/api/v3/segments/#retrieve>
+getSegment :: Client -> Types.SegmentId -> IO (Either String Objects.SegmentDetailed)
+getSegment client segmentId = get client resource query
+  where
+    resource = "segments/" <> show segmentId
     query = []
 
 -- | <http://strava.github.io/api/v3/segments/#explore>

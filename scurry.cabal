@@ -73,7 +73,12 @@ library
         Scurry.Objects.Gear
         Scurry.Objects.Gear.GearDetailed
         Scurry.Objects.Gear.GearSummary
+        Scurry.Objects.Photos
+        Scurry.Objects.Photos.PhotoSummary
+        Scurry.Objects.Polylines
+        Scurry.Objects.Polylines.PolylineDetailed
         Scurry.Objects.Segments
+        Scurry.Objects.Segments.SegmentDetailed
         Scurry.Objects.Segments.SegmentExploration
         Scurry.Objects.Segments.SegmentLeader
         Scurry.Objects.Segments.SegmentSummary
