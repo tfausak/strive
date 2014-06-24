@@ -1,6 +1,7 @@
 -- | Functions for performing actions against the API.
 module Scurry.Actions
     ( getClub
+    , getCommonFriends
     , getCurrentFollowers
     , getCurrentFriends
     , getFollowers
@@ -18,6 +19,13 @@ getClub client clubId = get client resource query
   where
     resource = "clubs/" <> show clubId
     query = []
+
+-- | <http://strava.github.io/api/v3/follow/#both>
+getCommonFriends :: Client -> Integer -> Integer -> Integer -> IO (Either String [AthleteSummary])
+getCommonFriends client athleteId page perPage = get client resource query
+  where
+    resource = "/athletes/" <> show athleteId <> "/both-following"
+    query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
 getCurrentFollowers :: Client -> Integer -> Integer -> IO (Either String [AthleteSummary])
