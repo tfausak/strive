@@ -10,6 +10,7 @@ module Scurry.Actions
     , getCurrentFriends
     , getFollowers
     , getFriends
+    , getKudoers
     ) where
 
 import           Data.Aeson              (encode)
@@ -74,4 +75,11 @@ getFriends :: Client -> Integer -> Integer -> Integer -> IO (Either String [Athl
 getFriends client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/friends"
+    query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/kudos/#list>
+getKudoers :: Client -> Integer -> Integer -> Integer -> IO (Either String [AthleteSummary])
+getKudoers client activityId page perPage = get client resource query
+  where
+    resource = "activities/" <> show activityId <> "/kudos"
     query = paginate page perPage
