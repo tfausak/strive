@@ -31,10 +31,10 @@ type GearId = String
 type IncludeMarkdown = Bool
 
 -- | Page number
-type Page = Integer
+type Page = Maybe Integer
 
 -- | Number of elements per page
-type PerPage = Integer
+type PerPage = Maybe Integer
 
 -- | Resource path
 type Resource = String

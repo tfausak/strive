@@ -12,6 +12,7 @@ module Scurry.Actions.Internal
 import           Data.Aeson             (FromJSON, eitherDecode)
 import           Data.ByteString.Char8  (pack, unpack)
 import           Data.ByteString.Lazy   (ByteString)
+import           Data.Maybe             (catMaybes)
 import           Network.HTTP.Conduit   (Request, Response, httpLbs, parseUrl,
                                          responseBody)
 import           Network.HTTP.Types.URI (SimpleQuery, renderSimpleQuery)
@@ -44,7 +45,10 @@ makeRequest client request = httpLbs request (httpManager client)
 
 -- | Convert pagination parameters into a query.
 paginate :: Types.Page -> Types.PerPage -> SimpleQuery
-paginate page perPage =
-    [ ("page", pack (show page))
-    , ("per_page", pack (show perPage))
+paginate maybePage maybePerPage = catMaybes
+    [ itemize "page" maybePage
+    , itemize "per_page" maybePerPage
     ]
+  where
+    itemize key value = maybe Nothing (go key) value
+    go key value = Just (key, pack (show value))
