@@ -1,14 +1,19 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 -- | <http://strava.github.io/api/v3/clubs/#detailed-representation-attributes-a-iddetailednbspa>
 module Scurry.Objects.Clubs.ClubDetailed
     ( ClubDetailed (..)
     ) where
 
-import           Data.Text (Text)
+import           Control.Applicative (empty, (<$>), (<*>))
+import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
+                                      (.:))
+import           Data.Text           (Text)
 
 -- | Detailed club representation.
 data ClubDetailed = ClubDetailed
     { city          :: Text
-    , club_type     :: Text
+    , clubType      :: Text
     , country       :: Text
     , description   :: Text
     , id            :: Integer
@@ -21,3 +26,20 @@ data ClubDetailed = ClubDetailed
     , sportType     :: Text
     , state         :: Text
     } deriving (Show)
+
+instance FromJSON ClubDetailed where
+    parseJSON (Object o) = ClubDetailed
+        <$> o .: "city"
+        <*> o .: "club_type"
+        <*> o .: "country"
+        <*> o .: "description"
+        <*> o .: "id"
+        <*> o .: "member_count"
+        <*> o .: "name"
+        <*> o .: "private"
+        <*> o .: "profile"
+        <*> o .: "profileMedium"
+        <*> o .: "resource_state"
+        <*> o .: "sport_type"
+        <*> o .: "state"
+    parseJSON _ = empty
