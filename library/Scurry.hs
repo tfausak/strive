@@ -3,4 +3,6 @@ module Scurry
     ( module Scurry
     ) where
 
-import           Scurry.Client as Scurry
+import           Scurry.Actions as Scurry
+import           Scurry.Client  as Scurry
+import           Scurry.Objects as Scurry

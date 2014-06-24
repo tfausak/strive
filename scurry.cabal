@@ -47,6 +47,10 @@ library
         Haskell2010
     exposed-modules:
         Scurry
+        Scurry.Actions
         Scurry.Client
+        Scurry.Objects
+        Scurry.Objects.Clubs
+        Scurry.Objects.Clubs.ClubDetailed
     hs-source-dirs:
         library
