@@ -27,35 +27,35 @@ import qualified Scurry.Objects          as Objects
 import qualified Scurry.Types            as Types
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
-getAthlete :: Client -> Integer -> IO (Either String Objects.AthleteSummary)
+getAthlete :: Client -> Types.AthleteId -> IO (Either String Objects.AthleteSummary)
 getAthlete client athleteId = get client resource query
   where
     resource = "athletes/" <> show athleteId
     query = []
 
 -- | <http://strava.github.io/api/v3/clubs/#get-details>
-getClub :: Client -> Integer -> IO (Either String Objects.ClubDetailed)
+getClub :: Client -> Types.ClubId -> IO (Either String Objects.ClubDetailed)
 getClub client clubId = get client resource query
   where
     resource = "clubs/" <> show clubId
     query = []
 
 -- | <http://strava.github.io/api/v3/clubs/#get-members>
-getClubMembers :: Client -> Types.Page -> Types.PerPage -> Integer -> IO (Either String [Objects.AthleteSummary])
+getClubMembers :: Client -> Types.ClubId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getClubMembers client clubId page perPage = get client resource query
   where
     resource = "clubs/" <> show clubId <> "/members"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/comments/#list>
-getComments :: Client -> Integer -> Bool -> Types.Page -> Types.PerPage -> IO (Either String [Objects.CommentSummary])
+getComments :: Client -> Types.ActivityId -> Types.IncludeMarkdown -> Types.Page -> Types.PerPage -> IO (Either String [Objects.CommentSummary])
 getComments client activityId includeMarkdown page perPage = get client resource query
   where
     resource = "activities/" <> show activityId <> "/comments"
     query = ("markdown", toStrict (encode includeMarkdown)) : paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#both>
-getCommonFriends :: Client -> Integer -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
+getCommonFriends :: Client -> Types.AthleteId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getCommonFriends client athleteId page perPage = get client resource query
   where
     resource = "/athletes/" <> show athleteId <> "/both-following"
@@ -83,42 +83,42 @@ getCurrentFriends client page perPage = get client resource query
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
-getFollowers :: Client -> Integer -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
+getFollowers :: Client -> Types.AthleteId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getFollowers client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/followers"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/follow/#friends>
-getFriends :: Client -> Integer -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
+getFriends :: Client -> Types.AthleteId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getFriends client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/friends"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/gear/#show>
-getGear :: Client -> String -> IO (Either String Objects.GearDetailed)
+getGear :: Client -> Types.GearId -> IO (Either String Objects.GearDetailed)
 getGear client gearId = get client resource query
   where
     resource = "gear/" <> gearId
     query = []
 
 -- | <http://strava.github.io/api/v3/kudos/#list>
-getKudoers :: Client -> Integer -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
+getKudoers :: Client -> Types.ActivityId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
 getKudoers client activityId page perPage = get client resource query
   where
     resource = "activities/" <> show activityId <> "/kudos"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/photos/#list>
-getPhotos :: Client -> Integer -> IO (Either String [Objects.PhotoSummary])
+getPhotos :: Client -> Types.ActivityId -> IO (Either String [Objects.PhotoSummary])
 getPhotos client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/photos"
     query = []
 
 -- | <http://strava.github.io/api/v3/activities/#zones>
-getZones :: Client -> Integer -> IO (Either String [Objects.ZoneSummary])
+getZones :: Client -> Types.ActivityId -> IO (Either String [Objects.ZoneSummary])
 getZones client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/zones"

@@ -19,7 +19,7 @@ import           Scurry.Client          (Client (accessToken, httpManager))
 import qualified Scurry.Types           as Types
 
 -- | Build a request by constructing the URL and appending the access token.
-buildRequest :: Client -> String -> SimpleQuery -> IO Request
+buildRequest :: Client -> Types.Resource -> SimpleQuery -> IO Request
 buildRequest client resource query = parseUrl url
   where
     url = concat [endpoint, resource, queryString]
@@ -32,7 +32,7 @@ decodeResponse :: FromJSON a => Response ByteString -> Either String a
 decodeResponse response = eitherDecode (responseBody response)
 
 -- | Get the given resource.
-get :: FromJSON a => Client -> String -> SimpleQuery -> IO (Either String a)
+get :: FromJSON a => Client -> Types.Resource -> SimpleQuery -> IO (Either String a)
 get client resource query = do
     request <- buildRequest client resource query
     response <- makeRequest client request

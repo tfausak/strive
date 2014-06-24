@@ -1,11 +1,35 @@
 -- | Type aliases for better function signatures.
 module Scurry.Types
-    ( Page
+    ( ActivityId
+    , AthleteId
+    , ClubId
+    , GearId
+    , IncludeMarkdown
+    , Page
     , PerPage
+    , Resource
     ) where
 
--- | Which page are you on?
+-- | Activity ID
+type ActivityId = Integer
+
+-- | Athlete ID
+type AthleteId = Integer
+
+-- | Club ID
+type ClubId = Integer
+
+-- | Gear ID
+type GearId = String
+
+-- | Do you want to include Markdown?
+type IncludeMarkdown = Bool
+
+-- | Page number
 type Page = Integer
 
--- | How many elements do you want per page?
+-- | Number of elements per page
 type PerPage = Integer
+
+-- | Resource path
+type Resource = String
