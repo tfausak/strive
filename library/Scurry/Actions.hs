@@ -3,6 +3,7 @@
 -- | Functions for performing actions against the API.
 module Scurry.Actions
     ( getAthlete
+    , getAthleteCRs
     , getClub
     , getClubMembers
     , getComments
@@ -33,6 +34,13 @@ getAthlete client athleteId = get client resource query
   where
     resource = "athletes/" <> show athleteId
     query = []
+
+-- | <http://strava.github.io/api/v3/athlete/#koms>
+getAthleteCRs :: Client -> Types.AthleteId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.EffortSummary])
+getAthleteCRs client athleteId page perPage = get client resource query
+  where
+    resource = "athletes/" <> show athleteId <> "/koms"
+    query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/clubs/#get-details>
 getClub :: Client -> Types.ClubId -> IO (Either String Objects.ClubDetailed)
