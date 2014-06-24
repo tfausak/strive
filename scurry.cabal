@@ -61,5 +61,7 @@ library
         Scurry.Objects.Athletes.AthleteSummary
         Scurry.Objects.Clubs
         Scurry.Objects.Clubs.ClubDetailed
+        Scurry.Objects.Comments
+        Scurry.Objects.Comments.CommentSummary
     hs-source-dirs:
         library
