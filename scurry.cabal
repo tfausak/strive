@@ -82,3 +82,5 @@ library
         -Werror
     hs-source-dirs:
         library
+    other-extensions:
+        OverloadedStrings
