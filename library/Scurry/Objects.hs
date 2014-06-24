@@ -3,4 +3,5 @@ module Scurry.Objects
     ( module Objects
     ) where
 
-import           Scurry.Objects.Clubs as Objects
+import           Scurry.Objects.Athletes as Objects
+import           Scurry.Objects.Clubs    as Objects

@@ -6,6 +6,7 @@ module Scurry.Actions.Internal
     , decodeResponse
     , get
     , makeRequest
+    , paginate
     ) where
 
 import           Data.Aeson             (FromJSON, decode)
@@ -39,3 +40,10 @@ get client resource query = do
 -- | Make an HTTP request using the client's manager.
 makeRequest :: Client -> Request -> IO (Response ByteString)
 makeRequest client request = httpLbs request (httpManager client)
+
+-- | Convert pagination parameters into a query.
+paginate :: Integer -> Integer -> SimpleQuery
+paginate page perPage =
+    [ ("page", pack (show page))
+    , ("per_page", pack (show perPage))
+    ]
