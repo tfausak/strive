@@ -9,7 +9,7 @@ module Scurry.Actions.Internal
     , paginate
     ) where
 
-import           Data.Aeson             (FromJSON, decode)
+import           Data.Aeson             (FromJSON, eitherDecode)
 import           Data.ByteString.Char8  (pack, unpack)
 import           Data.ByteString.Lazy   (ByteString)
 import           Network.HTTP.Conduit   (Request, Response, httpLbs, parseUrl,
@@ -27,11 +27,11 @@ buildRequest client resource query = parseUrl url
     query' = ("access_token", pack (accessToken client)) : query
 
 -- | Decode a response by parsing its body as JSON.
-decodeResponse :: FromJSON a => Response ByteString -> Maybe a
-decodeResponse response = decode (responseBody response)
+decodeResponse :: FromJSON a => Response ByteString -> Either String a
+decodeResponse response = eitherDecode (responseBody response)
 
 -- | Get the given resource.
-get :: FromJSON a => Client -> String -> SimpleQuery -> IO (Maybe a)
+get :: FromJSON a => Client -> String -> SimpleQuery -> IO (Either String a)
 get client resource query = do
     request <- buildRequest client resource query
     response <- makeRequest client request
