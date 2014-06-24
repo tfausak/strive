@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | <http://strava.github.io/api/v3/gear/#detailed>
-module Scurry.Objects.Gears.GearDetailed
+module Scurry.Objects.Gear.GearDetailed
     ( GearDetailed (..)
     ) where
 
@@ -10,7 +10,7 @@ import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
                                       (.:), (.:?))
 import           Data.Text           (Text)
 
--- | Detailed representation of a gear.
+-- | Detailed representation of gear.
 data GearDetailed = GearDetailed
     { brandName     :: Text
     , description   :: Text
