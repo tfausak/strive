@@ -18,6 +18,7 @@ module Scurry.Actions
     , getFriends
     , getGear
     , getKudoers
+    , getLeaders
     , getPhotos
     , getSegments
     , getStarredSegments
@@ -155,6 +156,31 @@ getKudoers client activityId page perPage = get client resource query
   where
     resource = "activities/" <> show activityId <> "/kudos"
     query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/segments/#leaderboard>
+getLeaders :: Client -> Types.SegmentId -> Maybe Char -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Integer -> Maybe String -> Types.Page -> Types.PerPage -> IO (Either String [Objects.SegmentLeader])
+getLeaders client segmentId gender ageGroup weightClass following clubId dateRange page perPage = do
+    request <- buildRequest client resource query
+    response <- makeRequest client request
+    let body = responseBody response
+        object = decode body
+        leaders = case object of
+            Nothing -> Left ""
+            Just o -> parseEither (.: "entries") o
+    return leaders
+  where
+    resource = "segments/" <> show segmentId <> "/leaderboard"
+    query = paginate page perPage <> go
+        [ ("gender", fmap (pack . show) gender)
+        , ("age_group", fmap pack ageGroup)
+        , ("weight_class", fmap pack weightClass)
+        , ("following", fmap (toStrict . encode) following)
+        , ("club_id", fmap (pack . show) clubId)
+        , ("date_range", fmap pack dateRange)
+        ]
+    go [] = []
+    go ((_, Nothing) : xs) = go xs
+    go ((k, Just v) : xs) = (k, v) : go xs
 
 -- | <http://strava.github.io/api/v3/photos/#list>
 getPhotos :: Client -> Types.ActivityId -> IO (Either String [Objects.PhotoSummary])

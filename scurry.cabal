@@ -74,6 +74,7 @@ library
         Scurry.Objects.Gear.GearSummary
         Scurry.Objects.Segments
         Scurry.Objects.Segments.SegmentExploration
+        Scurry.Objects.Segments.SegmentLeader
         Scurry.Objects.Segments.SegmentSummary
         Scurry.Objects.Zones
         Scurry.Objects.Zones.ZoneSummary
