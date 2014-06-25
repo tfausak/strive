@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/gear/>
 module Strive.Actions.Gear
     ( getGear
     ) where
