@@ -18,7 +18,7 @@ format:
 
 haddock:
 	cabal haddock
-	# dist/doc/html/scurry/index.html
+	# dist/doc/html/strive/index.html
 
 install:
 	cabal sandbox init
@@ -28,4 +28,4 @@ lint:
 	git ls-files '*.hs' | xargs hlint
 
 repl:
-	cabal repl lib:scurry
+	cabal repl lib:strive

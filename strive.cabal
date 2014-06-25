@@ -1,0 +1,94 @@
+author:
+    Taylor Fausak
+bug-reports:
+    https://github.com/tfausak/strive/issues
+build-type:
+    Simple
+cabal-version:
+    >= 1.10
+category:
+    API
+copyright:
+    2014 Taylor Fausak <taylor@fausak.me>
+description:
+    A Haskell client for the <http://strava.github.io/api/ Strava V3 API>.
+extra-source-files:
+    CHANGELOG.md
+    CONTRIBUTING.md
+    README.md
+homepage:
+    https://github.com/tfausak/strive
+license-file:
+    LICENSE.txt
+license:
+    MIT
+maintainer:
+    taylor@fausak.me
+name:
+    strive
+synopsis:
+    A Haskell client for the Strava V3 API.
+tested-with:
+    GHC == 7.6.3
+version:
+    0.1.0
+
+source-repository head
+    location:
+        git://github.com/tfausak/strive.git
+    type:
+        git
+
+library
+    build-depends:
+        base == 4.*
+      , aeson == 0.7.*
+      , bytestring
+      , http-conduit == 2.*
+      , http-types
+      , text
+      , time
+    default-language:
+        Haskell2010
+    exposed-modules:
+        Strive
+        Strive.Actions
+        Strive.Actions.Internal
+        Strive.Client
+        Strive.Objects
+        Strive.Objects.Activities
+        Strive.Objects.Activities.ActivitySummary
+        Strive.Objects.Athletes
+        Strive.Objects.Athletes.AthleteDetailed
+        Strive.Objects.Athletes.AthleteMeta
+        Strive.Objects.Athletes.AthleteSummary
+        Strive.Objects.Buckets
+        Strive.Objects.Buckets.BucketSummary
+        Strive.Objects.Clubs
+        Strive.Objects.Clubs.ClubDetailed
+        Strive.Objects.Clubs.ClubSummary
+        Strive.Objects.Comments
+        Strive.Objects.Comments.CommentSummary
+        Strive.Objects.Efforts
+        Strive.Objects.Efforts.EffortLap
+        Strive.Objects.Efforts.EffortSummary
+        Strive.Objects.Gear
+        Strive.Objects.Gear.GearDetailed
+        Strive.Objects.Gear.GearSummary
+        Strive.Objects.Photos
+        Strive.Objects.Photos.PhotoSummary
+        Strive.Objects.Polylines
+        Strive.Objects.Polylines.PolylineDetailed
+        Strive.Objects.Polylines.PolylineSummary
+        Strive.Objects.Segments
+        Strive.Objects.Segments.SegmentDetailed
+        Strive.Objects.Segments.SegmentExploration
+        Strive.Objects.Segments.SegmentLeader
+        Strive.Objects.Segments.SegmentSummary
+        Strive.Objects.Zones
+        Strive.Objects.Zones.ZoneSummary
+        Strive.Types
+    hs-source-dirs:
+        library
+    other-extensions:
+        OverloadedStrings
