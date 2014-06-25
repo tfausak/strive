@@ -5,14 +5,10 @@ module Strive.Actions
     ( getActivity
     , getAthlete
     , getAthleteCRs
-    , getClub
-    , getClubActivities
-    , getClubMembers
     , getComments
     , getCommonFriends
     , getCurrentActivities
     , getCurrentAthlete
-    , getCurrentClubs
     , getCurrentFollowers
     , getCurrentFriends
     , getEffort
@@ -40,6 +36,7 @@ import           Data.Monoid             ((<>))
 import           Data.Time.Clock         (UTCTime)
 import           Data.Time.Clock.POSIX   (utcTimeToPOSIXSeconds)
 import           Network.HTTP.Conduit    (responseBody)
+import           Strive.Actions.Clubs    as Actions
 import           Strive.Actions.Gear     as Actions
 import           Strive.Actions.Internal (buildRequest, get, makeRequest,
                                           paginate)
@@ -68,27 +65,6 @@ getAthleteCRs :: Client -> Types.AthleteId -> Types.Page -> Types.PerPage -> IO 
 getAthleteCRs client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/koms"
-    query = paginate page perPage
-
--- | <http://strava.github.io/api/v3/clubs/#get-details>
-getClub :: Client -> Types.ClubId -> IO (Either String Objects.ClubDetailed)
-getClub client clubId = get client resource query
-  where
-    resource = "clubs/" <> show clubId
-    query = []
-
--- | <http://strava.github.io/api/v3/clubs/#get-activities>
-getClubActivities :: Client -> Types.ClubId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.ActivitySummary])
-getClubActivities client clubId page perPage = get client resource query
-  where
-    resource = "clubs/" <> show clubId <> "/activities"
-    query = paginate page perPage
-
--- | <http://strava.github.io/api/v3/clubs/#get-members>
-getClubMembers :: Client -> Types.ClubId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
-getClubMembers client clubId page perPage = get client resource query
-  where
-    resource = "clubs/" <> show clubId <> "/members"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/comments/#list>
@@ -123,13 +99,6 @@ getCurrentAthlete :: Client -> IO (Either String Objects.AthleteDetailed)
 getCurrentAthlete client = get client resource query
   where
     resource = "athlete"
-    query = []
-
--- | <http://strava.github.io/api/v3/clubs/#get-athletes>
-getCurrentClubs :: Client -> IO (Either String [Objects.ClubSummary])
-getCurrentClubs client = get client resource query
-  where
-    resource = "athlete/clubs"
     query = []
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
