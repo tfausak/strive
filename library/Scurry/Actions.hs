@@ -6,6 +6,7 @@ module Scurry.Actions
     , getAthlete
     , getAthleteCRs
     , getClub
+    , getClubActivities
     , getClubMembers
     , getComments
     , getCommonFriends
@@ -73,6 +74,13 @@ getClub client clubId = get client resource query
   where
     resource = "clubs/" <> show clubId
     query = []
+
+-- | <http://strava.github.io/api/v3/clubs/#get-activities>
+getClubActivities :: Client -> Types.ClubId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.ActivitySummary])
+getClubActivities client clubId page perPage = get client resource query
+  where
+    resource = "clubs/" <> show clubId <> "/activities"
+    query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/clubs/#get-members>
 getClubMembers :: Client -> Types.ClubId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])

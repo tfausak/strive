@@ -27,14 +27,14 @@ data ActivitySummary = ActivitySummary
     , endLatlng          :: Maybe (Double, Double)
     , externalId         :: Maybe Text
     , flagged            :: Bool
-    , gearId             :: Text
+    , gearId             :: Maybe Text
     , hasKudoed          :: Bool
     , id                 :: Integer
     , kilojoules         :: Maybe Double
     , kudosCount         :: Integer
-    , locationCity       :: Text
+    , locationCity       :: Maybe Text
     , locationCountry    :: Text
-    , locationState      :: Text
+    , locationState      :: Maybe Text
     , manual             :: Bool
     , map                :: PolylineSummary
     , maxSpeed           :: Double
@@ -46,7 +46,7 @@ data ActivitySummary = ActivitySummary
     , startDate          :: UTCTime
     , startDateLocal     :: UTCTime
     , startLatitude      :: Double
-    , startLatlng        :: (Double, Double)
+    , startLatlng        :: Maybe (Double, Double)
     , startLongitude     :: Double
     , timezone           :: Text
     , totalElevationGain :: Double
@@ -69,14 +69,14 @@ instance FromJSON ActivitySummary where
         <*> o .:? "end_latlng"
         <*> o .:? "external_id"
         <*> o .: "flagged"
-        <*> o .: "gear_id"
+        <*> o .:? "gear_id"
         <*> o .: "has_kudoed"
         <*> o .: "id"
         <*> o .:? "kilojoules"
         <*> o .: "kudos_count"
-        <*> o .: "location_city"
+        <*> o .:? "location_city"
         <*> o .: "location_country"
-        <*> o .: "location_state"
+        <*> o .:? "location_state"
         <*> o .: "manual"
         <*> o .: "map"
         <*> o .: "max_speed"
@@ -88,7 +88,7 @@ instance FromJSON ActivitySummary where
         <*> o .: "start_date"
         <*> o .: "start_date_local"
         <*> o .: "start_latitude"
-        <*> o .: "start_latlng"
+        <*> o .:? "start_latlng"
         <*> o .: "start_longitude"
         <*> o .: "timezone"
         <*> o .: "total_elevation_gain"
