@@ -32,7 +32,7 @@ synopsis:
 tested-with:
     GHC == 7.6.3
 version:
-    0.0.0
+    0.1.0
 
 source-repository head
     location:
