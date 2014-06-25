@@ -57,6 +57,7 @@ library
         Strive.Actions.Efforts
         Strive.Actions.Gear
         Strive.Actions.Internal
+        Strive.Actions.Segments
         Strive.Client
         Strive.Objects
         Strive.Objects.Activities

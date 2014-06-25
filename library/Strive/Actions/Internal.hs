@@ -7,6 +7,7 @@ module Strive.Actions.Internal
     , get
     , makeRequest
     , paginate
+    , queryToSimpleQuery
     ) where
 
 import           Data.Aeson             (FromJSON, eitherDecode)
@@ -15,7 +16,7 @@ import           Data.ByteString.Lazy   (ByteString)
 import           Data.Maybe             (catMaybes)
 import           Network.HTTP.Conduit   (Request, Response, httpLbs, parseUrl,
                                          responseBody)
-import           Network.HTTP.Types.URI (SimpleQuery, renderSimpleQuery)
+import           Network.HTTP.Types.URI (Query, SimpleQuery, renderSimpleQuery)
 import           Strive.Client          (Client (accessToken, httpManager))
 import qualified Strive.Types           as Types
 
@@ -52,3 +53,10 @@ paginate maybePage maybePerPage = catMaybes
   where
     itemize key value = maybe Nothing (go key) value
     go key value = Just (key, pack (show value))
+
+-- | Convert a query into a simple query.
+queryToSimpleQuery :: Query -> SimpleQuery
+queryToSimpleQuery = foldr go []
+  where
+    go (_, Nothing) query = query
+    go (key, Just value) query = (key, value) : query
