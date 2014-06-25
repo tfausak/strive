@@ -19,6 +19,7 @@ module Scurry.Actions
     , getEfforts
     , getFollowers
     , getFriends
+    , getFriendsActivities
     , getGear
     , getKudoers
     , getLaps
@@ -176,6 +177,13 @@ getFriends :: Client -> Types.AthleteId -> Types.Page -> Types.PerPage -> IO (Ei
 getFriends client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/friends"
+    query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/activities/#get-feed>
+getFriendsActivities :: Client -> Types.Page -> Types.PerPage -> IO (Either String [Objects.ActivitySummary])
+getFriendsActivities client page perPage = get client resource query
+  where
+    resource = "activities/following"
     query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/gear/#show>
