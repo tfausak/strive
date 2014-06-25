@@ -20,7 +20,6 @@ module Strive.Actions
     , getFollowers
     , getFriends
     , getFriendsActivities
-    , getGear
     , getKudoers
     , getLaps
     , getLeaders
@@ -29,6 +28,7 @@ module Strive.Actions
     , getSegments
     , getStarredSegments
     , getZones
+    , module Actions
     ) where
 
 import           Data.Aeson              (decode, encode, (.:))
@@ -40,6 +40,7 @@ import           Data.Monoid             ((<>))
 import           Data.Time.Clock         (UTCTime)
 import           Data.Time.Clock.POSIX   (utcTimeToPOSIXSeconds)
 import           Network.HTTP.Conduit    (responseBody)
+import           Strive.Actions.Gear     as Actions
 import           Strive.Actions.Internal (buildRequest, get, makeRequest,
                                           paginate)
 import           Strive.Client           (Client)
@@ -185,13 +186,6 @@ getFriendsActivities client page perPage = get client resource query
   where
     resource = "activities/following"
     query = paginate page perPage
-
--- | <http://strava.github.io/api/v3/gear/#show>
-getGear :: Client -> Types.GearId -> IO (Either String Objects.GearDetailed)
-getGear client gearId = get client resource query
-  where
-    resource = "gear/" <> gearId
-    query = []
 
 -- | <http://strava.github.io/api/v3/activities/#laps>
 getLaps :: Client -> Types.ActivityId -> IO (Either String [Objects.EffortLap])
