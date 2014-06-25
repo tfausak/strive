@@ -11,7 +11,6 @@ module Strive.Actions
     , getCurrentAthlete
     , getCurrentFollowers
     , getCurrentFriends
-    , getEffort
     , getEfforts
     , getFollowers
     , getFriends
@@ -37,6 +36,7 @@ import           Data.Time.Clock         (UTCTime)
 import           Data.Time.Clock.POSIX   (utcTimeToPOSIXSeconds)
 import           Network.HTTP.Conduit    (responseBody)
 import           Strive.Actions.Clubs    as Actions
+import           Strive.Actions.Efforts  as Actions
 import           Strive.Actions.Gear     as Actions
 import           Strive.Actions.Internal (buildRequest, get, makeRequest,
                                           paginate)
@@ -114,13 +114,6 @@ getCurrentFriends client page perPage = get client resource query
   where
     resource = "athlete/friends"
     query = paginate page perPage
-
--- | <http://strava.github.io/api/v3/efforts/#retrieve>
-getEffort :: Client -> Types.EffortId -> IO (Either String Objects.EffortSummary)
-getEffort client effortId = get client resource query
-  where
-    resource = "segment_efforts/" <> show effortId
-    query = []
 
 -- | <http://strava.github.io/api/v3/segments/#efforts>
 getEfforts :: Client -> Types.SegmentId -> Maybe (UTCTime, UTCTime) -> Types.Page -> Types.PerPage -> IO (Either String [Objects.EffortSummary])
