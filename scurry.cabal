@@ -5,7 +5,7 @@ bug-reports:
 build-type:
     Simple
 cabal-version:
-    >= 1.18
+    >= 1.10
 category:
     API
 copyright:
@@ -15,7 +15,6 @@ description:
 extra-source-files:
     CHANGELOG.md
     CONTRIBUTING.md
-    LICENSE.txt
     README.md
 homepage:
     https://github.com/tfausak/scurry
@@ -42,10 +41,10 @@ source-repository head
 
 library
     build-depends:
-        base
-      , aeson
+        base == 4.*
+      , aeson == 0.7.*
       , bytestring
-      , http-conduit
+      , http-conduit == 2.*
       , http-types
       , text
       , time
@@ -89,9 +88,6 @@ library
         Scurry.Objects.Zones
         Scurry.Objects.Zones.ZoneSummary
         Scurry.Types
-    ghc-options:
-        -Wall
-        -Werror
     hs-source-dirs:
         library
     other-extensions:
