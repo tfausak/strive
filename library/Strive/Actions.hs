@@ -2,11 +2,8 @@
 
 -- | Functions for performing actions against the API.
 module Strive.Actions
-    ( getAthlete
-    , getAthleteCRs
-    , getComments
+    ( getComments
     , getCommonFriends
-    , getCurrentAthlete
     , getCurrentFollowers
     , getCurrentFriends
     , getFollowers
@@ -20,6 +17,7 @@ import           Data.Aeson                (encode)
 import           Data.ByteString.Lazy      (toStrict)
 import           Data.Monoid               ((<>))
 import           Strive.Actions.Activities as Actions
+import           Strive.Actions.Athletes   as Actions
 import           Strive.Actions.Clubs      as Actions
 import           Strive.Actions.Efforts    as Actions
 import           Strive.Actions.Gear       as Actions
@@ -28,20 +26,6 @@ import           Strive.Actions.Segments   as Actions
 import           Strive.Client             (Client)
 import qualified Strive.Objects            as Objects
 import qualified Strive.Types              as Types
-
--- | <http://strava.github.io/api/v3/athlete/#get-another-details>
-getAthlete :: Client -> Types.AthleteId -> IO (Either String Objects.AthleteSummary)
-getAthlete client athleteId = get client resource query
-  where
-    resource = "athletes/" <> show athleteId
-    query = []
-
--- | <http://strava.github.io/api/v3/athlete/#koms>
-getAthleteCRs :: Client -> Types.AthleteId -> Types.Page -> Types.PerPage -> IO (Either String [Objects.EffortSummary])
-getAthleteCRs client athleteId page perPage = get client resource query
-  where
-    resource = "athletes/" <> show athleteId <> "/koms"
-    query = paginate page perPage
 
 -- | <http://strava.github.io/api/v3/comments/#list>
 getComments :: Client -> Types.ActivityId -> Types.IncludeMarkdown -> Types.Page -> Types.PerPage -> IO (Either String [Objects.CommentSummary])
@@ -56,13 +40,6 @@ getCommonFriends client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/both-following"
     query = paginate page perPage
-
--- | <http://strava.github.io/api/v3/athlete/#get-details>
-getCurrentAthlete :: Client -> IO (Either String Objects.AthleteDetailed)
-getCurrentAthlete client = get client resource query
-  where
-    resource = "athlete"
-    query = []
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
 getCurrentFollowers :: Client -> Types.Page -> Types.PerPage -> IO (Either String [Objects.AthleteSummary])
