@@ -57,6 +57,8 @@ library
         Scurry.Actions.Internal
         Scurry.Client
         Scurry.Objects
+        Scurry.Objects.Activities
+        Scurry.Objects.Activities.ActivitySummary
         Scurry.Objects.Athletes
         Scurry.Objects.Athletes.AthleteDetailed
         Scurry.Objects.Athletes.AthleteSummary
@@ -77,6 +79,7 @@ library
         Scurry.Objects.Photos.PhotoSummary
         Scurry.Objects.Polylines
         Scurry.Objects.Polylines.PolylineDetailed
+        Scurry.Objects.Polylines.PolylineSummary
         Scurry.Objects.Segments
         Scurry.Objects.Segments.SegmentDetailed
         Scurry.Objects.Segments.SegmentExploration

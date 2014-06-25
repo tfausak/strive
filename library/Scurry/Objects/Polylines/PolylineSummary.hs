@@ -1,27 +1,25 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | <http://strava.github.io/api/v3/segments/#detailed>
-module Scurry.Objects.Polylines.PolylineDetailed
-    ( PolylineDetailed (..)
+module Scurry.Objects.Polylines.PolylineSummary
+    ( PolylineSummary (..)
     ) where
 
 import           Control.Applicative (empty, (<$>), (<*>))
 import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:), (.:?))
+                                      (.:))
 import           Data.Text           (Text)
 
 -- | Detailed representation of a polyline.
-data PolylineDetailed = PolylineDetailed
+data PolylineSummary = PolylineSummary
     { id              :: Text
-    , polyline        :: Text
     , resourceState   :: Integer
-    , summaryPolyline :: Maybe Text
+    , summaryPolyline :: Text
     } deriving Show
 
-instance FromJSON PolylineDetailed where
-    parseJSON (Object o) = PolylineDetailed
+instance FromJSON PolylineSummary where
+    parseJSON (Object o) = PolylineSummary
         <$> o .: "id"
-        <*> o .: "polyline"
         <*> o .: "resource_state"
-        <*> o .:? "summary_polyline"
+        <*> o .: "summary_polyline"
     parseJSON _ = empty

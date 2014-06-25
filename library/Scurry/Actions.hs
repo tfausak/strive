@@ -2,7 +2,8 @@
 
 -- | Functions for performing actions against the API.
 module Scurry.Actions
-    ( getAthlete
+    ( getActivity
+    , getAthlete
     , getAthleteCRs
     , getClub
     , getClubMembers
@@ -40,6 +41,15 @@ import           Scurry.Actions.Internal (buildRequest, get, makeRequest,
 import           Scurry.Client           (Client)
 import qualified Scurry.Objects          as Objects
 import qualified Scurry.Types            as Types
+
+-- | <http://strava.github.io/api/v3/activities/#get-details>
+getActivity :: Client -> Types.ActivityId -> Maybe Bool -> IO (Either String Objects.ActivitySummary)
+getActivity client activityId allEfforts = get client resource query
+  where
+    resource = "activities/" <> show activityId
+    query = case allEfforts of
+        Just flag -> [("include_all_efforts", toStrict (encode flag))]
+        _ -> []
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> Types.AthleteId -> IO (Either String Objects.AthleteSummary)
