@@ -61,6 +61,7 @@ library
         Scurry.Objects.Activities.ActivitySummary
         Scurry.Objects.Athletes
         Scurry.Objects.Athletes.AthleteDetailed
+        Scurry.Objects.Athletes.AthleteMeta
         Scurry.Objects.Athletes.AthleteSummary
         Scurry.Objects.Buckets
         Scurry.Objects.Buckets.BucketSummary

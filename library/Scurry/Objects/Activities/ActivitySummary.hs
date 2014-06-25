@@ -7,30 +7,30 @@ module Scurry.Objects.Activities.ActivitySummary
 
 import           Control.Applicative      (empty, (<$>), (<*>))
 import           Data.Aeson               (FromJSON, Value (Object), parseJSON,
-                                           (.:))
+                                           (.:), (.:?))
 import           Data.Text                (Text)
 import           Data.Time.Clock          (UTCTime)
-import           Scurry.Objects.Athletes  (AthleteSummary)
+import           Scurry.Objects.Athletes  (AthleteMeta)
 import           Scurry.Objects.Polylines (PolylineSummary)
 
 -- | Summary representation of an activity.
 data ActivitySummary = ActivitySummary
     { achievementCount   :: Integer
-    , athlete            :: AthleteSummary
+    , athlete            :: AthleteMeta
     , athleteCount       :: Integer
     , averageSpeed       :: Double
-    , averageWatts       :: Double
+    , averageWatts       :: Maybe Double
     , commentCount       :: Integer
     , commute            :: Bool
     , distance           :: Double
     , elapsedTime        :: Integer
-    , endLatlng          :: (Double, Double)
-    , externalId         :: Text
+    , endLatlng          :: Maybe (Double, Double)
+    , externalId         :: Maybe Text
     , flagged            :: Bool
     , gearId             :: Text
     , hasKudoed          :: Bool
     , id                 :: Integer
-    , kilojoules         :: Double
+    , kilojoules         :: Maybe Double
     , kudosCount         :: Integer
     , locationCity       :: Text
     , locationCountry    :: Text
@@ -52,7 +52,7 @@ data ActivitySummary = ActivitySummary
     , totalElevationGain :: Double
     , trainer            :: Bool
     , type_              :: Text
-    , uploadId           :: Integer
+    , uploadId           :: Maybe Integer
     } deriving Show
 
 instance FromJSON ActivitySummary where
@@ -61,18 +61,18 @@ instance FromJSON ActivitySummary where
         <*> o .: "athlete"
         <*> o .: "athlete_count"
         <*> o .: "average_speed"
-        <*> o .: "average_watts"
+        <*> o .:? "average_watts"
         <*> o .: "comment_count"
         <*> o .: "commute"
         <*> o .: "distance"
         <*> o .: "elapsed_time"
-        <*> o .: "end_latlng"
-        <*> o .: "external_id"
+        <*> o .:? "end_latlng"
+        <*> o .:? "external_id"
         <*> o .: "flagged"
         <*> o .: "gear_id"
         <*> o .: "has_kudoed"
         <*> o .: "id"
-        <*> o .: "kilojoules"
+        <*> o .:? "kilojoules"
         <*> o .: "kudos_count"
         <*> o .: "location_city"
         <*> o .: "location_country"
@@ -94,5 +94,5 @@ instance FromJSON ActivitySummary where
         <*> o .: "total_elevation_gain"
         <*> o .: "trainer"
         <*> o .: "type"
-        <*> o .: "upload_id"
+        <*> o .:? "upload_id"
     parseJSON _ = empty

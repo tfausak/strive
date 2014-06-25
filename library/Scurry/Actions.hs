@@ -9,6 +9,7 @@ module Scurry.Actions
     , getClubMembers
     , getComments
     , getCommonFriends
+    , getCurrentActivities
     , getCurrentAthlete
     , getCurrentClubs
     , getCurrentFollowers
@@ -35,6 +36,7 @@ import           Data.ByteString.Lazy    (toStrict)
 import           Data.List               (intercalate)
 import           Data.Monoid             ((<>))
 import           Data.Time.Clock         (UTCTime)
+import           Data.Time.Clock.POSIX   (utcTimeToPOSIXSeconds)
 import           Network.HTTP.Conduit    (responseBody)
 import           Scurry.Actions.Internal (buildRequest, get, makeRequest,
                                           paginate)
@@ -92,6 +94,19 @@ getCommonFriends client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/both-following"
     query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/activities/#get-activities>
+getCurrentActivities :: Client -> Maybe UTCTime -> Maybe UTCTime -> Types.Page -> Types.PerPage -> IO (Either String [Objects.ActivitySummary])
+getCurrentActivities client before after page perPage = get client resource query
+  where
+    resource = "athlete/activities"
+    query = paginate page perPage <> go
+        [ ("before", fmap (pack . show . utcTimeToPOSIXSeconds) before)
+        , ("after", fmap (pack . show . utcTimeToPOSIXSeconds) after)
+        ]
+    go [] = []
+    go ((_, Nothing) : xs) = go xs
+    go ((k, Just v) : xs) = (k, v) : go xs
 
 -- | <http://strava.github.io/api/v3/athlete/#get-details>
 getCurrentAthlete :: Client -> IO (Either String Objects.AthleteDetailed)
