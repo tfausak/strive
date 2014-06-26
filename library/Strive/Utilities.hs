@@ -2,31 +2,44 @@
 
 -- | Helper functions for performing actions.
 module Strive.Utilities
-    ( buildRequest
+    ( buildQuery
+    , buildRequest
+    , buildURL
     , decodeResponse
     , get
     , makeRequest
     , paginate
     , queryToSimpleQuery
+    , renderQuery
     ) where
 
 import           Data.Aeson             (FromJSON, eitherDecode)
 import           Data.ByteString.Char8  (pack, unpack)
 import           Data.ByteString.Lazy   (ByteString)
+import           Data.Monoid            ((<>))
 import           Network.HTTP.Conduit   (Request, Response, httpLbs, parseUrl,
                                          responseBody)
 import           Network.HTTP.Types.URI (Query, SimpleQuery, renderSimpleQuery)
 import           Strive.Client          (Client (accessToken, httpManager))
 import           Strive.Types           (Page, PerPage, Resource)
 
+-- | Build a base query with just the access token for a client.
+buildQuery :: Client -> SimpleQuery
+buildQuery client =
+    [ ("access_token", pack (accessToken client))
+    ]
+
 -- | Build a request by constructing the URL and appending the access token.
 buildRequest :: Client -> Resource -> SimpleQuery -> IO Request
-buildRequest client resource query = parseUrl url
-  where
-    url = concat [endpoint, resource, queryString]
-    endpoint = "https://www.strava.com/api/v3/"
-    queryString = unpack (renderSimpleQuery True query')
-    query' = ("access_token", pack (accessToken client)) : query
+buildRequest client resource query = parseUrl (buildURL client resource query)
+
+-- | Build a URL for a request.
+buildURL :: Client -> Resource -> SimpleQuery -> String
+buildURL client resource query = concat
+    [ "https://www.strava.com/api/v3/"
+    , resource
+    , renderQuery (buildQuery client <> query)
+    ]
 
 -- | Decode a response by parsing its body as JSON.
 decodeResponse :: FromJSON a => Response ByteString -> Either String a
@@ -56,3 +69,7 @@ queryToSimpleQuery = foldr go []
   where
     go (_, Nothing) query = query
     go (key, Just value) query = (key, value) : query
+
+-- | Render a simple query as a string prefixed by a question mark.
+renderQuery :: SimpleQuery -> String
+renderQuery = unpack . renderSimpleQuery True
