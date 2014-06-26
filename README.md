@@ -1,8 +1,8 @@
-# [Strive][1]
+<h1><a href="https://github.com/tfausak/strive">Strive</a></h1>
 
 A Haskell client for the [Strava V3 API][2].
 
-## Installation
+<h2>Installation</h2>
 
 This project uses [Semantic Versioning][3].
 
@@ -10,7 +10,7 @@ This project uses [Semantic Versioning][3].
 $ cabal install strive-0.1.0
 ```
 
-## Usage
+<h2>Usage</h2>
 
 To use the API, you'll need an access token. Once you have that, create a new
 client using the default HTTP manager.
@@ -22,322 +22,310 @@ client <- newClient token
 -- Client {..}
 ```
 
-### Authentication
+Note: This README is executable. Run it with this command.
 
-#### Request Access
+``` sh
+$ runhaskell README.lhs ACCESS_TOKEN
+```
+
+Since it's executable, there's some necessary boilerplate.
+
+> module README (main) where
+> import Data.Time.Calendar (fromGregorian)
+> import Data.Time.Clock (UTCTime (UTCTime), getCurrentTime)
+> import Strive
+> import System.Environment (getArgs)
+> main :: IO ()
+> main = do
+>     (token : _) <- getArgs
+>     client <- newClient token
+
+<h3>Authentication</h3>
+
+<h4>Request Access</h4>
 
 <https://github.com/tfausak/strive/issues/36>
 
-#### Token Exchange
+<h4>Token Exchange</h4>
 
 <https://github.com/tfausak/strive/issues/37>
 
-#### Deauthorization
+<h4>Deauthorization</h4>
 
 <https://github.com/tfausak/strive/issues/38>
 
-### Athletes
+<h3>Athletes</h3>
 
-#### Retrieve Current Athlete
+<h4>Retrieve Current Athlete</h4>
 
-``` hs
-getCurrentAthlete client
--- Right (AthleteDetailed {..})
-```
+>     currentAthlete <- getCurrentAthlete client
+>     print currentAthlete
+>     -- Right (AthleteDetailed {..})
 
-#### Retrieve Another Athlete
+<h4>Retrieve Another Athlete</h4>
 
-``` hs
-let athleteId = 65516
-getAthlete client athleteId
--- Right (AthleteSummary {..})
-```
+>     let athleteId = 65516
+>     athlete <- getAthlete client athleteId
+>     print athlete
+>     -- Right (AthleteSummary {..})
 
-#### Update Current Athlete
+<h4>Update Current Athlete</h4>
 
 <https://github.com/tfausak/strive/issues/7>
 
-#### List Athlete K/QOMs/CRs
+<h4>List Athlete K/QOMs/CRs</h4>
 
-``` hs
-let athleteId = 65516
-let page = Just 1
-let perPage = Just 200
-getAthleteCRs client athleteId page perPage
--- Right [EffortSummary {..},..]
---
-```
+>     let athleteId = 65516
+>     let page = Just 1
+>     let perPage = Just 200
+>     athleteCRs <- getAthleteCRs client athleteId page perPage
+>     print athleteCRs
+>     -- Right [EffortSummary {..},..]
 
-### Friends and Followers
+<h3>Friends and Followers</h3>
 
-#### List Athlete Friends
+<h4>List Athlete Friends</h4>
 
-``` hs
-let page = Just 1
-let perPage = Just 200
-getCurrentFriends client page perPage
--- Right [AthleteSummary {..},..]
-```
+>     let page = Just 1
+>     let perPage = Just 200
+>     currentFriends <- getCurrentFriends client page perPage
+>     print currentFriends
+>     -- Right [AthleteSummary {..},..]
 
-#### List Athlete Followers
+<h4>List Athlete Followers</h4>
 
-``` hs
-let page = Just 1
-let perPage = Just 200
-getCurrentFollowers client page perPage
--- Right [AthleteSummary {..},..]
-```
+>     let page = Just 1
+>     let perPage = Just 200
+>     currentFollowers <- getCurrentFollowers client page perPage
+>     print currentFollowers
+>     -- Right [AthleteSummary {..},..]
 
-#### List Both Following
+<h4>List Both Following</h4>
 
-``` hs
-let athleteId = 65516
-let page = Just 1
-let perPage = Just 200
-getCommonFriends client athleteId page perPage
--- Right [AthleteSummary {..},..]
-```
+>     let athleteId = 65516
+>     let page = Just 1
+>     let perPage = Just 200
+>     commonFriends <- getCommonFriends client athleteId page perPage
+>     print commonFriends
+>     -- Right [AthleteSummary {..},..]
 
-### Activities
+<h3>Activities</h3>
 
-#### Create an Activity
+<h4>Create an Activity</h4>
 
 <https://github.com/tfausak/strive/issues/12>
 
-#### Retrieve an Activity
+<h4>Retrieve an Activity</h4>
 
-``` hs
-let activityId = 141273622
-let includeAllEfforts = Just True
-getActivity client activityId includeAllEfforts
--- Right (ActivitySummary {..})
-```
+>     let activityId = 141273622
+>     let includeAllEfforts = Just True
+>     activity <- getActivity client activityId includeAllEfforts
+>     print activity
+>     -- Right (ActivitySummary {..})
 
-#### Update an Activity
+<h4>Update an Activity</h4>
 
 <https://github.com/tfausak/strive/issues/14>
 
-#### Delete an Activity
+<h4>Delete an Activity</h4>
 
 <https://github.com/tfausak/strive/issues/15>
 
-#### List Athlete Activities
+<h4>List Athlete Activities</h4>
 
-``` hs
-import Data.Time.Clock (getCurrentTime)
-time <- getCurrentTime
-let before = Just time
-let after = Nothing
-let page = Just 1
-let perPage = Just 200
-getCurrentActivities client before after page perPage
--- Right [ActivitySummary {..},..]
-```
+>     time <- getCurrentTime
+>     let before = Just time
+>     let after = Nothing
+>     let page = Just 1
+>     let perPage = Just 200
+>     currentActivities <- getCurrentActivities client before after page perPage
+>     print currentActivities
+>     -- Right [ActivitySummary {..},..]
 
-#### List Friends' Activities
+<h4>List Friends' Activities</h4>
 
-``` hs
-let page = Just 1
-let perPage = Just 200
-getFeed client page perPage
--- Right [ActivitySummary {..},..]
-```
+>     let page = Just 1
+>     let perPage = Just 200
+>     feed <- getFeed client page perPage
+>     print feed
+>     -- Right [ActivitySummary {..},..]
 
-#### List Activity Zones
+<h4>List Activity Zones</h4>
 
-``` hs
-let activityId = 141273622
-getActivityZones client activityId
--- Right [ZoneSummary {..},..]
-```
+>     let activityId = 141273622
+>     activityZones <- getActivityZones client activityId
+>     print activityZones
+>     -- Right [ZoneSummary {..},..]
 
-#### List Activity Laps
+<h4>List Activity Laps</h4>
 
-``` hs
-let activityId = 141273622
-getActivityLaps client activityId
--- Right [ZoneSummary {..},..]
-```
+>     let activityId = 141273622
+>     activityLaps <- getActivityLaps client activityId
+>     print activityLaps
+>     -- Right [ZoneSummary {..},..]
 
-### Comments
+<h3>Comments</h3>
 
-#### List Activity Comments
+<h4>List Activity Comments</h4>
 
-``` hs
-let activityId = 42001703
-let includeMarkdown = Just False
-let page = Just 1
-let perPage = Just 200
-getActivityComments client activityId includeMarkdown page perPage
--- Right [CommentSummary {..},..]
-```
+>     let activityId = 42001703
+>     let includeMarkdown = Just False
+>     let page = Just 1
+>     let perPage = Just 200
+>     activityComments <- getActivityComments client activityId includeMarkdown page perPage
+>     print activityComments
+>     -- Right [CommentSummary {..},..]
 
-### Kudos
+<h3>Kudos</h3>
 
-#### List Activity Kudoers
+<h4>List Activity Kudoers</h4>
 
-``` hs
-let activityId = 141273622
-let page = Just 1
-let perPage = Just 200
-getActivityKudoers client activityId page perPage
--- Right [AthleteSummary {..},..]
-```
+>     let activityId = 141273622
+>     let page = Just 1
+>     let perPage = Just 200
+>     activityKudoers <- getActivityKudoers client activityId page perPage
+>     print activityKudoers
+>     -- Right [AthleteSummary {..},..]
 
-### Photos
+<h3>Photos</h3>
 
-#### List Activity Photos
+<h4>List Activity Photos</h4>
 
-``` hs
-let activityId = 141273622
-getActivityPhotos client activityId
--- Right [PhotoSummary {..},..]
-```
+>     let activityId = 141273622
+>     activityPhotos <- getActivityPhotos client activityId
+>     print activityPhotos
+>     -- Right [PhotoSummary {..},..]
 
-### Clubs
+<h3>Clubs</h3>
 
-#### Retrieve a Club
+<h4>Retrieve a Club</h4>
 
-``` hs
-let clubId = 11193
-getClub client clubId
--- Right (ClubDetailed {..})
-```
+>     let clubId = 11193
+>     club <- getClub client clubId
+>     print club
+>     -- Right (ClubDetailed {..})
 
-#### List Athlete Clubs
+<h4>List Athlete Clubs</h4>
 
-``` hs
-getCurrentClubs client
--- Right [ClubSummary {..},..]
-```
+>     currentClubs <- getCurrentClubs client
+>     print currentClubs
+>     -- Right [ClubSummary {..},..]
 
-#### List Club Members
+<h4>List Club Members</h4>
 
-``` hs
-let clubId = 11193
-let page = Just 1
-let perPage = Just 200
-getClubMembers client clubId page perPage
--- Right [AthleteSummary {..},..]
-```
+>     let clubId = 11193
+>     let page = Just 1
+>     let perPage = Just 200
+>     clubMembers <- getClubMembers client clubId page perPage
+>     print clubMembers
+>     -- Right [AthleteSummary {..},..]
 
-#### List Club Activities
+<h4>List Club Activities</h4>
 
-``` hs
-let clubId = 11193
-let page = Just 1
-let perPage = Just 200
-getClubActivities client clubId page perPage
--- Right [ActivitySummary {..},..]
-```
+>     let clubId = 11193
+>     let page = Just 1
+>     let perPage = Just 200
+>     clubActivities <- getClubActivities client clubId page perPage
+>     print clubActivities
+>     -- Right [ActivitySummary {..},..]
 
-### Gear
+<h3>Gear</h3>
 
-#### Retrieve Gear
+<h4>Retrieve Gear</h4>
 
-``` hs
-let gearId = "b387855"
-getGear client gearId
--- Right (GearDetailed {..})
-```
+>     let gearId = "b387855"
+>     gear <- getGear client gearId
+>     print gear
+>     -- Right (GearDetailed {..})
 
-### Segments
+<h3>Segments</h3>
 
-#### Retrieve a Segment
+<h4>Retrieve a Segment</h4>
 
-``` hs
-let segmentId = 4773104
-getSegment client segmentId
--- Right (SegmentDetailed {..})
-```
+>     let segmentId = 4773104
+>     segment <- getSegment client segmentId
+>     print segment
+>     -- Right (SegmentDetailed {..})
 
-#### List Starred Segments
+<h4>List Starred Segments</h4>
 
-``` hs
-let page = Just 1
-let perPage = Just 200
-getStarredSegments client page perPage
--- Right [SegmentSummary {..},..]
-```
+>     let page = Just 1
+>     let perPage = Just 200
+>     starredSegments <- getStarredSegments client page perPage
+>     print starredSegments
+>     -- Right [SegmentSummary {..},..]
 
-#### List Efforts
+<h4>List Efforts</h4>
 
-``` hs
-import Data.Time.Calendar (fromGregorian)
-import Data.Time.Clock (UTCTime (UTCTime), getCurrentTime)
-time <- getCurrentTime
-let after = UTCTime (fromGregorian 1970 0 0) 0
-let before = time
+>     time <- getCurrentTime
+>     let after = UTCTime (fromGregorian 1970 0 0) 0
+>     let before = time
+>     let segmentId = 4773104
+>     let range = Just (after, before)
+>     let page = Just 1
+>     let perPage = Just 200
+>     efforts <- getSegmentEfforts client segmentId range page perPage
+>     print efforts
+>     -- Right [EffortSummary {..},..]
 
-let segmentId = 4773104
-let range = Just (after, before)
-let page = Just 1
-let perPage = Just 200
-getSegmentEfforts client segmentId range page perPage
--- Right [EffortSummary {..},..]
-```
+<h4>Segment Leaderboard</h4>
 
-#### Segment Leaderboard
+>     let segmentId = 1091029
+>     let gender = Nothing
+>     let ageGroup = Just "0_24"
+>     let weightClass = Just "55_64"
+>     let following = Just False
+>     let clubId = Nothing
+>     let range = Just "this_year"
+>     let page = Just 1
+>     let perPage = Just 200
+>     segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId range page perPage
+>     print segmentLeaders
+>     -- Right [SegmentLeader {..},..]
 
-``` hs
-let segmentId = 1091029
-let gender = Nothing
-let ageGroup = Just "0_24"
-let weightClass = Just "55_64"
-let following = Just False
-let clubId = Nothing
-let range = Just "this_year"
-let page = Just 1
-let perPage = Just 200
-getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId range page perPage
--- Right [SegmentLeader {..},..]
-```
+<h4>Segment Explorer</h4>
 
-#### Segment Explorer
+>     let south = 32.0
+>     let west = -96.0
+>     let north = 33.0
+>     let east = -95.0
+>     let activityType = Just "riding"
+>     let minCat = Just 0
+>     let maxCat = Just 5
+>     segments <- exploreSegments client (south, west, north, east) activityType minCat maxCat
+>     print segments
+>     -- Right [SegmentExploration {..},..]
 
-``` hs
-let south = 32.0
-let west = -96.0
-let north = 33.0
-let east = -95.0
-let activityType = Just "riding"
-let minCat = Just 0
-let maxCat = Just 5
-exploreSegments client (south, west, north, east) activityType minCat maxCat
--- Right [SegmentExploration {..},..]
-```
+<h3>Segment Efforts</h3>
 
-### Segment Efforts
+<h4>Retrieve a Segment Effort</h4>
 
-#### Retrieve a Segment Effort
+>     let effortId = 1595370098
+>     effort <- getEffort client effortId
+>     print effort
+>     -- Right (EffortSummary {..})
 
-``` hs
-let effortId = 1595370098
-getEffort client effortId
--- Right (EffortSummary {..})
-```
+<h3>Streams</h3>
 
-### Streams
-
-#### Retrieve Activity Streams
+<h4>Retrieve Activity Streams</h4>
 
 <https://github.com/tfausak/strive/issues/31>
 
-#### Retrieve Effort Streams
+<h4>Retrieve Effort Streams</h4>
 
 <https://github.com/tfausak/strive/issues/32>
 
-#### Retrieve Segment Streams
+<h4>Retrieve Segment Streams</h4>
 
 <https://github.com/tfausak/strive/issues/33>
 
-### Uploads
+<h3>Uploads</h3>
 
-#### Upload an Activity
+<h4>Upload an Activity</h4>
 
 <https://github.com/tfausak/strive/issues/34>
 
-#### Check Upload Status
+<h4>Check Upload Status</h4>
 
 <https://github.com/tfausak/strive/issues/35>
 
