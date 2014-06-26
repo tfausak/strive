@@ -11,7 +11,7 @@ module Strive.Actions.Segments
 
 import           Data.Aeson            (encode, (.:))
 import           Data.Aeson.Types      (parseEither)
-import           Data.ByteString.Char8 (pack)
+import           Data.ByteString.Char8 (pack, singleton)
 import           Data.ByteString.Lazy  (toStrict)
 import           Data.List             (intercalate)
 import           Data.Monoid           ((<>))
@@ -66,7 +66,7 @@ getSegmentLeaderboard client segmentId gender ageGroup weightClass following clu
   where
     resource = "segments/" <> show segmentId <> "/leaderboard"
     query = paginate page perPage <> queryToSimpleQuery
-        [ ("gender", fmap (pack . show) gender)
+        [ ("gender", fmap singleton gender)
         , ("age_group", fmap pack ageGroup)
         , ("weight_class", fmap pack weightClass)
         , ("following", fmap (toStrict . encode) following)
