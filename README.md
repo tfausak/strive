@@ -30,15 +30,17 @@ $ runhaskell README.lhs ACCESS_TOKEN
 
 Since it's executable, there's some necessary boilerplate.
 
-> module README (main) where
-> import Data.Time.Calendar (fromGregorian)
-> import Data.Time.Clock (UTCTime (UTCTime), getCurrentTime)
-> import Strive
-> import System.Environment (getArgs)
-> main :: IO ()
-> main = do
->     (token : _) <- getArgs
->     client <- newClient token
+~~~ {.haskell}
+module README (main) where
+import Data.Time.Calendar (fromGregorian)
+import Data.Time.Clock (UTCTime (UTCTime), getCurrentTime)
+import Strive
+import System.Environment (getArgs)
+main :: IO ()
+main = do
+    (token : _) <- getArgs
+    client <- newClient token
+~~~
 
 ### Authentication
 
@@ -58,16 +60,20 @@ Since it's executable, there's some necessary boilerplate.
 
 #### Retrieve Current Athlete
 
->     currentAthlete <- getCurrentAthlete client
->     print currentAthlete
->     -- Right (AthleteDetailed {..})
+~~~ {.haskell}
+    currentAthlete <- getCurrentAthlete client
+    print currentAthlete
+    -- Right (AthleteDetailed {..})
+~~~
 
 #### Retrieve Another Athlete
 
->     let athleteId = 65516
->     athlete <- getAthlete client athleteId
->     print athlete
->     -- Right (AthleteSummary {..})
+~~~ {.haskell}
+    let athleteId = 65516
+    athlete <- getAthlete client athleteId
+    print athlete
+    -- Right (AthleteSummary {..})
+~~~
 
 #### Update Current Athlete
 
@@ -75,39 +81,47 @@ Since it's executable, there's some necessary boilerplate.
 
 #### List Athlete K/QOMs/CRs
 
->     let athleteId = 65516
->     let page = Just 1
->     let perPage = Just 200
->     athleteCRs <- getAthleteCRs client athleteId page perPage
->     print athleteCRs
->     -- Right [EffortSummary {..},..]
+~~~ {.haskell}
+    let athleteId = 65516
+    let page = Just 1
+    let perPage = Just 200
+    athleteCRs <- getAthleteCRs client athleteId page perPage
+    print athleteCRs
+    -- Right [EffortSummary {..},..]
+~~~
 
 ### Friends and Followers
 
 #### List Athlete Friends
 
->     let page = Just 1
->     let perPage = Just 200
->     currentFriends <- getCurrentFriends client page perPage
->     print currentFriends
->     -- Right [AthleteSummary {..},..]
+~~~ {.haskell}
+    let page = Just 1
+    let perPage = Just 200
+    currentFriends <- getCurrentFriends client page perPage
+    print currentFriends
+    -- Right [AthleteSummary {..},..]
+~~~
 
 #### List Athlete Followers
 
->     let page = Just 1
->     let perPage = Just 200
->     currentFollowers <- getCurrentFollowers client page perPage
->     print currentFollowers
->     -- Right [AthleteSummary {..},..]
+~~~ {.haskell}
+    let page = Just 1
+    let perPage = Just 200
+    currentFollowers <- getCurrentFollowers client page perPage
+    print currentFollowers
+    -- Right [AthleteSummary {..},..]
+~~~
 
 #### List Both Following
 
->     let athleteId = 65516
->     let page = Just 1
->     let perPage = Just 200
->     commonFriends <- getCommonFriends client athleteId page perPage
->     print commonFriends
->     -- Right [AthleteSummary {..},..]
+~~~ {.haskell}
+    let athleteId = 65516
+    let page = Just 1
+    let perPage = Just 200
+    commonFriends <- getCommonFriends client athleteId page perPage
+    print commonFriends
+    -- Right [AthleteSummary {..},..]
+~~~
 
 ### Activities
 
@@ -117,11 +131,13 @@ Since it's executable, there's some necessary boilerplate.
 
 #### Retrieve an Activity
 
->     let activityId = 141273622
->     let includeAllEfforts = Just True
->     activity <- getActivity client activityId includeAllEfforts
->     print activity
->     -- Right (ActivitySummary {..})
+~~~ {.haskell}
+    let activityId = 141273622
+    let includeAllEfforts = Just True
+    activity <- getActivity client activityId includeAllEfforts
+    print activity
+    -- Right (ActivitySummary {..})
+~~~
 
 #### Update an Activity
 
@@ -133,177 +149,213 @@ Since it's executable, there's some necessary boilerplate.
 
 #### List Athlete Activities
 
->     time <- getCurrentTime
->     let before = Just time
->     let after = Nothing
->     let page = Just 1
->     let perPage = Just 200
->     currentActivities <- getCurrentActivities client before after page perPage
->     print currentActivities
->     -- Right [ActivitySummary {..},..]
+~~~ {.haskell}
+    time <- getCurrentTime
+    let before = Just time
+    let after = Nothing
+    let page = Just 1
+    let perPage = Just 200
+    currentActivities <- getCurrentActivities client before after page perPage
+    print currentActivities
+    -- Right [ActivitySummary {..},..]
+~~~
 
 #### List Friends' Activities
 
->     let page = Just 1
->     let perPage = Just 200
->     feed <- getFeed client page perPage
->     print feed
->     -- Right [ActivitySummary {..},..]
+~~~ {.haskell}
+    let page = Just 1
+    let perPage = Just 200
+    feed <- getFeed client page perPage
+    print feed
+    -- Right [ActivitySummary {..},..]
+~~~
 
 #### List Activity Zones
 
->     let activityId = 141273622
->     activityZones <- getActivityZones client activityId
->     print activityZones
->     -- Right [ZoneSummary {..},..]
+~~~ {.haskell}
+    let activityId = 141273622
+    activityZones <- getActivityZones client activityId
+    print activityZones
+    -- Right [ZoneSummary {..},..]
+~~~
 
 #### List Activity Laps
 
->     let activityId = 141273622
->     activityLaps <- getActivityLaps client activityId
->     print activityLaps
->     -- Right [ZoneSummary {..},..]
+~~~ {.haskell}
+    let activityId = 141273622
+    activityLaps <- getActivityLaps client activityId
+    print activityLaps
+    -- Right [ZoneSummary {..},..]
+~~~
 
 ### Comments
 
 #### List Activity Comments
 
->     let activityId = 42001703
->     let includeMarkdown = Just False
->     let page = Just 1
->     let perPage = Just 200
->     activityComments <- getActivityComments client activityId includeMarkdown page perPage
->     print activityComments
->     -- Right [CommentSummary {..},..]
+~~~ {.haskell}
+    let activityId = 42001703
+    let includeMarkdown = Just False
+    let page = Just 1
+    let perPage = Just 200
+    activityComments <- getActivityComments client activityId includeMarkdown page perPage
+    print activityComments
+    -- Right [CommentSummary {..},..]
+~~~
 
 ### Kudos
 
 #### List Activity Kudoers
 
->     let activityId = 141273622
->     let page = Just 1
->     let perPage = Just 200
->     activityKudoers <- getActivityKudoers client activityId page perPage
->     print activityKudoers
->     -- Right [AthleteSummary {..},..]
+~~~ {.haskell}
+    let activityId = 141273622
+    let page = Just 1
+    let perPage = Just 200
+    activityKudoers <- getActivityKudoers client activityId page perPage
+    print activityKudoers
+    -- Right [AthleteSummary {..},..]
+~~~
 
 ### Photos
 
 #### List Activity Photos
 
->     let activityId = 141273622
->     activityPhotos <- getActivityPhotos client activityId
->     print activityPhotos
->     -- Right [PhotoSummary {..},..]
+~~~ {.haskell}
+    let activityId = 141273622
+    activityPhotos <- getActivityPhotos client activityId
+    print activityPhotos
+    -- Right [PhotoSummary {..},..]
+~~~
 
 ### Clubs
 
 #### Retrieve a Club
 
->     let clubId = 11193
->     club <- getClub client clubId
->     print club
->     -- Right (ClubDetailed {..})
+~~~ {.haskell}
+    let clubId = 11193
+    club <- getClub client clubId
+    print club
+    -- Right (ClubDetailed {..})
+~~~
 
 #### List Athlete Clubs
 
->     currentClubs <- getCurrentClubs client
->     print currentClubs
->     -- Right [ClubSummary {..},..]
+~~~ {.haskell}
+    currentClubs <- getCurrentClubs client
+    print currentClubs
+    -- Right [ClubSummary {..},..]
+~~~
 
 #### List Club Members
 
->     let clubId = 11193
->     let page = Just 1
->     let perPage = Just 200
->     clubMembers <- getClubMembers client clubId page perPage
->     print clubMembers
->     -- Right [AthleteSummary {..},..]
+~~~ {.haskell}
+    let clubId = 11193
+    let page = Just 1
+    let perPage = Just 200
+    clubMembers <- getClubMembers client clubId page perPage
+    print clubMembers
+    -- Right [AthleteSummary {..},..]
+~~~
 
 #### List Club Activities
 
->     let clubId = 11193
->     let page = Just 1
->     let perPage = Just 200
->     clubActivities <- getClubActivities client clubId page perPage
->     print clubActivities
->     -- Right [ActivitySummary {..},..]
+~~~ {.haskell}
+    let clubId = 11193
+    let page = Just 1
+    let perPage = Just 200
+    clubActivities <- getClubActivities client clubId page perPage
+    print clubActivities
+    -- Right [ActivitySummary {..},..]
+~~~
 
 ### Gear
 
 #### Retrieve Gear
 
->     let gearId = "b387855"
->     gear <- getGear client gearId
->     print gear
->     -- Right (GearDetailed {..})
+~~~ {.haskell}
+    let gearId = "b387855"
+    gear <- getGear client gearId
+    print gear
+    -- Right (GearDetailed {..})
+~~~
 
 ### Segments
 
 #### Retrieve a Segment
 
->     let segmentId = 4773104
->     segment <- getSegment client segmentId
->     print segment
->     -- Right (SegmentDetailed {..})
+~~~ {.haskell}
+    let segmentId = 4773104
+    segment <- getSegment client segmentId
+    print segment
+    -- Right (SegmentDetailed {..})
+~~~
 
 #### List Starred Segments
 
->     let page = Just 1
->     let perPage = Just 200
->     starredSegments <- getStarredSegments client page perPage
->     print starredSegments
->     -- Right [SegmentSummary {..},..]
+~~~ {.haskell}
+    let page = Just 1
+    let perPage = Just 200
+    starredSegments <- getStarredSegments client page perPage
+    print starredSegments
+    -- Right [SegmentSummary {..},..]
+~~~
 
 #### List Efforts
 
->     time <- getCurrentTime
->     let after = UTCTime (fromGregorian 1970 0 0) 0
->     let before = time
->     let segmentId = 4773104
->     let range = Just (after, before)
->     let page = Just 1
->     let perPage = Just 200
->     efforts <- getSegmentEfforts client segmentId range page perPage
->     print efforts
->     -- Right [EffortSummary {..},..]
+~~~ {.haskell}
+    time <- getCurrentTime
+    let after = UTCTime (fromGregorian 1970 0 0) 0
+    let before = time
+    let segmentId = 4773104
+    let range = Just (after, before)
+    let page = Just 1
+    let perPage = Just 200
+    efforts <- getSegmentEfforts client segmentId range page perPage
+    print efforts
+    -- Right [EffortSummary {..},..]
+~~~
 
 #### Segment Leaderboard
 
->     let segmentId = 1091029
->     let gender = Nothing
->     let ageGroup = Just "0_24"
->     let weightClass = Just "55_64"
->     let following = Just False
->     let clubId = Nothing
->     let range = Just "this_year"
->     let page = Just 1
->     let perPage = Just 200
->     segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId range page perPage
->     print segmentLeaders
->     -- Right [SegmentLeader {..},..]
+~~~ {.haskell}
+    let segmentId = 1091029
+    let gender = Nothing
+    let ageGroup = Just "0_24"
+    let weightClass = Just "55_64"
+    let following = Just False
+    let clubId = Nothing
+    let range = Just "this_year"
+    let page = Just 1
+    let perPage = Just 200
+    segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId range page perPage
+    print segmentLeaders
+    -- Right [SegmentLeader {..},..]
+~~~
 
 #### Segment Explorer
 
->     let south = 32.0
->     let west = -96.0
->     let north = 33.0
->     let east = -95.0
->     let activityType = Just "riding"
->     let minCat = Just 0
->     let maxCat = Just 5
->     segments <- exploreSegments client (south, west, north, east) activityType minCat maxCat
->     print segments
->     -- Right [SegmentExploration {..},..]
+~~~ {.haskell}
+    let south = 32.0
+    let west = -96.0
+    let north = 33.0
+    let east = -95.0
+    let activityType = Just "riding"
+    let minCat = Just 0
+    let maxCat = Just 5
+    segments <- exploreSegments client (south, west, north, east) activityType minCat maxCat
+    print segments
+    -- Right [SegmentExploration {..},..]
+~~~
 
 ### Segment Efforts
 
 #### Retrieve a Segment Effort
 
->     let effortId = 1595370098
->     effort <- getEffort client effortId
->     print effort
->     -- Right (EffortSummary {..})
+~~~ {.haskell}
+    let effortId = 1595370098
+    effort <- getEffort client effortId
+    print effort
+    -- Right (EffortSummary {..})
+~~~
 
 ### Streams
 
