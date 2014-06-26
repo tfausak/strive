@@ -1,8 +1,8 @@
 -- | <http://strava.github.io/api/v3/clubs/>
 module Strive.Objects.Clubs
-    ( ClubDetailed
-    , ClubSummary
+    ( module Strive.Objects.Clubs.ClubDetailed
+    , module Strive.Objects.Clubs.ClubSummary
     ) where
 
-import           Strive.Objects.Clubs.ClubDetailed
-import           Strive.Objects.Clubs.ClubSummary
+import           Strive.Objects.Clubs.ClubDetailed (ClubDetailed)
+import           Strive.Objects.Clubs.ClubSummary  (ClubSummary)

@@ -1,8 +1,8 @@
 -- | <http://strava.github.io/api/#polylines>
 module Strive.Objects.Polylines
-    ( PolylineDetailed
-    , PolylineSummary
+    ( module Strive.Objects.Polylines.PolylineDetailed
+    , module Strive.Objects.Polylines.PolylineSummary
     ) where
 
-import           Strive.Objects.Polylines.PolylineDetailed
-import           Strive.Objects.Polylines.PolylineSummary
+import           Strive.Objects.Polylines.PolylineDetailed (PolylineDetailed)
+import           Strive.Objects.Polylines.PolylineSummary  (PolylineSummary)

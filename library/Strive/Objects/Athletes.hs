@@ -1,10 +1,10 @@
 -- | <http://strava.github.io/api/v3/athlete/>
 module Strive.Objects.Athletes
-    ( AthleteDetailed
-    , AthleteMeta
-    , AthleteSummary
+    ( module Strive.Objects.Athletes.AthleteDetailed
+    , module Strive.Objects.Athletes.AthleteMeta
+    , module Strive.Objects.Athletes.AthleteSummary
     ) where
 
-import           Strive.Objects.Athletes.AthleteDetailed
-import           Strive.Objects.Athletes.AthleteMeta
-import           Strive.Objects.Athletes.AthleteSummary
+import           Strive.Objects.Athletes.AthleteDetailed (AthleteDetailed)
+import           Strive.Objects.Athletes.AthleteMeta     (AthleteMeta)
+import           Strive.Objects.Athletes.AthleteSummary  (AthleteSummary)

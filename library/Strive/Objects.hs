@@ -1,16 +1,26 @@
 -- | Data types representing responses from the API.
 module Strive.Objects
-    ( module Objects
+    ( module Strive.Objects.Activities
+    , module Strive.Objects.Athletes
+    , module Strive.Objects.Buckets
+    , module Strive.Objects.Clubs
+    , module Strive.Objects.Comments
+    , module Strive.Objects.Efforts
+    , module Strive.Objects.Gear
+    , module Strive.Objects.Photos
+    , module Strive.Objects.Polylines
+    , module Strive.Objects.Segments
+    , module Strive.Objects.Zones
     ) where
 
-import           Strive.Objects.Activities as Objects
-import           Strive.Objects.Athletes   as Objects
-import           Strive.Objects.Buckets    as Objects
-import           Strive.Objects.Clubs      as Objects
-import           Strive.Objects.Comments   as Objects
-import           Strive.Objects.Efforts    as Objects
-import           Strive.Objects.Gear       as Objects
-import           Strive.Objects.Photos     as Objects
-import           Strive.Objects.Polylines  as Objects
-import           Strive.Objects.Segments   as Objects
-import           Strive.Objects.Zones      as Objects
+import           Strive.Objects.Activities
+import           Strive.Objects.Athletes
+import           Strive.Objects.Buckets
+import           Strive.Objects.Clubs
+import           Strive.Objects.Comments
+import           Strive.Objects.Efforts
+import           Strive.Objects.Gear
+import           Strive.Objects.Photos
+import           Strive.Objects.Polylines
+import           Strive.Objects.Segments
+import           Strive.Objects.Zones
