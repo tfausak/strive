@@ -28,7 +28,7 @@ type EffortId = Integer
 type GearId = String
 
 -- | Do you want to include Markdown?
-type IncludeMarkdown = Bool
+type IncludeMarkdown = Maybe Bool
 
 -- | Page number
 type Page = Maybe Integer
