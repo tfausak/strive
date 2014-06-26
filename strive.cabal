@@ -30,7 +30,6 @@ library
         bytestring -any,
         http-conduit ==2.*,
         http-types -any,
-        markdown-unlit ==0.2.*,
         text -any,
         time -any
     exposed-modules:
