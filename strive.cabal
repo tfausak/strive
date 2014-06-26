@@ -57,6 +57,7 @@ library
         Strive.Actions.Athletes
         Strive.Actions.Clubs
         Strive.Actions.Efforts
+        Strive.Actions.Friends
         Strive.Actions.Gear
         Strive.Actions.Internal
         Strive.Actions.Segments
