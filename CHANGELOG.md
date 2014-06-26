@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.1.1 (2014-06-26)
+
 -   Grouped actions into modules.
 -   Moved `Strive.Actions.Internal` to `Strive.Utilities`.
 -   Changed `IncludeMarkdown` from `Bool` to `Maybe Bool`.

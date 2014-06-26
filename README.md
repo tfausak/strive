@@ -8,7 +8,7 @@ This project uses [Semantic Versioning][3].
 
 ~~~ {.sh}
 $ cabal update
-$ cabal install strive-0.1.0
+$ cabal install strive-0.1.1
 ~~~
 
 ## Usage
