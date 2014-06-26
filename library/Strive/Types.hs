@@ -1,6 +1,7 @@
 -- | Type aliases for better function signatures.
 module Strive.Types
-    ( ActivityId
+    ( AccessToken
+    , ActivityId
     , AthleteId
     , ClubId
     , EffortId
@@ -11,6 +12,9 @@ module Strive.Types
     , Resource
     , SegmentId
     ) where
+
+-- | Access token
+type AccessToken = String
 
 -- | Activity ID
 type ActivityId = Integer

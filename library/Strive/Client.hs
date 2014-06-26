@@ -5,15 +5,16 @@ module Strive.Client
     ) where
 
 import           Network.HTTP.Client.Conduit (Manager, newManager)
+import           Strive.Types                (AccessToken)
 
 -- | Strava V3 API Client.
 data Client = Client
-    { accessToken :: String
+    { accessToken :: AccessToken
     , httpManager :: Manager
     }
 
 -- | Create a new client using the default HTTP manager.
-newClient :: String -> IO Client
+newClient :: AccessToken -> IO Client
 newClient token = do
     manager <- newManager
     return Client
