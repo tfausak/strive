@@ -30,7 +30,7 @@ buildRequest client resource query = parseUrl url
 
 -- | Decode a response by parsing its body as JSON.
 decodeResponse :: FromJSON a => Response ByteString -> Either String a
-decodeResponse response = eitherDecode (responseBody response)
+decodeResponse = eitherDecode . responseBody
 
 -- | Get the given resource.
 get :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
@@ -41,7 +41,7 @@ get client resource query = do
 
 -- | Make an HTTP request using the client's manager.
 makeRequest :: Client -> Request -> IO (Response ByteString)
-makeRequest client request = httpLbs request (httpManager client)
+makeRequest = flip httpLbs . httpManager
 
 -- | Convert pagination parameters into a query.
 paginate :: Page -> PerPage -> SimpleQuery
