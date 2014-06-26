@@ -9,17 +9,17 @@ module Strive.Actions.Activities
     , getFeed
     ) where
 
-import           Data.Aeson              (encode)
-import           Data.ByteString.Char8   (pack)
-import           Data.ByteString.Lazy    (toStrict)
-import           Data.Monoid             ((<>))
-import           Data.Time.Clock         (UTCTime)
-import           Data.Time.Clock.POSIX   (utcTimeToPOSIXSeconds)
-import           Strive.Actions.Internal (get, paginate, queryToSimpleQuery)
-import           Strive.Client           (Client)
-import           Strive.Objects          (ActivitySummary, EffortLap,
-                                          ZoneSummary)
-import           Strive.Types            (ActivityId, Page, PerPage)
+import           Data.Aeson            (encode)
+import           Data.ByteString.Char8 (pack)
+import           Data.ByteString.Lazy  (toStrict)
+import           Data.Monoid           ((<>))
+import           Data.Time.Clock       (UTCTime)
+import           Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
+import           Strive.Client         (Client)
+import           Strive.Objects        (ActivitySummary, EffortLap,
+                                        ZoneSummary)
+import           Strive.Types          (ActivityId, Page, PerPage)
+import           Strive.Utilities      (get, paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/activities/#get-details>
 getActivity :: Client -> ActivityId -> Maybe Bool -> IO (Either String ActivitySummary)

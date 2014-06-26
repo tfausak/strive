@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | Internal helper functions for performing actions.
-module Strive.Actions.Internal
+-- | Helper functions for performing actions.
+module Strive.Utilities
     ( buildRequest
     , decodeResponse
     , get

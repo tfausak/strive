@@ -5,12 +5,12 @@ module Strive.Actions.Athletes
     , getCurrentAthlete
     ) where
 
-import           Data.Monoid             ((<>))
-import           Strive.Actions.Internal (get, paginate)
-import           Strive.Client           (Client)
-import           Strive.Objects          (AthleteDetailed, AthleteSummary,
-                                          EffortSummary)
-import           Strive.Types            (AthleteId, Page, PerPage)
+import           Data.Monoid      ((<>))
+import           Strive.Client    (Client)
+import           Strive.Objects   (AthleteDetailed, AthleteSummary,
+                                   EffortSummary)
+import           Strive.Types     (AthleteId, Page, PerPage)
+import           Strive.Utilities (get, paginate)
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> AthleteId -> IO (Either String AthleteSummary)

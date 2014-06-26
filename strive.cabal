@@ -60,7 +60,6 @@ library
         Strive.Actions.Efforts
         Strive.Actions.Friends
         Strive.Actions.Gear
-        Strive.Actions.Internal
         Strive.Actions.Kudos
         Strive.Actions.Photos
         Strive.Actions.Segments
@@ -98,6 +97,7 @@ library
         Strive.Objects.Zones
         Strive.Objects.Zones.ZoneSummary
         Strive.Types
+        Strive.Utilities
     hs-source-dirs:
         library
     other-extensions:

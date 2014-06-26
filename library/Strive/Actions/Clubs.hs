@@ -6,12 +6,12 @@ module Strive.Actions.Clubs
     , getCurrentClubs
     ) where
 
-import           Data.Monoid             ((<>))
-import           Strive.Actions.Internal (get, paginate)
-import           Strive.Client           (Client)
-import           Strive.Objects          (ActivitySummary, AthleteSummary,
-                                          ClubDetailed, ClubSummary)
-import           Strive.Types            (ClubId, Page, PerPage)
+import           Data.Monoid      ((<>))
+import           Strive.Client    (Client)
+import           Strive.Objects   (ActivitySummary, AthleteSummary,
+                                   ClubDetailed, ClubSummary)
+import           Strive.Types     (ClubId, Page, PerPage)
+import           Strive.Utilities (get, paginate)
 
 -- | <http://strava.github.io/api/v3/clubs/#get-details>
 getClub :: Client -> ClubId -> IO (Either String ClubDetailed)

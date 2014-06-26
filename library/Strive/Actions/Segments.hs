@@ -9,21 +9,21 @@ module Strive.Actions.Segments
     , getStarredSegments
     ) where
 
-import           Data.Aeson              (decode, encode, (.:))
-import           Data.Aeson.Types        (parseEither)
-import           Data.ByteString.Char8   (pack)
-import           Data.ByteString.Lazy    (toStrict)
-import           Data.List               (intercalate)
-import           Data.Monoid             ((<>))
-import           Data.Time.Clock         (UTCTime)
-import           Network.HTTP.Conduit    (responseBody)
-import           Strive.Actions.Internal (buildRequest, get, makeRequest,
-                                          paginate, queryToSimpleQuery)
-import           Strive.Client           (Client)
-import           Strive.Objects          (EffortSummary, SegmentDetailed,
-                                          SegmentExploration, SegmentLeader,
-                                          SegmentSummary)
-import           Strive.Types            (Page, PerPage, SegmentId)
+import           Data.Aeson            (decode, encode, (.:))
+import           Data.Aeson.Types      (parseEither)
+import           Data.ByteString.Char8 (pack)
+import           Data.ByteString.Lazy  (toStrict)
+import           Data.List             (intercalate)
+import           Data.Monoid           ((<>))
+import           Data.Time.Clock       (UTCTime)
+import           Network.HTTP.Conduit  (responseBody)
+import           Strive.Client         (Client)
+import           Strive.Objects        (EffortSummary, SegmentDetailed,
+                                        SegmentExploration, SegmentLeader,
+                                        SegmentSummary)
+import           Strive.Types          (Page, PerPage, SegmentId)
+import           Strive.Utilities      (buildRequest, get, makeRequest,
+                                        paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
 exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [SegmentExploration])
