@@ -1,8 +1,8 @@
-<h1><a href="https://github.com/tfausak/strive">Strive</a></h1>
+# [Strive][1]
 
 A Haskell client for the [Strava V3 API][2].
 
-<h2>Installation</h2>
+## Installation
 
 This project uses [Semantic Versioning][3].
 
@@ -10,7 +10,7 @@ This project uses [Semantic Versioning][3].
 $ cabal install strive-0.1.0
 ```
 
-<h2>Usage</h2>
+## Usage
 
 To use the API, you'll need an access token. Once you have that, create a new
 client using the default HTTP manager.
@@ -40,40 +40,40 @@ Since it's executable, there's some necessary boilerplate.
 >     (token : _) <- getArgs
 >     client <- newClient token
 
-<h3>Authentication</h3>
+### Authentication
 
-<h4>Request Access</h4>
+#### Request Access
 
 <https://github.com/tfausak/strive/issues/36>
 
-<h4>Token Exchange</h4>
+#### Token Exchange
 
 <https://github.com/tfausak/strive/issues/37>
 
-<h4>Deauthorization</h4>
+#### Deauthorization
 
 <https://github.com/tfausak/strive/issues/38>
 
-<h3>Athletes</h3>
+### Athletes
 
-<h4>Retrieve Current Athlete</h4>
+#### Retrieve Current Athlete
 
 >     currentAthlete <- getCurrentAthlete client
 >     print currentAthlete
 >     -- Right (AthleteDetailed {..})
 
-<h4>Retrieve Another Athlete</h4>
+#### Retrieve Another Athlete
 
 >     let athleteId = 65516
 >     athlete <- getAthlete client athleteId
 >     print athlete
 >     -- Right (AthleteSummary {..})
 
-<h4>Update Current Athlete</h4>
+#### Update Current Athlete
 
 <https://github.com/tfausak/strive/issues/7>
 
-<h4>List Athlete K/QOMs/CRs</h4>
+#### List Athlete K/QOMs/CRs
 
 >     let athleteId = 65516
 >     let page = Just 1
@@ -82,9 +82,9 @@ Since it's executable, there's some necessary boilerplate.
 >     print athleteCRs
 >     -- Right [EffortSummary {..},..]
 
-<h3>Friends and Followers</h3>
+### Friends and Followers
 
-<h4>List Athlete Friends</h4>
+#### List Athlete Friends
 
 >     let page = Just 1
 >     let perPage = Just 200
@@ -92,7 +92,7 @@ Since it's executable, there's some necessary boilerplate.
 >     print currentFriends
 >     -- Right [AthleteSummary {..},..]
 
-<h4>List Athlete Followers</h4>
+#### List Athlete Followers
 
 >     let page = Just 1
 >     let perPage = Just 200
@@ -100,7 +100,7 @@ Since it's executable, there's some necessary boilerplate.
 >     print currentFollowers
 >     -- Right [AthleteSummary {..},..]
 
-<h4>List Both Following</h4>
+#### List Both Following
 
 >     let athleteId = 65516
 >     let page = Just 1
@@ -109,13 +109,13 @@ Since it's executable, there's some necessary boilerplate.
 >     print commonFriends
 >     -- Right [AthleteSummary {..},..]
 
-<h3>Activities</h3>
+### Activities
 
-<h4>Create an Activity</h4>
+#### Create an Activity
 
 <https://github.com/tfausak/strive/issues/12>
 
-<h4>Retrieve an Activity</h4>
+#### Retrieve an Activity
 
 >     let activityId = 141273622
 >     let includeAllEfforts = Just True
@@ -123,15 +123,15 @@ Since it's executable, there's some necessary boilerplate.
 >     print activity
 >     -- Right (ActivitySummary {..})
 
-<h4>Update an Activity</h4>
+#### Update an Activity
 
 <https://github.com/tfausak/strive/issues/14>
 
-<h4>Delete an Activity</h4>
+#### Delete an Activity
 
 <https://github.com/tfausak/strive/issues/15>
 
-<h4>List Athlete Activities</h4>
+#### List Athlete Activities
 
 >     time <- getCurrentTime
 >     let before = Just time
@@ -142,7 +142,7 @@ Since it's executable, there's some necessary boilerplate.
 >     print currentActivities
 >     -- Right [ActivitySummary {..},..]
 
-<h4>List Friends' Activities</h4>
+#### List Friends' Activities
 
 >     let page = Just 1
 >     let perPage = Just 200
@@ -150,23 +150,23 @@ Since it's executable, there's some necessary boilerplate.
 >     print feed
 >     -- Right [ActivitySummary {..},..]
 
-<h4>List Activity Zones</h4>
+#### List Activity Zones
 
 >     let activityId = 141273622
 >     activityZones <- getActivityZones client activityId
 >     print activityZones
 >     -- Right [ZoneSummary {..},..]
 
-<h4>List Activity Laps</h4>
+#### List Activity Laps
 
 >     let activityId = 141273622
 >     activityLaps <- getActivityLaps client activityId
 >     print activityLaps
 >     -- Right [ZoneSummary {..},..]
 
-<h3>Comments</h3>
+### Comments
 
-<h4>List Activity Comments</h4>
+#### List Activity Comments
 
 >     let activityId = 42001703
 >     let includeMarkdown = Just False
@@ -176,9 +176,9 @@ Since it's executable, there's some necessary boilerplate.
 >     print activityComments
 >     -- Right [CommentSummary {..},..]
 
-<h3>Kudos</h3>
+### Kudos
 
-<h4>List Activity Kudoers</h4>
+#### List Activity Kudoers
 
 >     let activityId = 141273622
 >     let page = Just 1
@@ -187,31 +187,31 @@ Since it's executable, there's some necessary boilerplate.
 >     print activityKudoers
 >     -- Right [AthleteSummary {..},..]
 
-<h3>Photos</h3>
+### Photos
 
-<h4>List Activity Photos</h4>
+#### List Activity Photos
 
 >     let activityId = 141273622
 >     activityPhotos <- getActivityPhotos client activityId
 >     print activityPhotos
 >     -- Right [PhotoSummary {..},..]
 
-<h3>Clubs</h3>
+### Clubs
 
-<h4>Retrieve a Club</h4>
+#### Retrieve a Club
 
 >     let clubId = 11193
 >     club <- getClub client clubId
 >     print club
 >     -- Right (ClubDetailed {..})
 
-<h4>List Athlete Clubs</h4>
+#### List Athlete Clubs
 
 >     currentClubs <- getCurrentClubs client
 >     print currentClubs
 >     -- Right [ClubSummary {..},..]
 
-<h4>List Club Members</h4>
+#### List Club Members
 
 >     let clubId = 11193
 >     let page = Just 1
@@ -220,7 +220,7 @@ Since it's executable, there's some necessary boilerplate.
 >     print clubMembers
 >     -- Right [AthleteSummary {..},..]
 
-<h4>List Club Activities</h4>
+#### List Club Activities
 
 >     let clubId = 11193
 >     let page = Just 1
@@ -229,25 +229,25 @@ Since it's executable, there's some necessary boilerplate.
 >     print clubActivities
 >     -- Right [ActivitySummary {..},..]
 
-<h3>Gear</h3>
+### Gear
 
-<h4>Retrieve Gear</h4>
+#### Retrieve Gear
 
 >     let gearId = "b387855"
 >     gear <- getGear client gearId
 >     print gear
 >     -- Right (GearDetailed {..})
 
-<h3>Segments</h3>
+### Segments
 
-<h4>Retrieve a Segment</h4>
+#### Retrieve a Segment
 
 >     let segmentId = 4773104
 >     segment <- getSegment client segmentId
 >     print segment
 >     -- Right (SegmentDetailed {..})
 
-<h4>List Starred Segments</h4>
+#### List Starred Segments
 
 >     let page = Just 1
 >     let perPage = Just 200
@@ -255,7 +255,7 @@ Since it's executable, there's some necessary boilerplate.
 >     print starredSegments
 >     -- Right [SegmentSummary {..},..]
 
-<h4>List Efforts</h4>
+#### List Efforts
 
 >     time <- getCurrentTime
 >     let after = UTCTime (fromGregorian 1970 0 0) 0
@@ -268,7 +268,7 @@ Since it's executable, there's some necessary boilerplate.
 >     print efforts
 >     -- Right [EffortSummary {..},..]
 
-<h4>Segment Leaderboard</h4>
+#### Segment Leaderboard
 
 >     let segmentId = 1091029
 >     let gender = Nothing
@@ -283,7 +283,7 @@ Since it's executable, there's some necessary boilerplate.
 >     print segmentLeaders
 >     -- Right [SegmentLeader {..},..]
 
-<h4>Segment Explorer</h4>
+#### Segment Explorer
 
 >     let south = 32.0
 >     let west = -96.0
@@ -296,36 +296,36 @@ Since it's executable, there's some necessary boilerplate.
 >     print segments
 >     -- Right [SegmentExploration {..},..]
 
-<h3>Segment Efforts</h3>
+### Segment Efforts
 
-<h4>Retrieve a Segment Effort</h4>
+#### Retrieve a Segment Effort
 
 >     let effortId = 1595370098
 >     effort <- getEffort client effortId
 >     print effort
 >     -- Right (EffortSummary {..})
 
-<h3>Streams</h3>
+### Streams
 
-<h4>Retrieve Activity Streams</h4>
+#### Retrieve Activity Streams
 
 <https://github.com/tfausak/strive/issues/31>
 
-<h4>Retrieve Effort Streams</h4>
+#### Retrieve Effort Streams
 
 <https://github.com/tfausak/strive/issues/32>
 
-<h4>Retrieve Segment Streams</h4>
+#### Retrieve Segment Streams
 
 <https://github.com/tfausak/strive/issues/33>
 
-<h3>Uploads</h3>
+### Uploads
 
-<h4>Upload an Activity</h4>
+#### Upload an Activity
 
 <https://github.com/tfausak/strive/issues/34>
 
-<h4>Check Upload Status</h4>
+#### Check Upload Status
 
 <https://github.com/tfausak/strive/issues/35>
 
