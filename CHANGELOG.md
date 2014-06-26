@@ -1,5 +1,19 @@
 # Changelog
 
+-   Grouped actions into modules.
+-   Moved `Strive.Actions.Internal` to `Strive.Utilities`.
+-   Changed `IncludeMarkdown` from `Bool` to `Maybe Bool`.
+-   Renamed a bunch of functions:
+    -   `getComments` to `getActivityComments`
+    -   `getEfforts` to `getSegmentEfforts`
+    -   `getFriendsActivities` to `getFeed`
+    -   `getKudoers` to `getActivityKudoers`
+    -   `getLaps` to `getActivityLaps`
+    -   `getLeaders` to `getSegmentLeaderboard`
+    -   `getPhotos` to `getActivityPhotos`
+    -   `getSegments` to `exploreSegments`
+    -   `getZones` to `getActivityZones`
+
 ## v0.1.0 (2014-06-24)
 
-- Initial release.
+-   Initial release.
