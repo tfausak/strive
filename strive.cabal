@@ -62,6 +62,7 @@ library
         Strive.Actions.Gear
         Strive.Actions.Internal
         Strive.Actions.Kudos
+        Strive.Actions.Photos
         Strive.Actions.Segments
         Strive.Client
         Strive.Objects
