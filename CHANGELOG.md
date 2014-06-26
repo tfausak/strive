@@ -13,6 +13,7 @@
     -   `getPhotos` to `getActivityPhotos`
     -   `getSegments` to `exploreSegments`
     -   `getZones` to `getActivityZones`
+- Added `athleteId` parameter to `getSegmentEfforts`.
 
 ## v0.1.0 (2014-06-24)
 
