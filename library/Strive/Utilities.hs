@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 -- | Helper functions for performing actions.
 module Strive.Utilities
     ( buildRequest
@@ -11,28 +13,27 @@ module Strive.Utilities
 import           Data.Aeson             (FromJSON, eitherDecode)
 import           Data.ByteString.Char8  (pack, unpack)
 import           Data.ByteString.Lazy   (ByteString)
-import           Data.Maybe             (catMaybes)
 import           Network.HTTP.Conduit   (Request, Response, httpLbs, parseUrl,
                                          responseBody)
 import           Network.HTTP.Types.URI (Query, SimpleQuery, renderSimpleQuery)
 import           Strive.Client          (Client (accessToken, httpManager))
-import qualified Strive.Types           as Types
+import           Strive.Types           (Page, PerPage, Resource)
 
 -- | Build a request by constructing the URL and appending the access token.
-buildRequest :: Client -> Types.Resource -> SimpleQuery -> IO Request
+buildRequest :: Client -> Resource -> SimpleQuery -> IO Request
 buildRequest client resource query = parseUrl url
   where
     url = concat [endpoint, resource, queryString]
     endpoint = "https://www.strava.com/api/v3/"
     queryString = unpack (renderSimpleQuery True query')
-    query' = (pack "access_token", pack (accessToken client)) : query
+    query' = ("access_token", pack (accessToken client)) : query
 
 -- | Decode a response by parsing its body as JSON.
 decodeResponse :: FromJSON a => Response ByteString -> Either String a
 decodeResponse response = eitherDecode (responseBody response)
 
 -- | Get the given resource.
-get :: FromJSON a => Client -> Types.Resource -> SimpleQuery -> IO (Either String a)
+get :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
 get client resource query = do
     request <- buildRequest client resource query
     response <- makeRequest client request
@@ -43,14 +44,11 @@ makeRequest :: Client -> Request -> IO (Response ByteString)
 makeRequest client request = httpLbs request (httpManager client)
 
 -- | Convert pagination parameters into a query.
-paginate :: Types.Page -> Types.PerPage -> SimpleQuery
-paginate maybePage maybePerPage = catMaybes
-    [ itemize "page" maybePage
-    , itemize "per_page" maybePerPage
+paginate :: Page -> PerPage -> SimpleQuery
+paginate page perPage = queryToSimpleQuery
+    [ ("page", fmap (pack . show) page)
+    , ("per_page", fmap (pack . show) perPage)
     ]
-  where
-    itemize key value = maybe Nothing (go key) value
-    go key value = Just (pack key, pack (show value))
 
 -- | Convert a query into a simple query.
 queryToSimpleQuery :: Query -> SimpleQuery
