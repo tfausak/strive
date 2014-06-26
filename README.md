@@ -41,13 +41,16 @@ client <- newClient token
 #### Retrieve Current Athlete
 
 ``` hs
--- TODO
+getCurrentAthlete client
+-- Right (AthleteDetailed {..})
 ```
 
 #### Retrieve Another Athlete
 
 ``` hs
--- TODO
+let athleteId = 65516
+getAthlete client athleteId
+-- Right (AthleteSummary {..})
 ```
 
 #### Update Current Athlete
@@ -57,27 +60,42 @@ client <- newClient token
 #### List Athlete K/QOMs/CRs
 
 ``` hs
--- TODO
+let athleteId = 65516
+let page = Just 1
+let perPage = Just 200
+getAthleteCRs client athleteId page perPage
+-- Right [EffortSummary {..},..]
+--
 ```
 
-### Friends and Follower
+### Friends and Followers
 
 #### List Athlete Friends
 
 ``` hs
--- TODO
+let page = Just 1
+let perPage = Just 200
+getCurrentFriends client page perPage
+-- Right [AthleteSummary {..},..]
 ```
 
 #### List Athlete Followers
 
 ``` hs
--- TODO
+let page = Just 1
+let perPage = Just 200
+getCurrentFollowers client page perPage
+-- Right [AthleteSummary {..},..]
 ```
 
 #### List Both Following
 
 ``` hs
--- TODO
+let athleteId = 65516
+let page = Just 1
+let perPage = Just 200
+getCommonFriends client athleteId page perPage
+-- Right [AthleteSummary {..},..]
 ```
 
 ### Activities
@@ -89,7 +107,10 @@ client <- newClient token
 #### Retrieve an Activity
 
 ``` hs
--- TODO
+let activityId = 141273622
+let includeAllEfforts = Just True
+getActivity client activityId includeAllEfforts
+-- Right (ActivitySummary {..})
 ```
 
 #### Update an Activity
@@ -103,25 +124,39 @@ client <- newClient token
 #### List Athlete Activities
 
 ``` hs
--- TODO
+import Data.Time.Clock (getCurrentTime)
+time <- getCurrentTime
+let before = Just time
+let after = Nothing
+let page = Just 1
+let perPage = Just 200
+getCurrentActivities client before after page perPage
+-- Right [ActivitySummary {..},..]
 ```
 
 #### List Friends' Activities
 
 ``` hs
--- TODO
+let page = Just 1
+let perPage = Just 200
+getFeed client page perPage
+-- Right [ActivitySummary {..},..]
 ```
 
 #### List Activity Zones
 
 ``` hs
--- TODO
+let activityId = 141273622
+getActivityZones client activityId
+-- Right [ZoneSummary {..},..]
 ```
 
 #### List Activity Laps
 
 ``` hs
--- TODO
+let activityId = 141273622
+getActivityLaps client activityId
+-- Right [ZoneSummary {..},..]
 ```
 
 ### Comments
@@ -129,7 +164,12 @@ client <- newClient token
 #### List Activity Comments
 
 ``` hs
--- TODO
+let activityId = 42001703
+let includeMarkdown = Just False
+let page = Just 1
+let perPage = Just 200
+getActivityComments client activityId includeMarkdown page perPage
+-- Right [CommentSummary {..},..]
 ```
 
 ### Kudos
@@ -137,7 +177,11 @@ client <- newClient token
 #### List Activity Kudoers
 
 ``` hs
--- TODO
+let activityId = 141273622
+let page = Just 1
+let perPage = Just 200
+getActivityKudoers client activityId page perPage
+-- Right [AthleteSummary {..},..]
 ```
 
 ### Photos
@@ -145,7 +189,9 @@ client <- newClient token
 #### List Activity Photos
 
 ``` hs
--- TODO
+let activityId = 141273622
+getActivityPhotos client activityId
+-- Right [PhotoSummary {..},..]
 ```
 
 ### Clubs
@@ -153,25 +199,36 @@ client <- newClient token
 #### Retrieve a Club
 
 ``` hs
--- TODO
+let clubId = 11193
+getClub client clubId
+-- Right (ClubDetailed {..})
 ```
 
 #### List Athlete Clubs
 
 ``` hs
--- TODO
+getCurrentClubs client
+-- Right [ClubSummary {..},..]
 ```
 
 #### List Club Members
 
 ``` hs
--- TODO
+let clubId = 11193
+let page = Just 1
+let perPage = Just 200
+getClubMembers client clubId page perPage
+-- Right [AthleteSummary {..},..]
 ```
 
 #### List Club Activities
 
 ``` hs
--- TODO
+let clubId = 11193
+let page = Just 1
+let perPage = Just 200
+getClubActivities client clubId page perPage
+-- Right [ActivitySummary {..},..]
 ```
 
 ### Gear
@@ -179,7 +236,9 @@ client <- newClient token
 #### Retrieve Gear
 
 ``` hs
--- TODO
+let gearId = "b387855"
+getGear client gearId
+-- Right (GearDetailed {..})
 ```
 
 ### Segments
@@ -187,31 +246,65 @@ client <- newClient token
 #### Retrieve a Segment
 
 ``` hs
--- TODO
+let segmentId = 4773104
+getSegment client segmentId
+-- Right (SegmentDetailed {..})
 ```
 
 #### List Starred Segments
 
 ``` hs
--- TODO
+let page = Just 1
+let perPage = Just 200
+getStarredSegments client page perPage
+-- Right [SegmentSummary {..},..]
 ```
 
 #### List Efforts
 
 ``` hs
--- TODO
+import Data.Time.Calendar (fromGregorian)
+import Data.Time.Clock (UTCTime (UTCTime), getCurrentTime)
+time <- getCurrentTime
+let after = UTCTime (fromGregorian 1970 0 0) 0
+let before = time
+
+let segmentId = 4773104
+let range = Just (after, before)
+let page = Just 1
+let perPage = Just 200
+getSegmentEfforts client segmentId range page perPage
+-- Right [EffortSummary {..},..]
 ```
 
 #### Segment Leaderboard
 
 ``` hs
--- TODO
+let segmentId = 1091029
+let gender = Nothing
+let ageGroup = Just "0_24"
+let weightClass = Just "55_64"
+let following = Just False
+let clubId = Nothing
+let range = Just "this_year"
+let page = Just 1
+let perPage = Just 200
+getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId range page perPage
+-- Right [SegmentLeader {..},..]
 ```
 
 #### Segment Explorer
 
 ``` hs
--- TODO
+let south = 32.0
+let west = -96.0
+let north = 33.0
+let east = -95.0
+let activityType = Just "riding"
+let minCat = Just 0
+let maxCat = Just 5
+exploreSegments client (south, west, north, east) activityType minCat maxCat
+-- Right [SegmentExploration {..},..]
 ```
 
 ### Segment Efforts
@@ -219,7 +312,9 @@ client <- newClient token
 #### Retrieve a Segment Effort
 
 ``` hs
--- TODO
+let effortId = 1595370098
+getEffort client effortId
+-- Right (EffortSummary {..})
 ```
 
 ### Streams
