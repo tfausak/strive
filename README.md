@@ -7,6 +7,7 @@ A Haskell client for the [Strava V3 API][2].
 This project uses [Semantic Versioning][3].
 
 ~~~ {.sh}
+$ cabal update
 $ cabal install strive-0.1.0
 ~~~
 
@@ -22,20 +23,21 @@ client <- newClient token
 -- Client {..}
 ~~~
 
-Note: This README is executable. Run it with this command.
+Note: This file is executable. Compile and run it with these commands.
 
 ~~~ {.sh}
-$ runhaskell README.lhs ACCESS_TOKEN
+$ cabal exec ghc -- -pgmL markdown-unlit -x lhs README.md
+$ ./README ACCESS_TOKEN
 ~~~
 
 Since it's executable, there's some necessary boilerplate.
 
 ~~~ {.haskell}
-module README (main) where
 import Data.Time.Calendar (fromGregorian)
 import Data.Time.Clock (UTCTime (UTCTime), getCurrentTime)
 import Strive
 import System.Environment (getArgs)
+
 main :: IO ()
 main = do
     (token : _) <- getArgs
