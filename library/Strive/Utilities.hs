@@ -17,8 +17,8 @@ import           Data.Aeson             (FromJSON, eitherDecode)
 import           Data.ByteString.Char8  (pack, unpack)
 import           Data.ByteString.Lazy   (ByteString)
 import           Data.Monoid            ((<>))
-import           Network.HTTP.Conduit   (Request, Response, httpLbs, parseUrl,
-                                         responseBody)
+import           Network.HTTP.Conduit   (Request, Response, checkStatus,
+                                         httpLbs, parseUrl, responseBody)
 import           Network.HTTP.Types.URI (Query, SimpleQuery, renderSimpleQuery)
 import           Strive.Client          (Client (accessToken, httpManager))
 import           Strive.Types           (Page, PerPage, Resource)
@@ -31,7 +31,11 @@ buildQuery client =
 
 -- | Build a request by constructing the URL and appending the access token.
 buildRequest :: Client -> Resource -> SimpleQuery -> IO Request
-buildRequest client resource query = parseUrl (buildURL client resource query)
+buildRequest client resource query = do
+    request <- parseUrl (buildURL client resource query)
+    return request
+        { checkStatus = \ _ _ _ -> Nothing
+        }
 
 -- | Build a URL for a request.
 buildURL :: Client -> Resource -> SimpleQuery -> String
