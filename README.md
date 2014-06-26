@@ -33,6 +33,7 @@ $ ./README ACCESS_TOKEN
 Since it's executable, there's some necessary boilerplate.
 
 ~~~ {.haskell}
+import           Data.Maybe         (fromMaybe, listToMaybe)
 import           Data.Time.Calendar (fromGregorian)
 import           Data.Time.Clock    (UTCTime (UTCTime), getCurrentTime)
 import           Strive
@@ -40,7 +41,8 @@ import           System.Environment (getArgs)
 
 main :: IO ()
 main = do
-    (token : _) <- getArgs
+    args <- getArgs
+    let token = fromMaybe "" (listToMaybe args)
     client <- newClient token
 ~~~
 
