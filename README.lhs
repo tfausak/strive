@@ -31,12 +31,10 @@ $ runhaskell README.lhs ACCESS_TOKEN
 Since it's executable, there's some necessary boilerplate.
 
 > module README (main) where
->
 > import Data.Time.Calendar (fromGregorian)
 > import Data.Time.Clock (UTCTime (UTCTime), getCurrentTime)
 > import Strive
 > import System.Environment (getArgs)
->
 > main :: IO ()
 > main = do
 >     (token : _) <- getArgs
