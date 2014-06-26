@@ -6,27 +6,27 @@ A Haskell client for the [Strava V3 API][2].
 
 This project uses [Semantic Versioning][3].
 
-``` sh
+~~~ {.sh}
 $ cabal install strive-0.1.0
-```
+~~~
 
 ## Usage
 
 To use the API, you'll need an access token. Once you have that, create a new
 client using the default HTTP manager.
 
-``` hs
+~~~ {.haskell .ignore}
 import Strive
 let token = "..."
 client <- newClient token
 -- Client {..}
-```
+~~~
 
 Note: This README is executable. Run it with this command.
 
-``` sh
+~~~ {.sh}
 $ runhaskell README.lhs ACCESS_TOKEN
-```
+~~~
 
 Since it's executable, there's some necessary boilerplate.
 
