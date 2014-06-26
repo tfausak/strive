@@ -9,32 +9,25 @@ module Strive.Actions.Segments
     , getStarredSegments
     ) where
 
-import           Data.Aeson            (decode, encode, (.:))
+import           Data.Aeson            (encode, (.:))
 import           Data.Aeson.Types      (parseEither)
 import           Data.ByteString.Char8 (pack)
 import           Data.ByteString.Lazy  (toStrict)
 import           Data.List             (intercalate)
 import           Data.Monoid           ((<>))
 import           Data.Time.Clock       (UTCTime)
-import           Network.HTTP.Conduit  (responseBody)
 import           Strive.Client         (Client)
 import           Strive.Objects        (EffortSummary, SegmentDetailed,
                                         SegmentExploration, SegmentLeader,
                                         SegmentSummary)
 import           Strive.Types          (Page, PerPage, SegmentId)
-import           Strive.Utilities      (buildRequest, get, makeRequest,
-                                        paginate, queryToSimpleQuery)
+import           Strive.Utilities      (get, paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
 exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [SegmentExploration])
 exploreSegments client (south, west, north, east) activityType minCat maxCat = do
-    request <- buildRequest client resource query
-    response <- makeRequest client request
-    let body = responseBody response
-        object = decode body
-        segments = case object of
-            Nothing -> Left ""
-            Just o -> parseEither (.: "segments") o
+    object <- get client resource query
+    let segments = either Left (parseEither (.: "segments")) object
     return segments
   where
     resource = "segments/explore"
@@ -66,13 +59,8 @@ getSegmentEfforts client segmentId range page perPage = get client resource quer
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
 getSegmentLeaderboard :: Client -> SegmentId -> Maybe Char -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Integer -> Maybe String -> Page -> PerPage -> IO (Either String [SegmentLeader])
 getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId dateRange page perPage = do
-    request <- buildRequest client resource query
-    response <- makeRequest client request
-    let body = responseBody response
-        object = decode body
-        leaders = case object of
-            Nothing -> Left ""
-            Just o -> parseEither (.: "entries") o
+    object <- get client resource query
+    let leaders = either Left (parseEither (.: "entries")) object
     return leaders
   where
     resource = "segments/" <> show segmentId <> "/leaderboard"
