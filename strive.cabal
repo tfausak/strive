@@ -1,55 +1,37 @@
-author:
-    Taylor Fausak
-bug-reports:
-    https://github.com/tfausak/strive/issues
-build-type:
-    Simple
-cabal-version:
-    >= 1.10
-category:
-    API
-copyright:
-    2014 Taylor Fausak <taylor@fausak.me>
+name: strive
+version: 0.1.0
+cabal-version: >=1.10
+build-type: Simple
+license: MIT
+license-file: LICENSE.txt
+copyright: 2014 Taylor Fausak <taylor@fausak.me>
+maintainer: taylor@fausak.me
+homepage: https://github.com/tfausak/strive
+bug-reports: https://github.com/tfausak/strive/issues
+synopsis: A Haskell client for the Strava V3 API.
 description:
     A Haskell client for the <http://strava.github.io/api/ Strava V3 API>.
+category: API
+author: Taylor Fausak
+tested-with: GHC ==7.6.3
 extra-source-files:
     CHANGELOG.md
     CONTRIBUTING.md
     README.md
-homepage:
-    https://github.com/tfausak/strive
-license-file:
-    LICENSE.txt
-license:
-    MIT
-maintainer:
-    taylor@fausak.me
-name:
-    strive
-synopsis:
-    A Haskell client for the Strava V3 API.
-tested-with:
-    GHC == 7.6.3
-version:
-    0.1.0
-
+ 
 source-repository head
-    location:
-        git://github.com/tfausak/strive.git
-    type:
-        git
-
+    type: git
+    location: git://github.com/tfausak/strive.git
+ 
 library
     build-depends:
-        base == 4.*
-      , aeson == 0.7.*
-      , bytestring
-      , http-conduit == 2.*
-      , http-types
-      , text
-      , time
-    default-language:
-        Haskell2010
+        base ==4.*,
+        aeson ==0.7.*,
+        bytestring -any,
+        http-conduit ==2.*,
+        http-types -any,
+        text -any,
+        time -any
     exposed-modules:
         Strive
         Strive.Actions
@@ -98,7 +80,10 @@ library
         Strive.Objects.Zones.ZoneSummary
         Strive.Types
         Strive.Utilities
-    hs-source-dirs:
-        library
-    other-extensions:
-        OverloadedStrings
+    exposed: True
+    buildable: True
+    default-language: Haskell2010
+    other-extensions: OverloadedStrings
+    hs-source-dirs: library
+ 
+ 
