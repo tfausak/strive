@@ -44,6 +44,41 @@ main = do
     client <- newClient token
 ~~~
 
+Many of the examples use the same parameters.
+
+~~~ {.haskell}
+    time <- getCurrentTime
+
+    let activityId        = 141273622
+    let activityType      = Just "riding"
+    let after             = UTCTime (fromGregorian 1970 0 0) 0
+    let ageGroup          = Just "0_24"
+    let athleteId         = 65516
+    let before            = time
+    let clubId            = 11193
+    let dateRange         = Just "this_year"
+    let east              = -95.0
+    let effortId          = 1595370098
+    let following         = Just False
+    let gearId            = "b387855"
+    let gender            = Nothing
+    let includeAllEfforts = Just True
+    let includeMarkdown   = Just False
+    let maxCat            = Just 5
+    let maybeAfter        = Nothing
+    let maybeBefore       = Just time
+    let maybeClubId       = Nothing
+    let minCat            = Just 0
+    let north             = 33.0
+    let page              = Just 1
+    let perPage           = Just 200
+    let range             = Just (after, before)
+    let segmentId         = 4773104
+    let south             = 32.0
+    let weightClass       = Just "55_64"
+    let west              = -96.0
+~~~
+
 ### Authentication
 
 #### Request Access
@@ -71,8 +106,6 @@ main = do
 #### Retrieve Another Athlete
 
 ~~~ {.haskell}
-    let athleteId = 65516
-
     athlete <- getAthlete client athleteId
     print athlete
     -- Right (AthleteSummary {..})
@@ -85,10 +118,6 @@ main = do
 #### List Athlete K/QOMs/CRs
 
 ~~~ {.haskell}
-    let athleteId = 65516
-    let page      = Just 1
-    let perPage   = Just 200
-
     athleteCRs <- getAthleteCRs client athleteId page perPage
     print athleteCRs
     -- Right [EffortSummary {..},..]
@@ -99,9 +128,6 @@ main = do
 #### List Athlete Friends
 
 ~~~ {.haskell}
-    let page    = Just 1
-    let perPage = Just 200
-
     currentFriends <- getCurrentFriends client page perPage
     print currentFriends
     -- Right [AthleteSummary {..},..]
@@ -110,9 +136,6 @@ main = do
 #### List Athlete Followers
 
 ~~~ {.haskell}
-    let page    = Just 1
-    let perPage = Just 200
-
     currentFollowers <- getCurrentFollowers client page perPage
     print currentFollowers
     -- Right [AthleteSummary {..},..]
@@ -121,10 +144,6 @@ main = do
 #### List Both Following
 
 ~~~ {.haskell}
-    let athleteId = 65516
-    let page      = Just 1
-    let perPage   = Just 200
-
     commonFriends <- getCommonFriends client athleteId page perPage
     print commonFriends
     -- Right [AthleteSummary {..},..]
@@ -139,9 +158,6 @@ main = do
 #### Retrieve an Activity
 
 ~~~ {.haskell}
-    let activityId        = 141273622
-    let includeAllEfforts = Just True
-
     activity <- getActivity client activityId includeAllEfforts
     print activity
     -- Right (ActivitySummary {..})
@@ -158,13 +174,7 @@ main = do
 #### List Athlete Activities
 
 ~~~ {.haskell}
-    time <- getCurrentTime
-    let before  = Just time
-    let after   = Nothing
-    let page    = Just 1
-    let perPage = Just 200
-
-    currentActivities <- getCurrentActivities client before after page perPage
+    currentActivities <- getCurrentActivities client maybeBefore maybeAfter page perPage
     print currentActivities
     -- Right [ActivitySummary {..},..]
 ~~~
@@ -172,9 +182,6 @@ main = do
 #### List Friends' Activities
 
 ~~~ {.haskell}
-    let page    = Just 1
-    let perPage = Just 200
-
     feed <- getFeed client page perPage
     print feed
     -- Right [ActivitySummary {..},..]
@@ -183,8 +190,6 @@ main = do
 #### List Activity Zones
 
 ~~~ {.haskell}
-    let activityId = 141273622
-
     activityZones <- getActivityZones client activityId
     print activityZones
     -- Right [ZoneSummary {..},..]
@@ -193,8 +198,6 @@ main = do
 #### List Activity Laps
 
 ~~~ {.haskell}
-    let activityId = 141273622
-
     activityLaps <- getActivityLaps client activityId
     print activityLaps
     -- Right [ZoneSummary {..},..]
@@ -205,11 +208,6 @@ main = do
 #### List Activity Comments
 
 ~~~ {.haskell}
-    let activityId      = 42001703
-    let includeMarkdown = Just False
-    let page            = Just 1
-    let perPage         = Just 200
-
     activityComments <- getActivityComments client activityId includeMarkdown page perPage
     print activityComments
     -- Right [CommentSummary {..},..]
@@ -220,10 +218,6 @@ main = do
 #### List Activity Kudoers
 
 ~~~ {.haskell}
-    let activityId = 141273622
-    let page       = Just 1
-    let perPage    = Just 200
-
     activityKudoers <- getActivityKudoers client activityId page perPage
     print activityKudoers
     -- Right [AthleteSummary {..},..]
@@ -234,8 +228,6 @@ main = do
 #### List Activity Photos
 
 ~~~ {.haskell}
-    let activityId = 141273622
-
     activityPhotos <- getActivityPhotos client activityId
     print activityPhotos
     -- Right [PhotoSummary {..},..]
@@ -246,8 +238,6 @@ main = do
 #### Retrieve a Club
 
 ~~~ {.haskell}
-    let clubId = 11193
-
     club <- getClub client clubId
     print club
     -- Right (ClubDetailed {..})
@@ -264,10 +254,6 @@ main = do
 #### List Club Members
 
 ~~~ {.haskell}
-    let clubId  = 11193
-    let page    = Just 1
-    let perPage = Just 200
-
     clubMembers <- getClubMembers client clubId page perPage
     print clubMembers
     -- Right [AthleteSummary {..},..]
@@ -276,10 +262,6 @@ main = do
 #### List Club Activities
 
 ~~~ {.haskell}
-    let clubId  = 11193
-    let page    = Just 1
-    let perPage = Just 200
-
     clubActivities <- getClubActivities client clubId page perPage
     print clubActivities
     -- Right [ActivitySummary {..},..]
@@ -290,8 +272,6 @@ main = do
 #### Retrieve Gear
 
 ~~~ {.haskell}
-    let gearId = "b387855"
-
     gear <- getGear client gearId
     print gear
     -- Right (GearDetailed {..})
@@ -302,8 +282,6 @@ main = do
 #### Retrieve a Segment
 
 ~~~ {.haskell}
-    let segmentId = 4773104
-
     segment <- getSegment client segmentId
     print segment
     -- Right (SegmentDetailed {..})
@@ -312,9 +290,6 @@ main = do
 #### List Starred Segments
 
 ~~~ {.haskell}
-    let page    = Just 1
-    let perPage = Just 200
-
     starredSegments <- getStarredSegments client page perPage
     print starredSegments
     -- Right [SegmentSummary {..},..]
@@ -323,14 +298,6 @@ main = do
 #### List Efforts
 
 ~~~ {.haskell}
-    time <- getCurrentTime
-    let after     = UTCTime (fromGregorian 1970 0 0) 0
-    let before    = time
-    let segmentId = 4773104
-    let range     = Just (after, before)
-    let page      = Just 1
-    let perPage   = Just 200
-
     efforts <- getSegmentEfforts client segmentId range page perPage
     print efforts
     -- Right [EffortSummary {..},..]
@@ -339,17 +306,7 @@ main = do
 #### Segment Leaderboard
 
 ~~~ {.haskell}
-    let segmentId   = 1091029
-    let gender      = Nothing
-    let ageGroup    = Just "0_24"
-    let weightClass = Just "55_64"
-    let following   = Just False
-    let clubId      = Nothing
-    let range       = Just "this_year"
-    let page        = Just 1
-    let perPage     = Just 200
-
-    segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId range page perPage
+    segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following maybeClubId dateRange page perPage
     print segmentLeaders
     -- Right [SegmentLeader {..},..]
 ~~~
@@ -357,14 +314,6 @@ main = do
 #### Segment Explorer
 
 ~~~ {.haskell}
-    let south        = 32.0
-    let west         = -96.0
-    let north        = 33.0
-    let east         = -95.0
-    let activityType = Just "riding"
-    let minCat       = Just 0
-    let maxCat       = Just 5
-
     segments <- exploreSegments client (south, west, north, east) activityType minCat maxCat
     print segments
     -- Right [SegmentExploration {..},..]
@@ -375,8 +324,6 @@ main = do
 #### Retrieve a Segment Effort
 
 ~~~ {.haskell}
-    let effortId = 1595370098
-
     effort <- getEffort client effortId
     print effort
     -- Right (EffortSummary {..})
