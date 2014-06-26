@@ -58,12 +58,10 @@ getSegmentEfforts :: Client -> SegmentId -> Maybe (UTCTime, UTCTime) -> Page -> 
 getSegmentEfforts client segmentId range page perPage = get client resource query
   where
     resource = "segments/" <> show segmentId <> "/all_efforts"
-    query = paginate page perPage <> case range of
-        Just (start, end) ->
-            [ ("start_date_local", toStrict (encode start))
-            , ("end_date_local", toStrict (encode end))
-            ]
-        _ -> []
+    query = paginate page perPage <> queryToSimpleQuery
+        [ ("start_date_local", fmap (toStrict . encode . fst) range)
+        , ("end_date_local", fmap (toStrict . encode . snd) range)
+        ]
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
 getSegmentLeaderboard :: Client -> SegmentId -> Maybe Char -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Integer -> Maybe String -> Page -> PerPage -> IO (Either String [SegmentLeader])
