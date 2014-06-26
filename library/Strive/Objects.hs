@@ -1,4 +1,4 @@
--- | <http://strava.github.io/api/#decoration>
+-- | Data types representing responses from the API.
 module Strive.Objects
     ( module Objects
     ) where

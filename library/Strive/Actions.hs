@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 -- | Functions for performing actions against the API.
 module Strive.Actions
     ( module Actions
