@@ -20,7 +20,7 @@ import           Strive.Client         (Client)
 import           Strive.Objects        (EffortSummary, SegmentDetailed,
                                         SegmentExploration, SegmentLeader,
                                         SegmentSummary)
-import           Strive.Types          (Page, PerPage, SegmentId)
+import           Strive.Types          (AthleteId, Page, PerPage, SegmentId)
 import           Strive.Utilities      (get, paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
@@ -47,12 +47,13 @@ getSegment client segmentId = get client resource query
     query = []
 
 -- | <http://strava.github.io/api/v3/segments/#efforts>
-getSegmentEfforts :: Client -> SegmentId -> Maybe (UTCTime, UTCTime) -> Page -> PerPage -> IO (Either String [EffortSummary])
-getSegmentEfforts client segmentId range page perPage = get client resource query
+getSegmentEfforts :: Client -> SegmentId -> Maybe AthleteId -> Maybe (UTCTime, UTCTime) -> Page -> PerPage -> IO (Either String [EffortSummary])
+getSegmentEfforts client segmentId athleteId range page perPage = get client resource query
   where
     resource = "segments/" <> show segmentId <> "/all_efforts"
     query = paginate page perPage <> queryToSimpleQuery
-        [ ("start_date_local", fmap (toStrict . encode . fst) range)
+        [ ("athlete_id", fmap (pack . show) athleteId)
+        , ("start_date_local", fmap (toStrict . encode . fst) range)
         , ("end_date_local", fmap (toStrict . encode . snd) range)
         ]
 

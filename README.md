@@ -68,6 +68,7 @@ Many of the examples use the same parameters.
     let includeMarkdown   = Just False
     let maxCat            = Just 5
     let maybeAfter        = Nothing
+    let maybeAthleteId    = Nothing
     let maybeBefore       = Just time
     let maybeClubId       = Nothing
     let minCat            = Just 0
@@ -300,7 +301,7 @@ Many of the examples use the same parameters.
 #### List Efforts
 
 ~~~ {.haskell}
-    efforts <- getSegmentEfforts client segmentId range page perPage
+    efforts <- getSegmentEfforts client segmentId maybeAthleteId range page perPage
     print efforts
     -- Right [EffortSummary {..},..]
 ~~~
