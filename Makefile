@@ -18,7 +18,6 @@ format:
 
 haddock:
 	cabal haddock
-	# dist/doc/html/strive/index.html
 
 install:
 	cabal sandbox init

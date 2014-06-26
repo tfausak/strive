@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 -- | <http://strava.github.io/api/v3/activities/>
 module Strive.Actions.Activities
     ( getActivity
@@ -27,7 +25,7 @@ getActivity client activityId allEfforts = get client resource query
   where
     resource = "activities/" <> show activityId
     query = queryToSimpleQuery
-        [ ("include_all_efforts", fmap (toStrict . encode) allEfforts)
+        [ (pack "include_all_efforts", fmap (toStrict . encode) allEfforts)
         ]
 
 -- | <http://strava.github.io/api/v3/activities/#laps>
@@ -50,8 +48,8 @@ getCurrentActivities client before after page perPage = get client resource quer
   where
     resource = "athlete/activities"
     query = paginate page perPage <> queryToSimpleQuery
-        [ ("before", fmap (pack . show . utcTimeToPOSIXSeconds) before)
-        , ("after", fmap (pack . show . utcTimeToPOSIXSeconds) after)
+        [ (pack "before", fmap (pack . show . utcTimeToPOSIXSeconds) before)
+        , (pack "after", fmap (pack . show . utcTimeToPOSIXSeconds) after)
         ]
 
 -- | <http://strava.github.io/api/v3/activities/#get-feed>
