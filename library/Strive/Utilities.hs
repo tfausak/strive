@@ -32,7 +32,6 @@ buildQuery client =
 -- | Build a request by constructing the URL and appending the access token.
 buildRequest :: Client -> Resource -> SimpleQuery -> IO Request
 buildRequest client resource query = do
-    print (buildURL client resource query) -- TODO
     request <- parseUrl (buildURL client resource query)
     return request
         { checkStatus = \ _ _ _ -> Nothing
@@ -55,7 +54,6 @@ get :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
 get client resource query = do
     request <- buildRequest client resource query
     response <- makeRequest client request
-    print (responseBody response) -- TODO
     return (decodeResponse response)
 
 -- | Make an HTTP request using the client's manager.
