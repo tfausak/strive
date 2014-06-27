@@ -1,5 +1,7 @@
 # [Strive][1]
 
+[![Build Status](https://travis-ci.org/tfausak/strive.svg?branch=master)](https://travis-ci.org/tfausak/strive)
+
 A Haskell client for the [Strava V3 API][2].
 
 -   [Usage](#usage)
