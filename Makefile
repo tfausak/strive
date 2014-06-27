@@ -1,6 +1,6 @@
-.PHONY: all build clean configure format haddock install lint repl
+.PHONY: all build clean configure format haddock install lint repl test
 
-all: install configure build haddock
+all: install configure build test haddock
 
 build:
 	cabal build
@@ -10,7 +10,7 @@ clean:
 	cabal sandbox delete
 
 configure:
-	cabal configure
+	cabal configure --enable-tests
 
 format:
 	cabal format
@@ -22,10 +22,13 @@ haddock:
 
 install:
 	cabal sandbox init
-	cabal install --only-dependencies
+	cabal install --enable-tests --only-dependencies
 
 lint:
 	git ls-files '*.hs' | xargs hlint
 
 repl:
 	cabal repl lib:strive
+
+test:
+	cabal test

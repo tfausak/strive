@@ -18,11 +18,11 @@ extra-source-files:
     CHANGELOG.md
     CONTRIBUTING.md
     README.md
-
+ 
 source-repository head
     type: git
     location: git://github.com/tfausak/strive.git
-
+ 
 library
     build-depends:
         base ==4.*,
@@ -85,7 +85,7 @@ library
     default-language: Haskell2010
     other-extensions: OverloadedStrings
     hs-source-dirs: library
-
+ 
 test-suite readme
     build-depends:
         base -any,
@@ -97,4 +97,4 @@ test-suite readme
     buildable: True
     default-language: Haskell2010
     ghc-options: -pgmL markdown-unlit -Wall -Werror
-
+ 
