@@ -1,0 +1,538 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Strive by tfausak</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Strive</h1>
+        <p>A Haskell client for the Strava V3 API.</p>
+        <p class="view"><a href="https://github.com/tfausak/strive">View the Project on GitHub <small>tfausak/strive</small></a></p>
+        <ul>
+          <li><a href="https://github.com/tfausak/strive/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tfausak/strive/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tfausak/strive">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><a href="https://travis-ci.org/tfausak/strive"><img src="https://travis-ci.org/tfausak/strive.svg?branch=master" alt="Build Status"></a></p>
+
+<ul>
+<li>  <a href="#usage">Usage</a>
+
+<ul>
+<li>  <a href="#authentication">Authentication</a>
+
+<ul>
+<li>  <a href="#request-access">Request Access</a>
+</li>
+<li>  <a href="#token-exchange">Token Exchange</a>
+</li>
+<li>  <a href="#deauthorization">Deauthorization</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#athletes">Athletes</a>
+
+<ul>
+<li>  <a href="#retrieve-current-athlete">Retrieve Current Athlete</a>
+</li>
+<li>  <a href="#retrieve-another-athlete">Retrieve Another Athlete</a>
+</li>
+<li>  <a href="#update-current-athlete">Update Current Athlete</a>
+</li>
+<li>  <a href="#list-athlete-kqomscrs">List Athlete K/QOMs/CRs</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#friends-and-followers">Friends and Followers</a>
+
+<ul>
+<li>  <a href="#list-athlete-friends">List Athlete Friends</a>
+</li>
+<li>  <a href="#list-athlete-followers">List Athlete Followers</a>
+</li>
+<li>  <a href="#list-both-following">List Both Following</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#activities">Activities</a>
+
+<ul>
+<li>  <a href="#create-an-activity">Create an Activity</a>
+</li>
+<li>  <a href="#retrieve-an-activity">Retrieve an Activity</a>
+</li>
+<li>  <a href="#update-an-activity">Update an Activity</a>
+</li>
+<li>  <a href="#delete-an-activity">Delete an Activity</a>
+</li>
+<li>  <a href="#list-athlete-activities">List Athlete Activities</a>
+</li>
+<li>  <a href="#list-friends-activities">List Friends' Activities</a>
+</li>
+<li>  <a href="#list-activity-zones">List Activity Zones</a>
+</li>
+<li>  <a href="#list-activity-laps">List Activity Laps</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#comments">Comments</a>
+
+<ul>
+<li>  <a href="#list-activity-comments">List Activity Comments</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#kudos">Kudos</a>
+
+<ul>
+<li>  <a href="#list-activity-kudoers">List Activity Kudoers</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#photos">Photos</a>
+
+<ul>
+<li>  <a href="#list-activity-photos">List Activity Photos</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#clubs">Clubs</a>
+
+<ul>
+<li>  <a href="#retrieve-a-club">Retrieve a Club</a>
+</li>
+<li>  <a href="#list-athlete-clubs">List Athlete Clubs</a>
+</li>
+<li>  <a href="#list-club-members">List Club Members</a>
+</li>
+<li>  <a href="#list-club-activities">List Club Activities</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#gear">Gear</a>
+
+<ul>
+<li>  <a href="#retrieve-gear">Retrieve Gear</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#segments">Segments</a>
+
+<ul>
+<li>  <a href="#retrieve-a-segment">Retrieve a Segment</a>
+</li>
+<li>  <a href="#list-starred-segments">List Starred Segments</a>
+</li>
+<li>  <a href="#list-efforts">List Efforts</a>
+</li>
+<li>  <a href="#segment-leaderboard">Segment Leaderboard</a>
+</li>
+<li>  <a href="#segment-explorer">Segment Explorer</a>
+</li>
+<li>  <a href="#segment-efforts">Segment Efforts</a>
+</li>
+<li>  <a href="#retrieve-a-segment-effort">Retrieve a Segment Effort</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#streams">Streams</a>
+
+<ul>
+<li>  <a href="#retrieve-activity-streams">Retrieve Activity Streams</a>
+</li>
+<li>  <a href="#retrieve-effort-streams">Retrieve Effort Streams</a>
+</li>
+<li>  <a href="#retrieve-segment-streams">Retrieve Segment Streams</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#uploads">Uploads</a>
+
+<ul>
+<li>  <a href="#upload-an-activity">Upload an Activity</a>
+</li>
+<li>  <a href="#check-upload-status">Check Upload Status</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>To use the API, you'll need an access token. Once you have that, create a new
+client using the default HTTP manager.</p>
+
+<div class="highlight highlight-haskell"><pre><span class="kr">import</span> <span class="nn">Strive</span>
+<span class="kr">let</span> <span class="n">token</span> <span class="ow">=</span> <span class="s">"..."</span>
+<span class="nf">client</span> <span class="ow">&lt;-</span> <span class="n">newClient</span> <span class="n">token</span>
+<span class="c1">-- Client {..}</span>
+</pre></div>
+
+<p>Note: This file is executable. Compile and run it with these commands.</p>
+
+<div class="highlight highlight-sh"><pre><span class="nv">$ </span>cabal <span class="nb">exec </span>ghc -- -pgmL markdown-unlit -x lhs README.md
+<span class="nv">$ </span>./README ACCESS_TOKEN
+</pre></div>
+
+
+
+<p>Many of the examples use the same parameters.</p>
+
+<div class="highlight highlight-haskell"><pre>    <span class="kr">let</span> <span class="n">activityId</span>        <span class="ow">=</span> <span class="mi">141273622</span>
+    <span class="kr">let</span> <span class="n">activityType</span>      <span class="ow">=</span> <span class="kt">Just</span> <span class="s">"riding"</span>
+    <span class="kr">let</span> <span class="n">after</span>             <span class="ow">=</span> <span class="kt">UTCTime</span> <span class="p">(</span><span class="n">fromGregorian</span> <span class="mi">1970</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span>
+    <span class="kr">let</span> <span class="n">ageGroup</span>          <span class="ow">=</span> <span class="kt">Just</span> <span class="s">"0_24"</span>
+    <span class="kr">let</span> <span class="n">athleteId</span>         <span class="ow">=</span> <span class="mi">65516</span>
+    <span class="kr">let</span> <span class="n">before</span>            <span class="ow">=</span> <span class="kt">UTCTime</span> <span class="p">(</span><span class="n">fromGregorian</span> <span class="mi">2020</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span>
+    <span class="kr">let</span> <span class="n">bounds</span>            <span class="ow">=</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="o">-</span><span class="mi">96</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="o">-</span><span class="mi">95</span><span class="p">)</span>
+    <span class="kr">let</span> <span class="n">clubId</span>            <span class="ow">=</span> <span class="mi">11193</span>
+    <span class="kr">let</span> <span class="n">range</span>             <span class="ow">=</span> <span class="kt">Just</span> <span class="s">"this_year"</span>
+    <span class="kr">let</span> <span class="n">effortId</span>          <span class="ow">=</span> <span class="mi">1595370098</span>
+    <span class="kr">let</span> <span class="n">following</span>         <span class="ow">=</span> <span class="kt">Just</span> <span class="kt">False</span>
+    <span class="kr">let</span> <span class="n">gearId</span>            <span class="ow">=</span> <span class="s">"b387855"</span>
+    <span class="kr">let</span> <span class="n">gender</span>            <span class="ow">=</span> <span class="kt">Just</span> <span class="n">'F'</span>
+    <span class="kr">let</span> <span class="n">includeAllEfforts</span> <span class="ow">=</span> <span class="kt">Just</span> <span class="kt">True</span>
+    <span class="kr">let</span> <span class="n">includeMarkdown</span>   <span class="ow">=</span> <span class="kt">Just</span> <span class="kt">False</span>
+    <span class="kr">let</span> <span class="n">maxCat</span>            <span class="ow">=</span> <span class="kt">Just</span> <span class="mi">5</span>
+    <span class="kr">let</span> <span class="n">minCat</span>            <span class="ow">=</span> <span class="kt">Just</span> <span class="mi">0</span>
+    <span class="kr">let</span> <span class="n">page</span>              <span class="ow">=</span> <span class="kt">Just</span> <span class="mi">1</span>
+    <span class="kr">let</span> <span class="n">perPage</span>           <span class="ow">=</span> <span class="kt">Just</span> <span class="mi">200</span>
+    <span class="kr">let</span> <span class="n">resolution</span>        <span class="ow">=</span> <span class="kt">Just</span> <span class="s">"low"</span>
+    <span class="kr">let</span> <span class="n">segmentId</span>         <span class="ow">=</span> <span class="mi">4773104</span>
+    <span class="kr">let</span> <span class="n">seriesType</span>        <span class="ow">=</span> <span class="kt">Just</span> <span class="s">"time"</span>
+    <span class="kr">let</span> <span class="n">streamTypes</span>       <span class="ow">=</span> <span class="p">[</span><span class="s">"time"</span><span class="p">]</span>
+    <span class="kr">let</span> <span class="n">weightClass</span>       <span class="ow">=</span> <span class="kt">Just</span> <span class="s">"55_64"</span>
+</pre></div>
+
+<h3>
+<a name="authentication" class="anchor" href="#authentication"><span class="octicon octicon-link"></span></a>Authentication</h3>
+
+<h4>
+<a name="request-access" class="anchor" href="#request-access"><span class="octicon octicon-link"></span></a>Request Access</h4>
+
+<p><a href="https://github.com/tfausak/strive/issues/36">https://github.com/tfausak/strive/issues/36</a></p>
+
+<h4>
+<a name="token-exchange" class="anchor" href="#token-exchange"><span class="octicon octicon-link"></span></a>Token Exchange</h4>
+
+<p><a href="https://github.com/tfausak/strive/issues/37">https://github.com/tfausak/strive/issues/37</a></p>
+
+<h4>
+<a name="deauthorization" class="anchor" href="#deauthorization"><span class="octicon octicon-link"></span></a>Deauthorization</h4>
+
+<p><a href="https://github.com/tfausak/strive/issues/38">https://github.com/tfausak/strive/issues/38</a></p>
+
+<h3>
+<a name="athletes" class="anchor" href="#athletes"><span class="octicon octicon-link"></span></a>Athletes</h3>
+
+<h4>
+<a name="retrieve-current-athlete" class="anchor" href="#retrieve-current-athlete"><span class="octicon octicon-link"></span></a>Retrieve Current Athlete</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">currentAthlete</span> <span class="ow">&lt;-</span> <span class="n">getCurrentAthlete</span> <span class="n">client</span>
+    <span class="n">print</span> <span class="n">currentAthlete</span>
+    <span class="c1">-- Right (AthleteDetailed {..})</span>
+</pre></div>
+
+<h4>
+<a name="retrieve-another-athlete" class="anchor" href="#retrieve-another-athlete"><span class="octicon octicon-link"></span></a>Retrieve Another Athlete</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">athlete</span> <span class="ow">&lt;-</span> <span class="n">getAthlete</span> <span class="n">client</span> <span class="n">athleteId</span>
+    <span class="n">print</span> <span class="n">athlete</span>
+    <span class="c1">-- Right (AthleteSummary {..})</span>
+</pre></div>
+
+<h4>
+<a name="update-current-athlete" class="anchor" href="#update-current-athlete"><span class="octicon octicon-link"></span></a>Update Current Athlete</h4>
+
+<p><a href="https://github.com/tfausak/strive/issues/7">https://github.com/tfausak/strive/issues/7</a></p>
+
+<h4>
+<a name="list-athlete-kqomscrs" class="anchor" href="#list-athlete-kqomscrs"><span class="octicon octicon-link"></span></a>List Athlete K/QOMs/CRs</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">athleteCRs</span> <span class="ow">&lt;-</span> <span class="n">getAthleteCRs</span> <span class="n">client</span> <span class="n">athleteId</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">athleteCRs</span>
+    <span class="c1">-- Right [EffortSummary {..},..]</span>
+</pre></div>
+
+<h3>
+<a name="friends-and-followers" class="anchor" href="#friends-and-followers"><span class="octicon octicon-link"></span></a>Friends and Followers</h3>
+
+<h4>
+<a name="list-athlete-friends" class="anchor" href="#list-athlete-friends"><span class="octicon octicon-link"></span></a>List Athlete Friends</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">currentFriends</span> <span class="ow">&lt;-</span> <span class="n">getCurrentFriends</span> <span class="n">client</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">currentFriends</span>
+    <span class="c1">-- Right [AthleteSummary {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="list-athlete-followers" class="anchor" href="#list-athlete-followers"><span class="octicon octicon-link"></span></a>List Athlete Followers</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">currentFollowers</span> <span class="ow">&lt;-</span> <span class="n">getCurrentFollowers</span> <span class="n">client</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">currentFollowers</span>
+    <span class="c1">-- Right [AthleteSummary {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="list-both-following" class="anchor" href="#list-both-following"><span class="octicon octicon-link"></span></a>List Both Following</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">commonFriends</span> <span class="ow">&lt;-</span> <span class="n">getCommonFriends</span> <span class="n">client</span> <span class="n">athleteId</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">commonFriends</span>
+    <span class="c1">-- Right [AthleteSummary {..},..]</span>
+</pre></div>
+
+<h3>
+<a name="activities" class="anchor" href="#activities"><span class="octicon octicon-link"></span></a>Activities</h3>
+
+<h4>
+<a name="create-an-activity" class="anchor" href="#create-an-activity"><span class="octicon octicon-link"></span></a>Create an Activity</h4>
+
+<p><a href="https://github.com/tfausak/strive/issues/12">https://github.com/tfausak/strive/issues/12</a></p>
+
+<h4>
+<a name="retrieve-an-activity" class="anchor" href="#retrieve-an-activity"><span class="octicon octicon-link"></span></a>Retrieve an Activity</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">activity</span> <span class="ow">&lt;-</span> <span class="n">getActivity</span> <span class="n">client</span> <span class="n">activityId</span> <span class="n">includeAllEfforts</span>
+    <span class="n">print</span> <span class="n">activity</span>
+    <span class="c1">-- Right (ActivitySummary {..})</span>
+</pre></div>
+
+<h4>
+<a name="update-an-activity" class="anchor" href="#update-an-activity"><span class="octicon octicon-link"></span></a>Update an Activity</h4>
+
+<p><a href="https://github.com/tfausak/strive/issues/14">https://github.com/tfausak/strive/issues/14</a></p>
+
+<h4>
+<a name="delete-an-activity" class="anchor" href="#delete-an-activity"><span class="octicon octicon-link"></span></a>Delete an Activity</h4>
+
+<p><a href="https://github.com/tfausak/strive/issues/15">https://github.com/tfausak/strive/issues/15</a></p>
+
+<h4>
+<a name="list-athlete-activities" class="anchor" href="#list-athlete-activities"><span class="octicon octicon-link"></span></a>List Athlete Activities</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">currentActivities</span> <span class="ow">&lt;-</span> <span class="n">getCurrentActivities</span> <span class="n">client</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">before</span><span class="p">)</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">after</span><span class="p">)</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">currentActivities</span>
+    <span class="c1">-- Right [ActivitySummary {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="list-friends-activities" class="anchor" href="#list-friends-activities"><span class="octicon octicon-link"></span></a>List Friends' Activities</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">feed</span> <span class="ow">&lt;-</span> <span class="n">getFeed</span> <span class="n">client</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">feed</span>
+    <span class="c1">-- Right [ActivitySummary {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="list-activity-zones" class="anchor" href="#list-activity-zones"><span class="octicon octicon-link"></span></a>List Activity Zones</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">activityZones</span> <span class="ow">&lt;-</span> <span class="n">getActivityZones</span> <span class="n">client</span> <span class="n">activityId</span>
+    <span class="n">print</span> <span class="n">activityZones</span>
+    <span class="c1">-- Right [ZoneSummary {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="list-activity-laps" class="anchor" href="#list-activity-laps"><span class="octicon octicon-link"></span></a>List Activity Laps</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">activityLaps</span> <span class="ow">&lt;-</span> <span class="n">getActivityLaps</span> <span class="n">client</span> <span class="n">activityId</span>
+    <span class="n">print</span> <span class="n">activityLaps</span>
+    <span class="c1">-- Right [ZoneSummary {..},..]</span>
+</pre></div>
+
+<h3>
+<a name="comments" class="anchor" href="#comments"><span class="octicon octicon-link"></span></a>Comments</h3>
+
+<h4>
+<a name="list-activity-comments" class="anchor" href="#list-activity-comments"><span class="octicon octicon-link"></span></a>List Activity Comments</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">activityComments</span> <span class="ow">&lt;-</span> <span class="n">getActivityComments</span> <span class="n">client</span> <span class="n">activityId</span> <span class="n">includeMarkdown</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">activityComments</span>
+    <span class="c1">-- Right [CommentSummary {..},..]</span>
+</pre></div>
+
+<h3>
+<a name="kudos" class="anchor" href="#kudos"><span class="octicon octicon-link"></span></a>Kudos</h3>
+
+<h4>
+<a name="list-activity-kudoers" class="anchor" href="#list-activity-kudoers"><span class="octicon octicon-link"></span></a>List Activity Kudoers</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">activityKudoers</span> <span class="ow">&lt;-</span> <span class="n">getActivityKudoers</span> <span class="n">client</span> <span class="n">activityId</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">activityKudoers</span>
+    <span class="c1">-- Right [AthleteSummary {..},..]</span>
+</pre></div>
+
+<h3>
+<a name="photos" class="anchor" href="#photos"><span class="octicon octicon-link"></span></a>Photos</h3>
+
+<h4>
+<a name="list-activity-photos" class="anchor" href="#list-activity-photos"><span class="octicon octicon-link"></span></a>List Activity Photos</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">activityPhotos</span> <span class="ow">&lt;-</span> <span class="n">getActivityPhotos</span> <span class="n">client</span> <span class="n">activityId</span>
+    <span class="n">print</span> <span class="n">activityPhotos</span>
+    <span class="c1">-- Right [PhotoSummary {..},..]</span>
+</pre></div>
+
+<h3>
+<a name="clubs" class="anchor" href="#clubs"><span class="octicon octicon-link"></span></a>Clubs</h3>
+
+<h4>
+<a name="retrieve-a-club" class="anchor" href="#retrieve-a-club"><span class="octicon octicon-link"></span></a>Retrieve a Club</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">club</span> <span class="ow">&lt;-</span> <span class="n">getClub</span> <span class="n">client</span> <span class="n">clubId</span>
+    <span class="n">print</span> <span class="n">club</span>
+    <span class="c1">-- Right (ClubDetailed {..})</span>
+</pre></div>
+
+<h4>
+<a name="list-athlete-clubs" class="anchor" href="#list-athlete-clubs"><span class="octicon octicon-link"></span></a>List Athlete Clubs</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">currentClubs</span> <span class="ow">&lt;-</span> <span class="n">getCurrentClubs</span> <span class="n">client</span>
+    <span class="n">print</span> <span class="n">currentClubs</span>
+    <span class="c1">-- Right [ClubSummary {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="list-club-members" class="anchor" href="#list-club-members"><span class="octicon octicon-link"></span></a>List Club Members</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">clubMembers</span> <span class="ow">&lt;-</span> <span class="n">getClubMembers</span> <span class="n">client</span> <span class="n">clubId</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">clubMembers</span>
+    <span class="c1">-- Right [AthleteSummary {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="list-club-activities" class="anchor" href="#list-club-activities"><span class="octicon octicon-link"></span></a>List Club Activities</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">clubActivities</span> <span class="ow">&lt;-</span> <span class="n">getClubActivities</span> <span class="n">client</span> <span class="n">clubId</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">clubActivities</span>
+    <span class="c1">-- Right [ActivitySummary {..},..]</span>
+</pre></div>
+
+<h3>
+<a name="gear" class="anchor" href="#gear"><span class="octicon octicon-link"></span></a>Gear</h3>
+
+<h4>
+<a name="retrieve-gear" class="anchor" href="#retrieve-gear"><span class="octicon octicon-link"></span></a>Retrieve Gear</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">gear</span> <span class="ow">&lt;-</span> <span class="n">getGear</span> <span class="n">client</span> <span class="n">gearId</span>
+    <span class="n">print</span> <span class="n">gear</span>
+    <span class="c1">-- Right (GearDetailed {..})</span>
+</pre></div>
+
+<h3>
+<a name="segments" class="anchor" href="#segments"><span class="octicon octicon-link"></span></a>Segments</h3>
+
+<h4>
+<a name="retrieve-a-segment" class="anchor" href="#retrieve-a-segment"><span class="octicon octicon-link"></span></a>Retrieve a Segment</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">segment</span> <span class="ow">&lt;-</span> <span class="n">getSegment</span> <span class="n">client</span> <span class="n">segmentId</span>
+    <span class="n">print</span> <span class="n">segment</span>
+    <span class="c1">-- Right (SegmentDetailed {..})</span>
+</pre></div>
+
+<h4>
+<a name="list-starred-segments" class="anchor" href="#list-starred-segments"><span class="octicon octicon-link"></span></a>List Starred Segments</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">starredSegments</span> <span class="ow">&lt;-</span> <span class="n">getStarredSegments</span> <span class="n">client</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">starredSegments</span>
+    <span class="c1">-- Right [SegmentSummary {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="list-efforts" class="anchor" href="#list-efforts"><span class="octicon octicon-link"></span></a>List Efforts</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">efforts</span> <span class="ow">&lt;-</span> <span class="n">getSegmentEfforts</span> <span class="n">client</span> <span class="n">segmentId</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">athleteId</span><span class="p">)</span> <span class="p">(</span><span class="kt">Just</span> <span class="p">(</span><span class="n">after</span><span class="p">,</span> <span class="n">before</span><span class="p">))</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">efforts</span>
+    <span class="c1">-- Right [EffortSummary {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="segment-leaderboard" class="anchor" href="#segment-leaderboard"><span class="octicon octicon-link"></span></a>Segment Leaderboard</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">segmentLeaders</span> <span class="ow">&lt;-</span> <span class="n">getSegmentLeaderboard</span> <span class="n">client</span> <span class="n">segmentId</span> <span class="n">gender</span> <span class="n">ageGroup</span> <span class="n">weightClass</span> <span class="n">following</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">clubId</span><span class="p">)</span> <span class="n">range</span> <span class="n">page</span> <span class="n">perPage</span>
+    <span class="n">print</span> <span class="n">segmentLeaders</span>
+    <span class="c1">-- Right [SegmentLeader {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="segment-explorer" class="anchor" href="#segment-explorer"><span class="octicon octicon-link"></span></a>Segment Explorer</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">segments</span> <span class="ow">&lt;-</span> <span class="n">exploreSegments</span> <span class="n">client</span> <span class="n">bounds</span> <span class="n">activityType</span> <span class="n">minCat</span> <span class="n">maxCat</span>
+    <span class="n">print</span> <span class="n">segments</span>
+    <span class="c1">-- Right [SegmentExploration {..},..]</span>
+</pre></div>
+
+<h3>
+<a name="segment-efforts" class="anchor" href="#segment-efforts"><span class="octicon octicon-link"></span></a>Segment Efforts</h3>
+
+<h4>
+<a name="retrieve-a-segment-effort" class="anchor" href="#retrieve-a-segment-effort"><span class="octicon octicon-link"></span></a>Retrieve a Segment Effort</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">effort</span> <span class="ow">&lt;-</span> <span class="n">getEffort</span> <span class="n">client</span> <span class="n">effortId</span>
+    <span class="n">print</span> <span class="n">effort</span>
+    <span class="c1">-- Right (EffortSummary {..})</span>
+</pre></div>
+
+<h3>
+<a name="streams" class="anchor" href="#streams"><span class="octicon octicon-link"></span></a>Streams</h3>
+
+<h4>
+<a name="retrieve-activity-streams" class="anchor" href="#retrieve-activity-streams"><span class="octicon octicon-link"></span></a>Retrieve Activity Streams</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">activityStreams</span> <span class="ow">&lt;-</span> <span class="n">getActivityStreams</span> <span class="n">client</span> <span class="n">activityId</span> <span class="n">streamTypes</span> <span class="n">resolution</span> <span class="n">seriesType</span>
+    <span class="n">print</span> <span class="n">activityStreams</span>
+    <span class="c1">-- Right [StreamDetailed {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="retrieve-effort-streams" class="anchor" href="#retrieve-effort-streams"><span class="octicon octicon-link"></span></a>Retrieve Effort Streams</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">effortStreams</span> <span class="ow">&lt;-</span> <span class="n">getEffortStreams</span> <span class="n">client</span> <span class="n">effortId</span> <span class="n">streamTypes</span> <span class="n">resolution</span> <span class="n">seriesType</span>
+    <span class="n">print</span> <span class="n">effortStreams</span>
+    <span class="c1">-- Right [StreamDetailed {..},..]</span>
+</pre></div>
+
+<h4>
+<a name="retrieve-segment-streams" class="anchor" href="#retrieve-segment-streams"><span class="octicon octicon-link"></span></a>Retrieve Segment Streams</h4>
+
+<div class="highlight highlight-haskell"><pre>    <span class="n">segmentStreams</span> <span class="ow">&lt;-</span> <span class="n">getSegmentStreams</span> <span class="n">client</span> <span class="n">segmentId</span> <span class="n">streamTypes</span> <span class="n">resolution</span> <span class="n">seriesType</span>
+    <span class="n">print</span> <span class="n">segmentStreams</span>
+    <span class="c1">-- Right [StreamDetailed {..},..]</span>
+</pre></div>
+
+<h3>
+<a name="uploads" class="anchor" href="#uploads"><span class="octicon octicon-link"></span></a>Uploads</h3>
+
+<h4>
+<a name="upload-an-activity" class="anchor" href="#upload-an-activity"><span class="octicon octicon-link"></span></a>Upload an Activity</h4>
+
+<p><a href="https://github.com/tfausak/strive/issues/34">https://github.com/tfausak/strive/issues/34</a></p>
+
+<h4>
+<a name="check-upload-status" class="anchor" href="#check-upload-status"><span class="octicon octicon-link"></span></a>Check Upload Status</h4>
+
+<p><a href="https://github.com/tfausak/strive/issues/35">https://github.com/tfausak/strive/issues/35</a></p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/tfausak">tfausak</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
