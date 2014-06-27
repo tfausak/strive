@@ -7,7 +7,7 @@ module Strive.Actions.Streams
     , getSegmentStreams
     ) where
 
-import           Data.Aeson            (Value)
+import           Data.Aeson            (FromJSON, Value)
 import           Data.ByteString.Char8 (pack)
 import           Data.List             (intercalate)
 import           Strive.Client         (Client)
@@ -18,41 +18,24 @@ import           Strive.Utilities      (get, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/streams/#activity>
 getActivityStreams :: Client -> ActivityId -> StreamTypes -> Resolution -> SeriesType -> IO (Either String [StreamDetailed])
-getActivityStreams client activityId streamTypes resolution seriesType = get client resource query
-  where
-    resource = concat
-        [ "activities/"
-        , show activityId
-        , "/streams/"
-        , intercalate "," streamTypes
-        ]
-    query = queryToSimpleQuery
-        [ ("resolution", fmap pack resolution)
-        , ("series_type", fmap pack seriesType)
-        ]
+getActivityStreams = flip getStreams "activities"
 
 -- | <http://strava.github.io/api/v3/streams/#effort>
 getEffortStreams :: Client -> EffortId -> StreamTypes -> Resolution -> SeriesType -> IO (Either String [StreamDetailed])
-getEffortStreams client effortId streamTypes resolution seriesType = get client resource query
-  where
-    resource = concat
-        [ "segment_efforts/"
-        , show effortId
-        , "/streams/"
-        , intercalate "," streamTypes
-        ]
-    query = queryToSimpleQuery
-        [ ("resolution", fmap pack resolution)
-        , ("series_type", fmap pack seriesType)
-        ]
+getEffortStreams = flip getStreams "segment_efforts"
 
 -- | <http://strava.github.io/api/v3/streams/#segment>
 getSegmentStreams :: Client -> SegmentId -> StreamTypes -> Resolution -> SeriesType -> IO (Either String [StreamDetailed])
-getSegmentStreams client segmentId streamTypes resolution seriesType = get client resource query
+getSegmentStreams = flip getStreams "segments"
+
+getStreams :: FromJSON a => Client -> String -> Integer -> StreamTypes -> Resolution -> SeriesType -> IO (Either String a)
+getStreams client resource id streamTypes resolution seriesType =
+    get client resource' query
   where
-    resource = concat
-        [ "segments/"
-        , show segmentId
+    resource' = concat
+        [ resource
+        , "/"
+        , show id
         , "/streams/"
         , intercalate "," streamTypes
         ]
