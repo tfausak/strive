@@ -382,7 +382,11 @@ Many of the examples use the same parameters.
 
 #### Retrieve Effort Streams
 
-<https://github.com/tfausak/strive/issues/32>
+~~~ {.haskell}
+    effortStreams <- getEffortStreams client effortId streamTypes resolution seriesType
+    print effortStreams
+    -- Right [StreamDetailed {..},..]
+~~~
 
 #### Retrieve Segment Streams
 
