@@ -98,11 +98,12 @@ Many of the examples use the same parameters.
     let activityType      = Just "riding"
     let after             = UTCTime (fromGregorian 1970 0 0) 0
     let ageGroup          = Just "0_24"
+    let approvalPrompt    = Just "force"
     let athleteId         = 65516
     let before            = UTCTime (fromGregorian 2020 0 0) 0
     let bounds            = (32, -96, 33, -95)
+    let clientId          = 1790
     let clubId            = 11193
-    let range             = Just "this_year"
     let effortId          = 1595370098
     let following         = Just False
     let gearId            = "b387855"
@@ -113,9 +114,13 @@ Many of the examples use the same parameters.
     let minCat            = Just 0
     let page              = Just 1
     let perPage           = Just 200
+    let range             = Just "this_year"
+    let redirectURL       = "http://localhost"
     let resolution        = Just "low"
+    let scope             = Just ["view_private", "write"]
     let segmentId         = 4773104
     let seriesType        = Just "time"
+    let state             = Nothing
     let streamTypes       = ["time"]
     let weightClass       = Just "55_64"
 ~~~
@@ -124,7 +129,10 @@ Many of the examples use the same parameters.
 
 #### Request Access
 
-<https://github.com/tfausak/strive/issues/36>
+~~~ {.haskell}
+    let authorizeURL = buildAuthorizeURL clientId redirectURL approvalPrompt scope state
+    -- ""https://www.strava.com/oauth/authorize?.."
+~~~
 
 #### Token Exchange
 
