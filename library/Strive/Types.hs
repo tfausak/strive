@@ -9,8 +9,11 @@ module Strive.Types
     , IncludeMarkdown
     , Page
     , PerPage
+    , Resolution
     , Resource
     , SegmentId
+    , SeriesType
+    , StreamTypes
     ) where
 
 -- | Access token
@@ -40,8 +43,17 @@ type Page = Maybe Integer
 -- | Number of elements per page
 type PerPage = Maybe Integer
 
+-- | Number of desired stream data points.
+type Resolution = Maybe String
+
 -- | Resource path
 type Resource = String
 
 -- | Segment ID
 type SegmentId = Integer
+
+-- | How to index stream reduction.
+type SeriesType = Maybe String
+
+-- | Types of streams.
+type StreamTypes = [String]

@@ -10,6 +10,7 @@ module Strive.Objects
     , module Strive.Objects.Photos
     , module Strive.Objects.Polylines
     , module Strive.Objects.Segments
+    , module Strive.Objects.Streams
     , module Strive.Objects.Zones
     ) where
 
@@ -23,4 +24,5 @@ import           Strive.Objects.Gear
 import           Strive.Objects.Photos
 import           Strive.Objects.Polylines
 import           Strive.Objects.Segments
+import           Strive.Objects.Streams
 import           Strive.Objects.Zones

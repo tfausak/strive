@@ -10,6 +10,7 @@ module Strive.Actions
     , module Strive.Actions.Kudos
     , module Strive.Actions.Photos
     , module Strive.Actions.Segments
+    , module Strive.Actions.Streams
     ) where
 
 import           Strive.Actions.Activities
@@ -22,3 +23,4 @@ import           Strive.Actions.Gear
 import           Strive.Actions.Kudos
 import           Strive.Actions.Photos
 import           Strive.Actions.Segments
+import           Strive.Actions.Streams

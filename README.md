@@ -111,7 +111,10 @@ Many of the examples use the same parameters.
     let minCat            = Just 0
     let page              = Just 1
     let perPage           = Just 200
+    let resolution        = Just "low"
     let segmentId         = 4773104
+    let seriesType        = Just "time"
+    let streamTypes       = ["time"]
     let weightClass       = Just "55_64"
 ~~~
 
@@ -369,7 +372,11 @@ Many of the examples use the same parameters.
 
 #### Retrieve Activity Streams
 
-<https://github.com/tfausak/strive/issues/31>
+~~~ {.haskell}
+    activityStreams <- getActivityStreams client activityId streamTypes resolution seriesType
+    print activityStreams
+    -- Right [StreamDetailed {..},..]
+~~~
 
 #### Retrieve Effort Streams
 

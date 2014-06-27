@@ -45,6 +45,7 @@ library
         Strive.Actions.Kudos
         Strive.Actions.Photos
         Strive.Actions.Segments
+        Strive.Actions.Streams
         Strive.Client
         Strive.Objects
         Strive.Objects.Activities
@@ -76,6 +77,8 @@ library
         Strive.Objects.Segments.SegmentExploration
         Strive.Objects.Segments.SegmentLeader
         Strive.Objects.Segments.SegmentSummary
+        Strive.Objects.Streams
+        Strive.Objects.Streams.StreamDetailed
         Strive.Objects.Zones
         Strive.Objects.Zones.ZoneSummary
         Strive.Types
