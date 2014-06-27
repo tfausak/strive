@@ -11,6 +11,4 @@ main = hlint arguments >>= flip unless exitFailure . null
         [ "--color"
         , "library"
         , "test-suite"
-        , "HLint.hs"
-        , "README.lhs"
         ]
