@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.2.0 (2014-06-27)
+
 - Added support for decoding polylines.
 - Added stream endpoints.
 
