@@ -4,6 +4,7 @@
 module Strive.Actions.Streams
     ( getActivityStreams
     , getEffortStreams
+    , getSegmentStreams
     ) where
 
 import           Data.Aeson            (Value)
@@ -12,7 +13,7 @@ import           Data.List             (intercalate)
 import           Strive.Client         (Client)
 import           Strive.Objects        (StreamDetailed)
 import           Strive.Types          (ActivityId, EffortId, Resolution,
-                                        SeriesType, StreamTypes)
+                                        SegmentId, SeriesType, StreamTypes)
 import           Strive.Utilities      (get, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/streams/#activity>
@@ -37,6 +38,21 @@ getEffortStreams client effortId streamTypes resolution seriesType = get client 
     resource = concat
         [ "segment_efforts/"
         , show effortId
+        , "/streams/"
+        , intercalate "," streamTypes
+        ]
+    query = queryToSimpleQuery
+        [ ("resolution", fmap pack resolution)
+        , ("series_type", fmap pack seriesType)
+        ]
+
+-- | <http://strava.github.io/api/v3/streams/#segment>
+getSegmentStreams :: Client -> SegmentId -> StreamTypes -> Resolution -> SeriesType -> IO (Either String [StreamDetailed])
+getSegmentStreams client segmentId streamTypes resolution seriesType = get client resource query
+  where
+    resource = concat
+        [ "segments/"
+        , show segmentId
         , "/streams/"
         , intercalate "," streamTypes
         ]

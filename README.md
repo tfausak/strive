@@ -390,7 +390,11 @@ Many of the examples use the same parameters.
 
 #### Retrieve Segment Streams
 
-<https://github.com/tfausak/strive/issues/33>
+~~~ {.haskell}
+    segmentStreams <- getSegmentStreams client segmentId streamTypes resolution seriesType
+    print segmentStreams
+    -- Right [StreamDetailed {..},..]
+~~~
 
 ### Uploads
 
