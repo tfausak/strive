@@ -32,7 +32,7 @@ A Haskell client for the [Strava V3 API][2].
         -   [List Activity Kudoers](#list-activity-kudoers)
     -   [Photos](#photos)
         -   [List Activity Photos](#list-activity-photos)
-        -   [Clubs](#clubs)
+    -   [Clubs](#clubs)
         -   [Retrieve a Club](#retrieve-a-club)
         -   [List Athlete Clubs](#list-athlete-clubs)
         -   [List Club Members](#list-club-members)
