@@ -2,7 +2,6 @@
 
 A Haskell client for the [Strava V3 API][2].
 
--   [Installation](#installation)
 -   [Usage](#usage)
     -   [Authentication](#authentication)
         -   [Request Access](#request-access)
@@ -54,15 +53,6 @@ A Haskell client for the [Strava V3 API][2].
     -   [Uploads](#uploads)
         -   [Upload an Activity](#upload-an-activity)
         -   [Check Upload Status](#check-upload-status)
-
-## Installation
-
-This project uses [Semantic Versioning][3].
-
-~~~ {.sh}
-$ cabal update
-$ cabal install strive-0.1.1
-~~~
 
 ## Usage
 
@@ -411,4 +401,3 @@ Many of the examples use the same parameters.
 
 [1]: https://github.com/tfausak/strive
 [2]: http://strava.github.io/api/
-[3]: http://semver.org/spec/v2.0.0.html
