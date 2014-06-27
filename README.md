@@ -77,7 +77,7 @@ $ ./README ACCESS_TOKEN
 ~~~ {.haskell}
 import           Data.Maybe         (fromMaybe, listToMaybe)
 import           Data.Time.Calendar (fromGregorian)
-import           Data.Time.Clock    (UTCTime (UTCTime), getCurrentTime)
+import           Data.Time.Clock    (UTCTime (UTCTime))
 import           Strive
 import           System.Environment (getArgs)
 
@@ -92,14 +92,12 @@ main = do
 Many of the examples use the same parameters.
 
 ~~~ {.haskell}
-    time <- getCurrentTime
-
     let activityId        = 141273622
     let activityType      = Just "riding"
     let after             = UTCTime (fromGregorian 1970 0 0) 0
     let ageGroup          = Just "0_24"
     let athleteId         = 65516
-    let before            = time
+    let before            = UTCTime (fromGregorian 2020 0 0) 0
     let clubId            = 11193
     let dateRange         = Just "this_year"
     let east              = -95.0
@@ -112,7 +110,7 @@ Many of the examples use the same parameters.
     let maxCat            = Just 5
     let maybeAfter        = Just after
     let maybeAthleteId    = Just athleteId
-    let maybeBefore       = Just time
+    let maybeBefore       = Just before
     let maybeClubId       = Just clubId
     let minCat            = Just 0
     let north             = 33.0
