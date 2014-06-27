@@ -98,9 +98,9 @@ Many of the examples use the same parameters.
     let ageGroup          = Just "0_24"
     let athleteId         = 65516
     let before            = UTCTime (fromGregorian 2020 0 0) 0
+    let bounds            = (32, -96, 33, -95)
     let clubId            = 11193
-    let dateRange         = Just "this_year"
-    let east              = -95.0
+    let range             = Just "this_year"
     let effortId          = 1595370098
     let following         = Just False
     let gearId            = "b387855"
@@ -108,19 +108,11 @@ Many of the examples use the same parameters.
     let includeAllEfforts = Just True
     let includeMarkdown   = Just False
     let maxCat            = Just 5
-    let maybeAfter        = Just after
-    let maybeAthleteId    = Just athleteId
-    let maybeBefore       = Just before
-    let maybeClubId       = Just clubId
     let minCat            = Just 0
-    let north             = 33.0
     let page              = Just 1
     let perPage           = Just 200
-    let range             = Just (after, before)
     let segmentId         = 4773104
-    let south             = 32.0
     let weightClass       = Just "55_64"
-    let west              = -96.0
 ~~~
 
 ### Authentication
@@ -218,7 +210,7 @@ Many of the examples use the same parameters.
 #### List Athlete Activities
 
 ~~~ {.haskell}
-    currentActivities <- getCurrentActivities client maybeBefore maybeAfter page perPage
+    currentActivities <- getCurrentActivities client (Just before) (Just after) page perPage
     print currentActivities
     -- Right [ActivitySummary {..},..]
 ~~~
@@ -342,7 +334,7 @@ Many of the examples use the same parameters.
 #### List Efforts
 
 ~~~ {.haskell}
-    efforts <- getSegmentEfforts client segmentId maybeAthleteId range page perPage
+    efforts <- getSegmentEfforts client segmentId (Just athleteId) (Just (after, before)) page perPage
     print efforts
     -- Right [EffortSummary {..},..]
 ~~~
@@ -350,7 +342,7 @@ Many of the examples use the same parameters.
 #### Segment Leaderboard
 
 ~~~ {.haskell}
-    segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following maybeClubId dateRange page perPage
+    segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following (Just clubId) range page perPage
     print segmentLeaders
     -- Right [SegmentLeader {..},..]
 ~~~
@@ -358,7 +350,7 @@ Many of the examples use the same parameters.
 #### Segment Explorer
 
 ~~~ {.haskell}
-    segments <- exploreSegments client (south, west, north, east) activityType minCat maxCat
+    segments <- exploreSegments client bounds activityType minCat maxCat
     print segments
     -- Right [SegmentExploration {..},..]
 ~~~
