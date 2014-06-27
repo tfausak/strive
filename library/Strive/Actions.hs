@@ -2,6 +2,7 @@
 module Strive.Actions
     ( module Strive.Actions.Activities
     , module Strive.Actions.Athletes
+    , module Strive.Actions.Authentication
     , module Strive.Actions.Clubs
     , module Strive.Actions.Comments
     , module Strive.Actions.Efforts
@@ -15,6 +16,7 @@ module Strive.Actions
 
 import           Strive.Actions.Activities
 import           Strive.Actions.Athletes
+import           Strive.Actions.Authentication
 import           Strive.Actions.Clubs
 import           Strive.Actions.Comments
 import           Strive.Actions.Efforts

@@ -8,7 +8,8 @@ main :: IO ()
 main = hlint arguments >>= flip unless exitFailure . null
   where
     arguments =
-        [ "library"
+        [ "--color"
+        , "library"
         , "test-suite"
         , "HLint.hs"
         , "README.lhs"
