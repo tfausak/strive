@@ -2,6 +2,8 @@
 
 A Haskell client for the [Strava V3 API][2].
 
+![Strive logo][3]
+
 -   [Usage](#usage)
     -   [Authentication](#authentication)
         -   [Request Access](#request-access)
@@ -391,3 +393,4 @@ Many of the examples use the same parameters.
 
 [1]: https://github.com/tfausak/strive
 [2]: http://strava.github.io/api/
+[3]: strive.jpg
