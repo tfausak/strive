@@ -73,8 +73,7 @@ $ cabal exec ghc -- -pgmL markdown-unlit -x lhs README.md
 $ ./README ACCESS_TOKEN
 ~~~
 
-Since it's executable, there's some necessary boilerplate.
-
+<!--
 ~~~ {.haskell}
 import           Data.Maybe         (fromMaybe, listToMaybe)
 import           Data.Time.Calendar (fromGregorian)
@@ -88,6 +87,7 @@ main = do
     let token = fromMaybe "" (listToMaybe args)
     client <- newClient token
 ~~~
+-->
 
 Many of the examples use the same parameters.
 
