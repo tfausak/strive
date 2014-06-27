@@ -1,5 +1,8 @@
 # Changelog
 
+- Added support for decoding polylines.
+- Added stream endpoints.
+
 ## v0.1.1 (2014-06-26)
 
 -   Grouped actions into modules.
