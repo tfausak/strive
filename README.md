@@ -68,13 +68,6 @@ client <- newClient token
 -- Client {..}
 ~~~
 
-Note: This file is executable. Compile and run it with these commands.
-
-~~~ {.sh}
-$ cabal exec ghc -- -pgmL markdown-unlit -x lhs README.md
-$ ./README ACCESS_TOKEN
-~~~
-
 <!--
 ~~~ {.haskell}
 import           Data.Maybe         (fromMaybe, listToMaybe)
