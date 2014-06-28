@@ -48,6 +48,7 @@ library
         Strive.Actions.Photos
         Strive.Actions.Segments
         Strive.Actions.Streams
+        Strive.Actions.Uploads
         Strive.Client
         Strive.Objects
         Strive.Objects.Activities
@@ -85,6 +86,8 @@ library
         Strive.Objects.Segments.SegmentSummary
         Strive.Objects.Streams
         Strive.Objects.Streams.StreamDetailed
+        Strive.Objects.Uploads
+        Strive.Objects.Uploads.UploadDetailed
         Strive.Objects.Zones
         Strive.Objects.Zones.ZoneSummary
         Strive.Types

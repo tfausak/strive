@@ -432,7 +432,11 @@ Many of the examples use the same parameters.
 
 #### Check Upload Status
 
-<https://github.com/tfausak/strive/issues/35>
+~~~ {.haskell}
+  upload <- getUpload client 123
+  print upload
+  -- Right (UploadDetailed {..})
+~~~
 
 [1]: https://github.com/tfausak/strive
 [2]: http://strava.github.io/api/
