@@ -16,6 +16,7 @@ import           Network.HTTP.Conduit        (checkStatus, httpLbs, method,
                                               parseUrl, responseBody)
 import           Network.HTTP.Types.URI      (renderQuery)
 import           Strive.Client               (Client (accessToken, httpManager))
+import           Strive.Objects              (DeauthorizationResponse)
 
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
 buildAuthorizeURL :: Integer -> String -> Maybe String -> Maybe [String] -> Maybe String -> String
@@ -32,7 +33,7 @@ buildAuthorizeURL clientId redirectURL approvalPrompt scope state =
         ]
 
 -- | <http://strava.github.io/api/v3/oauth/#deauthorize>
-postDeauthorize :: Client -> IO (Either String Value)
+postDeauthorize :: Client -> IO (Either String DeauthorizationResponse)
 postDeauthorize client = do
     initialRequest <- parseUrl url
     let request = initialRequest

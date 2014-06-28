@@ -143,7 +143,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   response' <- postDeauthorize client
   print response'
-  -- Right (Object ..)
+  -- Right (DeauthorizationResponse {..})
 ~~~
 
 ### Athletes
