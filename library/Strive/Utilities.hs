@@ -9,19 +9,23 @@ module Strive.Utilities
     , get
     , makeRequest
     , paginate
+    , put
     , queryToSimpleQuery
     , renderQuery
     ) where
 
-import           Data.Aeson             (FromJSON, eitherDecode)
-import           Data.ByteString.Char8  (pack, unpack)
-import           Data.ByteString.Lazy   (ByteString)
-import           Data.Monoid            ((<>))
-import           Network.HTTP.Conduit   (Request, Response, checkStatus,
-                                         httpLbs, parseUrl, responseBody)
-import           Network.HTTP.Types.URI (Query, SimpleQuery, renderSimpleQuery)
-import           Strive.Client          (Client (accessToken, httpManager))
-import           Strive.Types           (Page, PerPage, Resource)
+import           Data.Aeson                (FromJSON, eitherDecode)
+import           Data.ByteString.Char8     (pack, unpack)
+import           Data.ByteString.Lazy      (ByteString)
+import           Data.Monoid               ((<>))
+import           Network.HTTP.Conduit      (Request, Response, checkStatus,
+                                            httpLbs, method, parseUrl,
+                                            responseBody)
+import           Network.HTTP.Types.Method (methodPut)
+import           Network.HTTP.Types.URI    (Query, SimpleQuery,
+                                            renderSimpleQuery)
+import           Strive.Client             (Client (accessToken, httpManager))
+import           Strive.Types              (Page, PerPage, Resource)
 
 -- | Build a base query with just the access token for a client.
 buildQuery :: Client -> SimpleQuery
@@ -66,6 +70,16 @@ paginate page perPage = queryToSimpleQuery
     [ ("page", fmap (pack . show) page)
     , ("per_page", fmap (pack . show) perPage)
     ]
+
+-- | Put the given resource.
+put :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
+put client resource query = do
+    initialRequest <- buildRequest client resource query
+    let request = initialRequest
+            { method = methodPut
+            }
+    response <- makeRequest client request
+    return (decodeResponse response)
 
 -- | Convert a query into a simple query.
 queryToSimpleQuery :: Query -> SimpleQuery

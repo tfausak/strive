@@ -1,16 +1,20 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 -- | <http://strava.github.io/api/v3/athlete/>
 module Strive.Actions.Athletes
     ( getAthlete
     , getAthleteCRs
     , getCurrentAthlete
+    , putCurrentAthlete
     ) where
 
-import           Data.Monoid      ((<>))
-import           Strive.Client    (Client)
-import           Strive.Objects   (AthleteDetailed, AthleteSummary,
-                                   EffortSummary)
-import           Strive.Types     (AthleteId, Page, PerPage)
-import           Strive.Utilities (get, paginate)
+import           Data.ByteString.Char8 (pack, singleton)
+import           Data.Monoid           ((<>))
+import           Strive.Client         (Client)
+import           Strive.Objects        (AthleteDetailed, AthleteSummary,
+                                        EffortSummary)
+import           Strive.Types          (AthleteId, Page, PerPage)
+import           Strive.Utilities      (get, paginate, put, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> AthleteId -> IO (Either String AthleteSummary)
@@ -32,3 +36,16 @@ getCurrentAthlete client = get client resource query
   where
     resource = "athlete"
     query = []
+
+-- | <http://strava.github.io/api/v3/athlete/#update>
+putCurrentAthlete :: Client -> Maybe String -> Maybe String -> Maybe String -> Maybe Char -> Maybe Double -> IO (Either String AthleteDetailed)
+putCurrentAthlete client city state country sex weight = put client resource query
+  where
+    resource = "athlete"
+    query = queryToSimpleQuery
+        [ ("city", fmap pack city)
+        , ("state", fmap pack state)
+        , ("country", fmap pack country)
+        , ("sex", fmap singleton sex)
+        , ("weight", fmap (pack . show) weight)
+        ]

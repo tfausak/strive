@@ -166,7 +166,11 @@ Many of the examples use the same parameters.
 
 #### Update Current Athlete
 
-<https://github.com/tfausak/strive/issues/7>
+~~~ {.haskell}
+  updatedAthlete <- putCurrentAthlete client Nothing Nothing Nothing Nothing Nothing
+  print updatedAthlete
+  -- Right (AthleteDetailed {..})
+~~~
 
 #### List Athlete K/QOMs/CRs
 
