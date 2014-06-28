@@ -230,7 +230,11 @@ Many of the examples use the same parameters.
 
 #### Delete an Activity
 
-<https://github.com/tfausak/strive/issues/15>
+~~~ {.haskell}
+  nothing <- deleteActivity client activityId
+  print nothing
+  -- Right (Null)
+~~~
 
 #### List Athlete Activities
 

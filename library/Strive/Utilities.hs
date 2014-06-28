@@ -6,6 +6,7 @@ module Strive.Utilities
     , buildRequest
     , buildURL
     , decodeResponse
+    , delete
     , get
     , makeRequest
     , paginate
@@ -21,7 +22,7 @@ import           Data.Monoid               ((<>))
 import           Network.HTTP.Conduit      (Request, Response, checkStatus,
                                             httpLbs, method, parseUrl,
                                             responseBody)
-import           Network.HTTP.Types.Method (methodPut)
+import           Network.HTTP.Types.Method (methodDelete, methodPut)
 import           Network.HTTP.Types.URI    (Query, SimpleQuery,
                                             renderSimpleQuery)
 import           Strive.Client             (Client (accessToken, httpManager))
@@ -52,6 +53,16 @@ buildURL client resource query = concat
 -- | Decode a response by parsing its body as JSON.
 decodeResponse :: FromJSON a => Response ByteString -> Either String a
 decodeResponse = eitherDecode . responseBody
+
+-- | Delete the given resource.
+delete :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
+delete client resource query = do
+    initialRequest <- buildRequest client resource query
+    let request = initialRequest
+            { method = methodDelete
+            }
+    response <- makeRequest client request
+    return (decodeResponse response)
 
 -- | Get the given resource.
 get :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)

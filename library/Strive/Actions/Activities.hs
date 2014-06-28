@@ -2,7 +2,8 @@
 
 -- | <http://strava.github.io/api/v3/activities/>
 module Strive.Actions.Activities
-    ( getActivity
+    ( deleteActivity
+    , getActivity
     , getActivityLaps
     , getActivityZones
     , getCurrentActivities
@@ -10,7 +11,7 @@ module Strive.Actions.Activities
     , putActivity
     ) where
 
-import           Data.Aeson            (encode)
+import           Data.Aeson            (Value, encode)
 import           Data.ByteString.Char8 (pack)
 import           Data.ByteString.Lazy  (toStrict)
 import           Data.Monoid           ((<>))
@@ -20,7 +21,15 @@ import           Strive.Client         (Client)
 import           Strive.Objects        (ActivityDetailed, ActivitySummary,
                                         EffortLap, ZoneSummary)
 import           Strive.Types          (ActivityId, Page, PerPage)
-import           Strive.Utilities      (get, paginate, put, queryToSimpleQuery)
+import           Strive.Utilities      (delete, get, paginate, put,
+                                        queryToSimpleQuery)
+
+-- | <http://strava.github.io/api/v3/activities/#delete>
+deleteActivity :: Client -> ActivityId -> IO (Either String Value)
+deleteActivity client activityId = delete client resource query
+  where
+    resource = "activities/" <> show activityId
+    query = []
 
 -- | <http://strava.github.io/api/v3/activities/#get-details>
 getActivity :: Client -> ActivityId -> Maybe Bool -> IO (Either String ActivitySummary)
