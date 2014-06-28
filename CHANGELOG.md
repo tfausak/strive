@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.4.0 (2014-06-28)
+
 -   Added POST, PUT, and DELETE endpoints.
 
 ## v0.3.0 (2014-06-28)
