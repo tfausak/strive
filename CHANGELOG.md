@@ -1,9 +1,11 @@
 # Changelog
 
+-   Added authorization endpoints.
+
 ## v0.2.0 (2014-06-27)
 
-- Added support for decoding polylines.
-- Added stream endpoints.
+-   Added support for decoding polylines.
+-   Added stream endpoints.
 
 ## v0.1.1 (2014-06-26)
 
@@ -20,7 +22,7 @@
     -   `getPhotos` to `getActivityPhotos`
     -   `getSegments` to `exploreSegments`
     -   `getZones` to `getActivityZones`
-- Added `athleteId` parameter to `getSegmentEfforts`.
+-   Added `athleteId` parameter to `getSegmentEfforts`.
 
 ## v0.1.0 (2014-06-24)
 
