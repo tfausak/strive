@@ -70,13 +70,14 @@ client <- newClient token
 
 <!--
 ~~~ {.haskell}
-import           Control.Monad      (when)
-import           Data.Maybe         (fromMaybe, listToMaybe)
-import           Data.Time.Calendar (fromGregorian)
-import           Data.Time.Clock    (UTCTime (UTCTime))
+import           Control.Monad         (when)
+import           Data.ByteString.Char8 (pack)
+import           Data.Maybe            (fromMaybe, listToMaybe)
+import           Data.Time.Calendar    (fromGregorian)
+import           Data.Time.Clock       (UTCTime (UTCTime))
 import           Strive
-import           System.Environment (getArgs)
-import           System.Exit        (exitSuccess)
+import           System.Environment    (getArgs)
+import           System.Exit           (exitSuccess)
 
 main :: IO ()
 main = do
@@ -431,7 +432,11 @@ Many of the examples use the same parameters.
 
 #### Upload an Activity
 
-<https://github.com/tfausak/strive/issues/34>
+~~~ {.haskell}
+  postedUpload <- postUpload client (pack "...") "gpx.gz" Nothing Nothing Nothing Nothing Nothing Nothing
+  print postedUpload
+  -- Right (UploadDetailed {..})
+~~~
 
 #### Check Upload Status
 
