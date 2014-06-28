@@ -91,42 +91,6 @@ main = do
 ~~~
 -->
 
-Many of the examples use the same parameters.
-
-~~~ {.haskell}
-  let activityId        = 141273622
-  let activityType      = Just "riding"
-  let after             = UTCTime (fromGregorian 1970 0 0) 0
-  let ageGroup          = Just "0_24"
-  let approvalPrompt    = Just "force"
-  let athleteId         = 65516
-  let before            = UTCTime (fromGregorian 2020 0 0) 0
-  let bounds            = (32, -96, 33, -95)
-  let clientId          = 1790
-  let clientSecret      = "..."
-  let clubId            = 11193
-  let code              = "..."
-  let effortId          = 1595370098
-  let following         = Just False
-  let gearId            = "b387855"
-  let gender            = Just 'F'
-  let includeAllEfforts = Just True
-  let includeMarkdown   = Just False
-  let maxCat            = Just 5
-  let minCat            = Just 0
-  let page              = Just 1
-  let perPage           = Just 200
-  let range             = Just "this_year"
-  let redirectURL       = "http://localhost"
-  let resolution        = Just "low"
-  let scope             = Just ["view_private", "write"]
-  let segmentId         = 4773104
-  let seriesType        = Just "time"
-  let state             = Nothing
-  let streamTypes       = ["time"]
-  let weightClass       = Just "55_64"
-~~~
-
 ### Authentication
 
 #### Request Access
@@ -424,6 +388,43 @@ Many of the examples use the same parameters.
 #### Check Upload Status
 
 <https://github.com/tfausak/strive/issues/35>
+
+---
+
+~~~ {.haskell}
+ where
+  let activityId        = 141273622
+  let activityType      = Just "riding"
+  let after             = UTCTime (fromGregorian 1970 0 0) 0
+  let ageGroup          = Just "0_24"
+  let approvalPrompt    = Just "force"
+  let athleteId         = 65516
+  let before            = UTCTime (fromGregorian 2020 0 0) 0
+  let bounds            = (32, -96, 33, -95)
+  let clientId          = 1790
+  let clientSecret      = "..."
+  let clubId            = 11193
+  let code              = "..."
+  let effortId          = 1595370098
+  let following         = Just False
+  let gearId            = "b387855"
+  let gender            = Just 'F'
+  let includeAllEfforts = Just True
+  let includeMarkdown   = Just False
+  let maxCat            = Just 5
+  let minCat            = Just 0
+  let page              = Just 1
+  let perPage           = Just 200
+  let range             = Just "this_year"
+  let redirectURL       = "http://localhost"
+  let resolution        = Just "low"
+  let scope             = Just ["view_private", "write"]
+  let segmentId         = 4773104
+  let seriesType        = Just "time"
+  let state             = Nothing
+  let streamTypes       = ["time"]
+  let weightClass       = Just "55_64"
+~~~
 
 [1]: https://github.com/tfausak/strive
 [2]: http://strava.github.io/api/
