@@ -103,7 +103,9 @@ Many of the examples use the same parameters.
     let before            = UTCTime (fromGregorian 2020 0 0) 0
     let bounds            = (32, -96, 33, -95)
     let clientId          = 1790
+    let clientSecret      = "..."
     let clubId            = 11193
+    let code              = "..."
     let effortId          = 1595370098
     let following         = Just False
     let gearId            = "b387855"
@@ -131,12 +133,17 @@ Many of the examples use the same parameters.
 
 ~~~ {.haskell}
     let authorizeURL = buildAuthorizeURL clientId redirectURL approvalPrompt scope state
+    print authorizeURL
     -- ""https://www.strava.com/oauth/authorize?.."
 ~~~
 
 #### Token Exchange
 
-<https://github.com/tfausak/strive/issues/37>
+~~~ {.haskell}
+    response <- postToken clientId clientSecret code
+    print response
+    -- Right (Object ..)
+~~~
 
 #### Deauthorization
 
