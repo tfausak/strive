@@ -3,6 +3,7 @@
 -- | <http://strava.github.io/api/v3/oauth/>
 module Strive.Actions.Authentication
     ( buildAuthorizeURL
+    , postDeauthorize
     , postToken
     ) where
 
@@ -14,6 +15,7 @@ import           Network.HTTP.Client.Conduit (newManager)
 import           Network.HTTP.Conduit        (checkStatus, httpLbs, method,
                                               parseUrl, responseBody)
 import           Network.HTTP.Types.URI      (renderQuery)
+import           Strive.Client               (Client (accessToken, httpManager))
 
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
 buildAuthorizeURL :: Integer -> String -> Maybe String -> Maybe [String] -> Maybe String -> String
@@ -27,6 +29,22 @@ buildAuthorizeURL clientId redirectURL approvalPrompt scope state =
         , ("approval_prompt", fmap pack approvalPrompt)
         , ("scope", fmap (pack . intercalate ",") scope)
         , ("state", fmap pack state)
+        ]
+
+-- | <http://strava.github.io/api/v3/oauth/#deauthorize>
+postDeauthorize :: Client -> IO (Either String Value)
+postDeauthorize client = do
+    initialRequest <- parseUrl url
+    let request = initialRequest
+            { checkStatus = \ _ _ _ -> Nothing
+            , method = "POST"
+            }
+    response <- httpLbs request (httpManager client)
+    return (eitherDecode (responseBody response))
+  where
+    url = "https://www.strava.com/oauth/deauthorize"
+    query =
+        [ ("access_token", Just (pack (accessToken client)))
         ]
 
 -- | <http://strava.github.io/api/v3/oauth/#post-token>

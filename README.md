@@ -147,7 +147,11 @@ Many of the examples use the same parameters.
 
 #### Deauthorization
 
-<https://github.com/tfausak/strive/issues/38>
+~~~ {.haskell}
+    response' <- postDeauthorize client
+    print response'
+    -- Right (Object ..)
+~~~
 
 ### Athletes
 
