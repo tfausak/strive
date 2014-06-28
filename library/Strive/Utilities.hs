@@ -10,6 +10,7 @@ module Strive.Utilities
     , get
     , makeRequest
     , paginate
+    , post
     , put
     , queryToSimpleQuery
     , renderQuery
@@ -22,7 +23,8 @@ import           Data.Monoid               ((<>))
 import           Network.HTTP.Conduit      (Request, Response, checkStatus,
                                             httpLbs, method, parseUrl,
                                             responseBody)
-import           Network.HTTP.Types.Method (methodDelete, methodPut)
+import           Network.HTTP.Types.Method (methodDelete, methodPost,
+                                            methodPut)
 import           Network.HTTP.Types.URI    (Query, SimpleQuery,
                                             renderSimpleQuery)
 import           Strive.Client             (Client (accessToken, httpManager))
@@ -81,6 +83,16 @@ paginate page perPage = queryToSimpleQuery
     [ ("page", fmap (pack . show) page)
     , ("per_page", fmap (pack . show) perPage)
     ]
+
+-- | Post the given resource.
+post :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
+post client resource query = do
+    initialRequest <- buildRequest client resource query
+    let request = initialRequest
+            { method = methodPost
+            }
+    response <- makeRequest client request
+    return (decodeResponse response)
 
 -- | Put the given resource.
 put :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)

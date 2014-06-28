@@ -8,6 +8,7 @@ module Strive.Actions.Activities
     , getActivityZones
     , getCurrentActivities
     , getFeed
+    , postActivity
     , putActivity
     ) where
 
@@ -21,7 +22,7 @@ import           Strive.Client         (Client)
 import           Strive.Objects        (ActivityDetailed, ActivitySummary,
                                         EffortLap, ZoneSummary)
 import           Strive.Types          (ActivityId, Page, PerPage)
-import           Strive.Utilities      (delete, get, paginate, put,
+import           Strive.Utilities      (delete, get, paginate, post, put,
                                         queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/activities/#delete>
@@ -70,6 +71,20 @@ getFeed client page perPage = get client resource query
   where
     resource = "activities/following"
     query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/activities/#create>
+postActivity :: Client -> String -> String -> UTCTime -> Integer -> Maybe String -> Maybe Double -> IO (Either String ActivityDetailed)
+postActivity client name type_ startDateLocal elapsedTime description distance = post client resource query
+  where
+    resource = "activities"
+    query = queryToSimpleQuery
+        [ ("name", Just (pack name))
+        , ("type", Just (pack type_))
+        , ("start_date_local", Just (toStrict (encode startDateLocal)))
+        , ("elapsed_time", Just (pack (show elapsedTime)))
+        , ("description", fmap pack description)
+        , ("distance", fmap (pack . show) description)
+        ]
 
 -- | <http://strava.github.io/api/v3/activities/#put-updates>
 putActivity :: Client -> ActivityId -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe String -> IO (Either String ActivityDetailed)

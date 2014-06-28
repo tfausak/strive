@@ -210,7 +210,11 @@ Many of the examples use the same parameters.
 
 #### Create an Activity
 
-<https://github.com/tfausak/strive/issues/12>
+~~~ {.haskell}
+  createdActivity <- postActivity client "" "" after 0 Nothing Nothing
+  print createdActivity
+  -- Right (AthleteDetailed {..})
+~~~
 
 #### Retrieve an Activity
 
