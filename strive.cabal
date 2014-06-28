@@ -52,6 +52,7 @@ library
         Strive.Objects
         Strive.Objects.Activities
         Strive.Objects.Activities.ActivitySummary
+        Strive.Objects.Activities.ActivityDetailed
         Strive.Objects.Athletes
         Strive.Objects.Athletes.AthleteDetailed
         Strive.Objects.Athletes.AthleteMeta

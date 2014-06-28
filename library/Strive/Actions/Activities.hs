@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 -- | <http://strava.github.io/api/v3/activities/>
 module Strive.Actions.Activities
     ( getActivity
@@ -5,6 +7,7 @@ module Strive.Actions.Activities
     , getActivityZones
     , getCurrentActivities
     , getFeed
+    , putActivity
     ) where
 
 import           Data.Aeson            (encode)
@@ -14,10 +17,10 @@ import           Data.Monoid           ((<>))
 import           Data.Time.Clock       (UTCTime)
 import           Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import           Strive.Client         (Client)
-import           Strive.Objects        (ActivitySummary, EffortLap,
-                                        ZoneSummary)
+import           Strive.Objects        (ActivityDetailed, ActivitySummary,
+                                        EffortLap, ZoneSummary)
 import           Strive.Types          (ActivityId, Page, PerPage)
-import           Strive.Utilities      (get, paginate, queryToSimpleQuery)
+import           Strive.Utilities      (get, paginate, put, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/activities/#get-details>
 getActivity :: Client -> ActivityId -> Maybe Bool -> IO (Either String ActivitySummary)
@@ -58,3 +61,18 @@ getFeed client page perPage = get client resource query
   where
     resource = "activities/following"
     query = paginate page perPage
+
+-- | <http://strava.github.io/api/v3/activities/#put-updates>
+putActivity :: Client -> ActivityId -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe String -> IO (Either String ActivityDetailed)
+putActivity client activityId name type_ private commute trainer gearId description = put client resource query
+  where
+    resource = "activities/" <> show activityId
+    query = queryToSimpleQuery
+        [ ("name", fmap pack name)
+        , ("type", fmap pack type_)
+        , ("private", fmap (toStrict . encode) private)
+        , ("commute", fmap (toStrict . encode) commute)
+        , ("trainer", fmap (toStrict . encode) trainer)
+        , ("gear_id", fmap pack gearId)
+        , ("description", fmap pack description)
+        ]

@@ -222,7 +222,11 @@ Many of the examples use the same parameters.
 
 #### Update an Activity
 
-<https://github.com/tfausak/strive/issues/14>
+~~~ {.haskell}
+  updatedActivity <- putActivity client activityId Nothing Nothing Nothing Nothing Nothing Nothing Nothing
+  print updatedActivity
+  -- Right (ActivityDetailed {..})
+~~~
 
 #### Delete an Activity
 
