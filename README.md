@@ -85,46 +85,46 @@ import           System.Environment (getArgs)
 
 main :: IO ()
 main = do
-    args <- getArgs
-    let token = fromMaybe "" (listToMaybe args)
-    client <- newClient token
+  args <- getArgs
+  let token = fromMaybe "" (listToMaybe args)
+  client <- newClient token
 ~~~
 -->
 
 Many of the examples use the same parameters.
 
 ~~~ {.haskell}
-    let activityId        = 141273622
-    let activityType      = Just "riding"
-    let after             = UTCTime (fromGregorian 1970 0 0) 0
-    let ageGroup          = Just "0_24"
-    let approvalPrompt    = Just "force"
-    let athleteId         = 65516
-    let before            = UTCTime (fromGregorian 2020 0 0) 0
-    let bounds            = (32, -96, 33, -95)
-    let clientId          = 1790
-    let clientSecret      = "..."
-    let clubId            = 11193
-    let code              = "..."
-    let effortId          = 1595370098
-    let following         = Just False
-    let gearId            = "b387855"
-    let gender            = Just 'F'
-    let includeAllEfforts = Just True
-    let includeMarkdown   = Just False
-    let maxCat            = Just 5
-    let minCat            = Just 0
-    let page              = Just 1
-    let perPage           = Just 200
-    let range             = Just "this_year"
-    let redirectURL       = "http://localhost"
-    let resolution        = Just "low"
-    let scope             = Just ["view_private", "write"]
-    let segmentId         = 4773104
-    let seriesType        = Just "time"
-    let state             = Nothing
-    let streamTypes       = ["time"]
-    let weightClass       = Just "55_64"
+  let activityId        = 141273622
+  let activityType      = Just "riding"
+  let after             = UTCTime (fromGregorian 1970 0 0) 0
+  let ageGroup          = Just "0_24"
+  let approvalPrompt    = Just "force"
+  let athleteId         = 65516
+  let before            = UTCTime (fromGregorian 2020 0 0) 0
+  let bounds            = (32, -96, 33, -95)
+  let clientId          = 1790
+  let clientSecret      = "..."
+  let clubId            = 11193
+  let code              = "..."
+  let effortId          = 1595370098
+  let following         = Just False
+  let gearId            = "b387855"
+  let gender            = Just 'F'
+  let includeAllEfforts = Just True
+  let includeMarkdown   = Just False
+  let maxCat            = Just 5
+  let minCat            = Just 0
+  let page              = Just 1
+  let perPage           = Just 200
+  let range             = Just "this_year"
+  let redirectURL       = "http://localhost"
+  let resolution        = Just "low"
+  let scope             = Just ["view_private", "write"]
+  let segmentId         = 4773104
+  let seriesType        = Just "time"
+  let state             = Nothing
+  let streamTypes       = ["time"]
+  let weightClass       = Just "55_64"
 ~~~
 
 ### Authentication
@@ -132,25 +132,25 @@ Many of the examples use the same parameters.
 #### Request Access
 
 ~~~ {.haskell}
-    let authorizeURL = buildAuthorizeURL clientId redirectURL approvalPrompt scope state
-    print authorizeURL
-    -- ""https://www.strava.com/oauth/authorize?.."
+  let authorizeURL = buildAuthorizeURL clientId redirectURL approvalPrompt scope state
+  print authorizeURL
+  -- ""https://www.strava.com/oauth/authorize?.."
 ~~~
 
 #### Token Exchange
 
 ~~~ {.haskell}
-    response <- postToken clientId clientSecret code
-    print response
-    -- Right (Object ..)
+  response <- postToken clientId clientSecret code
+  print response
+  -- Right (Object ..)
 ~~~
 
 #### Deauthorization
 
 ~~~ {.haskell}
-    response' <- postDeauthorize client
-    print response'
-    -- Right (Object ..)
+  response' <- postDeauthorize client
+  print response'
+  -- Right (Object ..)
 ~~~
 
 ### Athletes
@@ -158,17 +158,17 @@ Many of the examples use the same parameters.
 #### Retrieve Current Athlete
 
 ~~~ {.haskell}
-    currentAthlete <- getCurrentAthlete client
-    print currentAthlete
-    -- Right (AthleteDetailed {..})
+  currentAthlete <- getCurrentAthlete client
+  print currentAthlete
+  -- Right (AthleteDetailed {..})
 ~~~
 
 #### Retrieve Another Athlete
 
 ~~~ {.haskell}
-    athlete <- getAthlete client athleteId
-    print athlete
-    -- Right (AthleteSummary {..})
+  athlete <- getAthlete client athleteId
+  print athlete
+  -- Right (AthleteSummary {..})
 ~~~
 
 #### Update Current Athlete
@@ -178,9 +178,9 @@ Many of the examples use the same parameters.
 #### List Athlete K/QOMs/CRs
 
 ~~~ {.haskell}
-    athleteCRs <- getAthleteCRs client athleteId page perPage
-    print athleteCRs
-    -- Right [EffortSummary {..},..]
+  athleteCRs <- getAthleteCRs client athleteId page perPage
+  print athleteCRs
+  -- Right [EffortSummary {..},..]
 ~~~
 
 ### Friends and Followers
@@ -188,25 +188,25 @@ Many of the examples use the same parameters.
 #### List Athlete Friends
 
 ~~~ {.haskell}
-    currentFriends <- getCurrentFriends client page perPage
-    print currentFriends
-    -- Right [AthleteSummary {..},..]
+  currentFriends <- getCurrentFriends client page perPage
+  print currentFriends
+  -- Right [AthleteSummary {..},..]
 ~~~
 
 #### List Athlete Followers
 
 ~~~ {.haskell}
-    currentFollowers <- getCurrentFollowers client page perPage
-    print currentFollowers
-    -- Right [AthleteSummary {..},..]
+  currentFollowers <- getCurrentFollowers client page perPage
+  print currentFollowers
+  -- Right [AthleteSummary {..},..]
 ~~~
 
 #### List Both Following
 
 ~~~ {.haskell}
-    commonFriends <- getCommonFriends client athleteId page perPage
-    print commonFriends
-    -- Right [AthleteSummary {..},..]
+  commonFriends <- getCommonFriends client athleteId page perPage
+  print commonFriends
+  -- Right [AthleteSummary {..},..]
 ~~~
 
 ### Activities
@@ -218,9 +218,9 @@ Many of the examples use the same parameters.
 #### Retrieve an Activity
 
 ~~~ {.haskell}
-    activity <- getActivity client activityId includeAllEfforts
-    print activity
-    -- Right (ActivitySummary {..})
+  activity <- getActivity client activityId includeAllEfforts
+  print activity
+  -- Right (ActivitySummary {..})
 ~~~
 
 #### Update an Activity
@@ -234,33 +234,33 @@ Many of the examples use the same parameters.
 #### List Athlete Activities
 
 ~~~ {.haskell}
-    currentActivities <- getCurrentActivities client (Just before) (Just after) page perPage
-    print currentActivities
-    -- Right [ActivitySummary {..},..]
+  currentActivities <- getCurrentActivities client (Just before) (Just after) page perPage
+  print currentActivities
+  -- Right [ActivitySummary {..},..]
 ~~~
 
 #### List Friends' Activities
 
 ~~~ {.haskell}
-    feed <- getFeed client page perPage
-    print feed
-    -- Right [ActivitySummary {..},..]
+  feed <- getFeed client page perPage
+  print feed
+  -- Right [ActivitySummary {..},..]
 ~~~
 
 #### List Activity Zones
 
 ~~~ {.haskell}
-    activityZones <- getActivityZones client activityId
-    print activityZones
-    -- Right [ZoneSummary {..},..]
+  activityZones <- getActivityZones client activityId
+  print activityZones
+  -- Right [ZoneSummary {..},..]
 ~~~
 
 #### List Activity Laps
 
 ~~~ {.haskell}
-    activityLaps <- getActivityLaps client activityId
-    print activityLaps
-    -- Right [ZoneSummary {..},..]
+  activityLaps <- getActivityLaps client activityId
+  print activityLaps
+  -- Right [ZoneSummary {..},..]
 ~~~
 
 ### Comments
@@ -268,9 +268,9 @@ Many of the examples use the same parameters.
 #### List Activity Comments
 
 ~~~ {.haskell}
-    activityComments <- getActivityComments client activityId includeMarkdown page perPage
-    print activityComments
-    -- Right [CommentSummary {..},..]
+  activityComments <- getActivityComments client activityId includeMarkdown page perPage
+  print activityComments
+  -- Right [CommentSummary {..},..]
 ~~~
 
 ### Kudos
@@ -278,9 +278,9 @@ Many of the examples use the same parameters.
 #### List Activity Kudoers
 
 ~~~ {.haskell}
-    activityKudoers <- getActivityKudoers client activityId page perPage
-    print activityKudoers
-    -- Right [AthleteSummary {..},..]
+  activityKudoers <- getActivityKudoers client activityId page perPage
+  print activityKudoers
+  -- Right [AthleteSummary {..},..]
 ~~~
 
 ### Photos
@@ -288,9 +288,9 @@ Many of the examples use the same parameters.
 #### List Activity Photos
 
 ~~~ {.haskell}
-    activityPhotos <- getActivityPhotos client activityId
-    print activityPhotos
-    -- Right [PhotoSummary {..},..]
+  activityPhotos <- getActivityPhotos client activityId
+  print activityPhotos
+  -- Right [PhotoSummary {..},..]
 ~~~
 
 ### Clubs
@@ -298,33 +298,33 @@ Many of the examples use the same parameters.
 #### Retrieve a Club
 
 ~~~ {.haskell}
-    club <- getClub client clubId
-    print club
-    -- Right (ClubDetailed {..})
+  club <- getClub client clubId
+  print club
+  -- Right (ClubDetailed {..})
 ~~~
 
 #### List Athlete Clubs
 
 ~~~ {.haskell}
-    currentClubs <- getCurrentClubs client
-    print currentClubs
-    -- Right [ClubSummary {..},..]
+  currentClubs <- getCurrentClubs client
+  print currentClubs
+  -- Right [ClubSummary {..},..]
 ~~~
 
 #### List Club Members
 
 ~~~ {.haskell}
-    clubMembers <- getClubMembers client clubId page perPage
-    print clubMembers
-    -- Right [AthleteSummary {..},..]
+  clubMembers <- getClubMembers client clubId page perPage
+  print clubMembers
+  -- Right [AthleteSummary {..},..]
 ~~~
 
 #### List Club Activities
 
 ~~~ {.haskell}
-    clubActivities <- getClubActivities client clubId page perPage
-    print clubActivities
-    -- Right [ActivitySummary {..},..]
+  clubActivities <- getClubActivities client clubId page perPage
+  print clubActivities
+  -- Right [ActivitySummary {..},..]
 ~~~
 
 ### Gear
@@ -332,9 +332,9 @@ Many of the examples use the same parameters.
 #### Retrieve Gear
 
 ~~~ {.haskell}
-    gear <- getGear client gearId
-    print gear
-    -- Right (GearDetailed {..})
+  gear <- getGear client gearId
+  print gear
+  -- Right (GearDetailed {..})
 ~~~
 
 ### Segments
@@ -342,41 +342,41 @@ Many of the examples use the same parameters.
 #### Retrieve a Segment
 
 ~~~ {.haskell}
-    segment <- getSegment client segmentId
-    print segment
-    -- Right (SegmentDetailed {..})
+  segment <- getSegment client segmentId
+  print segment
+  -- Right (SegmentDetailed {..})
 ~~~
 
 #### List Starred Segments
 
 ~~~ {.haskell}
-    starredSegments <- getStarredSegments client page perPage
-    print starredSegments
-    -- Right [SegmentSummary {..},..]
+  starredSegments <- getStarredSegments client page perPage
+  print starredSegments
+  -- Right [SegmentSummary {..},..]
 ~~~
 
 #### List Efforts
 
 ~~~ {.haskell}
-    efforts <- getSegmentEfforts client segmentId (Just athleteId) (Just (after, before)) page perPage
-    print efforts
-    -- Right [EffortSummary {..},..]
+  efforts <- getSegmentEfforts client segmentId (Just athleteId) (Just (after, before)) page perPage
+  print efforts
+  -- Right [EffortSummary {..},..]
 ~~~
 
 #### Segment Leaderboard
 
 ~~~ {.haskell}
-    segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following (Just clubId) range page perPage
-    print segmentLeaders
-    -- Right [SegmentLeader {..},..]
+  segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following (Just clubId) range page perPage
+  print segmentLeaders
+  -- Right [SegmentLeader {..},..]
 ~~~
 
 #### Segment Explorer
 
 ~~~ {.haskell}
-    segments <- exploreSegments client bounds activityType minCat maxCat
-    print segments
-    -- Right [SegmentExploration {..},..]
+  segments <- exploreSegments client bounds activityType minCat maxCat
+  print segments
+  -- Right [SegmentExploration {..},..]
 ~~~
 
 ### Segment Efforts
@@ -384,9 +384,9 @@ Many of the examples use the same parameters.
 #### Retrieve a Segment Effort
 
 ~~~ {.haskell}
-    effort <- getEffort client effortId
-    print effort
-    -- Right (EffortSummary {..})
+  effort <- getEffort client effortId
+  print effort
+  -- Right (EffortSummary {..})
 ~~~
 
 ### Streams
@@ -394,25 +394,25 @@ Many of the examples use the same parameters.
 #### Retrieve Activity Streams
 
 ~~~ {.haskell}
-    activityStreams <- getActivityStreams client activityId streamTypes resolution seriesType
-    print activityStreams
-    -- Right [StreamDetailed {..},..]
+  activityStreams <- getActivityStreams client activityId streamTypes resolution seriesType
+  print activityStreams
+  -- Right [StreamDetailed {..},..]
 ~~~
 
 #### Retrieve Effort Streams
 
 ~~~ {.haskell}
-    effortStreams <- getEffortStreams client effortId streamTypes resolution seriesType
-    print effortStreams
-    -- Right [StreamDetailed {..},..]
+  effortStreams <- getEffortStreams client effortId streamTypes resolution seriesType
+  print effortStreams
+  -- Right [StreamDetailed {..},..]
 ~~~
 
 #### Retrieve Segment Streams
 
 ~~~ {.haskell}
-    segmentStreams <- getSegmentStreams client segmentId streamTypes resolution seriesType
-    print segmentStreams
-    -- Right [StreamDetailed {..},..]
+  segmentStreams <- getSegmentStreams client segmentId streamTypes resolution seriesType
+  print segmentStreams
+  -- Right [StreamDetailed {..},..]
 ~~~
 
 ### Uploads
