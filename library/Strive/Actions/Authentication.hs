@@ -16,7 +16,8 @@ import           Network.HTTP.Conduit        (checkStatus, httpLbs, method,
                                               parseUrl, responseBody)
 import           Network.HTTP.Types.URI      (renderQuery)
 import           Strive.Client               (Client (accessToken, httpManager))
-import           Strive.Objects              (DeauthorizationResponse)
+import           Strive.Objects              (DeauthorizationResponse,
+                                              TokenExchangeResponse)
 
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
 buildAuthorizeURL :: Integer -> String -> Maybe String -> Maybe [String] -> Maybe String -> String
@@ -49,7 +50,7 @@ postDeauthorize client = do
         ]
 
 -- | <http://strava.github.io/api/v3/oauth/#post-token>
-postToken :: Integer -> String -> String -> IO (Either String Value)
+postToken :: Integer -> String -> String -> IO (Either String TokenExchangeResponse)
 postToken clientId clientSecret code = do
     initialRequest <- parseUrl url
     let request = initialRequest

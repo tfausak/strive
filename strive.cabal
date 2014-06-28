@@ -58,6 +58,7 @@ library
         Strive.Objects.Athletes.AthleteSummary
         Strive.Objects.Authentication
         Strive.Objects.Authentication.DeauthorizationResponse
+        Strive.Objects.Authentication.TokenExchangeResponse
         Strive.Objects.Buckets
         Strive.Objects.Buckets.BucketSummary
         Strive.Objects.Clubs

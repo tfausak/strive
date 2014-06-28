@@ -135,7 +135,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   response <- postToken clientId clientSecret code
   print response
-  -- Right (Object ..)
+  -- Right (TokenExchangeResponse {..})
 ~~~
 
 #### Deauthorization
