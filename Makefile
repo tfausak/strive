@@ -3,7 +3,7 @@
 all: install configure build test haddock
 
 build:
-	cabal build
+	cabal build --jobs
 
 clean:
 	cabal clean
@@ -22,10 +22,10 @@ haddock:
 
 install:
 	cabal sandbox init
-	cabal install --enable-tests --only-dependencies
+	cabal install --enable-tests --jobs --only-dependencies
 
 repl:
 	cabal repl lib:strive
 
 test:
-	cabal test
+	cabal test --jobs
