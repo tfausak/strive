@@ -6,55 +6,55 @@ A Haskell client for the [Strava V3 API][2].
 
 -   [Usage](#usage)
     -   [Authentication](#authentication)
-        -   [Request Access](#request-access)
-        -   [Token Exchange](#token-exchange)
+        -   [Request access](#request-access)
+        -   [Token exchange](#token-exchange)
         -   [Deauthorization](#deauthorization)
     -   [Athletes](#athletes)
-        -   [Retrieve Current Athlete](#retrieve-current-athlete)
-        -   [Retrieve Another Athlete](#retrieve-another-athlete)
-        -   [Update Current Athlete](#update-current-athlete)
-        -   [List Athlete K/QOMs/CRs](#list-athlete-kqomscrs)
-    -   [Friends and Followers](#friends-and-followers)
-        -   [List Athlete Friends](#list-athlete-friends)
-        -   [List Athlete Followers](#list-athlete-followers)
-        -   [List Both Following](#list-both-following)
+        -   [Retrieve current athlete](#retrieve-current-athlete)
+        -   [Retrieve another athlete](#retrieve-another-athlete)
+        -   [Update current athlete](#update-current-athlete)
+        -   [List athlete K/QOMs/CRs](#list-athlete-kqomscrs)
+    -   [Friends and followers](#friends-and-followers)
+        -   [List athlete friends](#list-athlete-friends)
+        -   [List athlete followers](#list-athlete-followers)
+        -   [List both following](#list-both-following)
     -   [Activities](#activities)
-        -   [Create an Activity](#create-an-activity)
-        -   [Retrieve an Activity](#retrieve-an-activity)
-        -   [Update an Activity](#update-an-activity)
-        -   [Delete an Activity](#delete-an-activity)
-        -   [List Athlete Activities](#list-athlete-activities)
-        -   [List Friends' Activities](#list-friends-activities)
-        -   [List Activity Zones](#list-activity-zones)
-        -   [List Activity Laps](#list-activity-laps)
+        -   [Create an activity](#create-an-activity)
+        -   [Retrieve an activity](#retrieve-an-activity)
+        -   [Update an activity](#update-an-activity)
+        -   [Delete an activity](#delete-an-activity)
+        -   [List athlete activities](#list-athlete-activities)
+        -   [List friends' activities](#list-friends-activities)
+        -   [List activity zones](#list-activity-zones)
+        -   [List activity laps](#list-activity-laps)
     -   [Comments](#comments)
-        -   [List Activity Comments](#list-activity-comments)
+        -   [List activity comments](#list-activity-comments)
     -   [Kudos](#kudos)
-        -   [List Activity Kudoers](#list-activity-kudoers)
+        -   [List activity kudoers](#list-activity-kudoers)
     -   [Photos](#photos)
-        -   [List Activity Photos](#list-activity-photos)
+        -   [List activity photos](#list-activity-photos)
     -   [Clubs](#clubs)
-        -   [Retrieve a Club](#retrieve-a-club)
-        -   [List Athlete Clubs](#list-athlete-clubs)
-        -   [List Club Members](#list-club-members)
-        -   [List Club Activities](#list-club-activities)
+        -   [Retrieve a club](#retrieve-a-club)
+        -   [List athlete clubs](#list-athlete-clubs)
+        -   [List club members](#list-club-members)
+        -   [List club activities](#list-club-activities)
     -   [Gear](#gear)
-        -   [Retrieve Gear](#retrieve-gear)
+        -   [Retrieve gear](#retrieve-gear)
     -   [Segments](#segments)
-        -   [Retrieve a Segment](#retrieve-a-segment)
-        -   [List Starred Segments](#list-starred-segments)
-        -   [List Efforts](#list-efforts)
-        -   [Segment Leaderboard](#segment-leaderboard)
-        -   [Segment Explorer](#segment-explorer)
-        -   [Segment Efforts](#segment-efforts)
-        -   [Retrieve a Segment Effort](#retrieve-a-segment-effort)
+        -   [Retrieve a segment](#retrieve-a-segment)
+        -   [List starred segments](#list-starred-segments)
+        -   [List efforts](#list-efforts)
+        -   [Segment leaderboard](#segment-leaderboard)
+        -   [Segment explorer](#segment-explorer)
+        -   [Segment efforts](#segment-efforts)
+        -   [Retrieve a segment effort](#retrieve-a-segment-effort)
     -   [Streams](#streams)
-        -   [Retrieve Activity Streams](#retrieve-activity-streams)
-        -   [Retrieve Effort Streams](#retrieve-effort-streams)
-        -   [Retrieve Segment Streams](#retrieve-segment-streams)
+        -   [Retrieve activity streams](#retrieve-activity-streams)
+        -   [Retrieve effort streams](#retrieve-effort-streams)
+        -   [Retrieve segment streams](#retrieve-segment-streams)
     -   [Uploads](#uploads)
-        -   [Upload an Activity](#upload-an-activity)
-        -   [Check Upload Status](#check-upload-status)
+        -   [Upload an activity](#upload-an-activity)
+        -   [Check upload status](#check-upload-status)
 
 ## Usage
 
@@ -70,14 +70,14 @@ client <- newClient token
 
 <!--
 ~~~ {.haskell}
-import           Control.Monad         (when)
-import           Data.ByteString.Char8 (pack)
-import           Data.Maybe            (fromMaybe, listToMaybe)
-import           Data.Time.Calendar    (fromGregorian)
-import           Data.Time.Clock       (UTCTime (UTCTime))
-import           Strive
-import           System.Environment    (getArgs)
-import           System.Exit           (exitSuccess)
+import Control.Monad (when)
+import Data.ByteString.Char8 (pack)
+import Data.Maybe (fromMaybe, listToMaybe)
+import Data.Time.Calendar (fromGregorian)
+import Data.Time.Clock (UTCTime (UTCTime))
+import Strive
+import System.Environment (getArgs)
+import System.Exit (exitSuccess)
 
 main :: IO ()
 main = do
@@ -124,9 +124,9 @@ Many of the examples use the same parameters.
   let weightClass       = Just "55_64"
 ~~~
 
-### Authentication
+### [Authentication](http://strava.github.io/api/v3/oauth/)
 
-#### Request Access
+#### [Request access](http://strava.github.io/api/v3/oauth/#get-authorize)
 
 ~~~ {.haskell}
   let authorizeURL = buildAuthorizeURL clientId redirectURL approvalPrompt scope state
@@ -134,7 +134,7 @@ Many of the examples use the same parameters.
   -- ""https://www.strava.com/oauth/authorize?.."
 ~~~
 
-#### Token Exchange
+#### [Token exchange](http://strava.github.io/api/v3/oauth/#post-token)
 
 ~~~ {.haskell}
   response <- postToken clientId clientSecret code
@@ -142,7 +142,7 @@ Many of the examples use the same parameters.
   -- Right (TokenExchangeResponse {..})
 ~~~
 
-#### Deauthorization
+#### [Deauthorization](http://strava.github.io/api/v3/oauth/#deauthorize)
 
 ~~~ {.haskell}
   response' <- postDeauthorize client
@@ -150,9 +150,9 @@ Many of the examples use the same parameters.
   -- Right (DeauthorizationResponse {..})
 ~~~
 
-### Athletes
+### [Athletes](http://strava.github.io/api/v3/athlete/)
 
-#### Retrieve Current Athlete
+#### [Retrieve current athlete](http://strava.github.io/api/v3/athlete/#get-details)
 
 ~~~ {.haskell}
   currentAthlete <- getCurrentAthlete client
@@ -160,7 +160,7 @@ Many of the examples use the same parameters.
   -- Right (AthleteDetailed {..})
 ~~~
 
-#### Retrieve Another Athlete
+#### [Retrieve another athlete](http://strava.github.io/api/v3/athlete/#get-another-details)
 
 ~~~ {.haskell}
   athlete <- getAthlete client athleteId
@@ -168,7 +168,7 @@ Many of the examples use the same parameters.
   -- Right (AthleteSummary {..})
 ~~~
 
-#### Update Current Athlete
+#### [Update current athlete](http://strava.github.io/api/v3/athlete/#update)
 
 ~~~ {.haskell}
   updatedAthlete <- putCurrentAthlete client Nothing Nothing Nothing Nothing Nothing
@@ -176,7 +176,7 @@ Many of the examples use the same parameters.
   -- Right (AthleteDetailed {..})
 ~~~
 
-#### List Athlete K/QOMs/CRs
+#### [List athlete K/QOMs/CRs](http://strava.github.io/api/v3/athlete/#koms)
 
 ~~~ {.haskell}
   athleteCRs <- getAthleteCRs client athleteId page perPage
@@ -184,9 +184,9 @@ Many of the examples use the same parameters.
   -- Right [EffortSummary {..},..]
 ~~~
 
-### Friends and Followers
+### [Friends and followers](http://strava.github.io/api/v3/follow/)
 
-#### List Athlete Friends
+#### [List athlete friends](http://strava.github.io/api/v3/follow/#friends)
 
 ~~~ {.haskell}
   currentFriends <- getCurrentFriends client page perPage
@@ -194,7 +194,7 @@ Many of the examples use the same parameters.
   -- Right [AthleteSummary {..},..]
 ~~~
 
-#### List Athlete Followers
+#### [List athlete followers](http://strava.github.io/api/v3/follow/#followers)
 
 ~~~ {.haskell}
   currentFollowers <- getCurrentFollowers client page perPage
@@ -202,7 +202,7 @@ Many of the examples use the same parameters.
   -- Right [AthleteSummary {..},..]
 ~~~
 
-#### List Both Following
+#### [List both following](http://strava.github.io/api/v3/follow/#both)
 
 ~~~ {.haskell}
   commonFriends <- getCommonFriends client athleteId page perPage
@@ -210,9 +210,9 @@ Many of the examples use the same parameters.
   -- Right [AthleteSummary {..},..]
 ~~~
 
-### Activities
+### [Activities](http://strava.github.io/api/v3/activities/)
 
-#### Create an Activity
+#### [Create an activity](http://strava.github.io/api/v3/activities/#create)
 
 ~~~ {.haskell}
   createdActivity <- postActivity client "" "" after 0 Nothing Nothing
@@ -220,7 +220,7 @@ Many of the examples use the same parameters.
   -- Right (AthleteDetailed {..})
 ~~~
 
-#### Retrieve an Activity
+#### [Retrieve an activity](http://strava.github.io/api/v3/activities/#get-details)
 
 ~~~ {.haskell}
   activity <- getActivity client activityId includeAllEfforts
@@ -228,7 +228,7 @@ Many of the examples use the same parameters.
   -- Right (ActivitySummary {..})
 ~~~
 
-#### Update an Activity
+#### [Update an activity](http://strava.github.io/api/v3/activities/#put-updates)
 
 ~~~ {.haskell}
   updatedActivity <- putActivity client activityId Nothing Nothing Nothing Nothing Nothing Nothing Nothing
@@ -236,7 +236,7 @@ Many of the examples use the same parameters.
   -- Right (ActivityDetailed {..})
 ~~~
 
-#### Delete an Activity
+#### [Delete an activity](http://strava.github.io/api/v3/activities/#delete)
 
 ~~~ {.haskell}
   nothing <- deleteActivity client activityId
@@ -244,7 +244,7 @@ Many of the examples use the same parameters.
   -- Right (Null)
 ~~~
 
-#### List Athlete Activities
+#### [List athlete activities](http://strava.github.io/api/v3/activities/#get-activities)
 
 ~~~ {.haskell}
   currentActivities <- getCurrentActivities client (Just before) (Just after) page perPage
@@ -252,7 +252,7 @@ Many of the examples use the same parameters.
   -- Right [ActivitySummary {..},..]
 ~~~
 
-#### List Friends' Activities
+#### [List friends' activities](http://strava.github.io/api/v3/activities/#get-feed)
 
 ~~~ {.haskell}
   feed <- getFeed client page perPage
@@ -260,7 +260,7 @@ Many of the examples use the same parameters.
   -- Right [ActivitySummary {..},..]
 ~~~
 
-#### List Activity Zones
+#### [List activity zones](http://strava.github.io/api/v3/activities/#zones)
 
 ~~~ {.haskell}
   activityZones <- getActivityZones client activityId
@@ -268,7 +268,7 @@ Many of the examples use the same parameters.
   -- Right [ZoneSummary {..},..]
 ~~~
 
-#### List Activity Laps
+#### [List activity laps](http://strava.github.io/api/v3/activities/#laps)
 
 ~~~ {.haskell}
   activityLaps <- getActivityLaps client activityId
@@ -276,9 +276,9 @@ Many of the examples use the same parameters.
   -- Right [ZoneSummary {..},..]
 ~~~
 
-### Comments
+### [Comments](http://strava.github.io/api/v3/comments/)
 
-#### List Activity Comments
+#### [List activity comments](http://strava.github.io/api/v3/comments/#list)
 
 ~~~ {.haskell}
   activityComments <- getActivityComments client activityId includeMarkdown page perPage
@@ -286,9 +286,9 @@ Many of the examples use the same parameters.
   -- Right [CommentSummary {..},..]
 ~~~
 
-### Kudos
+### [Kudos](http://strava.github.io/api/v3/kudos/)
 
-#### List Activity Kudoers
+#### [List activity kudoers](http://strava.github.io/api/v3/kudos/#list)
 
 ~~~ {.haskell}
   activityKudoers <- getActivityKudoers client activityId page perPage
@@ -296,9 +296,9 @@ Many of the examples use the same parameters.
   -- Right [AthleteSummary {..},..]
 ~~~
 
-### Photos
+### [Photos](http://strava.github.io/api/v3/photos/)
 
-#### List Activity Photos
+#### [List activity photos](http://strava.github.io/api/v3/photos/#list)
 
 ~~~ {.haskell}
   activityPhotos <- getActivityPhotos client activityId
@@ -306,9 +306,9 @@ Many of the examples use the same parameters.
   -- Right [PhotoSummary {..},..]
 ~~~
 
-### Clubs
+### [Clubs](http://strava.github.io/api/v3/clubs/)
 
-#### Retrieve a Club
+#### [Retrieve a club](http://strava.github.io/api/v3/clubs/#get-details)
 
 ~~~ {.haskell}
   club <- getClub client clubId
@@ -316,7 +316,7 @@ Many of the examples use the same parameters.
   -- Right (ClubDetailed {..})
 ~~~
 
-#### List Athlete Clubs
+#### [List athlete clubs](http://strava.github.io/api/v3/clubs/#get-athletes)
 
 ~~~ {.haskell}
   currentClubs <- getCurrentClubs client
@@ -324,7 +324,7 @@ Many of the examples use the same parameters.
   -- Right [ClubSummary {..},..]
 ~~~
 
-#### List Club Members
+#### [List club members](http://strava.github.io/api/v3/clubs/#get-members)
 
 ~~~ {.haskell}
   clubMembers <- getClubMembers client clubId page perPage
@@ -332,7 +332,7 @@ Many of the examples use the same parameters.
   -- Right [AthleteSummary {..},..]
 ~~~
 
-#### List Club Activities
+#### [List club activities](http://strava.github.io/api/v3/clubs/#get-activities)
 
 ~~~ {.haskell}
   clubActivities <- getClubActivities client clubId page perPage
@@ -340,9 +340,9 @@ Many of the examples use the same parameters.
   -- Right [ActivitySummary {..},..]
 ~~~
 
-### Gear
+### [Gear](http://strava.github.io/api/v3/gear/)
 
-#### Retrieve Gear
+#### [Retrieve gear](http://strava.github.io/api/v3/gear/#show)
 
 ~~~ {.haskell}
   gear <- getGear client gearId
@@ -350,9 +350,9 @@ Many of the examples use the same parameters.
   -- Right (GearDetailed {..})
 ~~~
 
-### Segments
+### [Segments](http://strava.github.io/api/v3/segments/)
 
-#### Retrieve a Segment
+#### [Retrieve a segment](http://strava.github.io/api/v3/segments/#retrieve)
 
 ~~~ {.haskell}
   segment <- getSegment client segmentId
@@ -360,7 +360,7 @@ Many of the examples use the same parameters.
   -- Right (SegmentDetailed {..})
 ~~~
 
-#### List Starred Segments
+#### [List starred segments](http://strava.github.io/api/v3/segments/#starred)
 
 ~~~ {.haskell}
   starredSegments <- getStarredSegments client page perPage
@@ -368,7 +368,7 @@ Many of the examples use the same parameters.
   -- Right [SegmentSummary {..},..]
 ~~~
 
-#### List Efforts
+#### [List efforts](http://strava.github.io/api/v3/segments/#efforts)
 
 ~~~ {.haskell}
   efforts <- getSegmentEfforts client segmentId (Just athleteId) (Just (after, before)) page perPage
@@ -376,7 +376,7 @@ Many of the examples use the same parameters.
   -- Right [EffortSummary {..},..]
 ~~~
 
-#### Segment Leaderboard
+#### [Segment leaderboard](http://strava.github.io/api/v3/segments/#leaderboard)
 
 ~~~ {.haskell}
   segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following (Just clubId) range page perPage
@@ -384,7 +384,7 @@ Many of the examples use the same parameters.
   -- Right [SegmentLeader {..},..]
 ~~~
 
-#### Segment Explorer
+#### [Segment explorer](http://strava.github.io/api/v3/segments/#explore)
 
 ~~~ {.haskell}
   segments <- exploreSegments client bounds activityType minCat maxCat
@@ -392,9 +392,9 @@ Many of the examples use the same parameters.
   -- Right [SegmentExploration {..},..]
 ~~~
 
-### Segment Efforts
+### [Segment efforts](http://strava.github.io/api/v3/efforts/)
 
-#### Retrieve a Segment Effort
+#### [Retrieve a segment effort](http://strava.github.io/api/v3/efforts/#retrieve)
 
 ~~~ {.haskell}
   effort <- getEffort client effortId
@@ -402,9 +402,9 @@ Many of the examples use the same parameters.
   -- Right (EffortSummary {..})
 ~~~
 
-### Streams
+### [Streams](http://strava.github.io/api/v3/streams/)
 
-#### Retrieve Activity Streams
+#### [Retrieve activity streams](http://strava.github.io/api/v3/streams/#activity)
 
 ~~~ {.haskell}
   activityStreams <- getActivityStreams client activityId streamTypes resolution seriesType
@@ -412,7 +412,7 @@ Many of the examples use the same parameters.
   -- Right [StreamDetailed {..},..]
 ~~~
 
-#### Retrieve Effort Streams
+#### [Retrieve effort streams](http://strava.github.io/api/v3/streams/#effort)
 
 ~~~ {.haskell}
   effortStreams <- getEffortStreams client effortId streamTypes resolution seriesType
@@ -420,7 +420,7 @@ Many of the examples use the same parameters.
   -- Right [StreamDetailed {..},..]
 ~~~
 
-#### Retrieve Segment Streams
+#### [Retrieve segment streams](http://strava.github.io/api/v3/streams/#segment)
 
 ~~~ {.haskell}
   segmentStreams <- getSegmentStreams client segmentId streamTypes resolution seriesType
@@ -428,9 +428,9 @@ Many of the examples use the same parameters.
   -- Right [StreamDetailed {..},..]
 ~~~
 
-### Uploads
+### [Uploads](http://strava.github.io/api/v3/uploads/)
 
-#### Upload an Activity
+#### [Upload an activity](http://strava.github.io/api/v3/uploads/#post-file)
 
 ~~~ {.haskell}
   postedUpload <- postUpload client (pack "...") "gpx.gz" Nothing Nothing Nothing Nothing Nothing Nothing
@@ -438,7 +438,7 @@ Many of the examples use the same parameters.
   -- Right (UploadDetailed {..})
 ~~~
 
-#### Check Upload Status
+#### [Check upload status](http://strava.github.io/api/v3/uploads/#get-status)
 
 ~~~ {.haskell}
   upload <- getUpload client 123
