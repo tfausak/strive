@@ -11,9 +11,9 @@ import           Data.Monoid           ((<>))
 import           Network.HTTP.Conduit  (RequestBody (RequestBodyBS),
                                         requestBody)
 import           Prelude               hiding (readFile)
-import           Strive.Client         (Client)
+import           Strive.Client         (Client, get)
 import           Strive.Objects        (UploadDetailed)
-import           Strive.Utilities      (buildRequest, decodeResponse, get,
+import           Strive.Utilities      (buildRequest, decodeResponse,
                                         makeRequest, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/uploads/#get-status>
@@ -21,7 +21,7 @@ getUpload :: Client -> Integer -> IO (Either String UploadDetailed)
 getUpload client uploadId = get client resource query
   where
     resource = "uploads/" <> show uploadId
-    query = []
+    query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/uploads/#post-file>
 postUpload :: Client -> ByteString -> String -> Maybe String -> Maybe String -> Maybe String -> Maybe Integer -> Maybe Integer -> Maybe String -> IO (Either String UploadDetailed)

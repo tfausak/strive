@@ -7,11 +7,11 @@ import           Data.Aeson            (encode)
 import           Data.ByteString.Char8 (pack)
 import           Data.ByteString.Lazy  (toStrict)
 import           Data.Monoid           ((<>))
-import           Strive.Client         (Client)
+import           Strive.Client         (Client, get)
 import           Strive.Objects        (CommentSummary)
 import           Strive.Types          (ActivityId, IncludeMarkdown, Page,
                                         PerPage)
-import           Strive.Utilities      (get, paginate, queryToSimpleQuery)
+import           Strive.Utilities      (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/comments/#list>
 getActivityComments :: Client -> ActivityId -> IncludeMarkdown -> Page -> PerPage -> IO (Either String [CommentSummary])

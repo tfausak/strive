@@ -10,11 +10,11 @@ module Strive.Actions.Streams
 import           Data.Aeson            (FromJSON, Value)
 import           Data.ByteString.Char8 (pack)
 import           Data.List             (intercalate)
-import           Strive.Client         (Client)
+import           Strive.Client         (Client, get)
 import           Strive.Objects        (StreamDetailed)
 import           Strive.Types          (ActivityId, EffortId, Resolution,
                                         SegmentId, SeriesType, StreamTypes)
-import           Strive.Utilities      (get, queryToSimpleQuery)
+import           Strive.Utilities      (queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/streams/#activity>
 getActivityStreams :: Client -> ActivityId -> StreamTypes -> Resolution -> SeriesType -> IO (Either String [StreamDetailed])

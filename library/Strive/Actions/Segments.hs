@@ -16,12 +16,12 @@ import           Data.ByteString.Lazy  (toStrict)
 import           Data.List             (intercalate)
 import           Data.Monoid           ((<>))
 import           Data.Time.Clock       (UTCTime)
-import           Strive.Client         (Client)
+import           Strive.Client         (Client, get)
 import           Strive.Objects        (EffortSummary, SegmentDetailed,
                                         SegmentExploration, SegmentLeader,
                                         SegmentSummary)
 import           Strive.Types          (AthleteId, Page, PerPage, SegmentId)
-import           Strive.Utilities      (get, paginate, queryToSimpleQuery)
+import           Strive.Utilities      (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
 exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [SegmentExploration])
@@ -44,7 +44,7 @@ getSegment :: Client -> SegmentId -> IO (Either String SegmentDetailed)
 getSegment client segmentId = get client resource query
   where
     resource = "segments/" <> show segmentId
-    query = []
+    query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/segments/#efforts>
 getSegmentEfforts :: Client -> SegmentId -> Maybe AthleteId -> Maybe (UTCTime, UTCTime) -> Page -> PerPage -> IO (Either String [EffortSummary])

@@ -10,18 +10,18 @@ module Strive.Actions.Athletes
 
 import           Data.ByteString.Char8 (pack, singleton)
 import           Data.Monoid           ((<>))
-import           Strive.Client         (Client)
+import           Strive.Client         (Client, get, put)
 import           Strive.Objects        (AthleteDetailed, AthleteSummary,
                                         EffortSummary)
 import           Strive.Types          (AthleteId, Page, PerPage)
-import           Strive.Utilities      (get, paginate, put, queryToSimpleQuery)
+import           Strive.Utilities      (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> AthleteId -> IO (Either String AthleteSummary)
 getAthlete client athleteId = get client resource query
   where
     resource = "athletes/" <> show athleteId
-    query = []
+    query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/athlete/#koms>
 getAthleteCRs :: Client -> AthleteId -> Page -> PerPage -> IO (Either String [EffortSummary])
@@ -35,7 +35,7 @@ getCurrentAthlete :: Client -> IO (Either String AthleteDetailed)
 getCurrentAthlete client = get client resource query
   where
     resource = "athlete"
-    query = []
+    query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/athlete/#update>
 putCurrentAthlete :: Client -> Maybe String -> Maybe String -> Maybe String -> Maybe Char -> Maybe Double -> IO (Either String AthleteDetailed)

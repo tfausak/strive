@@ -6,12 +6,8 @@ module Strive.Utilities
     , buildRequest
     , buildURL
     , decodeResponse
-    , delete
-    , get
     , makeRequest
     , paginate
-    , post
-    , put
     , queryToSimpleQuery
     , renderQuery
     ) where
@@ -56,23 +52,6 @@ buildURL client resource query = concat
 decodeResponse :: FromJSON a => Response ByteString -> Either String a
 decodeResponse = eitherDecode . responseBody
 
--- | Delete the given resource.
-delete :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
-delete client resource query = do
-    initialRequest <- buildRequest client resource query
-    let request = initialRequest
-            { method = methodDelete
-            }
-    response <- makeRequest client request
-    return (decodeResponse response)
-
--- | Get the given resource.
-get :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
-get client resource query = do
-    request <- buildRequest client resource query
-    response <- makeRequest client request
-    return (decodeResponse response)
-
 -- | Make an HTTP request using the client's manager.
 makeRequest :: Client -> Request -> IO (Response ByteString)
 makeRequest = flip httpLbs . httpManager
@@ -83,26 +62,6 @@ paginate page perPage = queryToSimpleQuery
     [ ("page", fmap (pack . show) page)
     , ("per_page", fmap (pack . show) perPage)
     ]
-
--- | Post the given resource.
-post :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
-post client resource query = do
-    initialRequest <- buildRequest client resource query
-    let request = initialRequest
-            { method = methodPost
-            }
-    response <- makeRequest client request
-    return (decodeResponse response)
-
--- | Put the given resource.
-put :: FromJSON a => Client -> Resource -> SimpleQuery -> IO (Either String a)
-put client resource query = do
-    initialRequest <- buildRequest client resource query
-    let request = initialRequest
-            { method = methodPut
-            }
-    response <- makeRequest client request
-    return (decodeResponse response)
 
 -- | Convert a query into a simple query.
 queryToSimpleQuery :: Query -> SimpleQuery

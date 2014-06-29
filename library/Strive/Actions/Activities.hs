@@ -18,19 +18,18 @@ import           Data.ByteString.Lazy  (toStrict)
 import           Data.Monoid           ((<>))
 import           Data.Time.Clock       (UTCTime)
 import           Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
-import           Strive.Client         (Client)
+import           Strive.Client         (Client, delete, get, post, put)
 import           Strive.Objects        (ActivityDetailed, ActivitySummary,
                                         EffortLap, ZoneSummary)
 import           Strive.Types          (ActivityId, Page, PerPage)
-import           Strive.Utilities      (delete, get, paginate, post, put,
-                                        queryToSimpleQuery)
+import           Strive.Utilities      (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/activities/#delete>
 deleteActivity :: Client -> ActivityId -> IO (Either String Value)
 deleteActivity client activityId = delete client resource query
   where
     resource = "activities/" <> show activityId
-    query = []
+    query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/activities/#get-details>
 getActivity :: Client -> ActivityId -> Maybe Bool -> IO (Either String ActivitySummary)
@@ -46,14 +45,14 @@ getActivityLaps :: Client -> ActivityId -> IO (Either String [EffortLap])
 getActivityLaps client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/laps"
-    query = []
+    query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/activities/#zones>
 getActivityZones :: Client -> ActivityId -> IO (Either String [ZoneSummary])
 getActivityZones client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/zones"
-    query = []
+    query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/activities/#get-activities>
 getCurrentActivities :: Client -> Maybe UTCTime -> Maybe UTCTime -> Page -> PerPage -> IO (Either String [ActivitySummary])

@@ -7,18 +7,18 @@ module Strive.Actions.Clubs
     ) where
 
 import           Data.Monoid      ((<>))
-import           Strive.Client    (Client)
+import           Strive.Client    (Client, get)
 import           Strive.Objects   (ActivitySummary, AthleteSummary,
                                    ClubDetailed, ClubSummary)
 import           Strive.Types     (ClubId, Page, PerPage)
-import           Strive.Utilities (get, paginate)
+import           Strive.Utilities (paginate)
 
 -- | <http://strava.github.io/api/v3/clubs/#get-details>
 getClub :: Client -> ClubId -> IO (Either String ClubDetailed)
 getClub client clubId = get client resource query
   where
     resource = "clubs/" <> show clubId
-    query = []
+    query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/clubs/#get-activities>
 getClubActivities :: Client -> ClubId -> Page -> PerPage -> IO (Either String [ActivitySummary])
@@ -39,4 +39,4 @@ getCurrentClubs :: Client -> IO (Either String [ClubSummary])
 getCurrentClubs client = get client resource query
   where
     resource = "athlete/clubs"
-    query = []
+    query = [] :: [(String, String)]
