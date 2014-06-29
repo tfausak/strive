@@ -16,7 +16,8 @@ import           Data.ByteString.Lazy  (toStrict)
 import           Data.List             (intercalate)
 import           Data.Monoid           ((<>))
 import           Data.Time.Clock       (UTCTime)
-import           Strive.Client         (Client, get)
+import           Strive.Client         (Client)
+import           Strive.Client.HTTP    (get)
 import           Strive.Objects        (EffortSummary, SegmentDetailed,
                                         SegmentExploration, SegmentLeader,
                                         SegmentSummary)

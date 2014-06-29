@@ -11,7 +11,8 @@ import           Data.Monoid           ((<>))
 import           Network.HTTP.Conduit  (RequestBody (RequestBodyBS),
                                         requestBody)
 import           Prelude               hiding (readFile)
-import           Strive.Client         (Client, get)
+import           Strive.Client         (Client)
+import           Strive.Client.HTTP    (get)
 import           Strive.Objects        (UploadDetailed)
 import           Strive.Utilities      (buildRequest, decodeResponse,
                                         makeRequest, queryToSimpleQuery)

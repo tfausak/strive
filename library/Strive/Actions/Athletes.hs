@@ -10,7 +10,8 @@ module Strive.Actions.Athletes
 
 import           Data.ByteString.Char8 (pack, singleton)
 import           Data.Monoid           ((<>))
-import           Strive.Client         (Client, get, put)
+import           Strive.Client         (Client)
+import           Strive.Client.HTTP    (get, put)
 import           Strive.Objects        (AthleteDetailed, AthleteSummary,
                                         EffortSummary)
 import           Strive.Types          (AthleteId, Page, PerPage)

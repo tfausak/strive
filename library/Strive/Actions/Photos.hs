@@ -3,10 +3,11 @@ module Strive.Actions.Photos
     ( getActivityPhotos
     ) where
 
-import           Data.Monoid    ((<>))
-import           Strive.Client  (Client, get)
-import           Strive.Objects (PhotoSummary)
-import           Strive.Types   (ActivityId)
+import           Data.Monoid        ((<>))
+import           Strive.Client      (Client)
+import           Strive.Client.HTTP (get)
+import           Strive.Objects     (PhotoSummary)
+import           Strive.Types       (ActivityId)
 
 -- | <http://strava.github.io/api/v3/photos/#list>
 getActivityPhotos :: Client -> ActivityId -> IO (Either String [PhotoSummary])

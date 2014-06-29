@@ -97,6 +97,8 @@ library
     default-language: Haskell2010
     other-extensions: OverloadedStrings
     hs-source-dirs: library
+    other-modules:
+        Strive.Client.HTTP
  
 test-suite readme
     build-depends:
