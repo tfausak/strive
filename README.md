@@ -70,21 +70,16 @@ client <- newClient token
 
 <!--
 ~~~ {.haskell}
-import Control.Monad (when)
 import Data.ByteString.Char8 (pack)
-import Data.Maybe (fromMaybe, listToMaybe)
 import Data.Time.Calendar (fromGregorian)
 import Data.Time.Clock (UTCTime (UTCTime))
 import Strive
-import System.Environment (getArgs)
 import System.Exit (exitSuccess)
 
 main :: IO ()
 main = do
-  args <- getArgs
-  let token = fromMaybe "" (listToMaybe args)
-  when (null token) exitSuccess
-  client <- newClient token
+  exitSuccess
+  client <- newClient ""
 ~~~
 -->
 
