@@ -4,5 +4,5 @@ module Strive.Objects.Gear
     , module Strive.Objects.Gear.GearSummary
     ) where
 
-import           Strive.Objects.Gear.GearDetailed (GearDetailed)
-import           Strive.Objects.Gear.GearSummary  (GearSummary)
+import Strive.Objects.Gear.GearDetailed (GearDetailed)
+import Strive.Objects.Gear.GearSummary (GearSummary)

@@ -3,4 +3,4 @@ module Strive.Objects.Photos
     ( module Strive.Objects.Photos.PhotoSummary
     ) where
 
-import           Strive.Objects.Photos.PhotoSummary (PhotoSummary)
+import Strive.Objects.Photos.PhotoSummary (PhotoSummary)

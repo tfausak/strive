@@ -7,15 +7,15 @@ module Strive.Actions.Streams
     , getSegmentStreams
     ) where
 
-import           Data.Aeson            (FromJSON, Value)
-import           Data.ByteString.Char8 (pack)
-import           Data.List             (intercalate)
-import           Strive.Client         (Client)
-import           Strive.Client.HTTP    (get)
-import           Strive.Objects        (StreamDetailed)
-import           Strive.Types          (ActivityId, EffortId, Resolution,
-                                        SegmentId, SeriesType, StreamTypes)
-import           Strive.Utilities      (queryToSimpleQuery)
+import Data.Aeson (FromJSON, Value)
+import Data.ByteString.Char8 (pack)
+import Data.List (intercalate)
+import Strive.Client (Client)
+import Strive.Client.HTTP (get)
+import Strive.Objects (StreamDetailed)
+import Strive.Types (ActivityId, EffortId, Resolution, SegmentId, SeriesType,
+                     StreamTypes)
+import Strive.Utilities (queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/streams/#activity>
 getActivityStreams :: Client -> ActivityId -> StreamTypes -> Resolution -> SeriesType -> IO (Either String [StreamDetailed])

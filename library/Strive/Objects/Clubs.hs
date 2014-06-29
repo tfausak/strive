@@ -4,5 +4,5 @@ module Strive.Objects.Clubs
     , module Strive.Objects.Clubs.ClubSummary
     ) where
 
-import           Strive.Objects.Clubs.ClubDetailed (ClubDetailed)
-import           Strive.Objects.Clubs.ClubSummary  (ClubSummary)
+import Strive.Objects.Clubs.ClubDetailed (ClubDetailed)
+import Strive.Objects.Clubs.ClubSummary (ClubSummary)

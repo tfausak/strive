@@ -5,11 +5,10 @@ module Strive.Objects.Zones.ZoneSummary
     ( ZoneSummary (..)
     ) where
 
-import           Control.Applicative    (empty, (<$>), (<*>))
-import           Data.Aeson             (FromJSON, Value (Object), parseJSON,
-                                         (.:))
-import           Data.Text              (Text)
-import           Strive.Objects.Buckets (BucketSummary)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Text (Text)
+import Strive.Objects.Buckets (BucketSummary)
 
 -- | Summary representation of a zone.
 data ZoneSummary = ZoneSummary

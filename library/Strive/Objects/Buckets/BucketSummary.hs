@@ -5,9 +5,8 @@ module Strive.Objects.Buckets.BucketSummary
     ( BucketSummary (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:))
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
 
 -- | Summary representation of a distribution bucket.
 data BucketSummary = BucketSummary

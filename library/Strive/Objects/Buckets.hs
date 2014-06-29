@@ -3,4 +3,4 @@ module Strive.Objects.Buckets
     ( module Strive.Objects.Buckets.BucketSummary
     ) where
 
-import           Strive.Objects.Buckets.BucketSummary (BucketSummary)
+import Strive.Objects.Buckets.BucketSummary (BucketSummary)

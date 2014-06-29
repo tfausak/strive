@@ -5,10 +5,9 @@ module Strive.Objects.Gear.GearSummary
     ( GearSummary (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:))
-import           Data.Text           (Text)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Text (Text)
 
 -- | Summary representation of gear.
 data GearSummary = GearSummary

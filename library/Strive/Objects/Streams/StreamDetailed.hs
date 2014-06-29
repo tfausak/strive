@@ -5,10 +5,9 @@ module Strive.Objects.Streams.StreamDetailed
     ( StreamDetailed (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:))
-import           Data.Text           (Text)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Text (Text)
 
 -- | Detailed representation of a stream.
 data StreamDetailed = StreamDetailed

@@ -5,10 +5,9 @@ module Strive.Objects.Segments.SegmentSummary
     ( SegmentSummary (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:))
-import           Data.Text           (Text)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Text (Text)
 
 -- | Summary representation of an effort.
 data SegmentSummary = SegmentSummary

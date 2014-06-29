@@ -5,6 +5,6 @@ module Strive
     , module Strive.Objects
     ) where
 
-import           Strive.Actions
-import           Strive.Client
-import           Strive.Objects
+import Strive.Actions
+import Strive.Client
+import Strive.Objects

@@ -5,11 +5,10 @@ module Strive.Objects.Authentication.TokenExchangeResponse
     ( TokenExchangeResponse (..)
     ) where
 
-import           Control.Applicative     (empty, (<$>), (<*>))
-import           Data.Aeson              (FromJSON, Value (Object), parseJSON,
-                                          (.:))
-import           Data.Text               (Text)
-import           Strive.Objects.Athletes (AthleteDetailed)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Text (Text)
+import Strive.Objects.Athletes (AthleteDetailed)
 
 -- | The expected successful response from token exchange.
 data TokenExchangeResponse = TokenExchangeResponse

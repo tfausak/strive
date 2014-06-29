@@ -4,5 +4,5 @@ module Strive.Objects.Activities
     , module Strive.Objects.Activities.ActivitySummary
     ) where
 
-import           Strive.Objects.Activities.ActivityDetailed (ActivityDetailed)
-import           Strive.Objects.Activities.ActivitySummary  (ActivitySummary)
+import Strive.Objects.Activities.ActivityDetailed (ActivityDetailed)
+import Strive.Objects.Activities.ActivitySummary (ActivitySummary)

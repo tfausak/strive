@@ -4,8 +4,8 @@ module Strive.Client
     , newClient
     ) where
 
-import           Network.HTTP.Client.Conduit (Manager, newManager)
-import           Strive.Types                (AccessToken)
+import Network.HTTP.Client.Conduit (Manager, newManager)
+import Strive.Types (AccessToken)
 
 -- | Strava V3 API Client.
 data Client = Client

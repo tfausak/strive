@@ -3,4 +3,4 @@ module Strive.Objects.Streams
     ( module Strive.Objects.Streams.StreamDetailed
     ) where
 
-import           Strive.Objects.Streams.StreamDetailed (StreamDetailed)
+import Strive.Objects.Streams.StreamDetailed (StreamDetailed)

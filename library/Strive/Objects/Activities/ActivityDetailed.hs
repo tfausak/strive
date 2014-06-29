@@ -5,15 +5,14 @@ module Strive.Objects.Activities.ActivityDetailed
     ( ActivityDetailed (..)
     ) where
 
-import           Control.Applicative      (empty, (<$>), (<*>))
-import           Data.Aeson               (FromJSON, Value (Object), parseJSON,
-                                           (.:), (.:?))
-import           Data.Text                (Text)
-import           Data.Time.Clock          (UTCTime)
-import           Strive.Objects.Athletes  (AthleteMeta)
-import           Strive.Objects.Efforts   (EffortSummary)
-import           Strive.Objects.Gear      (GearSummary)
-import           Strive.Objects.Polylines (PolylineDetailed)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Text (Text)
+import Data.Time.Clock (UTCTime)
+import Strive.Objects.Athletes (AthleteMeta)
+import Strive.Objects.Efforts (EffortSummary)
+import Strive.Objects.Gear (GearSummary)
+import Strive.Objects.Polylines (PolylineDetailed)
 
 -- | Detailed representation of an activity.
 data ActivityDetailed = ActivityDetailed

@@ -3,4 +3,4 @@ module Strive.Objects.Uploads
     ( module Strive.Objects.Uploads.UploadDetailed
     ) where
 
-import           Strive.Objects.Uploads.UploadDetailed (UploadDetailed)
+import Strive.Objects.Uploads.UploadDetailed (UploadDetailed)

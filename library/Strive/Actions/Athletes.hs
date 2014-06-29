@@ -8,14 +8,13 @@ module Strive.Actions.Athletes
     , putCurrentAthlete
     ) where
 
-import           Data.ByteString.Char8 (pack, singleton)
-import           Data.Monoid           ((<>))
-import           Strive.Client         (Client)
-import           Strive.Client.HTTP    (get, put)
-import           Strive.Objects        (AthleteDetailed, AthleteSummary,
-                                        EffortSummary)
-import           Strive.Types          (AthleteId, Page, PerPage)
-import           Strive.Utilities      (paginate, queryToSimpleQuery)
+import Data.ByteString.Char8 (pack, singleton)
+import Data.Monoid ((<>))
+import Strive.Client (Client)
+import Strive.Client.HTTP (get, put)
+import Strive.Objects (AthleteDetailed, AthleteSummary, EffortSummary)
+import Strive.Types (AthleteId, Page, PerPage)
+import Strive.Utilities (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> AthleteId -> IO (Either String AthleteSummary)

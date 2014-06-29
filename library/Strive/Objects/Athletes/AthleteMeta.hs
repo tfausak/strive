@@ -5,9 +5,8 @@ module Strive.Objects.Athletes.AthleteMeta
     ( AthleteMeta (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:))
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
 
 -- | Meta representation of an athlete.
 data AthleteMeta = AthleteMeta

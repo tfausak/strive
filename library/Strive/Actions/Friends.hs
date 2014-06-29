@@ -7,12 +7,12 @@ module Strive.Actions.Friends
     , getFriends
     ) where
 
-import           Data.Monoid        ((<>))
-import           Strive.Client      (Client)
-import           Strive.Client.HTTP (get)
-import           Strive.Objects     (AthleteSummary)
-import           Strive.Types       (AthleteId, Page, PerPage)
-import           Strive.Utilities   (paginate)
+import Data.Monoid ((<>))
+import Strive.Client (Client)
+import Strive.Client.HTTP (get)
+import Strive.Objects (AthleteSummary)
+import Strive.Types (AthleteId, Page, PerPage)
+import Strive.Utilities (paginate)
 
 -- | <http://strava.github.io/api/v3/follow/#both>
 getCommonFriends :: Client -> AthleteId -> Page -> PerPage -> IO (Either String [AthleteSummary])

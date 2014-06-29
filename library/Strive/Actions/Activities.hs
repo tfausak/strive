@@ -12,18 +12,18 @@ module Strive.Actions.Activities
     , putActivity
     ) where
 
-import           Data.Aeson            (Value, encode)
-import           Data.ByteString.Char8 (pack)
-import           Data.ByteString.Lazy  (toStrict)
-import           Data.Monoid           ((<>))
-import           Data.Time.Clock       (UTCTime)
-import           Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
-import           Strive.Client         (Client)
-import           Strive.Client.HTTP    (delete, get, post, put)
-import           Strive.Objects        (ActivityDetailed, ActivitySummary,
-                                        EffortLap, ZoneSummary)
-import           Strive.Types          (ActivityId, Page, PerPage)
-import           Strive.Utilities      (paginate, queryToSimpleQuery)
+import Data.Aeson (Value, encode)
+import Data.ByteString.Char8 (pack)
+import Data.ByteString.Lazy (toStrict)
+import Data.Monoid ((<>))
+import Data.Time.Clock (UTCTime)
+import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
+import Strive.Client (Client)
+import Strive.Client.HTTP (delete, get, post, put)
+import Strive.Objects (ActivityDetailed, ActivitySummary, EffortLap,
+                       ZoneSummary)
+import Strive.Types (ActivityId, Page, PerPage)
+import Strive.Utilities (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/activities/#delete>
 deleteActivity :: Client -> ActivityId -> IO (Either String Value)

@@ -3,4 +3,4 @@ module Strive.Objects.Zones
     ( module Strive.Objects.Zones.ZoneSummary
     ) where
 
-import           Strive.Objects.Zones.ZoneSummary (ZoneSummary)
+import Strive.Objects.Zones.ZoneSummary (ZoneSummary)

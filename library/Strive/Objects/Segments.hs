@@ -6,7 +6,7 @@ module Strive.Objects.Segments
     , module Strive.Objects.Segments.SegmentSummary
     ) where
 
-import           Strive.Objects.Segments.SegmentDetailed    (SegmentDetailed)
-import           Strive.Objects.Segments.SegmentExploration (SegmentExploration)
-import           Strive.Objects.Segments.SegmentLeader      (SegmentLeader)
-import           Strive.Objects.Segments.SegmentSummary     (SegmentSummary)
+import Strive.Objects.Segments.SegmentDetailed (SegmentDetailed)
+import Strive.Objects.Segments.SegmentExploration (SegmentExploration)
+import Strive.Objects.Segments.SegmentLeader (SegmentLeader)
+import Strive.Objects.Segments.SegmentSummary (SegmentSummary)

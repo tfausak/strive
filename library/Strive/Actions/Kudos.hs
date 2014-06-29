@@ -3,12 +3,12 @@ module Strive.Actions.Kudos
     ( getActivityKudoers
     ) where
 
-import           Data.Monoid        ((<>))
-import           Strive.Client      (Client)
-import           Strive.Client.HTTP (get)
-import           Strive.Objects     (AthleteSummary)
-import           Strive.Types       (ActivityId, Page, PerPage)
-import           Strive.Utilities   (paginate)
+import Data.Monoid ((<>))
+import Strive.Client (Client)
+import Strive.Client.HTTP (get)
+import Strive.Objects (AthleteSummary)
+import Strive.Types (ActivityId, Page, PerPage)
+import Strive.Utilities (paginate)
 
 -- | <http://strava.github.io/api/v3/kudos/#list>
 getActivityKudoers :: Client -> ActivityId -> Page -> PerPage -> IO (Either String [AthleteSummary])

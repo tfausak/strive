@@ -4,5 +4,5 @@ module Strive.Objects.Authentication
     , module Strive.Objects.Authentication.TokenExchangeResponse
     ) where
 
-import           Strive.Objects.Authentication.DeauthorizationResponse (DeauthorizationResponse)
-import           Strive.Objects.Authentication.TokenExchangeResponse   (TokenExchangeResponse)
+import Strive.Objects.Authentication.DeauthorizationResponse (DeauthorizationResponse)
+import Strive.Objects.Authentication.TokenExchangeResponse (TokenExchangeResponse)

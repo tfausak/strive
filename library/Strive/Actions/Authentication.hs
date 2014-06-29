@@ -7,18 +7,17 @@ module Strive.Actions.Authentication
     , postToken
     ) where
 
-import           Data.Aeson                  (FromJSON, Value, eitherDecode)
-import           Data.ByteString.Char8       (pack, unpack)
-import           Data.List                   (intercalate)
-import           Data.Monoid                 ((<>))
-import           Network.HTTP.Client.Conduit (newManager)
-import           Network.HTTP.Conduit        (checkStatus, httpLbs, method,
-                                              parseUrl, responseBody)
-import           Network.HTTP.Types.URI      (Query, renderQuery)
-import           Strive.Client               (Client (accessToken, httpManager))
-import           Strive.Objects              (DeauthorizationResponse,
-                                              TokenExchangeResponse)
-import           Strive.Utilities            (decodeResponse)
+import Data.Aeson (FromJSON, Value, eitherDecode)
+import Data.ByteString.Char8 (pack, unpack)
+import Data.List (intercalate)
+import Data.Monoid ((<>))
+import Network.HTTP.Client.Conduit (newManager)
+import Network.HTTP.Conduit (checkStatus, httpLbs, method, parseUrl,
+                             responseBody)
+import Network.HTTP.Types.URI (Query, renderQuery)
+import Strive.Client (Client (accessToken, httpManager))
+import Strive.Objects (DeauthorizationResponse, TokenExchangeResponse)
+import Strive.Utilities (decodeResponse)
 
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
 buildAuthorizeURL :: Integer -> String -> Maybe String -> Maybe [String] -> Maybe String -> String

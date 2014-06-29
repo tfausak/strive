@@ -5,10 +5,9 @@ module Strive.Objects.Uploads.UploadDetailed
     ( UploadDetailed (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:), (.:?))
-import           Data.Text           (Text)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Text (Text)
 
 -- | Detailed representation of an upload.
 data UploadDetailed = UploadDetailed

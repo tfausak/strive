@@ -5,13 +5,12 @@ module Strive.Objects.Athletes.AthleteDetailed
     ( AthleteDetailed (..)
     ) where
 
-import           Control.Applicative  (empty, (<$>), (<*>))
-import           Data.Aeson           (FromJSON, Value (Object), parseJSON,
-                                       (.:), (.:?))
-import           Data.Text            (Text)
-import           Data.Time.Clock      (UTCTime)
-import           Strive.Objects.Clubs (ClubSummary)
-import           Strive.Objects.Gear  (GearSummary)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Text (Text)
+import Data.Time.Clock (UTCTime)
+import Strive.Objects.Clubs (ClubSummary)
+import Strive.Objects.Gear (GearSummary)
 
 -- | Detailed representation of an athlete.
 data AthleteDetailed = AthleteDetailed

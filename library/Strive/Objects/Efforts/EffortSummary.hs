@@ -5,12 +5,11 @@ module Strive.Objects.Efforts.EffortSummary
     ( EffortSummary (..)
     ) where
 
-import           Control.Applicative     (empty, (<$>), (<*>))
-import           Data.Aeson              (FromJSON, Value (Object), parseJSON,
-                                          (.:), (.:?))
-import           Data.Text               (Text)
-import           Data.Time.Clock         (UTCTime)
-import           Strive.Objects.Segments (SegmentSummary)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Text (Text)
+import Data.Time.Clock (UTCTime)
+import Strive.Objects.Segments (SegmentSummary)
 
 -- | Summary representation of an effort.
 data EffortSummary = EffortSummary

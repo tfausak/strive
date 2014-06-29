@@ -5,12 +5,11 @@ module Strive.Objects.Polylines.PolylineDetailed
     ( PolylineDetailed (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:), (.:?))
-import           Data.Text           (Text)
-import           GPolyline           (decodeline)
-import           Prelude             hiding (id)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Text (Text)
+import GPolyline (decodeline)
+import Prelude hiding (id)
 
 -- | Detailed representation of a polyline.
 data PolylineDetailed = PolylineDetailed

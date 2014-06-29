@@ -5,12 +5,11 @@ module Strive.Objects.Segments.SegmentDetailed
     ( SegmentDetailed (..)
     ) where
 
-import           Control.Applicative      (empty, (<$>), (<*>))
-import           Data.Aeson               (FromJSON, Value (Object), parseJSON,
-                                           (.:))
-import           Data.Text                (Text)
-import           Data.Time.Clock          (UTCTime)
-import           Strive.Objects.Polylines (PolylineDetailed)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Text (Text)
+import Data.Time.Clock (UTCTime)
+import Strive.Objects.Polylines (PolylineDetailed)
 
 -- | Detailed representation of an effort.
 data SegmentDetailed = SegmentDetailed

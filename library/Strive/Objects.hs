@@ -16,17 +16,17 @@ module Strive.Objects
     , module Strive.Objects.Zones
     ) where
 
-import           Strive.Objects.Activities
-import           Strive.Objects.Athletes
-import           Strive.Objects.Authentication
-import           Strive.Objects.Buckets
-import           Strive.Objects.Clubs
-import           Strive.Objects.Comments
-import           Strive.Objects.Efforts
-import           Strive.Objects.Gear
-import           Strive.Objects.Photos
-import           Strive.Objects.Polylines
-import           Strive.Objects.Segments
-import           Strive.Objects.Streams
-import           Strive.Objects.Uploads
-import           Strive.Objects.Zones
+import Strive.Objects.Activities
+import Strive.Objects.Athletes
+import Strive.Objects.Authentication
+import Strive.Objects.Buckets
+import Strive.Objects.Clubs
+import Strive.Objects.Comments
+import Strive.Objects.Efforts
+import Strive.Objects.Gear
+import Strive.Objects.Photos
+import Strive.Objects.Polylines
+import Strive.Objects.Segments
+import Strive.Objects.Streams
+import Strive.Objects.Uploads
+import Strive.Objects.Zones

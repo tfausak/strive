@@ -5,11 +5,10 @@ module Strive.Objects.Segments.SegmentLeader
     ( SegmentLeader (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:))
-import           Data.Text           (Text)
-import           Data.Time.Clock     (UTCTime)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Text (Text)
+import Data.Time.Clock (UTCTime)
 
 -- | Representation of someone on a segment leaderboard.
 data SegmentLeader = SegmentLeader

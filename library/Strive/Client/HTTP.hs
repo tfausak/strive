@@ -6,18 +6,16 @@ module Strive.Client.HTTP
     , put
     ) where
 
-import           Data.Aeson            (FromJSON, eitherDecode)
-import           Data.ByteString.Char8 (unpack)
-import           Data.ByteString.Lazy  (ByteString)
-import           Data.Monoid           ((<>))
-import           Network.HTTP.Conduit  (Request, Response, checkStatus,
-                                        httpLbs, method, parseUrl,
-                                        responseBody)
-import           Network.HTTP.Types    (Method, Query, QueryLike, methodDelete,
-                                        methodGet, methodPost, methodPut,
-                                        renderQuery, toQuery)
-import           Strive.Client         (Client (accessToken, httpManager))
-import           Strive.Types          (Resource)
+import Data.Aeson (FromJSON, eitherDecode)
+import Data.ByteString.Char8 (unpack)
+import Data.ByteString.Lazy (ByteString)
+import Data.Monoid ((<>))
+import Network.HTTP.Conduit (Request, Response, checkStatus, httpLbs, method,
+                             parseUrl, responseBody)
+import Network.HTTP.Types (Method, Query, QueryLike, methodDelete, methodGet,
+                           methodPost, methodPut, renderQuery, toQuery)
+import Strive.Client (Client (accessToken, httpManager))
+import Strive.Types (Resource)
 
 -- | HTTP DELETE
 delete :: (QueryLike q, FromJSON j) => Client -> Resource -> q -> IO (Either String j)

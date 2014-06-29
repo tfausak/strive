@@ -5,11 +5,10 @@ module Strive.Objects.Photos.PhotoSummary
     ( PhotoSummary (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:), (.:?))
-import           Data.Text           (Text)
-import           Data.Time.Clock     (UTCTime)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Text (Text)
+import Data.Time.Clock (UTCTime)
 
 -- | Summary representation of a photo.
 data PhotoSummary = PhotoSummary

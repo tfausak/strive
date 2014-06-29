@@ -5,11 +5,10 @@ module Strive.Objects.Efforts.EffortLap
     ( EffortLap (..)
     ) where
 
-import           Control.Applicative (empty, (<$>), (<*>))
-import           Data.Aeson          (FromJSON, Value (Object), parseJSON,
-                                      (.:))
-import           Data.Text           (Text)
-import           Data.Time.Clock     (UTCTime)
+import Control.Applicative (empty, (<$>), (<*>))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Text (Text)
+import Data.Time.Clock (UTCTime)
 
 -- | Representation of a lap effort.
 data EffortLap = EffortLap

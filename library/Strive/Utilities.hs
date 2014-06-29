@@ -12,19 +12,16 @@ module Strive.Utilities
     , renderQuery
     ) where
 
-import           Data.Aeson                (FromJSON, eitherDecode)
-import           Data.ByteString.Char8     (pack, unpack)
-import           Data.ByteString.Lazy      (ByteString)
-import           Data.Monoid               ((<>))
-import           Network.HTTP.Conduit      (Request, Response, checkStatus,
-                                            httpLbs, method, parseUrl,
-                                            responseBody)
-import           Network.HTTP.Types.Method (methodDelete, methodPost,
-                                            methodPut)
-import           Network.HTTP.Types.URI    (Query, SimpleQuery,
-                                            renderSimpleQuery)
-import           Strive.Client             (Client (accessToken, httpManager))
-import           Strive.Types              (Page, PerPage, Resource)
+import Data.Aeson (FromJSON, eitherDecode)
+import Data.ByteString.Char8 (pack, unpack)
+import Data.ByteString.Lazy (ByteString)
+import Data.Monoid ((<>))
+import Network.HTTP.Conduit (Request, Response, checkStatus, httpLbs, method,
+                             parseUrl, responseBody)
+import Network.HTTP.Types.Method (methodDelete, methodPost, methodPut)
+import Network.HTTP.Types.URI (Query, SimpleQuery, renderSimpleQuery)
+import Strive.Client (Client (accessToken, httpManager))
+import Strive.Types (Page, PerPage, Resource)
 
 -- | Build a base query with just the access token for a client.
 buildQuery :: Client -> SimpleQuery

@@ -5,6 +5,6 @@ module Strive.Objects.Athletes
     , module Strive.Objects.Athletes.AthleteSummary
     ) where
 
-import           Strive.Objects.Athletes.AthleteDetailed (AthleteDetailed)
-import           Strive.Objects.Athletes.AthleteMeta     (AthleteMeta)
-import           Strive.Objects.Athletes.AthleteSummary  (AthleteSummary)
+import Strive.Objects.Athletes.AthleteDetailed (AthleteDetailed)
+import Strive.Objects.Athletes.AthleteMeta (AthleteMeta)
+import Strive.Objects.Athletes.AthleteSummary (AthleteSummary)

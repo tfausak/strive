@@ -9,20 +9,19 @@ module Strive.Actions.Segments
     , getStarredSegments
     ) where
 
-import           Data.Aeson            (encode, (.:))
-import           Data.Aeson.Types      (parseEither)
-import           Data.ByteString.Char8 (pack, singleton)
-import           Data.ByteString.Lazy  (toStrict)
-import           Data.List             (intercalate)
-import           Data.Monoid           ((<>))
-import           Data.Time.Clock       (UTCTime)
-import           Strive.Client         (Client)
-import           Strive.Client.HTTP    (get)
-import           Strive.Objects        (EffortSummary, SegmentDetailed,
-                                        SegmentExploration, SegmentLeader,
-                                        SegmentSummary)
-import           Strive.Types          (AthleteId, Page, PerPage, SegmentId)
-import           Strive.Utilities      (paginate, queryToSimpleQuery)
+import Data.Aeson (encode, (.:))
+import Data.Aeson.Types (parseEither)
+import Data.ByteString.Char8 (pack, singleton)
+import Data.ByteString.Lazy (toStrict)
+import Data.List (intercalate)
+import Data.Monoid ((<>))
+import Data.Time.Clock (UTCTime)
+import Strive.Client (Client)
+import Strive.Client.HTTP (get)
+import Strive.Objects (EffortSummary, SegmentDetailed, SegmentExploration,
+                       SegmentLeader, SegmentSummary)
+import Strive.Types (AthleteId, Page, PerPage, SegmentId)
+import Strive.Utilities (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
 exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [SegmentExploration])

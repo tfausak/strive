@@ -15,16 +15,16 @@ module Strive.Actions
     , module Strive.Actions.Uploads
     ) where
 
-import           Strive.Actions.Activities
-import           Strive.Actions.Athletes
-import           Strive.Actions.Authentication
-import           Strive.Actions.Clubs
-import           Strive.Actions.Comments
-import           Strive.Actions.Efforts
-import           Strive.Actions.Friends
-import           Strive.Actions.Gear
-import           Strive.Actions.Kudos
-import           Strive.Actions.Photos
-import           Strive.Actions.Segments
-import           Strive.Actions.Streams
-import           Strive.Actions.Uploads
+import Strive.Actions.Activities
+import Strive.Actions.Athletes
+import Strive.Actions.Authentication
+import Strive.Actions.Clubs
+import Strive.Actions.Comments
+import Strive.Actions.Efforts
+import Strive.Actions.Friends
+import Strive.Actions.Gear
+import Strive.Actions.Kudos
+import Strive.Actions.Photos
+import Strive.Actions.Segments
+import Strive.Actions.Streams
+import Strive.Actions.Uploads
