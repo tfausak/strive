@@ -78,7 +78,7 @@ import System.Exit (exitSuccess)
 
 main :: IO ()
 main = do
-  exitSuccess
+  _ <- exitSuccess
   client <- newClient ""
 ~~~
 -->
