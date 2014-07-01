@@ -68,10 +68,6 @@ library
         Strive.Objects.Polylines.PolylineDetailed
         Strive.Objects.Polylines.PolylineSummary
         Strive.Objects.Segments
-        Strive.Objects.Segments.SegmentDetailed
-        Strive.Objects.Segments.SegmentExploration
-        Strive.Objects.Segments.SegmentLeader
-        Strive.Objects.Segments.SegmentSummary
         Strive.Objects.Streams
         Strive.Objects.Streams.StreamDetailed
         Strive.Objects.Uploads

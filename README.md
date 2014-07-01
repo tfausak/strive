@@ -376,7 +376,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following (Just clubId) range page perPage
   print segmentLeaders
-  -- Right [SegmentLeader {..},..]
+  -- Right [SegmentLeaderboardEntry {..},..]
 ~~~
 
 #### [Segment explorer](http://strava.github.io/api/v3/segments/#explore)
@@ -384,7 +384,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   segments <- exploreSegments client bounds activityType minCat maxCat
   print segments
-  -- Right [SegmentExploration {..},..]
+  -- Right [SegmentExplorerEntry {..},..]
 ~~~
 
 ### [Segment efforts](http://strava.github.io/api/v3/efforts/)

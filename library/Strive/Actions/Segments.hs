@@ -18,13 +18,13 @@ import Data.Monoid ((<>))
 import Data.Time.Clock (UTCTime)
 import Strive.Client (Client)
 import Strive.Client.HTTP (get)
-import Strive.Objects (EffortSummary, SegmentDetailed, SegmentExploration,
-                       SegmentLeader, SegmentSummary)
+import Strive.Objects (EffortSummary, SegmentDetailed, SegmentExplorerEntry,
+                       SegmentLeaderboardEntry, SegmentSummary)
 import Strive.Types (AthleteId, Page, PerPage, SegmentId)
 import Strive.Utilities (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
-exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [SegmentExploration])
+exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [SegmentExplorerEntry])
 exploreSegments client (south, west, north, east) activityType minCat maxCat = do
     object <- get client resource query
     let segments = either Left (parseEither (.: "segments")) object
@@ -58,7 +58,7 @@ getSegmentEfforts client segmentId athleteId range page perPage = get client res
         ]
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
-getSegmentLeaderboard :: Client -> SegmentId -> Maybe Char -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Integer -> Maybe String -> Page -> PerPage -> IO (Either String [SegmentLeader])
+getSegmentLeaderboard :: Client -> SegmentId -> Maybe Char -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Integer -> Maybe String -> Page -> PerPage -> IO (Either String [SegmentLeaderboardEntry])
 getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId dateRange page perPage = do
     object <- get client resource query
     let leaders = either Left (parseEither (.: "entries")) object
