@@ -59,8 +59,6 @@ library
         Strive.Objects.Buckets
         Strive.Objects.Buckets.BucketSummary
         Strive.Objects.Clubs
-        Strive.Objects.Clubs.ClubDetailed
-        Strive.Objects.Clubs.ClubSummary
         Strive.Objects.Comments
         Strive.Objects.Efforts
         Strive.Objects.Efforts.EffortSummary
