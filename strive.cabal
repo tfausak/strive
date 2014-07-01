@@ -56,8 +56,6 @@ library
         Strive.Objects.Authentication
         Strive.Objects.Authentication.DeauthorizationResponse
         Strive.Objects.Authentication.TokenExchangeResponse
-        Strive.Objects.Buckets
-        Strive.Objects.Buckets.BucketSummary
         Strive.Objects.Clubs
         Strive.Objects.Comments
         Strive.Objects.Efforts

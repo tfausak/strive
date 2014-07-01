@@ -3,7 +3,6 @@ module Strive.Objects
     ( module Strive.Objects.Activities
     , module Strive.Objects.Athletes
     , module Strive.Objects.Authentication
-    , module Strive.Objects.Buckets
     , module Strive.Objects.Clubs
     , module Strive.Objects.Comments
     , module Strive.Objects.Efforts
@@ -18,7 +17,6 @@ module Strive.Objects
 import Strive.Objects.Activities
 import Strive.Objects.Athletes
 import Strive.Objects.Authentication
-import Strive.Objects.Buckets
 import Strive.Objects.Clubs
 import Strive.Objects.Comments
 import Strive.Objects.Efforts
