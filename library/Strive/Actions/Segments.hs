@@ -18,7 +18,7 @@ import Data.Monoid ((<>))
 import Data.Time.Clock (UTCTime)
 import Strive.Client (Client)
 import Strive.Client.HTTP (get)
-import Strive.Objects (EffortSummary, SegmentDetailed, SegmentExplorerEntry,
+import Strive.Objects (EffortDetailed, SegmentDetailed, SegmentExplorerEntry,
                        SegmentLeaderboardEntry, SegmentSummary)
 import Strive.Types (AthleteId, Page, PerPage, SegmentId)
 import Strive.Utilities (paginate, queryToSimpleQuery)
@@ -47,7 +47,7 @@ getSegment client segmentId = get client resource query
     query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/segments/#efforts>
-getSegmentEfforts :: Client -> SegmentId -> Maybe AthleteId -> Maybe (UTCTime, UTCTime) -> Page -> PerPage -> IO (Either String [EffortSummary])
+getSegmentEfforts :: Client -> SegmentId -> Maybe AthleteId -> Maybe (UTCTime, UTCTime) -> Page -> PerPage -> IO (Either String [EffortDetailed])
 getSegmentEfforts client segmentId athleteId range page perPage = get client resource query
   where
     resource = "segments/" <> show segmentId <> "/all_efforts"

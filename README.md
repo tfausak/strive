@@ -176,7 +176,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   athleteCRs <- getAthleteCRs client athleteId page perPage
   print athleteCRs
-  -- Right [EffortSummary {..},..]
+  -- Right [EffortDetailed {..},..]
 ~~~
 
 ### [Friends and followers](http://strava.github.io/api/v3/follow/)
@@ -368,7 +368,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   efforts <- getSegmentEfforts client segmentId (Just athleteId) (Just (after, before)) page perPage
   print efforts
-  -- Right [EffortSummary {..},..]
+  -- Right [EffortDetailed {..},..]
 ~~~
 
 #### [Segment leaderboard](http://strava.github.io/api/v3/segments/#leaderboard)
@@ -394,7 +394,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   effort <- getEffort client effortId
   print effort
-  -- Right (EffortSummary {..})
+  -- Right (EffortDetailed {..})
 ~~~
 
 ### [Streams](http://strava.github.io/api/v3/streams/)

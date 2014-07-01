@@ -14,7 +14,7 @@ import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Objects.Athletes (AthleteMeta)
 import Strive.Objects.Buckets (BucketSummary)
-import Strive.Objects.Efforts (EffortSummary)
+import Strive.Objects.Efforts (EffortDetailed)
 import Strive.Objects.Gear (GearSummary)
 import Strive.Objects.Polylines (PolylineDetailed, PolylineSummary)
 
@@ -51,7 +51,7 @@ data ActivityDetailed = ActivityDetailed
     , activityDetailedPhotoCount            :: Integer
     , activityDetailedPrivate               :: Bool
     , activityDetailedResourceState         :: Integer
-    , activityDetailedSegmentEfforts        :: [EffortSummary]
+    , activityDetailedSegmentEfforts        :: [EffortDetailed]
     , activityDetailedStartDate             :: UTCTime
     , activityDetailedStartDateLocal        :: UTCTime
     , activityDetailedStartLatitude         :: Double

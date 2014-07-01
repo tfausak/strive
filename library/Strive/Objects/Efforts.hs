@@ -2,7 +2,7 @@
 
 -- | <http://strava.github.io/api/v3/efforts/>
 module Strive.Objects.Efforts
-    ( EffortSummary (..)
+    ( EffortDetailed (..)
     ) where
 
 import Control.Applicative (empty, (<$>), (<*>))
@@ -11,32 +11,32 @@ import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Objects.Segments (SegmentSummary)
 
--- | <http://strava.github.io/api/v3/efforts/#summary>
-data EffortSummary = EffortSummary
-    { effortSummaryActivityId       :: Integer
-    , effortSummaryAthleteId        :: Integer
-    , effortSummaryAverageCadence   :: Maybe Double
-    , effortSummaryAverageHeartrate :: Maybe Double
-    , effortSummaryAverageWatts     :: Maybe Double
-    , effortSummaryDistance         :: Double
-    , effortSummaryElapsedTime      :: Integer
-    , effortSummaryEndIndex         :: Integer
-    , effortSummaryHidden           :: Maybe Bool
-    , effortSummaryId               :: Integer
-    , effortSummaryKomRank          :: Maybe Integer
-    , effortSummaryMax_heartrate    :: Maybe Integer
-    , effortSummaryMovingTime       :: Integer
-    , effortSummaryName             :: Text
-    , effortSummaryPrRank           :: Maybe Integer
-    , effortSummaryResourceState    :: Integer
-    , effortSummarySegment          :: SegmentSummary
-    , effortSummaryStartDate        :: UTCTime
-    , effortSummaryStartDateLocal   :: UTCTime
-    , effortSummaryStartIndex       :: Integer
+-- | <http://strava.github.io/api/v3/efforts/#detailed>
+data EffortDetailed = EffortDetailed
+    { effortDetailedActivityId       :: Integer
+    , effortDetailedAthleteId        :: Integer
+    , effortDetailedAverageCadence   :: Maybe Double
+    , effortDetailedAverageHeartrate :: Maybe Double
+    , effortDetailedAverageWatts     :: Maybe Double
+    , effortDetailedDistance         :: Double
+    , effortDetailedElapsedTime      :: Integer
+    , effortDetailedEndIndex         :: Integer
+    , effortDetailedHidden           :: Maybe Bool
+    , effortDetailedId               :: Integer
+    , effortDetailedKomRank          :: Maybe Integer
+    , effortDetailedMax_heartrate    :: Maybe Integer
+    , effortDetailedMovingTime       :: Integer
+    , effortDetailedName             :: Text
+    , effortDetailedPrRank           :: Maybe Integer
+    , effortDetailedResourceState    :: Integer
+    , effortDetailedSegment          :: SegmentSummary
+    , effortDetailedStartDate        :: UTCTime
+    , effortDetailedStartDateLocal   :: UTCTime
+    , effortDetailedStartIndex       :: Integer
     } deriving Show
 
-instance FromJSON EffortSummary where
-    parseJSON (Object o) = EffortSummary
+instance FromJSON EffortDetailed where
+    parseJSON (Object o) = EffortDetailed
         <$> ((o .: "activity") >>= (.: "id"))
         <*> ((o .: "athlete") >>= (.: "id"))
         <*> o .:? "average_cadence"
