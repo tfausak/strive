@@ -12,19 +12,19 @@ import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
 import Prelude hiding (readFile)
 import Strive.Client (Client)
 import Strive.Client.HTTP (get)
-import Strive.Objects (UploadDetailed)
+import Strive.Objects (UploadStatus)
 import Strive.Utilities (buildRequest, decodeResponse, makeRequest,
                          queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/uploads/#get-status>
-getUpload :: Client -> Integer -> IO (Either String UploadDetailed)
+getUpload :: Client -> Integer -> IO (Either String UploadStatus)
 getUpload client uploadId = get client resource query
   where
     resource = "uploads/" <> show uploadId
     query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/uploads/#post-file>
-postUpload :: Client -> ByteString -> String -> Maybe String -> Maybe String -> Maybe String -> Maybe Integer -> Maybe Integer -> Maybe String -> IO (Either String UploadDetailed)
+postUpload :: Client -> ByteString -> String -> Maybe String -> Maybe String -> Maybe String -> Maybe Integer -> Maybe Integer -> Maybe String -> IO (Either String UploadStatus)
 postUpload client body dataType activityType name description private trainer externalId = do
     initialRequest <- buildRequest client resource query
     let request = initialRequest

@@ -12,7 +12,7 @@ import Data.ByteString.Char8 (pack, singleton)
 import Data.Monoid ((<>))
 import Strive.Client (Client)
 import Strive.Client.HTTP (get, put)
-import Strive.Objects (AthleteDetailed, AthleteSummary, EffortSummary)
+import Strive.Objects (AthleteDetailed, AthleteSummary, EffortDetailed)
 import Strive.Types (AthleteId, Page, PerPage)
 import Strive.Utilities (paginate, queryToSimpleQuery)
 
@@ -24,7 +24,7 @@ getAthlete client athleteId = get client resource query
     query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/athlete/#koms>
-getAthleteCRs :: Client -> AthleteId -> Page -> PerPage -> IO (Either String [EffortSummary])
+getAthleteCRs :: Client -> AthleteId -> Page -> PerPage -> IO (Either String [EffortDetailed])
 getAthleteCRs client athleteId page perPage = get client resource query
   where
     resource = "athletes/" <> show athleteId <> "/koms"

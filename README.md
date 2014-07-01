@@ -176,7 +176,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   athleteCRs <- getAthleteCRs client athleteId page perPage
   print athleteCRs
-  -- Right [EffortSummary {..},..]
+  -- Right [EffortDetailed {..},..]
 ~~~
 
 ### [Friends and followers](http://strava.github.io/api/v3/follow/)
@@ -260,7 +260,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   activityZones <- getActivityZones client activityId
   print activityZones
-  -- Right [ZoneSummary {..},..]
+  -- Right [ActivityZoneDetailed {..},..]
 ~~~
 
 #### [List activity laps](http://strava.github.io/api/v3/activities/#laps)
@@ -268,7 +268,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   activityLaps <- getActivityLaps client activityId
   print activityLaps
-  -- Right [ZoneSummary {..},..]
+  -- Right [ActivityZoneDetailed {..},..]
 ~~~
 
 ### [Comments](http://strava.github.io/api/v3/comments/)
@@ -368,7 +368,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   efforts <- getSegmentEfforts client segmentId (Just athleteId) (Just (after, before)) page perPage
   print efforts
-  -- Right [EffortSummary {..},..]
+  -- Right [EffortDetailed {..},..]
 ~~~
 
 #### [Segment leaderboard](http://strava.github.io/api/v3/segments/#leaderboard)
@@ -376,7 +376,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   segmentLeaders <- getSegmentLeaderboard client segmentId gender ageGroup weightClass following (Just clubId) range page perPage
   print segmentLeaders
-  -- Right [SegmentLeader {..},..]
+  -- Right [SegmentLeaderboardEntry {..},..]
 ~~~
 
 #### [Segment explorer](http://strava.github.io/api/v3/segments/#explore)
@@ -384,7 +384,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   segments <- exploreSegments client bounds activityType minCat maxCat
   print segments
-  -- Right [SegmentExploration {..},..]
+  -- Right [SegmentLeaderboard {..},..]
 ~~~
 
 ### [Segment efforts](http://strava.github.io/api/v3/efforts/)
@@ -394,7 +394,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   effort <- getEffort client effortId
   print effort
-  -- Right (EffortSummary {..})
+  -- Right (EffortDetailed {..})
 ~~~
 
 ### [Streams](http://strava.github.io/api/v3/streams/)
@@ -430,7 +430,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   postedUpload <- postUpload client (pack "...") "gpx.gz" Nothing Nothing Nothing Nothing Nothing Nothing
   print postedUpload
-  -- Right (UploadDetailed {..})
+  -- Right (UploadStatus {..})
 ~~~
 
 #### [Check upload status](http://strava.github.io/api/v3/uploads/#get-status)
@@ -438,7 +438,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   upload <- getUpload client 123
   print upload
-  -- Right (UploadDetailed {..})
+  -- Right (UploadStatus {..})
 ~~~
 
 [1]: https://github.com/tfausak/strive

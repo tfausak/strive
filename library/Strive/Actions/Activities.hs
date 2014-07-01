@@ -20,8 +20,8 @@ import Data.Time.Clock (UTCTime)
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Strive.Client (Client)
 import Strive.Client.HTTP (delete, get, post, put)
-import Strive.Objects (ActivityDetailed, ActivitySummary, EffortLap,
-                       ZoneSummary)
+import Strive.Objects (ActivityDetailed, ActivityLapSummary, ActivitySummary,
+                       ActivityZoneDetailed)
 import Strive.Types (ActivityId, Page, PerPage)
 import Strive.Utilities (paginate, queryToSimpleQuery)
 
@@ -42,14 +42,14 @@ getActivity client activityId allEfforts = get client resource query
         ]
 
 -- | <http://strava.github.io/api/v3/activities/#laps>
-getActivityLaps :: Client -> ActivityId -> IO (Either String [EffortLap])
+getActivityLaps :: Client -> ActivityId -> IO (Either String [ActivityLapSummary])
 getActivityLaps client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/laps"
     query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/activities/#zones>
-getActivityZones :: Client -> ActivityId -> IO (Either String [ZoneSummary])
+getActivityZones :: Client -> ActivityId -> IO (Either String [ActivityZoneDetailed])
 getActivityZones client activityId = get client resource query
   where
     resource = "activities/" <> show activityId <> "/zones"

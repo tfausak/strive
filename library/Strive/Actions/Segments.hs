@@ -18,17 +18,15 @@ import Data.Monoid ((<>))
 import Data.Time.Clock (UTCTime)
 import Strive.Client (Client)
 import Strive.Client.HTTP (get)
-import Strive.Objects (EffortSummary, SegmentDetailed, SegmentExploration,
-                       SegmentLeader, SegmentSummary)
+import Strive.Objects (EffortDetailed, SegmentDetailed, SegmentExplorer,
+                       SegmentExplorerEntry, SegmentLeaderboard,
+                       SegmentLeaderboardEntry, SegmentSummary)
 import Strive.Types (AthleteId, Page, PerPage, SegmentId)
 import Strive.Utilities (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
-exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [SegmentExploration])
-exploreSegments client (south, west, north, east) activityType minCat maxCat = do
-    object <- get client resource query
-    let segments = either Left (parseEither (.: "segments")) object
-    return segments
+exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String SegmentLeaderboard)
+exploreSegments client (south, west, north, east) activityType minCat maxCat = get client resource query
   where
     resource = "segments/explore"
     query = queryToSimpleQuery
@@ -47,7 +45,7 @@ getSegment client segmentId = get client resource query
     query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/segments/#efforts>
-getSegmentEfforts :: Client -> SegmentId -> Maybe AthleteId -> Maybe (UTCTime, UTCTime) -> Page -> PerPage -> IO (Either String [EffortSummary])
+getSegmentEfforts :: Client -> SegmentId -> Maybe AthleteId -> Maybe (UTCTime, UTCTime) -> Page -> PerPage -> IO (Either String [EffortDetailed])
 getSegmentEfforts client segmentId athleteId range page perPage = get client resource query
   where
     resource = "segments/" <> show segmentId <> "/all_efforts"
@@ -58,11 +56,8 @@ getSegmentEfforts client segmentId athleteId range page perPage = get client res
         ]
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
-getSegmentLeaderboard :: Client -> SegmentId -> Maybe Char -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Integer -> Maybe String -> Page -> PerPage -> IO (Either String [SegmentLeader])
-getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId dateRange page perPage = do
-    object <- get client resource query
-    let leaders = either Left (parseEither (.: "entries")) object
-    return leaders
+getSegmentLeaderboard :: Client -> SegmentId -> Maybe Char -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Integer -> Maybe String -> Page -> PerPage -> IO (Either String SegmentExplorer)
+getSegmentLeaderboard client segmentId gender ageGroup weightClass following clubId dateRange page perPage = get client resource query
   where
     resource = "segments/" <> show segmentId <> "/leaderboard"
     query = paginate page perPage <> queryToSimpleQuery

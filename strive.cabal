@@ -31,6 +31,7 @@ library
         gpolyline ==0.1.*,
         http-conduit ==2.*,
         http-types -any,
+        lens ==4.*,
         text -any,
         time -any
     exposed-modules:
@@ -50,51 +51,26 @@ library
         Strive.Actions.Streams
         Strive.Actions.Uploads
         Strive.Client
+        Strive.Lenses
         Strive.Objects
         Strive.Objects.Activities
-        Strive.Objects.Activities.ActivitySummary
-        Strive.Objects.Activities.ActivityDetailed
         Strive.Objects.Athletes
-        Strive.Objects.Athletes.AthleteDetailed
-        Strive.Objects.Athletes.AthleteMeta
-        Strive.Objects.Athletes.AthleteSummary
         Strive.Objects.Authentication
-        Strive.Objects.Authentication.DeauthorizationResponse
-        Strive.Objects.Authentication.TokenExchangeResponse
-        Strive.Objects.Buckets
-        Strive.Objects.Buckets.BucketSummary
         Strive.Objects.Clubs
-        Strive.Objects.Clubs.ClubDetailed
-        Strive.Objects.Clubs.ClubSummary
         Strive.Objects.Comments
-        Strive.Objects.Comments.CommentSummary
         Strive.Objects.Efforts
-        Strive.Objects.Efforts.EffortLap
-        Strive.Objects.Efforts.EffortSummary
         Strive.Objects.Gear
-        Strive.Objects.Gear.GearDetailed
-        Strive.Objects.Gear.GearSummary
         Strive.Objects.Photos
-        Strive.Objects.Photos.PhotoSummary
         Strive.Objects.Polylines
-        Strive.Objects.Polylines.PolylineDetailed
-        Strive.Objects.Polylines.PolylineSummary
         Strive.Objects.Segments
-        Strive.Objects.Segments.SegmentDetailed
-        Strive.Objects.Segments.SegmentExploration
-        Strive.Objects.Segments.SegmentLeader
-        Strive.Objects.Segments.SegmentSummary
         Strive.Objects.Streams
-        Strive.Objects.Streams.StreamDetailed
         Strive.Objects.Uploads
-        Strive.Objects.Uploads.UploadDetailed
-        Strive.Objects.Zones
-        Strive.Objects.Zones.ZoneSummary
         Strive.Types
     exposed: True
     buildable: True
     default-language: Haskell2010
-    other-extensions: OverloadedStrings
+    other-extensions: FlexibleInstances FunctionalDependencies
+                      MultiParamTypeClasses OverloadedStrings
     hs-source-dirs: library
     other-modules:
         Strive.Client.HTTP
