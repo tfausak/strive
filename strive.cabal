@@ -52,8 +52,6 @@ library
         Strive.Client
         Strive.Objects
         Strive.Objects.Activities
-        Strive.Objects.Activities.ActivitySummary
-        Strive.Objects.Activities.ActivityDetailed
         Strive.Objects.Athletes
         Strive.Objects.Authentication
         Strive.Objects.Authentication.DeauthorizationResponse
