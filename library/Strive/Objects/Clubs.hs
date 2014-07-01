@@ -12,19 +12,19 @@ import Data.Text (Text)
 
 -- | <http://strava.github.io/api/v3/clubs/#detailed>
 data ClubDetailed = ClubDetailed
-    { clubDetailed_city          :: Text
-    , clubDetailed_clubType      :: Text
-    , clubDetailed_country       :: Text
-    , clubDetailed_description   :: Text
-    , clubDetailed_id            :: Integer
-    , clubDetailed_memberCount   :: Integer
-    , clubDetailed_name          :: Text
-    , clubDetailed_private       :: Bool
-    , clubDetailed_profile       :: Text
-    , clubDetailed_profileMedium :: Text
-    , clubDetailed_resourceState :: Integer
-    , clubDetailed_sportType     :: Text
-    , clubDetailed_state         :: Text
+    { _clubDetailed_city          :: Text
+    , _clubDetailed_clubType      :: Text
+    , _clubDetailed_country       :: Text
+    , _clubDetailed_description   :: Text
+    , _clubDetailed_id            :: Integer
+    , _clubDetailed_memberCount   :: Integer
+    , _clubDetailed_name          :: Text
+    , _clubDetailed_private       :: Bool
+    , _clubDetailed_profile       :: Text
+    , _clubDetailed_profileMedium :: Text
+    , _clubDetailed_resourceState :: Integer
+    , _clubDetailed_sportType     :: Text
+    , _clubDetailed_state         :: Text
     } deriving Show
 
 instance FromJSON ClubDetailed where
@@ -46,11 +46,11 @@ instance FromJSON ClubDetailed where
 
 -- | <http://strava.github.io/api/v3/clubs/#summary>
 data ClubSummary = ClubSummary
-    { clubSummary_id            :: Integer
-    , clubSummary_name          :: Text
-    , clubSummary_profile       :: Text
-    , clubSummary_profileMedium :: Text
-    , clubSummary_resourceState :: Integer
+    { _clubSummary_id            :: Integer
+    , _clubSummary_name          :: Text
+    , _clubSummary_profile       :: Text
+    , _clubSummary_profileMedium :: Text
+    , _clubSummary_resourceState :: Integer
     } deriving Show
 
 instance FromJSON ClubSummary where

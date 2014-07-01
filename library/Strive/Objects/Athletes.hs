@@ -16,31 +16,31 @@ import Strive.Objects.Gear (GearSummary)
 
 -- | <http://strava.github.io/api/v3/athlete/#detailed>
 data AthleteDetailed = AthleteDetailed
-    { athleteDetailed_bikes                 :: [GearSummary]
-    , athleteDetailed_city                  :: Text
-    , athleteDetailed_clubs                 :: [ClubSummary]
-    , athleteDetailed_country               :: Text
-    , athleteDetailed_createdAt             :: UTCTime
-    , athleteDetailed_datePreference        :: Text
-    , athleteDetailed_email                 :: Text
-    , athleteDetailed_firstname             :: Text
-    , athleteDetailed_follower              :: Maybe Text
-    , athleteDetailed_followerCount         :: Integer
-    , athleteDetailed_friend                :: Maybe Text
-    , athleteDetailed_friendCount           :: Integer
-    , athleteDetailed_ftp                   :: Maybe Integer
-    , athleteDetailed_id                    :: Integer
-    , athleteDetailed_lastname              :: Text
-    , athleteDetailed_measurementPreference :: Text
-    , athleteDetailed_mutualFriendCount     :: Integer
-    , athleteDetailed_premium               :: Bool
-    , athleteDetailed_profile               :: Text
-    , athleteDetailed_profileMedium         :: Text
-    , athleteDetailed_resourceState         :: Integer
-    , athleteDetailed_sex                   :: Maybe Char
-    , athleteDetailed_shoes                 :: [GearSummary]
-    , athleteDetailed_state                 :: Text
-    , athleteDetailed_updatedAt             :: UTCTime
+    { _athleteDetailed_bikes                 :: [GearSummary]
+    , _athleteDetailed_city                  :: Text
+    , _athleteDetailed_clubs                 :: [ClubSummary]
+    , _athleteDetailed_country               :: Text
+    , _athleteDetailed_createdAt             :: UTCTime
+    , _athleteDetailed_datePreference        :: Text
+    , _athleteDetailed_email                 :: Text
+    , _athleteDetailed_firstname             :: Text
+    , _athleteDetailed_follower              :: Maybe Text
+    , _athleteDetailed_followerCount         :: Integer
+    , _athleteDetailed_friend                :: Maybe Text
+    , _athleteDetailed_friendCount           :: Integer
+    , _athleteDetailed_ftp                   :: Maybe Integer
+    , _athleteDetailed_id                    :: Integer
+    , _athleteDetailed_lastname              :: Text
+    , _athleteDetailed_measurementPreference :: Text
+    , _athleteDetailed_mutualFriendCount     :: Integer
+    , _athleteDetailed_premium               :: Bool
+    , _athleteDetailed_profile               :: Text
+    , _athleteDetailed_profileMedium         :: Text
+    , _athleteDetailed_resourceState         :: Integer
+    , _athleteDetailed_sex                   :: Maybe Char
+    , _athleteDetailed_shoes                 :: [GearSummary]
+    , _athleteDetailed_state                 :: Text
+    , _athleteDetailed_updatedAt             :: UTCTime
     } deriving Show
 
 instance FromJSON AthleteDetailed where
@@ -74,21 +74,21 @@ instance FromJSON AthleteDetailed where
 
 -- | <http://strava.github.io/api/v3/athlete/#summary>
 data AthleteSummary = AthleteSummary
-    { athleteSummary_city          :: Maybe Text
-    , athleteSummary_country       :: Maybe Text
-    , athleteSummary_createdAt     :: UTCTime
-    , athleteSummary_firstname     :: Text
-    , athleteSummary_follower      :: Maybe Text
-    , athleteSummary_friend        :: Maybe Text
-    , athleteSummary_id            :: Integer
-    , athleteSummary_lastname      :: Text
-    , athleteSummary_premium       :: Bool
-    , athleteSummary_profile       :: Text
-    , athleteSummary_profileMedium :: Text
-    , athleteSummary_resourceState :: Integer
-    , athleteSummary_sex           :: Maybe Char
-    , athleteSummary_state         :: Text
-    , athleteSummary_updatedAt     :: UTCTime
+    { _athleteSummary_city          :: Maybe Text
+    , _athleteSummary_country       :: Maybe Text
+    , _athleteSummary_createdAt     :: UTCTime
+    , _athleteSummary_firstname     :: Text
+    , _athleteSummary_follower      :: Maybe Text
+    , _athleteSummary_friend        :: Maybe Text
+    , _athleteSummary_id            :: Integer
+    , _athleteSummary_lastname      :: Text
+    , _athleteSummary_premium       :: Bool
+    , _athleteSummary_profile       :: Text
+    , _athleteSummary_profileMedium :: Text
+    , _athleteSummary_resourceState :: Integer
+    , _athleteSummary_sex           :: Maybe Char
+    , _athleteSummary_state         :: Text
+    , _athleteSummary_updatedAt     :: UTCTime
     } deriving Show
 
 instance FromJSON AthleteSummary where
@@ -112,8 +112,8 @@ instance FromJSON AthleteSummary where
 
 -- | <http://strava.github.io/api/v3/athlete/#meta>
 data AthleteMeta = AthleteMeta
-    { athleteMeta_id            :: Integer
-    , athleteMeta_resourceState :: Integer
+    { _athleteMeta_id            :: Integer
+    , _athleteMeta_resourceState :: Integer
     } deriving Show
 
 instance FromJSON AthleteMeta where

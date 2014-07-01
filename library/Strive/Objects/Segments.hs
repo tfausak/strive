@@ -18,35 +18,35 @@ import Strive.Objects.Polylines (PolylineDetailed)
 
 -- | <http://strava.github.io/api/v3/segments/#detailed>
 data SegmentDetailed = SegmentDetailed
-    { segmentDetailed_activityType       :: Text
-    , segmentDetailed_athleteCount       :: Integer
-    , segmentDetailed_averageGrade       :: Double
-    , segmentDetailed_city               :: Text
-    , segmentDetailed_climbCategory      :: Integer
-    , segmentDetailed_country            :: Text
-    , segmentDetailed_createdAt          :: UTCTime
-    , segmentDetailed_distance           :: Double
-    , segmentDetailed_effortCount        :: Integer
-    , segmentDetailed_elevationHigh      :: Double
-    , segmentDetailed_elevationLow       :: Double
-    , segmentDetailed_endLatitude        :: Double
-    , segmentDetailed_endLatlng          :: (Double, Double)
-    , segmentDetailed_endLongitude       :: Double
-    , segmentDetailed_hazardous          :: Bool
-    , segmentDetailed_id                 :: Integer
-    , segmentDetailed_map                :: PolylineDetailed
-    , segmentDetailed_maximumGrade       :: Double
-    , segmentDetailed_name               :: Text
-    , segmentDetailed_private            :: Bool
-    , segmentDetailed_resourceState      :: Integer
-    , segmentDetailed_starCount          :: Integer
-    , segmentDetailed_starred            :: Bool
-    , segmentDetailed_startLatitude      :: Double
-    , segmentDetailed_startLatlng        :: (Double, Double)
-    , segmentDetailed_startLongitude     :: Double
-    , segmentDetailed_state              :: Text
-    , segmentDetailed_totalElevationGain :: Double
-    , segmentDetailed_updatedAt          :: UTCTime
+    { _segmentDetailed_activityType       :: Text
+    , _segmentDetailed_athleteCount       :: Integer
+    , _segmentDetailed_averageGrade       :: Double
+    , _segmentDetailed_city               :: Text
+    , _segmentDetailed_climbCategory      :: Integer
+    , _segmentDetailed_country            :: Text
+    , _segmentDetailed_createdAt          :: UTCTime
+    , _segmentDetailed_distance           :: Double
+    , _segmentDetailed_effortCount        :: Integer
+    , _segmentDetailed_elevationHigh      :: Double
+    , _segmentDetailed_elevationLow       :: Double
+    , _segmentDetailed_endLatitude        :: Double
+    , _segmentDetailed_endLatlng          :: (Double, Double)
+    , _segmentDetailed_endLongitude       :: Double
+    , _segmentDetailed_hazardous          :: Bool
+    , _segmentDetailed_id                 :: Integer
+    , _segmentDetailed_map                :: PolylineDetailed
+    , _segmentDetailed_maximumGrade       :: Double
+    , _segmentDetailed_name               :: Text
+    , _segmentDetailed_private            :: Bool
+    , _segmentDetailed_resourceState      :: Integer
+    , _segmentDetailed_starCount          :: Integer
+    , _segmentDetailed_starred            :: Bool
+    , _segmentDetailed_startLatitude      :: Double
+    , _segmentDetailed_startLatlng        :: (Double, Double)
+    , _segmentDetailed_startLongitude     :: Double
+    , _segmentDetailed_state              :: Text
+    , _segmentDetailed_totalElevationGain :: Double
+    , _segmentDetailed_updatedAt          :: UTCTime
     } deriving Show
 
 instance FromJSON SegmentDetailed where
@@ -84,27 +84,27 @@ instance FromJSON SegmentDetailed where
 
 -- | <http://strava.github.io/api/v3/segments/#summary>
 data SegmentSummary = SegmentSummary
-    { segmentSummary_activityType   :: Text
-    , segmentSummary_averageGrade   :: Double
-    , segmentSummary_city           :: Text
-    , segmentSummary_climbCategory  :: Integer
-    , segmentSummary_country        :: Text
-    , segmentSummary_distance       :: Double
-    , segmentSummary_elevationHigh  :: Double
-    , segmentSummary_elevationLow   :: Double
-    , segmentSummary_endLatitude    :: Double
-    , segmentSummary_endLatlng      :: (Double, Double)
-    , segmentSummary_endLongitude   :: Double
-    , segmentSummary_id             :: Integer
-    , segmentSummary_maximumGrade   :: Double
-    , segmentSummary_name           :: Text
-    , segmentSummary_private        :: Bool
-    , segmentSummary_resourceState  :: Integer
-    , segmentSummary_starred        :: Bool
-    , segmentSummary_startLatitude  :: Double
-    , segmentSummary_startLatlng    :: (Double, Double)
-    , segmentSummary_startLongitude :: Double
-    , segmentSummary_state          :: Text
+    { _segmentSummary_activityType   :: Text
+    , _segmentSummary_averageGrade   :: Double
+    , _segmentSummary_city           :: Text
+    , _segmentSummary_climbCategory  :: Integer
+    , _segmentSummary_country        :: Text
+    , _segmentSummary_distance       :: Double
+    , _segmentSummary_elevationHigh  :: Double
+    , _segmentSummary_elevationLow   :: Double
+    , _segmentSummary_endLatitude    :: Double
+    , _segmentSummary_endLatlng      :: (Double, Double)
+    , _segmentSummary_endLongitude   :: Double
+    , _segmentSummary_id             :: Integer
+    , _segmentSummary_maximumGrade   :: Double
+    , _segmentSummary_name           :: Text
+    , _segmentSummary_private        :: Bool
+    , _segmentSummary_resourceState  :: Integer
+    , _segmentSummary_starred        :: Bool
+    , _segmentSummary_startLatitude  :: Double
+    , _segmentSummary_startLatlng    :: (Double, Double)
+    , _segmentSummary_startLongitude :: Double
+    , _segmentSummary_state          :: Text
     } deriving Show
 
 instance FromJSON SegmentSummary where
@@ -134,7 +134,7 @@ instance FromJSON SegmentSummary where
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
 data SegmentLeaderboard = SegmentLeaderboard
-    { segmentLeaderboard_entries :: [SegmentLeaderboardEntry]
+    { _segmentLeaderboard_entries :: [SegmentLeaderboardEntry]
     } deriving Show
 
 instance FromJSON SegmentLeaderboard where
@@ -144,20 +144,20 @@ instance FromJSON SegmentLeaderboard where
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
 data SegmentLeaderboardEntry = SegmentLeaderboardEntry
-    { segmentLeaderboardEntry_activityId     :: Integer
-    , segmentLeaderboardEntry_athleteGender  :: Maybe Char
-    , segmentLeaderboardEntry_athleteId      :: Integer
-    , segmentLeaderboardEntry_athleteName    :: Text
-    , segmentLeaderboardEntry_athleteProfile :: Text
-    , segmentLeaderboardEntry_averageHr      :: Double
-    , segmentLeaderboardEntry_averageWatts   :: Double
-    , segmentLeaderboardEntry_distance       :: Double
-    , segmentLeaderboardEntry_effortId       :: Integer
-    , segmentLeaderboardEntry_elapsedTime    :: Integer
-    , segmentLeaderboardEntry_movingTime     :: Integer
-    , segmentLeaderboardEntry_rank           :: Integer
-    , segmentLeaderboardEntry_startDate      :: UTCTime
-    , segmentLeaderboardEntry_startDateLocal :: UTCTime
+    { _segmentLeaderboardEntry_activityId     :: Integer
+    , _segmentLeaderboardEntry_athleteGender  :: Maybe Char
+    , _segmentLeaderboardEntry_athleteId      :: Integer
+    , _segmentLeaderboardEntry_athleteName    :: Text
+    , _segmentLeaderboardEntry_athleteProfile :: Text
+    , _segmentLeaderboardEntry_averageHr      :: Double
+    , _segmentLeaderboardEntry_averageWatts   :: Double
+    , _segmentLeaderboardEntry_distance       :: Double
+    , _segmentLeaderboardEntry_effortId       :: Integer
+    , _segmentLeaderboardEntry_elapsedTime    :: Integer
+    , _segmentLeaderboardEntry_movingTime     :: Integer
+    , _segmentLeaderboardEntry_rank           :: Integer
+    , _segmentLeaderboardEntry_startDate      :: UTCTime
+    , _segmentLeaderboardEntry_startDateLocal :: UTCTime
     } deriving Show
 
 instance FromJSON SegmentLeaderboardEntry where
@@ -180,7 +180,7 @@ instance FromJSON SegmentLeaderboardEntry where
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
 data SegmentExplorer = SegmentExplorer
-    { segmentExplorer_entries :: [SegmentExplorerEntry]
+    { _segmentExplorer_entries :: [SegmentExplorerEntry]
     } deriving Show
 
 instance FromJSON SegmentExplorer where
@@ -190,18 +190,18 @@ instance FromJSON SegmentExplorer where
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
 data SegmentExplorerEntry = SegmentExplorerEntry
-    { segmentExplorerEntry_avgGrade          :: Double
-    , segmentExplorerEntry_climbCategory     :: Integer
-    , segmentExplorerEntry_climbCategoryDesc :: String
-    , segmentExplorerEntry_distance          :: Double
-    , segmentExplorerEntry_elevDifference    :: Double
-    , segmentExplorerEntry_endLatlng         :: (Double, Double)
-    , segmentExplorerEntry_id                :: Integer
-    , segmentExplorerEntry_name              :: Text
-    , segmentExplorerEntry_points            :: Text
-    , segmentExplorerEntry_resourceState     :: Integer
-    , segmentExplorerEntry_starred           :: Bool
-    , segmentExplorerEntry_startLatlng       :: (Double, Double)
+    { _segmentExplorerEntry_avgGrade          :: Double
+    , _segmentExplorerEntry_climbCategory     :: Integer
+    , _segmentExplorerEntry_climbCategoryDesc :: String
+    , _segmentExplorerEntry_distance          :: Double
+    , _segmentExplorerEntry_elevDifference    :: Double
+    , _segmentExplorerEntry_endLatlng         :: (Double, Double)
+    , _segmentExplorerEntry_id                :: Integer
+    , _segmentExplorerEntry_name              :: Text
+    , _segmentExplorerEntry_points            :: Text
+    , _segmentExplorerEntry_resourceState     :: Integer
+    , _segmentExplorerEntry_starred           :: Bool
+    , _segmentExplorerEntry_startLatlng       :: (Double, Double)
     } deriving Show
 
 instance FromJSON SegmentExplorerEntry where

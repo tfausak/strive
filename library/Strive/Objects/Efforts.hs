@@ -13,26 +13,26 @@ import Strive.Objects.Segments (SegmentSummary)
 
 -- | <http://strava.github.io/api/v3/efforts/#detailed>
 data EffortDetailed = EffortDetailed
-    { effortDetailed_activityId       :: Integer
-    , effortDetailed_athleteId        :: Integer
-    , effortDetailed_averageCadence   :: Maybe Double
-    , effortDetailed_averageHeartrate :: Maybe Double
-    , effortDetailed_averageWatts     :: Maybe Double
-    , effortDetailed_distance         :: Double
-    , effortDetailed_elapsedTime      :: Integer
-    , effortDetailed_endIndex         :: Integer
-    , effortDetailed_hidden           :: Maybe Bool
-    , effortDetailed_id               :: Integer
-    , effortDetailed_komRank          :: Maybe Integer
-    , effortDetailed_max_heartrate    :: Maybe Integer
-    , effortDetailed_movingTime       :: Integer
-    , effortDetailed_name             :: Text
-    , effortDetailed_prRank           :: Maybe Integer
-    , effortDetailed_resourceState    :: Integer
-    , effortDetailed_segment          :: SegmentSummary
-    , effortDetailed_startDate        :: UTCTime
-    , effortDetailed_startDateLocal   :: UTCTime
-    , effortDetailed_startIndex       :: Integer
+    { _effortDetailed_activityId       :: Integer
+    , _effortDetailed_athleteId        :: Integer
+    , _effortDetailed_averageCadence   :: Maybe Double
+    , _effortDetailed_averageHeartrate :: Maybe Double
+    , _effortDetailed_averageWatts     :: Maybe Double
+    , _effortDetailed_distance         :: Double
+    , _effortDetailed_elapsedTime      :: Integer
+    , _effortDetailed_endIndex         :: Integer
+    , _effortDetailed_hidden           :: Maybe Bool
+    , _effortDetailed_id               :: Integer
+    , _effortDetailed_komRank          :: Maybe Integer
+    , _effortDetailed_max_heartrate    :: Maybe Integer
+    , _effortDetailed_movingTime       :: Integer
+    , _effortDetailed_name             :: Text
+    , _effortDetailed_prRank           :: Maybe Integer
+    , _effortDetailed_resourceState    :: Integer
+    , _effortDetailed_segment          :: SegmentSummary
+    , _effortDetailed_startDate        :: UTCTime
+    , _effortDetailed_startDateLocal   :: UTCTime
+    , _effortDetailed_startIndex       :: Integer
     } deriving Show
 
 instance FromJSON EffortDetailed where

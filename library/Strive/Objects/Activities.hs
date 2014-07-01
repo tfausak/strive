@@ -20,49 +20,49 @@ import Strive.Objects.Polylines (PolylineDetailed, PolylineSummary)
 
 -- | <http://strava.github.io/api/v3/activities/#detailed>
 data ActivityDetailed = ActivityDetailed
-    { activityDetailed_achievementCount      :: Integer
-    , activityDetailed_athlete               :: AthleteMeta
-    , activityDetailed_athleteCount          :: Integer
-    , activityDetailed_averageSpeed          :: Double
-    , activityDetailed_averageWatts          :: Maybe Double
-    , activityDetailed_calories              :: Double
-    , activityDetailed_commentCount          :: Integer
-    , activityDetailed_commute               :: Bool
-    , activityDetailed_description           :: Text
-    , activityDetailed_distance              :: Double
-    , activityDetailed_elapsedTime           :: Integer
-    , activityDetailed_endLatlng             :: Maybe (Double, Double)
-    , activityDetailed_externalId            :: Maybe Text
-    , activityDetailed_flagged               :: Bool
-    , activityDetailed_gear                  :: GearSummary
-    , activityDetailed_gearId                :: Maybe Text
-    , activityDetailed_hasKudoed             :: Bool
-    , activityDetailed_id                    :: Integer
-    , activityDetailed_instagramPrimaryPhoto :: Text
-    , activityDetailed_kilojoules            :: Maybe Double
-    , activityDetailed_locationCity          :: Maybe Text
-    , activityDetailed_locationCountry       :: Text
-    , activityDetailed_locationState         :: Maybe Text
-    , activityDetailed_manual                :: Bool
-    , activityDetailed_map                   :: PolylineDetailed
-    , activityDetailed_maxSpeed              :: Double
-    , activityDetailed_movingTime            :: Integer
-    , activityDetailed_name                  :: Text
-    , activityDetailed_photoCount            :: Integer
-    , activityDetailed_private               :: Bool
-    , activityDetailed_resourceState         :: Integer
-    , activityDetailed_segmentEfforts        :: [EffortDetailed]
-    , activityDetailed_startDate             :: UTCTime
-    , activityDetailed_startDateLocal        :: UTCTime
-    , activityDetailed_startLatitude         :: Double
-    , activityDetailed_startLatlng           :: Maybe (Double, Double)
-    , activityDetailed_startLongitude        :: Double
-    , activityDetailed_timezone              :: Text
-    , activityDetailed_totalElevationGain    :: Double
-    , activityDetailed_trainer               :: Bool
-    , activityDetailed_truncated             :: Integer
-    , activityDetailed_type                  :: Text
-    , activityDetailed_uploadId              :: Maybe Integer
+    { _activityDetailed_achievementCount      :: Integer
+    , _activityDetailed_athlete               :: AthleteMeta
+    , _activityDetailed_athleteCount          :: Integer
+    , _activityDetailed_averageSpeed          :: Double
+    , _activityDetailed_averageWatts          :: Maybe Double
+    , _activityDetailed_calories              :: Double
+    , _activityDetailed_commentCount          :: Integer
+    , _activityDetailed_commute               :: Bool
+    , _activityDetailed_description           :: Text
+    , _activityDetailed_distance              :: Double
+    , _activityDetailed_elapsedTime           :: Integer
+    , _activityDetailed_endLatlng             :: Maybe (Double, Double)
+    , _activityDetailed_externalId            :: Maybe Text
+    , _activityDetailed_flagged               :: Bool
+    , _activityDetailed_gear                  :: GearSummary
+    , _activityDetailed_gearId                :: Maybe Text
+    , _activityDetailed_hasKudoed             :: Bool
+    , _activityDetailed_id                    :: Integer
+    , _activityDetailed_instagramPrimaryPhoto :: Text
+    , _activityDetailed_kilojoules            :: Maybe Double
+    , _activityDetailed_locationCity          :: Maybe Text
+    , _activityDetailed_locationCountry       :: Text
+    , _activityDetailed_locationState         :: Maybe Text
+    , _activityDetailed_manual                :: Bool
+    , _activityDetailed_map                   :: PolylineDetailed
+    , _activityDetailed_maxSpeed              :: Double
+    , _activityDetailed_movingTime            :: Integer
+    , _activityDetailed_name                  :: Text
+    , _activityDetailed_photoCount            :: Integer
+    , _activityDetailed_private               :: Bool
+    , _activityDetailed_resourceState         :: Integer
+    , _activityDetailed_segmentEfforts        :: [EffortDetailed]
+    , _activityDetailed_startDate             :: UTCTime
+    , _activityDetailed_startDateLocal        :: UTCTime
+    , _activityDetailed_startLatitude         :: Double
+    , _activityDetailed_startLatlng           :: Maybe (Double, Double)
+    , _activityDetailed_startLongitude        :: Double
+    , _activityDetailed_timezone              :: Text
+    , _activityDetailed_totalElevationGain    :: Double
+    , _activityDetailed_trainer               :: Bool
+    , _activityDetailed_truncated             :: Integer
+    , _activityDetailed_type                  :: Text
+    , _activityDetailed_uploadId              :: Maybe Integer
     } deriving Show
 
 instance FromJSON ActivityDetailed where
@@ -114,44 +114,44 @@ instance FromJSON ActivityDetailed where
 
 -- | <http://strava.github.io/api/v3/activities/#summary>
 data ActivitySummary = ActivitySummary
-    { activitySummary_achievementCount   :: Integer
-    , activitySummary_athlete            :: AthleteMeta
-    , activitySummary_athleteCount       :: Integer
-    , activitySummary_averageSpeed       :: Double
-    , activitySummary_averageWatts       :: Maybe Double
-    , activitySummary_commentCount       :: Integer
-    , activitySummary_commute            :: Bool
-    , activitySummary_distance           :: Double
-    , activitySummary_elapsedTime        :: Integer
-    , activitySummary_endLatlng          :: Maybe (Double, Double)
-    , activitySummary_externalId         :: Maybe Text
-    , activitySummary_flagged            :: Bool
-    , activitySummary_gearId             :: Maybe Text
-    , activitySummary_hasKudoed          :: Bool
-    , activitySummary_id                 :: Integer
-    , activitySummary_kilojoules         :: Maybe Double
-    , activitySummary_kudosCount         :: Integer
-    , activitySummary_locationCity       :: Maybe Text
-    , activitySummary_locationCountry    :: Text
-    , activitySummary_locationState      :: Maybe Text
-    , activitySummary_manual             :: Bool
-    , activitySummary_map                :: PolylineSummary
-    , activitySummary_maxSpeed           :: Double
-    , activitySummary_movingTime         :: Integer
-    , activitySummary_name               :: Text
-    , activitySummary_photoCount         :: Integer
-    , activitySummary_private            :: Bool
-    , activitySummary_resourceState      :: Integer
-    , activitySummary_startDate          :: UTCTime
-    , activitySummary_startDateLocal     :: UTCTime
-    , activitySummary_startLatitude      :: Double
-    , activitySummary_startLatlng        :: Maybe (Double, Double)
-    , activitySummary_startLongitude     :: Double
-    , activitySummary_timezone           :: Text
-    , activitySummary_totalElevationGain :: Double
-    , activitySummary_trainer            :: Bool
-    , activitySummary_type               :: Text
-    , activitySummary_uploadId           :: Maybe Integer
+    { _activitySummary_achievementCount   :: Integer
+    , _activitySummary_athlete            :: AthleteMeta
+    , _activitySummary_athleteCount       :: Integer
+    , _activitySummary_averageSpeed       :: Double
+    , _activitySummary_averageWatts       :: Maybe Double
+    , _activitySummary_commentCount       :: Integer
+    , _activitySummary_commute            :: Bool
+    , _activitySummary_distance           :: Double
+    , _activitySummary_elapsedTime        :: Integer
+    , _activitySummary_endLatlng          :: Maybe (Double, Double)
+    , _activitySummary_externalId         :: Maybe Text
+    , _activitySummary_flagged            :: Bool
+    , _activitySummary_gearId             :: Maybe Text
+    , _activitySummary_hasKudoed          :: Bool
+    , _activitySummary_id                 :: Integer
+    , _activitySummary_kilojoules         :: Maybe Double
+    , _activitySummary_kudosCount         :: Integer
+    , _activitySummary_locationCity       :: Maybe Text
+    , _activitySummary_locationCountry    :: Text
+    , _activitySummary_locationState      :: Maybe Text
+    , _activitySummary_manual             :: Bool
+    , _activitySummary_map                :: PolylineSummary
+    , _activitySummary_maxSpeed           :: Double
+    , _activitySummary_movingTime         :: Integer
+    , _activitySummary_name               :: Text
+    , _activitySummary_photoCount         :: Integer
+    , _activitySummary_private            :: Bool
+    , _activitySummary_resourceState      :: Integer
+    , _activitySummary_startDate          :: UTCTime
+    , _activitySummary_startDateLocal     :: UTCTime
+    , _activitySummary_startLatitude      :: Double
+    , _activitySummary_startLatlng        :: Maybe (Double, Double)
+    , _activitySummary_startLongitude     :: Double
+    , _activitySummary_timezone           :: Text
+    , _activitySummary_totalElevationGain :: Double
+    , _activitySummary_trainer            :: Bool
+    , _activitySummary_type               :: Text
+    , _activitySummary_uploadId           :: Maybe Integer
     } deriving Show
 
 instance FromJSON ActivitySummary where
@@ -198,10 +198,10 @@ instance FromJSON ActivitySummary where
 
 -- | <http://strava.github.io/api/v3/activities/#zones>
 data ActivityZoneDetailed = ActivityZoneDetailed
-    { activityZoneDetailed_distributionBuckets :: [ActivityZoneDistributionBucket]
-    , activityZoneDetailed_resourceState       :: Integer
-    , activityZoneDetailed_sensorBased         :: Bool
-    , activityZoneDetailed_type                :: Text
+    { _activityZoneDetailed_distributionBuckets :: [ActivityZoneDistributionBucket]
+    , _activityZoneDetailed_resourceState       :: Integer
+    , _activityZoneDetailed_sensorBased         :: Bool
+    , _activityZoneDetailed_type                :: Text
     } deriving Show
 
 instance FromJSON ActivityZoneDetailed where
@@ -214,9 +214,9 @@ instance FromJSON ActivityZoneDetailed where
 
 -- | <http://strava.github.io/api/v3/activities/#zones>
 data ActivityZoneDistributionBucket = ActivityZoneDistributionBucket
-    { activityZoneDistributionBucket_max  :: Integer
-    , activityZoneDistributionBucket_min  :: Integer
-    , activityZoneDistributionBucket_time :: Integer
+    { _activityZoneDistributionBucket_max  :: Integer
+    , _activityZoneDistributionBucket_min  :: Integer
+    , _activityZoneDistributionBucket_time :: Integer
     } deriving Show
 
 instance FromJSON ActivityZoneDistributionBucket where
@@ -228,23 +228,23 @@ instance FromJSON ActivityZoneDistributionBucket where
 
 -- | <http://strava.github.io/api/v3/activities/#laps>
 data ActivityLapSummary = ActivityLapSummary
-    { activityLapSummary_activityId         :: Integer
-    , activityLapSummary_athleteId          :: Integer
-    , activityLapSummary_averageSpeed       :: Double
-    , activityLapSummary_averageWatts       :: Double
-    , activityLapSummary_distance           :: Double
-    , activityLapSummary_elapsedTime        :: Integer
-    , activityLapSummary_endIndex           :: Integer
-    , activityLapSummary_id                 :: Integer
-    , activityLapSummary_lapIndex           :: Integer
-    , activityLapSummary_maxSpeed           :: Double
-    , activityLapSummary_movingTime         :: Double
-    , activityLapSummary_name               :: Text
-    , activityLapSummary_resourceState      :: Integer
-    , activityLapSummary_startDate          :: UTCTime
-    , activityLapSummary_startDateLocal     :: UTCTime
-    , activityLapSummary_startIndex         :: Integer
-    , activityLapSummary_totalElevationGain :: Double
+    { _activityLapSummary_activityId         :: Integer
+    , _activityLapSummary_athleteId          :: Integer
+    , _activityLapSummary_averageSpeed       :: Double
+    , _activityLapSummary_averageWatts       :: Double
+    , _activityLapSummary_distance           :: Double
+    , _activityLapSummary_elapsedTime        :: Integer
+    , _activityLapSummary_endIndex           :: Integer
+    , _activityLapSummary_id                 :: Integer
+    , _activityLapSummary_lapIndex           :: Integer
+    , _activityLapSummary_maxSpeed           :: Double
+    , _activityLapSummary_movingTime         :: Double
+    , _activityLapSummary_name               :: Text
+    , _activityLapSummary_resourceState      :: Integer
+    , _activityLapSummary_startDate          :: UTCTime
+    , _activityLapSummary_startDateLocal     :: UTCTime
+    , _activityLapSummary_startIndex         :: Integer
+    , _activityLapSummary_totalElevationGain :: Double
     } deriving Show
 
 instance FromJSON ActivityLapSummary where
