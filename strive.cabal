@@ -87,7 +87,7 @@ test-suite readme
     main-is: README.lhs
     buildable: True
     default-language: Haskell2010
-    ghc-options: -pgmL markdown-unlit -Wall
+    ghc-options: -pgmL markdown-unlit -Wall -Werror
 test-suite hlint
     build-depends:
         base -any,
