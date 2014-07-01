@@ -13,8 +13,8 @@ import Strive.Objects.Athletes (AthleteDetailed)
 
 -- | <http://strava.github.io/api/v3/oauth/#example-response>
 data TokenExchangeResponse = TokenExchangeResponse
-    { _tokenExchangeResponse_accessToken   :: Text
-    , _tokenExchangeResponse_athlete :: AthleteDetailed
+    { _tokenExchangeResponse_accessToken :: Text
+    , _tokenExchangeResponse_athlete     :: AthleteDetailed
     } deriving Show
 
 instance FromJSON TokenExchangeResponse where
