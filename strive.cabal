@@ -55,9 +55,6 @@ library
         Strive.Objects.Activities.ActivitySummary
         Strive.Objects.Activities.ActivityDetailed
         Strive.Objects.Athletes
-        Strive.Objects.Athletes.AthleteDetailed
-        Strive.Objects.Athletes.AthleteMeta
-        Strive.Objects.Athletes.AthleteSummary
         Strive.Objects.Authentication
         Strive.Objects.Authentication.DeauthorizationResponse
         Strive.Objects.Authentication.TokenExchangeResponse
