@@ -61,7 +61,6 @@ library
         Strive.Objects.Clubs
         Strive.Objects.Comments
         Strive.Objects.Efforts
-        Strive.Objects.Efforts.EffortSummary
         Strive.Objects.Gear
         Strive.Objects.Photos
         Strive.Objects.Polylines
