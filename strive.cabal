@@ -62,7 +62,6 @@ library
         Strive.Objects.Clubs.ClubDetailed
         Strive.Objects.Clubs.ClubSummary
         Strive.Objects.Comments
-        Strive.Objects.Comments.CommentSummary
         Strive.Objects.Efforts
         Strive.Objects.Efforts.EffortSummary
         Strive.Objects.Gear
