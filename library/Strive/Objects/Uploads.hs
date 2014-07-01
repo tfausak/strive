@@ -11,11 +11,11 @@ import Data.Text (Text)
 
 -- | <http://strava.github.io/api/v3/uploads/#attributes>
 data UploadStatus = UploadStatus
-    { uploadStatusActivityId :: Maybe Integer
-    , uploadStatusError      :: Maybe Text
-    , uploadStatusExternalId :: Text
-    , uploadStatusId         :: Integer
-    , uploadStatusStatus     :: Text
+    { uploadStatus_activityId :: Maybe Integer
+    , uploadStatus_error      :: Maybe Text
+    , uploadStatus_externalId :: Text
+    , uploadStatus_id         :: Integer
+    , uploadStatus_status     :: Text
     } deriving Show
 
 instance FromJSON UploadStatus where

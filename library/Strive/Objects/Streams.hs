@@ -11,11 +11,11 @@ import Data.Text (Text)
 
 -- | <http://strava.github.io/api/v3/streams/#detailed>
 data StreamDetailed = StreamDetailed
-    { streamDetailedData         :: [Value]
-    , streamDetailedOriginalSize :: Integer
-    , streamDetailedResolution   :: Text
-    , streamDetailedSeriesType   :: Text
-    , streamDetailedType         :: Text
+    { streamDetailed_data         :: [Value]
+    , streamDetailed_originalSize :: Integer
+    , streamDetailed_resolution   :: Text
+    , streamDetailed_seriesType   :: Text
+    , streamDetailed_type         :: Text
     } deriving Show
 
 instance FromJSON StreamDetailed where

@@ -12,15 +12,15 @@ import Data.Text (Text)
 
 -- | <http://strava.github.io/api/v3/gear/#detailed>
 data GearDetailed = GearDetailed
-    { gearDetailedBrandName     :: Text
-    , gearDetailedDescription   :: Text
-    , gearDetailedDistance      :: Double
-    , gearDetailedFrameType     :: Maybe Integer
-    , gearDetailedId            :: Text
-    , gearDetailedModelName     :: Text
-    , gearDetailedName          :: Text
-    , gearDetailedPrimary       :: Bool
-    , gearDetailedResourceState :: Integer
+    { gearDetailed_brandName     :: Text
+    , gearDetailed_description   :: Text
+    , gearDetailed_distance      :: Double
+    , gearDetailed_frameType     :: Maybe Integer
+    , gearDetailed_id            :: Text
+    , gearDetailed_modelName     :: Text
+    , gearDetailed_name          :: Text
+    , gearDetailed_primary       :: Bool
+    , gearDetailed_resourceState :: Integer
     } deriving Show
 
 instance FromJSON GearDetailed where
@@ -38,11 +38,11 @@ instance FromJSON GearDetailed where
 
 -- | <http://strava.github.io/api/v3/gear/#summary>
 data GearSummary = GearSummary
-    { gearSummaryDistance      :: Double
-    , gearSummaryId            :: Text
-    , gearSummaryName          :: Text
-    , gearSummaryPrimary       :: Bool
-    , gearSummaryResourceState :: Integer
+    { gearSummary_distance      :: Double
+    , gearSummary_id            :: Text
+    , gearSummary_name          :: Text
+    , gearSummary_primary       :: Bool
+    , gearSummary_resourceState :: Integer
     } deriving Show
 
 instance FromJSON GearSummary where

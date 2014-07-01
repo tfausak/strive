@@ -13,12 +13,12 @@ import Strive.Objects.Athletes (AthleteSummary)
 
 -- | <http://strava.github.io/api/v3/comments/#summary-and-detailed-representation-attributes>
 data CommentSummary = CommentSummary
-    { commentSummaryActivityId    :: Integer
-    , commentSummaryAthlete       :: AthleteSummary
-    , commentSummaryCreatedAt     :: UTCTime
-    , commentSummaryId            :: Integer
-    , commentSummaryResourceState :: Integer
-    , commentSummaryText          :: Text
+    { commentSummary_activityId    :: Integer
+    , commentSummary_athlete       :: AthleteSummary
+    , commentSummary_createdAt     :: UTCTime
+    , commentSummary_id            :: Integer
+    , commentSummary_resourceState :: Integer
+    , commentSummary_text          :: Text
     } deriving Show
 
 instance FromJSON CommentSummary where

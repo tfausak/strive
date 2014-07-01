@@ -12,16 +12,16 @@ import Data.Time.Clock (UTCTime)
 
 -- | <http://strava.github.io/api/v3/photos/#summary-and-detailed-representation-attributes>
 data PhotoSummary = PhotoSummary
-    { photoSummaryActivityId    :: Integer
-    , photoSummaryCaption       :: Text
-    , photoSummaryCreatedAt     :: UTCTime
-    , photoSummaryId            :: Integer
-    , photoSummaryLocation      :: Maybe (Double, Double)
-    , photoSummaryRef           :: Text
-    , photoSummaryResourceState :: Integer
-    , photoSummaryType          :: Text
-    , photoSummaryUid           :: Text
-    , photoSummaryUploadedAt    :: UTCTime
+    { photoSummary_activityId    :: Integer
+    , photoSummary_caption       :: Text
+    , photoSummary_createdAt     :: UTCTime
+    , photoSummary_id            :: Integer
+    , photoSummary_location      :: Maybe (Double, Double)
+    , photoSummary_ref           :: Text
+    , photoSummary_resourceState :: Integer
+    , photoSummary_type          :: Text
+    , photoSummary_uid           :: Text
+    , photoSummary_uploadedAt    :: UTCTime
     } deriving Show
 
 instance FromJSON PhotoSummary where

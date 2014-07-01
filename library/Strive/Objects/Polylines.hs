@@ -13,10 +13,10 @@ import GPolyline (decodeline)
 
 -- | <http://strava.github.io/api/v3/activities/#detailed>
 data PolylineDetailed = PolylineDetailed
-    { polylineDetailedId              :: Text
-    , polylineDetailedPolyline        :: [(Double, Double)]
-    , polylineDetailedResourceState   :: Integer
-    , polylineDetailedSummaryPolyline :: Maybe [(Double, Double)]
+    { polylineDetailed_id              :: Text
+    , polylineDetailed_polyline        :: [(Double, Double)]
+    , polylineDetailed_resourceState   :: Integer
+    , polylineDetailed_summaryPolyline :: Maybe [(Double, Double)]
     } deriving Show
 
 instance FromJSON PolylineDetailed where
@@ -27,19 +27,19 @@ instance FromJSON PolylineDetailed where
         summaryPolyline' <- o .:? "summary_polyline"
 
         return PolylineDetailed
-            { polylineDetailedId = id'
-            , polylineDetailedPolyline = decodeline polyline'
-            , polylineDetailedResourceState = resourceState'
-            , polylineDetailedSummaryPolyline = fmap decodeline summaryPolyline'
+            { polylineDetailed_id = id'
+            , polylineDetailed_polyline = decodeline polyline'
+            , polylineDetailed_resourceState = resourceState'
+            , polylineDetailed_summaryPolyline = fmap decodeline summaryPolyline'
             }
 
     parseJSON _ = empty
 
 -- | <http://strava.github.io/api/v3/activities/#summary>
 data PolylineSummary = PolylineSummary
-    { polylineSummaryId              :: Text
-    , polylineSummaryResourceState   :: Integer
-    , polylineSummarySummaryPolyline :: Maybe [(Double, Double)]
+    { polylineSummary_id              :: Text
+    , polylineSummary_resourceState   :: Integer
+    , polylineSummary_summaryPolyline :: Maybe [(Double, Double)]
     } deriving Show
 
 instance FromJSON PolylineSummary where
@@ -49,9 +49,9 @@ instance FromJSON PolylineSummary where
         summaryPolyline' <- o .:? "summary_polyline"
 
         return PolylineSummary
-            { polylineSummaryId = id'
-            , polylineSummaryResourceState = resourceState'
-            , polylineSummarySummaryPolyline = fmap decodeline summaryPolyline'
+            { polylineSummary_id = id'
+            , polylineSummary_resourceState = resourceState'
+            , polylineSummary_summaryPolyline = fmap decodeline summaryPolyline'
             }
 
     parseJSON _ = empty
