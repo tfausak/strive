@@ -62,8 +62,6 @@ library
         Strive.Objects.Gear
         Strive.Objects.Photos
         Strive.Objects.Polylines
-        Strive.Objects.Polylines.PolylineDetailed
-        Strive.Objects.Polylines.PolylineSummary
         Strive.Objects.Segments
         Strive.Objects.Streams
         Strive.Objects.Uploads
