@@ -64,7 +64,6 @@ library
         Strive.Objects.Comments
         Strive.Objects.Comments.CommentSummary
         Strive.Objects.Efforts
-        Strive.Objects.Efforts.EffortLap
         Strive.Objects.Efforts.EffortSummary
         Strive.Objects.Gear
         Strive.Objects.Photos

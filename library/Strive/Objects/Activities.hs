@@ -5,6 +5,7 @@ module Strive.Objects.Activities
     ( ActivityDetailed (..)
     , ActivitySummary (..)
     , ActivityZoneDetailed (..)
+    , ActivityLapSummary (..)
     ) where
 
 import Control.Applicative (empty, (<$>), (<*>))
@@ -209,4 +210,46 @@ instance FromJSON ActivityZoneDetailed where
         <*> o .: "resource_state"
         <*> o .: "sensor_based"
         <*> o .: "type"
+    parseJSON _ = empty
+
+-- | <http://strava.github.io/api/v3/activities/#laps>
+data ActivityLapSummary = ActivityLapSummary
+    { activityLapSummaryActivityId         :: Integer
+    , activityLapSummaryAthleteId          :: Integer
+    , activityLapSummaryAverageSpeed       :: Double
+    , activityLapSummaryAverageWatts       :: Double
+    , activityLapSummaryDistance           :: Double
+    , activityLapSummaryElapsedTime        :: Integer
+    , activityLapSummaryEndIndex           :: Integer
+    , activityLapSummaryId                 :: Integer
+    , activityLapSummaryLapIndex           :: Integer
+    , activityLapSummaryMaxSpeed           :: Double
+    , activityLapSummaryMovingTime         :: Double
+    , activityLapSummaryName               :: Text
+    , activityLapSummaryResourceState      :: Integer
+    , activityLapSummaryStartDate          :: UTCTime
+    , activityLapSummaryStartDateLocal     :: UTCTime
+    , activityLapSummaryStartIndex         :: Integer
+    , activityLapSummaryTotalElevationGain :: Double
+    } deriving Show
+
+instance FromJSON ActivityLapSummary where
+    parseJSON (Object o) = ActivityLapSummary
+        <$> ((o .: "activity") >>= (.: "id"))
+        <*> ((o .: "athlete") >>= (.: "id"))
+        <*> o .: "average_speed"
+        <*> o .: "average_watts"
+        <*> o .: "distance"
+        <*> o .: "elapsed_time"
+        <*> o .: "end_index"
+        <*> o .: "id"
+        <*> o .: "lap_index"
+        <*> o .: "max_speed"
+        <*> o .: "moving_time"
+        <*> o .: "name"
+        <*> o .: "resource_state"
+        <*> o .: "start_date"
+        <*> o .: "start_date_local"
+        <*> o .: "start_index"
+        <*> o .: "total_elevation_gain"
     parseJSON _ = empty
