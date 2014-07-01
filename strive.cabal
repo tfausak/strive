@@ -26,8 +26,6 @@ source-repository head
 library
     build-depends:
         base ==4.*,
-        fclabels -any,
-        lens -any,
         aeson ==0.7.*,
         bytestring -any,
         gpolyline ==0.1.*,
