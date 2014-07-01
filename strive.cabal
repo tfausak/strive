@@ -72,8 +72,6 @@ library
         Strive.Objects.Efforts.EffortLap
         Strive.Objects.Efforts.EffortSummary
         Strive.Objects.Gear
-        Strive.Objects.Gear.GearDetailed
-        Strive.Objects.Gear.GearSummary
         Strive.Objects.Photos
         Strive.Objects.Photos.PhotoSummary
         Strive.Objects.Polylines
