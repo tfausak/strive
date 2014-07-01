@@ -11,15 +11,15 @@ import Data.Text (Text)
 
 -- | Detailed representation of gear.
 data GearDetailed = GearDetailed
-    { brandName     :: Text
-    , description   :: Text
-    , distance      :: Double
-    , frameType     :: Maybe Integer
-    , id            :: Text
-    , modelName     :: Text
-    , name          :: Text
-    , primary       :: Bool
-    , resourceState :: Integer
+    { gearDetailedBrandName     :: Text
+    , gearDetailedDescription   :: Text
+    , gearDetailedDistance      :: Double
+    , gearDetailedFrameType     :: Maybe Integer
+    , gearDetailedId            :: Text
+    , gearDetailedModelName     :: Text
+    , gearDetailedName          :: Text
+    , gearDetailedPrimary       :: Bool
+    , gearDetailedResourceState :: Integer
     } deriving Show
 
 instance FromJSON GearDetailed where

@@ -11,11 +11,11 @@ import Data.Text (Text)
 
 -- | Summary representation of gear.
 data GearSummary = GearSummary
-    { distance      :: Double
-    , id            :: Text
-    , name          :: Text
-    , primary       :: Bool
-    , resourceState :: Integer
+    { gearSummaryDistance      :: Double
+    , gearSummaryId            :: Text
+    , gearSummaryName          :: Text
+    , gearSummaryPrimary       :: Bool
+    , gearSummaryResourceState :: Integer
     } deriving Show
 
 instance FromJSON GearSummary where
