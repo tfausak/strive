@@ -430,7 +430,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   postedUpload <- postUpload client (pack "...") "gpx.gz" Nothing Nothing Nothing Nothing Nothing Nothing
   print postedUpload
-  -- Right (UploadDetailed {..})
+  -- Right (UploadStatus {..})
 ~~~
 
 #### [Check upload status](http://strava.github.io/api/v3/uploads/#get-status)
@@ -438,7 +438,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   upload <- getUpload client 123
   print upload
-  -- Right (UploadDetailed {..})
+  -- Right (UploadStatus {..})
 ~~~
 
 [1]: https://github.com/tfausak/strive

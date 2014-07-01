@@ -2,7 +2,7 @@
 
 -- | <http://strava.github.io/api/v3/uploads/>
 module Strive.Objects.Uploads
-    ( UploadDetailed (..)
+    ( UploadStatus (..)
     ) where
 
 import Control.Applicative (empty, (<$>), (<*>))
@@ -10,16 +10,16 @@ import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Text (Text)
 
 -- | <http://strava.github.io/api/v3/uploads/#attributes>
-data UploadDetailed = UploadDetailed
-    { uploadDetailedActivityId :: Maybe Integer
-    , uploadDetailedError      :: Maybe Text
-    , uploadDetailedExternalId :: Text
-    , uploadDetailedId         :: Integer
-    , uploadDetailedStatus     :: Text
+data UploadStatus = UploadStatus
+    { uploadStatusActivityId :: Maybe Integer
+    , uploadStatusError      :: Maybe Text
+    , uploadStatusExternalId :: Text
+    , uploadStatusId         :: Integer
+    , uploadStatusStatus     :: Text
     } deriving Show
 
-instance FromJSON UploadDetailed where
-    parseJSON (Object o) = UploadDetailed
+instance FromJSON UploadStatus where
+    parseJSON (Object o) = UploadStatus
         <$> o .:? "activity_id"
         <*> o .:? "error"
         <*> o .: "external_id"
