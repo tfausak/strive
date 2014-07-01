@@ -4,6 +4,7 @@
 module Strive.Objects.Segments
     ( SegmentDetailed (..)
     , SegmentSummary (..)
+    , SegmentLeaderboard (..)
     , SegmentLeaderboardEntry (..)
     , SegmentExplorerEntry (..)
     ) where
@@ -128,6 +129,16 @@ instance FromJSON SegmentSummary where
         <*> o .: "start_latlng"
         <*> o .: "start_longitude"
         <*> o .: "state"
+    parseJSON _ = empty
+
+-- | <http://strava.github.io/api/v3/segments/#leaderboard>
+data SegmentLeaderboard = SegmentLeaderboard
+    { segmentLeaderboardEntries :: [SegmentLeaderboardEntry]
+    } deriving Show
+
+instance FromJSON SegmentLeaderboard where
+    parseJSON (Object o) = SegmentLeaderboard
+        <$> o .: "segments"
     parseJSON _ = empty
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>

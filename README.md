@@ -384,7 +384,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   segments <- exploreSegments client bounds activityType minCat maxCat
   print segments
-  -- Right [SegmentExplorerEntry {..},..]
+  -- Right [SegmentLeaderboard {..},..]
 ~~~
 
 ### [Segment efforts](http://strava.github.io/api/v3/efforts/)

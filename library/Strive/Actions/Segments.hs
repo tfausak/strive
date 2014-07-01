@@ -19,16 +19,14 @@ import Data.Time.Clock (UTCTime)
 import Strive.Client (Client)
 import Strive.Client.HTTP (get)
 import Strive.Objects (EffortDetailed, SegmentDetailed, SegmentExplorerEntry,
-                       SegmentLeaderboardEntry, SegmentSummary)
+                       SegmentLeaderboard, SegmentLeaderboardEntry,
+                       SegmentSummary)
 import Strive.Types (AthleteId, Page, PerPage, SegmentId)
 import Strive.Utilities (paginate, queryToSimpleQuery)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
-exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [SegmentExplorerEntry])
-exploreSegments client (south, west, north, east) activityType minCat maxCat = do
-    object <- get client resource query
-    let segments = either Left (parseEither (.: "segments")) object
-    return segments
+exploreSegments :: Client -> (Double, Double, Double, Double) -> Maybe String -> Maybe Integer -> Maybe Integer -> IO (Either String [SegmentLeaderboard])
+exploreSegments client (south, west, north, east) activityType minCat maxCat = get client resource query
   where
     resource = "segments/explore"
     query = queryToSimpleQuery
