@@ -69,7 +69,6 @@ library
         Strive.Objects.Segments
         Strive.Objects.Streams
         Strive.Objects.Uploads
-        Strive.Objects.Uploads.UploadDetailed
         Strive.Types
     exposed: True
     buildable: True
