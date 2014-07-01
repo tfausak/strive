@@ -13,7 +13,6 @@ module Strive.Objects
     , module Strive.Objects.Segments
     , module Strive.Objects.Streams
     , module Strive.Objects.Uploads
-    , module Strive.Objects.Zones
     ) where
 
 import Strive.Objects.Activities
@@ -29,4 +28,3 @@ import Strive.Objects.Polylines
 import Strive.Objects.Segments
 import Strive.Objects.Streams
 import Strive.Objects.Uploads
-import Strive.Objects.Zones

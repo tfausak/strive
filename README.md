@@ -260,7 +260,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   activityZones <- getActivityZones client activityId
   print activityZones
-  -- Right [ZoneSummary {..},..]
+  -- Right [ActivityZoneDetailed {..},..]
 ~~~
 
 #### [List activity laps](http://strava.github.io/api/v3/activities/#laps)
@@ -268,7 +268,7 @@ Many of the examples use the same parameters.
 ~~~ {.haskell}
   activityLaps <- getActivityLaps client activityId
   print activityLaps
-  -- Right [ZoneSummary {..},..]
+  -- Right [ActivityZoneDetailed {..},..]
 ~~~
 
 ### [Comments](http://strava.github.io/api/v3/comments/)

@@ -81,8 +81,6 @@ library
         Strive.Objects.Streams.StreamDetailed
         Strive.Objects.Uploads
         Strive.Objects.Uploads.UploadDetailed
-        Strive.Objects.Zones
-        Strive.Objects.Zones.ZoneSummary
         Strive.Types
     exposed: True
     buildable: True

@@ -4,6 +4,7 @@
 module Strive.Objects.Activities
     ( ActivityDetailed (..)
     , ActivitySummary (..)
+    , ActivityZoneDetailed (..)
     ) where
 
 import Control.Applicative (empty, (<$>), (<*>))
@@ -11,6 +12,7 @@ import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Objects.Athletes (AthleteMeta)
+import Strive.Objects.Buckets (BucketSummary)
 import Strive.Objects.Efforts (EffortSummary)
 import Strive.Objects.Gear (GearSummary)
 import Strive.Objects.Polylines (PolylineDetailed, PolylineSummary)
@@ -191,4 +193,20 @@ instance FromJSON ActivitySummary where
         <*> o .: "trainer"
         <*> o .: "type"
         <*> o .:? "upload_id"
+    parseJSON _ = empty
+
+-- | <http://strava.github.io/api/v3/activities/#zones>
+data ActivityZoneDetailed = ActivityZoneDetailed
+    { activityZoneDetailedDistributionBuckets :: [BucketSummary]
+    , activityZoneDetailedResourceState       :: Integer
+    , activityZoneDetailedSensorBased         :: Bool
+    , activityZoneDetailedType                :: Text
+    } deriving Show
+
+instance FromJSON ActivityZoneDetailed where
+    parseJSON (Object o) = ActivityZoneDetailed
+        <$> o .: "distribution_buckets"
+        <*> o .: "resource_state"
+        <*> o .: "sensor_based"
+        <*> o .: "type"
     parseJSON _ = empty
