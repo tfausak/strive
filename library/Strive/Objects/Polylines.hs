@@ -21,16 +21,16 @@ data PolylineDetailed = PolylineDetailed
 
 instance FromJSON PolylineDetailed where
     parseJSON (Object o) = do
-        id' <- o .: "id"
-        polyline' <- o .: "polyline"
-        resourceState' <- o .: "resource_state"
-        summaryPolyline' <- o .:? "summary_polyline"
+        id <- o .: "id"
+        polyline <- o .: "polyline"
+        resourceState <- o .: "resource_state"
+        summaryPolyline <- o .:? "summary_polyline"
 
         return PolylineDetailed
-            { polylineDetailedId = id'
-            , polylineDetailedPolyline = decodeline polyline'
-            , polylineDetailedResourceState = resourceState'
-            , polylineDetailedSummaryPolyline = fmap decodeline summaryPolyline'
+            { polylineDetailedId = id
+            , polylineDetailedPolyline = decodeline polyline
+            , polylineDetailedResourceState = resourceState
+            , polylineDetailedSummaryPolyline = fmap decodeline summaryPolyline
             }
 
     parseJSON _ = empty
@@ -44,14 +44,14 @@ data PolylineSummary = PolylineSummary
 
 instance FromJSON PolylineSummary where
     parseJSON (Object o) = do
-        id' <- o .: "id"
-        resourceState' <- o .: "resource_state"
-        summaryPolyline' <- o .:? "summary_polyline"
+        id <- o .: "id"
+        resourceState <- o .: "resource_state"
+        summaryPolyline <- o .:? "summary_polyline"
 
         return PolylineSummary
-            { polylineSummaryId = id'
-            , polylineSummaryResourceState = resourceState'
-            , polylineSummarySummaryPolyline = fmap decodeline summaryPolyline'
+            { polylineSummaryId = id
+            , polylineSummaryResourceState = resourceState
+            , polylineSummarySummaryPolyline = fmap decodeline summaryPolyline
             }
 
     parseJSON _ = empty
