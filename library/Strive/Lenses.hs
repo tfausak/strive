@@ -1,6 +1,5 @@
-{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE FlexibleInstances      #-}
 {-# LANGUAGE FunctionalDependencies #-}
-{-# LANGUAGE MultiParamTypeClasses  #-}
 
 -- | Lenses for easily getting and setting values.
 module Strive.Lenses where
@@ -21,1912 +20,1954 @@ get = (fst .)
 set :: Lens a b -> b -> a -> a
 set = flip . (snd .)
 
--- * Classes
-
 class AccessTokenLens a b | a -> b where
   accessToken' :: Lens a b
+instance AccessTokenLens TokenExchangeResponse Text where
+  accessToken' tokenExchangeResponse =
+    ( tokenExchangeResponseAccessToken tokenExchangeResponse
+    , \ tokenExchangeResponseAccessToken' -> tokenExchangeResponse { tokenExchangeResponseAccessToken = tokenExchangeResponseAccessToken' }
+    )
+instance AccessTokenLens DeauthorizationResponse Text where
+  accessToken' deauthorizationResponse =
+    ( deauthorizationResponseAccessToken deauthorizationResponse
+    , \ deauthorizationResponseAccessToken' -> deauthorizationResponse { deauthorizationResponseAccessToken = deauthorizationResponseAccessToken' }
+    )
+
 class AchievementCountLens a b | a -> b where
   achievementCount :: Lens a b
-class ActivityIdLens a b | a -> b where
-  activityId :: Lens a b
-class ActivityTypeLens a b | a -> b where
-  activityType :: Lens a b
-class AthleteCountLens a b | a -> b where
-  athleteCount :: Lens a b
-class AthleteGenderLens a b | a -> b where
-  athleteGender :: Lens a b
-class AthleteIdLens a b | a -> b where
-  athleteId :: Lens a b
-class AthleteLens a b | a -> b where
-  athlete :: Lens a b
-class AthleteNameLens a b | a -> b where
-  athleteName :: Lens a b
-class AthleteProfileLens a b | a -> b where
-  athleteProfile :: Lens a b
-class AverageCadenceLens a b | a -> b where
-  averageCadence :: Lens a b
-class AverageGradeLens a b | a -> b where
-  averageGrade :: Lens a b
-class AverageHeartrateLens a b | a -> b where
-  averageHeartrate :: Lens a b
-class AverageHrLens a b | a -> b where
-  averageHr :: Lens a b
-class AverageSpeedLens a b | a -> b where
-  averageSpeed :: Lens a b
-class AverageWattsLens a b | a -> b where
-  averageWatts :: Lens a b
-class AvgGradeLens a b | a -> b where
-  avgGrade :: Lens a b
-class BikesLens a b | a -> b where
-  bikes :: Lens a b
-class BrandNameLens a b | a -> b where
-  brandName :: Lens a b
-class CaloriesLens a b | a -> b where
-  calories :: Lens a b
-class CaptionLens a b | a -> b where
-  caption :: Lens a b
-class CityLens a b | a -> b where
-  city :: Lens a b
-class ClimbCategoryDescLens a b | a -> b where
-  climbCategoryDesc :: Lens a b
-class ClimbCategoryLens a b | a -> b where
-  climbCategory :: Lens a b
-class ClubTypeLens a b | a -> b where
-  clubType :: Lens a b
-class ClubsLens a b | a -> b where
-  clubs :: Lens a b
-class CommentCountLens a b | a -> b where
-  commentCount :: Lens a b
-class CommuteLens a b | a -> b where
-  commute :: Lens a b
-class CountryLens a b | a -> b where
-  country :: Lens a b
-class CreatedAtLens a b | a -> b where
-  createdAt :: Lens a b
-class DataLens a b | a -> b where
-  data' :: Lens a b
-class DatePreferenceLens a b | a -> b where
-  datePreference :: Lens a b
-class DescriptionLens a b | a -> b where
-  description :: Lens a b
-class DistanceLens a b | a -> b where
-  distance :: Lens a b
-class DistributionBucketsLens a b | a -> b where
-  distributionBuckets :: Lens a b
-class EffortCountLens a b | a -> b where
-  effortCount :: Lens a b
-class EffortIdLens a b | a -> b where
-  effortId :: Lens a b
-class ElapsedTimeLens a b | a -> b where
-  elapsedTime :: Lens a b
-class ElevDifferenceLens a b | a -> b where
-  elevDifference :: Lens a b
-class ElevationHighLens a b | a -> b where
-  elevationHigh :: Lens a b
-class ElevationLowLens a b | a -> b where
-  elevationLow :: Lens a b
-class EmailLens a b | a -> b where
-  email :: Lens a b
-class EndIndexLens a b | a -> b where
-  endIndex :: Lens a b
-class EndLatitudeLens a b | a -> b where
-  endLatitude :: Lens a b
-class EndLatlngLens a b | a -> b where
-  endLatlng :: Lens a b
-class EndLongitudeLens a b | a -> b where
-  endLongitude :: Lens a b
-class EntriesLens a b | a -> b where
-  entries :: Lens a b
-class ErrorLens a b | a -> b where
-  error :: Lens a b
-class ExternalIdLens a b | a -> b where
-  externalId :: Lens a b
-class FirstnameLens a b | a -> b where
-  firstname :: Lens a b
-class FlaggedLens a b | a -> b where
-  flagged :: Lens a b
-class FollowerCountLens a b | a -> b where
-  followerCount :: Lens a b
-class FollowerLens a b | a -> b where
-  follower :: Lens a b
-class FrameTypeLens a b | a -> b where
-  frameType :: Lens a b
-class FriendCountLens a b | a -> b where
-  friendCount :: Lens a b
-class FriendLens a b | a -> b where
-  friend :: Lens a b
-class FtpLens a b | a -> b where
-  ftp :: Lens a b
-class GearIdLens a b | a -> b where
-  gearId :: Lens a b
-class GearLens a b | a -> b where
-  gear :: Lens a b
-class HasKudoedLens a b | a -> b where
-  hasKudoed :: Lens a b
-class HazardousLens a b | a -> b where
-  hazardous :: Lens a b
-class HiddenLens a b | a -> b where
-  hidden :: Lens a b
-class IdLens a b | a -> b where
-  id :: Lens a b
-class InstagramPrimaryPhotoLens a b | a -> b where
-  instagramPrimaryPhoto :: Lens a b
-class KilojoulesLens a b | a -> b where
-  kilojoules :: Lens a b
-class KomRankLens a b | a -> b where
-  komRank :: Lens a b
-class KudosCountLens a b | a -> b where
-  kudosCount :: Lens a b
-class LapIndexLens a b | a -> b where
-  lapIndex :: Lens a b
-class LastnameLens a b | a -> b where
-  lastname :: Lens a b
-class LocationCityLens a b | a -> b where
-  locationCity :: Lens a b
-class LocationCountryLens a b | a -> b where
-  locationCountry :: Lens a b
-class LocationLens a b | a -> b where
-  location :: Lens a b
-class LocationStateLens a b | a -> b where
-  locationState :: Lens a b
-class ManualLens a b | a -> b where
-  manual :: Lens a b
-class MapLens a b | a -> b where
-  map :: Lens a b
-class MaxLens a b | a -> b where
-  max :: Lens a b
-class MaxSpeedLens a b | a -> b where
-  maxSpeed :: Lens a b
-class Max_heartrateLens a b | a -> b where
-  max_heartrate :: Lens a b
-class MaximumGradeLens a b | a -> b where
-  maximumGrade :: Lens a b
-class MeasurementPreferenceLens a b | a -> b where
-  measurementPreference :: Lens a b
-class MemberCountLens a b | a -> b where
-  memberCount :: Lens a b
-class MinLens a b | a -> b where
-  min :: Lens a b
-class ModelNameLens a b | a -> b where
-  modelName :: Lens a b
-class MovingTimeLens a b | a -> b where
-  movingTime :: Lens a b
-class MutualFriendCountLens a b | a -> b where
-  mutualFriendCount :: Lens a b
-class NameLens a b | a -> b where
-  name :: Lens a b
-class OriginalSizeLens a b | a -> b where
-  originalSize :: Lens a b
-class PhotoCountLens a b | a -> b where
-  photoCount :: Lens a b
-class PointsLens a b | a -> b where
-  points :: Lens a b
-class PolylineLens a b | a -> b where
-  polyline :: Lens a b
-class PrRankLens a b | a -> b where
-  prRank :: Lens a b
-class PremiumLens a b | a -> b where
-  premium :: Lens a b
-class PrimaryLens a b | a -> b where
-  primary :: Lens a b
-class PrivateLens a b | a -> b where
-  private :: Lens a b
-class ProfileLens a b | a -> b where
-  profile :: Lens a b
-class ProfileMediumLens a b | a -> b where
-  profileMedium :: Lens a b
-class RankLens a b | a -> b where
-  rank :: Lens a b
-class RefLens a b | a -> b where
-  ref :: Lens a b
-class ResolutionLens a b | a -> b where
-  resolution :: Lens a b
-class ResourceStateLens a b | a -> b where
-  resourceState :: Lens a b
-class SegmentEffortsLens a b | a -> b where
-  segmentEfforts :: Lens a b
-class SegmentLens a b | a -> b where
-  segment :: Lens a b
-class SensorBasedLens a b | a -> b where
-  sensorBased :: Lens a b
-class SeriesTypeLens a b | a -> b where
-  seriesType :: Lens a b
-class SexLens a b | a -> b where
-  sex :: Lens a b
-class ShoesLens a b | a -> b where
-  shoes :: Lens a b
-class SportTypeLens a b | a -> b where
-  sportType :: Lens a b
-class StarCountLens a b | a -> b where
-  starCount :: Lens a b
-class StarredLens a b | a -> b where
-  starred :: Lens a b
-class StartDateLens a b | a -> b where
-  startDate :: Lens a b
-class StartDateLocalLens a b | a -> b where
-  startDateLocal :: Lens a b
-class StartIndexLens a b | a -> b where
-  startIndex :: Lens a b
-class StartLatitudeLens a b | a -> b where
-  startLatitude :: Lens a b
-class StartLatlngLens a b | a -> b where
-  startLatlng :: Lens a b
-class StartLongitudeLens a b | a -> b where
-  startLongitude :: Lens a b
-class StateLens a b | a -> b where
-  state :: Lens a b
-class StatusLens a b | a -> b where
-  status :: Lens a b
-class SummaryPolylineLens a b | a -> b where
-  summaryPolyline :: Lens a b
-class TextLens a b | a -> b where
-  text :: Lens a b
-class TimeLens a b | a -> b where
-  time :: Lens a b
-class TimezoneLens a b | a -> b where
-  timezone :: Lens a b
-class TotalElevationGainLens a b | a -> b where
-  totalElevationGain :: Lens a b
-class TrainerLens a b | a -> b where
-  trainer :: Lens a b
-class TruncatedLens a b | a -> b where
-  truncated :: Lens a b
-class TypeLens a b | a -> b where
-  type' :: Lens a b
-class UidLens a b | a -> b where
-  uid :: Lens a b
-class UpdatedAtLens a b | a -> b where
-  updatedAt :: Lens a b
-class UploadIdLens a b | a -> b where
-  uploadId :: Lens a b
-class UploadedAtLens a b | a -> b where
-  uploadedAt :: Lens a b
-
--- * Instances
-
-
--- ** ActivityDetailed
-
-instance AchievementCountLens ActivityDetailed (Integer) where
+instance AchievementCountLens ActivityDetailed Integer where
   achievementCount activityDetailed =
     ( activityDetailedAchievementCount activityDetailed
-    , \ achievementCount' -> activityDetailed { activityDetailedAchievementCount = achievementCount' }
+    , \ activityDetailedAchievementCount' -> activityDetailed { activityDetailedAchievementCount = activityDetailedAchievementCount' }
     )
-instance AthleteLens ActivityDetailed (AthleteMeta) where
-  athlete activityDetailed =
-    ( activityDetailedAthlete activityDetailed
-    , \ athlete' -> activityDetailed { activityDetailedAthlete = athlete' }
+instance AchievementCountLens ActivitySummary Integer where
+  achievementCount activitySummary =
+    ( activitySummaryAchievementCount activitySummary
+    , \ activitySummaryAchievementCount' -> activitySummary { activitySummaryAchievementCount = activitySummaryAchievementCount' }
     )
-instance AthleteCountLens ActivityDetailed (Integer) where
+
+class ActivityIdLens a b | a -> b where
+  activityId :: Lens a b
+instance ActivityIdLens ActivityLapSummary Integer where
+  activityId activityLapSummary =
+    ( activityLapSummaryActivityId activityLapSummary
+    , \ activityLapSummaryActivityId' -> activityLapSummary { activityLapSummaryActivityId = activityLapSummaryActivityId' }
+    )
+instance ActivityIdLens CommentSummary Integer where
+  activityId commentSummary =
+    ( commentSummaryActivityId commentSummary
+    , \ commentSummaryActivityId' -> commentSummary { commentSummaryActivityId = commentSummaryActivityId' }
+    )
+instance ActivityIdLens EffortDetailed Integer where
+  activityId effortDetailed =
+    ( effortDetailedActivityId effortDetailed
+    , \ effortDetailedActivityId' -> effortDetailed { effortDetailedActivityId = effortDetailedActivityId' }
+    )
+instance ActivityIdLens PhotoSummary Integer where
+  activityId photoSummary =
+    ( photoSummaryActivityId photoSummary
+    , \ photoSummaryActivityId' -> photoSummary { photoSummaryActivityId = photoSummaryActivityId' }
+    )
+instance ActivityIdLens SegmentLeaderboardEntry Integer where
+  activityId segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryActivityId segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryActivityId' -> segmentLeaderboardEntry { segmentLeaderboardEntryActivityId = segmentLeaderboardEntryActivityId' }
+    )
+instance ActivityIdLens UploadStatus (Maybe Integer) where
+  activityId uploadStatus =
+    ( uploadStatusActivityId uploadStatus
+    , \ uploadStatusActivityId' -> uploadStatus { uploadStatusActivityId = uploadStatusActivityId' }
+    )
+
+class ActivityTypeLens a b | a -> b where
+  activityType :: Lens a b
+instance ActivityTypeLens SegmentDetailed Text where
+  activityType segmentDetailed =
+    ( segmentDetailedActivityType segmentDetailed
+    , \ segmentDetailedActivityType' -> segmentDetailed { segmentDetailedActivityType = segmentDetailedActivityType' }
+    )
+instance ActivityTypeLens SegmentSummary Text where
+  activityType segmentSummary =
+    ( segmentSummaryActivityType segmentSummary
+    , \ segmentSummaryActivityType' -> segmentSummary { segmentSummaryActivityType = segmentSummaryActivityType' }
+    )
+
+class AthleteCountLens a b | a -> b where
+  athleteCount :: Lens a b
+instance AthleteCountLens ActivityDetailed Integer where
   athleteCount activityDetailed =
     ( activityDetailedAthleteCount activityDetailed
-    , \ athleteCount' -> activityDetailed { activityDetailedAthleteCount = athleteCount' }
+    , \ activityDetailedAthleteCount' -> activityDetailed { activityDetailedAthleteCount = activityDetailedAthleteCount' }
     )
-instance AverageSpeedLens ActivityDetailed (Double) where
+instance AthleteCountLens ActivitySummary Integer where
+  athleteCount activitySummary =
+    ( activitySummaryAthleteCount activitySummary
+    , \ activitySummaryAthleteCount' -> activitySummary { activitySummaryAthleteCount = activitySummaryAthleteCount' }
+    )
+instance AthleteCountLens SegmentDetailed Integer where
+  athleteCount segmentDetailed =
+    ( segmentDetailedAthleteCount segmentDetailed
+    , \ segmentDetailedAthleteCount' -> segmentDetailed { segmentDetailedAthleteCount = segmentDetailedAthleteCount' }
+    )
+
+class AthleteGenderLens a b | a -> b where
+  athleteGender :: Lens a b
+instance AthleteGenderLens SegmentLeaderboardEntry (Maybe Char) where
+  athleteGender segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryAthleteGender segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryAthleteGender' -> segmentLeaderboardEntry { segmentLeaderboardEntryAthleteGender = segmentLeaderboardEntryAthleteGender' }
+    )
+
+class AthleteIdLens a b | a -> b where
+  athleteId :: Lens a b
+instance AthleteIdLens ActivityLapSummary Integer where
+  athleteId activityLapSummary =
+    ( activityLapSummaryAthleteId activityLapSummary
+    , \ activityLapSummaryAthleteId' -> activityLapSummary { activityLapSummaryAthleteId = activityLapSummaryAthleteId' }
+    )
+instance AthleteIdLens EffortDetailed Integer where
+  athleteId effortDetailed =
+    ( effortDetailedAthleteId effortDetailed
+    , \ effortDetailedAthleteId' -> effortDetailed { effortDetailedAthleteId = effortDetailedAthleteId' }
+    )
+instance AthleteIdLens SegmentLeaderboardEntry Integer where
+  athleteId segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryAthleteId segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryAthleteId' -> segmentLeaderboardEntry { segmentLeaderboardEntryAthleteId = segmentLeaderboardEntryAthleteId' }
+    )
+
+class AthleteLens a b | a -> b where
+  athlete :: Lens a b
+instance AthleteLens ActivityDetailed AthleteMeta where
+  athlete activityDetailed =
+    ( activityDetailedAthlete activityDetailed
+    , \ activityDetailedAthlete' -> activityDetailed { activityDetailedAthlete = activityDetailedAthlete' }
+    )
+instance AthleteLens ActivitySummary AthleteMeta where
+  athlete activitySummary =
+    ( activitySummaryAthlete activitySummary
+    , \ activitySummaryAthlete' -> activitySummary { activitySummaryAthlete = activitySummaryAthlete' }
+    )
+instance AthleteLens TokenExchangeResponse AthleteDetailed where
+  athlete tokenExchangeResponse =
+    ( tokenExchangeResponseAthlete tokenExchangeResponse
+    , \ tokenExchangeResponseAthlete' -> tokenExchangeResponse { tokenExchangeResponseAthlete = tokenExchangeResponseAthlete' }
+    )
+instance AthleteLens CommentSummary AthleteSummary where
+  athlete commentSummary =
+    ( commentSummaryAthlete commentSummary
+    , \ commentSummaryAthlete' -> commentSummary { commentSummaryAthlete = commentSummaryAthlete' }
+    )
+
+class AthleteNameLens a b | a -> b where
+  athleteName :: Lens a b
+instance AthleteNameLens SegmentLeaderboardEntry Text where
+  athleteName segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryAthleteName segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryAthleteName' -> segmentLeaderboardEntry { segmentLeaderboardEntryAthleteName = segmentLeaderboardEntryAthleteName' }
+    )
+
+class AthleteProfileLens a b | a -> b where
+  athleteProfile :: Lens a b
+instance AthleteProfileLens SegmentLeaderboardEntry Text where
+  athleteProfile segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryAthleteProfile segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryAthleteProfile' -> segmentLeaderboardEntry { segmentLeaderboardEntryAthleteProfile = segmentLeaderboardEntryAthleteProfile' }
+    )
+
+class AverageCadenceLens a b | a -> b where
+  averageCadence :: Lens a b
+instance AverageCadenceLens EffortDetailed (Maybe Double) where
+  averageCadence effortDetailed =
+    ( effortDetailedAverageCadence effortDetailed
+    , \ effortDetailedAverageCadence' -> effortDetailed { effortDetailedAverageCadence = effortDetailedAverageCadence' }
+    )
+
+class AverageGradeLens a b | a -> b where
+  averageGrade :: Lens a b
+instance AverageGradeLens SegmentDetailed Double where
+  averageGrade segmentDetailed =
+    ( segmentDetailedAverageGrade segmentDetailed
+    , \ segmentDetailedAverageGrade' -> segmentDetailed { segmentDetailedAverageGrade = segmentDetailedAverageGrade' }
+    )
+instance AverageGradeLens SegmentSummary Double where
+  averageGrade segmentSummary =
+    ( segmentSummaryAverageGrade segmentSummary
+    , \ segmentSummaryAverageGrade' -> segmentSummary { segmentSummaryAverageGrade = segmentSummaryAverageGrade' }
+    )
+
+class AverageHeartrateLens a b | a -> b where
+  averageHeartrate :: Lens a b
+instance AverageHeartrateLens EffortDetailed (Maybe Double) where
+  averageHeartrate effortDetailed =
+    ( effortDetailedAverageHeartrate effortDetailed
+    , \ effortDetailedAverageHeartrate' -> effortDetailed { effortDetailedAverageHeartrate = effortDetailedAverageHeartrate' }
+    )
+
+class AverageHrLens a b | a -> b where
+  averageHr :: Lens a b
+instance AverageHrLens SegmentLeaderboardEntry Double where
+  averageHr segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryAverageHr segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryAverageHr' -> segmentLeaderboardEntry { segmentLeaderboardEntryAverageHr = segmentLeaderboardEntryAverageHr' }
+    )
+
+class AverageSpeedLens a b | a -> b where
+  averageSpeed :: Lens a b
+instance AverageSpeedLens ActivityDetailed Double where
   averageSpeed activityDetailed =
     ( activityDetailedAverageSpeed activityDetailed
-    , \ averageSpeed' -> activityDetailed { activityDetailedAverageSpeed = averageSpeed' }
+    , \ activityDetailedAverageSpeed' -> activityDetailed { activityDetailedAverageSpeed = activityDetailedAverageSpeed' }
     )
+instance AverageSpeedLens ActivitySummary Double where
+  averageSpeed activitySummary =
+    ( activitySummaryAverageSpeed activitySummary
+    , \ activitySummaryAverageSpeed' -> activitySummary { activitySummaryAverageSpeed = activitySummaryAverageSpeed' }
+    )
+instance AverageSpeedLens ActivityLapSummary Double where
+  averageSpeed activityLapSummary =
+    ( activityLapSummaryAverageSpeed activityLapSummary
+    , \ activityLapSummaryAverageSpeed' -> activityLapSummary { activityLapSummaryAverageSpeed = activityLapSummaryAverageSpeed' }
+    )
+
+class AverageWattsLens a b | a -> b where
+  averageWatts :: Lens a b
 instance AverageWattsLens ActivityDetailed (Maybe Double) where
   averageWatts activityDetailed =
     ( activityDetailedAverageWatts activityDetailed
-    , \ averageWatts' -> activityDetailed { activityDetailedAverageWatts = averageWatts' }
-    )
-instance CaloriesLens ActivityDetailed (Double) where
-  calories activityDetailed =
-    ( activityDetailedCalories activityDetailed
-    , \ calories' -> activityDetailed { activityDetailedCalories = calories' }
-    )
-instance CommentCountLens ActivityDetailed (Integer) where
-  commentCount activityDetailed =
-    ( activityDetailedCommentCount activityDetailed
-    , \ commentCount' -> activityDetailed { activityDetailedCommentCount = commentCount' }
-    )
-instance CommuteLens ActivityDetailed (Bool) where
-  commute activityDetailed =
-    ( activityDetailedCommute activityDetailed
-    , \ commute' -> activityDetailed { activityDetailedCommute = commute' }
-    )
-instance DescriptionLens ActivityDetailed (Text) where
-  description activityDetailed =
-    ( activityDetailedDescription activityDetailed
-    , \ description' -> activityDetailed { activityDetailedDescription = description' }
-    )
-instance DistanceLens ActivityDetailed (Double) where
-  distance activityDetailed =
-    ( activityDetailedDistance activityDetailed
-    , \ distance' -> activityDetailed { activityDetailedDistance = distance' }
-    )
-instance ElapsedTimeLens ActivityDetailed (Integer) where
-  elapsedTime activityDetailed =
-    ( activityDetailedElapsedTime activityDetailed
-    , \ elapsedTime' -> activityDetailed { activityDetailedElapsedTime = elapsedTime' }
-    )
-instance EndLatlngLens ActivityDetailed (Maybe (Double, Double)) where
-  endLatlng activityDetailed =
-    ( activityDetailedEndLatlng activityDetailed
-    , \ endLatlng' -> activityDetailed { activityDetailedEndLatlng = endLatlng' }
-    )
-instance ExternalIdLens ActivityDetailed (Maybe Text) where
-  externalId activityDetailed =
-    ( activityDetailedExternalId activityDetailed
-    , \ externalId' -> activityDetailed { activityDetailedExternalId = externalId' }
-    )
-instance FlaggedLens ActivityDetailed (Bool) where
-  flagged activityDetailed =
-    ( activityDetailedFlagged activityDetailed
-    , \ flagged' -> activityDetailed { activityDetailedFlagged = flagged' }
-    )
-instance GearLens ActivityDetailed (GearSummary) where
-  gear activityDetailed =
-    ( activityDetailedGear activityDetailed
-    , \ gear' -> activityDetailed { activityDetailedGear = gear' }
-    )
-instance GearIdLens ActivityDetailed (Maybe Text) where
-  gearId activityDetailed =
-    ( activityDetailedGearId activityDetailed
-    , \ gearId' -> activityDetailed { activityDetailedGearId = gearId' }
-    )
-instance HasKudoedLens ActivityDetailed (Bool) where
-  hasKudoed activityDetailed =
-    ( activityDetailedHasKudoed activityDetailed
-    , \ hasKudoed' -> activityDetailed { activityDetailedHasKudoed = hasKudoed' }
-    )
-instance IdLens ActivityDetailed (Integer) where
-  id activityDetailed =
-    ( activityDetailedId activityDetailed
-    , \ id' -> activityDetailed { activityDetailedId = id' }
-    )
-instance InstagramPrimaryPhotoLens ActivityDetailed (Text) where
-  instagramPrimaryPhoto activityDetailed =
-    ( activityDetailedInstagramPrimaryPhoto activityDetailed
-    , \ instagramPrimaryPhoto' -> activityDetailed { activityDetailedInstagramPrimaryPhoto = instagramPrimaryPhoto' }
-    )
-instance KilojoulesLens ActivityDetailed (Maybe Double) where
-  kilojoules activityDetailed =
-    ( activityDetailedKilojoules activityDetailed
-    , \ kilojoules' -> activityDetailed { activityDetailedKilojoules = kilojoules' }
-    )
-instance LocationCityLens ActivityDetailed (Maybe Text) where
-  locationCity activityDetailed =
-    ( activityDetailedLocationCity activityDetailed
-    , \ locationCity' -> activityDetailed { activityDetailedLocationCity = locationCity' }
-    )
-instance LocationCountryLens ActivityDetailed (Text) where
-  locationCountry activityDetailed =
-    ( activityDetailedLocationCountry activityDetailed
-    , \ locationCountry' -> activityDetailed { activityDetailedLocationCountry = locationCountry' }
-    )
-instance LocationStateLens ActivityDetailed (Maybe Text) where
-  locationState activityDetailed =
-    ( activityDetailedLocationState activityDetailed
-    , \ locationState' -> activityDetailed { activityDetailedLocationState = locationState' }
-    )
-instance ManualLens ActivityDetailed (Bool) where
-  manual activityDetailed =
-    ( activityDetailedManual activityDetailed
-    , \ manual' -> activityDetailed { activityDetailedManual = manual' }
-    )
-instance MapLens ActivityDetailed (PolylineDetailed) where
-  map activityDetailed =
-    ( activityDetailedMap activityDetailed
-    , \ map' -> activityDetailed { activityDetailedMap = map' }
-    )
-instance MaxSpeedLens ActivityDetailed (Double) where
-  maxSpeed activityDetailed =
-    ( activityDetailedMaxSpeed activityDetailed
-    , \ maxSpeed' -> activityDetailed { activityDetailedMaxSpeed = maxSpeed' }
-    )
-instance MovingTimeLens ActivityDetailed (Integer) where
-  movingTime activityDetailed =
-    ( activityDetailedMovingTime activityDetailed
-    , \ movingTime' -> activityDetailed { activityDetailedMovingTime = movingTime' }
-    )
-instance NameLens ActivityDetailed (Text) where
-  name activityDetailed =
-    ( activityDetailedName activityDetailed
-    , \ name' -> activityDetailed { activityDetailedName = name' }
-    )
-instance PhotoCountLens ActivityDetailed (Integer) where
-  photoCount activityDetailed =
-    ( activityDetailedPhotoCount activityDetailed
-    , \ photoCount' -> activityDetailed { activityDetailedPhotoCount = photoCount' }
-    )
-instance PrivateLens ActivityDetailed (Bool) where
-  private activityDetailed =
-    ( activityDetailedPrivate activityDetailed
-    , \ private' -> activityDetailed { activityDetailedPrivate = private' }
-    )
-instance ResourceStateLens ActivityDetailed (Integer) where
-  resourceState activityDetailed =
-    ( activityDetailedResourceState activityDetailed
-    , \ resourceState' -> activityDetailed { activityDetailedResourceState = resourceState' }
-    )
-instance SegmentEffortsLens ActivityDetailed ([EffortDetailed]) where
-  segmentEfforts activityDetailed =
-    ( activityDetailedSegmentEfforts activityDetailed
-    , \ segmentEfforts' -> activityDetailed { activityDetailedSegmentEfforts = segmentEfforts' }
-    )
-instance StartDateLens ActivityDetailed (UTCTime) where
-  startDate activityDetailed =
-    ( activityDetailedStartDate activityDetailed
-    , \ startDate' -> activityDetailed { activityDetailedStartDate = startDate' }
-    )
-instance StartDateLocalLens ActivityDetailed (UTCTime) where
-  startDateLocal activityDetailed =
-    ( activityDetailedStartDateLocal activityDetailed
-    , \ startDateLocal' -> activityDetailed { activityDetailedStartDateLocal = startDateLocal' }
-    )
-instance StartLatitudeLens ActivityDetailed (Double) where
-  startLatitude activityDetailed =
-    ( activityDetailedStartLatitude activityDetailed
-    , \ startLatitude' -> activityDetailed { activityDetailedStartLatitude = startLatitude' }
-    )
-instance StartLatlngLens ActivityDetailed (Maybe (Double, Double)) where
-  startLatlng activityDetailed =
-    ( activityDetailedStartLatlng activityDetailed
-    , \ startLatlng' -> activityDetailed { activityDetailedStartLatlng = startLatlng' }
-    )
-instance StartLongitudeLens ActivityDetailed (Double) where
-  startLongitude activityDetailed =
-    ( activityDetailedStartLongitude activityDetailed
-    , \ startLongitude' -> activityDetailed { activityDetailedStartLongitude = startLongitude' }
-    )
-instance TimezoneLens ActivityDetailed (Text) where
-  timezone activityDetailed =
-    ( activityDetailedTimezone activityDetailed
-    , \ timezone' -> activityDetailed { activityDetailedTimezone = timezone' }
-    )
-instance TotalElevationGainLens ActivityDetailed (Double) where
-  totalElevationGain activityDetailed =
-    ( activityDetailedTotalElevationGain activityDetailed
-    , \ totalElevationGain' -> activityDetailed { activityDetailedTotalElevationGain = totalElevationGain' }
-    )
-instance TrainerLens ActivityDetailed (Bool) where
-  trainer activityDetailed =
-    ( activityDetailedTrainer activityDetailed
-    , \ trainer' -> activityDetailed { activityDetailedTrainer = trainer' }
-    )
-instance TruncatedLens ActivityDetailed (Integer) where
-  truncated activityDetailed =
-    ( activityDetailedTruncated activityDetailed
-    , \ truncated' -> activityDetailed { activityDetailedTruncated = truncated' }
-    )
-instance TypeLens ActivityDetailed (Text) where
-  type' activityDetailed =
-    ( activityDetailedType activityDetailed
-    , \ type'' -> activityDetailed { activityDetailedType = type'' }
-    )
-instance UploadIdLens ActivityDetailed (Maybe Integer) where
-  uploadId activityDetailed =
-    ( activityDetailedUploadId activityDetailed
-    , \ uploadId' -> activityDetailed { activityDetailedUploadId = uploadId' }
-    )
-
--- ** ActivityLapSummary
-
-instance ActivityIdLens ActivityLapSummary (Integer) where
-  activityId activityLapSummary =
-    ( activityLapSummaryActivityId activityLapSummary
-    , \ activityId' -> activityLapSummary { activityLapSummaryActivityId = activityId' }
-    )
-instance AthleteIdLens ActivityLapSummary (Integer) where
-  athleteId activityLapSummary =
-    ( activityLapSummaryAthleteId activityLapSummary
-    , \ athleteId' -> activityLapSummary { activityLapSummaryAthleteId = athleteId' }
-    )
-instance AverageSpeedLens ActivityLapSummary (Double) where
-  averageSpeed activityLapSummary =
-    ( activityLapSummaryAverageSpeed activityLapSummary
-    , \ averageSpeed' -> activityLapSummary { activityLapSummaryAverageSpeed = averageSpeed' }
-    )
-instance AverageWattsLens ActivityLapSummary (Double) where
-  averageWatts activityLapSummary =
-    ( activityLapSummaryAverageWatts activityLapSummary
-    , \ averageWatts' -> activityLapSummary { activityLapSummaryAverageWatts = averageWatts' }
-    )
-instance DistanceLens ActivityLapSummary (Double) where
-  distance activityLapSummary =
-    ( activityLapSummaryDistance activityLapSummary
-    , \ distance' -> activityLapSummary { activityLapSummaryDistance = distance' }
-    )
-instance ElapsedTimeLens ActivityLapSummary (Integer) where
-  elapsedTime activityLapSummary =
-    ( activityLapSummaryElapsedTime activityLapSummary
-    , \ elapsedTime' -> activityLapSummary { activityLapSummaryElapsedTime = elapsedTime' }
-    )
-instance EndIndexLens ActivityLapSummary (Integer) where
-  endIndex activityLapSummary =
-    ( activityLapSummaryEndIndex activityLapSummary
-    , \ endIndex' -> activityLapSummary { activityLapSummaryEndIndex = endIndex' }
-    )
-instance IdLens ActivityLapSummary (Integer) where
-  id activityLapSummary =
-    ( activityLapSummaryId activityLapSummary
-    , \ id' -> activityLapSummary { activityLapSummaryId = id' }
-    )
-instance LapIndexLens ActivityLapSummary (Integer) where
-  lapIndex activityLapSummary =
-    ( activityLapSummaryLapIndex activityLapSummary
-    , \ lapIndex' -> activityLapSummary { activityLapSummaryLapIndex = lapIndex' }
-    )
-instance MaxSpeedLens ActivityLapSummary (Double) where
-  maxSpeed activityLapSummary =
-    ( activityLapSummaryMaxSpeed activityLapSummary
-    , \ maxSpeed' -> activityLapSummary { activityLapSummaryMaxSpeed = maxSpeed' }
-    )
-instance MovingTimeLens ActivityLapSummary (Double) where
-  movingTime activityLapSummary =
-    ( activityLapSummaryMovingTime activityLapSummary
-    , \ movingTime' -> activityLapSummary { activityLapSummaryMovingTime = movingTime' }
-    )
-instance NameLens ActivityLapSummary (Text) where
-  name activityLapSummary =
-    ( activityLapSummaryName activityLapSummary
-    , \ name' -> activityLapSummary { activityLapSummaryName = name' }
-    )
-instance ResourceStateLens ActivityLapSummary (Integer) where
-  resourceState activityLapSummary =
-    ( activityLapSummaryResourceState activityLapSummary
-    , \ resourceState' -> activityLapSummary { activityLapSummaryResourceState = resourceState' }
-    )
-instance StartDateLens ActivityLapSummary (UTCTime) where
-  startDate activityLapSummary =
-    ( activityLapSummaryStartDate activityLapSummary
-    , \ startDate' -> activityLapSummary { activityLapSummaryStartDate = startDate' }
-    )
-instance StartDateLocalLens ActivityLapSummary (UTCTime) where
-  startDateLocal activityLapSummary =
-    ( activityLapSummaryStartDateLocal activityLapSummary
-    , \ startDateLocal' -> activityLapSummary { activityLapSummaryStartDateLocal = startDateLocal' }
-    )
-instance StartIndexLens ActivityLapSummary (Integer) where
-  startIndex activityLapSummary =
-    ( activityLapSummaryStartIndex activityLapSummary
-    , \ startIndex' -> activityLapSummary { activityLapSummaryStartIndex = startIndex' }
-    )
-instance TotalElevationGainLens ActivityLapSummary (Double) where
-  totalElevationGain activityLapSummary =
-    ( activityLapSummaryTotalElevationGain activityLapSummary
-    , \ totalElevationGain' -> activityLapSummary { activityLapSummaryTotalElevationGain = totalElevationGain' }
-    )
-
--- ** ActivitySummary
-
-instance AchievementCountLens ActivitySummary (Integer) where
-  achievementCount activitySummary =
-    ( activitySummaryAchievementCount activitySummary
-    , \ achievementCount' -> activitySummary { activitySummaryAchievementCount = achievementCount' }
-    )
-instance AthleteLens ActivitySummary (AthleteMeta) where
-  athlete activitySummary =
-    ( activitySummaryAthlete activitySummary
-    , \ athlete' -> activitySummary { activitySummaryAthlete = athlete' }
-    )
-instance AthleteCountLens ActivitySummary (Integer) where
-  athleteCount activitySummary =
-    ( activitySummaryAthleteCount activitySummary
-    , \ athleteCount' -> activitySummary { activitySummaryAthleteCount = athleteCount' }
-    )
-instance AverageSpeedLens ActivitySummary (Double) where
-  averageSpeed activitySummary =
-    ( activitySummaryAverageSpeed activitySummary
-    , \ averageSpeed' -> activitySummary { activitySummaryAverageSpeed = averageSpeed' }
+    , \ activityDetailedAverageWatts' -> activityDetailed { activityDetailedAverageWatts = activityDetailedAverageWatts' }
     )
 instance AverageWattsLens ActivitySummary (Maybe Double) where
   averageWatts activitySummary =
     ( activitySummaryAverageWatts activitySummary
-    , \ averageWatts' -> activitySummary { activitySummaryAverageWatts = averageWatts' }
-    )
-instance CommentCountLens ActivitySummary (Integer) where
-  commentCount activitySummary =
-    ( activitySummaryCommentCount activitySummary
-    , \ commentCount' -> activitySummary { activitySummaryCommentCount = commentCount' }
-    )
-instance CommuteLens ActivitySummary (Bool) where
-  commute activitySummary =
-    ( activitySummaryCommute activitySummary
-    , \ commute' -> activitySummary { activitySummaryCommute = commute' }
-    )
-instance DistanceLens ActivitySummary (Double) where
-  distance activitySummary =
-    ( activitySummaryDistance activitySummary
-    , \ distance' -> activitySummary { activitySummaryDistance = distance' }
-    )
-instance ElapsedTimeLens ActivitySummary (Integer) where
-  elapsedTime activitySummary =
-    ( activitySummaryElapsedTime activitySummary
-    , \ elapsedTime' -> activitySummary { activitySummaryElapsedTime = elapsedTime' }
-    )
-instance EndLatlngLens ActivitySummary (Maybe (Double, Double)) where
-  endLatlng activitySummary =
-    ( activitySummaryEndLatlng activitySummary
-    , \ endLatlng' -> activitySummary { activitySummaryEndLatlng = endLatlng' }
-    )
-instance ExternalIdLens ActivitySummary (Maybe Text) where
-  externalId activitySummary =
-    ( activitySummaryExternalId activitySummary
-    , \ externalId' -> activitySummary { activitySummaryExternalId = externalId' }
-    )
-instance FlaggedLens ActivitySummary (Bool) where
-  flagged activitySummary =
-    ( activitySummaryFlagged activitySummary
-    , \ flagged' -> activitySummary { activitySummaryFlagged = flagged' }
-    )
-instance GearIdLens ActivitySummary (Maybe Text) where
-  gearId activitySummary =
-    ( activitySummaryGearId activitySummary
-    , \ gearId' -> activitySummary { activitySummaryGearId = gearId' }
-    )
-instance HasKudoedLens ActivitySummary (Bool) where
-  hasKudoed activitySummary =
-    ( activitySummaryHasKudoed activitySummary
-    , \ hasKudoed' -> activitySummary { activitySummaryHasKudoed = hasKudoed' }
-    )
-instance IdLens ActivitySummary (Integer) where
-  id activitySummary =
-    ( activitySummaryId activitySummary
-    , \ id' -> activitySummary { activitySummaryId = id' }
-    )
-instance KilojoulesLens ActivitySummary (Maybe Double) where
-  kilojoules activitySummary =
-    ( activitySummaryKilojoules activitySummary
-    , \ kilojoules' -> activitySummary { activitySummaryKilojoules = kilojoules' }
-    )
-instance KudosCountLens ActivitySummary (Integer) where
-  kudosCount activitySummary =
-    ( activitySummaryKudosCount activitySummary
-    , \ kudosCount' -> activitySummary { activitySummaryKudosCount = kudosCount' }
-    )
-instance LocationCityLens ActivitySummary (Maybe Text) where
-  locationCity activitySummary =
-    ( activitySummaryLocationCity activitySummary
-    , \ locationCity' -> activitySummary { activitySummaryLocationCity = locationCity' }
-    )
-instance LocationCountryLens ActivitySummary (Text) where
-  locationCountry activitySummary =
-    ( activitySummaryLocationCountry activitySummary
-    , \ locationCountry' -> activitySummary { activitySummaryLocationCountry = locationCountry' }
-    )
-instance LocationStateLens ActivitySummary (Maybe Text) where
-  locationState activitySummary =
-    ( activitySummaryLocationState activitySummary
-    , \ locationState' -> activitySummary { activitySummaryLocationState = locationState' }
-    )
-instance ManualLens ActivitySummary (Bool) where
-  manual activitySummary =
-    ( activitySummaryManual activitySummary
-    , \ manual' -> activitySummary { activitySummaryManual = manual' }
-    )
-instance MapLens ActivitySummary (PolylineSummary) where
-  map activitySummary =
-    ( activitySummaryMap activitySummary
-    , \ map' -> activitySummary { activitySummaryMap = map' }
-    )
-instance MaxSpeedLens ActivitySummary (Double) where
-  maxSpeed activitySummary =
-    ( activitySummaryMaxSpeed activitySummary
-    , \ maxSpeed' -> activitySummary { activitySummaryMaxSpeed = maxSpeed' }
-    )
-instance MovingTimeLens ActivitySummary (Integer) where
-  movingTime activitySummary =
-    ( activitySummaryMovingTime activitySummary
-    , \ movingTime' -> activitySummary { activitySummaryMovingTime = movingTime' }
-    )
-instance NameLens ActivitySummary (Text) where
-  name activitySummary =
-    ( activitySummaryName activitySummary
-    , \ name' -> activitySummary { activitySummaryName = name' }
-    )
-instance PhotoCountLens ActivitySummary (Integer) where
-  photoCount activitySummary =
-    ( activitySummaryPhotoCount activitySummary
-    , \ photoCount' -> activitySummary { activitySummaryPhotoCount = photoCount' }
-    )
-instance PrivateLens ActivitySummary (Bool) where
-  private activitySummary =
-    ( activitySummaryPrivate activitySummary
-    , \ private' -> activitySummary { activitySummaryPrivate = private' }
-    )
-instance ResourceStateLens ActivitySummary (Integer) where
-  resourceState activitySummary =
-    ( activitySummaryResourceState activitySummary
-    , \ resourceState' -> activitySummary { activitySummaryResourceState = resourceState' }
-    )
-instance StartDateLens ActivitySummary (UTCTime) where
-  startDate activitySummary =
-    ( activitySummaryStartDate activitySummary
-    , \ startDate' -> activitySummary { activitySummaryStartDate = startDate' }
-    )
-instance StartDateLocalLens ActivitySummary (UTCTime) where
-  startDateLocal activitySummary =
-    ( activitySummaryStartDateLocal activitySummary
-    , \ startDateLocal' -> activitySummary { activitySummaryStartDateLocal = startDateLocal' }
-    )
-instance StartLatitudeLens ActivitySummary (Double) where
-  startLatitude activitySummary =
-    ( activitySummaryStartLatitude activitySummary
-    , \ startLatitude' -> activitySummary { activitySummaryStartLatitude = startLatitude' }
-    )
-instance StartLatlngLens ActivitySummary (Maybe (Double, Double)) where
-  startLatlng activitySummary =
-    ( activitySummaryStartLatlng activitySummary
-    , \ startLatlng' -> activitySummary { activitySummaryStartLatlng = startLatlng' }
-    )
-instance StartLongitudeLens ActivitySummary (Double) where
-  startLongitude activitySummary =
-    ( activitySummaryStartLongitude activitySummary
-    , \ startLongitude' -> activitySummary { activitySummaryStartLongitude = startLongitude' }
-    )
-instance TimezoneLens ActivitySummary (Text) where
-  timezone activitySummary =
-    ( activitySummaryTimezone activitySummary
-    , \ timezone' -> activitySummary { activitySummaryTimezone = timezone' }
-    )
-instance TotalElevationGainLens ActivitySummary (Double) where
-  totalElevationGain activitySummary =
-    ( activitySummaryTotalElevationGain activitySummary
-    , \ totalElevationGain' -> activitySummary { activitySummaryTotalElevationGain = totalElevationGain' }
-    )
-instance TrainerLens ActivitySummary (Bool) where
-  trainer activitySummary =
-    ( activitySummaryTrainer activitySummary
-    , \ trainer' -> activitySummary { activitySummaryTrainer = trainer' }
-    )
-instance TypeLens ActivitySummary (Text) where
-  type' activitySummary =
-    ( activitySummaryType activitySummary
-    , \ type'' -> activitySummary { activitySummaryType = type'' }
-    )
-instance UploadIdLens ActivitySummary (Maybe Integer) where
-  uploadId activitySummary =
-    ( activitySummaryUploadId activitySummary
-    , \ uploadId' -> activitySummary { activitySummaryUploadId = uploadId' }
-    )
-
--- ** ActivityZoneDetailed
-
-instance DistributionBucketsLens ActivityZoneDetailed ([ActivityZoneDistributionBucket]) where
-  distributionBuckets activityZoneDetailed =
-    ( activityZoneDetailedDistributionBuckets activityZoneDetailed
-    , \ distributionBuckets' -> activityZoneDetailed { activityZoneDetailedDistributionBuckets = distributionBuckets' }
-    )
-instance ResourceStateLens ActivityZoneDetailed (Integer) where
-  resourceState activityZoneDetailed =
-    ( activityZoneDetailedResourceState activityZoneDetailed
-    , \ resourceState' -> activityZoneDetailed { activityZoneDetailedResourceState = resourceState' }
-    )
-instance SensorBasedLens ActivityZoneDetailed (Bool) where
-  sensorBased activityZoneDetailed =
-    ( activityZoneDetailedSensorBased activityZoneDetailed
-    , \ sensorBased' -> activityZoneDetailed { activityZoneDetailedSensorBased = sensorBased' }
-    )
-instance TypeLens ActivityZoneDetailed (Text) where
-  type' activityZoneDetailed =
-    ( activityZoneDetailedType activityZoneDetailed
-    , \ type'' -> activityZoneDetailed { activityZoneDetailedType = type'' }
-    )
-
--- ** ActivityZoneDistributionBucket
-
-instance MaxLens ActivityZoneDistributionBucket (Integer) where
-  max activityZoneDistributionBucket =
-    ( activityZoneDistributionBucketMax activityZoneDistributionBucket
-    , \ max' -> activityZoneDistributionBucket { activityZoneDistributionBucketMax = max' }
-    )
-instance MinLens ActivityZoneDistributionBucket (Integer) where
-  min activityZoneDistributionBucket =
-    ( activityZoneDistributionBucketMin activityZoneDistributionBucket
-    , \ min' -> activityZoneDistributionBucket { activityZoneDistributionBucketMin = min' }
-    )
-instance TimeLens ActivityZoneDistributionBucket (Integer) where
-  time activityZoneDistributionBucket =
-    ( activityZoneDistributionBucketTime activityZoneDistributionBucket
-    , \ time' -> activityZoneDistributionBucket { activityZoneDistributionBucketTime = time' }
-    )
-
--- ** AthleteDetailed
-
-instance BikesLens AthleteDetailed ([GearSummary]) where
-  bikes athleteDetailed =
-    ( athleteDetailedBikes athleteDetailed
-    , \ bikes' -> athleteDetailed { athleteDetailedBikes = bikes' }
-    )
-instance CityLens AthleteDetailed (Text) where
-  city athleteDetailed =
-    ( athleteDetailedCity athleteDetailed
-    , \ city' -> athleteDetailed { athleteDetailedCity = city' }
-    )
-instance ClubsLens AthleteDetailed ([ClubSummary]) where
-  clubs athleteDetailed =
-    ( athleteDetailedClubs athleteDetailed
-    , \ clubs' -> athleteDetailed { athleteDetailedClubs = clubs' }
-    )
-instance CountryLens AthleteDetailed (Text) where
-  country athleteDetailed =
-    ( athleteDetailedCountry athleteDetailed
-    , \ country' -> athleteDetailed { athleteDetailedCountry = country' }
-    )
-instance CreatedAtLens AthleteDetailed (UTCTime) where
-  createdAt athleteDetailed =
-    ( athleteDetailedCreatedAt athleteDetailed
-    , \ createdAt' -> athleteDetailed { athleteDetailedCreatedAt = createdAt' }
-    )
-instance DatePreferenceLens AthleteDetailed (Text) where
-  datePreference athleteDetailed =
-    ( athleteDetailedDatePreference athleteDetailed
-    , \ datePreference' -> athleteDetailed { athleteDetailedDatePreference = datePreference' }
-    )
-instance EmailLens AthleteDetailed (Text) where
-  email athleteDetailed =
-    ( athleteDetailedEmail athleteDetailed
-    , \ email' -> athleteDetailed { athleteDetailedEmail = email' }
-    )
-instance FirstnameLens AthleteDetailed (Text) where
-  firstname athleteDetailed =
-    ( athleteDetailedFirstname athleteDetailed
-    , \ firstname' -> athleteDetailed { athleteDetailedFirstname = firstname' }
-    )
-instance FollowerLens AthleteDetailed (Maybe Text) where
-  follower athleteDetailed =
-    ( athleteDetailedFollower athleteDetailed
-    , \ follower' -> athleteDetailed { athleteDetailedFollower = follower' }
-    )
-instance FollowerCountLens AthleteDetailed (Integer) where
-  followerCount athleteDetailed =
-    ( athleteDetailedFollowerCount athleteDetailed
-    , \ followerCount' -> athleteDetailed { athleteDetailedFollowerCount = followerCount' }
-    )
-instance FriendLens AthleteDetailed (Maybe Text) where
-  friend athleteDetailed =
-    ( athleteDetailedFriend athleteDetailed
-    , \ friend' -> athleteDetailed { athleteDetailedFriend = friend' }
-    )
-instance FriendCountLens AthleteDetailed (Integer) where
-  friendCount athleteDetailed =
-    ( athleteDetailedFriendCount athleteDetailed
-    , \ friendCount' -> athleteDetailed { athleteDetailedFriendCount = friendCount' }
-    )
-instance FtpLens AthleteDetailed (Maybe Integer) where
-  ftp athleteDetailed =
-    ( athleteDetailedFtp athleteDetailed
-    , \ ftp' -> athleteDetailed { athleteDetailedFtp = ftp' }
-    )
-instance IdLens AthleteDetailed (Integer) where
-  id athleteDetailed =
-    ( athleteDetailedId athleteDetailed
-    , \ id' -> athleteDetailed { athleteDetailedId = id' }
-    )
-instance LastnameLens AthleteDetailed (Text) where
-  lastname athleteDetailed =
-    ( athleteDetailedLastname athleteDetailed
-    , \ lastname' -> athleteDetailed { athleteDetailedLastname = lastname' }
-    )
-instance MeasurementPreferenceLens AthleteDetailed (Text) where
-  measurementPreference athleteDetailed =
-    ( athleteDetailedMeasurementPreference athleteDetailed
-    , \ measurementPreference' -> athleteDetailed { athleteDetailedMeasurementPreference = measurementPreference' }
-    )
-instance MutualFriendCountLens AthleteDetailed (Integer) where
-  mutualFriendCount athleteDetailed =
-    ( athleteDetailedMutualFriendCount athleteDetailed
-    , \ mutualFriendCount' -> athleteDetailed { athleteDetailedMutualFriendCount = mutualFriendCount' }
-    )
-instance PremiumLens AthleteDetailed (Bool) where
-  premium athleteDetailed =
-    ( athleteDetailedPremium athleteDetailed
-    , \ premium' -> athleteDetailed { athleteDetailedPremium = premium' }
-    )
-instance ProfileLens AthleteDetailed (Text) where
-  profile athleteDetailed =
-    ( athleteDetailedProfile athleteDetailed
-    , \ profile' -> athleteDetailed { athleteDetailedProfile = profile' }
-    )
-instance ProfileMediumLens AthleteDetailed (Text) where
-  profileMedium athleteDetailed =
-    ( athleteDetailedProfileMedium athleteDetailed
-    , \ profileMedium' -> athleteDetailed { athleteDetailedProfileMedium = profileMedium' }
-    )
-instance ResourceStateLens AthleteDetailed (Integer) where
-  resourceState athleteDetailed =
-    ( athleteDetailedResourceState athleteDetailed
-    , \ resourceState' -> athleteDetailed { athleteDetailedResourceState = resourceState' }
-    )
-instance SexLens AthleteDetailed (Maybe Char) where
-  sex athleteDetailed =
-    ( athleteDetailedSex athleteDetailed
-    , \ sex' -> athleteDetailed { athleteDetailedSex = sex' }
-    )
-instance ShoesLens AthleteDetailed ([GearSummary]) where
-  shoes athleteDetailed =
-    ( athleteDetailedShoes athleteDetailed
-    , \ shoes' -> athleteDetailed { athleteDetailedShoes = shoes' }
-    )
-instance StateLens AthleteDetailed (Text) where
-  state athleteDetailed =
-    ( athleteDetailedState athleteDetailed
-    , \ state' -> athleteDetailed { athleteDetailedState = state' }
-    )
-instance UpdatedAtLens AthleteDetailed (UTCTime) where
-  updatedAt athleteDetailed =
-    ( athleteDetailedUpdatedAt athleteDetailed
-    , \ updatedAt' -> athleteDetailed { athleteDetailedUpdatedAt = updatedAt' }
-    )
-
--- ** AthleteMeta
-
-instance IdLens AthleteMeta (Integer) where
-  id athleteMeta =
-    ( athleteMetaId athleteMeta
-    , \ id' -> athleteMeta { athleteMetaId = id' }
-    )
-instance ResourceStateLens AthleteMeta (Integer) where
-  resourceState athleteMeta =
-    ( athleteMetaResourceState athleteMeta
-    , \ resourceState' -> athleteMeta { athleteMetaResourceState = resourceState' }
-    )
-
--- ** AthleteSummary
-
-instance CityLens AthleteSummary (Maybe Text) where
-  city athleteSummary =
-    ( athleteSummaryCity athleteSummary
-    , \ city' -> athleteSummary { athleteSummaryCity = city' }
-    )
-instance CountryLens AthleteSummary (Maybe Text) where
-  country athleteSummary =
-    ( athleteSummaryCountry athleteSummary
-    , \ country' -> athleteSummary { athleteSummaryCountry = country' }
-    )
-instance CreatedAtLens AthleteSummary (UTCTime) where
-  createdAt athleteSummary =
-    ( athleteSummaryCreatedAt athleteSummary
-    , \ createdAt' -> athleteSummary { athleteSummaryCreatedAt = createdAt' }
-    )
-instance FirstnameLens AthleteSummary (Text) where
-  firstname athleteSummary =
-    ( athleteSummaryFirstname athleteSummary
-    , \ firstname' -> athleteSummary { athleteSummaryFirstname = firstname' }
-    )
-instance FollowerLens AthleteSummary (Maybe Text) where
-  follower athleteSummary =
-    ( athleteSummaryFollower athleteSummary
-    , \ follower' -> athleteSummary { athleteSummaryFollower = follower' }
-    )
-instance FriendLens AthleteSummary (Maybe Text) where
-  friend athleteSummary =
-    ( athleteSummaryFriend athleteSummary
-    , \ friend' -> athleteSummary { athleteSummaryFriend = friend' }
-    )
-instance IdLens AthleteSummary (Integer) where
-  id athleteSummary =
-    ( athleteSummaryId athleteSummary
-    , \ id' -> athleteSummary { athleteSummaryId = id' }
-    )
-instance LastnameLens AthleteSummary (Text) where
-  lastname athleteSummary =
-    ( athleteSummaryLastname athleteSummary
-    , \ lastname' -> athleteSummary { athleteSummaryLastname = lastname' }
-    )
-instance PremiumLens AthleteSummary (Bool) where
-  premium athleteSummary =
-    ( athleteSummaryPremium athleteSummary
-    , \ premium' -> athleteSummary { athleteSummaryPremium = premium' }
-    )
-instance ProfileLens AthleteSummary (Text) where
-  profile athleteSummary =
-    ( athleteSummaryProfile athleteSummary
-    , \ profile' -> athleteSummary { athleteSummaryProfile = profile' }
-    )
-instance ProfileMediumLens AthleteSummary (Text) where
-  profileMedium athleteSummary =
-    ( athleteSummaryProfileMedium athleteSummary
-    , \ profileMedium' -> athleteSummary { athleteSummaryProfileMedium = profileMedium' }
-    )
-instance ResourceStateLens AthleteSummary (Integer) where
-  resourceState athleteSummary =
-    ( athleteSummaryResourceState athleteSummary
-    , \ resourceState' -> athleteSummary { athleteSummaryResourceState = resourceState' }
-    )
-instance SexLens AthleteSummary (Maybe Char) where
-  sex athleteSummary =
-    ( athleteSummarySex athleteSummary
-    , \ sex' -> athleteSummary { athleteSummarySex = sex' }
-    )
-instance StateLens AthleteSummary (Text) where
-  state athleteSummary =
-    ( athleteSummaryState athleteSummary
-    , \ state' -> athleteSummary { athleteSummaryState = state' }
-    )
-instance UpdatedAtLens AthleteSummary (UTCTime) where
-  updatedAt athleteSummary =
-    ( athleteSummaryUpdatedAt athleteSummary
-    , \ updatedAt' -> athleteSummary { athleteSummaryUpdatedAt = updatedAt' }
-    )
-
--- ** ClubDetailed
-
-instance CityLens ClubDetailed (Text) where
-  city clubDetailed =
-    ( clubDetailedCity clubDetailed
-    , \ city' -> clubDetailed { clubDetailedCity = city' }
-    )
-instance ClubTypeLens ClubDetailed (Text) where
-  clubType clubDetailed =
-    ( clubDetailedClubType clubDetailed
-    , \ clubType' -> clubDetailed { clubDetailedClubType = clubType' }
-    )
-instance CountryLens ClubDetailed (Text) where
-  country clubDetailed =
-    ( clubDetailedCountry clubDetailed
-    , \ country' -> clubDetailed { clubDetailedCountry = country' }
-    )
-instance DescriptionLens ClubDetailed (Text) where
-  description clubDetailed =
-    ( clubDetailedDescription clubDetailed
-    , \ description' -> clubDetailed { clubDetailedDescription = description' }
-    )
-instance IdLens ClubDetailed (Integer) where
-  id clubDetailed =
-    ( clubDetailedId clubDetailed
-    , \ id' -> clubDetailed { clubDetailedId = id' }
-    )
-instance MemberCountLens ClubDetailed (Integer) where
-  memberCount clubDetailed =
-    ( clubDetailedMemberCount clubDetailed
-    , \ memberCount' -> clubDetailed { clubDetailedMemberCount = memberCount' }
-    )
-instance NameLens ClubDetailed (Text) where
-  name clubDetailed =
-    ( clubDetailedName clubDetailed
-    , \ name' -> clubDetailed { clubDetailedName = name' }
-    )
-instance PrivateLens ClubDetailed (Bool) where
-  private clubDetailed =
-    ( clubDetailedPrivate clubDetailed
-    , \ private' -> clubDetailed { clubDetailedPrivate = private' }
-    )
-instance ProfileLens ClubDetailed (Text) where
-  profile clubDetailed =
-    ( clubDetailedProfile clubDetailed
-    , \ profile' -> clubDetailed { clubDetailedProfile = profile' }
-    )
-instance ProfileMediumLens ClubDetailed (Text) where
-  profileMedium clubDetailed =
-    ( clubDetailedProfileMedium clubDetailed
-    , \ profileMedium' -> clubDetailed { clubDetailedProfileMedium = profileMedium' }
-    )
-instance ResourceStateLens ClubDetailed (Integer) where
-  resourceState clubDetailed =
-    ( clubDetailedResourceState clubDetailed
-    , \ resourceState' -> clubDetailed { clubDetailedResourceState = resourceState' }
-    )
-instance SportTypeLens ClubDetailed (Text) where
-  sportType clubDetailed =
-    ( clubDetailedSportType clubDetailed
-    , \ sportType' -> clubDetailed { clubDetailedSportType = sportType' }
-    )
-instance StateLens ClubDetailed (Text) where
-  state clubDetailed =
-    ( clubDetailedState clubDetailed
-    , \ state' -> clubDetailed { clubDetailedState = state' }
-    )
-
--- ** ClubSummary
-
-instance IdLens ClubSummary (Integer) where
-  id clubSummary =
-    ( clubSummaryId clubSummary
-    , \ id' -> clubSummary { clubSummaryId = id' }
-    )
-instance NameLens ClubSummary (Text) where
-  name clubSummary =
-    ( clubSummaryName clubSummary
-    , \ name' -> clubSummary { clubSummaryName = name' }
-    )
-instance ProfileLens ClubSummary (Text) where
-  profile clubSummary =
-    ( clubSummaryProfile clubSummary
-    , \ profile' -> clubSummary { clubSummaryProfile = profile' }
-    )
-instance ProfileMediumLens ClubSummary (Text) where
-  profileMedium clubSummary =
-    ( clubSummaryProfileMedium clubSummary
-    , \ profileMedium' -> clubSummary { clubSummaryProfileMedium = profileMedium' }
-    )
-instance ResourceStateLens ClubSummary (Integer) where
-  resourceState clubSummary =
-    ( clubSummaryResourceState clubSummary
-    , \ resourceState' -> clubSummary { clubSummaryResourceState = resourceState' }
-    )
-
--- ** CommentSummary
-
-instance ActivityIdLens CommentSummary (Integer) where
-  activityId commentSummary =
-    ( commentSummaryActivityId commentSummary
-    , \ activityId' -> commentSummary { commentSummaryActivityId = activityId' }
-    )
-instance AthleteLens CommentSummary (AthleteSummary) where
-  athlete commentSummary =
-    ( commentSummaryAthlete commentSummary
-    , \ athlete' -> commentSummary { commentSummaryAthlete = athlete' }
-    )
-instance CreatedAtLens CommentSummary (UTCTime) where
-  createdAt commentSummary =
-    ( commentSummaryCreatedAt commentSummary
-    , \ createdAt' -> commentSummary { commentSummaryCreatedAt = createdAt' }
-    )
-instance IdLens CommentSummary (Integer) where
-  id commentSummary =
-    ( commentSummaryId commentSummary
-    , \ id' -> commentSummary { commentSummaryId = id' }
-    )
-instance ResourceStateLens CommentSummary (Integer) where
-  resourceState commentSummary =
-    ( commentSummaryResourceState commentSummary
-    , \ resourceState' -> commentSummary { commentSummaryResourceState = resourceState' }
-    )
-instance TextLens CommentSummary (Text) where
-  text commentSummary =
-    ( commentSummaryText commentSummary
-    , \ text' -> commentSummary { commentSummaryText = text' }
-    )
-
--- ** DeauthorizationResponse
-
-instance AccessTokenLens DeauthorizationResponse (Text) where
-  accessToken' deauthorizationResponse =
-    ( deauthorizationResponseAccessToken deauthorizationResponse
-    , \ accessToken'' -> deauthorizationResponse { deauthorizationResponseAccessToken = accessToken'' }
-    )
-
--- ** EffortDetailed
-
-instance ActivityIdLens EffortDetailed (Integer) where
-  activityId effortDetailed =
-    ( effortDetailedActivityId effortDetailed
-    , \ activityId' -> effortDetailed { effortDetailedActivityId = activityId' }
-    )
-instance AthleteIdLens EffortDetailed (Integer) where
-  athleteId effortDetailed =
-    ( effortDetailedAthleteId effortDetailed
-    , \ athleteId' -> effortDetailed { effortDetailedAthleteId = athleteId' }
-    )
-instance AverageCadenceLens EffortDetailed (Maybe Double) where
-  averageCadence effortDetailed =
-    ( effortDetailedAverageCadence effortDetailed
-    , \ averageCadence' -> effortDetailed { effortDetailedAverageCadence = averageCadence' }
-    )
-instance AverageHeartrateLens EffortDetailed (Maybe Double) where
-  averageHeartrate effortDetailed =
-    ( effortDetailedAverageHeartrate effortDetailed
-    , \ averageHeartrate' -> effortDetailed { effortDetailedAverageHeartrate = averageHeartrate' }
+    , \ activitySummaryAverageWatts' -> activitySummary { activitySummaryAverageWatts = activitySummaryAverageWatts' }
+    )
+instance AverageWattsLens ActivityLapSummary Double where
+  averageWatts activityLapSummary =
+    ( activityLapSummaryAverageWatts activityLapSummary
+    , \ activityLapSummaryAverageWatts' -> activityLapSummary { activityLapSummaryAverageWatts = activityLapSummaryAverageWatts' }
     )
 instance AverageWattsLens EffortDetailed (Maybe Double) where
   averageWatts effortDetailed =
     ( effortDetailedAverageWatts effortDetailed
-    , \ averageWatts' -> effortDetailed { effortDetailedAverageWatts = averageWatts' }
+    , \ effortDetailedAverageWatts' -> effortDetailed { effortDetailedAverageWatts = effortDetailedAverageWatts' }
     )
-instance DistanceLens EffortDetailed (Double) where
-  distance effortDetailed =
-    ( effortDetailedDistance effortDetailed
-    , \ distance' -> effortDetailed { effortDetailedDistance = distance' }
-    )
-instance ElapsedTimeLens EffortDetailed (Integer) where
-  elapsedTime effortDetailed =
-    ( effortDetailedElapsedTime effortDetailed
-    , \ elapsedTime' -> effortDetailed { effortDetailedElapsedTime = elapsedTime' }
-    )
-instance EndIndexLens EffortDetailed (Integer) where
-  endIndex effortDetailed =
-    ( effortDetailedEndIndex effortDetailed
-    , \ endIndex' -> effortDetailed { effortDetailedEndIndex = endIndex' }
-    )
-instance HiddenLens EffortDetailed (Maybe Bool) where
-  hidden effortDetailed =
-    ( effortDetailedHidden effortDetailed
-    , \ hidden' -> effortDetailed { effortDetailedHidden = hidden' }
-    )
-instance IdLens EffortDetailed (Integer) where
-  id effortDetailed =
-    ( effortDetailedId effortDetailed
-    , \ id' -> effortDetailed { effortDetailedId = id' }
-    )
-instance KomRankLens EffortDetailed (Maybe Integer) where
-  komRank effortDetailed =
-    ( effortDetailedKomRank effortDetailed
-    , \ komRank' -> effortDetailed { effortDetailedKomRank = komRank' }
-    )
-instance Max_heartrateLens EffortDetailed (Maybe Integer) where
-  max_heartrate effortDetailed =
-    ( effortDetailedMax_heartrate effortDetailed
-    , \ max_heartrate' -> effortDetailed { effortDetailedMax_heartrate = max_heartrate' }
-    )
-instance MovingTimeLens EffortDetailed (Integer) where
-  movingTime effortDetailed =
-    ( effortDetailedMovingTime effortDetailed
-    , \ movingTime' -> effortDetailed { effortDetailedMovingTime = movingTime' }
-    )
-instance NameLens EffortDetailed (Text) where
-  name effortDetailed =
-    ( effortDetailedName effortDetailed
-    , \ name' -> effortDetailed { effortDetailedName = name' }
-    )
-instance PrRankLens EffortDetailed (Maybe Integer) where
-  prRank effortDetailed =
-    ( effortDetailedPrRank effortDetailed
-    , \ prRank' -> effortDetailed { effortDetailedPrRank = prRank' }
-    )
-instance ResourceStateLens EffortDetailed (Integer) where
-  resourceState effortDetailed =
-    ( effortDetailedResourceState effortDetailed
-    , \ resourceState' -> effortDetailed { effortDetailedResourceState = resourceState' }
-    )
-instance SegmentLens EffortDetailed (SegmentSummary) where
-  segment effortDetailed =
-    ( effortDetailedSegment effortDetailed
-    , \ segment' -> effortDetailed { effortDetailedSegment = segment' }
-    )
-instance StartDateLens EffortDetailed (UTCTime) where
-  startDate effortDetailed =
-    ( effortDetailedStartDate effortDetailed
-    , \ startDate' -> effortDetailed { effortDetailedStartDate = startDate' }
-    )
-instance StartDateLocalLens EffortDetailed (UTCTime) where
-  startDateLocal effortDetailed =
-    ( effortDetailedStartDateLocal effortDetailed
-    , \ startDateLocal' -> effortDetailed { effortDetailedStartDateLocal = startDateLocal' }
-    )
-instance StartIndexLens EffortDetailed (Integer) where
-  startIndex effortDetailed =
-    ( effortDetailedStartIndex effortDetailed
-    , \ startIndex' -> effortDetailed { effortDetailedStartIndex = startIndex' }
+instance AverageWattsLens SegmentLeaderboardEntry Double where
+  averageWatts segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryAverageWatts segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryAverageWatts' -> segmentLeaderboardEntry { segmentLeaderboardEntryAverageWatts = segmentLeaderboardEntryAverageWatts' }
     )
 
--- ** GearDetailed
+class AvgGradeLens a b | a -> b where
+  avgGrade :: Lens a b
+instance AvgGradeLens SegmentExplorerEntry Double where
+  avgGrade segmentExplorerEntry =
+    ( segmentExplorerEntryAvgGrade segmentExplorerEntry
+    , \ segmentExplorerEntryAvgGrade' -> segmentExplorerEntry { segmentExplorerEntryAvgGrade = segmentExplorerEntryAvgGrade' }
+    )
 
-instance BrandNameLens GearDetailed (Text) where
+class BikesLens a b | a -> b where
+  bikes :: Lens a b
+instance BikesLens AthleteDetailed [GearSummary] where
+  bikes athleteDetailed =
+    ( athleteDetailedBikes athleteDetailed
+    , \ athleteDetailedBikes' -> athleteDetailed { athleteDetailedBikes = athleteDetailedBikes' }
+    )
+
+class BrandNameLens a b | a -> b where
+  brandName :: Lens a b
+instance BrandNameLens GearDetailed Text where
   brandName gearDetailed =
     ( gearDetailedBrandName gearDetailed
-    , \ brandName' -> gearDetailed { gearDetailedBrandName = brandName' }
-    )
-instance DescriptionLens GearDetailed (Text) where
-  description gearDetailed =
-    ( gearDetailedDescription gearDetailed
-    , \ description' -> gearDetailed { gearDetailedDescription = description' }
-    )
-instance DistanceLens GearDetailed (Double) where
-  distance gearDetailed =
-    ( gearDetailedDistance gearDetailed
-    , \ distance' -> gearDetailed { gearDetailedDistance = distance' }
-    )
-instance FrameTypeLens GearDetailed (Maybe Integer) where
-  frameType gearDetailed =
-    ( gearDetailedFrameType gearDetailed
-    , \ frameType' -> gearDetailed { gearDetailedFrameType = frameType' }
-    )
-instance IdLens GearDetailed (Text) where
-  id gearDetailed =
-    ( gearDetailedId gearDetailed
-    , \ id' -> gearDetailed { gearDetailedId = id' }
-    )
-instance ModelNameLens GearDetailed (Text) where
-  modelName gearDetailed =
-    ( gearDetailedModelName gearDetailed
-    , \ modelName' -> gearDetailed { gearDetailedModelName = modelName' }
-    )
-instance NameLens GearDetailed (Text) where
-  name gearDetailed =
-    ( gearDetailedName gearDetailed
-    , \ name' -> gearDetailed { gearDetailedName = name' }
-    )
-instance PrimaryLens GearDetailed (Bool) where
-  primary gearDetailed =
-    ( gearDetailedPrimary gearDetailed
-    , \ primary' -> gearDetailed { gearDetailedPrimary = primary' }
-    )
-instance ResourceStateLens GearDetailed (Integer) where
-  resourceState gearDetailed =
-    ( gearDetailedResourceState gearDetailed
-    , \ resourceState' -> gearDetailed { gearDetailedResourceState = resourceState' }
+    , \ gearDetailedBrandName' -> gearDetailed { gearDetailedBrandName = gearDetailedBrandName' }
     )
 
--- ** GearSummary
-
-instance DistanceLens GearSummary (Double) where
-  distance gearSummary =
-    ( gearSummaryDistance gearSummary
-    , \ distance' -> gearSummary { gearSummaryDistance = distance' }
-    )
-instance IdLens GearSummary (Text) where
-  id gearSummary =
-    ( gearSummaryId gearSummary
-    , \ id' -> gearSummary { gearSummaryId = id' }
-    )
-instance NameLens GearSummary (Text) where
-  name gearSummary =
-    ( gearSummaryName gearSummary
-    , \ name' -> gearSummary { gearSummaryName = name' }
-    )
-instance PrimaryLens GearSummary (Bool) where
-  primary gearSummary =
-    ( gearSummaryPrimary gearSummary
-    , \ primary' -> gearSummary { gearSummaryPrimary = primary' }
-    )
-instance ResourceStateLens GearSummary (Integer) where
-  resourceState gearSummary =
-    ( gearSummaryResourceState gearSummary
-    , \ resourceState' -> gearSummary { gearSummaryResourceState = resourceState' }
+class CaloriesLens a b | a -> b where
+  calories :: Lens a b
+instance CaloriesLens ActivityDetailed Double where
+  calories activityDetailed =
+    ( activityDetailedCalories activityDetailed
+    , \ activityDetailedCalories' -> activityDetailed { activityDetailedCalories = activityDetailedCalories' }
     )
 
--- ** PhotoSummary
-
-instance ActivityIdLens PhotoSummary (Integer) where
-  activityId photoSummary =
-    ( photoSummaryActivityId photoSummary
-    , \ activityId' -> photoSummary { photoSummaryActivityId = activityId' }
-    )
-instance CaptionLens PhotoSummary (Text) where
+class CaptionLens a b | a -> b where
+  caption :: Lens a b
+instance CaptionLens PhotoSummary Text where
   caption photoSummary =
     ( photoSummaryCaption photoSummary
-    , \ caption' -> photoSummary { photoSummaryCaption = caption' }
-    )
-instance CreatedAtLens PhotoSummary (UTCTime) where
-  createdAt photoSummary =
-    ( photoSummaryCreatedAt photoSummary
-    , \ createdAt' -> photoSummary { photoSummaryCreatedAt = createdAt' }
-    )
-instance IdLens PhotoSummary (Integer) where
-  id photoSummary =
-    ( photoSummaryId photoSummary
-    , \ id' -> photoSummary { photoSummaryId = id' }
-    )
-instance LocationLens PhotoSummary (Maybe (Double, Double)) where
-  location photoSummary =
-    ( photoSummaryLocation photoSummary
-    , \ location' -> photoSummary { photoSummaryLocation = location' }
-    )
-instance RefLens PhotoSummary (Text) where
-  ref photoSummary =
-    ( photoSummaryRef photoSummary
-    , \ ref' -> photoSummary { photoSummaryRef = ref' }
-    )
-instance ResourceStateLens PhotoSummary (Integer) where
-  resourceState photoSummary =
-    ( photoSummaryResourceState photoSummary
-    , \ resourceState' -> photoSummary { photoSummaryResourceState = resourceState' }
-    )
-instance TypeLens PhotoSummary (Text) where
-  type' photoSummary =
-    ( photoSummaryType photoSummary
-    , \ type'' -> photoSummary { photoSummaryType = type'' }
-    )
-instance UidLens PhotoSummary (Text) where
-  uid photoSummary =
-    ( photoSummaryUid photoSummary
-    , \ uid' -> photoSummary { photoSummaryUid = uid' }
-    )
-instance UploadedAtLens PhotoSummary (UTCTime) where
-  uploadedAt photoSummary =
-    ( photoSummaryUploadedAt photoSummary
-    , \ uploadedAt' -> photoSummary { photoSummaryUploadedAt = uploadedAt' }
+    , \ photoSummaryCaption' -> photoSummary { photoSummaryCaption = photoSummaryCaption' }
     )
 
--- ** PolylineDetailed
-
-instance IdLens PolylineDetailed (Text) where
-  id polylineDetailed =
-    ( polylineDetailedId polylineDetailed
-    , \ id' -> polylineDetailed { polylineDetailedId = id' }
+class CityLens a b | a -> b where
+  city :: Lens a b
+instance CityLens AthleteDetailed Text where
+  city athleteDetailed =
+    ( athleteDetailedCity athleteDetailed
+    , \ athleteDetailedCity' -> athleteDetailed { athleteDetailedCity = athleteDetailedCity' }
     )
-instance PolylineLens PolylineDetailed ([(Double, Double)]) where
-  polyline polylineDetailed =
-    ( polylineDetailedPolyline polylineDetailed
-    , \ polyline' -> polylineDetailed { polylineDetailedPolyline = polyline' }
+instance CityLens AthleteSummary (Maybe Text) where
+  city athleteSummary =
+    ( athleteSummaryCity athleteSummary
+    , \ athleteSummaryCity' -> athleteSummary { athleteSummaryCity = athleteSummaryCity' }
     )
-instance ResourceStateLens PolylineDetailed (Integer) where
-  resourceState polylineDetailed =
-    ( polylineDetailedResourceState polylineDetailed
-    , \ resourceState' -> polylineDetailed { polylineDetailedResourceState = resourceState' }
+instance CityLens ClubDetailed Text where
+  city clubDetailed =
+    ( clubDetailedCity clubDetailed
+    , \ clubDetailedCity' -> clubDetailed { clubDetailedCity = clubDetailedCity' }
     )
-instance SummaryPolylineLens PolylineDetailed (Maybe [(Double, Double)]) where
-  summaryPolyline polylineDetailed =
-    ( polylineDetailedSummaryPolyline polylineDetailed
-    , \ summaryPolyline' -> polylineDetailed { polylineDetailedSummaryPolyline = summaryPolyline' }
-    )
-
--- ** PolylineSummary
-
-instance IdLens PolylineSummary (Text) where
-  id polylineSummary =
-    ( polylineSummaryId polylineSummary
-    , \ id' -> polylineSummary { polylineSummaryId = id' }
-    )
-instance ResourceStateLens PolylineSummary (Integer) where
-  resourceState polylineSummary =
-    ( polylineSummaryResourceState polylineSummary
-    , \ resourceState' -> polylineSummary { polylineSummaryResourceState = resourceState' }
-    )
-instance SummaryPolylineLens PolylineSummary (Maybe [(Double, Double)]) where
-  summaryPolyline polylineSummary =
-    ( polylineSummarySummaryPolyline polylineSummary
-    , \ summaryPolyline' -> polylineSummary { polylineSummarySummaryPolyline = summaryPolyline' }
-    )
-
--- ** SegmentDetailed
-
-instance ActivityTypeLens SegmentDetailed (Text) where
-  activityType segmentDetailed =
-    ( segmentDetailedActivityType segmentDetailed
-    , \ activityType' -> segmentDetailed { segmentDetailedActivityType = activityType' }
-    )
-instance AthleteCountLens SegmentDetailed (Integer) where
-  athleteCount segmentDetailed =
-    ( segmentDetailedAthleteCount segmentDetailed
-    , \ athleteCount' -> segmentDetailed { segmentDetailedAthleteCount = athleteCount' }
-    )
-instance AverageGradeLens SegmentDetailed (Double) where
-  averageGrade segmentDetailed =
-    ( segmentDetailedAverageGrade segmentDetailed
-    , \ averageGrade' -> segmentDetailed { segmentDetailedAverageGrade = averageGrade' }
-    )
-instance CityLens SegmentDetailed (Text) where
+instance CityLens SegmentDetailed Text where
   city segmentDetailed =
     ( segmentDetailedCity segmentDetailed
-    , \ city' -> segmentDetailed { segmentDetailedCity = city' }
+    , \ segmentDetailedCity' -> segmentDetailed { segmentDetailedCity = segmentDetailedCity' }
     )
-instance ClimbCategoryLens SegmentDetailed (Integer) where
+instance CityLens SegmentSummary Text where
+  city segmentSummary =
+    ( segmentSummaryCity segmentSummary
+    , \ segmentSummaryCity' -> segmentSummary { segmentSummaryCity = segmentSummaryCity' }
+    )
+
+class ClimbCategoryDescLens a b | a -> b where
+  climbCategoryDesc :: Lens a b
+instance ClimbCategoryDescLens SegmentExplorerEntry String where
+  climbCategoryDesc segmentExplorerEntry =
+    ( segmentExplorerEntryClimbCategoryDesc segmentExplorerEntry
+    , \ segmentExplorerEntryClimbCategoryDesc' -> segmentExplorerEntry { segmentExplorerEntryClimbCategoryDesc = segmentExplorerEntryClimbCategoryDesc' }
+    )
+
+class ClimbCategoryLens a b | a -> b where
+  climbCategory :: Lens a b
+instance ClimbCategoryLens SegmentDetailed Integer where
   climbCategory segmentDetailed =
     ( segmentDetailedClimbCategory segmentDetailed
-    , \ climbCategory' -> segmentDetailed { segmentDetailedClimbCategory = climbCategory' }
+    , \ segmentDetailedClimbCategory' -> segmentDetailed { segmentDetailedClimbCategory = segmentDetailedClimbCategory' }
     )
-instance CountryLens SegmentDetailed (Text) where
+instance ClimbCategoryLens SegmentSummary Integer where
+  climbCategory segmentSummary =
+    ( segmentSummaryClimbCategory segmentSummary
+    , \ segmentSummaryClimbCategory' -> segmentSummary { segmentSummaryClimbCategory = segmentSummaryClimbCategory' }
+    )
+instance ClimbCategoryLens SegmentExplorerEntry Integer where
+  climbCategory segmentExplorerEntry =
+    ( segmentExplorerEntryClimbCategory segmentExplorerEntry
+    , \ segmentExplorerEntryClimbCategory' -> segmentExplorerEntry { segmentExplorerEntryClimbCategory = segmentExplorerEntryClimbCategory' }
+    )
+
+class ClubTypeLens a b | a -> b where
+  clubType :: Lens a b
+instance ClubTypeLens ClubDetailed Text where
+  clubType clubDetailed =
+    ( clubDetailedClubType clubDetailed
+    , \ clubDetailedClubType' -> clubDetailed { clubDetailedClubType = clubDetailedClubType' }
+    )
+
+class ClubsLens a b | a -> b where
+  clubs :: Lens a b
+instance ClubsLens AthleteDetailed [ClubSummary] where
+  clubs athleteDetailed =
+    ( athleteDetailedClubs athleteDetailed
+    , \ athleteDetailedClubs' -> athleteDetailed { athleteDetailedClubs = athleteDetailedClubs' }
+    )
+
+class CommentCountLens a b | a -> b where
+  commentCount :: Lens a b
+instance CommentCountLens ActivityDetailed Integer where
+  commentCount activityDetailed =
+    ( activityDetailedCommentCount activityDetailed
+    , \ activityDetailedCommentCount' -> activityDetailed { activityDetailedCommentCount = activityDetailedCommentCount' }
+    )
+instance CommentCountLens ActivitySummary Integer where
+  commentCount activitySummary =
+    ( activitySummaryCommentCount activitySummary
+    , \ activitySummaryCommentCount' -> activitySummary { activitySummaryCommentCount = activitySummaryCommentCount' }
+    )
+
+class CommuteLens a b | a -> b where
+  commute :: Lens a b
+instance CommuteLens ActivityDetailed Bool where
+  commute activityDetailed =
+    ( activityDetailedCommute activityDetailed
+    , \ activityDetailedCommute' -> activityDetailed { activityDetailedCommute = activityDetailedCommute' }
+    )
+instance CommuteLens ActivitySummary Bool where
+  commute activitySummary =
+    ( activitySummaryCommute activitySummary
+    , \ activitySummaryCommute' -> activitySummary { activitySummaryCommute = activitySummaryCommute' }
+    )
+
+class CountryLens a b | a -> b where
+  country :: Lens a b
+instance CountryLens AthleteDetailed Text where
+  country athleteDetailed =
+    ( athleteDetailedCountry athleteDetailed
+    , \ athleteDetailedCountry' -> athleteDetailed { athleteDetailedCountry = athleteDetailedCountry' }
+    )
+instance CountryLens AthleteSummary (Maybe Text) where
+  country athleteSummary =
+    ( athleteSummaryCountry athleteSummary
+    , \ athleteSummaryCountry' -> athleteSummary { athleteSummaryCountry = athleteSummaryCountry' }
+    )
+instance CountryLens ClubDetailed Text where
+  country clubDetailed =
+    ( clubDetailedCountry clubDetailed
+    , \ clubDetailedCountry' -> clubDetailed { clubDetailedCountry = clubDetailedCountry' }
+    )
+instance CountryLens SegmentDetailed Text where
   country segmentDetailed =
     ( segmentDetailedCountry segmentDetailed
-    , \ country' -> segmentDetailed { segmentDetailedCountry = country' }
+    , \ segmentDetailedCountry' -> segmentDetailed { segmentDetailedCountry = segmentDetailedCountry' }
     )
-instance CreatedAtLens SegmentDetailed (UTCTime) where
+instance CountryLens SegmentSummary Text where
+  country segmentSummary =
+    ( segmentSummaryCountry segmentSummary
+    , \ segmentSummaryCountry' -> segmentSummary { segmentSummaryCountry = segmentSummaryCountry' }
+    )
+
+class CreatedAtLens a b | a -> b where
+  createdAt :: Lens a b
+instance CreatedAtLens AthleteDetailed UTCTime where
+  createdAt athleteDetailed =
+    ( athleteDetailedCreatedAt athleteDetailed
+    , \ athleteDetailedCreatedAt' -> athleteDetailed { athleteDetailedCreatedAt = athleteDetailedCreatedAt' }
+    )
+instance CreatedAtLens AthleteSummary UTCTime where
+  createdAt athleteSummary =
+    ( athleteSummaryCreatedAt athleteSummary
+    , \ athleteSummaryCreatedAt' -> athleteSummary { athleteSummaryCreatedAt = athleteSummaryCreatedAt' }
+    )
+instance CreatedAtLens CommentSummary UTCTime where
+  createdAt commentSummary =
+    ( commentSummaryCreatedAt commentSummary
+    , \ commentSummaryCreatedAt' -> commentSummary { commentSummaryCreatedAt = commentSummaryCreatedAt' }
+    )
+instance CreatedAtLens PhotoSummary UTCTime where
+  createdAt photoSummary =
+    ( photoSummaryCreatedAt photoSummary
+    , \ photoSummaryCreatedAt' -> photoSummary { photoSummaryCreatedAt = photoSummaryCreatedAt' }
+    )
+instance CreatedAtLens SegmentDetailed UTCTime where
   createdAt segmentDetailed =
     ( segmentDetailedCreatedAt segmentDetailed
-    , \ createdAt' -> segmentDetailed { segmentDetailedCreatedAt = createdAt' }
+    , \ segmentDetailedCreatedAt' -> segmentDetailed { segmentDetailedCreatedAt = segmentDetailedCreatedAt' }
     )
-instance DistanceLens SegmentDetailed (Double) where
+
+class DataLens a b | a -> b where
+  data' :: Lens a b
+instance DataLens StreamDetailed [Value] where
+  data' streamDetailed =
+    ( streamDetailedData streamDetailed
+    , \ streamDetailedData' -> streamDetailed { streamDetailedData = streamDetailedData' }
+    )
+
+class DatePreferenceLens a b | a -> b where
+  datePreference :: Lens a b
+instance DatePreferenceLens AthleteDetailed Text where
+  datePreference athleteDetailed =
+    ( athleteDetailedDatePreference athleteDetailed
+    , \ athleteDetailedDatePreference' -> athleteDetailed { athleteDetailedDatePreference = athleteDetailedDatePreference' }
+    )
+
+class DescriptionLens a b | a -> b where
+  description :: Lens a b
+instance DescriptionLens ActivityDetailed Text where
+  description activityDetailed =
+    ( activityDetailedDescription activityDetailed
+    , \ activityDetailedDescription' -> activityDetailed { activityDetailedDescription = activityDetailedDescription' }
+    )
+instance DescriptionLens ClubDetailed Text where
+  description clubDetailed =
+    ( clubDetailedDescription clubDetailed
+    , \ clubDetailedDescription' -> clubDetailed { clubDetailedDescription = clubDetailedDescription' }
+    )
+instance DescriptionLens GearDetailed Text where
+  description gearDetailed =
+    ( gearDetailedDescription gearDetailed
+    , \ gearDetailedDescription' -> gearDetailed { gearDetailedDescription = gearDetailedDescription' }
+    )
+
+class DistanceLens a b | a -> b where
+  distance :: Lens a b
+instance DistanceLens ActivityDetailed Double where
+  distance activityDetailed =
+    ( activityDetailedDistance activityDetailed
+    , \ activityDetailedDistance' -> activityDetailed { activityDetailedDistance = activityDetailedDistance' }
+    )
+instance DistanceLens ActivitySummary Double where
+  distance activitySummary =
+    ( activitySummaryDistance activitySummary
+    , \ activitySummaryDistance' -> activitySummary { activitySummaryDistance = activitySummaryDistance' }
+    )
+instance DistanceLens ActivityLapSummary Double where
+  distance activityLapSummary =
+    ( activityLapSummaryDistance activityLapSummary
+    , \ activityLapSummaryDistance' -> activityLapSummary { activityLapSummaryDistance = activityLapSummaryDistance' }
+    )
+instance DistanceLens EffortDetailed Double where
+  distance effortDetailed =
+    ( effortDetailedDistance effortDetailed
+    , \ effortDetailedDistance' -> effortDetailed { effortDetailedDistance = effortDetailedDistance' }
+    )
+instance DistanceLens GearDetailed Double where
+  distance gearDetailed =
+    ( gearDetailedDistance gearDetailed
+    , \ gearDetailedDistance' -> gearDetailed { gearDetailedDistance = gearDetailedDistance' }
+    )
+instance DistanceLens GearSummary Double where
+  distance gearSummary =
+    ( gearSummaryDistance gearSummary
+    , \ gearSummaryDistance' -> gearSummary { gearSummaryDistance = gearSummaryDistance' }
+    )
+instance DistanceLens SegmentDetailed Double where
   distance segmentDetailed =
     ( segmentDetailedDistance segmentDetailed
-    , \ distance' -> segmentDetailed { segmentDetailedDistance = distance' }
+    , \ segmentDetailedDistance' -> segmentDetailed { segmentDetailedDistance = segmentDetailedDistance' }
     )
-instance EffortCountLens SegmentDetailed (Integer) where
+instance DistanceLens SegmentSummary Double where
+  distance segmentSummary =
+    ( segmentSummaryDistance segmentSummary
+    , \ segmentSummaryDistance' -> segmentSummary { segmentSummaryDistance = segmentSummaryDistance' }
+    )
+instance DistanceLens SegmentLeaderboardEntry Double where
+  distance segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryDistance segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryDistance' -> segmentLeaderboardEntry { segmentLeaderboardEntryDistance = segmentLeaderboardEntryDistance' }
+    )
+instance DistanceLens SegmentExplorerEntry Double where
+  distance segmentExplorerEntry =
+    ( segmentExplorerEntryDistance segmentExplorerEntry
+    , \ segmentExplorerEntryDistance' -> segmentExplorerEntry { segmentExplorerEntryDistance = segmentExplorerEntryDistance' }
+    )
+
+class DistributionBucketsLens a b | a -> b where
+  distributionBuckets :: Lens a b
+instance DistributionBucketsLens ActivityZoneDetailed [ActivityZoneDistributionBucket] where
+  distributionBuckets activityZoneDetailed =
+    ( activityZoneDetailedDistributionBuckets activityZoneDetailed
+    , \ activityZoneDetailedDistributionBuckets' -> activityZoneDetailed { activityZoneDetailedDistributionBuckets = activityZoneDetailedDistributionBuckets' }
+    )
+
+class EffortCountLens a b | a -> b where
+  effortCount :: Lens a b
+instance EffortCountLens SegmentDetailed Integer where
   effortCount segmentDetailed =
     ( segmentDetailedEffortCount segmentDetailed
-    , \ effortCount' -> segmentDetailed { segmentDetailedEffortCount = effortCount' }
+    , \ segmentDetailedEffortCount' -> segmentDetailed { segmentDetailedEffortCount = segmentDetailedEffortCount' }
     )
-instance ElevationHighLens SegmentDetailed (Double) where
+
+class EffortIdLens a b | a -> b where
+  effortId :: Lens a b
+instance EffortIdLens SegmentLeaderboardEntry Integer where
+  effortId segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryEffortId segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryEffortId' -> segmentLeaderboardEntry { segmentLeaderboardEntryEffortId = segmentLeaderboardEntryEffortId' }
+    )
+
+class ElapsedTimeLens a b | a -> b where
+  elapsedTime :: Lens a b
+instance ElapsedTimeLens ActivityDetailed Integer where
+  elapsedTime activityDetailed =
+    ( activityDetailedElapsedTime activityDetailed
+    , \ activityDetailedElapsedTime' -> activityDetailed { activityDetailedElapsedTime = activityDetailedElapsedTime' }
+    )
+instance ElapsedTimeLens ActivitySummary Integer where
+  elapsedTime activitySummary =
+    ( activitySummaryElapsedTime activitySummary
+    , \ activitySummaryElapsedTime' -> activitySummary { activitySummaryElapsedTime = activitySummaryElapsedTime' }
+    )
+instance ElapsedTimeLens ActivityLapSummary Integer where
+  elapsedTime activityLapSummary =
+    ( activityLapSummaryElapsedTime activityLapSummary
+    , \ activityLapSummaryElapsedTime' -> activityLapSummary { activityLapSummaryElapsedTime = activityLapSummaryElapsedTime' }
+    )
+instance ElapsedTimeLens EffortDetailed Integer where
+  elapsedTime effortDetailed =
+    ( effortDetailedElapsedTime effortDetailed
+    , \ effortDetailedElapsedTime' -> effortDetailed { effortDetailedElapsedTime = effortDetailedElapsedTime' }
+    )
+instance ElapsedTimeLens SegmentLeaderboardEntry Integer where
+  elapsedTime segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryElapsedTime segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryElapsedTime' -> segmentLeaderboardEntry { segmentLeaderboardEntryElapsedTime = segmentLeaderboardEntryElapsedTime' }
+    )
+
+class ElevDifferenceLens a b | a -> b where
+  elevDifference :: Lens a b
+instance ElevDifferenceLens SegmentExplorerEntry Double where
+  elevDifference segmentExplorerEntry =
+    ( segmentExplorerEntryElevDifference segmentExplorerEntry
+    , \ segmentExplorerEntryElevDifference' -> segmentExplorerEntry { segmentExplorerEntryElevDifference = segmentExplorerEntryElevDifference' }
+    )
+
+class ElevationHighLens a b | a -> b where
+  elevationHigh :: Lens a b
+instance ElevationHighLens SegmentDetailed Double where
   elevationHigh segmentDetailed =
     ( segmentDetailedElevationHigh segmentDetailed
-    , \ elevationHigh' -> segmentDetailed { segmentDetailedElevationHigh = elevationHigh' }
+    , \ segmentDetailedElevationHigh' -> segmentDetailed { segmentDetailedElevationHigh = segmentDetailedElevationHigh' }
     )
-instance ElevationLowLens SegmentDetailed (Double) where
+instance ElevationHighLens SegmentSummary Double where
+  elevationHigh segmentSummary =
+    ( segmentSummaryElevationHigh segmentSummary
+    , \ segmentSummaryElevationHigh' -> segmentSummary { segmentSummaryElevationHigh = segmentSummaryElevationHigh' }
+    )
+
+class ElevationLowLens a b | a -> b where
+  elevationLow :: Lens a b
+instance ElevationLowLens SegmentDetailed Double where
   elevationLow segmentDetailed =
     ( segmentDetailedElevationLow segmentDetailed
-    , \ elevationLow' -> segmentDetailed { segmentDetailedElevationLow = elevationLow' }
+    , \ segmentDetailedElevationLow' -> segmentDetailed { segmentDetailedElevationLow = segmentDetailedElevationLow' }
     )
-instance EndLatitudeLens SegmentDetailed (Double) where
+instance ElevationLowLens SegmentSummary Double where
+  elevationLow segmentSummary =
+    ( segmentSummaryElevationLow segmentSummary
+    , \ segmentSummaryElevationLow' -> segmentSummary { segmentSummaryElevationLow = segmentSummaryElevationLow' }
+    )
+
+class EmailLens a b | a -> b where
+  email :: Lens a b
+instance EmailLens AthleteDetailed Text where
+  email athleteDetailed =
+    ( athleteDetailedEmail athleteDetailed
+    , \ athleteDetailedEmail' -> athleteDetailed { athleteDetailedEmail = athleteDetailedEmail' }
+    )
+
+class EndIndexLens a b | a -> b where
+  endIndex :: Lens a b
+instance EndIndexLens ActivityLapSummary Integer where
+  endIndex activityLapSummary =
+    ( activityLapSummaryEndIndex activityLapSummary
+    , \ activityLapSummaryEndIndex' -> activityLapSummary { activityLapSummaryEndIndex = activityLapSummaryEndIndex' }
+    )
+instance EndIndexLens EffortDetailed Integer where
+  endIndex effortDetailed =
+    ( effortDetailedEndIndex effortDetailed
+    , \ effortDetailedEndIndex' -> effortDetailed { effortDetailedEndIndex = effortDetailedEndIndex' }
+    )
+
+class EndLatitudeLens a b | a -> b where
+  endLatitude :: Lens a b
+instance EndLatitudeLens SegmentDetailed Double where
   endLatitude segmentDetailed =
     ( segmentDetailedEndLatitude segmentDetailed
-    , \ endLatitude' -> segmentDetailed { segmentDetailedEndLatitude = endLatitude' }
+    , \ segmentDetailedEndLatitude' -> segmentDetailed { segmentDetailedEndLatitude = segmentDetailedEndLatitude' }
+    )
+instance EndLatitudeLens SegmentSummary Double where
+  endLatitude segmentSummary =
+    ( segmentSummaryEndLatitude segmentSummary
+    , \ segmentSummaryEndLatitude' -> segmentSummary { segmentSummaryEndLatitude = segmentSummaryEndLatitude' }
+    )
+
+class EndLatlngLens a b | a -> b where
+  endLatlng :: Lens a b
+instance EndLatlngLens ActivityDetailed (Maybe (Double, Double)) where
+  endLatlng activityDetailed =
+    ( activityDetailedEndLatlng activityDetailed
+    , \ activityDetailedEndLatlng' -> activityDetailed { activityDetailedEndLatlng = activityDetailedEndLatlng' }
+    )
+instance EndLatlngLens ActivitySummary (Maybe (Double, Double)) where
+  endLatlng activitySummary =
+    ( activitySummaryEndLatlng activitySummary
+    , \ activitySummaryEndLatlng' -> activitySummary { activitySummaryEndLatlng = activitySummaryEndLatlng' }
     )
 instance EndLatlngLens SegmentDetailed ((Double, Double)) where
   endLatlng segmentDetailed =
     ( segmentDetailedEndLatlng segmentDetailed
-    , \ endLatlng' -> segmentDetailed { segmentDetailedEndLatlng = endLatlng' }
-    )
-instance EndLongitudeLens SegmentDetailed (Double) where
-  endLongitude segmentDetailed =
-    ( segmentDetailedEndLongitude segmentDetailed
-    , \ endLongitude' -> segmentDetailed { segmentDetailedEndLongitude = endLongitude' }
-    )
-instance HazardousLens SegmentDetailed (Bool) where
-  hazardous segmentDetailed =
-    ( segmentDetailedHazardous segmentDetailed
-    , \ hazardous' -> segmentDetailed { segmentDetailedHazardous = hazardous' }
-    )
-instance IdLens SegmentDetailed (Integer) where
-  id segmentDetailed =
-    ( segmentDetailedId segmentDetailed
-    , \ id' -> segmentDetailed { segmentDetailedId = id' }
-    )
-instance MapLens SegmentDetailed (PolylineDetailed) where
-  map segmentDetailed =
-    ( segmentDetailedMap segmentDetailed
-    , \ map' -> segmentDetailed { segmentDetailedMap = map' }
-    )
-instance MaximumGradeLens SegmentDetailed (Double) where
-  maximumGrade segmentDetailed =
-    ( segmentDetailedMaximumGrade segmentDetailed
-    , \ maximumGrade' -> segmentDetailed { segmentDetailedMaximumGrade = maximumGrade' }
-    )
-instance NameLens SegmentDetailed (Text) where
-  name segmentDetailed =
-    ( segmentDetailedName segmentDetailed
-    , \ name' -> segmentDetailed { segmentDetailedName = name' }
-    )
-instance PrivateLens SegmentDetailed (Bool) where
-  private segmentDetailed =
-    ( segmentDetailedPrivate segmentDetailed
-    , \ private' -> segmentDetailed { segmentDetailedPrivate = private' }
-    )
-instance ResourceStateLens SegmentDetailed (Integer) where
-  resourceState segmentDetailed =
-    ( segmentDetailedResourceState segmentDetailed
-    , \ resourceState' -> segmentDetailed { segmentDetailedResourceState = resourceState' }
-    )
-instance StarCountLens SegmentDetailed (Integer) where
-  starCount segmentDetailed =
-    ( segmentDetailedStarCount segmentDetailed
-    , \ starCount' -> segmentDetailed { segmentDetailedStarCount = starCount' }
-    )
-instance StarredLens SegmentDetailed (Bool) where
-  starred segmentDetailed =
-    ( segmentDetailedStarred segmentDetailed
-    , \ starred' -> segmentDetailed { segmentDetailedStarred = starred' }
-    )
-instance StartLatitudeLens SegmentDetailed (Double) where
-  startLatitude segmentDetailed =
-    ( segmentDetailedStartLatitude segmentDetailed
-    , \ startLatitude' -> segmentDetailed { segmentDetailedStartLatitude = startLatitude' }
-    )
-instance StartLatlngLens SegmentDetailed ((Double, Double)) where
-  startLatlng segmentDetailed =
-    ( segmentDetailedStartLatlng segmentDetailed
-    , \ startLatlng' -> segmentDetailed { segmentDetailedStartLatlng = startLatlng' }
-    )
-instance StartLongitudeLens SegmentDetailed (Double) where
-  startLongitude segmentDetailed =
-    ( segmentDetailedStartLongitude segmentDetailed
-    , \ startLongitude' -> segmentDetailed { segmentDetailedStartLongitude = startLongitude' }
-    )
-instance StateLens SegmentDetailed (Text) where
-  state segmentDetailed =
-    ( segmentDetailedState segmentDetailed
-    , \ state' -> segmentDetailed { segmentDetailedState = state' }
-    )
-instance TotalElevationGainLens SegmentDetailed (Double) where
-  totalElevationGain segmentDetailed =
-    ( segmentDetailedTotalElevationGain segmentDetailed
-    , \ totalElevationGain' -> segmentDetailed { segmentDetailedTotalElevationGain = totalElevationGain' }
-    )
-instance UpdatedAtLens SegmentDetailed (UTCTime) where
-  updatedAt segmentDetailed =
-    ( segmentDetailedUpdatedAt segmentDetailed
-    , \ updatedAt' -> segmentDetailed { segmentDetailedUpdatedAt = updatedAt' }
-    )
-
--- ** SegmentExplorer
-
-instance EntriesLens SegmentExplorer ([SegmentExplorerEntry]) where
-  entries segmentExplorer =
-    ( segmentExplorerEntries segmentExplorer
-    , \ entries' -> segmentExplorer { segmentExplorerEntries = entries' }
-    )
-
--- ** SegmentExplorerEntry
-
-instance AvgGradeLens SegmentExplorerEntry (Double) where
-  avgGrade segmentExplorerEntry =
-    ( segmentExplorerEntryAvgGrade segmentExplorerEntry
-    , \ avgGrade' -> segmentExplorerEntry { segmentExplorerEntryAvgGrade = avgGrade' }
-    )
-instance ClimbCategoryLens SegmentExplorerEntry (Integer) where
-  climbCategory segmentExplorerEntry =
-    ( segmentExplorerEntryClimbCategory segmentExplorerEntry
-    , \ climbCategory' -> segmentExplorerEntry { segmentExplorerEntryClimbCategory = climbCategory' }
-    )
-instance ClimbCategoryDescLens SegmentExplorerEntry (String) where
-  climbCategoryDesc segmentExplorerEntry =
-    ( segmentExplorerEntryClimbCategoryDesc segmentExplorerEntry
-    , \ climbCategoryDesc' -> segmentExplorerEntry { segmentExplorerEntryClimbCategoryDesc = climbCategoryDesc' }
-    )
-instance DistanceLens SegmentExplorerEntry (Double) where
-  distance segmentExplorerEntry =
-    ( segmentExplorerEntryDistance segmentExplorerEntry
-    , \ distance' -> segmentExplorerEntry { segmentExplorerEntryDistance = distance' }
-    )
-instance ElevDifferenceLens SegmentExplorerEntry (Double) where
-  elevDifference segmentExplorerEntry =
-    ( segmentExplorerEntryElevDifference segmentExplorerEntry
-    , \ elevDifference' -> segmentExplorerEntry { segmentExplorerEntryElevDifference = elevDifference' }
-    )
-instance EndLatlngLens SegmentExplorerEntry ((Double, Double)) where
-  endLatlng segmentExplorerEntry =
-    ( segmentExplorerEntryEndLatlng segmentExplorerEntry
-    , \ endLatlng' -> segmentExplorerEntry { segmentExplorerEntryEndLatlng = endLatlng' }
-    )
-instance IdLens SegmentExplorerEntry (Integer) where
-  id segmentExplorerEntry =
-    ( segmentExplorerEntryId segmentExplorerEntry
-    , \ id' -> segmentExplorerEntry { segmentExplorerEntryId = id' }
-    )
-instance NameLens SegmentExplorerEntry (Text) where
-  name segmentExplorerEntry =
-    ( segmentExplorerEntryName segmentExplorerEntry
-    , \ name' -> segmentExplorerEntry { segmentExplorerEntryName = name' }
-    )
-instance PointsLens SegmentExplorerEntry (Text) where
-  points segmentExplorerEntry =
-    ( segmentExplorerEntryPoints segmentExplorerEntry
-    , \ points' -> segmentExplorerEntry { segmentExplorerEntryPoints = points' }
-    )
-instance ResourceStateLens SegmentExplorerEntry (Integer) where
-  resourceState segmentExplorerEntry =
-    ( segmentExplorerEntryResourceState segmentExplorerEntry
-    , \ resourceState' -> segmentExplorerEntry { segmentExplorerEntryResourceState = resourceState' }
-    )
-instance StarredLens SegmentExplorerEntry (Bool) where
-  starred segmentExplorerEntry =
-    ( segmentExplorerEntryStarred segmentExplorerEntry
-    , \ starred' -> segmentExplorerEntry { segmentExplorerEntryStarred = starred' }
-    )
-instance StartLatlngLens SegmentExplorerEntry ((Double, Double)) where
-  startLatlng segmentExplorerEntry =
-    ( segmentExplorerEntryStartLatlng segmentExplorerEntry
-    , \ startLatlng' -> segmentExplorerEntry { segmentExplorerEntryStartLatlng = startLatlng' }
-    )
-
--- ** SegmentLeaderboard
-
-instance EntriesLens SegmentLeaderboard ([SegmentLeaderboardEntry]) where
-  entries segmentLeaderboard =
-    ( segmentLeaderboardEntries segmentLeaderboard
-    , \ entries' -> segmentLeaderboard { segmentLeaderboardEntries = entries' }
-    )
-
--- ** SegmentLeaderboardEntry
-
-instance ActivityIdLens SegmentLeaderboardEntry (Integer) where
-  activityId segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryActivityId segmentLeaderboardEntry
-    , \ activityId' -> segmentLeaderboardEntry { segmentLeaderboardEntryActivityId = activityId' }
-    )
-instance AthleteGenderLens SegmentLeaderboardEntry (Maybe Char) where
-  athleteGender segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryAthleteGender segmentLeaderboardEntry
-    , \ athleteGender' -> segmentLeaderboardEntry { segmentLeaderboardEntryAthleteGender = athleteGender' }
-    )
-instance AthleteIdLens SegmentLeaderboardEntry (Integer) where
-  athleteId segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryAthleteId segmentLeaderboardEntry
-    , \ athleteId' -> segmentLeaderboardEntry { segmentLeaderboardEntryAthleteId = athleteId' }
-    )
-instance AthleteNameLens SegmentLeaderboardEntry (Text) where
-  athleteName segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryAthleteName segmentLeaderboardEntry
-    , \ athleteName' -> segmentLeaderboardEntry { segmentLeaderboardEntryAthleteName = athleteName' }
-    )
-instance AthleteProfileLens SegmentLeaderboardEntry (Text) where
-  athleteProfile segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryAthleteProfile segmentLeaderboardEntry
-    , \ athleteProfile' -> segmentLeaderboardEntry { segmentLeaderboardEntryAthleteProfile = athleteProfile' }
-    )
-instance AverageHrLens SegmentLeaderboardEntry (Double) where
-  averageHr segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryAverageHr segmentLeaderboardEntry
-    , \ averageHr' -> segmentLeaderboardEntry { segmentLeaderboardEntryAverageHr = averageHr' }
-    )
-instance AverageWattsLens SegmentLeaderboardEntry (Double) where
-  averageWatts segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryAverageWatts segmentLeaderboardEntry
-    , \ averageWatts' -> segmentLeaderboardEntry { segmentLeaderboardEntryAverageWatts = averageWatts' }
-    )
-instance DistanceLens SegmentLeaderboardEntry (Double) where
-  distance segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryDistance segmentLeaderboardEntry
-    , \ distance' -> segmentLeaderboardEntry { segmentLeaderboardEntryDistance = distance' }
-    )
-instance EffortIdLens SegmentLeaderboardEntry (Integer) where
-  effortId segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryEffortId segmentLeaderboardEntry
-    , \ effortId' -> segmentLeaderboardEntry { segmentLeaderboardEntryEffortId = effortId' }
-    )
-instance ElapsedTimeLens SegmentLeaderboardEntry (Integer) where
-  elapsedTime segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryElapsedTime segmentLeaderboardEntry
-    , \ elapsedTime' -> segmentLeaderboardEntry { segmentLeaderboardEntryElapsedTime = elapsedTime' }
-    )
-instance MovingTimeLens SegmentLeaderboardEntry (Integer) where
-  movingTime segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryMovingTime segmentLeaderboardEntry
-    , \ movingTime' -> segmentLeaderboardEntry { segmentLeaderboardEntryMovingTime = movingTime' }
-    )
-instance RankLens SegmentLeaderboardEntry (Integer) where
-  rank segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryRank segmentLeaderboardEntry
-    , \ rank' -> segmentLeaderboardEntry { segmentLeaderboardEntryRank = rank' }
-    )
-instance StartDateLens SegmentLeaderboardEntry (UTCTime) where
-  startDate segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryStartDate segmentLeaderboardEntry
-    , \ startDate' -> segmentLeaderboardEntry { segmentLeaderboardEntryStartDate = startDate' }
-    )
-instance StartDateLocalLens SegmentLeaderboardEntry (UTCTime) where
-  startDateLocal segmentLeaderboardEntry =
-    ( segmentLeaderboardEntryStartDateLocal segmentLeaderboardEntry
-    , \ startDateLocal' -> segmentLeaderboardEntry { segmentLeaderboardEntryStartDateLocal = startDateLocal' }
-    )
-
--- ** SegmentSummary
-
-instance ActivityTypeLens SegmentSummary (Text) where
-  activityType segmentSummary =
-    ( segmentSummaryActivityType segmentSummary
-    , \ activityType' -> segmentSummary { segmentSummaryActivityType = activityType' }
-    )
-instance AverageGradeLens SegmentSummary (Double) where
-  averageGrade segmentSummary =
-    ( segmentSummaryAverageGrade segmentSummary
-    , \ averageGrade' -> segmentSummary { segmentSummaryAverageGrade = averageGrade' }
-    )
-instance CityLens SegmentSummary (Text) where
-  city segmentSummary =
-    ( segmentSummaryCity segmentSummary
-    , \ city' -> segmentSummary { segmentSummaryCity = city' }
-    )
-instance ClimbCategoryLens SegmentSummary (Integer) where
-  climbCategory segmentSummary =
-    ( segmentSummaryClimbCategory segmentSummary
-    , \ climbCategory' -> segmentSummary { segmentSummaryClimbCategory = climbCategory' }
-    )
-instance CountryLens SegmentSummary (Text) where
-  country segmentSummary =
-    ( segmentSummaryCountry segmentSummary
-    , \ country' -> segmentSummary { segmentSummaryCountry = country' }
-    )
-instance DistanceLens SegmentSummary (Double) where
-  distance segmentSummary =
-    ( segmentSummaryDistance segmentSummary
-    , \ distance' -> segmentSummary { segmentSummaryDistance = distance' }
-    )
-instance ElevationHighLens SegmentSummary (Double) where
-  elevationHigh segmentSummary =
-    ( segmentSummaryElevationHigh segmentSummary
-    , \ elevationHigh' -> segmentSummary { segmentSummaryElevationHigh = elevationHigh' }
-    )
-instance ElevationLowLens SegmentSummary (Double) where
-  elevationLow segmentSummary =
-    ( segmentSummaryElevationLow segmentSummary
-    , \ elevationLow' -> segmentSummary { segmentSummaryElevationLow = elevationLow' }
-    )
-instance EndLatitudeLens SegmentSummary (Double) where
-  endLatitude segmentSummary =
-    ( segmentSummaryEndLatitude segmentSummary
-    , \ endLatitude' -> segmentSummary { segmentSummaryEndLatitude = endLatitude' }
+    , \ segmentDetailedEndLatlng' -> segmentDetailed { segmentDetailedEndLatlng = segmentDetailedEndLatlng' }
     )
 instance EndLatlngLens SegmentSummary ((Double, Double)) where
   endLatlng segmentSummary =
     ( segmentSummaryEndLatlng segmentSummary
-    , \ endLatlng' -> segmentSummary { segmentSummaryEndLatlng = endLatlng' }
+    , \ segmentSummaryEndLatlng' -> segmentSummary { segmentSummaryEndLatlng = segmentSummaryEndLatlng' }
     )
-instance EndLongitudeLens SegmentSummary (Double) where
+instance EndLatlngLens SegmentExplorerEntry ((Double, Double)) where
+  endLatlng segmentExplorerEntry =
+    ( segmentExplorerEntryEndLatlng segmentExplorerEntry
+    , \ segmentExplorerEntryEndLatlng' -> segmentExplorerEntry { segmentExplorerEntryEndLatlng = segmentExplorerEntryEndLatlng' }
+    )
+
+class EndLongitudeLens a b | a -> b where
+  endLongitude :: Lens a b
+instance EndLongitudeLens SegmentDetailed Double where
+  endLongitude segmentDetailed =
+    ( segmentDetailedEndLongitude segmentDetailed
+    , \ segmentDetailedEndLongitude' -> segmentDetailed { segmentDetailedEndLongitude = segmentDetailedEndLongitude' }
+    )
+instance EndLongitudeLens SegmentSummary Double where
   endLongitude segmentSummary =
     ( segmentSummaryEndLongitude segmentSummary
-    , \ endLongitude' -> segmentSummary { segmentSummaryEndLongitude = endLongitude' }
+    , \ segmentSummaryEndLongitude' -> segmentSummary { segmentSummaryEndLongitude = segmentSummaryEndLongitude' }
     )
-instance IdLens SegmentSummary (Integer) where
+
+class EntriesLens a b | a -> b where
+  entries :: Lens a b
+instance EntriesLens SegmentLeaderboard [SegmentLeaderboardEntry] where
+  entries segmentLeaderboard =
+    ( segmentLeaderboardEntries segmentLeaderboard
+    , \ segmentLeaderboardEntries' -> segmentLeaderboard { segmentLeaderboardEntries = segmentLeaderboardEntries' }
+    )
+instance EntriesLens SegmentExplorer [SegmentExplorerEntry] where
+  entries segmentExplorer =
+    ( segmentExplorerEntries segmentExplorer
+    , \ segmentExplorerEntries' -> segmentExplorer { segmentExplorerEntries = segmentExplorerEntries' }
+    )
+
+class ErrorLens a b | a -> b where
+  error :: Lens a b
+instance ErrorLens UploadStatus (Maybe Text) where
+  error uploadStatus =
+    ( uploadStatusError uploadStatus
+    , \ uploadStatusError' -> uploadStatus { uploadStatusError = uploadStatusError' }
+    )
+
+class ExternalIdLens a b | a -> b where
+  externalId :: Lens a b
+instance ExternalIdLens ActivityDetailed (Maybe Text) where
+  externalId activityDetailed =
+    ( activityDetailedExternalId activityDetailed
+    , \ activityDetailedExternalId' -> activityDetailed { activityDetailedExternalId = activityDetailedExternalId' }
+    )
+instance ExternalIdLens ActivitySummary (Maybe Text) where
+  externalId activitySummary =
+    ( activitySummaryExternalId activitySummary
+    , \ activitySummaryExternalId' -> activitySummary { activitySummaryExternalId = activitySummaryExternalId' }
+    )
+instance ExternalIdLens UploadStatus Text where
+  externalId uploadStatus =
+    ( uploadStatusExternalId uploadStatus
+    , \ uploadStatusExternalId' -> uploadStatus { uploadStatusExternalId = uploadStatusExternalId' }
+    )
+
+class FirstnameLens a b | a -> b where
+  firstname :: Lens a b
+instance FirstnameLens AthleteDetailed Text where
+  firstname athleteDetailed =
+    ( athleteDetailedFirstname athleteDetailed
+    , \ athleteDetailedFirstname' -> athleteDetailed { athleteDetailedFirstname = athleteDetailedFirstname' }
+    )
+instance FirstnameLens AthleteSummary Text where
+  firstname athleteSummary =
+    ( athleteSummaryFirstname athleteSummary
+    , \ athleteSummaryFirstname' -> athleteSummary { athleteSummaryFirstname = athleteSummaryFirstname' }
+    )
+
+class FlaggedLens a b | a -> b where
+  flagged :: Lens a b
+instance FlaggedLens ActivityDetailed Bool where
+  flagged activityDetailed =
+    ( activityDetailedFlagged activityDetailed
+    , \ activityDetailedFlagged' -> activityDetailed { activityDetailedFlagged = activityDetailedFlagged' }
+    )
+instance FlaggedLens ActivitySummary Bool where
+  flagged activitySummary =
+    ( activitySummaryFlagged activitySummary
+    , \ activitySummaryFlagged' -> activitySummary { activitySummaryFlagged = activitySummaryFlagged' }
+    )
+
+class FollowerCountLens a b | a -> b where
+  followerCount :: Lens a b
+instance FollowerCountLens AthleteDetailed Integer where
+  followerCount athleteDetailed =
+    ( athleteDetailedFollowerCount athleteDetailed
+    , \ athleteDetailedFollowerCount' -> athleteDetailed { athleteDetailedFollowerCount = athleteDetailedFollowerCount' }
+    )
+
+class FollowerLens a b | a -> b where
+  follower :: Lens a b
+instance FollowerLens AthleteDetailed (Maybe Text) where
+  follower athleteDetailed =
+    ( athleteDetailedFollower athleteDetailed
+    , \ athleteDetailedFollower' -> athleteDetailed { athleteDetailedFollower = athleteDetailedFollower' }
+    )
+instance FollowerLens AthleteSummary (Maybe Text) where
+  follower athleteSummary =
+    ( athleteSummaryFollower athleteSummary
+    , \ athleteSummaryFollower' -> athleteSummary { athleteSummaryFollower = athleteSummaryFollower' }
+    )
+
+class FrameTypeLens a b | a -> b where
+  frameType :: Lens a b
+instance FrameTypeLens GearDetailed (Maybe Integer) where
+  frameType gearDetailed =
+    ( gearDetailedFrameType gearDetailed
+    , \ gearDetailedFrameType' -> gearDetailed { gearDetailedFrameType = gearDetailedFrameType' }
+    )
+
+class FriendCountLens a b | a -> b where
+  friendCount :: Lens a b
+instance FriendCountLens AthleteDetailed Integer where
+  friendCount athleteDetailed =
+    ( athleteDetailedFriendCount athleteDetailed
+    , \ athleteDetailedFriendCount' -> athleteDetailed { athleteDetailedFriendCount = athleteDetailedFriendCount' }
+    )
+
+class FriendLens a b | a -> b where
+  friend :: Lens a b
+instance FriendLens AthleteDetailed (Maybe Text) where
+  friend athleteDetailed =
+    ( athleteDetailedFriend athleteDetailed
+    , \ athleteDetailedFriend' -> athleteDetailed { athleteDetailedFriend = athleteDetailedFriend' }
+    )
+instance FriendLens AthleteSummary (Maybe Text) where
+  friend athleteSummary =
+    ( athleteSummaryFriend athleteSummary
+    , \ athleteSummaryFriend' -> athleteSummary { athleteSummaryFriend = athleteSummaryFriend' }
+    )
+
+class FtpLens a b | a -> b where
+  ftp :: Lens a b
+instance FtpLens AthleteDetailed (Maybe Integer) where
+  ftp athleteDetailed =
+    ( athleteDetailedFtp athleteDetailed
+    , \ athleteDetailedFtp' -> athleteDetailed { athleteDetailedFtp = athleteDetailedFtp' }
+    )
+
+class GearIdLens a b | a -> b where
+  gearId :: Lens a b
+instance GearIdLens ActivityDetailed (Maybe Text) where
+  gearId activityDetailed =
+    ( activityDetailedGearId activityDetailed
+    , \ activityDetailedGearId' -> activityDetailed { activityDetailedGearId = activityDetailedGearId' }
+    )
+instance GearIdLens ActivitySummary (Maybe Text) where
+  gearId activitySummary =
+    ( activitySummaryGearId activitySummary
+    , \ activitySummaryGearId' -> activitySummary { activitySummaryGearId = activitySummaryGearId' }
+    )
+
+class GearLens a b | a -> b where
+  gear :: Lens a b
+instance GearLens ActivityDetailed GearSummary where
+  gear activityDetailed =
+    ( activityDetailedGear activityDetailed
+    , \ activityDetailedGear' -> activityDetailed { activityDetailedGear = activityDetailedGear' }
+    )
+
+class HasKudoedLens a b | a -> b where
+  hasKudoed :: Lens a b
+instance HasKudoedLens ActivityDetailed Bool where
+  hasKudoed activityDetailed =
+    ( activityDetailedHasKudoed activityDetailed
+    , \ activityDetailedHasKudoed' -> activityDetailed { activityDetailedHasKudoed = activityDetailedHasKudoed' }
+    )
+instance HasKudoedLens ActivitySummary Bool where
+  hasKudoed activitySummary =
+    ( activitySummaryHasKudoed activitySummary
+    , \ activitySummaryHasKudoed' -> activitySummary { activitySummaryHasKudoed = activitySummaryHasKudoed' }
+    )
+
+class HazardousLens a b | a -> b where
+  hazardous :: Lens a b
+instance HazardousLens SegmentDetailed Bool where
+  hazardous segmentDetailed =
+    ( segmentDetailedHazardous segmentDetailed
+    , \ segmentDetailedHazardous' -> segmentDetailed { segmentDetailedHazardous = segmentDetailedHazardous' }
+    )
+
+class HiddenLens a b | a -> b where
+  hidden :: Lens a b
+instance HiddenLens EffortDetailed (Maybe Bool) where
+  hidden effortDetailed =
+    ( effortDetailedHidden effortDetailed
+    , \ effortDetailedHidden' -> effortDetailed { effortDetailedHidden = effortDetailedHidden' }
+    )
+
+class IdLens a b | a -> b where
+  id :: Lens a b
+instance IdLens ActivityDetailed Integer where
+  id activityDetailed =
+    ( activityDetailedId activityDetailed
+    , \ activityDetailedId' -> activityDetailed { activityDetailedId = activityDetailedId' }
+    )
+instance IdLens ActivitySummary Integer where
+  id activitySummary =
+    ( activitySummaryId activitySummary
+    , \ activitySummaryId' -> activitySummary { activitySummaryId = activitySummaryId' }
+    )
+instance IdLens ActivityLapSummary Integer where
+  id activityLapSummary =
+    ( activityLapSummaryId activityLapSummary
+    , \ activityLapSummaryId' -> activityLapSummary { activityLapSummaryId = activityLapSummaryId' }
+    )
+instance IdLens AthleteDetailed Integer where
+  id athleteDetailed =
+    ( athleteDetailedId athleteDetailed
+    , \ athleteDetailedId' -> athleteDetailed { athleteDetailedId = athleteDetailedId' }
+    )
+instance IdLens AthleteSummary Integer where
+  id athleteSummary =
+    ( athleteSummaryId athleteSummary
+    , \ athleteSummaryId' -> athleteSummary { athleteSummaryId = athleteSummaryId' }
+    )
+instance IdLens AthleteMeta Integer where
+  id athleteMeta =
+    ( athleteMetaId athleteMeta
+    , \ athleteMetaId' -> athleteMeta { athleteMetaId = athleteMetaId' }
+    )
+instance IdLens ClubDetailed Integer where
+  id clubDetailed =
+    ( clubDetailedId clubDetailed
+    , \ clubDetailedId' -> clubDetailed { clubDetailedId = clubDetailedId' }
+    )
+instance IdLens ClubSummary Integer where
+  id clubSummary =
+    ( clubSummaryId clubSummary
+    , \ clubSummaryId' -> clubSummary { clubSummaryId = clubSummaryId' }
+    )
+instance IdLens CommentSummary Integer where
+  id commentSummary =
+    ( commentSummaryId commentSummary
+    , \ commentSummaryId' -> commentSummary { commentSummaryId = commentSummaryId' }
+    )
+instance IdLens EffortDetailed Integer where
+  id effortDetailed =
+    ( effortDetailedId effortDetailed
+    , \ effortDetailedId' -> effortDetailed { effortDetailedId = effortDetailedId' }
+    )
+instance IdLens GearDetailed Text where
+  id gearDetailed =
+    ( gearDetailedId gearDetailed
+    , \ gearDetailedId' -> gearDetailed { gearDetailedId = gearDetailedId' }
+    )
+instance IdLens GearSummary Text where
+  id gearSummary =
+    ( gearSummaryId gearSummary
+    , \ gearSummaryId' -> gearSummary { gearSummaryId = gearSummaryId' }
+    )
+instance IdLens PhotoSummary Integer where
+  id photoSummary =
+    ( photoSummaryId photoSummary
+    , \ photoSummaryId' -> photoSummary { photoSummaryId = photoSummaryId' }
+    )
+instance IdLens PolylineDetailed Text where
+  id polylineDetailed =
+    ( polylineDetailedId polylineDetailed
+    , \ polylineDetailedId' -> polylineDetailed { polylineDetailedId = polylineDetailedId' }
+    )
+instance IdLens PolylineSummary Text where
+  id polylineSummary =
+    ( polylineSummaryId polylineSummary
+    , \ polylineSummaryId' -> polylineSummary { polylineSummaryId = polylineSummaryId' }
+    )
+instance IdLens SegmentDetailed Integer where
+  id segmentDetailed =
+    ( segmentDetailedId segmentDetailed
+    , \ segmentDetailedId' -> segmentDetailed { segmentDetailedId = segmentDetailedId' }
+    )
+instance IdLens SegmentSummary Integer where
   id segmentSummary =
     ( segmentSummaryId segmentSummary
-    , \ id' -> segmentSummary { segmentSummaryId = id' }
+    , \ segmentSummaryId' -> segmentSummary { segmentSummaryId = segmentSummaryId' }
     )
-instance MaximumGradeLens SegmentSummary (Double) where
+instance IdLens SegmentExplorerEntry Integer where
+  id segmentExplorerEntry =
+    ( segmentExplorerEntryId segmentExplorerEntry
+    , \ segmentExplorerEntryId' -> segmentExplorerEntry { segmentExplorerEntryId = segmentExplorerEntryId' }
+    )
+instance IdLens UploadStatus Integer where
+  id uploadStatus =
+    ( uploadStatusId uploadStatus
+    , \ uploadStatusId' -> uploadStatus { uploadStatusId = uploadStatusId' }
+    )
+
+class InstagramPrimaryPhotoLens a b | a -> b where
+  instagramPrimaryPhoto :: Lens a b
+instance InstagramPrimaryPhotoLens ActivityDetailed Text where
+  instagramPrimaryPhoto activityDetailed =
+    ( activityDetailedInstagramPrimaryPhoto activityDetailed
+    , \ activityDetailedInstagramPrimaryPhoto' -> activityDetailed { activityDetailedInstagramPrimaryPhoto = activityDetailedInstagramPrimaryPhoto' }
+    )
+
+class KilojoulesLens a b | a -> b where
+  kilojoules :: Lens a b
+instance KilojoulesLens ActivityDetailed (Maybe Double) where
+  kilojoules activityDetailed =
+    ( activityDetailedKilojoules activityDetailed
+    , \ activityDetailedKilojoules' -> activityDetailed { activityDetailedKilojoules = activityDetailedKilojoules' }
+    )
+instance KilojoulesLens ActivitySummary (Maybe Double) where
+  kilojoules activitySummary =
+    ( activitySummaryKilojoules activitySummary
+    , \ activitySummaryKilojoules' -> activitySummary { activitySummaryKilojoules = activitySummaryKilojoules' }
+    )
+
+class KomRankLens a b | a -> b where
+  komRank :: Lens a b
+instance KomRankLens EffortDetailed (Maybe Integer) where
+  komRank effortDetailed =
+    ( effortDetailedKomRank effortDetailed
+    , \ effortDetailedKomRank' -> effortDetailed { effortDetailedKomRank = effortDetailedKomRank' }
+    )
+
+class KudosCountLens a b | a -> b where
+  kudosCount :: Lens a b
+instance KudosCountLens ActivitySummary Integer where
+  kudosCount activitySummary =
+    ( activitySummaryKudosCount activitySummary
+    , \ activitySummaryKudosCount' -> activitySummary { activitySummaryKudosCount = activitySummaryKudosCount' }
+    )
+
+class LapIndexLens a b | a -> b where
+  lapIndex :: Lens a b
+instance LapIndexLens ActivityLapSummary Integer where
+  lapIndex activityLapSummary =
+    ( activityLapSummaryLapIndex activityLapSummary
+    , \ activityLapSummaryLapIndex' -> activityLapSummary { activityLapSummaryLapIndex = activityLapSummaryLapIndex' }
+    )
+
+class LastnameLens a b | a -> b where
+  lastname :: Lens a b
+instance LastnameLens AthleteDetailed Text where
+  lastname athleteDetailed =
+    ( athleteDetailedLastname athleteDetailed
+    , \ athleteDetailedLastname' -> athleteDetailed { athleteDetailedLastname = athleteDetailedLastname' }
+    )
+instance LastnameLens AthleteSummary Text where
+  lastname athleteSummary =
+    ( athleteSummaryLastname athleteSummary
+    , \ athleteSummaryLastname' -> athleteSummary { athleteSummaryLastname = athleteSummaryLastname' }
+    )
+
+class LocationCityLens a b | a -> b where
+  locationCity :: Lens a b
+instance LocationCityLens ActivityDetailed (Maybe Text) where
+  locationCity activityDetailed =
+    ( activityDetailedLocationCity activityDetailed
+    , \ activityDetailedLocationCity' -> activityDetailed { activityDetailedLocationCity = activityDetailedLocationCity' }
+    )
+instance LocationCityLens ActivitySummary (Maybe Text) where
+  locationCity activitySummary =
+    ( activitySummaryLocationCity activitySummary
+    , \ activitySummaryLocationCity' -> activitySummary { activitySummaryLocationCity = activitySummaryLocationCity' }
+    )
+
+class LocationCountryLens a b | a -> b where
+  locationCountry :: Lens a b
+instance LocationCountryLens ActivityDetailed Text where
+  locationCountry activityDetailed =
+    ( activityDetailedLocationCountry activityDetailed
+    , \ activityDetailedLocationCountry' -> activityDetailed { activityDetailedLocationCountry = activityDetailedLocationCountry' }
+    )
+instance LocationCountryLens ActivitySummary Text where
+  locationCountry activitySummary =
+    ( activitySummaryLocationCountry activitySummary
+    , \ activitySummaryLocationCountry' -> activitySummary { activitySummaryLocationCountry = activitySummaryLocationCountry' }
+    )
+
+class LocationLens a b | a -> b where
+  location :: Lens a b
+instance LocationLens PhotoSummary (Maybe (Double, Double)) where
+  location photoSummary =
+    ( photoSummaryLocation photoSummary
+    , \ photoSummaryLocation' -> photoSummary { photoSummaryLocation = photoSummaryLocation' }
+    )
+
+class LocationStateLens a b | a -> b where
+  locationState :: Lens a b
+instance LocationStateLens ActivityDetailed (Maybe Text) where
+  locationState activityDetailed =
+    ( activityDetailedLocationState activityDetailed
+    , \ activityDetailedLocationState' -> activityDetailed { activityDetailedLocationState = activityDetailedLocationState' }
+    )
+instance LocationStateLens ActivitySummary (Maybe Text) where
+  locationState activitySummary =
+    ( activitySummaryLocationState activitySummary
+    , \ activitySummaryLocationState' -> activitySummary { activitySummaryLocationState = activitySummaryLocationState' }
+    )
+
+class ManualLens a b | a -> b where
+  manual :: Lens a b
+instance ManualLens ActivityDetailed Bool where
+  manual activityDetailed =
+    ( activityDetailedManual activityDetailed
+    , \ activityDetailedManual' -> activityDetailed { activityDetailedManual = activityDetailedManual' }
+    )
+instance ManualLens ActivitySummary Bool where
+  manual activitySummary =
+    ( activitySummaryManual activitySummary
+    , \ activitySummaryManual' -> activitySummary { activitySummaryManual = activitySummaryManual' }
+    )
+
+class MapLens a b | a -> b where
+  map :: Lens a b
+instance MapLens ActivityDetailed PolylineDetailed where
+  map activityDetailed =
+    ( activityDetailedMap activityDetailed
+    , \ activityDetailedMap' -> activityDetailed { activityDetailedMap = activityDetailedMap' }
+    )
+instance MapLens ActivitySummary PolylineSummary where
+  map activitySummary =
+    ( activitySummaryMap activitySummary
+    , \ activitySummaryMap' -> activitySummary { activitySummaryMap = activitySummaryMap' }
+    )
+instance MapLens SegmentDetailed PolylineDetailed where
+  map segmentDetailed =
+    ( segmentDetailedMap segmentDetailed
+    , \ segmentDetailedMap' -> segmentDetailed { segmentDetailedMap = segmentDetailedMap' }
+    )
+
+class MaxHeartrateLens a b | a -> b where
+  maxHeartrate :: Lens a b
+instance MaxHeartrateLens EffortDetailed (Maybe Integer) where
+  maxHeartrate effortDetailed =
+    ( effortDetailedMaxHeartrate effortDetailed
+    , \ effortDetailedMaxHeartrate' -> effortDetailed { effortDetailedMaxHeartrate = effortDetailedMaxHeartrate' }
+    )
+
+class MaxLens a b | a -> b where
+  max :: Lens a b
+instance MaxLens ActivityZoneDistributionBucket Integer where
+  max activityZoneDistributionBucket =
+    ( activityZoneDistributionBucketMax activityZoneDistributionBucket
+    , \ activityZoneDistributionBucketMax' -> activityZoneDistributionBucket { activityZoneDistributionBucketMax = activityZoneDistributionBucketMax' }
+    )
+
+class MaxSpeedLens a b | a -> b where
+  maxSpeed :: Lens a b
+instance MaxSpeedLens ActivityDetailed Double where
+  maxSpeed activityDetailed =
+    ( activityDetailedMaxSpeed activityDetailed
+    , \ activityDetailedMaxSpeed' -> activityDetailed { activityDetailedMaxSpeed = activityDetailedMaxSpeed' }
+    )
+instance MaxSpeedLens ActivitySummary Double where
+  maxSpeed activitySummary =
+    ( activitySummaryMaxSpeed activitySummary
+    , \ activitySummaryMaxSpeed' -> activitySummary { activitySummaryMaxSpeed = activitySummaryMaxSpeed' }
+    )
+instance MaxSpeedLens ActivityLapSummary Double where
+  maxSpeed activityLapSummary =
+    ( activityLapSummaryMaxSpeed activityLapSummary
+    , \ activityLapSummaryMaxSpeed' -> activityLapSummary { activityLapSummaryMaxSpeed = activityLapSummaryMaxSpeed' }
+    )
+
+class MaximumGradeLens a b | a -> b where
+  maximumGrade :: Lens a b
+instance MaximumGradeLens SegmentDetailed Double where
+  maximumGrade segmentDetailed =
+    ( segmentDetailedMaximumGrade segmentDetailed
+    , \ segmentDetailedMaximumGrade' -> segmentDetailed { segmentDetailedMaximumGrade = segmentDetailedMaximumGrade' }
+    )
+instance MaximumGradeLens SegmentSummary Double where
   maximumGrade segmentSummary =
     ( segmentSummaryMaximumGrade segmentSummary
-    , \ maximumGrade' -> segmentSummary { segmentSummaryMaximumGrade = maximumGrade' }
+    , \ segmentSummaryMaximumGrade' -> segmentSummary { segmentSummaryMaximumGrade = segmentSummaryMaximumGrade' }
     )
-instance NameLens SegmentSummary (Text) where
+
+class MeasurementPreferenceLens a b | a -> b where
+  measurementPreference :: Lens a b
+instance MeasurementPreferenceLens AthleteDetailed Text where
+  measurementPreference athleteDetailed =
+    ( athleteDetailedMeasurementPreference athleteDetailed
+    , \ athleteDetailedMeasurementPreference' -> athleteDetailed { athleteDetailedMeasurementPreference = athleteDetailedMeasurementPreference' }
+    )
+
+class MemberCountLens a b | a -> b where
+  memberCount :: Lens a b
+instance MemberCountLens ClubDetailed Integer where
+  memberCount clubDetailed =
+    ( clubDetailedMemberCount clubDetailed
+    , \ clubDetailedMemberCount' -> clubDetailed { clubDetailedMemberCount = clubDetailedMemberCount' }
+    )
+
+class MinLens a b | a -> b where
+  min :: Lens a b
+instance MinLens ActivityZoneDistributionBucket Integer where
+  min activityZoneDistributionBucket =
+    ( activityZoneDistributionBucketMin activityZoneDistributionBucket
+    , \ activityZoneDistributionBucketMin' -> activityZoneDistributionBucket { activityZoneDistributionBucketMin = activityZoneDistributionBucketMin' }
+    )
+
+class ModelNameLens a b | a -> b where
+  modelName :: Lens a b
+instance ModelNameLens GearDetailed Text where
+  modelName gearDetailed =
+    ( gearDetailedModelName gearDetailed
+    , \ gearDetailedModelName' -> gearDetailed { gearDetailedModelName = gearDetailedModelName' }
+    )
+
+class MovingTimeLens a b | a -> b where
+  movingTime :: Lens a b
+instance MovingTimeLens ActivityDetailed Integer where
+  movingTime activityDetailed =
+    ( activityDetailedMovingTime activityDetailed
+    , \ activityDetailedMovingTime' -> activityDetailed { activityDetailedMovingTime = activityDetailedMovingTime' }
+    )
+instance MovingTimeLens ActivitySummary Integer where
+  movingTime activitySummary =
+    ( activitySummaryMovingTime activitySummary
+    , \ activitySummaryMovingTime' -> activitySummary { activitySummaryMovingTime = activitySummaryMovingTime' }
+    )
+instance MovingTimeLens ActivityLapSummary Double where
+  movingTime activityLapSummary =
+    ( activityLapSummaryMovingTime activityLapSummary
+    , \ activityLapSummaryMovingTime' -> activityLapSummary { activityLapSummaryMovingTime = activityLapSummaryMovingTime' }
+    )
+instance MovingTimeLens EffortDetailed Integer where
+  movingTime effortDetailed =
+    ( effortDetailedMovingTime effortDetailed
+    , \ effortDetailedMovingTime' -> effortDetailed { effortDetailedMovingTime = effortDetailedMovingTime' }
+    )
+instance MovingTimeLens SegmentLeaderboardEntry Integer where
+  movingTime segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryMovingTime segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryMovingTime' -> segmentLeaderboardEntry { segmentLeaderboardEntryMovingTime = segmentLeaderboardEntryMovingTime' }
+    )
+
+class MutualFriendCountLens a b | a -> b where
+  mutualFriendCount :: Lens a b
+instance MutualFriendCountLens AthleteDetailed Integer where
+  mutualFriendCount athleteDetailed =
+    ( athleteDetailedMutualFriendCount athleteDetailed
+    , \ athleteDetailedMutualFriendCount' -> athleteDetailed { athleteDetailedMutualFriendCount = athleteDetailedMutualFriendCount' }
+    )
+
+class NameLens a b | a -> b where
+  name :: Lens a b
+instance NameLens ActivityDetailed Text where
+  name activityDetailed =
+    ( activityDetailedName activityDetailed
+    , \ activityDetailedName' -> activityDetailed { activityDetailedName = activityDetailedName' }
+    )
+instance NameLens ActivitySummary Text where
+  name activitySummary =
+    ( activitySummaryName activitySummary
+    , \ activitySummaryName' -> activitySummary { activitySummaryName = activitySummaryName' }
+    )
+instance NameLens ActivityLapSummary Text where
+  name activityLapSummary =
+    ( activityLapSummaryName activityLapSummary
+    , \ activityLapSummaryName' -> activityLapSummary { activityLapSummaryName = activityLapSummaryName' }
+    )
+instance NameLens ClubDetailed Text where
+  name clubDetailed =
+    ( clubDetailedName clubDetailed
+    , \ clubDetailedName' -> clubDetailed { clubDetailedName = clubDetailedName' }
+    )
+instance NameLens ClubSummary Text where
+  name clubSummary =
+    ( clubSummaryName clubSummary
+    , \ clubSummaryName' -> clubSummary { clubSummaryName = clubSummaryName' }
+    )
+instance NameLens EffortDetailed Text where
+  name effortDetailed =
+    ( effortDetailedName effortDetailed
+    , \ effortDetailedName' -> effortDetailed { effortDetailedName = effortDetailedName' }
+    )
+instance NameLens GearDetailed Text where
+  name gearDetailed =
+    ( gearDetailedName gearDetailed
+    , \ gearDetailedName' -> gearDetailed { gearDetailedName = gearDetailedName' }
+    )
+instance NameLens GearSummary Text where
+  name gearSummary =
+    ( gearSummaryName gearSummary
+    , \ gearSummaryName' -> gearSummary { gearSummaryName = gearSummaryName' }
+    )
+instance NameLens SegmentDetailed Text where
+  name segmentDetailed =
+    ( segmentDetailedName segmentDetailed
+    , \ segmentDetailedName' -> segmentDetailed { segmentDetailedName = segmentDetailedName' }
+    )
+instance NameLens SegmentSummary Text where
   name segmentSummary =
     ( segmentSummaryName segmentSummary
-    , \ name' -> segmentSummary { segmentSummaryName = name' }
+    , \ segmentSummaryName' -> segmentSummary { segmentSummaryName = segmentSummaryName' }
     )
-instance PrivateLens SegmentSummary (Bool) where
+instance NameLens SegmentExplorerEntry Text where
+  name segmentExplorerEntry =
+    ( segmentExplorerEntryName segmentExplorerEntry
+    , \ segmentExplorerEntryName' -> segmentExplorerEntry { segmentExplorerEntryName = segmentExplorerEntryName' }
+    )
+
+class OriginalSizeLens a b | a -> b where
+  originalSize :: Lens a b
+instance OriginalSizeLens StreamDetailed Integer where
+  originalSize streamDetailed =
+    ( streamDetailedOriginalSize streamDetailed
+    , \ streamDetailedOriginalSize' -> streamDetailed { streamDetailedOriginalSize = streamDetailedOriginalSize' }
+    )
+
+class PhotoCountLens a b | a -> b where
+  photoCount :: Lens a b
+instance PhotoCountLens ActivityDetailed Integer where
+  photoCount activityDetailed =
+    ( activityDetailedPhotoCount activityDetailed
+    , \ activityDetailedPhotoCount' -> activityDetailed { activityDetailedPhotoCount = activityDetailedPhotoCount' }
+    )
+instance PhotoCountLens ActivitySummary Integer where
+  photoCount activitySummary =
+    ( activitySummaryPhotoCount activitySummary
+    , \ activitySummaryPhotoCount' -> activitySummary { activitySummaryPhotoCount = activitySummaryPhotoCount' }
+    )
+
+class PointsLens a b | a -> b where
+  points :: Lens a b
+instance PointsLens SegmentExplorerEntry Text where
+  points segmentExplorerEntry =
+    ( segmentExplorerEntryPoints segmentExplorerEntry
+    , \ segmentExplorerEntryPoints' -> segmentExplorerEntry { segmentExplorerEntryPoints = segmentExplorerEntryPoints' }
+    )
+
+class PolylineLens a b | a -> b where
+  polyline :: Lens a b
+instance PolylineLens PolylineDetailed ([(Double, Double)]) where
+  polyline polylineDetailed =
+    ( polylineDetailedPolyline polylineDetailed
+    , \ polylineDetailedPolyline' -> polylineDetailed { polylineDetailedPolyline = polylineDetailedPolyline' }
+    )
+
+class PrRankLens a b | a -> b where
+  prRank :: Lens a b
+instance PrRankLens EffortDetailed (Maybe Integer) where
+  prRank effortDetailed =
+    ( effortDetailedPrRank effortDetailed
+    , \ effortDetailedPrRank' -> effortDetailed { effortDetailedPrRank = effortDetailedPrRank' }
+    )
+
+class PremiumLens a b | a -> b where
+  premium :: Lens a b
+instance PremiumLens AthleteDetailed Bool where
+  premium athleteDetailed =
+    ( athleteDetailedPremium athleteDetailed
+    , \ athleteDetailedPremium' -> athleteDetailed { athleteDetailedPremium = athleteDetailedPremium' }
+    )
+instance PremiumLens AthleteSummary Bool where
+  premium athleteSummary =
+    ( athleteSummaryPremium athleteSummary
+    , \ athleteSummaryPremium' -> athleteSummary { athleteSummaryPremium = athleteSummaryPremium' }
+    )
+
+class PrimaryLens a b | a -> b where
+  primary :: Lens a b
+instance PrimaryLens GearDetailed Bool where
+  primary gearDetailed =
+    ( gearDetailedPrimary gearDetailed
+    , \ gearDetailedPrimary' -> gearDetailed { gearDetailedPrimary = gearDetailedPrimary' }
+    )
+instance PrimaryLens GearSummary Bool where
+  primary gearSummary =
+    ( gearSummaryPrimary gearSummary
+    , \ gearSummaryPrimary' -> gearSummary { gearSummaryPrimary = gearSummaryPrimary' }
+    )
+
+class PrivateLens a b | a -> b where
+  private :: Lens a b
+instance PrivateLens ActivityDetailed Bool where
+  private activityDetailed =
+    ( activityDetailedPrivate activityDetailed
+    , \ activityDetailedPrivate' -> activityDetailed { activityDetailedPrivate = activityDetailedPrivate' }
+    )
+instance PrivateLens ActivitySummary Bool where
+  private activitySummary =
+    ( activitySummaryPrivate activitySummary
+    , \ activitySummaryPrivate' -> activitySummary { activitySummaryPrivate = activitySummaryPrivate' }
+    )
+instance PrivateLens ClubDetailed Bool where
+  private clubDetailed =
+    ( clubDetailedPrivate clubDetailed
+    , \ clubDetailedPrivate' -> clubDetailed { clubDetailedPrivate = clubDetailedPrivate' }
+    )
+instance PrivateLens SegmentDetailed Bool where
+  private segmentDetailed =
+    ( segmentDetailedPrivate segmentDetailed
+    , \ segmentDetailedPrivate' -> segmentDetailed { segmentDetailedPrivate = segmentDetailedPrivate' }
+    )
+instance PrivateLens SegmentSummary Bool where
   private segmentSummary =
     ( segmentSummaryPrivate segmentSummary
-    , \ private' -> segmentSummary { segmentSummaryPrivate = private' }
+    , \ segmentSummaryPrivate' -> segmentSummary { segmentSummaryPrivate = segmentSummaryPrivate' }
     )
-instance ResourceStateLens SegmentSummary (Integer) where
+
+class ProfileLens a b | a -> b where
+  profile :: Lens a b
+instance ProfileLens AthleteDetailed Text where
+  profile athleteDetailed =
+    ( athleteDetailedProfile athleteDetailed
+    , \ athleteDetailedProfile' -> athleteDetailed { athleteDetailedProfile = athleteDetailedProfile' }
+    )
+instance ProfileLens AthleteSummary Text where
+  profile athleteSummary =
+    ( athleteSummaryProfile athleteSummary
+    , \ athleteSummaryProfile' -> athleteSummary { athleteSummaryProfile = athleteSummaryProfile' }
+    )
+instance ProfileLens ClubDetailed Text where
+  profile clubDetailed =
+    ( clubDetailedProfile clubDetailed
+    , \ clubDetailedProfile' -> clubDetailed { clubDetailedProfile = clubDetailedProfile' }
+    )
+instance ProfileLens ClubSummary Text where
+  profile clubSummary =
+    ( clubSummaryProfile clubSummary
+    , \ clubSummaryProfile' -> clubSummary { clubSummaryProfile = clubSummaryProfile' }
+    )
+
+class ProfileMediumLens a b | a -> b where
+  profileMedium :: Lens a b
+instance ProfileMediumLens AthleteDetailed Text where
+  profileMedium athleteDetailed =
+    ( athleteDetailedProfileMedium athleteDetailed
+    , \ athleteDetailedProfileMedium' -> athleteDetailed { athleteDetailedProfileMedium = athleteDetailedProfileMedium' }
+    )
+instance ProfileMediumLens AthleteSummary Text where
+  profileMedium athleteSummary =
+    ( athleteSummaryProfileMedium athleteSummary
+    , \ athleteSummaryProfileMedium' -> athleteSummary { athleteSummaryProfileMedium = athleteSummaryProfileMedium' }
+    )
+instance ProfileMediumLens ClubDetailed Text where
+  profileMedium clubDetailed =
+    ( clubDetailedProfileMedium clubDetailed
+    , \ clubDetailedProfileMedium' -> clubDetailed { clubDetailedProfileMedium = clubDetailedProfileMedium' }
+    )
+instance ProfileMediumLens ClubSummary Text where
+  profileMedium clubSummary =
+    ( clubSummaryProfileMedium clubSummary
+    , \ clubSummaryProfileMedium' -> clubSummary { clubSummaryProfileMedium = clubSummaryProfileMedium' }
+    )
+
+class RankLens a b | a -> b where
+  rank :: Lens a b
+instance RankLens SegmentLeaderboardEntry Integer where
+  rank segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryRank segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryRank' -> segmentLeaderboardEntry { segmentLeaderboardEntryRank = segmentLeaderboardEntryRank' }
+    )
+
+class RefLens a b | a -> b where
+  ref :: Lens a b
+instance RefLens PhotoSummary Text where
+  ref photoSummary =
+    ( photoSummaryRef photoSummary
+    , \ photoSummaryRef' -> photoSummary { photoSummaryRef = photoSummaryRef' }
+    )
+
+class ResolutionLens a b | a -> b where
+  resolution :: Lens a b
+instance ResolutionLens StreamDetailed Text where
+  resolution streamDetailed =
+    ( streamDetailedResolution streamDetailed
+    , \ streamDetailedResolution' -> streamDetailed { streamDetailedResolution = streamDetailedResolution' }
+    )
+
+class ResourceStateLens a b | a -> b where
+  resourceState :: Lens a b
+instance ResourceStateLens ActivityDetailed Integer where
+  resourceState activityDetailed =
+    ( activityDetailedResourceState activityDetailed
+    , \ activityDetailedResourceState' -> activityDetailed { activityDetailedResourceState = activityDetailedResourceState' }
+    )
+instance ResourceStateLens ActivitySummary Integer where
+  resourceState activitySummary =
+    ( activitySummaryResourceState activitySummary
+    , \ activitySummaryResourceState' -> activitySummary { activitySummaryResourceState = activitySummaryResourceState' }
+    )
+instance ResourceStateLens ActivityZoneDetailed Integer where
+  resourceState activityZoneDetailed =
+    ( activityZoneDetailedResourceState activityZoneDetailed
+    , \ activityZoneDetailedResourceState' -> activityZoneDetailed { activityZoneDetailedResourceState = activityZoneDetailedResourceState' }
+    )
+instance ResourceStateLens ActivityLapSummary Integer where
+  resourceState activityLapSummary =
+    ( activityLapSummaryResourceState activityLapSummary
+    , \ activityLapSummaryResourceState' -> activityLapSummary { activityLapSummaryResourceState = activityLapSummaryResourceState' }
+    )
+instance ResourceStateLens AthleteDetailed Integer where
+  resourceState athleteDetailed =
+    ( athleteDetailedResourceState athleteDetailed
+    , \ athleteDetailedResourceState' -> athleteDetailed { athleteDetailedResourceState = athleteDetailedResourceState' }
+    )
+instance ResourceStateLens AthleteSummary Integer where
+  resourceState athleteSummary =
+    ( athleteSummaryResourceState athleteSummary
+    , \ athleteSummaryResourceState' -> athleteSummary { athleteSummaryResourceState = athleteSummaryResourceState' }
+    )
+instance ResourceStateLens AthleteMeta Integer where
+  resourceState athleteMeta =
+    ( athleteMetaResourceState athleteMeta
+    , \ athleteMetaResourceState' -> athleteMeta { athleteMetaResourceState = athleteMetaResourceState' }
+    )
+instance ResourceStateLens ClubDetailed Integer where
+  resourceState clubDetailed =
+    ( clubDetailedResourceState clubDetailed
+    , \ clubDetailedResourceState' -> clubDetailed { clubDetailedResourceState = clubDetailedResourceState' }
+    )
+instance ResourceStateLens ClubSummary Integer where
+  resourceState clubSummary =
+    ( clubSummaryResourceState clubSummary
+    , \ clubSummaryResourceState' -> clubSummary { clubSummaryResourceState = clubSummaryResourceState' }
+    )
+instance ResourceStateLens CommentSummary Integer where
+  resourceState commentSummary =
+    ( commentSummaryResourceState commentSummary
+    , \ commentSummaryResourceState' -> commentSummary { commentSummaryResourceState = commentSummaryResourceState' }
+    )
+instance ResourceStateLens EffortDetailed Integer where
+  resourceState effortDetailed =
+    ( effortDetailedResourceState effortDetailed
+    , \ effortDetailedResourceState' -> effortDetailed { effortDetailedResourceState = effortDetailedResourceState' }
+    )
+instance ResourceStateLens GearDetailed Integer where
+  resourceState gearDetailed =
+    ( gearDetailedResourceState gearDetailed
+    , \ gearDetailedResourceState' -> gearDetailed { gearDetailedResourceState = gearDetailedResourceState' }
+    )
+instance ResourceStateLens GearSummary Integer where
+  resourceState gearSummary =
+    ( gearSummaryResourceState gearSummary
+    , \ gearSummaryResourceState' -> gearSummary { gearSummaryResourceState = gearSummaryResourceState' }
+    )
+instance ResourceStateLens PhotoSummary Integer where
+  resourceState photoSummary =
+    ( photoSummaryResourceState photoSummary
+    , \ photoSummaryResourceState' -> photoSummary { photoSummaryResourceState = photoSummaryResourceState' }
+    )
+instance ResourceStateLens PolylineDetailed Integer where
+  resourceState polylineDetailed =
+    ( polylineDetailedResourceState polylineDetailed
+    , \ polylineDetailedResourceState' -> polylineDetailed { polylineDetailedResourceState = polylineDetailedResourceState' }
+    )
+instance ResourceStateLens PolylineSummary Integer where
+  resourceState polylineSummary =
+    ( polylineSummaryResourceState polylineSummary
+    , \ polylineSummaryResourceState' -> polylineSummary { polylineSummaryResourceState = polylineSummaryResourceState' }
+    )
+instance ResourceStateLens SegmentDetailed Integer where
+  resourceState segmentDetailed =
+    ( segmentDetailedResourceState segmentDetailed
+    , \ segmentDetailedResourceState' -> segmentDetailed { segmentDetailedResourceState = segmentDetailedResourceState' }
+    )
+instance ResourceStateLens SegmentSummary Integer where
   resourceState segmentSummary =
     ( segmentSummaryResourceState segmentSummary
-    , \ resourceState' -> segmentSummary { segmentSummaryResourceState = resourceState' }
+    , \ segmentSummaryResourceState' -> segmentSummary { segmentSummaryResourceState = segmentSummaryResourceState' }
     )
-instance StarredLens SegmentSummary (Bool) where
+instance ResourceStateLens SegmentExplorerEntry Integer where
+  resourceState segmentExplorerEntry =
+    ( segmentExplorerEntryResourceState segmentExplorerEntry
+    , \ segmentExplorerEntryResourceState' -> segmentExplorerEntry { segmentExplorerEntryResourceState = segmentExplorerEntryResourceState' }
+    )
+
+class SegmentEffortsLens a b | a -> b where
+  segmentEfforts :: Lens a b
+instance SegmentEffortsLens ActivityDetailed [EffortDetailed] where
+  segmentEfforts activityDetailed =
+    ( activityDetailedSegmentEfforts activityDetailed
+    , \ activityDetailedSegmentEfforts' -> activityDetailed { activityDetailedSegmentEfforts = activityDetailedSegmentEfforts' }
+    )
+
+class SegmentLens a b | a -> b where
+  segment :: Lens a b
+instance SegmentLens EffortDetailed SegmentSummary where
+  segment effortDetailed =
+    ( effortDetailedSegment effortDetailed
+    , \ effortDetailedSegment' -> effortDetailed { effortDetailedSegment = effortDetailedSegment' }
+    )
+
+class SensorBasedLens a b | a -> b where
+  sensorBased :: Lens a b
+instance SensorBasedLens ActivityZoneDetailed Bool where
+  sensorBased activityZoneDetailed =
+    ( activityZoneDetailedSensorBased activityZoneDetailed
+    , \ activityZoneDetailedSensorBased' -> activityZoneDetailed { activityZoneDetailedSensorBased = activityZoneDetailedSensorBased' }
+    )
+
+class SeriesTypeLens a b | a -> b where
+  seriesType :: Lens a b
+instance SeriesTypeLens StreamDetailed Text where
+  seriesType streamDetailed =
+    ( streamDetailedSeriesType streamDetailed
+    , \ streamDetailedSeriesType' -> streamDetailed { streamDetailedSeriesType = streamDetailedSeriesType' }
+    )
+
+class SexLens a b | a -> b where
+  sex :: Lens a b
+instance SexLens AthleteDetailed (Maybe Char) where
+  sex athleteDetailed =
+    ( athleteDetailedSex athleteDetailed
+    , \ athleteDetailedSex' -> athleteDetailed { athleteDetailedSex = athleteDetailedSex' }
+    )
+instance SexLens AthleteSummary (Maybe Char) where
+  sex athleteSummary =
+    ( athleteSummarySex athleteSummary
+    , \ athleteSummarySex' -> athleteSummary { athleteSummarySex = athleteSummarySex' }
+    )
+
+class ShoesLens a b | a -> b where
+  shoes :: Lens a b
+instance ShoesLens AthleteDetailed [GearSummary] where
+  shoes athleteDetailed =
+    ( athleteDetailedShoes athleteDetailed
+    , \ athleteDetailedShoes' -> athleteDetailed { athleteDetailedShoes = athleteDetailedShoes' }
+    )
+
+class SportTypeLens a b | a -> b where
+  sportType :: Lens a b
+instance SportTypeLens ClubDetailed Text where
+  sportType clubDetailed =
+    ( clubDetailedSportType clubDetailed
+    , \ clubDetailedSportType' -> clubDetailed { clubDetailedSportType = clubDetailedSportType' }
+    )
+
+class StarCountLens a b | a -> b where
+  starCount :: Lens a b
+instance StarCountLens SegmentDetailed Integer where
+  starCount segmentDetailed =
+    ( segmentDetailedStarCount segmentDetailed
+    , \ segmentDetailedStarCount' -> segmentDetailed { segmentDetailedStarCount = segmentDetailedStarCount' }
+    )
+
+class StarredLens a b | a -> b where
+  starred :: Lens a b
+instance StarredLens SegmentDetailed Bool where
+  starred segmentDetailed =
+    ( segmentDetailedStarred segmentDetailed
+    , \ segmentDetailedStarred' -> segmentDetailed { segmentDetailedStarred = segmentDetailedStarred' }
+    )
+instance StarredLens SegmentSummary Bool where
   starred segmentSummary =
     ( segmentSummaryStarred segmentSummary
-    , \ starred' -> segmentSummary { segmentSummaryStarred = starred' }
+    , \ segmentSummaryStarred' -> segmentSummary { segmentSummaryStarred = segmentSummaryStarred' }
     )
-instance StartLatitudeLens SegmentSummary (Double) where
+instance StarredLens SegmentExplorerEntry Bool where
+  starred segmentExplorerEntry =
+    ( segmentExplorerEntryStarred segmentExplorerEntry
+    , \ segmentExplorerEntryStarred' -> segmentExplorerEntry { segmentExplorerEntryStarred = segmentExplorerEntryStarred' }
+    )
+
+class StartDateLens a b | a -> b where
+  startDate :: Lens a b
+instance StartDateLens ActivityDetailed UTCTime where
+  startDate activityDetailed =
+    ( activityDetailedStartDate activityDetailed
+    , \ activityDetailedStartDate' -> activityDetailed { activityDetailedStartDate = activityDetailedStartDate' }
+    )
+instance StartDateLens ActivitySummary UTCTime where
+  startDate activitySummary =
+    ( activitySummaryStartDate activitySummary
+    , \ activitySummaryStartDate' -> activitySummary { activitySummaryStartDate = activitySummaryStartDate' }
+    )
+instance StartDateLens ActivityLapSummary UTCTime where
+  startDate activityLapSummary =
+    ( activityLapSummaryStartDate activityLapSummary
+    , \ activityLapSummaryStartDate' -> activityLapSummary { activityLapSummaryStartDate = activityLapSummaryStartDate' }
+    )
+instance StartDateLens EffortDetailed UTCTime where
+  startDate effortDetailed =
+    ( effortDetailedStartDate effortDetailed
+    , \ effortDetailedStartDate' -> effortDetailed { effortDetailedStartDate = effortDetailedStartDate' }
+    )
+instance StartDateLens SegmentLeaderboardEntry UTCTime where
+  startDate segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryStartDate segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryStartDate' -> segmentLeaderboardEntry { segmentLeaderboardEntryStartDate = segmentLeaderboardEntryStartDate' }
+    )
+
+class StartDateLocalLens a b | a -> b where
+  startDateLocal :: Lens a b
+instance StartDateLocalLens ActivityDetailed UTCTime where
+  startDateLocal activityDetailed =
+    ( activityDetailedStartDateLocal activityDetailed
+    , \ activityDetailedStartDateLocal' -> activityDetailed { activityDetailedStartDateLocal = activityDetailedStartDateLocal' }
+    )
+instance StartDateLocalLens ActivitySummary UTCTime where
+  startDateLocal activitySummary =
+    ( activitySummaryStartDateLocal activitySummary
+    , \ activitySummaryStartDateLocal' -> activitySummary { activitySummaryStartDateLocal = activitySummaryStartDateLocal' }
+    )
+instance StartDateLocalLens ActivityLapSummary UTCTime where
+  startDateLocal activityLapSummary =
+    ( activityLapSummaryStartDateLocal activityLapSummary
+    , \ activityLapSummaryStartDateLocal' -> activityLapSummary { activityLapSummaryStartDateLocal = activityLapSummaryStartDateLocal' }
+    )
+instance StartDateLocalLens EffortDetailed UTCTime where
+  startDateLocal effortDetailed =
+    ( effortDetailedStartDateLocal effortDetailed
+    , \ effortDetailedStartDateLocal' -> effortDetailed { effortDetailedStartDateLocal = effortDetailedStartDateLocal' }
+    )
+instance StartDateLocalLens SegmentLeaderboardEntry UTCTime where
+  startDateLocal segmentLeaderboardEntry =
+    ( segmentLeaderboardEntryStartDateLocal segmentLeaderboardEntry
+    , \ segmentLeaderboardEntryStartDateLocal' -> segmentLeaderboardEntry { segmentLeaderboardEntryStartDateLocal = segmentLeaderboardEntryStartDateLocal' }
+    )
+
+class StartIndexLens a b | a -> b where
+  startIndex :: Lens a b
+instance StartIndexLens ActivityLapSummary Integer where
+  startIndex activityLapSummary =
+    ( activityLapSummaryStartIndex activityLapSummary
+    , \ activityLapSummaryStartIndex' -> activityLapSummary { activityLapSummaryStartIndex = activityLapSummaryStartIndex' }
+    )
+instance StartIndexLens EffortDetailed Integer where
+  startIndex effortDetailed =
+    ( effortDetailedStartIndex effortDetailed
+    , \ effortDetailedStartIndex' -> effortDetailed { effortDetailedStartIndex = effortDetailedStartIndex' }
+    )
+
+class StartLatitudeLens a b | a -> b where
+  startLatitude :: Lens a b
+instance StartLatitudeLens ActivityDetailed Double where
+  startLatitude activityDetailed =
+    ( activityDetailedStartLatitude activityDetailed
+    , \ activityDetailedStartLatitude' -> activityDetailed { activityDetailedStartLatitude = activityDetailedStartLatitude' }
+    )
+instance StartLatitudeLens ActivitySummary Double where
+  startLatitude activitySummary =
+    ( activitySummaryStartLatitude activitySummary
+    , \ activitySummaryStartLatitude' -> activitySummary { activitySummaryStartLatitude = activitySummaryStartLatitude' }
+    )
+instance StartLatitudeLens SegmentDetailed Double where
+  startLatitude segmentDetailed =
+    ( segmentDetailedStartLatitude segmentDetailed
+    , \ segmentDetailedStartLatitude' -> segmentDetailed { segmentDetailedStartLatitude = segmentDetailedStartLatitude' }
+    )
+instance StartLatitudeLens SegmentSummary Double where
   startLatitude segmentSummary =
     ( segmentSummaryStartLatitude segmentSummary
-    , \ startLatitude' -> segmentSummary { segmentSummaryStartLatitude = startLatitude' }
+    , \ segmentSummaryStartLatitude' -> segmentSummary { segmentSummaryStartLatitude = segmentSummaryStartLatitude' }
+    )
+
+class StartLatlngLens a b | a -> b where
+  startLatlng :: Lens a b
+instance StartLatlngLens ActivityDetailed (Maybe (Double, Double)) where
+  startLatlng activityDetailed =
+    ( activityDetailedStartLatlng activityDetailed
+    , \ activityDetailedStartLatlng' -> activityDetailed { activityDetailedStartLatlng = activityDetailedStartLatlng' }
+    )
+instance StartLatlngLens ActivitySummary (Maybe (Double, Double)) where
+  startLatlng activitySummary =
+    ( activitySummaryStartLatlng activitySummary
+    , \ activitySummaryStartLatlng' -> activitySummary { activitySummaryStartLatlng = activitySummaryStartLatlng' }
+    )
+instance StartLatlngLens SegmentDetailed ((Double, Double)) where
+  startLatlng segmentDetailed =
+    ( segmentDetailedStartLatlng segmentDetailed
+    , \ segmentDetailedStartLatlng' -> segmentDetailed { segmentDetailedStartLatlng = segmentDetailedStartLatlng' }
     )
 instance StartLatlngLens SegmentSummary ((Double, Double)) where
   startLatlng segmentSummary =
     ( segmentSummaryStartLatlng segmentSummary
-    , \ startLatlng' -> segmentSummary { segmentSummaryStartLatlng = startLatlng' }
+    , \ segmentSummaryStartLatlng' -> segmentSummary { segmentSummaryStartLatlng = segmentSummaryStartLatlng' }
     )
-instance StartLongitudeLens SegmentSummary (Double) where
+instance StartLatlngLens SegmentExplorerEntry ((Double, Double)) where
+  startLatlng segmentExplorerEntry =
+    ( segmentExplorerEntryStartLatlng segmentExplorerEntry
+    , \ segmentExplorerEntryStartLatlng' -> segmentExplorerEntry { segmentExplorerEntryStartLatlng = segmentExplorerEntryStartLatlng' }
+    )
+
+class StartLongitudeLens a b | a -> b where
+  startLongitude :: Lens a b
+instance StartLongitudeLens ActivityDetailed Double where
+  startLongitude activityDetailed =
+    ( activityDetailedStartLongitude activityDetailed
+    , \ activityDetailedStartLongitude' -> activityDetailed { activityDetailedStartLongitude = activityDetailedStartLongitude' }
+    )
+instance StartLongitudeLens ActivitySummary Double where
+  startLongitude activitySummary =
+    ( activitySummaryStartLongitude activitySummary
+    , \ activitySummaryStartLongitude' -> activitySummary { activitySummaryStartLongitude = activitySummaryStartLongitude' }
+    )
+instance StartLongitudeLens SegmentDetailed Double where
+  startLongitude segmentDetailed =
+    ( segmentDetailedStartLongitude segmentDetailed
+    , \ segmentDetailedStartLongitude' -> segmentDetailed { segmentDetailedStartLongitude = segmentDetailedStartLongitude' }
+    )
+instance StartLongitudeLens SegmentSummary Double where
   startLongitude segmentSummary =
     ( segmentSummaryStartLongitude segmentSummary
-    , \ startLongitude' -> segmentSummary { segmentSummaryStartLongitude = startLongitude' }
+    , \ segmentSummaryStartLongitude' -> segmentSummary { segmentSummaryStartLongitude = segmentSummaryStartLongitude' }
     )
-instance StateLens SegmentSummary (Text) where
+
+class StateLens a b | a -> b where
+  state :: Lens a b
+instance StateLens AthleteDetailed Text where
+  state athleteDetailed =
+    ( athleteDetailedState athleteDetailed
+    , \ athleteDetailedState' -> athleteDetailed { athleteDetailedState = athleteDetailedState' }
+    )
+instance StateLens AthleteSummary Text where
+  state athleteSummary =
+    ( athleteSummaryState athleteSummary
+    , \ athleteSummaryState' -> athleteSummary { athleteSummaryState = athleteSummaryState' }
+    )
+instance StateLens ClubDetailed Text where
+  state clubDetailed =
+    ( clubDetailedState clubDetailed
+    , \ clubDetailedState' -> clubDetailed { clubDetailedState = clubDetailedState' }
+    )
+instance StateLens SegmentDetailed Text where
+  state segmentDetailed =
+    ( segmentDetailedState segmentDetailed
+    , \ segmentDetailedState' -> segmentDetailed { segmentDetailedState = segmentDetailedState' }
+    )
+instance StateLens SegmentSummary Text where
   state segmentSummary =
     ( segmentSummaryState segmentSummary
-    , \ state' -> segmentSummary { segmentSummaryState = state' }
+    , \ segmentSummaryState' -> segmentSummary { segmentSummaryState = segmentSummaryState' }
     )
 
--- ** StreamDetailed
-
-instance DataLens StreamDetailed ([Value]) where
-  data' streamDetailed =
-    ( streamDetailedData streamDetailed
-    , \ data'' -> streamDetailed { streamDetailedData = data'' }
-    )
-instance OriginalSizeLens StreamDetailed (Integer) where
-  originalSize streamDetailed =
-    ( streamDetailedOriginalSize streamDetailed
-    , \ originalSize' -> streamDetailed { streamDetailedOriginalSize = originalSize' }
-    )
-instance ResolutionLens StreamDetailed (Text) where
-  resolution streamDetailed =
-    ( streamDetailedResolution streamDetailed
-    , \ resolution' -> streamDetailed { streamDetailedResolution = resolution' }
-    )
-instance SeriesTypeLens StreamDetailed (Text) where
-  seriesType streamDetailed =
-    ( streamDetailedSeriesType streamDetailed
-    , \ seriesType' -> streamDetailed { streamDetailedSeriesType = seriesType' }
-    )
-instance TypeLens StreamDetailed (Text) where
-  type' streamDetailed =
-    ( streamDetailedType streamDetailed
-    , \ type'' -> streamDetailed { streamDetailedType = type'' }
-    )
-
--- ** TokenExchangeResponse
-
-instance AccessTokenLens TokenExchangeResponse (Text) where
-  accessToken' tokenExchangeResponse =
-    ( tokenExchangeResponseAccessToken tokenExchangeResponse
-    , \ accessToken'' -> tokenExchangeResponse { tokenExchangeResponseAccessToken = accessToken'' }
-    )
-instance AthleteLens TokenExchangeResponse (AthleteDetailed) where
-  athlete tokenExchangeResponse =
-    ( tokenExchangeResponseAthlete tokenExchangeResponse
-    , \ athlete' -> tokenExchangeResponse { tokenExchangeResponseAthlete = athlete' }
-    )
-
--- ** UploadStatus
-
-instance ActivityIdLens UploadStatus (Maybe Integer) where
-  activityId uploadStatus =
-    ( uploadStatusActivityId uploadStatus
-    , \ activityId' -> uploadStatus { uploadStatusActivityId = activityId' }
-    )
-instance ErrorLens UploadStatus (Maybe Text) where
-  error uploadStatus =
-    ( uploadStatusError uploadStatus
-    , \ error' -> uploadStatus { uploadStatusError = error' }
-    )
-instance ExternalIdLens UploadStatus (Text) where
-  externalId uploadStatus =
-    ( uploadStatusExternalId uploadStatus
-    , \ externalId' -> uploadStatus { uploadStatusExternalId = externalId' }
-    )
-instance IdLens UploadStatus (Integer) where
-  id uploadStatus =
-    ( uploadStatusId uploadStatus
-    , \ id' -> uploadStatus { uploadStatusId = id' }
-    )
-instance StatusLens UploadStatus (Text) where
+class StatusLens a b | a -> b where
+  status :: Lens a b
+instance StatusLens UploadStatus Text where
   status uploadStatus =
     ( uploadStatusStatus uploadStatus
-    , \ status' -> uploadStatus { uploadStatusStatus = status' }
+    , \ uploadStatusStatus' -> uploadStatus { uploadStatusStatus = uploadStatusStatus' }
+    )
+
+class SummaryPolylineLens a b | a -> b where
+  summaryPolyline :: Lens a b
+instance SummaryPolylineLens PolylineDetailed (Maybe [(Double, Double)]) where
+  summaryPolyline polylineDetailed =
+    ( polylineDetailedSummaryPolyline polylineDetailed
+    , \ polylineDetailedSummaryPolyline' -> polylineDetailed { polylineDetailedSummaryPolyline = polylineDetailedSummaryPolyline' }
+    )
+instance SummaryPolylineLens PolylineSummary (Maybe [(Double, Double)]) where
+  summaryPolyline polylineSummary =
+    ( polylineSummarySummaryPolyline polylineSummary
+    , \ polylineSummarySummaryPolyline' -> polylineSummary { polylineSummarySummaryPolyline = polylineSummarySummaryPolyline' }
+    )
+
+class TextLens a b | a -> b where
+  text :: Lens a b
+instance TextLens CommentSummary Text where
+  text commentSummary =
+    ( commentSummaryText commentSummary
+    , \ commentSummaryText' -> commentSummary { commentSummaryText = commentSummaryText' }
+    )
+
+class TimeLens a b | a -> b where
+  time :: Lens a b
+instance TimeLens ActivityZoneDistributionBucket Integer where
+  time activityZoneDistributionBucket =
+    ( activityZoneDistributionBucketTime activityZoneDistributionBucket
+    , \ activityZoneDistributionBucketTime' -> activityZoneDistributionBucket { activityZoneDistributionBucketTime = activityZoneDistributionBucketTime' }
+    )
+
+class TimezoneLens a b | a -> b where
+  timezone :: Lens a b
+instance TimezoneLens ActivityDetailed Text where
+  timezone activityDetailed =
+    ( activityDetailedTimezone activityDetailed
+    , \ activityDetailedTimezone' -> activityDetailed { activityDetailedTimezone = activityDetailedTimezone' }
+    )
+instance TimezoneLens ActivitySummary Text where
+  timezone activitySummary =
+    ( activitySummaryTimezone activitySummary
+    , \ activitySummaryTimezone' -> activitySummary { activitySummaryTimezone = activitySummaryTimezone' }
+    )
+
+class TotalElevationGainLens a b | a -> b where
+  totalElevationGain :: Lens a b
+instance TotalElevationGainLens ActivityDetailed Double where
+  totalElevationGain activityDetailed =
+    ( activityDetailedTotalElevationGain activityDetailed
+    , \ activityDetailedTotalElevationGain' -> activityDetailed { activityDetailedTotalElevationGain = activityDetailedTotalElevationGain' }
+    )
+instance TotalElevationGainLens ActivitySummary Double where
+  totalElevationGain activitySummary =
+    ( activitySummaryTotalElevationGain activitySummary
+    , \ activitySummaryTotalElevationGain' -> activitySummary { activitySummaryTotalElevationGain = activitySummaryTotalElevationGain' }
+    )
+instance TotalElevationGainLens ActivityLapSummary Double where
+  totalElevationGain activityLapSummary =
+    ( activityLapSummaryTotalElevationGain activityLapSummary
+    , \ activityLapSummaryTotalElevationGain' -> activityLapSummary { activityLapSummaryTotalElevationGain = activityLapSummaryTotalElevationGain' }
+    )
+instance TotalElevationGainLens SegmentDetailed Double where
+  totalElevationGain segmentDetailed =
+    ( segmentDetailedTotalElevationGain segmentDetailed
+    , \ segmentDetailedTotalElevationGain' -> segmentDetailed { segmentDetailedTotalElevationGain = segmentDetailedTotalElevationGain' }
+    )
+
+class TrainerLens a b | a -> b where
+  trainer :: Lens a b
+instance TrainerLens ActivityDetailed Bool where
+  trainer activityDetailed =
+    ( activityDetailedTrainer activityDetailed
+    , \ activityDetailedTrainer' -> activityDetailed { activityDetailedTrainer = activityDetailedTrainer' }
+    )
+instance TrainerLens ActivitySummary Bool where
+  trainer activitySummary =
+    ( activitySummaryTrainer activitySummary
+    , \ activitySummaryTrainer' -> activitySummary { activitySummaryTrainer = activitySummaryTrainer' }
+    )
+
+class TruncatedLens a b | a -> b where
+  truncated :: Lens a b
+instance TruncatedLens ActivityDetailed Integer where
+  truncated activityDetailed =
+    ( activityDetailedTruncated activityDetailed
+    , \ activityDetailedTruncated' -> activityDetailed { activityDetailedTruncated = activityDetailedTruncated' }
+    )
+
+class TypeLens a b | a -> b where
+  type' :: Lens a b
+instance TypeLens ActivityDetailed Text where
+  type' activityDetailed =
+    ( activityDetailedType activityDetailed
+    , \ activityDetailedType' -> activityDetailed { activityDetailedType = activityDetailedType' }
+    )
+instance TypeLens ActivitySummary Text where
+  type' activitySummary =
+    ( activitySummaryType activitySummary
+    , \ activitySummaryType' -> activitySummary { activitySummaryType = activitySummaryType' }
+    )
+instance TypeLens ActivityZoneDetailed Text where
+  type' activityZoneDetailed =
+    ( activityZoneDetailedType activityZoneDetailed
+    , \ activityZoneDetailedType' -> activityZoneDetailed { activityZoneDetailedType = activityZoneDetailedType' }
+    )
+instance TypeLens PhotoSummary Text where
+  type' photoSummary =
+    ( photoSummaryType photoSummary
+    , \ photoSummaryType' -> photoSummary { photoSummaryType = photoSummaryType' }
+    )
+instance TypeLens StreamDetailed Text where
+  type' streamDetailed =
+    ( streamDetailedType streamDetailed
+    , \ streamDetailedType' -> streamDetailed { streamDetailedType = streamDetailedType' }
+    )
+
+class UidLens a b | a -> b where
+  uid :: Lens a b
+instance UidLens PhotoSummary Text where
+  uid photoSummary =
+    ( photoSummaryUid photoSummary
+    , \ photoSummaryUid' -> photoSummary { photoSummaryUid = photoSummaryUid' }
+    )
+
+class UpdatedAtLens a b | a -> b where
+  updatedAt :: Lens a b
+instance UpdatedAtLens AthleteDetailed UTCTime where
+  updatedAt athleteDetailed =
+    ( athleteDetailedUpdatedAt athleteDetailed
+    , \ athleteDetailedUpdatedAt' -> athleteDetailed { athleteDetailedUpdatedAt = athleteDetailedUpdatedAt' }
+    )
+instance UpdatedAtLens AthleteSummary UTCTime where
+  updatedAt athleteSummary =
+    ( athleteSummaryUpdatedAt athleteSummary
+    , \ athleteSummaryUpdatedAt' -> athleteSummary { athleteSummaryUpdatedAt = athleteSummaryUpdatedAt' }
+    )
+instance UpdatedAtLens SegmentDetailed UTCTime where
+  updatedAt segmentDetailed =
+    ( segmentDetailedUpdatedAt segmentDetailed
+    , \ segmentDetailedUpdatedAt' -> segmentDetailed { segmentDetailedUpdatedAt = segmentDetailedUpdatedAt' }
+    )
+
+class UploadIdLens a b | a -> b where
+  uploadId :: Lens a b
+instance UploadIdLens ActivityDetailed (Maybe Integer) where
+  uploadId activityDetailed =
+    ( activityDetailedUploadId activityDetailed
+    , \ activityDetailedUploadId' -> activityDetailed { activityDetailedUploadId = activityDetailedUploadId' }
+    )
+instance UploadIdLens ActivitySummary (Maybe Integer) where
+  uploadId activitySummary =
+    ( activitySummaryUploadId activitySummary
+    , \ activitySummaryUploadId' -> activitySummary { activitySummaryUploadId = activitySummaryUploadId' }
+    )
+
+class UploadedAtLens a b | a -> b where
+  uploadedAt :: Lens a b
+instance UploadedAtLens PhotoSummary UTCTime where
+  uploadedAt photoSummary =
+    ( photoSummaryUploadedAt photoSummary
+    , \ photoSummaryUploadedAt' -> photoSummary { photoSummaryUploadedAt = photoSummaryUploadedAt' }
     )
