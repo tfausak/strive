@@ -24,7 +24,7 @@ data EffortDetailed = EffortDetailed
     , effortDetailedHidden           :: Maybe Bool
     , effortDetailedId               :: Integer
     , effortDetailedKomRank          :: Maybe Integer
-    , effortDetailedMax_heartrate    :: Maybe Integer
+    , effortDetailedMaxHeartrate     :: Maybe Integer
     , effortDetailedMovingTime       :: Integer
     , effortDetailedName             :: Text
     , effortDetailedPrRank           :: Maybe Integer
