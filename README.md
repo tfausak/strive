@@ -86,11 +86,15 @@ main = do
 #### [Token exchange](http://strava.github.io/api/v3/oauth/#post-token)
 
 ~~~ {.haskell}
+  tokenExchangeResponse <- exchangeToken 1790 "secret" "code"
+  print (tokenExchangeResponse :: Either String TokenExchangeResponse)
 ~~~
 
 #### [Deauthorization](http://strava.github.io/api/v3/oauth/#deauthorize)
 
 ~~~ {.haskell}
+  deauthorizationResponse <- deauthorize client
+  print (deauthorizationResponse :: Either String DeauthorizationResponse)
 ~~~
 
 ### [Athletes](http://strava.github.io/api/v3/athlete/)
