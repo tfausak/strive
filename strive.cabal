@@ -33,7 +33,7 @@ library
     exposed-modules:
         Strive
         Strive.Actions
-        Strive.Lens
+        Strive.Lenses
         Strive.Options
     exposed: True
     buildable: True

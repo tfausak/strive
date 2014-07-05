@@ -1,7 +1,7 @@
 {-# LANGUAGE FunctionalDependencies #-}
 
 -- | Lenses for easily getting and setting values.
-module Strive.Lens where
+module Strive.Lenses where
 
 -- | A lens for a record, returning a field and a residue.
 type Lens a b = a -> (b, b -> a)

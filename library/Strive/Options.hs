@@ -9,7 +9,7 @@ import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
 import Network.HTTP.Types.QueryLike (QueryLike, toQuery)
-import Strive.Lens
+import Strive.Lenses
 
 -- * Authentication
 
