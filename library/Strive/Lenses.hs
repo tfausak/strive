@@ -18,8 +18,14 @@ set = flip . (snd .)
 
 -- TODO
 
+class AccessTokenLens a b | a -> b where
+  accessToken :: Lens a b
+
 class ApprovalPromptLens a b | a -> b where
   approvalPrompt :: Lens a b
+
+class HttpManagerLens a b | a -> b where
+  httpManager :: Lens a b
 
 class PrivateScopeLens a b | a -> b where
   privateScope :: Lens a b

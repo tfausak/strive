@@ -65,6 +65,7 @@ import System.Exit (exitSuccess)
 
 main :: IO ()
 main = do
+  client <- buildClient "token"
   _ <- exitSuccess
 ~~~
 -->

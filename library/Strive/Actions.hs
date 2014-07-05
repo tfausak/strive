@@ -5,6 +5,7 @@ import Data.ByteString.Char8 (unpack)
 import Data.Default (Default, def)
 import Data.Monoid ((<>))
 import Network.HTTP.Types (renderQuery, toQuery)
+import Strive.Client (Client)
 import Strive.Options (BuildAuthorizeUrlOptions)
 
 -- | Helper function for easily performing actions.

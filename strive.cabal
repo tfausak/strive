@@ -29,10 +29,12 @@ library
         aeson ==0.7.*,
         bytestring ==0.10.*,
         data-default ==0.5.*,
+        http-conduit ==2.*,
         http-types ==0.8.*
     exposed-modules:
         Strive
         Strive.Actions
+        Strive.Client
         Strive.Lenses
         Strive.Options
     exposed: True
