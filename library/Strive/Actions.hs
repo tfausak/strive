@@ -43,3 +43,6 @@ deauthorize client = post client resource query
  where
   resource = "oauth/deauthorize"
   query = []
+
+post = undefined -- TODO
+post' = undefined -- TODO
