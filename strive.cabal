@@ -48,6 +48,8 @@ library
     other-extensions: FlexibleInstances FunctionalDependencies
                       MultiParamTypeClasses OverloadedStrings
     hs-source-dirs: library
+    other-modules:
+        Strive.Internal.HTTP
  
 test-suite readme
     build-depends:
