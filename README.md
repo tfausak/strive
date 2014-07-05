@@ -103,6 +103,8 @@ main = do
 #### [Retrieve current athlete](http://strava.github.io/api/v3/athlete/#get-details)
 
 ~~~ {.haskell}
+  currentAthlete <- getCurrentAthlete client
+  print (currentAthlete :: Either String AthleteDetailed)
 ~~~
 
 #### [Retrieve another athlete](http://strava.github.io/api/v3/athlete/#get-another-details)

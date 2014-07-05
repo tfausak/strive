@@ -6,9 +6,9 @@ import Data.Default (Default, def)
 import Data.Monoid ((<>))
 import Network.HTTP.Types (Query, renderQuery, toQuery)
 import Strive.Client (Client, buildClient)
-import Strive.Internal.HTTP (post)
-import Strive.Options (BuildAuthorizeUrlOptions)
-import Strive.Types (DeauthorizationResponse, TokenExchangeResponse)
+import Strive.Internal.HTTP (get, post)
+import qualified Strive.Options as O
+import qualified Strive.Types as T
 
 -- | Helper function for easily performing actions.
 with :: Default a => [a -> a] -> a
@@ -17,7 +17,7 @@ with = foldr ($) def
 -- * Authentication
 
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
-buildAuthorizeUrl :: Integer -> String -> BuildAuthorizeUrlOptions -> String
+buildAuthorizeUrl :: Integer -> String -> O.BuildAuthorizeUrlOptions -> String
 buildAuthorizeUrl clientId redirectUrl options =
   "https://www.strava.com/oauth/authorize" <> unpack (renderQuery True query)
  where
@@ -28,7 +28,7 @@ buildAuthorizeUrl clientId redirectUrl options =
     ] <> toQuery options
 
 -- | <http://strava.github.io/api/v3/oauth/#post-token>
-exchangeToken :: Integer -> String -> String -> IO (Either String TokenExchangeResponse)
+exchangeToken :: Integer -> String -> String -> IO (Either String T.TokenExchangeResponse)
 exchangeToken clientId clientSecret code = do
   client <- buildClient "" -- TODO: This is kind of dumb.
   post client resource query
@@ -41,8 +41,17 @@ exchangeToken clientId clientSecret code = do
     ]
 
 -- | <http://strava.github.io/api/v3/oauth/#deauthorize>
-deauthorize :: Client -> IO (Either String DeauthorizationResponse)
+deauthorize :: Client -> IO (Either String T.DeauthorizationResponse)
 deauthorize client = post client resource query
  where
   resource = "oauth/deauthorize"
+  query = [] :: Query
+
+-- * Athletes
+
+-- | <http://strava.github.io/api/v3/athlete/#get-details>
+getCurrentAthlete :: Client -> IO (Either String T.AthleteDetailed)
+getCurrentAthlete client = get client resource query
+ where
+  resource = "api/v3/athlete"
   query = [] :: Query
