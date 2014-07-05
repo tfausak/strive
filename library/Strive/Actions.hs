@@ -7,10 +7,11 @@ import Data.Monoid ((<>))
 import Network.HTTP.Types (renderQuery, toQuery)
 import Strive.Options (BuildAuthorizeUrlOptions)
 
+-- | Helper function for easily performing actions.
 with :: Default a => [a -> a] -> a
 with = foldr ($) def
 
--- | * Authentication
+-- * Authentication
 
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
 buildAuthorizeUrl :: Integer -> String -> BuildAuthorizeUrlOptions -> String

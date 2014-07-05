@@ -1,6 +1,5 @@
 {-# LANGUAGE FlexibleInstances     #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE TypeSynonymInstances  #-}
 
 -- | Optional parameters for actions.
 module Strive.Options where
@@ -42,7 +41,7 @@ instance QueryLike BuildAuthorizeUrlOptions where
       , if get writeScope options then "write" else ""
       ]
 
--- TODO: Everything below here should be generated with metaprogramming.
+-- TODO
 
 instance ApprovalPromptLens BuildAuthorizeUrlOptions Bool where
   approvalPrompt options =
