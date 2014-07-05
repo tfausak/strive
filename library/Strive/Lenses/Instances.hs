@@ -1,0 +1,57 @@
+{-# LANGUAGE FlexibleInstances     #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+
+module Strive.Lenses.Instances where
+
+import Data.Text (Text)
+import Data.Time.Clock (UTCTime)
+import Network.HTTP.Client.Conduit (Manager)
+import Strive.Client
+import Strive.Lenses.Classes
+import Strive.Options
+import Strive.Types
+
+instance AccessTokenLens Client String where accessToken client = (client_accessToken client, \ accessToken' -> client { client_accessToken = accessToken' })
+instance AccessTokenLens DeauthorizationResponse Text where accessToken deauthorizationResponse = (deauthorizationResponse_accessToken deauthorizationResponse, \ accessToken' -> deauthorizationResponse { deauthorizationResponse_accessToken = accessToken' })
+instance AccessTokenLens TokenExchangeResponse Text where accessToken tokenExchangeResponse = (tokenExchangeResponse_accessToken tokenExchangeResponse, \ accessToken' -> tokenExchangeResponse { tokenExchangeResponse_accessToken = accessToken' })
+instance ApprovalPromptLens BuildAuthorizeUrlOptions Bool where approvalPrompt options = (buildAuthorizeUrlOptions_approvalPrompt options, \ approvalPrompt' -> options { buildAuthorizeUrlOptions_approvalPrompt = approvalPrompt' })
+instance AthleteLens TokenExchangeResponse AthleteDetailed where athlete tokenExchangeResponse = (tokenExchangeResponse_athlete tokenExchangeResponse, \ athlete' -> tokenExchangeResponse { tokenExchangeResponse_athlete = athlete' })
+instance BikesLens AthleteDetailed [GearSummary] where bikes athleteDetailed = (athleteDetailed_bikes athleteDetailed, \ bikes' -> athleteDetailed { athleteDetailed_bikes = bikes' })
+instance CityLens AthleteDetailed Text where city athleteDetailed = (athleteDetailed_city athleteDetailed, \ city' -> athleteDetailed { athleteDetailed_city = city' })
+instance ClubsLens AthleteDetailed [ClubSummary] where clubs athleteDetailed = (athleteDetailed_clubs athleteDetailed, \ clubs' -> athleteDetailed { athleteDetailed_clubs = clubs' })
+instance CountryLens AthleteDetailed Text where country athleteDetailed = (athleteDetailed_country athleteDetailed, \ country' -> athleteDetailed { athleteDetailed_country = country' })
+instance CreatedAtLens AthleteDetailed UTCTime where createdAt athleteDetailed = (athleteDetailed_createdAt athleteDetailed, \ createdAt' -> athleteDetailed { athleteDetailed_createdAt = createdAt' })
+instance DatePreferenceLens AthleteDetailed Text where datePreference athleteDetailed = (athleteDetailed_datePreference athleteDetailed, \ datePreference' -> athleteDetailed { athleteDetailed_datePreference = datePreference' })
+instance DistanceLens GearSummary Double where distance gearSummary = (gearSummary_distance gearSummary, \ distance' -> gearSummary { gearSummary_distance = distance' })
+instance EmailLens AthleteDetailed Text where email athleteDetailed = (athleteDetailed_email athleteDetailed, \ email' -> athleteDetailed { athleteDetailed_email = email' })
+instance FirstnameLens AthleteDetailed Text where firstname athleteDetailed = (athleteDetailed_firstname athleteDetailed, \ firstname' -> athleteDetailed { athleteDetailed_firstname = firstname' })
+instance FollowerCountLens AthleteDetailed Integer where followerCount athleteDetailed = (athleteDetailed_followerCount athleteDetailed, \ followerCount' -> athleteDetailed { athleteDetailed_followerCount = followerCount' })
+instance FollowerLens AthleteDetailed (Maybe Text) where follower athleteDetailed = (athleteDetailed_follower athleteDetailed, \ follower' -> athleteDetailed { athleteDetailed_follower = follower' })
+instance FriendCountLens AthleteDetailed Integer where friendCount athleteDetailed = (athleteDetailed_friendCount athleteDetailed, \ friendCount' -> athleteDetailed { athleteDetailed_friendCount = friendCount' })
+instance FriendLens AthleteDetailed (Maybe Text) where friend athleteDetailed = (athleteDetailed_friend athleteDetailed, \ friend' -> athleteDetailed { athleteDetailed_friend = friend' })
+instance FtpLens AthleteDetailed (Maybe Integer) where ftp athleteDetailed = (athleteDetailed_ftp athleteDetailed, \ ftp' -> athleteDetailed { athleteDetailed_ftp = ftp' })
+instance HttpManagerLens Client Manager where httpManager client = (client_httpManager client, \ httpManager' -> client { client_httpManager = httpManager' })
+instance IdLens AthleteDetailed Integer where id athleteDetailed = (athleteDetailed_id athleteDetailed, \ id' -> athleteDetailed { athleteDetailed_id = id' })
+instance IdLens ClubSummary Integer where id clubSummary = (clubSummary_id clubSummary, \ id' -> clubSummary { clubSummary_id = id' })
+instance IdLens GearSummary Text where id gearSummary = (gearSummary_id gearSummary, \ id' -> gearSummary { gearSummary_id = id' })
+instance LastnameLens AthleteDetailed Text where lastname athleteDetailed = (athleteDetailed_lastname athleteDetailed, \ lastname' -> athleteDetailed { athleteDetailed_lastname = lastname' })
+instance MeasurementPreferenceLens AthleteDetailed Text where measurementPreference athleteDetailed = (athleteDetailed_measurementPreference athleteDetailed, \ measurementPreference' -> athleteDetailed { athleteDetailed_measurementPreference = measurementPreference' })
+instance MutualFriendCountLens AthleteDetailed Integer where mutualFriendCount athleteDetailed = (athleteDetailed_mutualFriendCount athleteDetailed, \ mutualFriendCount' -> athleteDetailed { athleteDetailed_mutualFriendCount = mutualFriendCount' })
+instance NameLens ClubSummary Text where name clubSummary = (clubSummary_name clubSummary, \ name' -> clubSummary { clubSummary_name = name' })
+instance NameLens GearSummary Text where name gearSummary = (gearSummary_name gearSummary, \ name' -> gearSummary { gearSummary_name = name' })
+instance PremiumLens AthleteDetailed Bool where premium athleteDetailed = (athleteDetailed_premium athleteDetailed, \ premium' -> athleteDetailed { athleteDetailed_premium = premium' })
+instance PrimaryLens GearSummary Bool where primary gearSummary = (gearSummary_primary gearSummary, \ primary' -> gearSummary { gearSummary_primary = primary' })
+instance PrivateScopeLens BuildAuthorizeUrlOptions Bool where privateScope options = (buildAuthorizeUrlOptions_privateScope options, \ privateScope' -> options { buildAuthorizeUrlOptions_privateScope = privateScope' })
+instance ProfileLens AthleteDetailed Text where profile athleteDetailed = (athleteDetailed_profile athleteDetailed, \ profile' -> athleteDetailed { athleteDetailed_profile = profile' })
+instance ProfileLens ClubSummary Text where profile clubSummary = (clubSummary_profile clubSummary, \ profile' -> clubSummary { clubSummary_profile = profile' })
+instance ProfileMediumLens AthleteDetailed Text where profileMedium athleteDetailed = (athleteDetailed_profileMedium athleteDetailed, \ profileMedium' -> athleteDetailed { athleteDetailed_profileMedium = profileMedium' })
+instance ProfileMediumLens ClubSummary Text where profileMedium clubSummary = (clubSummary_profileMedium clubSummary, \ profileMedium' -> clubSummary { clubSummary_profileMedium = profileMedium' })
+instance ResourceStateLens AthleteDetailed Integer where resourceState athleteDetailed = (athleteDetailed_resourceState athleteDetailed, \ resourceState' -> athleteDetailed { athleteDetailed_resourceState = resourceState' })
+instance ResourceStateLens ClubSummary Integer where resourceState clubSummary = (clubSummary_resourceState clubSummary, \ resourceState' -> clubSummary { clubSummary_resourceState = resourceState' })
+instance ResourceStateLens GearSummary Integer where resourceState gearSummary = (gearSummary_resourceState gearSummary, \ resourceState' -> gearSummary { gearSummary_resourceState = resourceState' })
+instance SexLens AthleteDetailed (Maybe Char) where sex athleteDetailed = (athleteDetailed_sex athleteDetailed, \ sex' -> athleteDetailed { athleteDetailed_sex = sex' })
+instance ShoesLens AthleteDetailed [GearSummary] where shoes athleteDetailed = (athleteDetailed_shoes athleteDetailed, \ shoes' -> athleteDetailed { athleteDetailed_shoes = shoes' })
+instance StateLens AthleteDetailed Text where state athleteDetailed = (athleteDetailed_state athleteDetailed, \ state' -> athleteDetailed { athleteDetailed_state = state' })
+instance StateLens BuildAuthorizeUrlOptions String where state options = (buildAuthorizeUrlOptions_state options, \ state' -> options { buildAuthorizeUrlOptions_state = state' })
+instance UpdatedAtLens AthleteDetailed UTCTime where updatedAt athleteDetailed = (athleteDetailed_updatedAt athleteDetailed, \ updatedAt' -> athleteDetailed { athleteDetailed_updatedAt = updatedAt' })
+instance WriteScopeLens BuildAuthorizeUrlOptions Bool where writeScope options = (buildAuthorizeUrlOptions_writeScope options, \ writeScope' -> options { buildAuthorizeUrlOptions_writeScope = writeScope' })

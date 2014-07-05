@@ -1,11 +1,7 @@
-{-# LANGUAGE FlexibleInstances     #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-
+-- | Types and functions for dealing with the API client itself.
 module Strive.Client where
 
 import Network.HTTP.Client.Conduit (Manager, newManager)
-import Strive.Lenses
-import Strive.Lenses.Classes
 
 -- | Strava V3 API client.
 data Client = Client
@@ -21,17 +17,3 @@ buildClient token = do
     { client_accessToken = token
     , client_httpManager = manager
     }
-
--- TODO
-
-instance AccessTokenLens Client String where
-  accessToken client =
-    ( client_accessToken client
-    , \ accessToken' -> client { client_accessToken = accessToken' }
-    )
-
-instance HttpManagerLens Client Manager where
-  httpManager client =
-    ( client_httpManager client
-    , \ httpManager' -> client { client_httpManager = httpManager' }
-    )
