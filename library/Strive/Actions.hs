@@ -4,7 +4,7 @@ module Strive.Actions where
 import Data.ByteString.Char8 (unpack)
 import Data.Monoid ((<>))
 import Network.HTTP.Types (renderQuery, toQuery)
--- import Strive.Options (BuildAuthorizeUrlOptions)
+import Strive.Options (BuildAuthorizeUrlOptions)
 
 -- | * Authentication
 
