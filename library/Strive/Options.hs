@@ -1,10 +1,16 @@
+{-# LANGUAGE FlexibleInstances     #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeSynonymInstances  #-}
+
 -- | Optional parameters for actions.
 module Strive.Options where
 
 import Data.Aeson (encode)
+import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
 import Network.HTTP.Types.QueryLike (QueryLike, toQuery)
+import Strive.Lens
 
 -- * Authentication
 
@@ -26,7 +32,7 @@ instance Default BuildAuthorizeUrlOptions where
 
 instance QueryLike BuildAuthorizeUrlOptions where
   toQuery options = toQuery
-    [ ("approval_prompt", toStrict (encode (get approvalPrompt options)))
+    [ ("approval_prompt", unpack (toStrict (encode (get approvalPrompt options))))
     , ("scope", scopes)
     , ("state", get state options)
     ]
@@ -35,3 +41,29 @@ instance QueryLike BuildAuthorizeUrlOptions where
       [ if get privateScope options then "view_private" else ""
       , if get writeScope options then "write" else ""
       ]
+
+-- TODO: Everything below here should be generated with metaprogramming.
+
+instance ApprovalPromptLens BuildAuthorizeUrlOptions Bool where
+  approvalPrompt options =
+    ( buildAuthorizeUrlOptions_approvalPrompt options
+    , \ approvalPrompt' -> options { buildAuthorizeUrlOptions_approvalPrompt = approvalPrompt' }
+    )
+
+instance PrivateScopeLens BuildAuthorizeUrlOptions Bool where
+  privateScope options =
+    ( buildAuthorizeUrlOptions_privateScope options
+    , \ privateScope' -> options { buildAuthorizeUrlOptions_privateScope = privateScope' }
+    )
+
+instance StateLens BuildAuthorizeUrlOptions String where
+  state options =
+    ( buildAuthorizeUrlOptions_state options
+    , \ state' -> options { buildAuthorizeUrlOptions_state = state' }
+    )
+
+instance WriteScopeLens BuildAuthorizeUrlOptions Bool where
+  writeScope options =
+    ( buildAuthorizeUrlOptions_writeScope options
+    , \ writeScope' -> options { buildAuthorizeUrlOptions_writeScope = writeScope' }
+    )
