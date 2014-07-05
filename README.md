@@ -60,7 +60,6 @@ A Haskell client for the [Strava V3 API][2].
 
 <!--
 ~~~ {.haskell}
-import Data.Default (def)
 import Strive
 import System.Exit (exitSuccess)
 
@@ -75,13 +74,13 @@ main = do
 #### [Request access](http://strava.github.io/api/v3/oauth/#get-authorize)
 
 ~~~ {.haskell}
-  let authorizeUrl = buildAuthorizeUrl 1790 "http://localhost"
+  let authorizeUrl = buildAuthorizeUrl 1790 "http://localhost" $ with
         [ set approvalPrompt True
         , set privateScope True
         , set writeScope True
         , set state "example"
         ]
-  print $ authorizeUrl :: String
+  print (authorizeUrl :: String)
 ~~~
 
 #### [Token exchange](http://strava.github.io/api/v3/oauth/#post-token)

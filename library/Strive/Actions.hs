@@ -2,9 +2,13 @@
 module Strive.Actions where
 
 import Data.ByteString.Char8 (unpack)
+import Data.Default (Default, def)
 import Data.Monoid ((<>))
 import Network.HTTP.Types (renderQuery, toQuery)
 import Strive.Options (BuildAuthorizeUrlOptions)
+
+with :: Default a => [a -> a] -> a
+with = foldr ($) def
 
 -- | * Authentication
 
