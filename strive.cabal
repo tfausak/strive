@@ -37,9 +37,8 @@ test-suite readme
     build-depends:
         base -any,
         strive -any,
-        bytestring -any,
-        markdown-unlit ==0.2.*,
-        time -any
+        data-default ==0.5.*,
+        markdown-unlit ==0.2.*
     type: exitcode-stdio-1.0
     main-is: README.lhs
     buildable: True
