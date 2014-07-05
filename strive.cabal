@@ -30,18 +30,21 @@ library
         bytestring ==0.10.*,
         data-default ==0.5.*,
         http-conduit ==2.*,
-        http-types ==0.8.*
+        http-types ==0.8.*,
+        text ==0.11.*,
+        time ==1.*
     exposed-modules:
         Strive
         Strive.Actions
         Strive.Client
         Strive.Lenses
         Strive.Options
+        Strive.Types
     exposed: True
     buildable: True
     default-language: Haskell2010
     other-extensions: FlexibleInstances FunctionalDependencies
-                      MultiParamTypeClasses
+                      MultiParamTypeClasses OverloadedStrings
     hs-source-dirs: library
  
 test-suite readme

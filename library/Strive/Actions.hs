@@ -7,6 +7,7 @@ import Data.Monoid ((<>))
 import Network.HTTP.Types (renderQuery, toQuery)
 import Strive.Client (Client)
 import Strive.Options (BuildAuthorizeUrlOptions)
+import Strive.Types (DeauthorizationResponse, TokenExchangeResponse)
 
 -- | Helper function for easily performing actions.
 with :: Default a => [a -> a] -> a

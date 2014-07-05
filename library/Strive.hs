@@ -4,9 +4,11 @@ module Strive
   , module Strive.Client
   , module Strive.Lenses
   , module Strive.Options
+  , module Strive.Types
   ) where
 
 import Strive.Actions
 import Strive.Client
 import Strive.Lenses
 import Strive.Options
+import Strive.Types
