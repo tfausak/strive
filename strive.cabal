@@ -25,9 +25,12 @@ source-repository head
  
 library
     build-depends:
-        base ==4.*
+        base ==4.*,
+        bytestring ==0.10.*,
+        http-types ==0.8.*
     exposed-modules:
         Strive
+        Strive.Actions
     exposed: True
     buildable: True
     default-language: Haskell2010
