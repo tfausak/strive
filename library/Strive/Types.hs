@@ -94,6 +94,44 @@ instance FromJSON AthleteDetailed where
     <*> o .: "updated_at"
   parseJSON _ = empty
 
+-- | <http://strava.github.io/api/v3/athlete/#summary>
+data AthleteSummary = AthleteSummary
+  { athleteSummary_city          :: Maybe Text
+  , athleteSummary_country       :: Maybe Text
+  , athleteSummary_createdAt     :: UTCTime
+  , athleteSummary_firstname     :: Text
+  , athleteSummary_follower      :: Maybe Text
+  , athleteSummary_friend        :: Maybe Text
+  , athleteSummary_id            :: Integer
+  , athleteSummary_lastname      :: Text
+  , athleteSummary_premium       :: Bool
+  , athleteSummary_profile       :: Text
+  , athleteSummary_profileMedium :: Text
+  , athleteSummary_resourceState :: Integer
+  , athleteSummary_sex           :: Maybe Char
+  , athleteSummary_state         :: Text
+  , athleteSummary_updatedAt     :: UTCTime
+  } deriving Show
+
+instance FromJSON AthleteSummary where
+  parseJSON (Object o) = AthleteSummary
+    <$> o .:? "city"
+    <*> o .:? "country"
+    <*> o .: "created_at"
+    <*> o .: "firstname"
+    <*> o .:? "follower"
+    <*> o .:? "friend"
+    <*> o .: "id"
+    <*> o .: "lastname"
+    <*> o .: "premium"
+    <*> o .: "profile"
+    <*> o .: "profile_medium"
+    <*> o .: "resource_state"
+    <*> o .:? "sex"
+    <*> o .: "state"
+    <*> o .: "updated_at"
+  parseJSON _ = empty
+
 -- * Clubs
 
 -- | <http://strava.github.io/api/v3/clubs/#summary>

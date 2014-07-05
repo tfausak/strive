@@ -55,3 +55,10 @@ getCurrentAthlete client = get client resource query
  where
   resource = "api/v3/athlete"
   query = [] :: Query
+
+-- | <http://strava.github.io/api/v3/athlete/#get-another-details>
+getAthlete :: Client -> Integer -> IO (Either String T.AthleteSummary)
+getAthlete client athleteId = get client resource query
+  where
+    resource = "api/v3/athletes/" <> show athleteId
+    query = [] :: Query
