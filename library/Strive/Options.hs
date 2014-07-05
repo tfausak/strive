@@ -10,6 +10,7 @@ import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
 import Network.HTTP.Types.QueryLike (QueryLike, toQuery)
 import Strive.Lenses
+import Strive.Lenses.Classes
 
 -- * Authentication
 

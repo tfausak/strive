@@ -38,6 +38,7 @@ library
         Strive.Actions
         Strive.Client
         Strive.Lenses
+        Strive.Lenses.Classes
         Strive.Options
         Strive.Types
     exposed: True

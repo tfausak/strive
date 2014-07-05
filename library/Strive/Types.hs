@@ -9,6 +9,7 @@ import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Lenses
+import Strive.Lenses.Classes
 
 -- * Authentication
 

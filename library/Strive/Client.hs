@@ -5,6 +5,7 @@ module Strive.Client where
 
 import Network.HTTP.Client.Conduit (Manager, newManager)
 import Strive.Lenses
+import Strive.Lenses.Classes
 
 -- | Strava V3 API client.
 data Client = Client

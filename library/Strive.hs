@@ -3,6 +3,7 @@ module Strive
   ( module Strive.Actions
   , module Strive.Client
   , module Strive.Lenses
+  , module Strive.Lenses.Classes
   , module Strive.Options
   , module Strive.Types
   ) where
@@ -10,5 +11,6 @@ module Strive
 import Strive.Actions
 import Strive.Client
 import Strive.Lenses
+import Strive.Lenses.Classes
 import Strive.Options
 import Strive.Types
