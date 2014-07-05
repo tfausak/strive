@@ -58,6 +58,30 @@ A Haskell client for the [Strava V3 API][2].
 
 ## Usage
 
+To use the API, you'll need an access token. Once you have that, create a new
+client using the default HTTP manager.
+
+~~~ {.haskell .ignore}
+import Strive
+let token = "..."
+client <- buildClient token
+~~~
+
+Most types implement lenses for their fields. Lenses are preferred over directly
+accessing the fields. For instance, instead of doing this:
+
+~~~ {.haskell .ignore}
+client_accessToken (client { client_accessToken "..." })
+-- "..."
+~~~
+
+Do this:
+
+~~~ {.haskell .ignore}
+get accessToken (set accessToken "..." client)
+-- "..."
+~~~
+
 <!--
 ~~~ {.haskell}
 import Strive
