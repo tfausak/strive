@@ -28,6 +28,7 @@ library
         base ==4.*,
         aeson ==0.7.*,
         bytestring -any,
+        data-default -any,
         gpolyline ==0.1.*,
         http-conduit ==2.*,
         http-types -any,
@@ -64,6 +65,7 @@ library
         Strive.Objects.Segments
         Strive.Objects.Streams
         Strive.Objects.Uploads
+        Strive.Options
         Strive.Types
     exposed: True
     buildable: True
@@ -79,6 +81,7 @@ test-suite readme
         base -any,
         strive -any,
         bytestring -any,
+        data-default -any,
         markdown-unlit ==0.2.*,
         time -any
     type: exitcode-stdio-1.0
