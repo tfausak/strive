@@ -71,9 +71,11 @@ client <- newClient token
 <!--
 ~~~ {.haskell}
 import Data.ByteString.Char8 (pack)
+import Data.Default (def)
 import Data.Time.Calendar (fromGregorian)
 import Data.Time.Clock (UTCTime (UTCTime))
 import Strive
+import qualified Strive.Lenses as Strive
 import System.Exit (exitSuccess)
 
 main :: IO ()
@@ -102,7 +104,6 @@ Many of the examples use the same parameters.
   let following         = Just False
   let gearId            = "b387855"
   let gender            = Just 'F'
-  let includeAllEfforts = Just True
   let includeMarkdown   = Just False
   let maxCat            = Just 5
   let minCat            = Just 0
@@ -218,9 +219,10 @@ Many of the examples use the same parameters.
 #### [Retrieve an activity](http://strava.github.io/api/v3/activities/#get-details)
 
 ~~~ {.haskell}
-  activity <- getActivity client activityId includeAllEfforts
-  print activity
-  -- Right (ActivitySummary {..})
+  activity <- getActivity client activityId $
+    Strive.set Strive.includeAllEfforts True $
+    def
+  print (activity :: Either String ActivitySummary)
 ~~~
 
 #### [Update an activity](http://strava.github.io/api/v3/activities/#put-updates)

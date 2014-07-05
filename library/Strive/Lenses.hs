@@ -8,6 +8,7 @@ import Data.Aeson (Value)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Objects
+import Strive.Options
 
 -- | A lens for a record, returning a field and a residual.
 type Lens a b = a -> (b, b -> a)
@@ -19,6 +20,19 @@ get = (fst .)
 -- | Set a field in a record using a lens.
 set :: Lens a b -> b -> a -> a
 set = flip . (snd .)
+
+--
+
+class IncludeAllEffortsLens a b | a -> b where
+    includeAllEfforts :: Lens a b
+
+instance IncludeAllEffortsLens GetActivityOptions Bool where
+    includeAllEfforts options =
+        ( getActivityOptionsIncludeAllEfforts options
+        , \ options' -> options { getActivityOptionsIncludeAllEfforts = options' }
+        )
+
+--
 
 class AccessTokenLens a b | a -> b where
   accessToken' :: Lens a b

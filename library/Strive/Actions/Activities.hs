@@ -22,6 +22,7 @@ import Strive.Client (Client)
 import Strive.Client.HTTP (delete, get, post, put)
 import Strive.Objects (ActivityDetailed, ActivityLapSummary, ActivitySummary,
                        ActivityZoneDetailed)
+import Strive.Options (GetActivityOptions)
 import Strive.Types (ActivityId, Page, PerPage)
 import Strive.Utilities (paginate, queryToSimpleQuery)
 
@@ -33,13 +34,11 @@ deleteActivity client activityId = delete client resource query
     query = [] :: [(String, String)]
 
 -- | <http://strava.github.io/api/v3/activities/#get-details>
-getActivity :: Client -> ActivityId -> Maybe Bool -> IO (Either String ActivitySummary)
-getActivity client activityId allEfforts = get client resource query
+getActivity :: Client -> ActivityId -> GetActivityOptions -> IO (Either String ActivitySummary)
+getActivity client activityId options = get client resource query
   where
     resource = "activities/" <> show activityId
-    query = queryToSimpleQuery
-        [ (pack "include_all_efforts", fmap (toStrict . encode) allEfforts)
-        ]
+    query = options
 
 -- | <http://strava.github.io/api/v3/activities/#laps>
 getActivityLaps :: Client -> ActivityId -> IO (Either String [ActivityLapSummary])
