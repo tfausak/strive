@@ -171,3 +171,105 @@ instance FromJSON GearSummary where
     <*> o .: "primary"
     <*> o .: "resource_state"
   parseJSON _ = empty
+
+-- * Segments
+
+-- | <http://strava.github.io/api/v3/segments/#summary>
+data SegmentSummary = SegmentSummary
+  { segmentSummary_activityType   :: Text
+  , segmentSummary_averageGrade   :: Double
+  , segmentSummary_city           :: Text
+  , segmentSummary_climbCategory  :: Integer
+  , segmentSummary_country        :: Text
+  , segmentSummary_distance       :: Double
+  , segmentSummary_elevationHigh  :: Double
+  , segmentSummary_elevationLow   :: Double
+  , segmentSummary_endLatitude    :: Double
+  , segmentSummary_endLatlng      :: (Double, Double)
+  , segmentSummary_endLongitude   :: Double
+  , segmentSummary_id             :: Integer
+  , segmentSummary_maximumGrade   :: Double
+  , segmentSummary_name           :: Text
+  , segmentSummary_private        :: Bool
+  , segmentSummary_resourceState  :: Integer
+  , segmentSummary_starred        :: Bool
+  , segmentSummary_startLatitude  :: Double
+  , segmentSummary_startLatlng    :: (Double, Double)
+  , segmentSummary_startLongitude :: Double
+  , segmentSummary_state          :: Text
+  } deriving Show
+
+instance FromJSON SegmentSummary where
+  parseJSON (Object o) = SegmentSummary
+    <$> o .: "activity_type"
+    <*> o .: "average_grade"
+    <*> o .: "city"
+    <*> o .: "climb_category"
+    <*> o .: "country"
+    <*> o .: "distance"
+    <*> o .: "elevation_high"
+    <*> o .: "elevation_low"
+    <*> o .: "end_latitude"
+    <*> o .: "end_latlng"
+    <*> o .: "end_longitude"
+    <*> o .: "id"
+    <*> o .: "maximum_grade"
+    <*> o .: "name"
+    <*> o .: "private"
+    <*> o .: "resource_state"
+    <*> o .: "starred"
+    <*> o .: "start_latitude"
+    <*> o .: "start_latlng"
+    <*> o .: "start_longitude"
+    <*> o .: "state"
+  parseJSON _ = empty
+
+-- * Segment Efforts
+
+-- | <http://strava.github.io/api/v3/efforts/#detailed>
+data EffortDetailed = EffortDetailed
+  { effortDetailed_activityId       :: Integer
+  , effortDetailed_athleteId        :: Integer
+  , effortDetailed_averageCadence   :: Maybe Double
+  , effortDetailed_averageHeartrate :: Maybe Double
+  , effortDetailed_averageWatts     :: Maybe Double
+  , effortDetailed_distance         :: Double
+  , effortDetailed_elapsedTime      :: Integer
+  , effortDetailed_endIndex         :: Integer
+  , effortDetailed_hidden           :: Maybe Bool
+  , effortDetailed_id               :: Integer
+  , effortDetailed_komRank          :: Maybe Integer
+  , effortDetailed_maxHeartrate     :: Maybe Integer
+  , effortDetailed_movingTime       :: Integer
+  , effortDetailed_name             :: Text
+  , effortDetailed_prRank           :: Maybe Integer
+  , effortDetailed_resourceState    :: Integer
+  , effortDetailed_segment          :: SegmentSummary
+  , effortDetailed_startDate        :: UTCTime
+  , effortDetailed_startDateLocal   :: UTCTime
+  , effortDetailed_startIndex       :: Integer
+  } deriving Show
+
+instance FromJSON EffortDetailed where
+  parseJSON (Object o) = EffortDetailed
+    <$> ((o .: "activity") >>= (.: "id"))
+    <*> ((o .: "athlete") >>= (.: "id"))
+    <*> o .:? "average_cadence"
+    <*> o .:? "average_heartrate"
+    <*> o .:? "average_watts"
+    <*> o .: "distance"
+    <*> o .: "elapsed_time"
+    <*> o .: "end_index"
+    <*> o .:? "hidden"
+    <*> o .: "id"
+    <*> o .:? "kom_rank"
+    <*> o .:? "max_heartrate"
+    <*> o .: "moving_time"
+    <*> o .: "name"
+    <*> o .:? "pr_rank"
+    <*> o .: "resource_state"
+    <*> o .: "segment"
+    <*> o .: "start_date"
+    <*> o .: "start_date_local"
+    <*> o .: "start_index"
+  parseJSON _ = empty

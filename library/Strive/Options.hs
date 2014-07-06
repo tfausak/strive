@@ -39,7 +39,7 @@ instance QueryLike BuildAuthorizeUrlOptions where
 
 -- * Athletes
 
--- | Options for 'strive.Actions.updateCurrentAthlete'.
+-- | Options for 'Strive.Actions.updateCurrentAthlete'.
 data UpdateCurrentAthleteOptions = UpdateCurrentAthleteOptions
   { updateCurrentAthleteOptions_city    :: Maybe String
   , updateCurrentAthleteOptions_state   :: Maybe String
@@ -64,4 +64,22 @@ instance QueryLike UpdateCurrentAthleteOptions where
     , ("country", updateCurrentAthleteOptions_country options)
     , ("sex", fmap (: []) (updateCurrentAthleteOptions_sex options))
     , ("weight", fmap show (updateCurrentAthleteOptions_weight options))
+    ]
+
+-- | Options for 'Strive.Actions.getAthleteCrs'.
+data GetAthleteCrsOptions = GetAthleteCrsOptions
+  { getAthleteCrsOptions_page    :: Integer
+  , getAthleteCrsOptions_perPage :: Integer
+  } deriving Show
+
+instance Default GetAthleteCrsOptions where
+  def = GetAthleteCrsOptions
+    { getAthleteCrsOptions_page = 1
+    , getAthleteCrsOptions_perPage = 200
+    }
+
+instance QueryLike GetAthleteCrsOptions where
+  toQuery options = toQuery
+    [ ("page", show (getAthleteCrsOptions_page options))
+    , ("per_page", show (getAthleteCrsOptions_perPage options))
     ]

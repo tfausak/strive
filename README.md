@@ -46,7 +46,7 @@ A Haskell client for the [Strava V3 API][2].
         -   [List efforts](#list-efforts)
         -   [Segment leaderboard](#segment-leaderboard)
         -   [Segment explorer](#segment-explorer)
-        -   [Segment efforts](#segment-efforts)
+    -   [Segment efforts](#segment-efforts)
         -   [Retrieve a segment effort](#retrieve-a-segment-effort)
     -   [Streams](#streams)
         -   [Retrieve activity streams](#retrieve-activity-streams)
@@ -154,6 +154,11 @@ main = do
 #### [List athlete K/QOMs/CRs](http://strava.github.io/api/v3/athlete/#koms)
 
 ~~~ {.haskell}
+  athleteCrs <- getAthleteCrs client 65516 $ with
+    [ set page 1
+    , set perPage 2
+    ]
+  print (athleteCrs :: Either String [EffortDetailed])
 ~~~
 
 ### [Friends and followers](http://strava.github.io/api/v3/follow/)

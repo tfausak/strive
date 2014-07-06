@@ -27,6 +27,8 @@ class LastnameLens a b | a -> b where lastname :: Lens a b
 class MeasurementPreferenceLens a b | a -> b where measurementPreference :: Lens a b
 class MutualFriendCountLens a b | a -> b where mutualFriendCount :: Lens a b
 class NameLens a b | a -> b where name :: Lens a b
+class PageLens a b | a -> b where page :: Lens a b
+class PerPageLens a b | a -> b where perPage :: Lens a b
 class PremiumLens a b | a -> b where premium :: Lens a b
 class PrimaryLens a b | a -> b where primary :: Lens a b
 class PrivateScopeLens a b | a -> b where privateScope :: Lens a b

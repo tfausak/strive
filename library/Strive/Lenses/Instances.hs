@@ -41,6 +41,8 @@ instance MeasurementPreferenceLens AthleteDetailed Text where measurementPrefere
 instance MutualFriendCountLens AthleteDetailed Integer where mutualFriendCount athleteDetailed = (athleteDetailed_mutualFriendCount athleteDetailed, \ mutualFriendCount' -> athleteDetailed { athleteDetailed_mutualFriendCount = mutualFriendCount' })
 instance NameLens ClubSummary Text where name clubSummary = (clubSummary_name clubSummary, \ name' -> clubSummary { clubSummary_name = name' })
 instance NameLens GearSummary Text where name gearSummary = (gearSummary_name gearSummary, \ name' -> gearSummary { gearSummary_name = name' })
+instance PageLens GetAthleteCrsOptions Integer where page r = (getAthleteCrsOptions_page r, \ v -> r { getAthleteCrsOptions_page = v })
+instance PerPageLens GetAthleteCrsOptions Integer where perPage r = (getAthleteCrsOptions_perPage r, \ v -> r { getAthleteCrsOptions_perPage = v })
 instance PremiumLens AthleteDetailed Bool where premium athleteDetailed = (athleteDetailed_premium athleteDetailed, \ premium' -> athleteDetailed { athleteDetailed_premium = premium' })
 instance PrimaryLens GearSummary Bool where primary gearSummary = (gearSummary_primary gearSummary, \ primary' -> gearSummary { gearSummary_primary = primary' })
 instance PrivateScopeLens BuildAuthorizeUrlOptions Bool where privateScope options = (buildAuthorizeUrlOptions_privateScope options, \ privateScope' -> options { buildAuthorizeUrlOptions_privateScope = privateScope' })

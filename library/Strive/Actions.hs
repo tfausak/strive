@@ -69,3 +69,10 @@ updateCurrentAthlete client options = put client resource query
  where
   resource = "api/v3/athlete"
   query = toQuery options
+
+-- | <http://strava.github.io/api/v3/athlete/#koms>
+getAthleteCrs :: Client -> Integer -> O.GetAthleteCrsOptions -> IO (Either String [T.EffortDetailed])
+getAthleteCrs client athleteId options = get client resource query
+ where
+  resource = "api/v3/athletes/" <> show athleteId <> "/koms"
+  query = toQuery options
