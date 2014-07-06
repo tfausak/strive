@@ -341,3 +341,10 @@ uploadActivity client body dataType options = do
   query = toQuery
     [ ("data_type", dataType)
     ] <> toQuery options
+
+-- | <http://strava.github.io/api/v3/uploads/#get-status>
+getUpload :: Client -> Integer -> IO (Either String T.UploadStatus)
+getUpload client uploadId = get client resource query
+ where
+  resource = "api/v3/uploads/" <> show uploadId
+  query = [] :: Query

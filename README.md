@@ -495,6 +495,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [Check upload status](http://strava.github.io/api/v3/uploads/#get-status)
 
 ~~~ {.haskell}
+  upload <- getUpload client 16486788
+  print (upload :: Either String UploadStatus)
 ~~~
 
 <!--
