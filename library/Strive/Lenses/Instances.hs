@@ -65,6 +65,12 @@ instance ActivityIdLens PhotoSummary Integer where
     , \ activityId' -> photoSummary { photoSummary_activityId = activityId' }
     )
 
+instance ActivityIdLens SegmentLeaderboardEntry Integer where
+  activityId segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_activityId segmentLeaderboardEntry
+    , \ activityId' -> segmentLeaderboardEntry { segmentLeaderboardEntry_activityId = activityId' }
+    )
+
 instance ActivityTypeLens SegmentDetailed Text where
   activityType segmentDetailed =
     ( segmentDetailed_activityType segmentDetailed
@@ -81,6 +87,12 @@ instance AfterLens GetCurrentActivitiesOptions (Maybe UTCTime) where
   after getCurrentActivitiesOptions =
     ( getCurrentActivitiesOptions_after getCurrentActivitiesOptions
     , \ after' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_after = after' }
+    )
+
+instance AgeGroupLens GetSegmentLeaderboardOptions (Maybe String) where
+  ageGroup getSegmentLeaderboardOptions =
+    ( getSegmentLeaderboard_ageGroup getSegmentLeaderboardOptions
+    , \ ageGroup' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_ageGroup = ageGroup' }
     )
 
 instance AllEffortsLens GetActivityOptions Bool where
@@ -113,6 +125,12 @@ instance AthleteCountLens SegmentDetailed Integer where
     , \ athleteCount' -> segmentDetailed { segmentDetailed_athleteCount = athleteCount' }
     )
 
+instance AthleteGenderLens SegmentLeaderboardEntry (Maybe Char) where
+  athleteGender segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_athleteGender segmentLeaderboardEntry
+    , \ athleteGender' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteGender = athleteGender' }
+    )
+
 instance AthleteIdLens ActivityLapSummary Integer where
   athleteId activityLapSummary =
     ( activityLapSummary_athleteId activityLapSummary
@@ -129,6 +147,12 @@ instance AthleteIdLens GetSegmentEffortsOptions (Maybe Integer) where
   athleteId getSegmentEffortsOptions =
     ( getSegmentEffortsOptions_athleteId getSegmentEffortsOptions
     , \ athleteId' -> getSegmentEffortsOptions { getSegmentEffortsOptions_athleteId = athleteId' }
+    )
+
+instance AthleteIdLens SegmentLeaderboardEntry Integer where
+  athleteId segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_athleteId segmentLeaderboardEntry
+    , \ athleteId' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteId = athleteId' }
     )
 
 instance AthleteLens ActivityDetailed AthleteMeta where
@@ -155,6 +179,18 @@ instance AthleteLens TokenExchangeResponse AthleteDetailed where
     , \ athlete' -> tokenExchangeResponse { tokenExchangeResponse_athlete = athlete' }
     )
 
+instance AthleteNameLens SegmentLeaderboardEntry Text where
+  athleteName segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_athleteName segmentLeaderboardEntry
+    , \ athleteName' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteName = athleteName' }
+    )
+
+instance AthleteProfileLens SegmentLeaderboardEntry Text where
+  athleteProfile segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_athleteProfile segmentLeaderboardEntry
+    , \ athleteProfile' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteProfile = athleteProfile' }
+    )
+
 instance AverageCadenceLens EffortDetailed (Maybe Double) where
   averageCadence effortDetailed =
     ( effortDetailed_averageCadence effortDetailed
@@ -177,6 +213,12 @@ instance AverageHeartrateLens EffortDetailed (Maybe Double) where
   averageHeartrate effortDetailed =
     ( effortDetailed_averageHeartrate effortDetailed
     , \ averageHeartrate' -> effortDetailed { effortDetailed_averageHeartrate = averageHeartrate' }
+    )
+
+instance AverageHrLens SegmentLeaderboardEntry Double where
+  averageHr segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_averageHr segmentLeaderboardEntry
+    , \ averageHr' -> segmentLeaderboardEntry { segmentLeaderboardEntry_averageHr = averageHr' }
     )
 
 instance AverageSpeedLens ActivityDetailed Double where
@@ -219,6 +261,12 @@ instance AverageWattsLens EffortDetailed (Maybe Double) where
   averageWatts effortDetailed =
     ( effortDetailed_averageWatts effortDetailed
     , \ averageWatts' -> effortDetailed { effortDetailed_averageWatts = averageWatts' }
+    )
+
+instance AverageWattsLens SegmentLeaderboardEntry Double where
+  averageWatts segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_averageWatts segmentLeaderboardEntry
+    , \ averageWatts' -> segmentLeaderboardEntry { segmentLeaderboardEntry_averageWatts = averageWatts' }
     )
 
 instance BeforeLens GetCurrentActivitiesOptions (Maybe UTCTime) where
@@ -297,6 +345,12 @@ instance ClimbCategoryLens SegmentSummary Integer where
   climbCategory segmentSummary =
     ( segmentSummary_climbCategory segmentSummary
     , \ climbCategory' -> segmentSummary { segmentSummary_climbCategory = climbCategory' }
+    )
+
+instance ClubIdLens GetSegmentLeaderboardOptions (Maybe Integer) where
+  clubId getSegmentLeaderboardOptions =
+    ( getSegmentLeaderboard_clubId getSegmentLeaderboardOptions
+    , \ clubId' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_clubId = clubId' }
     )
 
 instance ClubTypeLens ClubDetailed Text where
@@ -413,6 +467,12 @@ instance DatePreferenceLens AthleteDetailed Text where
     , \ datePreference' -> athleteDetailed { athleteDetailed_datePreference = datePreference' }
     )
 
+instance DateRangeLens GetSegmentLeaderboardOptions (Maybe String) where
+  dateRange getSegmentLeaderboardOptions =
+    ( getSegmentLeaderboard_dateRange getSegmentLeaderboardOptions
+    , \ dateRange' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_dateRange = dateRange' }
+    )
+
 instance DescriptionLens ActivityDetailed Text where
   description activityDetailed =
     ( activityDetailed_description activityDetailed
@@ -491,6 +551,12 @@ instance DistanceLens SegmentDetailed Double where
     , \ distance' -> segmentDetailed { segmentDetailed_distance = distance' }
     )
 
+instance DistanceLens SegmentLeaderboardEntry Double where
+  distance segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_distance segmentLeaderboardEntry
+    , \ distance' -> segmentLeaderboardEntry { segmentLeaderboardEntry_distance = distance' }
+    )
+
 instance DistanceLens SegmentSummary Double where
   distance segmentSummary =
     ( segmentSummary_distance segmentSummary
@@ -507,6 +573,18 @@ instance EffortCountLens SegmentDetailed Integer where
   effortCount segmentDetailed =
     ( segmentDetailed_effortCount segmentDetailed
     , \ effortCount' -> segmentDetailed { segmentDetailed_effortCount = effortCount' }
+    )
+
+instance EffortCountLens SegmentLeaderboardResponse Integer where
+  effortCount segmentLeaderboardResponse =
+    ( segmentLeaderboard_effortCount segmentLeaderboardResponse
+    , \ effortCount' -> segmentLeaderboardResponse { segmentLeaderboard_effortCount = effortCount' }
+    )
+
+instance EffortIdLens SegmentLeaderboardEntry Integer where
+  effortId segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_effortId segmentLeaderboardEntry
+    , \ effortId' -> segmentLeaderboardEntry { segmentLeaderboardEntry_effortId = effortId' }
     )
 
 instance ElapsedTimeLens ActivityDetailed Integer where
@@ -531,6 +609,12 @@ instance ElapsedTimeLens EffortDetailed Integer where
   elapsedTime effortDetailed =
     ( effortDetailed_elapsedTime effortDetailed
     , \ elapsedTime' -> effortDetailed { effortDetailed_elapsedTime = elapsedTime' }
+    )
+
+instance ElapsedTimeLens SegmentLeaderboardEntry Integer where
+  elapsedTime segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_elapsedTime segmentLeaderboardEntry
+    , \ elapsedTime' -> segmentLeaderboardEntry { segmentLeaderboardEntry_elapsedTime = elapsedTime' }
     )
 
 instance ElevationHighLens SegmentDetailed Double where
@@ -623,6 +707,18 @@ instance EndLongitudeLens SegmentSummary Double where
     , \ endLongitude' -> segmentSummary { segmentSummary_endLongitude = endLongitude' }
     )
 
+instance EntriesLens SegmentLeaderboardResponse [SegmentLeaderboardEntry] where
+  entries segmentLeaderboardResponse =
+    ( segmentLeaderboard_entries segmentLeaderboardResponse
+    , \ entries' -> segmentLeaderboardResponse { segmentLeaderboard_entries = entries' }
+    )
+
+instance EntryCountLens SegmentLeaderboardResponse Integer where
+  entryCount segmentLeaderboardResponse =
+    ( segmentLeaderboard_entryCount segmentLeaderboardResponse
+    , \ entryCount' -> segmentLeaderboardResponse { segmentLeaderboard_entryCount = entryCount' }
+    )
+
 instance ExternalIdLens ActivityDetailed (Maybe Text) where
   externalId activityDetailed =
     ( activityDetailed_externalId activityDetailed
@@ -677,6 +773,12 @@ instance FollowerLens AthleteSummary (Maybe Text) where
     , \ follower' -> athleteSummary { athleteSummary_follower = follower' }
     )
 
+instance FollowingLens GetSegmentLeaderboardOptions (Maybe Bool) where
+  following getSegmentLeaderboardOptions =
+    ( getSegmentLeaderboard_following getSegmentLeaderboardOptions
+    , \ following' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_following = following' }
+    )
+
 instance FrameTypeLens GearDetailed (Maybe Integer) where
   frameType gearDetailed =
     ( gearDetailed_frameType gearDetailed
@@ -729,6 +831,12 @@ instance GearLens ActivityDetailed GearSummary where
   gear activityDetailed =
     ( activityDetailed_gear activityDetailed
     , \ gear' -> activityDetailed { activityDetailed_gear = gear' }
+    )
+
+instance GenderLens GetSegmentLeaderboardOptions (Maybe Char) where
+  gender getSegmentLeaderboardOptions =
+    ( getSegmentLeaderboard_gender getSegmentLeaderboardOptions
+    , \ gender' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_gender = gender' }
     )
 
 instance HasKudoedLens ActivityDetailed Bool where
@@ -1079,6 +1187,12 @@ instance MovingTimeLens EffortDetailed Integer where
     , \ movingTime' -> effortDetailed { effortDetailed_movingTime = movingTime' }
     )
 
+instance MovingTimeLens SegmentLeaderboardEntry Integer where
+  movingTime segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_movingTime segmentLeaderboardEntry
+    , \ movingTime' -> segmentLeaderboardEntry { segmentLeaderboardEntry_movingTime = movingTime' }
+    )
+
 instance MutualFriendCountLens AthleteDetailed Integer where
   mutualFriendCount athleteDetailed =
     ( athleteDetailed_mutualFriendCount athleteDetailed
@@ -1229,6 +1343,12 @@ instance PageLens GetSegmentEffortsOptions Integer where
     , \ page' -> getSegmentEffortsOptions { getSegmentEffortsOptions_page = page' }
     )
 
+instance PageLens GetSegmentLeaderboardOptions Integer where
+  page getSegmentLeaderboardOptions =
+    ( getSegmentLeaderboard_page getSegmentLeaderboardOptions
+    , \ page' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_page = page' }
+    )
+
 instance PageLens GetStarredSegmentsOptions Integer where
   page getStarredSegmentsOptions =
     ( getStarredSegmentsOptions_page getStarredSegmentsOptions
@@ -1311,6 +1431,12 @@ instance PerPageLens GetSegmentEffortsOptions Integer where
   perPage getSegmentEffortsOptions =
     ( getSegmentEffortsOptions_perPage getSegmentEffortsOptions
     , \ perPage' -> getSegmentEffortsOptions { getSegmentEffortsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetSegmentLeaderboardOptions Integer where
+  perPage getSegmentLeaderboardOptions =
+    ( getSegmentLeaderboard_perPage getSegmentLeaderboardOptions
+    , \ perPage' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_perPage = perPage' }
     )
 
 instance PerPageLens GetStarredSegmentsOptions Integer where
@@ -1461,6 +1587,12 @@ instance RangeLens GetSegmentEffortsOptions (Maybe (UTCTime, UTCTime)) where
   range getSegmentEffortsOptions =
     ( getSegmentEffortsOptions_range getSegmentEffortsOptions
     , \ range' -> getSegmentEffortsOptions { getSegmentEffortsOptions_range = range' }
+    )
+
+instance RankLens SegmentLeaderboardEntry Integer where
+  rank segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_rank segmentLeaderboardEntry
+    , \ rank' -> segmentLeaderboardEntry { segmentLeaderboardEntry_rank = rank' }
     )
 
 instance RefLens PhotoSummary Text where
@@ -1667,6 +1799,12 @@ instance StartDateLens EffortDetailed UTCTime where
     , \ startDate' -> effortDetailed { effortDetailed_startDate = startDate' }
     )
 
+instance StartDateLens SegmentLeaderboardEntry UTCTime where
+  startDate segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_startDate segmentLeaderboardEntry
+    , \ startDate' -> segmentLeaderboardEntry { segmentLeaderboardEntry_startDate = startDate' }
+    )
+
 instance StartDateLocalLens ActivityDetailed UTCTime where
   startDateLocal activityDetailed =
     ( activityDetailed_startDateLocal activityDetailed
@@ -1689,6 +1827,12 @@ instance StartDateLocalLens EffortDetailed UTCTime where
   startDateLocal effortDetailed =
     ( effortDetailed_startDateLocal effortDetailed
     , \ startDateLocal' -> effortDetailed { effortDetailed_startDateLocal = startDateLocal' }
+    )
+
+instance StartDateLocalLens SegmentLeaderboardEntry UTCTime where
+  startDateLocal segmentLeaderboardEntry =
+    ( segmentLeaderboardEntry_startDateLocal segmentLeaderboardEntry
+    , \ startDateLocal' -> segmentLeaderboardEntry { segmentLeaderboardEntry_startDateLocal = startDateLocal' }
     )
 
 instance StartIndexLens ActivityLapSummary Integer where
@@ -1971,6 +2115,12 @@ instance UploadedAtLens PhotoSummary UTCTime where
   uploadedAt photoSummary =
     ( photoSummary_uploadedAt photoSummary
     , \ uploadedAt' -> photoSummary { photoSummary_uploadedAt = uploadedAt' }
+    )
+
+instance WeightClassLens GetSegmentLeaderboardOptions (Maybe String) where
+  weightClass getSegmentLeaderboardOptions =
+    ( getSegmentLeaderboard_weightClass getSegmentLeaderboardOptions
+    , \ weightClass' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_weightClass = weightClass' }
     )
 
 instance WeightLens UpdateCurrentAthleteOptions (Maybe Double) where

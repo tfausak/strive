@@ -19,6 +19,9 @@ class ActivityTypeLens a b | a -> b where
 class AfterLens a b | a -> b where
   after :: Lens a b
 
+class AgeGroupLens a b | a -> b where
+  ageGroup :: Lens a b
+
 class AllEffortsLens a b | a -> b where
   allEfforts :: Lens a b
 
@@ -28,11 +31,20 @@ class ApprovalPromptLens a b | a -> b where
 class AthleteCountLens a b | a -> b where
   athleteCount :: Lens a b
 
+class AthleteGenderLens a b | a -> b where
+  athleteGender :: Lens a b
+
 class AthleteIdLens a b | a -> b where
   athleteId :: Lens a b
 
 class AthleteLens a b | a -> b where
   athlete :: Lens a b
+
+class AthleteNameLens a b | a -> b where
+  athleteName :: Lens a b
+
+class AthleteProfileLens a b | a -> b where
+  athleteProfile :: Lens a b
 
 class AverageCadenceLens a b | a -> b where
   averageCadence :: Lens a b
@@ -42,6 +54,9 @@ class AverageGradeLens a b | a -> b where
 
 class AverageHeartrateLens a b | a -> b where
   averageHeartrate :: Lens a b
+
+class AverageHrLens a b | a -> b where
+  averageHr :: Lens a b
 
 class AverageSpeedLens a b | a -> b where
   averageSpeed :: Lens a b
@@ -70,6 +85,9 @@ class CityLens a b | a -> b where
 class ClimbCategoryLens a b | a -> b where
   climbCategory :: Lens a b
 
+class ClubIdLens a b | a -> b where
+  clubId :: Lens a b
+
 class ClubTypeLens a b | a -> b where
   clubType :: Lens a b
 
@@ -91,6 +109,9 @@ class CreatedAtLens a b | a -> b where
 class DatePreferenceLens a b | a -> b where
   datePreference :: Lens a b
 
+class DateRangeLens a b | a -> b where
+  dateRange :: Lens a b
+
 class DescriptionLens a b | a -> b where
   description :: Lens a b
 
@@ -102,6 +123,9 @@ class DistributionBucketsLens a b | a -> b where
 
 class EffortCountLens a b | a -> b where
   effortCount :: Lens a b
+
+class EffortIdLens a b | a -> b where
+  effortId :: Lens a b
 
 class ElapsedTimeLens a b | a -> b where
   elapsedTime :: Lens a b
@@ -127,6 +151,12 @@ class EndLatlngLens a b | a -> b where
 class EndLongitudeLens a b | a -> b where
   endLongitude :: Lens a b
 
+class EntriesLens a b | a -> b where
+  entries :: Lens a b
+
+class EntryCountLens a b | a -> b where
+  entryCount :: Lens a b
+
 class ExternalIdLens a b | a -> b where
   externalId :: Lens a b
 
@@ -141,6 +171,9 @@ class FollowerCountLens a b | a -> b where
 
 class FollowerLens a b | a -> b where
   follower :: Lens a b
+
+class FollowingLens a b | a -> b where
+  following :: Lens a b
 
 class FrameTypeLens a b | a -> b where
   frameType :: Lens a b
@@ -159,6 +192,9 @@ class GearIdLens a b | a -> b where
 
 class GearLens a b | a -> b where
   gear :: Lens a b
+
+class GenderLens a b | a -> b where
+  gender :: Lens a b
 
 class HasKudoedLens a b | a -> b where
   hasKudoed :: Lens a b
@@ -283,6 +319,9 @@ class ProfileMediumLens a b | a -> b where
 class RangeLens a b | a -> b where
   range :: Lens a b
 
+class RankLens a b | a -> b where
+  rank :: Lens a b
+
 class RefLens a b | a -> b where
   ref :: Lens a b
 
@@ -369,6 +408,9 @@ class UploadIdLens a b | a -> b where
 
 class UploadedAtLens a b | a -> b where
   uploadedAt :: Lens a b
+
+class WeightClassLens a b | a -> b where
+  weightClass :: Lens a b
 
 class WeightLens a b | a -> b where
   weight :: Lens a b

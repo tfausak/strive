@@ -712,6 +712,56 @@ instance FromJSON SegmentSummary where
     <*> o .: "state"
   parseJSON _ = empty
 
+-- | <http://strava.github.io/api/v3/segments/#leaderboard>
+data SegmentLeaderboardResponse = SegmentLeaderboardResponse
+  { segmentLeaderboard_effortCount :: Integer
+  , segmentLeaderboard_entryCount  :: Integer
+  , segmentLeaderboard_entries     :: [SegmentLeaderboardEntry]
+  } deriving Show
+
+instance FromJSON SegmentLeaderboardResponse where
+  parseJSON (Object o) = SegmentLeaderboardResponse
+    <$> o .: "effort_count"
+    <*> o .: "entry_count"
+    <*> o .: "segments"
+  parseJSON _ = empty
+
+-- | <http://strava.github.io/api/v3/segments/#leaderboard>
+data SegmentLeaderboardEntry = SegmentLeaderboardEntry
+  { segmentLeaderboardEntry_activityId     :: Integer
+  , segmentLeaderboardEntry_athleteGender  :: Maybe Char
+  , segmentLeaderboardEntry_athleteId      :: Integer
+  , segmentLeaderboardEntry_athleteName    :: Text
+  , segmentLeaderboardEntry_athleteProfile :: Text
+  , segmentLeaderboardEntry_averageHr      :: Double
+  , segmentLeaderboardEntry_averageWatts   :: Double
+  , segmentLeaderboardEntry_distance       :: Double
+  , segmentLeaderboardEntry_effortId       :: Integer
+  , segmentLeaderboardEntry_elapsedTime    :: Integer
+  , segmentLeaderboardEntry_movingTime     :: Integer
+  , segmentLeaderboardEntry_rank           :: Integer
+  , segmentLeaderboardEntry_startDate      :: UTCTime
+  , segmentLeaderboardEntry_startDateLocal :: UTCTime
+  } deriving Show
+
+instance FromJSON SegmentLeaderboardEntry where
+  parseJSON (Object o) = SegmentLeaderboardEntry
+    <$> o .: "activity_id"
+    <*> o .: "athlete_gender"
+    <*> o .: "athlete_id"
+    <*> o .: "athlete_name"
+    <*> o .: "athlete_profile"
+    <*> o .: "average_hr"
+    <*> o .: "average_watts"
+    <*> o .: "distance"
+    <*> o .: "effort_id"
+    <*> o .: "elapsed_time"
+    <*> o .: "moving_time"
+    <*> o .: "rank"
+    <*> o .: "start_date"
+    <*> o .: "start_date_local"
+  parseJSON _ = empty
+
 -- * Segment Efforts
 
 -- | <http://strava.github.io/api/v3/efforts/#detailed>

@@ -268,3 +268,10 @@ getSegmentEfforts client segmentId options = get client resource query
  where
   resource = "api/v3/segments/" <> show segmentId <> "/all_efforts"
   query = toQuery options
+
+-- | <http://strava.github.io/api/v3/segments/#leaderboard>
+getSegmentLeaderboard :: Client -> Integer -> O.GetSegmentLeaderboardOptions -> IO (Either String T.SegmentLeaderboardResponse)
+getSegmentLeaderboard client segmentId options = get client resource query
+ where
+  resource = "api/v3/segments/" <> show segmentId <> "/leaderboard"
+  query = toQuery options
