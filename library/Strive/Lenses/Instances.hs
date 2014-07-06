@@ -59,7 +59,7 @@ instance AthleteLens TokenExchangeResponse AthleteDetailed where
     , \ athlete' -> tokenExchangeResponse { tokenExchangeResponse_athlete = athlete' }
     )
 
-instance AverageCadenceLens EffortDetailed Maybe Double where
+instance AverageCadenceLens EffortDetailed (Maybe Double) where
   averageCadence effortDetailed =
     ( effortDetailed_averageCadence effortDetailed
     , \ averageCadence' -> effortDetailed { effortDetailed_averageCadence = averageCadence' }
@@ -71,13 +71,13 @@ instance AverageGradeLens SegmentSummary Double where
     , \ averageGrade' -> segmentSummary { segmentSummary_averageGrade = averageGrade' }
     )
 
-instance AverageHeartrateLens EffortDetailed Maybe Double where
+instance AverageHeartrateLens EffortDetailed (Maybe Double) where
   averageHeartrate effortDetailed =
     ( effortDetailed_averageHeartrate effortDetailed
     , \ averageHeartrate' -> effortDetailed { effortDetailed_averageHeartrate = averageHeartrate' }
     )
 
-instance AverageWattsLens EffortDetailed Maybe Double where
+instance AverageWattsLens EffortDetailed (Maybe Double) where
   averageWatts effortDetailed =
     ( effortDetailed_averageWatts effortDetailed
     , \ averageWatts' -> effortDetailed { effortDetailed_averageWatts = averageWatts' }
@@ -95,7 +95,7 @@ instance CityLens AthleteDetailed Text where
     , \ city' -> athleteDetailed { athleteDetailed_city = city' }
     )
 
-instance CityLens AthleteSummary Maybe Text where
+instance CityLens AthleteSummary (Maybe Text) where
   city athleteSummary =
     ( athleteSummary_city athleteSummary
     , \ city' -> athleteSummary { athleteSummary_city = city' }
@@ -107,7 +107,7 @@ instance CityLens SegmentSummary Text where
     , \ city' -> segmentSummary { segmentSummary_city = city' }
     )
 
-instance CityLens UpdateCurrentAthleteOptions Maybe String where
+instance CityLens UpdateCurrentAthleteOptions (Maybe String) where
   city updateCurrentAthleteOptions =
     ( updateCurrentAthleteOptions_city updateCurrentAthleteOptions
     , \ city' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_city = city' }
@@ -131,7 +131,7 @@ instance CountryLens AthleteDetailed Text where
     , \ country' -> athleteDetailed { athleteDetailed_country = country' }
     )
 
-instance CountryLens AthleteSummary Maybe Text where
+instance CountryLens AthleteSummary (Maybe Text) where
   country athleteSummary =
     ( athleteSummary_country athleteSummary
     , \ country' -> athleteSummary { athleteSummary_country = country' }
@@ -143,7 +143,7 @@ instance CountryLens SegmentSummary Text where
     , \ country' -> segmentSummary { segmentSummary_country = country' }
     )
 
-instance CountryLens UpdateCurrentAthleteOptions Maybe String where
+instance CountryLens UpdateCurrentAthleteOptions (Maybe String) where
   country updateCurrentAthleteOptions =
     ( updateCurrentAthleteOptions_country updateCurrentAthleteOptions
     , \ country' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_country = country' }
@@ -221,7 +221,7 @@ instance EndLatitudeLens SegmentSummary Double where
     , \ endLatitude' -> segmentSummary { segmentSummary_endLatitude = endLatitude' }
     )
 
-instance EndLatlngLens SegmentSummary (Double, Double) where
+instance EndLatlngLens SegmentSummary ((Double, Double)) where
   endLatlng segmentSummary =
     ( segmentSummary_endLatlng segmentSummary
     , \ endLatlng' -> segmentSummary { segmentSummary_endLatlng = endLatlng' }
@@ -251,13 +251,13 @@ instance FollowerCountLens AthleteDetailed Integer where
     , \ followerCount' -> athleteDetailed { athleteDetailed_followerCount = followerCount' }
     )
 
-instance FollowerLens AthleteDetailed Maybe Text where
+instance FollowerLens AthleteDetailed (Maybe Text) where
   follower athleteDetailed =
     ( athleteDetailed_follower athleteDetailed
     , \ follower' -> athleteDetailed { athleteDetailed_follower = follower' }
     )
 
-instance FollowerLens AthleteSummary Maybe Text where
+instance FollowerLens AthleteSummary (Maybe Text) where
   follower athleteSummary =
     ( athleteSummary_follower athleteSummary
     , \ follower' -> athleteSummary { athleteSummary_follower = follower' }
@@ -269,25 +269,25 @@ instance FriendCountLens AthleteDetailed Integer where
     , \ friendCount' -> athleteDetailed { athleteDetailed_friendCount = friendCount' }
     )
 
-instance FriendLens AthleteDetailed Maybe Text where
+instance FriendLens AthleteDetailed (Maybe Text) where
   friend athleteDetailed =
     ( athleteDetailed_friend athleteDetailed
     , \ friend' -> athleteDetailed { athleteDetailed_friend = friend' }
     )
 
-instance FriendLens AthleteSummary Maybe Text where
+instance FriendLens AthleteSummary (Maybe Text) where
   friend athleteSummary =
     ( athleteSummary_friend athleteSummary
     , \ friend' -> athleteSummary { athleteSummary_friend = friend' }
     )
 
-instance FtpLens AthleteDetailed Maybe Integer where
+instance FtpLens AthleteDetailed (Maybe Integer) where
   ftp athleteDetailed =
     ( athleteDetailed_ftp athleteDetailed
     , \ ftp' -> athleteDetailed { athleteDetailed_ftp = ftp' }
     )
 
-instance HiddenLens EffortDetailed Maybe Bool where
+instance HiddenLens EffortDetailed (Maybe Bool) where
   hidden effortDetailed =
     ( effortDetailed_hidden effortDetailed
     , \ hidden' -> effortDetailed { effortDetailed_hidden = hidden' }
@@ -335,7 +335,7 @@ instance IdLens SegmentSummary Integer where
     , \ id' -> segmentSummary { segmentSummary_id = id' }
     )
 
-instance KomRankLens EffortDetailed Maybe Integer where
+instance KomRankLens EffortDetailed (Maybe Integer) where
   komRank effortDetailed =
     ( effortDetailed_komRank effortDetailed
     , \ komRank' -> effortDetailed { effortDetailed_komRank = komRank' }
@@ -353,7 +353,7 @@ instance LastnameLens AthleteSummary Text where
     , \ lastname' -> athleteSummary { athleteSummary_lastname = lastname' }
     )
 
-instance MaxHeartrateLens EffortDetailed Maybe Integer where
+instance MaxHeartrateLens EffortDetailed (Maybe Integer) where
   maxHeartrate effortDetailed =
     ( effortDetailed_maxHeartrate effortDetailed
     , \ maxHeartrate' -> effortDetailed { effortDetailed_maxHeartrate = maxHeartrate' }
@@ -419,7 +419,7 @@ instance PerPageLens GetAthleteCrsOptions Integer where
     , \ perPage' -> getAthleteCrsOptions { getAthleteCrsOptions_perPage = perPage' }
     )
 
-instance PrRankLens EffortDetailed Maybe Integer where
+instance PrRankLens EffortDetailed (Maybe Integer) where
   prRank effortDetailed =
     ( effortDetailed_prRank effortDetailed
     , \ prRank' -> effortDetailed { effortDetailed_prRank = prRank' }
@@ -533,19 +533,19 @@ instance SegmentLens EffortDetailed SegmentSummary where
     , \ segment' -> effortDetailed { effortDetailed_segment = segment' }
     )
 
-instance SexLens AthleteDetailed Maybe Char where
+instance SexLens AthleteDetailed (Maybe Char) where
   sex athleteDetailed =
     ( athleteDetailed_sex athleteDetailed
     , \ sex' -> athleteDetailed { athleteDetailed_sex = sex' }
     )
 
-instance SexLens AthleteSummary Maybe Char where
+instance SexLens AthleteSummary (Maybe Char) where
   sex athleteSummary =
     ( athleteSummary_sex athleteSummary
     , \ sex' -> athleteSummary { athleteSummary_sex = sex' }
     )
 
-instance SexLens UpdateCurrentAthleteOptions Maybe Char where
+instance SexLens UpdateCurrentAthleteOptions (Maybe Char) where
   sex updateCurrentAthleteOptions =
     ( updateCurrentAthleteOptions_sex updateCurrentAthleteOptions
     , \ sex' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_sex = sex' }
@@ -587,7 +587,7 @@ instance StartLatitudeLens SegmentSummary Double where
     , \ startLatitude' -> segmentSummary { segmentSummary_startLatitude = startLatitude' }
     )
 
-instance StartLatlngLens SegmentSummary (Double, Double) where
+instance StartLatlngLens SegmentSummary ((Double, Double)) where
   startLatlng segmentSummary =
     ( segmentSummary_startLatlng segmentSummary
     , \ startLatlng' -> segmentSummary { segmentSummary_startLatlng = startLatlng' }
@@ -623,7 +623,7 @@ instance StateLens SegmentSummary Text where
     , \ state' -> segmentSummary { segmentSummary_state = state' }
     )
 
-instance StateLens UpdateCurrentAthleteOptions Maybe String where
+instance StateLens UpdateCurrentAthleteOptions (Maybe String) where
   state updateCurrentAthleteOptions =
     ( updateCurrentAthleteOptions_state updateCurrentAthleteOptions
     , \ state' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_state = state' }
@@ -641,7 +641,7 @@ instance UpdatedAtLens AthleteSummary UTCTime where
     , \ updatedAt' -> athleteSummary { athleteSummary_updatedAt = updatedAt' }
     )
 
-instance WeightLens UpdateCurrentAthleteOptions Maybe Double where
+instance WeightLens UpdateCurrentAthleteOptions (Maybe Double) where
   weight updateCurrentAthleteOptions =
     ( updateCurrentAthleteOptions_weight updateCurrentAthleteOptions
     , \ weight' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_weight = weight' }

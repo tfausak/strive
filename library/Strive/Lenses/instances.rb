@@ -18,6 +18,7 @@ instances = []
 
     field = match[1]
     field_type = match[2]
+    field_type = "(#{field_type})" if field_type[' ']
     function = field.split('_').last
     klass = "#{function}Lens"
     klass[0] = klass[0].upcase
