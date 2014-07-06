@@ -1,7 +1,7 @@
 -- | Functions for performing actions against the API.
 module Strive.Actions where
 
-import Data.Aeson (Value, encode)
+import Data.Aeson (FromJSON, Value, encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
@@ -294,3 +294,30 @@ getSegmentEffort client effortId = get client resource query
  where
   resource = "api/v3/segment_efforts/" <> show effortId
   query = [] :: Query
+
+-- * Streams
+
+-- | <http://strava.github.io/api/v3/streams/#activity>
+getActivityStreams :: Client -> Integer -> [String] -> O.GetStreamsOptions -> IO (Either String [T.StreamDetailed])
+getActivityStreams = flip getStreams "activities"
+
+-- | <http://strava.github.io/api/v3/streams/#effort>
+getEffortStreams :: Client -> Integer -> [String] -> O.GetStreamsOptions -> IO (Either String [T.StreamDetailed])
+getEffortStreams = flip getStreams "segment_efforts"
+
+-- | <http://strava.github.io/api/v3/streams/#segment>
+getSegmentStreams :: Client -> Integer -> [String] -> O.GetStreamsOptions -> IO (Either String [T.StreamDetailed])
+getSegmentStreams = flip getStreams "segments"
+
+getStreams :: FromJSON a => Client -> String -> Integer -> [String] -> O.GetStreamsOptions -> IO (Either String a)
+getStreams client kind id types options = get client resource query
+  where
+    resource = concat
+        [ "api/v3/"
+        , kind
+        , "/"
+        , show id
+        , "/streams/"
+        , intercalate "," types
+        ]
+    query = toQuery options

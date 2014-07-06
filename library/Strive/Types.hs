@@ -853,3 +853,23 @@ instance FromJSON EffortDetailed where
     <*> o .: "start_date_local"
     <*> o .: "start_index"
   parseJSON _ = empty
+
+-- * Streams
+
+-- | <http://strava.github.io/api/v3/streams/#detailed>
+data StreamDetailed = StreamDetailed
+  { streamDetailed_data         :: [Value]
+  , streamDetailed_originalSize :: Integer
+  , streamDetailed_resolution   :: Text
+  , streamDetailed_seriesType   :: Text
+  , streamDetailed_type         :: Text
+  } deriving Show
+
+instance FromJSON StreamDetailed where
+  parseJSON (Object o) = StreamDetailed
+    <$> o .: "data"
+    <*> o .: "original_size"
+    <*> o .: "resolution"
+    <*> o .: "series_type"
+    <*> o .: "type"
+  parseJSON _ = empty

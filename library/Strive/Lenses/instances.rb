@@ -24,7 +24,7 @@ instances = []
     klass[0] = klass[0].upcase
     record = type.dup
     record[0] = record[0].downcase
-    function = "#{function}_" if %w(type).include?(function)
+    function = "#{function}_" if %w(data type).include?(function)
 
     instances << <<-HASKELL
 
@@ -43,6 +43,7 @@ puts <<-HASKELL
 
 module Strive.Lenses.Instances where
 
+import Data.Aeson (Value)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Client.Conduit (Manager)

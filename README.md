@@ -448,16 +448,31 @@ Many of these examples use the same parameters. They are all given here:
 #### [Retrieve activity streams](http://strava.github.io/api/v3/streams/#activity)
 
 ~~~ {.haskell}
+  activityStreams <- getActivityStreams client 141273622 ["watts"] $ with
+    [ set resolution (Just "low")
+    , set seriesType "time"
+    ]
+  print (activityStreams :: Either String [StreamDetailed])
 ~~~
 
 #### [Retrieve effort streams](http://strava.github.io/api/v3/streams/#effort)
 
 ~~~ {.haskell}
+  effortStreams <- getEffortStreams client 1595370098 ["watts"] $ with
+    [ set resolution (Just "low")
+    , set seriesType "time"
+    ]
+  print (effortStreams :: Either String [StreamDetailed])
 ~~~
 
 #### [Retrieve segment streams](http://strava.github.io/api/v3/streams/#segment)
 
 ~~~ {.haskell}
+  segmentStreams <- getSegmentStreams client 4773104 ["watts"] $ with
+    [ set resolution (Just "low")
+    , set seriesType "time"
+    ]
+  print (segmentStreams :: Either String [StreamDetailed])
 ~~~
 
 ### [Uploads](http://strava.github.io/api/v3/uploads/)

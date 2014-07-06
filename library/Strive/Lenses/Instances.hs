@@ -3,6 +3,7 @@
 
 module Strive.Lenses.Instances where
 
+import Data.Aeson (Value)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Client.Conduit (Manager)
@@ -483,6 +484,12 @@ instance CreatedAtLens SegmentDetailed UTCTime where
   createdAt segmentDetailed =
     ( segmentDetailed_createdAt segmentDetailed
     , \ createdAt' -> segmentDetailed { segmentDetailed_createdAt = createdAt' }
+    )
+
+instance DataLens StreamDetailed [Value] where
+  data_ streamDetailed =
+    ( streamDetailed_data streamDetailed
+    , \ data_' -> streamDetailed { streamDetailed_data = data_' }
     )
 
 instance DatePreferenceLens AthleteDetailed Text where
@@ -1337,6 +1344,12 @@ instance NameLens UpdateActivityOptions (Maybe String) where
     , \ name' -> updateActivityOptions { updateActivityOptions_name = name' }
     )
 
+instance OriginalSizeLens StreamDetailed Integer where
+  originalSize streamDetailed =
+    ( streamDetailed_originalSize streamDetailed
+    , \ originalSize' -> streamDetailed { streamDetailed_originalSize = originalSize' }
+    )
+
 instance PageLens GetActivityCommentsOptions Integer where
   page getActivityCommentsOptions =
     ( getActivityCommentsOptions_page getActivityCommentsOptions
@@ -1679,6 +1692,18 @@ instance RefLens PhotoSummary Text where
     , \ ref' -> photoSummary { photoSummary_ref = ref' }
     )
 
+instance ResolutionLens GetStreamsOptions (Maybe String) where
+  resolution getStreamsOptions =
+    ( getStreamsOptions_resolution getStreamsOptions
+    , \ resolution' -> getStreamsOptions { getStreamsOptions_resolution = resolution' }
+    )
+
+instance ResolutionLens StreamDetailed Text where
+  resolution streamDetailed =
+    ( streamDetailed_resolution streamDetailed
+    , \ resolution' -> streamDetailed { streamDetailed_resolution = resolution' }
+    )
+
 instance ResourceStateLens ActivityDetailed Integer where
   resourceState activityDetailed =
     ( activityDetailed_resourceState activityDetailed
@@ -1809,6 +1834,18 @@ instance SensorBasedLens ActivityZoneDetailed Bool where
   sensorBased activityZoneDetailed =
     ( activityZoneDetailed_sensorBased activityZoneDetailed
     , \ sensorBased' -> activityZoneDetailed { activityZoneDetailed_sensorBased = sensorBased' }
+    )
+
+instance SeriesTypeLens GetStreamsOptions String where
+  seriesType getStreamsOptions =
+    ( getStreamsOptions_seriesType getStreamsOptions
+    , \ seriesType' -> getStreamsOptions { getStreamsOptions_seriesType = seriesType' }
+    )
+
+instance SeriesTypeLens StreamDetailed Text where
+  seriesType streamDetailed =
+    ( streamDetailed_seriesType streamDetailed
+    , \ seriesType' -> streamDetailed { streamDetailed_seriesType = seriesType' }
     )
 
 instance SexLens AthleteDetailed (Maybe Char) where
@@ -2163,6 +2200,12 @@ instance TypeLens PhotoSummary Text where
   type_ photoSummary =
     ( photoSummary_type photoSummary
     , \ type_' -> photoSummary { photoSummary_type = type_' }
+    )
+
+instance TypeLens StreamDetailed Text where
+  type_ streamDetailed =
+    ( streamDetailed_type streamDetailed
+    , \ type_' -> streamDetailed { streamDetailed_type = type_' }
     )
 
 instance TypeLens UpdateActivityOptions (Maybe String) where

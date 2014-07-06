@@ -14,7 +14,7 @@ classes = {}
     function = match[1].split('_').last
     klass = "#{function}Lens"
     klass[0] = klass[0].upcase
-    function = "#{function}_" if %w(type).include?(function)
+    function = "#{function}_" if %w(data type).include?(function)
 
     classes[klass] = function
   end

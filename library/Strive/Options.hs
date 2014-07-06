@@ -468,3 +468,23 @@ instance QueryLike ExploreSegmentsOptions where
     , ("min_cat", show (exploreSegmentsOptions_minCat options))
     , ("max_cat", show (exploreSegmentsOptions_maxCat options))
     ]
+
+-- * Streams
+
+-- | 'Strive.Actions.getStreams'
+data GetStreamsOptions = GetStreamsOptions
+  { getStreamsOptions_resolution :: Maybe String
+  , getStreamsOptions_seriesType :: String
+  } deriving Show
+
+instance Default GetStreamsOptions where
+  def = GetStreamsOptions
+    { getStreamsOptions_resolution = Nothing
+    , getStreamsOptions_seriesType = "distance"
+    }
+
+instance QueryLike GetStreamsOptions where
+  toQuery options = toQuery
+    [ ("resolution", getStreamsOptions_resolution options)
+    , ("distance", Just (getStreamsOptions_seriesType options))
+    ]

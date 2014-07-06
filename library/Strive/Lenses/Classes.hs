@@ -112,6 +112,9 @@ class CountryLens a b | a -> b where
 class CreatedAtLens a b | a -> b where
   createdAt :: Lens a b
 
+class DataLens a b | a -> b where
+  data_ :: Lens a b
+
 class DatePreferenceLens a b | a -> b where
   datePreference :: Lens a b
 
@@ -298,6 +301,9 @@ class MutualFriendCountLens a b | a -> b where
 class NameLens a b | a -> b where
   name :: Lens a b
 
+class OriginalSizeLens a b | a -> b where
+  originalSize :: Lens a b
+
 class PageLens a b | a -> b where
   page :: Lens a b
 
@@ -343,6 +349,9 @@ class RankLens a b | a -> b where
 class RefLens a b | a -> b where
   ref :: Lens a b
 
+class ResolutionLens a b | a -> b where
+  resolution :: Lens a b
+
 class ResourceStateLens a b | a -> b where
   resourceState :: Lens a b
 
@@ -354,6 +363,9 @@ class SegmentLens a b | a -> b where
 
 class SensorBasedLens a b | a -> b where
   sensorBased :: Lens a b
+
+class SeriesTypeLens a b | a -> b where
+  seriesType :: Lens a b
 
 class SexLens a b | a -> b where
   sex :: Lens a b
