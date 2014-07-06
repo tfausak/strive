@@ -368,3 +368,21 @@ instance QueryLike GetClubActivitiesOptions where
     [ ("page", Just (show (getClubActivitiesOptions_page options)))
     , ("per_page", Just (show (getClubActivitiesOptions_perPage options)))
     ]
+
+-- | 'Strive.Actions.getStarredSegments'
+data GetStarredSegmentsOptions = GetStarredSegmentsOptions
+  { getStarredSegmentsOptions_page    :: Integer
+  , getStarredSegmentsOptions_perPage :: Integer
+  } deriving Show
+
+instance Default GetStarredSegmentsOptions where
+  def = GetStarredSegmentsOptions
+    { getStarredSegmentsOptions_page = 1
+    , getStarredSegmentsOptions_perPage = 200
+    }
+
+instance QueryLike GetStarredSegmentsOptions where
+  toQuery options = toQuery
+    [ ("page", Just (show (getStarredSegmentsOptions_page options)))
+    , ("per_page", Just (show (getStarredSegmentsOptions_perPage options)))
+    ]

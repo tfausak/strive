@@ -254,3 +254,10 @@ getSegment client segmentId = get client resource query
  where
   resource = "api/v3/segments/" <> show segmentId
   query = [] :: Query
+
+-- | <http://strava.github.io/api/v3/segments/#starred>
+getStarredSegments :: Client -> O.GetStarredSegmentsOptions -> IO (Either String [T.SegmentSummary])
+getStarredSegments client options = get client resource query
+ where
+  resource = "segments/starred"
+  query = toQuery options

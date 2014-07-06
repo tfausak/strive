@@ -1217,6 +1217,12 @@ instance PageLens GetFriendsOptions Integer where
     , \ page' -> getFriendsOptions { getFriendsOptions_page = page' }
     )
 
+instance PageLens GetStarredSegmentsOptions Integer where
+  page getStarredSegmentsOptions =
+    ( getStarredSegmentsOptions_page getStarredSegmentsOptions
+    , \ page' -> getStarredSegmentsOptions { getStarredSegmentsOptions_page = page' }
+    )
+
 instance PerPageLens GetActivityCommentsOptions Integer where
   perPage getActivityCommentsOptions =
     ( getActivityCommentsOptions_perPage getActivityCommentsOptions
@@ -1287,6 +1293,12 @@ instance PerPageLens GetFriendsOptions Integer where
   perPage getFriendsOptions =
     ( getFriendsOptions_perPage getFriendsOptions
     , \ perPage' -> getFriendsOptions { getFriendsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetStarredSegmentsOptions Integer where
+  perPage getStarredSegmentsOptions =
+    ( getStarredSegmentsOptions_perPage getStarredSegmentsOptions
+    , \ perPage' -> getStarredSegmentsOptions { getStarredSegmentsOptions_perPage = perPage' }
     )
 
 instance PhotoCountLens ActivityDetailed Integer where
