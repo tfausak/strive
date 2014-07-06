@@ -169,6 +169,9 @@ class EntriesLens a b | a -> b where
 class EntryCountLens a b | a -> b where
   entryCount :: Lens a b
 
+class ErrorLens a b | a -> b where
+  error :: Lens a b
+
 class ExternalIdLens a b | a -> b where
   externalId :: Lens a b
 
@@ -402,6 +405,9 @@ class StartLongitudeLens a b | a -> b where
 
 class StateLens a b | a -> b where
   state :: Lens a b
+
+class StatusLens a b | a -> b where
+  status :: Lens a b
 
 class SummaryPolylineLens a b | a -> b where
   summaryPolyline :: Lens a b

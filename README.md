@@ -85,6 +85,7 @@ get accessToken (set accessToken "..." client)
 <!--
 ~~~ {.haskell}
 import Data.Aeson (Value)
+import Data.ByteString.Char8 (pack)
 import Data.Time.Calendar (fromGregorian)
 import Data.Time.Clock (UTCTime (UTCTime))
 import Strive
@@ -480,6 +481,15 @@ Many of these examples use the same parameters. They are all given here:
 #### [Upload an activity](http://strava.github.io/api/v3/uploads/#post-file)
 
 ~~~ {.haskell}
+  uploadedActivity <- uploadActivity client (pack "...") "gpx.gz" $ with
+    [ set activityType (Just "ride")
+    , set name (Just "example")
+    , set description (Just "...")
+    , set private True
+    , set trainer True
+    , set externalId (Just "...")
+    ]
+  print (uploadedActivity :: Either String UploadStatus)
 ~~~
 
 #### [Check upload status](http://strava.github.io/api/v3/uploads/#get-status)

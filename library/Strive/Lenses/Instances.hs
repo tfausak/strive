@@ -72,6 +72,12 @@ instance ActivityIdLens SegmentLeaderboardEntry Integer where
     , \ activityId' -> segmentLeaderboardEntry { segmentLeaderboardEntry_activityId = activityId' }
     )
 
+instance ActivityIdLens UploadStatus (Maybe Integer) where
+  activityId uploadStatus =
+    ( uploadStatus_activityId uploadStatus
+    , \ activityId' -> uploadStatus { uploadStatus_activityId = activityId' }
+    )
+
 instance ActivityTypeLens ExploreSegmentsOptions String where
   activityType exploreSegmentsOptions =
     ( exploreSegmentsOptions_activityType exploreSegmentsOptions
@@ -88,6 +94,12 @@ instance ActivityTypeLens SegmentSummary Text where
   activityType segmentSummary =
     ( segmentSummary_activityType segmentSummary
     , \ activityType' -> segmentSummary { segmentSummary_activityType = activityType' }
+    )
+
+instance ActivityTypeLens UploadActivityOptions (Maybe String) where
+  activityType uploadActivityOptions =
+    ( uploadActivityOptions_activityType uploadActivityOptions
+    , \ activityType' -> uploadActivityOptions { uploadActivityOptions_activityType = activityType' }
     )
 
 instance AfterLens GetCurrentActivitiesOptions (Maybe UTCTime) where
@@ -534,6 +546,12 @@ instance DescriptionLens UpdateActivityOptions (Maybe String) where
     , \ description' -> updateActivityOptions { updateActivityOptions_description = description' }
     )
 
+instance DescriptionLens UploadActivityOptions (Maybe String) where
+  description uploadActivityOptions =
+    ( uploadActivityOptions_description uploadActivityOptions
+    , \ description' -> uploadActivityOptions { uploadActivityOptions_description = description' }
+    )
+
 instance DistanceLens ActivityDetailed Double where
   distance activityDetailed =
     ( activityDetailed_distance activityDetailed
@@ -774,6 +792,12 @@ instance EntryCountLens SegmentLeaderboardResponse Integer where
     , \ entryCount' -> segmentLeaderboardResponse { segmentLeaderboard_entryCount = entryCount' }
     )
 
+instance ErrorLens UploadStatus (Maybe Text) where
+  error uploadStatus =
+    ( uploadStatus_error uploadStatus
+    , \ error' -> uploadStatus { uploadStatus_error = error' }
+    )
+
 instance ExternalIdLens ActivityDetailed (Maybe Text) where
   externalId activityDetailed =
     ( activityDetailed_externalId activityDetailed
@@ -784,6 +808,18 @@ instance ExternalIdLens ActivitySummary (Maybe Text) where
   externalId activitySummary =
     ( activitySummary_externalId activitySummary
     , \ externalId' -> activitySummary { activitySummary_externalId = externalId' }
+    )
+
+instance ExternalIdLens UploadActivityOptions (Maybe String) where
+  externalId uploadActivityOptions =
+    ( uploadActivityOptions_externalId uploadActivityOptions
+    , \ externalId' -> uploadActivityOptions { uploadActivityOptions_externalId = externalId' }
+    )
+
+instance ExternalIdLens UploadStatus Text where
+  externalId uploadStatus =
+    ( uploadStatus_externalId uploadStatus
+    , \ externalId' -> uploadStatus { uploadStatus_externalId = externalId' }
     )
 
 instance FirstnameLens AthleteDetailed Text where
@@ -1030,6 +1066,12 @@ instance IdLens SegmentSummary Integer where
   id segmentSummary =
     ( segmentSummary_id segmentSummary
     , \ id' -> segmentSummary { segmentSummary_id = id' }
+    )
+
+instance IdLens UploadStatus Integer where
+  id uploadStatus =
+    ( uploadStatus_id uploadStatus
+    , \ id' -> uploadStatus { uploadStatus_id = id' }
     )
 
 instance InstagramPrimaryPhotoLens ActivityDetailed Text where
@@ -1344,6 +1386,12 @@ instance NameLens UpdateActivityOptions (Maybe String) where
     , \ name' -> updateActivityOptions { updateActivityOptions_name = name' }
     )
 
+instance NameLens UploadActivityOptions (Maybe String) where
+  name uploadActivityOptions =
+    ( uploadActivityOptions_name uploadActivityOptions
+    , \ name' -> uploadActivityOptions { uploadActivityOptions_name = name' }
+    )
+
 instance OriginalSizeLens StreamDetailed Integer where
   originalSize streamDetailed =
     ( streamDetailed_originalSize streamDetailed
@@ -1618,6 +1666,12 @@ instance PrivateLens UpdateActivityOptions (Maybe Bool) where
   private updateActivityOptions =
     ( updateActivityOptions_private updateActivityOptions
     , \ private' -> updateActivityOptions { updateActivityOptions_private = private' }
+    )
+
+instance PrivateLens UploadActivityOptions Bool where
+  private uploadActivityOptions =
+    ( uploadActivityOptions_private uploadActivityOptions
+    , \ private' -> uploadActivityOptions { uploadActivityOptions_private = private' }
     )
 
 instance PrivateScopeLens BuildAuthorizeUrlOptions Bool where
@@ -2094,6 +2148,12 @@ instance StateLens UpdateCurrentAthleteOptions (Maybe String) where
     , \ state' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_state = state' }
     )
 
+instance StatusLens UploadStatus Text where
+  status uploadStatus =
+    ( uploadStatus_status uploadStatus
+    , \ status' -> uploadStatus { uploadStatus_status = status' }
+    )
+
 instance SummaryPolylineLens PolylineDetailed (Maybe [(Double, Double)]) where
   summaryPolyline polylineDetailed =
     ( polylineDetailed_summaryPolyline polylineDetailed
@@ -2170,6 +2230,12 @@ instance TrainerLens UpdateActivityOptions (Maybe Bool) where
   trainer updateActivityOptions =
     ( updateActivityOptions_trainer updateActivityOptions
     , \ trainer' -> updateActivityOptions { updateActivityOptions_trainer = trainer' }
+    )
+
+instance TrainerLens UploadActivityOptions Bool where
+  trainer uploadActivityOptions =
+    ( uploadActivityOptions_trainer uploadActivityOptions
+    , \ trainer' -> uploadActivityOptions { uploadActivityOptions_trainer = trainer' }
     )
 
 instance TruncatedLens ActivityDetailed Integer where

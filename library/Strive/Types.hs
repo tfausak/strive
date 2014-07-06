@@ -873,3 +873,23 @@ instance FromJSON StreamDetailed where
     <*> o .: "series_type"
     <*> o .: "type"
   parseJSON _ = empty
+
+-- * Uploads
+
+-- | <http://strava.github.io/api/v3/uploads/#attributes>
+data UploadStatus = UploadStatus
+  { uploadStatus_activityId :: Maybe Integer
+  , uploadStatus_error      :: Maybe Text
+  , uploadStatus_externalId :: Text
+  , uploadStatus_id         :: Integer
+  , uploadStatus_status     :: Text
+  } deriving Show
+
+instance FromJSON UploadStatus where
+  parseJSON (Object o) = UploadStatus
+    <$> o .:? "activity_id"
+    <*> o .:? "error"
+    <*> o .: "external_id"
+    <*> o .: "id"
+    <*> o .: "status"
+  parseJSON _ = empty

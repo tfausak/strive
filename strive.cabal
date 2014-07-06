@@ -57,6 +57,7 @@ test-suite readme
         base -any,
         strive -any,
         aeson ==0.7.*,
+        bytestring ==0.10.*,
         data-default ==0.5.*,
         markdown-unlit ==0.2.*,
         time ==1.*

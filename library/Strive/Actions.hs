@@ -2,15 +2,18 @@
 module Strive.Actions where
 
 import Data.Aeson (FromJSON, Value, encode)
+import Data.ByteString (ByteString)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
 import Data.List (intercalate)
 import Data.Monoid ((<>))
 import Data.Time.Clock (UTCTime)
-import Network.HTTP.Types (Query, renderQuery, toQuery)
+import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
+import Network.HTTP.Types (Query, methodGet, renderQuery, toQuery)
 import Strive.Client (Client, buildClient)
-import Strive.Internal.HTTP (delete, get, post, put)
+import Strive.Internal.HTTP (buildRequest, decodeValue, delete, get,
+                             performRequest, post, put)
 import qualified Strive.Options as O
 import qualified Strive.Types as T
 
@@ -321,3 +324,20 @@ getStreams client kind id types options = get client resource query
         , intercalate "," types
         ]
     query = toQuery options
+
+-- * Uploads
+
+-- | <http://strava.github.io/api/v3/uploads/#post-file>
+uploadActivity :: Client -> ByteString -> String -> O.UploadActivityOptions -> IO (Either String T.UploadStatus)
+uploadActivity client body dataType options = do
+  initialRequest <- buildRequest methodGet client resource query
+  let request = initialRequest
+        { requestBody = RequestBodyBS body
+        }
+  response <- performRequest client request
+  return (decodeValue response)
+ where
+  resource = "api/v3/uploads"
+  query = toQuery
+    [ ("data_type", dataType)
+    ] <> toQuery options
