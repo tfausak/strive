@@ -121,3 +121,21 @@ instance QueryLike GetFriendsOptions where
     [ ("page", show (getFriendsOptions_page options))
     , ("per_page", show (getFriendsOptions_perPage options))
     ]
+
+-- | 'Strive.Actions.getCurrentFollowers'
+data GetCurrentFollowersOptions = GetCurrentFollowersOptions
+  { getCurrentFollowersOptions_page    :: Integer
+  , getCurrentFollowersOptions_perPage :: Integer
+  } deriving Show
+
+instance Default GetCurrentFollowersOptions where
+  def = GetCurrentFollowersOptions
+    { getCurrentFollowersOptions_page = 1
+    , getCurrentFollowersOptions_perPage = 200
+    }
+
+instance QueryLike GetCurrentFollowersOptions where
+  toQuery options = toQuery
+    [ ("page", show (getCurrentFollowersOptions_page options))
+    , ("per_page", show (getCurrentFollowersOptions_perPage options))
+    ]

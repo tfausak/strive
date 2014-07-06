@@ -413,6 +413,12 @@ instance PageLens GetAthleteCrsOptions Integer where
     , \ page' -> getAthleteCrsOptions { getAthleteCrsOptions_page = page' }
     )
 
+instance PageLens GetCurrentFollowersOptions Integer where
+  page getCurrentFollowersOptions =
+    ( getCurrentFollowersOptions_page getCurrentFollowersOptions
+    , \ page' -> getCurrentFollowersOptions { getCurrentFollowersOptions_page = page' }
+    )
+
 instance PageLens GetCurrentFriendsOptions Integer where
   page getCurrentFriendsOptions =
     ( getCurrentFriendsOptions_page getCurrentFriendsOptions
@@ -429,6 +435,12 @@ instance PerPageLens GetAthleteCrsOptions Integer where
   perPage getAthleteCrsOptions =
     ( getAthleteCrsOptions_perPage getAthleteCrsOptions
     , \ perPage' -> getAthleteCrsOptions { getAthleteCrsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetCurrentFollowersOptions Integer where
+  perPage getCurrentFollowersOptions =
+    ( getCurrentFollowersOptions_perPage getCurrentFollowersOptions
+    , \ perPage' -> getCurrentFollowersOptions { getCurrentFollowersOptions_perPage = perPage' }
     )
 
 instance PerPageLens GetCurrentFriendsOptions Integer where
