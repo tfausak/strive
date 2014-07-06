@@ -229,3 +229,10 @@ getClubMembers client clubId options = get client resource query
   where
     resource = "api/v3/clubs/" <> show clubId <> "/members"
     query = toQuery options
+
+-- | <http://strava.github.io/api/v3/clubs/#get-activities>
+getClubActivities :: Client -> Integer -> O.GetClubActivitiesOptions -> IO (Either String [T.ActivitySummary])
+getClubActivities client clubId options = get client resource query
+ where
+  resource = "api/v3/clubs/" <> show clubId <> "/activities"
+  query = toQuery options

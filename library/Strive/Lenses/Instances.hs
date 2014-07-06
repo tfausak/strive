@@ -1007,6 +1007,12 @@ instance PageLens GetAthleteCrsOptions Integer where
     , \ page' -> getAthleteCrsOptions { getAthleteCrsOptions_page = page' }
     )
 
+instance PageLens GetClubActivitiesOptions Integer where
+  page getClubActivitiesOptions =
+    ( getClubActivitiesOptions_page getClubActivitiesOptions
+    , \ page' -> getClubActivitiesOptions { getClubActivitiesOptions_page = page' }
+    )
+
 instance PageLens GetClubMembersOptions Integer where
   page getClubMembersOptions =
     ( getClubMembersOptions_page getClubMembersOptions
@@ -1071,6 +1077,12 @@ instance PerPageLens GetAthleteCrsOptions Integer where
   perPage getAthleteCrsOptions =
     ( getAthleteCrsOptions_perPage getAthleteCrsOptions
     , \ perPage' -> getAthleteCrsOptions { getAthleteCrsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetClubActivitiesOptions Integer where
+  perPage getClubActivitiesOptions =
+    ( getClubActivitiesOptions_perPage getClubActivitiesOptions
+    , \ perPage' -> getClubActivitiesOptions { getClubActivitiesOptions_perPage = perPage' }
     )
 
 instance PerPageLens GetClubMembersOptions Integer where

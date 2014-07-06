@@ -360,6 +360,11 @@ Many of these examples use the same parameters. They are all given here:
 #### [List club activities](http://strava.github.io/api/v3/clubs/#get-activities)
 
 ~~~ {.haskell}
+  clubActivities <- getClubActivities client 11193 $ with
+    [ set page 1
+    , set perPage 2
+    ]
+  print (clubActivities :: Either String [ActivitySummary])
 ~~~
 
 ### [Gear](http://strava.github.io/api/v3/gear/)

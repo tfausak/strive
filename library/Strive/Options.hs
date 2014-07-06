@@ -350,3 +350,21 @@ instance QueryLike GetClubMembersOptions where
     [ ("page", Just (show (getClubMembersOptions_page options)))
     , ("per_page", Just (show (getClubMembersOptions_perPage options)))
     ]
+
+-- | 'Strive.Actions.getClubActivities'
+data GetClubActivitiesOptions = GetClubActivitiesOptions
+  { getClubActivitiesOptions_page    :: Integer
+  , getClubActivitiesOptions_perPage :: Integer
+  } deriving Show
+
+instance Default GetClubActivitiesOptions where
+  def = GetClubActivitiesOptions
+    { getClubActivitiesOptions_page = 1
+    , getClubActivitiesOptions_perPage = 200
+    }
+
+instance QueryLike GetClubActivitiesOptions where
+  toQuery options = toQuery
+    [ ("page", Just (show (getClubActivitiesOptions_page options)))
+    , ("per_page", Just (show (getClubActivitiesOptions_perPage options)))
+    ]
