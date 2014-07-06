@@ -71,7 +71,7 @@ Most types implement lenses for their fields. Lenses are preferred over directly
 accessing the fields. For instance, instead of doing this:
 
 ~~~ {.haskell .ignore}
-client_accessToken (client { client_accessToken "..." })
+client_accessToken (client { client_accessToken = "..." })
 -- "..."
 ~~~
 
@@ -89,8 +89,8 @@ import System.Exit (exitSuccess)
 
 main :: IO ()
 main = do
-  client <- buildClient "token"
   _ <- exitSuccess
+  client <- buildClient "token"
 ~~~
 -->
 
@@ -141,6 +141,14 @@ main = do
 #### [Update current athlete](http://strava.github.io/api/v3/athlete/#update)
 
 ~~~ {.haskell}
+  updatedAthlete <- updateCurrentAthlete client $ with
+    [ set city (Just "Dallas")
+    , set state (Just "TX")
+    , set country (Just "United States")
+    , set sex (Just 'M')
+    , set weight (Just 72.57)
+    ]
+  print (updatedAthlete :: Either String AthleteDetailed)
 ~~~
 
 #### [List athlete K/QOMs/CRs](http://strava.github.io/api/v3/athlete/#koms)

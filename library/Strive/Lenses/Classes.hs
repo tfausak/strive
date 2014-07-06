@@ -37,4 +37,5 @@ class SexLens a b | a -> b where sex :: Lens a b
 class ShoesLens a b | a -> b where shoes :: Lens a b
 class StateLens a b | a -> b where state :: Lens a b
 class UpdatedAtLens a b | a -> b where updatedAt :: Lens a b
+class WeightLens a b | a -> b where weight :: Lens a b
 class WriteScopeLens a b | a -> b where writeScope :: Lens a b

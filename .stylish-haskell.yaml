@@ -7,5 +7,5 @@ steps:
     style: vertical
 - records: {}
 - tabs:
-    spaces: 4
+    spaces: 2
 - trailing_whitespace: {}

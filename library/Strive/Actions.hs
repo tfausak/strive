@@ -6,7 +6,7 @@ import Data.Default (Default, def)
 import Data.Monoid ((<>))
 import Network.HTTP.Types (Query, renderQuery, toQuery)
 import Strive.Client (Client, buildClient)
-import Strive.Internal.HTTP (get, post)
+import Strive.Internal.HTTP (get, post, put)
 import qualified Strive.Options as O
 import qualified Strive.Types as T
 
@@ -59,6 +59,13 @@ getCurrentAthlete client = get client resource query
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
 getAthlete :: Client -> Integer -> IO (Either String T.AthleteSummary)
 getAthlete client athleteId = get client resource query
-  where
-    resource = "api/v3/athletes/" <> show athleteId
-    query = [] :: Query
+ where
+  resource = "api/v3/athletes/" <> show athleteId
+  query = [] :: Query
+
+-- | <http://strava.github.io/api/v3/athlete/#update>
+updateCurrentAthlete :: Client -> O.UpdateCurrentAthleteOptions -> IO (Either String T.AthleteDetailed)
+updateCurrentAthlete client options = put client resource query
+ where
+  resource = "api/v3/athlete"
+  query = toQuery options
