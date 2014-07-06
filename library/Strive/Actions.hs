@@ -85,3 +85,10 @@ getCurrentFriends client options = get client resource query
  where
   resource = "api/v3/athlete/friends"
   query = toQuery options
+
+-- | <http://strava.github.io/api/v3/follow/#friends>
+getFriends :: Client -> Integer -> O.GetFriendsOptions -> IO (Either String [T.AthleteSummary])
+getFriends client athleteId options = get client resource query
+ where
+  resource = "api/v3/athletes/" <> show athleteId <> "/friends"
+  query = toQuery options

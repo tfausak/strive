@@ -173,6 +173,14 @@ main = do
   print (currentFriends :: Either String [AthleteSummary])
 ~~~
 
+~~~ {.haskell}
+  friends <- getFriends client 65516 $ with
+    [ set page 1
+    , set perPage 2
+    ]
+  print (friends :: Either String [AthleteSummary])
+~~~
+
 #### [List athlete followers](http://strava.github.io/api/v3/follow/#followers)
 
 ~~~ {.haskell}

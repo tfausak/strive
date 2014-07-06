@@ -103,3 +103,21 @@ instance QueryLike GetCurrentFriendsOptions where
     [ ("page", show (getCurrentFriendsOptions_page options))
     , ("per_page", show (getCurrentFriendsOptions_perPage options))
     ]
+
+-- | 'Strive.Actions.getFriends'
+data GetFriendsOptions = GetFriendsOptions
+  { getFriendsOptions_page    :: Integer
+  , getFriendsOptions_perPage :: Integer
+  } deriving Show
+
+instance Default GetFriendsOptions where
+  def = GetFriendsOptions
+    { getFriendsOptions_page = 1
+    , getFriendsOptions_perPage = 200
+    }
+
+instance QueryLike GetFriendsOptions where
+  toQuery options = toQuery
+    [ ("page", show (getFriendsOptions_page options))
+    , ("per_page", show (getFriendsOptions_perPage options))
+    ]
