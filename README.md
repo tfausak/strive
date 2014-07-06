@@ -98,12 +98,6 @@ main = do
 ~~~
 -->
 
-Many of these examples use the same parameters. They are all given here:
-
-~~~ {.haskell}
-  let epoch = UTCTime (fromGregorian 1970 0 0) 0
-~~~
-
 ### [Authentication](http://strava.github.io/api/v3/oauth/)
 
 #### [Request access](http://strava.github.io/api/v3/oauth/#get-authorize)
@@ -224,7 +218,7 @@ Many of these examples use the same parameters. They are all given here:
 #### [Create an activity](http://strava.github.io/api/v3/activities/#create)
 
 ~~~ {.haskell}
-  createdActivity <- createActivity client "example" "run" epoch 10 $ with
+  createdActivity <- createActivity client "example" "run" (UTCTime (fromGregorian 1970 0 0) 0) 10 $ with
     [ set description (Just "example")
     , set distance (Just 100.0)
     ]
@@ -266,8 +260,8 @@ Many of these examples use the same parameters. They are all given here:
 
 ~~~ {.haskell}
   currentActivities <- getCurrentActivities client $ with
-    [ set before (Just epoch)
-    , set after (Just epoch)
+    [ set before (Just (UTCTime (fromGregorian 1970 0 0) 0))
+    , set after (Just (UTCTime (fromGregorian 1970 0 0) 0))
     , set page 1
     , set perPage 2
     ]
@@ -401,7 +395,7 @@ Many of these examples use the same parameters. They are all given here:
 ~~~ {.haskell}
   theSegmentEfforts <- getSegmentEfforts client 4773104 $ with
     [ set athleteId (Just 65516)
-    , set range (Just (epoch, epoch))
+    , set range (Just ((UTCTime (fromGregorian 1970 0 0) 0), (UTCTime (fromGregorian 1970 0 0) 0)))
     , set page 1
     , set perPage 2
     ]
