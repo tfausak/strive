@@ -215,3 +215,10 @@ getClub client clubId = get client resource query
  where
   resource = "api/v3/clubs/" <> show clubId
   query = [] :: Query
+
+-- | <http://strava.github.io/api/v3/clubs/#get-athletes>
+getCurrentClubs :: Client -> IO (Either String [T.ClubSummary])
+getCurrentClubs client = get client resource query
+  where
+    resource = "athlete/clubs"
+    query = [] :: Query

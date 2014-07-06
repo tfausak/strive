@@ -343,6 +343,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [List athlete clubs](http://strava.github.io/api/v3/clubs/#get-athletes)
 
 ~~~ {.haskell}
+  currentClubs <- getCurrentClubs client
+  print (currentClubs :: Either String [ClubSummary])
 ~~~
 
 #### [List club members](http://strava.github.io/api/v3/clubs/#get-members)
