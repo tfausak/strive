@@ -53,6 +53,12 @@ instance ActivityTypeLens SegmentSummary Text where
     , \ activityType' -> segmentSummary { segmentSummary_activityType = activityType' }
     )
 
+instance AfterLens GetCurrentActivitiesOptions (Maybe UTCTime) where
+  after getCurrentActivitiesOptions =
+    ( getCurrentActivities_after getCurrentActivitiesOptions
+    , \ after' -> getCurrentActivitiesOptions { getCurrentActivities_after = after' }
+    )
+
 instance AllEffortsLens GetActivityOptions Bool where
   allEfforts getActivityOptions =
     ( getActivityOptions_allEfforts getActivityOptions
@@ -147,6 +153,12 @@ instance AverageWattsLens EffortDetailed (Maybe Double) where
   averageWatts effortDetailed =
     ( effortDetailed_averageWatts effortDetailed
     , \ averageWatts' -> effortDetailed { effortDetailed_averageWatts = averageWatts' }
+    )
+
+instance BeforeLens GetCurrentActivitiesOptions (Maybe UTCTime) where
+  before getCurrentActivitiesOptions =
+    ( getCurrentActivities_before getCurrentActivitiesOptions
+    , \ before' -> getCurrentActivitiesOptions { getCurrentActivities_before = before' }
     )
 
 instance BikesLens AthleteDetailed [GearSummary] where
@@ -797,6 +809,12 @@ instance PageLens GetCommonFriendsOptions Integer where
     , \ page' -> getCommonFriendsOptions { getCommonFriendsOptions_page = page' }
     )
 
+instance PageLens GetCurrentActivitiesOptions Integer where
+  page getCurrentActivitiesOptions =
+    ( getCurrentActivities_page getCurrentActivitiesOptions
+    , \ page' -> getCurrentActivitiesOptions { getCurrentActivities_page = page' }
+    )
+
 instance PageLens GetCurrentFollowersOptions Integer where
   page getCurrentFollowersOptions =
     ( getCurrentFollowersOptions_page getCurrentFollowersOptions
@@ -831,6 +849,12 @@ instance PerPageLens GetCommonFriendsOptions Integer where
   perPage getCommonFriendsOptions =
     ( getCommonFriendsOptions_perPage getCommonFriendsOptions
     , \ perPage' -> getCommonFriendsOptions { getCommonFriendsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetCurrentActivitiesOptions Integer where
+  perPage getCurrentActivitiesOptions =
+    ( getCurrentActivities_perPage getCurrentActivitiesOptions
+    , \ perPage' -> getCurrentActivitiesOptions { getCurrentActivities_perPage = perPage' }
     )
 
 instance PerPageLens GetCurrentFollowersOptions Integer where

@@ -151,3 +151,10 @@ deleteActivity client activityId = delete client resource query
  where
   resource = "api/v3/activities/" <> show activityId
   query = [] :: Query
+
+-- | <http://strava.github.io/api/v3/activities/#get-activities>
+getCurrentActivities :: Client -> O.GetCurrentActivitiesOptions -> IO (Either String [T.ActivitySummary])
+getCurrentActivities client options = get client resource query
+ where
+  resource = "api/v3/athlete/activities"
+  query = toQuery options

@@ -5,6 +5,8 @@ import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
+import Data.Time.Clock (UTCTime)
+import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Network.HTTP.Types.QueryLike (QueryLike, toQuery)
 
 -- * Authentication
@@ -242,4 +244,28 @@ instance QueryLike UpdateActivityOptions where
     , ("trainer", fmap (unpack . toStrict . encode) (updateActivityOptions_trainer options))
     , ("gear_id", updateActivityOptions_gearId options)
     , ("description", updateActivityOptions_description options)
+    ]
+
+-- | 'Strive.Actions.getCurrentActivities'
+data GetCurrentActivitiesOptions = GetCurrentActivitiesOptions
+  { getCurrentActivities_before  :: Maybe UTCTime
+  , getCurrentActivities_after   :: Maybe UTCTime
+  , getCurrentActivities_page    :: Integer
+  , getCurrentActivities_perPage :: Integer
+  } deriving Show
+
+instance Default GetCurrentActivitiesOptions where
+  def = GetCurrentActivitiesOptions
+    { getCurrentActivities_before = Nothing
+    , getCurrentActivities_after = Nothing
+    , getCurrentActivities_page = 1
+    , getCurrentActivities_perPage = 200
+    }
+
+instance QueryLike GetCurrentActivitiesOptions where
+  toQuery options = toQuery
+    [ ("before", fmap (show . utcTimeToPOSIXSeconds) (getCurrentActivities_before options))
+    , ("after", fmap (show . utcTimeToPOSIXSeconds) (getCurrentActivities_after options))
+    , ("page", Just (show (getCurrentActivities_page options)))
+    , ("per_page", Just (show (getCurrentActivities_perPage options)))
     ]

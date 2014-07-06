@@ -16,6 +16,9 @@ class ActivityIdLens a b | a -> b where
 class ActivityTypeLens a b | a -> b where
   activityType :: Lens a b
 
+class AfterLens a b | a -> b where
+  after :: Lens a b
+
 class AllEffortsLens a b | a -> b where
   allEfforts :: Lens a b
 
@@ -45,6 +48,9 @@ class AverageSpeedLens a b | a -> b where
 
 class AverageWattsLens a b | a -> b where
   averageWatts :: Lens a b
+
+class BeforeLens a b | a -> b where
+  before :: Lens a b
 
 class BikesLens a b | a -> b where
   bikes :: Lens a b

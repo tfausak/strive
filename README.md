@@ -264,6 +264,13 @@ Many of these examples use the same parameters. They are all given here:
 #### [List athlete activities](http://strava.github.io/api/v3/activities/#get-activities)
 
 ~~~ {.haskell}
+  currentActivities <- getCurrentActivities client $ with
+    [ set before (Just time)
+    , set after (Just time)
+    , set page 1
+    , set perPage 2
+    ]
+  print (currentActivities :: Either String [ActivitySummary])
 ~~~
 
 #### [List friends' activities](http://strava.github.io/api/v3/activities/#get-feed)
