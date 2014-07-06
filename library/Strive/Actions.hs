@@ -1,9 +1,12 @@
 -- | Functions for performing actions against the API.
 module Strive.Actions where
 
+import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
+import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
 import Data.Monoid ((<>))
+import Data.Time.Clock (UTCTime)
 import Network.HTTP.Types (Query, renderQuery, toQuery)
 import Strive.Client (Client, buildClient)
 import Strive.Internal.HTTP (get, post, put)
@@ -113,3 +116,17 @@ getCommonFriends client athleteId options = get client resource query
  where
   resource = "api/v3/athletes/" <> show athleteId <> "/both-following"
   query = toQuery options
+
+-- * Activities
+
+-- | <http://strava.github.io/api/v3/activities/#create>
+createActivity :: Client -> String -> String -> UTCTime -> Integer -> O.CreateActivityOptions -> IO (Either String T.ActivityDetailed)
+createActivity client name type_ startDateLocal elapsedTime options = post client resource query
+ where
+  resource = "api/v3/activities"
+  query = toQuery
+    [ ("name", name)
+    , ("type", type_)
+    , ("start_date_local", unpack (toStrict (encode startDateLocal)))
+    , ("elapsed_time", show elapsedTime)
+    ] <> toQuery options

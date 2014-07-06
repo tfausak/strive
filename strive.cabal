@@ -29,6 +29,7 @@ library
         aeson ==0.7.*,
         bytestring ==0.10.*,
         data-default ==0.5.*,
+        gpolyline ==0.1.*,
         http-conduit ==2.*,
         http-types ==0.8.*,
         text ==0.11.*,
@@ -56,7 +57,8 @@ test-suite readme
         base -any,
         strive -any,
         data-default ==0.5.*,
-        markdown-unlit ==0.2.*
+        markdown-unlit ==0.2.*,
+        time ==1.*
     type: exitcode-stdio-1.0
     main-is: README.lhs
     buildable: True

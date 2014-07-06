@@ -175,3 +175,23 @@ instance QueryLike GetCommonFriendsOptions where
     [ ("page", show (getCommonFriendsOptions_page options))
     , ("per_page", show (getCommonFriendsOptions_perPage options))
     ]
+
+-- * Activities
+
+-- | 'Strive.Actions.CreateActivity'
+data CreateActivityOptions = CreateActivityOptions
+  { createActivityOptions_description :: Maybe String
+  , createActivityOptions_distance    :: Maybe Double
+  } deriving Show
+
+instance Default CreateActivityOptions where
+  def = CreateActivityOptions
+    { createActivityOptions_description = Nothing
+    , createActivityOptions_distance = Nothing
+    }
+
+instance QueryLike CreateActivityOptions where
+  toQuery options = toQuery
+    [ ("description", createActivityOptions_description options)
+    , ("distance", fmap show (createActivityOptions_distance options))
+    ]

@@ -84,6 +84,8 @@ get accessToken (set accessToken "..." client)
 
 <!--
 ~~~ {.haskell}
+import Data.Time.Calendar (fromGregorian)
+import Data.Time.Clock (UTCTime (UTCTime))
 import Strive
 import System.Exit (exitSuccess)
 
@@ -93,6 +95,12 @@ main = do
   client <- buildClient "token"
 ~~~
 -->
+
+Many of these examples use the same parameters. They are all given here:
+
+~~~ {.haskell}
+  let time = UTCTime (fromGregorian 1970 0 0) 0
+~~~
 
 ### [Authentication](http://strava.github.io/api/v3/oauth/)
 
@@ -214,6 +222,11 @@ main = do
 #### [Create an activity](http://strava.github.io/api/v3/activities/#create)
 
 ~~~ {.haskell}
+  createdActivity <- createActivity client "example" "run" time 10 $ with
+    [ set description (Just "example")
+    , set distance (Just 100.0)
+    ]
+  print (createdActivity :: Either String ActivityDetailed)
 ~~~
 
 #### [Retrieve an activity](http://strava.github.io/api/v3/activities/#get-details)
