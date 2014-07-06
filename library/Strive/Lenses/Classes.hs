@@ -280,6 +280,9 @@ class ProfileLens a b | a -> b where
 class ProfileMediumLens a b | a -> b where
   profileMedium :: Lens a b
 
+class RangeLens a b | a -> b where
+  range :: Lens a b
+
 class RefLens a b | a -> b where
   ref :: Lens a b
 

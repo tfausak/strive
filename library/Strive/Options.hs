@@ -386,3 +386,28 @@ instance QueryLike GetStarredSegmentsOptions where
     [ ("page", Just (show (getStarredSegmentsOptions_page options)))
     , ("per_page", Just (show (getStarredSegmentsOptions_perPage options)))
     ]
+
+-- | 'Strive.Actions.getSegmentEfforts'
+data GetSegmentEffortsOptions = GetSegmentEffortsOptions
+  { getSegmentEffortsOptions_athleteId :: Maybe Integer
+  , getSegmentEffortsOptions_range     :: Maybe (UTCTime, UTCTime)
+  , getSegmentEffortsOptions_page      :: Integer
+  , getSegmentEffortsOptions_perPage   :: Integer
+  } deriving Show
+
+instance Default GetSegmentEffortsOptions where
+  def = GetSegmentEffortsOptions
+    { getSegmentEffortsOptions_athleteId = Nothing
+    , getSegmentEffortsOptions_range = Nothing
+    , getSegmentEffortsOptions_page = 1
+    , getSegmentEffortsOptions_perPage = 200
+    }
+
+instance QueryLike GetSegmentEffortsOptions where
+  toQuery options = toQuery
+    [ ("athlete_id", fmap show (getSegmentEffortsOptions_athleteId options))
+    , ("start_date_local", fmap (unpack . toStrict . encode . fst) (getSegmentEffortsOptions_range options))
+    , ("end_date_local", fmap (unpack . toStrict . encode . snd) (getSegmentEffortsOptions_range options))
+    , ("page", Just (show (getSegmentEffortsOptions_page options)))
+    , ("per_page", Just (show (getSegmentEffortsOptions_perPage options)))
+    ]

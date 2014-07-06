@@ -398,6 +398,13 @@ Many of these examples use the same parameters. They are all given here:
 #### [List efforts](http://strava.github.io/api/v3/segments/#efforts)
 
 ~~~ {.haskell}
+  theSegmentEfforts <- getSegmentEfforts client 4773104 $ with
+    [ set athleteId (Just 65516)
+    , set range (Just (epoch, epoch))
+    , set page 1
+    , set perPage 2
+    ]
+  print (theSegmentEfforts :: Either String [EffortDetailed])
 ~~~
 
 #### [Segment leaderboard](http://strava.github.io/api/v3/segments/#leaderboard)

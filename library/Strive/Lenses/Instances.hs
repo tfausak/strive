@@ -125,6 +125,12 @@ instance AthleteIdLens EffortDetailed Integer where
     , \ athleteId' -> effortDetailed { effortDetailed_athleteId = athleteId' }
     )
 
+instance AthleteIdLens GetSegmentEffortsOptions (Maybe Integer) where
+  athleteId getSegmentEffortsOptions =
+    ( getSegmentEffortsOptions_athleteId getSegmentEffortsOptions
+    , \ athleteId' -> getSegmentEffortsOptions { getSegmentEffortsOptions_athleteId = athleteId' }
+    )
+
 instance AthleteLens ActivityDetailed AthleteMeta where
   athlete activityDetailed =
     ( activityDetailed_athlete activityDetailed
@@ -1217,6 +1223,12 @@ instance PageLens GetFriendsOptions Integer where
     , \ page' -> getFriendsOptions { getFriendsOptions_page = page' }
     )
 
+instance PageLens GetSegmentEffortsOptions Integer where
+  page getSegmentEffortsOptions =
+    ( getSegmentEffortsOptions_page getSegmentEffortsOptions
+    , \ page' -> getSegmentEffortsOptions { getSegmentEffortsOptions_page = page' }
+    )
+
 instance PageLens GetStarredSegmentsOptions Integer where
   page getStarredSegmentsOptions =
     ( getStarredSegmentsOptions_page getStarredSegmentsOptions
@@ -1293,6 +1305,12 @@ instance PerPageLens GetFriendsOptions Integer where
   perPage getFriendsOptions =
     ( getFriendsOptions_perPage getFriendsOptions
     , \ perPage' -> getFriendsOptions { getFriendsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetSegmentEffortsOptions Integer where
+  perPage getSegmentEffortsOptions =
+    ( getSegmentEffortsOptions_perPage getSegmentEffortsOptions
+    , \ perPage' -> getSegmentEffortsOptions { getSegmentEffortsOptions_perPage = perPage' }
     )
 
 instance PerPageLens GetStarredSegmentsOptions Integer where
@@ -1437,6 +1455,12 @@ instance ProfileMediumLens ClubSummary Text where
   profileMedium clubSummary =
     ( clubSummary_profileMedium clubSummary
     , \ profileMedium' -> clubSummary { clubSummary_profileMedium = profileMedium' }
+    )
+
+instance RangeLens GetSegmentEffortsOptions (Maybe (UTCTime, UTCTime)) where
+  range getSegmentEffortsOptions =
+    ( getSegmentEffortsOptions_range getSegmentEffortsOptions
+    , \ range' -> getSegmentEffortsOptions { getSegmentEffortsOptions_range = range' }
     )
 
 instance RefLens PhotoSummary Text where
