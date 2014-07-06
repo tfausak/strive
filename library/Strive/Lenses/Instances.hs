@@ -65,6 +65,12 @@ instance ActivityIdLens PhotoSummary Integer where
     , \ activityId' -> photoSummary { photoSummary_activityId = activityId' }
     )
 
+instance ActivityTypeLens SegmentDetailed Text where
+  activityType segmentDetailed =
+    ( segmentDetailed_activityType segmentDetailed
+    , \ activityType' -> segmentDetailed { segmentDetailed_activityType = activityType' }
+    )
+
 instance ActivityTypeLens SegmentSummary Text where
   activityType segmentSummary =
     ( segmentSummary_activityType segmentSummary
@@ -99,6 +105,12 @@ instance AthleteCountLens ActivitySummary Integer where
   athleteCount activitySummary =
     ( activitySummary_athleteCount activitySummary
     , \ athleteCount' -> activitySummary { activitySummary_athleteCount = athleteCount' }
+    )
+
+instance AthleteCountLens SegmentDetailed Integer where
+  athleteCount segmentDetailed =
+    ( segmentDetailed_athleteCount segmentDetailed
+    , \ athleteCount' -> segmentDetailed { segmentDetailed_athleteCount = athleteCount' }
     )
 
 instance AthleteIdLens ActivityLapSummary Integer where
@@ -141,6 +153,12 @@ instance AverageCadenceLens EffortDetailed (Maybe Double) where
   averageCadence effortDetailed =
     ( effortDetailed_averageCadence effortDetailed
     , \ averageCadence' -> effortDetailed { effortDetailed_averageCadence = averageCadence' }
+    )
+
+instance AverageGradeLens SegmentDetailed Double where
+  averageGrade segmentDetailed =
+    ( segmentDetailed_averageGrade segmentDetailed
+    , \ averageGrade' -> segmentDetailed { segmentDetailed_averageGrade = averageGrade' }
     )
 
 instance AverageGradeLens SegmentSummary Double where
@@ -245,6 +263,12 @@ instance CityLens ClubDetailed Text where
     , \ city' -> clubDetailed { clubDetailed_city = city' }
     )
 
+instance CityLens SegmentDetailed Text where
+  city segmentDetailed =
+    ( segmentDetailed_city segmentDetailed
+    , \ city' -> segmentDetailed { segmentDetailed_city = city' }
+    )
+
 instance CityLens SegmentSummary Text where
   city segmentSummary =
     ( segmentSummary_city segmentSummary
@@ -255,6 +279,12 @@ instance CityLens UpdateCurrentAthleteOptions (Maybe String) where
   city updateCurrentAthleteOptions =
     ( updateCurrentAthleteOptions_city updateCurrentAthleteOptions
     , \ city' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_city = city' }
+    )
+
+instance ClimbCategoryLens SegmentDetailed Integer where
+  climbCategory segmentDetailed =
+    ( segmentDetailed_climbCategory segmentDetailed
+    , \ climbCategory' -> segmentDetailed { segmentDetailed_climbCategory = climbCategory' }
     )
 
 instance ClimbCategoryLens SegmentSummary Integer where
@@ -323,6 +353,12 @@ instance CountryLens ClubDetailed Text where
     , \ country' -> clubDetailed { clubDetailed_country = country' }
     )
 
+instance CountryLens SegmentDetailed Text where
+  country segmentDetailed =
+    ( segmentDetailed_country segmentDetailed
+    , \ country' -> segmentDetailed { segmentDetailed_country = country' }
+    )
+
 instance CountryLens SegmentSummary Text where
   country segmentSummary =
     ( segmentSummary_country segmentSummary
@@ -357,6 +393,12 @@ instance CreatedAtLens PhotoSummary UTCTime where
   createdAt photoSummary =
     ( photoSummary_createdAt photoSummary
     , \ createdAt' -> photoSummary { photoSummary_createdAt = createdAt' }
+    )
+
+instance CreatedAtLens SegmentDetailed UTCTime where
+  createdAt segmentDetailed =
+    ( segmentDetailed_createdAt segmentDetailed
+    , \ createdAt' -> segmentDetailed { segmentDetailed_createdAt = createdAt' }
     )
 
 instance DatePreferenceLens AthleteDetailed Text where
@@ -437,6 +479,12 @@ instance DistanceLens GearSummary Double where
     , \ distance' -> gearSummary { gearSummary_distance = distance' }
     )
 
+instance DistanceLens SegmentDetailed Double where
+  distance segmentDetailed =
+    ( segmentDetailed_distance segmentDetailed
+    , \ distance' -> segmentDetailed { segmentDetailed_distance = distance' }
+    )
+
 instance DistanceLens SegmentSummary Double where
   distance segmentSummary =
     ( segmentSummary_distance segmentSummary
@@ -447,6 +495,12 @@ instance DistributionBucketsLens ActivityZoneDetailed [ActivityZoneDistributionB
   distributionBuckets activityZoneDetailed =
     ( activityZoneDetailed_distributionBuckets activityZoneDetailed
     , \ distributionBuckets' -> activityZoneDetailed { activityZoneDetailed_distributionBuckets = distributionBuckets' }
+    )
+
+instance EffortCountLens SegmentDetailed Integer where
+  effortCount segmentDetailed =
+    ( segmentDetailed_effortCount segmentDetailed
+    , \ effortCount' -> segmentDetailed { segmentDetailed_effortCount = effortCount' }
     )
 
 instance ElapsedTimeLens ActivityDetailed Integer where
@@ -473,10 +527,22 @@ instance ElapsedTimeLens EffortDetailed Integer where
     , \ elapsedTime' -> effortDetailed { effortDetailed_elapsedTime = elapsedTime' }
     )
 
+instance ElevationHighLens SegmentDetailed Double where
+  elevationHigh segmentDetailed =
+    ( segmentDetailed_elevationHigh segmentDetailed
+    , \ elevationHigh' -> segmentDetailed { segmentDetailed_elevationHigh = elevationHigh' }
+    )
+
 instance ElevationHighLens SegmentSummary Double where
   elevationHigh segmentSummary =
     ( segmentSummary_elevationHigh segmentSummary
     , \ elevationHigh' -> segmentSummary { segmentSummary_elevationHigh = elevationHigh' }
+    )
+
+instance ElevationLowLens SegmentDetailed Double where
+  elevationLow segmentDetailed =
+    ( segmentDetailed_elevationLow segmentDetailed
+    , \ elevationLow' -> segmentDetailed { segmentDetailed_elevationLow = elevationLow' }
     )
 
 instance ElevationLowLens SegmentSummary Double where
@@ -503,6 +569,12 @@ instance EndIndexLens EffortDetailed Integer where
     , \ endIndex' -> effortDetailed { effortDetailed_endIndex = endIndex' }
     )
 
+instance EndLatitudeLens SegmentDetailed Double where
+  endLatitude segmentDetailed =
+    ( segmentDetailed_endLatitude segmentDetailed
+    , \ endLatitude' -> segmentDetailed { segmentDetailed_endLatitude = endLatitude' }
+    )
+
 instance EndLatitudeLens SegmentSummary Double where
   endLatitude segmentSummary =
     ( segmentSummary_endLatitude segmentSummary
@@ -521,10 +593,22 @@ instance EndLatlngLens ActivitySummary (Maybe (Double, Double)) where
     , \ endLatlng' -> activitySummary { activitySummary_endLatlng = endLatlng' }
     )
 
+instance EndLatlngLens SegmentDetailed ((Double, Double)) where
+  endLatlng segmentDetailed =
+    ( segmentDetailed_endLatlng segmentDetailed
+    , \ endLatlng' -> segmentDetailed { segmentDetailed_endLatlng = endLatlng' }
+    )
+
 instance EndLatlngLens SegmentSummary ((Double, Double)) where
   endLatlng segmentSummary =
     ( segmentSummary_endLatlng segmentSummary
     , \ endLatlng' -> segmentSummary { segmentSummary_endLatlng = endLatlng' }
+    )
+
+instance EndLongitudeLens SegmentDetailed Double where
+  endLongitude segmentDetailed =
+    ( segmentDetailed_endLongitude segmentDetailed
+    , \ endLongitude' -> segmentDetailed { segmentDetailed_endLongitude = endLongitude' }
     )
 
 instance EndLongitudeLens SegmentSummary Double where
@@ -653,6 +737,12 @@ instance HasKudoedLens ActivitySummary Bool where
     , \ hasKudoed' -> activitySummary { activitySummary_hasKudoed = hasKudoed' }
     )
 
+instance HazardousLens SegmentDetailed Bool where
+  hazardous segmentDetailed =
+    ( segmentDetailed_hazardous segmentDetailed
+    , \ hazardous' -> segmentDetailed { segmentDetailed_hazardous = hazardous' }
+    )
+
 instance HiddenLens EffortDetailed (Maybe Bool) where
   hidden effortDetailed =
     ( effortDetailed_hidden effortDetailed
@@ -753,6 +843,12 @@ instance IdLens PolylineSummary Text where
   id polylineSummary =
     ( polylineSummary_id polylineSummary
     , \ id' -> polylineSummary { polylineSummary_id = id' }
+    )
+
+instance IdLens SegmentDetailed Integer where
+  id segmentDetailed =
+    ( segmentDetailed_id segmentDetailed
+    , \ id' -> segmentDetailed { segmentDetailed_id = id' }
     )
 
 instance IdLens SegmentSummary Integer where
@@ -875,6 +971,12 @@ instance MapLens ActivitySummary PolylineSummary where
     , \ map' -> activitySummary { activitySummary_map = map' }
     )
 
+instance MapLens SegmentDetailed PolylineDetailed where
+  map segmentDetailed =
+    ( segmentDetailed_map segmentDetailed
+    , \ map' -> segmentDetailed { segmentDetailed_map = map' }
+    )
+
 instance MarkdownLens GetActivityCommentsOptions Bool where
   markdown getActivityCommentsOptions =
     ( getActivityCommentsOptions_markdown getActivityCommentsOptions
@@ -909,6 +1011,12 @@ instance MaxSpeedLens ActivitySummary Double where
   maxSpeed activitySummary =
     ( activitySummary_maxSpeed activitySummary
     , \ maxSpeed' -> activitySummary { activitySummary_maxSpeed = maxSpeed' }
+    )
+
+instance MaximumGradeLens SegmentDetailed Double where
+  maximumGrade segmentDetailed =
+    ( segmentDetailed_maximumGrade segmentDetailed
+    , \ maximumGrade' -> segmentDetailed { segmentDetailed_maximumGrade = maximumGrade' }
     )
 
 instance MaximumGradeLens SegmentSummary Double where
@@ -1017,6 +1125,12 @@ instance NameLens GearSummary Text where
   name gearSummary =
     ( gearSummary_name gearSummary
     , \ name' -> gearSummary { gearSummary_name = name' }
+    )
+
+instance NameLens SegmentDetailed Text where
+  name segmentDetailed =
+    ( segmentDetailed_name segmentDetailed
+    , \ name' -> segmentDetailed { segmentDetailed_name = name' }
     )
 
 instance NameLens SegmentSummary Text where
@@ -1241,6 +1355,12 @@ instance PrivateLens ClubDetailed Bool where
     , \ private' -> clubDetailed { clubDetailed_private = private' }
     )
 
+instance PrivateLens SegmentDetailed Bool where
+  private segmentDetailed =
+    ( segmentDetailed_private segmentDetailed
+    , \ private' -> segmentDetailed { segmentDetailed_private = private' }
+    )
+
 instance PrivateLens SegmentSummary Bool where
   private segmentSummary =
     ( segmentSummary_private segmentSummary
@@ -1409,6 +1529,12 @@ instance ResourceStateLens PolylineSummary Integer where
     , \ resourceState' -> polylineSummary { polylineSummary_resourceState = resourceState' }
     )
 
+instance ResourceStateLens SegmentDetailed Integer where
+  resourceState segmentDetailed =
+    ( segmentDetailed_resourceState segmentDetailed
+    , \ resourceState' -> segmentDetailed { segmentDetailed_resourceState = resourceState' }
+    )
+
 instance ResourceStateLens SegmentSummary Integer where
   resourceState segmentSummary =
     ( segmentSummary_resourceState segmentSummary
@@ -1461,6 +1587,18 @@ instance SportTypeLens ClubDetailed Text where
   sportType clubDetailed =
     ( clubDetailed_sportType clubDetailed
     , \ sportType' -> clubDetailed { clubDetailed_sportType = sportType' }
+    )
+
+instance StarCountLens SegmentDetailed Integer where
+  starCount segmentDetailed =
+    ( segmentDetailed_starCount segmentDetailed
+    , \ starCount' -> segmentDetailed { segmentDetailed_starCount = starCount' }
+    )
+
+instance StarredLens SegmentDetailed Bool where
+  starred segmentDetailed =
+    ( segmentDetailed_starred segmentDetailed
+    , \ starred' -> segmentDetailed { segmentDetailed_starred = starred' }
     )
 
 instance StarredLens SegmentSummary Bool where
@@ -1541,6 +1679,12 @@ instance StartLatitudeLens ActivitySummary Double where
     , \ startLatitude' -> activitySummary { activitySummary_startLatitude = startLatitude' }
     )
 
+instance StartLatitudeLens SegmentDetailed Double where
+  startLatitude segmentDetailed =
+    ( segmentDetailed_startLatitude segmentDetailed
+    , \ startLatitude' -> segmentDetailed { segmentDetailed_startLatitude = startLatitude' }
+    )
+
 instance StartLatitudeLens SegmentSummary Double where
   startLatitude segmentSummary =
     ( segmentSummary_startLatitude segmentSummary
@@ -1559,6 +1703,12 @@ instance StartLatlngLens ActivitySummary (Maybe (Double, Double)) where
     , \ startLatlng' -> activitySummary { activitySummary_startLatlng = startLatlng' }
     )
 
+instance StartLatlngLens SegmentDetailed ((Double, Double)) where
+  startLatlng segmentDetailed =
+    ( segmentDetailed_startLatlng segmentDetailed
+    , \ startLatlng' -> segmentDetailed { segmentDetailed_startLatlng = startLatlng' }
+    )
+
 instance StartLatlngLens SegmentSummary ((Double, Double)) where
   startLatlng segmentSummary =
     ( segmentSummary_startLatlng segmentSummary
@@ -1575,6 +1725,12 @@ instance StartLongitudeLens ActivitySummary Double where
   startLongitude activitySummary =
     ( activitySummary_startLongitude activitySummary
     , \ startLongitude' -> activitySummary { activitySummary_startLongitude = startLongitude' }
+    )
+
+instance StartLongitudeLens SegmentDetailed Double where
+  startLongitude segmentDetailed =
+    ( segmentDetailed_startLongitude segmentDetailed
+    , \ startLongitude' -> segmentDetailed { segmentDetailed_startLongitude = startLongitude' }
     )
 
 instance StartLongitudeLens SegmentSummary Double where
@@ -1605,6 +1761,12 @@ instance StateLens ClubDetailed Text where
   state clubDetailed =
     ( clubDetailed_state clubDetailed
     , \ state' -> clubDetailed { clubDetailed_state = state' }
+    )
+
+instance StateLens SegmentDetailed Text where
+  state segmentDetailed =
+    ( segmentDetailed_state segmentDetailed
+    , \ state' -> segmentDetailed { segmentDetailed_state = state' }
     )
 
 instance StateLens SegmentSummary Text where
@@ -1671,6 +1833,12 @@ instance TotalElevationGainLens ActivitySummary Double where
   totalElevationGain activitySummary =
     ( activitySummary_totalElevationGain activitySummary
     , \ totalElevationGain' -> activitySummary { activitySummary_totalElevationGain = totalElevationGain' }
+    )
+
+instance TotalElevationGainLens SegmentDetailed Double where
+  totalElevationGain segmentDetailed =
+    ( segmentDetailed_totalElevationGain segmentDetailed
+    , \ totalElevationGain' -> segmentDetailed { segmentDetailed_totalElevationGain = totalElevationGain' }
     )
 
 instance TrainerLens ActivityDetailed Bool where
@@ -1743,6 +1911,12 @@ instance UpdatedAtLens AthleteSummary UTCTime where
   updatedAt athleteSummary =
     ( athleteSummary_updatedAt athleteSummary
     , \ updatedAt' -> athleteSummary { athleteSummary_updatedAt = updatedAt' }
+    )
+
+instance UpdatedAtLens SegmentDetailed UTCTime where
+  updatedAt segmentDetailed =
+    ( segmentDetailed_updatedAt segmentDetailed
+    , \ updatedAt' -> segmentDetailed { segmentDetailed_updatedAt = updatedAt' }
     )
 
 instance UploadIdLens ActivityDetailed (Maybe Integer) where

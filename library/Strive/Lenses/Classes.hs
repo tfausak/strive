@@ -100,6 +100,9 @@ class DistanceLens a b | a -> b where
 class DistributionBucketsLens a b | a -> b where
   distributionBuckets :: Lens a b
 
+class EffortCountLens a b | a -> b where
+  effortCount :: Lens a b
+
 class ElapsedTimeLens a b | a -> b where
   elapsedTime :: Lens a b
 
@@ -159,6 +162,9 @@ class GearLens a b | a -> b where
 
 class HasKudoedLens a b | a -> b where
   hasKudoed :: Lens a b
+
+class HazardousLens a b | a -> b where
+  hazardous :: Lens a b
 
 class HiddenLens a b | a -> b where
   hidden :: Lens a b
@@ -297,6 +303,9 @@ class ShoesLens a b | a -> b where
 
 class SportTypeLens a b | a -> b where
   sportType :: Lens a b
+
+class StarCountLens a b | a -> b where
+  starCount :: Lens a b
 
 class StarredLens a b | a -> b where
   starred :: Lens a b

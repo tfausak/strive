@@ -245,3 +245,12 @@ getGear client gearId = get client resource query
  where
   resource = "api/v3/gear/" <> gearId
   query = [] :: Query
+
+-- * Segments
+
+-- | <http://strava.github.io/api/v3/segments/#retrieve>
+getSegment :: Client -> Integer -> IO (Either String T.SegmentDetailed)
+getSegment client segmentId = get client resource query
+ where
+  resource = "api/v3/segments/" <> show segmentId
+  query = [] :: Query

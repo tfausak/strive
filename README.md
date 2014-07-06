@@ -381,6 +381,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [Retrieve a segment](http://strava.github.io/api/v3/segments/#retrieve)
 
 ~~~ {.haskell}
+  theSegment <- getSegment client 4773104
+  print (theSegment :: Either String SegmentDetailed)
 ~~~
 
 #### [List starred segments](http://strava.github.io/api/v3/segments/#starred)

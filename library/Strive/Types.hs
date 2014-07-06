@@ -596,6 +596,72 @@ instance FromJSON GearSummary where
 
 -- * Segments
 
+-- | <http://strava.github.io/api/v3/segments/#detailed>
+data SegmentDetailed = SegmentDetailed
+  { segmentDetailed_activityType       :: Text
+  , segmentDetailed_athleteCount       :: Integer
+  , segmentDetailed_averageGrade       :: Double
+  , segmentDetailed_city               :: Text
+  , segmentDetailed_climbCategory      :: Integer
+  , segmentDetailed_country            :: Text
+  , segmentDetailed_createdAt          :: UTCTime
+  , segmentDetailed_distance           :: Double
+  , segmentDetailed_effortCount        :: Integer
+  , segmentDetailed_elevationHigh      :: Double
+  , segmentDetailed_elevationLow       :: Double
+  , segmentDetailed_endLatitude        :: Double
+  , segmentDetailed_endLatlng          :: (Double, Double)
+  , segmentDetailed_endLongitude       :: Double
+  , segmentDetailed_hazardous          :: Bool
+  , segmentDetailed_id                 :: Integer
+  , segmentDetailed_map                :: PolylineDetailed
+  , segmentDetailed_maximumGrade       :: Double
+  , segmentDetailed_name               :: Text
+  , segmentDetailed_private            :: Bool
+  , segmentDetailed_resourceState      :: Integer
+  , segmentDetailed_starCount          :: Integer
+  , segmentDetailed_starred            :: Bool
+  , segmentDetailed_startLatitude      :: Double
+  , segmentDetailed_startLatlng        :: (Double, Double)
+  , segmentDetailed_startLongitude     :: Double
+  , segmentDetailed_state              :: Text
+  , segmentDetailed_totalElevationGain :: Double
+  , segmentDetailed_updatedAt          :: UTCTime
+  } deriving Show
+
+instance FromJSON SegmentDetailed where
+  parseJSON (Object o) = SegmentDetailed
+    <$> o .: "activity_type"
+    <*> o .: "athlete_count"
+    <*> o .: "average_grade"
+    <*> o .: "city"
+    <*> o .: "climb_category"
+    <*> o .: "country"
+    <*> o .: "created_at"
+    <*> o .: "distance"
+    <*> o .: "effort_count"
+    <*> o .: "elevation_high"
+    <*> o .: "elevation_low"
+    <*> o .: "end_latitude"
+    <*> o .: "end_latlng"
+    <*> o .: "end_longitude"
+    <*> o .: "hazardous"
+    <*> o .: "id"
+    <*> o .: "map"
+    <*> o .: "maximum_grade"
+    <*> o .: "name"
+    <*> o .: "private"
+    <*> o .: "resource_state"
+    <*> o .: "star_count"
+    <*> o .: "starred"
+    <*> o .: "start_latitude"
+    <*> o .: "start_latlng"
+    <*> o .: "start_longitude"
+    <*> o .: "state"
+    <*> o .: "total_elevation_gain"
+    <*> o .: "updated_at"
+  parseJSON _ = empty
+
 -- | <http://strava.github.io/api/v3/segments/#summary>
 data SegmentSummary = SegmentSummary
   { segmentSummary_activityType   :: Text
