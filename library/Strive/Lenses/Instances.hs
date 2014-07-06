@@ -41,6 +41,12 @@ instance AchievementCountLens ActivitySummary Integer where
     , \ achievementCount' -> activitySummary { activitySummary_achievementCount = achievementCount' }
     )
 
+instance ActivityIdLens ActivityLapSummary Integer where
+  activityId activityLapSummary =
+    ( activityLapSummary_activityId activityLapSummary
+    , \ activityId' -> activityLapSummary { activityLapSummary_activityId = activityId' }
+    )
+
 instance ActivityIdLens EffortDetailed Integer where
   activityId effortDetailed =
     ( effortDetailed_activityId effortDetailed
@@ -81,6 +87,12 @@ instance AthleteCountLens ActivitySummary Integer where
   athleteCount activitySummary =
     ( activitySummary_athleteCount activitySummary
     , \ athleteCount' -> activitySummary { activitySummary_athleteCount = athleteCount' }
+    )
+
+instance AthleteIdLens ActivityLapSummary Integer where
+  athleteId activityLapSummary =
+    ( activityLapSummary_athleteId activityLapSummary
+    , \ athleteId' -> activityLapSummary { activityLapSummary_athleteId = athleteId' }
     )
 
 instance AthleteIdLens EffortDetailed Integer where
@@ -131,6 +143,12 @@ instance AverageSpeedLens ActivityDetailed Double where
     , \ averageSpeed' -> activityDetailed { activityDetailed_averageSpeed = averageSpeed' }
     )
 
+instance AverageSpeedLens ActivityLapSummary Double where
+  averageSpeed activityLapSummary =
+    ( activityLapSummary_averageSpeed activityLapSummary
+    , \ averageSpeed' -> activityLapSummary { activityLapSummary_averageSpeed = averageSpeed' }
+    )
+
 instance AverageSpeedLens ActivitySummary Double where
   averageSpeed activitySummary =
     ( activitySummary_averageSpeed activitySummary
@@ -141,6 +159,12 @@ instance AverageWattsLens ActivityDetailed (Maybe Double) where
   averageWatts activityDetailed =
     ( activityDetailed_averageWatts activityDetailed
     , \ averageWatts' -> activityDetailed { activityDetailed_averageWatts = averageWatts' }
+    )
+
+instance AverageWattsLens ActivityLapSummary Double where
+  averageWatts activityLapSummary =
+    ( activityLapSummary_averageWatts activityLapSummary
+    , \ averageWatts' -> activityLapSummary { activityLapSummary_averageWatts = averageWatts' }
     )
 
 instance AverageWattsLens ActivitySummary (Maybe Double) where
@@ -305,6 +329,12 @@ instance DistanceLens ActivityDetailed Double where
     , \ distance' -> activityDetailed { activityDetailed_distance = distance' }
     )
 
+instance DistanceLens ActivityLapSummary Double where
+  distance activityLapSummary =
+    ( activityLapSummary_distance activityLapSummary
+    , \ distance' -> activityLapSummary { activityLapSummary_distance = distance' }
+    )
+
 instance DistanceLens ActivitySummary Double where
   distance activitySummary =
     ( activitySummary_distance activitySummary
@@ -347,6 +377,12 @@ instance ElapsedTimeLens ActivityDetailed Integer where
     , \ elapsedTime' -> activityDetailed { activityDetailed_elapsedTime = elapsedTime' }
     )
 
+instance ElapsedTimeLens ActivityLapSummary Integer where
+  elapsedTime activityLapSummary =
+    ( activityLapSummary_elapsedTime activityLapSummary
+    , \ elapsedTime' -> activityLapSummary { activityLapSummary_elapsedTime = elapsedTime' }
+    )
+
 instance ElapsedTimeLens ActivitySummary Integer where
   elapsedTime activitySummary =
     ( activitySummary_elapsedTime activitySummary
@@ -375,6 +411,12 @@ instance EmailLens AthleteDetailed Text where
   email athleteDetailed =
     ( athleteDetailed_email athleteDetailed
     , \ email' -> athleteDetailed { athleteDetailed_email = email' }
+    )
+
+instance EndIndexLens ActivityLapSummary Integer where
+  endIndex activityLapSummary =
+    ( activityLapSummary_endIndex activityLapSummary
+    , \ endIndex' -> activityLapSummary { activityLapSummary_endIndex = endIndex' }
     )
 
 instance EndIndexLens EffortDetailed Integer where
@@ -545,6 +587,12 @@ instance IdLens ActivityDetailed Integer where
     , \ id' -> activityDetailed { activityDetailed_id = id' }
     )
 
+instance IdLens ActivityLapSummary Integer where
+  id activityLapSummary =
+    ( activityLapSummary_id activityLapSummary
+    , \ id' -> activityLapSummary { activityLapSummary_id = id' }
+    )
+
 instance IdLens ActivitySummary Integer where
   id activitySummary =
     ( activitySummary_id activitySummary
@@ -633,6 +681,12 @@ instance KudosCountLens ActivitySummary Integer where
   kudosCount activitySummary =
     ( activitySummary_kudosCount activitySummary
     , \ kudosCount' -> activitySummary { activitySummary_kudosCount = kudosCount' }
+    )
+
+instance LapIndexLens ActivityLapSummary Integer where
+  lapIndex activityLapSummary =
+    ( activityLapSummary_lapIndex activityLapSummary
+    , \ lapIndex' -> activityLapSummary { activityLapSummary_lapIndex = lapIndex' }
     )
 
 instance LastnameLens AthleteDetailed Text where
@@ -725,6 +779,12 @@ instance MaxSpeedLens ActivityDetailed Double where
     , \ maxSpeed' -> activityDetailed { activityDetailed_maxSpeed = maxSpeed' }
     )
 
+instance MaxSpeedLens ActivityLapSummary Double where
+  maxSpeed activityLapSummary =
+    ( activityLapSummary_maxSpeed activityLapSummary
+    , \ maxSpeed' -> activityLapSummary { activityLapSummary_maxSpeed = maxSpeed' }
+    )
+
 instance MaxSpeedLens ActivitySummary Double where
   maxSpeed activitySummary =
     ( activitySummary_maxSpeed activitySummary
@@ -755,6 +815,12 @@ instance MovingTimeLens ActivityDetailed Integer where
     , \ movingTime' -> activityDetailed { activityDetailed_movingTime = movingTime' }
     )
 
+instance MovingTimeLens ActivityLapSummary Double where
+  movingTime activityLapSummary =
+    ( activityLapSummary_movingTime activityLapSummary
+    , \ movingTime' -> activityLapSummary { activityLapSummary_movingTime = movingTime' }
+    )
+
 instance MovingTimeLens ActivitySummary Integer where
   movingTime activitySummary =
     ( activitySummary_movingTime activitySummary
@@ -777,6 +843,12 @@ instance NameLens ActivityDetailed Text where
   name activityDetailed =
     ( activityDetailed_name activityDetailed
     , \ name' -> activityDetailed { activityDetailed_name = name' }
+    )
+
+instance NameLens ActivityLapSummary Text where
+  name activityLapSummary =
+    ( activityLapSummary_name activityLapSummary
+    , \ name' -> activityLapSummary { activityLapSummary_name = name' }
     )
 
 instance NameLens ActivitySummary Text where
@@ -1025,6 +1097,12 @@ instance ResourceStateLens ActivityDetailed Integer where
     , \ resourceState' -> activityDetailed { activityDetailed_resourceState = resourceState' }
     )
 
+instance ResourceStateLens ActivityLapSummary Integer where
+  resourceState activityLapSummary =
+    ( activityLapSummary_resourceState activityLapSummary
+    , \ resourceState' -> activityLapSummary { activityLapSummary_resourceState = resourceState' }
+    )
+
 instance ResourceStateLens ActivitySummary Integer where
   resourceState activitySummary =
     ( activitySummary_resourceState activitySummary
@@ -1145,6 +1223,12 @@ instance StartDateLens ActivityDetailed UTCTime where
     , \ startDate' -> activityDetailed { activityDetailed_startDate = startDate' }
     )
 
+instance StartDateLens ActivityLapSummary UTCTime where
+  startDate activityLapSummary =
+    ( activityLapSummary_startDate activityLapSummary
+    , \ startDate' -> activityLapSummary { activityLapSummary_startDate = startDate' }
+    )
+
 instance StartDateLens ActivitySummary UTCTime where
   startDate activitySummary =
     ( activitySummary_startDate activitySummary
@@ -1163,6 +1247,12 @@ instance StartDateLocalLens ActivityDetailed UTCTime where
     , \ startDateLocal' -> activityDetailed { activityDetailed_startDateLocal = startDateLocal' }
     )
 
+instance StartDateLocalLens ActivityLapSummary UTCTime where
+  startDateLocal activityLapSummary =
+    ( activityLapSummary_startDateLocal activityLapSummary
+    , \ startDateLocal' -> activityLapSummary { activityLapSummary_startDateLocal = startDateLocal' }
+    )
+
 instance StartDateLocalLens ActivitySummary UTCTime where
   startDateLocal activitySummary =
     ( activitySummary_startDateLocal activitySummary
@@ -1173,6 +1263,12 @@ instance StartDateLocalLens EffortDetailed UTCTime where
   startDateLocal effortDetailed =
     ( effortDetailed_startDateLocal effortDetailed
     , \ startDateLocal' -> effortDetailed { effortDetailed_startDateLocal = startDateLocal' }
+    )
+
+instance StartIndexLens ActivityLapSummary Integer where
+  startIndex activityLapSummary =
+    ( activityLapSummary_startIndex activityLapSummary
+    , \ startIndex' -> activityLapSummary { activityLapSummary_startIndex = startIndex' }
     )
 
 instance StartIndexLens EffortDetailed Integer where
@@ -1299,6 +1395,12 @@ instance TotalElevationGainLens ActivityDetailed Double where
   totalElevationGain activityDetailed =
     ( activityDetailed_totalElevationGain activityDetailed
     , \ totalElevationGain' -> activityDetailed { activityDetailed_totalElevationGain = totalElevationGain' }
+    )
+
+instance TotalElevationGainLens ActivityLapSummary Double where
+  totalElevationGain activityLapSummary =
+    ( activityLapSummary_totalElevationGain activityLapSummary
+    , \ totalElevationGain' -> activityLapSummary { activityLapSummary_totalElevationGain = totalElevationGain' }
     )
 
 instance TotalElevationGainLens ActivitySummary Double where

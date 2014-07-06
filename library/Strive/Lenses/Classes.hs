@@ -169,6 +169,9 @@ class KomRankLens a b | a -> b where
 class KudosCountLens a b | a -> b where
   kudosCount :: Lens a b
 
+class LapIndexLens a b | a -> b where
+  lapIndex :: Lens a b
+
 class LastnameLens a b | a -> b where
   lastname :: Lens a b
 

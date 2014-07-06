@@ -400,6 +400,48 @@ instance FromJSON ActivityZoneDistributionBucket where
     <*> o .: "time"
   parseJSON _ = empty
 
+-- | <http://strava.github.io/api/v3/activities/#laps>
+data ActivityLapSummary = ActivityLapSummary
+    { activityLapSummary_activityId         :: Integer
+    , activityLapSummary_athleteId          :: Integer
+    , activityLapSummary_averageSpeed       :: Double
+    , activityLapSummary_averageWatts       :: Double
+    , activityLapSummary_distance           :: Double
+    , activityLapSummary_elapsedTime        :: Integer
+    , activityLapSummary_endIndex           :: Integer
+    , activityLapSummary_id                 :: Integer
+    , activityLapSummary_lapIndex           :: Integer
+    , activityLapSummary_maxSpeed           :: Double
+    , activityLapSummary_movingTime         :: Double
+    , activityLapSummary_name               :: Text
+    , activityLapSummary_resourceState      :: Integer
+    , activityLapSummary_startDate          :: UTCTime
+    , activityLapSummary_startDateLocal     :: UTCTime
+    , activityLapSummary_startIndex         :: Integer
+    , activityLapSummary_totalElevationGain :: Double
+    } deriving Show
+
+instance FromJSON ActivityLapSummary where
+    parseJSON (Object o) = ActivityLapSummary
+        <$> ((o .: "activity") >>= (.: "id"))
+        <*> ((o .: "athlete") >>= (.: "id"))
+        <*> o .: "average_speed"
+        <*> o .: "average_watts"
+        <*> o .: "distance"
+        <*> o .: "elapsed_time"
+        <*> o .: "end_index"
+        <*> o .: "id"
+        <*> o .: "lap_index"
+        <*> o .: "max_speed"
+        <*> o .: "moving_time"
+        <*> o .: "name"
+        <*> o .: "resource_state"
+        <*> o .: "start_date"
+        <*> o .: "start_date_local"
+        <*> o .: "start_index"
+        <*> o .: "total_elevation_gain"
+    parseJSON _ = empty
+
 -- * Clubs
 
 -- | <http://strava.github.io/api/v3/clubs/#summary>

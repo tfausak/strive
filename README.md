@@ -293,6 +293,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [List activity laps](http://strava.github.io/api/v3/activities/#laps)
 
 ~~~ {.haskell}
+  activityLaps <- getActivityLaps client 141273622
+  print (activityLaps :: Either String [ActivityLapSummary])
 ~~~
 
 ### [Comments](http://strava.github.io/api/v3/comments/)

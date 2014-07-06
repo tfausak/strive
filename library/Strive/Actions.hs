@@ -172,3 +172,10 @@ getActivityZones client activityId = get client resource query
  where
   resource = "api/v3/activities/" <> show activityId <> "/zones"
   query = [] :: Query
+
+-- | <http://strava.github.io/api/v3/activities/#laps>
+getActivityLaps :: Client -> Integer -> IO (Either String [T.ActivityLapSummary])
+getActivityLaps client activityId = get client resource query
+ where
+  resource = "api/v3/activities/" <> show activityId <> "/laps"
+  query = [] :: Query
