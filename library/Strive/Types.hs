@@ -241,6 +241,90 @@ instance FromJSON ActivityDetailed where
     <*> o .:? "upload_id"
   parseJSON _ = empty
 
+-- | <http://strava.github.io/api/v3/activities/#summary>
+data ActivitySummary = ActivitySummary
+  { activitySummary_achievementCount   :: Integer
+  , activitySummary_athlete            :: AthleteMeta
+  , activitySummary_athleteCount       :: Integer
+  , activitySummary_averageSpeed       :: Double
+  , activitySummary_averageWatts       :: Maybe Double
+  , activitySummary_commentCount       :: Integer
+  , activitySummary_commute            :: Bool
+  , activitySummary_distance           :: Double
+  , activitySummary_elapsedTime        :: Integer
+  , activitySummary_endLatlng          :: Maybe (Double, Double)
+  , activitySummary_externalId         :: Maybe Text
+  , activitySummary_flagged            :: Bool
+  , activitySummary_gearId             :: Maybe Text
+  , activitySummary_hasKudoed          :: Bool
+  , activitySummary_id                 :: Integer
+  , activitySummary_kilojoules         :: Maybe Double
+  , activitySummary_kudosCount         :: Integer
+  , activitySummary_locationCity       :: Maybe Text
+  , activitySummary_locationCountry    :: Text
+  , activitySummary_locationState      :: Maybe Text
+  , activitySummary_manual             :: Bool
+  , activitySummary_map                :: PolylineSummary
+  , activitySummary_maxSpeed           :: Double
+  , activitySummary_movingTime         :: Integer
+  , activitySummary_name               :: Text
+  , activitySummary_photoCount         :: Integer
+  , activitySummary_private            :: Bool
+  , activitySummary_resourceState      :: Integer
+  , activitySummary_startDate          :: UTCTime
+  , activitySummary_startDateLocal     :: UTCTime
+  , activitySummary_startLatitude      :: Double
+  , activitySummary_startLatlng        :: Maybe (Double, Double)
+  , activitySummary_startLongitude     :: Double
+  , activitySummary_timezone           :: Text
+  , activitySummary_totalElevationGain :: Double
+  , activitySummary_trainer            :: Bool
+  , activitySummary_type               :: Text
+  , activitySummary_uploadId           :: Maybe Integer
+  } deriving Show
+
+instance FromJSON ActivitySummary where
+  parseJSON (Object o) = ActivitySummary
+    <$> o .: "achievement_count"
+    <*> o .: "athlete"
+    <*> o .: "athlete_count"
+    <*> o .: "average_speed"
+    <*> o .:? "average_watts"
+    <*> o .: "comment_count"
+    <*> o .: "commute"
+    <*> o .: "distance"
+    <*> o .: "elapsed_time"
+    <*> o .:? "end_latlng"
+    <*> o .:? "external_id"
+    <*> o .: "flagged"
+    <*> o .:? "gear_id"
+    <*> o .: "has_kudoed"
+    <*> o .: "id"
+    <*> o .:? "kilojoules"
+    <*> o .: "kudos_count"
+    <*> o .:? "location_city"
+    <*> o .: "location_country"
+    <*> o .:? "location_state"
+    <*> o .: "manual"
+    <*> o .: "map"
+    <*> o .: "max_speed"
+    <*> o .: "moving_time"
+    <*> o .: "name"
+    <*> o .: "photo_count"
+    <*> o .: "private"
+    <*> o .: "resource_state"
+    <*> o .: "start_date"
+    <*> o .: "start_date_local"
+    <*> o .: "start_latitude"
+    <*> o .:? "start_latlng"
+    <*> o .: "start_longitude"
+    <*> o .: "timezone"
+    <*> o .: "total_elevation_gain"
+    <*> o .: "trainer"
+    <*> o .: "type"
+    <*> o .:? "upload_id"
+  parseJSON _ = empty
+
 -- | <http://strava.github.io/api/v3/activities/#detailed>
 data PolylineDetailed = PolylineDetailed
   { polylineDetailed_id              :: Text
@@ -261,6 +345,27 @@ instance FromJSON PolylineDetailed where
       , polylineDetailed_polyline = decodeline polyline
       , polylineDetailed_resourceState = resourceState
       , polylineDetailed_summaryPolyline = fmap decodeline summaryPolyline
+      }
+
+  parseJSON _ = empty
+
+-- | <http://strava.github.io/api/v3/activities/#summary>
+data PolylineSummary = PolylineSummary
+  { polylineSummary_id              :: Text
+  , polylineSummary_resourceState   :: Integer
+  , polylineSummary_summaryPolyline :: Maybe [(Double, Double)]
+  } deriving Show
+
+instance FromJSON PolylineSummary where
+  parseJSON (Object o) = do
+    id <- o .: "id"
+    resourceState <- o .: "resource_state"
+    summaryPolyline <- o .:? "summary_polyline"
+
+    return PolylineSummary
+      { polylineSummary_id = id
+      , polylineSummary_resourceState = resourceState
+      , polylineSummary_summaryPolyline = fmap decodeline summaryPolyline
       }
 
   parseJSON _ = empty

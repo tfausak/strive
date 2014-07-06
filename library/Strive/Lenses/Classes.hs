@@ -16,6 +16,9 @@ class ActivityIdLens a b | a -> b where
 class ActivityTypeLens a b | a -> b where
   activityType :: Lens a b
 
+class AllEffortsLens a b | a -> b where
+  allEfforts :: Lens a b
+
 class ApprovalPromptLens a b | a -> b where
   approvalPrompt :: Lens a b
 
@@ -153,6 +156,9 @@ class KilojoulesLens a b | a -> b where
 
 class KomRankLens a b | a -> b where
   komRank :: Lens a b
+
+class KudosCountLens a b | a -> b where
+  kudosCount :: Lens a b
 
 class LastnameLens a b | a -> b where
   lastname :: Lens a b

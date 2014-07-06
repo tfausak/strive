@@ -130,3 +130,10 @@ createActivity client name type_ startDateLocal elapsedTime options = post clien
     , ("start_date_local", unpack (toStrict (encode startDateLocal)))
     , ("elapsed_time", show elapsedTime)
     ] <> toQuery options
+
+-- | <http://strava.github.io/api/v3/activities/#get-details>
+getActivity :: Client -> Integer -> O.GetActivityOptions -> IO (Either String T.ActivitySummary)
+getActivity client activityId options = get client resource query
+ where
+  resource = "activities/" <> show activityId
+  query = toQuery options

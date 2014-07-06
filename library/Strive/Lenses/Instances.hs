@@ -35,6 +35,12 @@ instance AchievementCountLens ActivityDetailed Integer where
     , \ achievementCount' -> activityDetailed { activityDetailed_achievementCount = achievementCount' }
     )
 
+instance AchievementCountLens ActivitySummary Integer where
+  achievementCount activitySummary =
+    ( activitySummary_achievementCount activitySummary
+    , \ achievementCount' -> activitySummary { activitySummary_achievementCount = achievementCount' }
+    )
+
 instance ActivityIdLens EffortDetailed Integer where
   activityId effortDetailed =
     ( effortDetailed_activityId effortDetailed
@@ -45,6 +51,12 @@ instance ActivityTypeLens SegmentSummary Text where
   activityType segmentSummary =
     ( segmentSummary_activityType segmentSummary
     , \ activityType' -> segmentSummary { segmentSummary_activityType = activityType' }
+    )
+
+instance AllEffortsLens GetActivityOptions Bool where
+  allEfforts getActivityOptions =
+    ( createActivityOptions_allEfforts getActivityOptions
+    , \ allEfforts' -> getActivityOptions { createActivityOptions_allEfforts = allEfforts' }
     )
 
 instance ApprovalPromptLens BuildAuthorizeUrlOptions Bool where
@@ -59,6 +71,12 @@ instance AthleteCountLens ActivityDetailed Integer where
     , \ athleteCount' -> activityDetailed { activityDetailed_athleteCount = athleteCount' }
     )
 
+instance AthleteCountLens ActivitySummary Integer where
+  athleteCount activitySummary =
+    ( activitySummary_athleteCount activitySummary
+    , \ athleteCount' -> activitySummary { activitySummary_athleteCount = athleteCount' }
+    )
+
 instance AthleteIdLens EffortDetailed Integer where
   athleteId effortDetailed =
     ( effortDetailed_athleteId effortDetailed
@@ -69,6 +87,12 @@ instance AthleteLens ActivityDetailed AthleteMeta where
   athlete activityDetailed =
     ( activityDetailed_athlete activityDetailed
     , \ athlete' -> activityDetailed { activityDetailed_athlete = athlete' }
+    )
+
+instance AthleteLens ActivitySummary AthleteMeta where
+  athlete activitySummary =
+    ( activitySummary_athlete activitySummary
+    , \ athlete' -> activitySummary { activitySummary_athlete = athlete' }
     )
 
 instance AthleteLens TokenExchangeResponse AthleteDetailed where
@@ -101,10 +125,22 @@ instance AverageSpeedLens ActivityDetailed Double where
     , \ averageSpeed' -> activityDetailed { activityDetailed_averageSpeed = averageSpeed' }
     )
 
+instance AverageSpeedLens ActivitySummary Double where
+  averageSpeed activitySummary =
+    ( activitySummary_averageSpeed activitySummary
+    , \ averageSpeed' -> activitySummary { activitySummary_averageSpeed = averageSpeed' }
+    )
+
 instance AverageWattsLens ActivityDetailed (Maybe Double) where
   averageWatts activityDetailed =
     ( activityDetailed_averageWatts activityDetailed
     , \ averageWatts' -> activityDetailed { activityDetailed_averageWatts = averageWatts' }
+    )
+
+instance AverageWattsLens ActivitySummary (Maybe Double) where
+  averageWatts activitySummary =
+    ( activitySummary_averageWatts activitySummary
+    , \ averageWatts' -> activitySummary { activitySummary_averageWatts = averageWatts' }
     )
 
 instance AverageWattsLens EffortDetailed (Maybe Double) where
@@ -167,10 +203,22 @@ instance CommentCountLens ActivityDetailed Integer where
     , \ commentCount' -> activityDetailed { activityDetailed_commentCount = commentCount' }
     )
 
+instance CommentCountLens ActivitySummary Integer where
+  commentCount activitySummary =
+    ( activitySummary_commentCount activitySummary
+    , \ commentCount' -> activitySummary { activitySummary_commentCount = commentCount' }
+    )
+
 instance CommuteLens ActivityDetailed Bool where
   commute activityDetailed =
     ( activityDetailed_commute activityDetailed
     , \ commute' -> activityDetailed { activityDetailed_commute = commute' }
+    )
+
+instance CommuteLens ActivitySummary Bool where
+  commute activitySummary =
+    ( activitySummary_commute activitySummary
+    , \ commute' -> activitySummary { activitySummary_commute = commute' }
     )
 
 instance CountryLens AthleteDetailed Text where
@@ -233,6 +281,12 @@ instance DistanceLens ActivityDetailed Double where
     , \ distance' -> activityDetailed { activityDetailed_distance = distance' }
     )
 
+instance DistanceLens ActivitySummary Double where
+  distance activitySummary =
+    ( activitySummary_distance activitySummary
+    , \ distance' -> activitySummary { activitySummary_distance = distance' }
+    )
+
 instance DistanceLens CreateActivityOptions (Maybe Double) where
   distance createActivityOptions =
     ( createActivityOptions_distance createActivityOptions
@@ -261,6 +315,12 @@ instance ElapsedTimeLens ActivityDetailed Integer where
   elapsedTime activityDetailed =
     ( activityDetailed_elapsedTime activityDetailed
     , \ elapsedTime' -> activityDetailed { activityDetailed_elapsedTime = elapsedTime' }
+    )
+
+instance ElapsedTimeLens ActivitySummary Integer where
+  elapsedTime activitySummary =
+    ( activitySummary_elapsedTime activitySummary
+    , \ elapsedTime' -> activitySummary { activitySummary_elapsedTime = elapsedTime' }
     )
 
 instance ElapsedTimeLens EffortDetailed Integer where
@@ -305,6 +365,12 @@ instance EndLatlngLens ActivityDetailed (Maybe (Double, Double)) where
     , \ endLatlng' -> activityDetailed { activityDetailed_endLatlng = endLatlng' }
     )
 
+instance EndLatlngLens ActivitySummary (Maybe (Double, Double)) where
+  endLatlng activitySummary =
+    ( activitySummary_endLatlng activitySummary
+    , \ endLatlng' -> activitySummary { activitySummary_endLatlng = endLatlng' }
+    )
+
 instance EndLatlngLens SegmentSummary ((Double, Double)) where
   endLatlng segmentSummary =
     ( segmentSummary_endLatlng segmentSummary
@@ -323,6 +389,12 @@ instance ExternalIdLens ActivityDetailed (Maybe Text) where
     , \ externalId' -> activityDetailed { activityDetailed_externalId = externalId' }
     )
 
+instance ExternalIdLens ActivitySummary (Maybe Text) where
+  externalId activitySummary =
+    ( activitySummary_externalId activitySummary
+    , \ externalId' -> activitySummary { activitySummary_externalId = externalId' }
+    )
+
 instance FirstnameLens AthleteDetailed Text where
   firstname athleteDetailed =
     ( athleteDetailed_firstname athleteDetailed
@@ -339,6 +411,12 @@ instance FlaggedLens ActivityDetailed Bool where
   flagged activityDetailed =
     ( activityDetailed_flagged activityDetailed
     , \ flagged' -> activityDetailed { activityDetailed_flagged = flagged' }
+    )
+
+instance FlaggedLens ActivitySummary Bool where
+  flagged activitySummary =
+    ( activitySummary_flagged activitySummary
+    , \ flagged' -> activitySummary { activitySummary_flagged = flagged' }
     )
 
 instance FollowerCountLens AthleteDetailed Integer where
@@ -389,6 +467,12 @@ instance GearIdLens ActivityDetailed (Maybe Text) where
     , \ gearId' -> activityDetailed { activityDetailed_gearId = gearId' }
     )
 
+instance GearIdLens ActivitySummary (Maybe Text) where
+  gearId activitySummary =
+    ( activitySummary_gearId activitySummary
+    , \ gearId' -> activitySummary { activitySummary_gearId = gearId' }
+    )
+
 instance GearLens ActivityDetailed GearSummary where
   gear activityDetailed =
     ( activityDetailed_gear activityDetailed
@@ -399,6 +483,12 @@ instance HasKudoedLens ActivityDetailed Bool where
   hasKudoed activityDetailed =
     ( activityDetailed_hasKudoed activityDetailed
     , \ hasKudoed' -> activityDetailed { activityDetailed_hasKudoed = hasKudoed' }
+    )
+
+instance HasKudoedLens ActivitySummary Bool where
+  hasKudoed activitySummary =
+    ( activitySummary_hasKudoed activitySummary
+    , \ hasKudoed' -> activitySummary { activitySummary_hasKudoed = hasKudoed' }
     )
 
 instance HiddenLens EffortDetailed (Maybe Bool) where
@@ -417,6 +507,12 @@ instance IdLens ActivityDetailed Integer where
   id activityDetailed =
     ( activityDetailed_id activityDetailed
     , \ id' -> activityDetailed { activityDetailed_id = id' }
+    )
+
+instance IdLens ActivitySummary Integer where
+  id activitySummary =
+    ( activitySummary_id activitySummary
+    , \ id' -> activitySummary { activitySummary_id = id' }
     )
 
 instance IdLens AthleteDetailed Integer where
@@ -461,6 +557,12 @@ instance IdLens PolylineDetailed Text where
     , \ id' -> polylineDetailed { polylineDetailed_id = id' }
     )
 
+instance IdLens PolylineSummary Text where
+  id polylineSummary =
+    ( polylineSummary_id polylineSummary
+    , \ id' -> polylineSummary { polylineSummary_id = id' }
+    )
+
 instance IdLens SegmentSummary Integer where
   id segmentSummary =
     ( segmentSummary_id segmentSummary
@@ -479,10 +581,22 @@ instance KilojoulesLens ActivityDetailed (Maybe Double) where
     , \ kilojoules' -> activityDetailed { activityDetailed_kilojoules = kilojoules' }
     )
 
+instance KilojoulesLens ActivitySummary (Maybe Double) where
+  kilojoules activitySummary =
+    ( activitySummary_kilojoules activitySummary
+    , \ kilojoules' -> activitySummary { activitySummary_kilojoules = kilojoules' }
+    )
+
 instance KomRankLens EffortDetailed (Maybe Integer) where
   komRank effortDetailed =
     ( effortDetailed_komRank effortDetailed
     , \ komRank' -> effortDetailed { effortDetailed_komRank = komRank' }
+    )
+
+instance KudosCountLens ActivitySummary Integer where
+  kudosCount activitySummary =
+    ( activitySummary_kudosCount activitySummary
+    , \ kudosCount' -> activitySummary { activitySummary_kudosCount = kudosCount' }
     )
 
 instance LastnameLens AthleteDetailed Text where
@@ -503,10 +617,22 @@ instance LocationCityLens ActivityDetailed (Maybe Text) where
     , \ locationCity' -> activityDetailed { activityDetailed_locationCity = locationCity' }
     )
 
+instance LocationCityLens ActivitySummary (Maybe Text) where
+  locationCity activitySummary =
+    ( activitySummary_locationCity activitySummary
+    , \ locationCity' -> activitySummary { activitySummary_locationCity = locationCity' }
+    )
+
 instance LocationCountryLens ActivityDetailed Text where
   locationCountry activityDetailed =
     ( activityDetailed_locationCountry activityDetailed
     , \ locationCountry' -> activityDetailed { activityDetailed_locationCountry = locationCountry' }
+    )
+
+instance LocationCountryLens ActivitySummary Text where
+  locationCountry activitySummary =
+    ( activitySummary_locationCountry activitySummary
+    , \ locationCountry' -> activitySummary { activitySummary_locationCountry = locationCountry' }
     )
 
 instance LocationStateLens ActivityDetailed (Maybe Text) where
@@ -515,16 +641,34 @@ instance LocationStateLens ActivityDetailed (Maybe Text) where
     , \ locationState' -> activityDetailed { activityDetailed_locationState = locationState' }
     )
 
+instance LocationStateLens ActivitySummary (Maybe Text) where
+  locationState activitySummary =
+    ( activitySummary_locationState activitySummary
+    , \ locationState' -> activitySummary { activitySummary_locationState = locationState' }
+    )
+
 instance ManualLens ActivityDetailed Bool where
   manual activityDetailed =
     ( activityDetailed_manual activityDetailed
     , \ manual' -> activityDetailed { activityDetailed_manual = manual' }
     )
 
+instance ManualLens ActivitySummary Bool where
+  manual activitySummary =
+    ( activitySummary_manual activitySummary
+    , \ manual' -> activitySummary { activitySummary_manual = manual' }
+    )
+
 instance MapLens ActivityDetailed PolylineDetailed where
   map activityDetailed =
     ( activityDetailed_map activityDetailed
     , \ map' -> activityDetailed { activityDetailed_map = map' }
+    )
+
+instance MapLens ActivitySummary PolylineSummary where
+  map activitySummary =
+    ( activitySummary_map activitySummary
+    , \ map' -> activitySummary { activitySummary_map = map' }
     )
 
 instance MaxHeartrateLens EffortDetailed (Maybe Integer) where
@@ -537,6 +681,12 @@ instance MaxSpeedLens ActivityDetailed Double where
   maxSpeed activityDetailed =
     ( activityDetailed_maxSpeed activityDetailed
     , \ maxSpeed' -> activityDetailed { activityDetailed_maxSpeed = maxSpeed' }
+    )
+
+instance MaxSpeedLens ActivitySummary Double where
+  maxSpeed activitySummary =
+    ( activitySummary_maxSpeed activitySummary
+    , \ maxSpeed' -> activitySummary { activitySummary_maxSpeed = maxSpeed' }
     )
 
 instance MaximumGradeLens SegmentSummary Double where
@@ -557,6 +707,12 @@ instance MovingTimeLens ActivityDetailed Integer where
     , \ movingTime' -> activityDetailed { activityDetailed_movingTime = movingTime' }
     )
 
+instance MovingTimeLens ActivitySummary Integer where
+  movingTime activitySummary =
+    ( activitySummary_movingTime activitySummary
+    , \ movingTime' -> activitySummary { activitySummary_movingTime = movingTime' }
+    )
+
 instance MovingTimeLens EffortDetailed Integer where
   movingTime effortDetailed =
     ( effortDetailed_movingTime effortDetailed
@@ -573,6 +729,12 @@ instance NameLens ActivityDetailed Text where
   name activityDetailed =
     ( activityDetailed_name activityDetailed
     , \ name' -> activityDetailed { activityDetailed_name = name' }
+    )
+
+instance NameLens ActivitySummary Text where
+  name activitySummary =
+    ( activitySummary_name activitySummary
+    , \ name' -> activitySummary { activitySummary_name = name' }
     )
 
 instance NameLens ClubSummary Text where
@@ -677,6 +839,12 @@ instance PhotoCountLens ActivityDetailed Integer where
     , \ photoCount' -> activityDetailed { activityDetailed_photoCount = photoCount' }
     )
 
+instance PhotoCountLens ActivitySummary Integer where
+  photoCount activitySummary =
+    ( activitySummary_photoCount activitySummary
+    , \ photoCount' -> activitySummary { activitySummary_photoCount = photoCount' }
+    )
+
 instance PolylineLens PolylineDetailed ([(Double, Double)]) where
   polyline polylineDetailed =
     ( polylineDetailed_polyline polylineDetailed
@@ -711,6 +879,12 @@ instance PrivateLens ActivityDetailed Bool where
   private activityDetailed =
     ( activityDetailed_private activityDetailed
     , \ private' -> activityDetailed { activityDetailed_private = private' }
+    )
+
+instance PrivateLens ActivitySummary Bool where
+  private activitySummary =
+    ( activitySummary_private activitySummary
+    , \ private' -> activitySummary { activitySummary_private = private' }
     )
 
 instance PrivateLens SegmentSummary Bool where
@@ -767,6 +941,12 @@ instance ResourceStateLens ActivityDetailed Integer where
     , \ resourceState' -> activityDetailed { activityDetailed_resourceState = resourceState' }
     )
 
+instance ResourceStateLens ActivitySummary Integer where
+  resourceState activitySummary =
+    ( activitySummary_resourceState activitySummary
+    , \ resourceState' -> activitySummary { activitySummary_resourceState = resourceState' }
+    )
+
 instance ResourceStateLens AthleteDetailed Integer where
   resourceState athleteDetailed =
     ( athleteDetailed_resourceState athleteDetailed
@@ -807,6 +987,12 @@ instance ResourceStateLens PolylineDetailed Integer where
   resourceState polylineDetailed =
     ( polylineDetailed_resourceState polylineDetailed
     , \ resourceState' -> polylineDetailed { polylineDetailed_resourceState = resourceState' }
+    )
+
+instance ResourceStateLens PolylineSummary Integer where
+  resourceState polylineSummary =
+    ( polylineSummary_resourceState polylineSummary
+    , \ resourceState' -> polylineSummary { polylineSummary_resourceState = resourceState' }
     )
 
 instance ResourceStateLens SegmentSummary Integer where
@@ -863,6 +1049,12 @@ instance StartDateLens ActivityDetailed UTCTime where
     , \ startDate' -> activityDetailed { activityDetailed_startDate = startDate' }
     )
 
+instance StartDateLens ActivitySummary UTCTime where
+  startDate activitySummary =
+    ( activitySummary_startDate activitySummary
+    , \ startDate' -> activitySummary { activitySummary_startDate = startDate' }
+    )
+
 instance StartDateLens EffortDetailed UTCTime where
   startDate effortDetailed =
     ( effortDetailed_startDate effortDetailed
@@ -873,6 +1065,12 @@ instance StartDateLocalLens ActivityDetailed UTCTime where
   startDateLocal activityDetailed =
     ( activityDetailed_startDateLocal activityDetailed
     , \ startDateLocal' -> activityDetailed { activityDetailed_startDateLocal = startDateLocal' }
+    )
+
+instance StartDateLocalLens ActivitySummary UTCTime where
+  startDateLocal activitySummary =
+    ( activitySummary_startDateLocal activitySummary
+    , \ startDateLocal' -> activitySummary { activitySummary_startDateLocal = startDateLocal' }
     )
 
 instance StartDateLocalLens EffortDetailed UTCTime where
@@ -893,6 +1091,12 @@ instance StartLatitudeLens ActivityDetailed Double where
     , \ startLatitude' -> activityDetailed { activityDetailed_startLatitude = startLatitude' }
     )
 
+instance StartLatitudeLens ActivitySummary Double where
+  startLatitude activitySummary =
+    ( activitySummary_startLatitude activitySummary
+    , \ startLatitude' -> activitySummary { activitySummary_startLatitude = startLatitude' }
+    )
+
 instance StartLatitudeLens SegmentSummary Double where
   startLatitude segmentSummary =
     ( segmentSummary_startLatitude segmentSummary
@@ -905,6 +1109,12 @@ instance StartLatlngLens ActivityDetailed (Maybe (Double, Double)) where
     , \ startLatlng' -> activityDetailed { activityDetailed_startLatlng = startLatlng' }
     )
 
+instance StartLatlngLens ActivitySummary (Maybe (Double, Double)) where
+  startLatlng activitySummary =
+    ( activitySummary_startLatlng activitySummary
+    , \ startLatlng' -> activitySummary { activitySummary_startLatlng = startLatlng' }
+    )
+
 instance StartLatlngLens SegmentSummary ((Double, Double)) where
   startLatlng segmentSummary =
     ( segmentSummary_startLatlng segmentSummary
@@ -915,6 +1125,12 @@ instance StartLongitudeLens ActivityDetailed Double where
   startLongitude activityDetailed =
     ( activityDetailed_startLongitude activityDetailed
     , \ startLongitude' -> activityDetailed { activityDetailed_startLongitude = startLongitude' }
+    )
+
+instance StartLongitudeLens ActivitySummary Double where
+  startLongitude activitySummary =
+    ( activitySummary_startLongitude activitySummary
+    , \ startLongitude' -> activitySummary { activitySummary_startLongitude = startLongitude' }
     )
 
 instance StartLongitudeLens SegmentSummary Double where
@@ -959,10 +1175,22 @@ instance SummaryPolylineLens PolylineDetailed (Maybe [(Double, Double)]) where
     , \ summaryPolyline' -> polylineDetailed { polylineDetailed_summaryPolyline = summaryPolyline' }
     )
 
+instance SummaryPolylineLens PolylineSummary (Maybe [(Double, Double)]) where
+  summaryPolyline polylineSummary =
+    ( polylineSummary_summaryPolyline polylineSummary
+    , \ summaryPolyline' -> polylineSummary { polylineSummary_summaryPolyline = summaryPolyline' }
+    )
+
 instance TimezoneLens ActivityDetailed Text where
   timezone activityDetailed =
     ( activityDetailed_timezone activityDetailed
     , \ timezone' -> activityDetailed { activityDetailed_timezone = timezone' }
+    )
+
+instance TimezoneLens ActivitySummary Text where
+  timezone activitySummary =
+    ( activitySummary_timezone activitySummary
+    , \ timezone' -> activitySummary { activitySummary_timezone = timezone' }
     )
 
 instance TotalElevationGainLens ActivityDetailed Double where
@@ -971,10 +1199,22 @@ instance TotalElevationGainLens ActivityDetailed Double where
     , \ totalElevationGain' -> activityDetailed { activityDetailed_totalElevationGain = totalElevationGain' }
     )
 
+instance TotalElevationGainLens ActivitySummary Double where
+  totalElevationGain activitySummary =
+    ( activitySummary_totalElevationGain activitySummary
+    , \ totalElevationGain' -> activitySummary { activitySummary_totalElevationGain = totalElevationGain' }
+    )
+
 instance TrainerLens ActivityDetailed Bool where
   trainer activityDetailed =
     ( activityDetailed_trainer activityDetailed
     , \ trainer' -> activityDetailed { activityDetailed_trainer = trainer' }
+    )
+
+instance TrainerLens ActivitySummary Bool where
+  trainer activitySummary =
+    ( activitySummary_trainer activitySummary
+    , \ trainer' -> activitySummary { activitySummary_trainer = trainer' }
     )
 
 instance TruncatedLens ActivityDetailed Integer where
@@ -987,6 +1227,12 @@ instance TypeLens ActivityDetailed Text where
   type_ activityDetailed =
     ( activityDetailed_type activityDetailed
     , \ type_' -> activityDetailed { activityDetailed_type = type_' }
+    )
+
+instance TypeLens ActivitySummary Text where
+  type_ activitySummary =
+    ( activitySummary_type activitySummary
+    , \ type_' -> activitySummary { activitySummary_type = type_' }
     )
 
 instance UpdatedAtLens AthleteDetailed UTCTime where
@@ -1005,6 +1251,12 @@ instance UploadIdLens ActivityDetailed (Maybe Integer) where
   uploadId activityDetailed =
     ( activityDetailed_uploadId activityDetailed
     , \ uploadId' -> activityDetailed { activityDetailed_uploadId = uploadId' }
+    )
+
+instance UploadIdLens ActivitySummary (Maybe Integer) where
+  uploadId activitySummary =
+    ( activitySummary_uploadId activitySummary
+    , \ uploadId' -> activitySummary { activitySummary_uploadId = uploadId' }
     )
 
 instance WeightLens UpdateCurrentAthleteOptions (Maybe Double) where

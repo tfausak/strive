@@ -232,6 +232,10 @@ Many of these examples use the same parameters. They are all given here:
 #### [Retrieve an activity](http://strava.github.io/api/v3/activities/#get-details)
 
 ~~~ {.haskell}
+  activity <- getActivity client 141273622 $ with
+    [ set allEfforts True
+    ]
+  print (activity :: Either String ActivitySummary)
 ~~~
 
 #### [Update an activity](http://strava.github.io/api/v3/activities/#put-updates)

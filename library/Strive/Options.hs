@@ -195,3 +195,18 @@ instance QueryLike CreateActivityOptions where
     [ ("description", createActivityOptions_description options)
     , ("distance", fmap show (createActivityOptions_distance options))
     ]
+
+-- | 'Strive.Actions.GetActivity'
+data GetActivityOptions = GetActivityOptions
+  { createActivityOptions_allEfforts :: Bool
+  } deriving Show
+
+instance Default GetActivityOptions where
+  def = GetActivityOptions
+    { createActivityOptions_allEfforts = False
+    }
+
+instance QueryLike GetActivityOptions where
+  toQuery options = toQuery
+    [ ("approval_prompt", unpack (toStrict (encode (createActivityOptions_allEfforts options))))
+    ]
