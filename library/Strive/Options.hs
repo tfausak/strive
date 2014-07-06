@@ -9,7 +9,7 @@ import Network.HTTP.Types.QueryLike (QueryLike, toQuery)
 
 -- * Authentication
 
--- | 'Strive.Actions.buildAuthorizeUrl'.
+-- | 'Strive.Actions.buildAuthorizeUrl'
 data BuildAuthorizeUrlOptions = BuildAuthorizeUrlOptions
   { buildAuthorizeUrlOptions_approvalPrompt :: Bool
   , buildAuthorizeUrlOptions_privateScope   :: Bool
@@ -39,7 +39,7 @@ instance QueryLike BuildAuthorizeUrlOptions where
 
 -- * Athletes
 
--- | 'Strive.Actions.updateCurrentAthlete'.
+-- | 'Strive.Actions.updateCurrentAthlete'
 data UpdateCurrentAthleteOptions = UpdateCurrentAthleteOptions
   { updateCurrentAthleteOptions_city    :: Maybe String
   , updateCurrentAthleteOptions_state   :: Maybe String
@@ -66,7 +66,7 @@ instance QueryLike UpdateCurrentAthleteOptions where
     , ("weight", fmap show (updateCurrentAthleteOptions_weight options))
     ]
 
--- | 'Strive.Actions.getAthleteCrs'.
+-- | 'Strive.Actions.getAthleteCrs'
 data GetAthleteCrsOptions = GetAthleteCrsOptions
   { getAthleteCrsOptions_page    :: Integer
   , getAthleteCrsOptions_perPage :: Integer
