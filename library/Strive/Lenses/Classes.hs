@@ -190,6 +190,9 @@ class ManualLens a b | a -> b where
 class MapLens a b | a -> b where
   map :: Lens a b
 
+class MarkdownLens a b | a -> b where
+  markdown :: Lens a b
+
 class MaxHeartrateLens a b | a -> b where
   maxHeartrate :: Lens a b
 
@@ -294,6 +297,9 @@ class StateLens a b | a -> b where
 
 class SummaryPolylineLens a b | a -> b where
   summaryPolyline :: Lens a b
+
+class TextLens a b | a -> b where
+  text :: Lens a b
 
 class TimeLens a b | a -> b where
   time :: Lens a b

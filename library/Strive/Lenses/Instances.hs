@@ -47,6 +47,12 @@ instance ActivityIdLens ActivityLapSummary Integer where
     , \ activityId' -> activityLapSummary { activityLapSummary_activityId = activityId' }
     )
 
+instance ActivityIdLens CommentSummary Integer where
+  activityId commentSummary =
+    ( commentSummary_activityId commentSummary
+    , \ activityId' -> commentSummary { commentSummary_activityId = activityId' }
+    )
+
 instance ActivityIdLens EffortDetailed Integer where
   activityId effortDetailed =
     ( effortDetailed_activityId effortDetailed
@@ -111,6 +117,12 @@ instance AthleteLens ActivitySummary AthleteMeta where
   athlete activitySummary =
     ( activitySummary_athlete activitySummary
     , \ athlete' -> activitySummary { activitySummary_athlete = athlete' }
+    )
+
+instance AthleteLens CommentSummary AthleteSummary where
+  athlete commentSummary =
+    ( commentSummary_athlete commentSummary
+    , \ athlete' -> commentSummary { commentSummary_athlete = athlete' }
     )
 
 instance AthleteLens TokenExchangeResponse AthleteDetailed where
@@ -297,6 +309,12 @@ instance CreatedAtLens AthleteSummary UTCTime where
   createdAt athleteSummary =
     ( athleteSummary_createdAt athleteSummary
     , \ createdAt' -> athleteSummary { athleteSummary_createdAt = createdAt' }
+    )
+
+instance CreatedAtLens CommentSummary UTCTime where
+  createdAt commentSummary =
+    ( commentSummary_createdAt commentSummary
+    , \ createdAt' -> commentSummary { commentSummary_createdAt = createdAt' }
     )
 
 instance DatePreferenceLens AthleteDetailed Text where
@@ -623,6 +641,12 @@ instance IdLens ClubSummary Integer where
     , \ id' -> clubSummary { clubSummary_id = id' }
     )
 
+instance IdLens CommentSummary Integer where
+  id commentSummary =
+    ( commentSummary_id commentSummary
+    , \ id' -> commentSummary { commentSummary_id = id' }
+    )
+
 instance IdLens EffortDetailed Integer where
   id effortDetailed =
     ( effortDetailed_id effortDetailed
@@ -761,6 +785,12 @@ instance MapLens ActivitySummary PolylineSummary where
     , \ map' -> activitySummary { activitySummary_map = map' }
     )
 
+instance MarkdownLens GetActivityCommentsOptions Bool where
+  markdown getActivityCommentsOptions =
+    ( getActivityCommentsOptions_markdown getActivityCommentsOptions
+    , \ markdown' -> getActivityCommentsOptions { getActivityCommentsOptions_markdown = markdown' }
+    )
+
 instance MaxHeartrateLens EffortDetailed (Maybe Integer) where
   maxHeartrate effortDetailed =
     ( effortDetailed_maxHeartrate effortDetailed
@@ -887,6 +917,12 @@ instance NameLens UpdateActivityOptions (Maybe String) where
     , \ name' -> updateActivityOptions { updateActivityOptions_name = name' }
     )
 
+instance PageLens GetActivityCommentsOptions Integer where
+  page getActivityCommentsOptions =
+    ( getActivityCommentsOptions_page getActivityCommentsOptions
+    , \ page' -> getActivityCommentsOptions { getActivityCommentsOptions_page = page' }
+    )
+
 instance PageLens GetAthleteCrsOptions Integer where
   page getAthleteCrsOptions =
     ( getAthleteCrsOptions_page getAthleteCrsOptions
@@ -933,6 +969,12 @@ instance PageLens GetFriendsOptions Integer where
   page getFriendsOptions =
     ( getFriendsOptions_page getFriendsOptions
     , \ page' -> getFriendsOptions { getFriendsOptions_page = page' }
+    )
+
+instance PerPageLens GetActivityCommentsOptions Integer where
+  perPage getActivityCommentsOptions =
+    ( getActivityCommentsOptions_perPage getActivityCommentsOptions
+    , \ perPage' -> getActivityCommentsOptions { getActivityCommentsOptions_perPage = perPage' }
     )
 
 instance PerPageLens GetAthleteCrsOptions Integer where
@@ -1137,6 +1179,12 @@ instance ResourceStateLens ClubSummary Integer where
   resourceState clubSummary =
     ( clubSummary_resourceState clubSummary
     , \ resourceState' -> clubSummary { clubSummary_resourceState = resourceState' }
+    )
+
+instance ResourceStateLens CommentSummary Integer where
+  resourceState commentSummary =
+    ( commentSummary_resourceState commentSummary
+    , \ resourceState' -> commentSummary { commentSummary_resourceState = resourceState' }
     )
 
 instance ResourceStateLens EffortDetailed Integer where
@@ -1371,6 +1419,12 @@ instance SummaryPolylineLens PolylineSummary (Maybe [(Double, Double)]) where
   summaryPolyline polylineSummary =
     ( polylineSummary_summaryPolyline polylineSummary
     , \ summaryPolyline' -> polylineSummary { polylineSummary_summaryPolyline = summaryPolyline' }
+    )
+
+instance TextLens CommentSummary Text where
+  text commentSummary =
+    ( commentSummary_text commentSummary
+    , \ text' -> commentSummary { commentSummary_text = text' }
     )
 
 instance TimeLens ActivityZoneDistributionBucket Integer where

@@ -287,3 +287,26 @@ instance QueryLike GetFeedOptions where
     [ ("page", Just (show (getFeedOptions_page options)))
     , ("per_page", Just (show (getFeedOptions_perPage options)))
     ]
+
+-- * Comments
+
+-- | 'Strive.Actions.getActivityComments'
+data GetActivityCommentsOptions = GetActivityCommentsOptions
+  { getActivityCommentsOptions_markdown :: Bool
+  , getActivityCommentsOptions_page     :: Integer
+  , getActivityCommentsOptions_perPage  :: Integer
+  } deriving Show
+
+instance Default GetActivityCommentsOptions where
+  def = GetActivityCommentsOptions
+    { getActivityCommentsOptions_markdown = False
+    , getActivityCommentsOptions_page = 1
+    , getActivityCommentsOptions_perPage = 200
+    }
+
+instance QueryLike GetActivityCommentsOptions where
+  toQuery options = toQuery
+    [ ("before", unpack (toStrict (encode (getActivityCommentsOptions_markdown options))))
+    , ("page", show (getActivityCommentsOptions_page options))
+    , ("per_page", show (getActivityCommentsOptions_perPage options))
+    ]

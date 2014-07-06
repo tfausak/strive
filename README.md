@@ -302,6 +302,12 @@ Many of these examples use the same parameters. They are all given here:
 #### [List activity comments](http://strava.github.io/api/v3/comments/#list)
 
 ~~~ {.haskell}
+  activityComments <- getActivityComments client 141273622 $ with
+    [ set markdown True
+    , set page 1
+    , set perPage 2
+    ]
+  print (activityComments :: Either String [CommentSummary])
 ~~~
 
 ### [Kudos](http://strava.github.io/api/v3/kudos/)
