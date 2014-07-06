@@ -157,3 +157,21 @@ instance QueryLike GetFollowersOptions where
     [ ("page", show (getFollowersOptions_page options))
     , ("per_page", show (getFollowersOptions_perPage options))
     ]
+
+-- | 'Strive.Actions.getCommonFriends'
+data GetCommonFriendsOptions = GetCommonFriendsOptions
+  { getCommonFriendsOptions_page    :: Integer
+  , getCommonFriendsOptions_perPage :: Integer
+  } deriving Show
+
+instance Default GetCommonFriendsOptions where
+  def = GetCommonFriendsOptions
+    { getCommonFriendsOptions_page = 1
+    , getCommonFriendsOptions_perPage = 200
+    }
+
+instance QueryLike GetCommonFriendsOptions where
+  toQuery options = toQuery
+    [ ("page", show (getCommonFriendsOptions_page options))
+    , ("per_page", show (getCommonFriendsOptions_perPage options))
+    ]

@@ -202,6 +202,11 @@ main = do
 #### [List both following](http://strava.github.io/api/v3/follow/#both)
 
 ~~~ {.haskell}
+  commonFriends <- getCommonFriends client 65516 $ with
+    [ set page 1
+    , set perPage 2
+    ]
+  print (commonFriends :: Either String [AthleteSummary])
 ~~~
 
 ### [Activities](http://strava.github.io/api/v3/activities/)
