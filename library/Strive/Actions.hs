@@ -135,5 +135,12 @@ createActivity client name type_ startDateLocal elapsedTime options = post clien
 getActivity :: Client -> Integer -> O.GetActivityOptions -> IO (Either String T.ActivitySummary)
 getActivity client activityId options = get client resource query
  where
-  resource = "activities/" <> show activityId
+  resource = "api/v3/activities/" <> show activityId
+  query = toQuery options
+
+-- | <http://strava.github.io/api/v3/activities/#put-updates>
+updateActivity :: Client -> Integer -> O.UpdateActivityOptions -> IO (Either String T.ActivityDetailed)
+updateActivity client activityId options = put client resource query
+ where
+  resource = "api/v3/activities/" <> show activityId
   query = toQuery options

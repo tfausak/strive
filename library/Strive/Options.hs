@@ -198,15 +198,48 @@ instance QueryLike CreateActivityOptions where
 
 -- | 'Strive.Actions.GetActivity'
 data GetActivityOptions = GetActivityOptions
-  { createActivityOptions_allEfforts :: Bool
+  { getActivityOptions_allEfforts :: Bool
   } deriving Show
 
 instance Default GetActivityOptions where
   def = GetActivityOptions
-    { createActivityOptions_allEfforts = False
+    { getActivityOptions_allEfforts = False
     }
 
 instance QueryLike GetActivityOptions where
   toQuery options = toQuery
-    [ ("approval_prompt", unpack (toStrict (encode (createActivityOptions_allEfforts options))))
+    [ ("approval_prompt", unpack (toStrict (encode (getActivityOptions_allEfforts options))))
+    ]
+
+-- | 'Strive.Actions.UpdateActivity'
+data UpdateActivityOptions = UpdateActivityOptions
+  { updateActivityOptions_name        :: Maybe String
+  , updateActivityOptions_type        :: Maybe String
+  , updateActivityOptions_private     :: Maybe Bool
+  , updateActivityOptions_commute     :: Maybe Bool
+  , updateActivityOptions_trainer     :: Maybe Bool
+  , updateActivityOptions_gearId      :: Maybe String
+  , updateActivityOptions_description :: Maybe String
+  } deriving Show
+
+instance Default UpdateActivityOptions where
+  def = UpdateActivityOptions
+    { updateActivityOptions_name = Nothing
+    , updateActivityOptions_type = Nothing
+    , updateActivityOptions_private = Nothing
+    , updateActivityOptions_commute = Nothing
+    , updateActivityOptions_trainer = Nothing
+    , updateActivityOptions_gearId = Nothing
+    , updateActivityOptions_description = Nothing
+    }
+
+instance QueryLike UpdateActivityOptions where
+  toQuery options = toQuery
+    [ ("name", updateActivityOptions_name options)
+    , ("type", updateActivityOptions_type options)
+    , ("private", fmap (unpack . toStrict . encode) (updateActivityOptions_private options))
+    , ("commute", fmap (unpack . toStrict . encode) (updateActivityOptions_commute options))
+    , ("trainer", fmap (unpack . toStrict . encode) (updateActivityOptions_trainer options))
+    , ("gear_id", updateActivityOptions_gearId options)
+    , ("description", updateActivityOptions_description options)
     ]

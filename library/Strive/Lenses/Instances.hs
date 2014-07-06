@@ -55,8 +55,8 @@ instance ActivityTypeLens SegmentSummary Text where
 
 instance AllEffortsLens GetActivityOptions Bool where
   allEfforts getActivityOptions =
-    ( createActivityOptions_allEfforts getActivityOptions
-    , \ allEfforts' -> getActivityOptions { createActivityOptions_allEfforts = allEfforts' }
+    ( getActivityOptions_allEfforts getActivityOptions
+    , \ allEfforts' -> getActivityOptions { getActivityOptions_allEfforts = allEfforts' }
     )
 
 instance ApprovalPromptLens BuildAuthorizeUrlOptions Bool where
@@ -221,6 +221,12 @@ instance CommuteLens ActivitySummary Bool where
     , \ commute' -> activitySummary { activitySummary_commute = commute' }
     )
 
+instance CommuteLens UpdateActivityOptions (Maybe Bool) where
+  commute updateActivityOptions =
+    ( updateActivityOptions_commute updateActivityOptions
+    , \ commute' -> updateActivityOptions { updateActivityOptions_commute = commute' }
+    )
+
 instance CountryLens AthleteDetailed Text where
   country athleteDetailed =
     ( athleteDetailed_country athleteDetailed
@@ -273,6 +279,12 @@ instance DescriptionLens CreateActivityOptions (Maybe String) where
   description createActivityOptions =
     ( createActivityOptions_description createActivityOptions
     , \ description' -> createActivityOptions { createActivityOptions_description = description' }
+    )
+
+instance DescriptionLens UpdateActivityOptions (Maybe String) where
+  description updateActivityOptions =
+    ( updateActivityOptions_description updateActivityOptions
+    , \ description' -> updateActivityOptions { updateActivityOptions_description = description' }
     )
 
 instance DistanceLens ActivityDetailed Double where
@@ -471,6 +483,12 @@ instance GearIdLens ActivitySummary (Maybe Text) where
   gearId activitySummary =
     ( activitySummary_gearId activitySummary
     , \ gearId' -> activitySummary { activitySummary_gearId = gearId' }
+    )
+
+instance GearIdLens UpdateActivityOptions (Maybe String) where
+  gearId updateActivityOptions =
+    ( updateActivityOptions_gearId updateActivityOptions
+    , \ gearId' -> updateActivityOptions { updateActivityOptions_gearId = gearId' }
     )
 
 instance GearLens ActivityDetailed GearSummary where
@@ -761,6 +779,12 @@ instance NameLens SegmentSummary Text where
     , \ name' -> segmentSummary { segmentSummary_name = name' }
     )
 
+instance NameLens UpdateActivityOptions (Maybe String) where
+  name updateActivityOptions =
+    ( updateActivityOptions_name updateActivityOptions
+    , \ name' -> updateActivityOptions { updateActivityOptions_name = name' }
+    )
+
 instance PageLens GetAthleteCrsOptions Integer where
   page getAthleteCrsOptions =
     ( getAthleteCrsOptions_page getAthleteCrsOptions
@@ -891,6 +915,12 @@ instance PrivateLens SegmentSummary Bool where
   private segmentSummary =
     ( segmentSummary_private segmentSummary
     , \ private' -> segmentSummary { segmentSummary_private = private' }
+    )
+
+instance PrivateLens UpdateActivityOptions (Maybe Bool) where
+  private updateActivityOptions =
+    ( updateActivityOptions_private updateActivityOptions
+    , \ private' -> updateActivityOptions { updateActivityOptions_private = private' }
     )
 
 instance PrivateScopeLens BuildAuthorizeUrlOptions Bool where
@@ -1217,6 +1247,12 @@ instance TrainerLens ActivitySummary Bool where
     , \ trainer' -> activitySummary { activitySummary_trainer = trainer' }
     )
 
+instance TrainerLens UpdateActivityOptions (Maybe Bool) where
+  trainer updateActivityOptions =
+    ( updateActivityOptions_trainer updateActivityOptions
+    , \ trainer' -> updateActivityOptions { updateActivityOptions_trainer = trainer' }
+    )
+
 instance TruncatedLens ActivityDetailed Integer where
   truncated activityDetailed =
     ( activityDetailed_truncated activityDetailed
@@ -1233,6 +1269,12 @@ instance TypeLens ActivitySummary Text where
   type_ activitySummary =
     ( activitySummary_type activitySummary
     , \ type_' -> activitySummary { activitySummary_type = type_' }
+    )
+
+instance TypeLens UpdateActivityOptions (Maybe String) where
+  type_ updateActivityOptions =
+    ( updateActivityOptions_type updateActivityOptions
+    , \ type_' -> updateActivityOptions { updateActivityOptions_type = type_' }
     )
 
 instance UpdatedAtLens AthleteDetailed UTCTime where

@@ -241,6 +241,16 @@ Many of these examples use the same parameters. They are all given here:
 #### [Update an activity](http://strava.github.io/api/v3/activities/#put-updates)
 
 ~~~ {.haskell}
+  updatedActivity <- updateActivity client 141273622 $ with
+    [ set name (Just "example")
+    , set type_ (Just "run")
+    , set private (Just True)
+    , set commute (Just True)
+    , set trainer (Just True)
+    , set gearId (Just "b387855")
+    , set description (Just "example")
+    ]
+  print (updatedActivity :: Either String ActivityDetailed)
 ~~~
 
 #### [Delete an activity](http://strava.github.io/api/v3/activities/#delete)
