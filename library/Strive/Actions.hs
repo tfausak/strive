@@ -197,3 +197,12 @@ getActivityKudoers client activityId options = get client resource query
  where
   resource = "api/v3/activities/" <> show activityId <> "/kudos"
   query = toQuery options
+
+-- * Photos
+
+-- | <http://strava.github.io/api/v3/photos/#list>
+getActivityPhotos :: Client -> Integer -> IO (Either String [T.PhotoSummary])
+getActivityPhotos client activityId = get client resource query
+  where
+    resource = "api/v3/activities/" <> show activityId <> "/photos"
+    query = [] :: Query

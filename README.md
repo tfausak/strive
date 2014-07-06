@@ -327,6 +327,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [List activity photos](http://strava.github.io/api/v3/photos/#list)
 
 ~~~ {.haskell}
+  activityPhotos <- getActivityPhotos client 141273622
+  print (activityPhotos :: Either String [PhotoSummary])
 ~~~
 
 ### [Clubs](http://strava.github.io/api/v3/clubs/)

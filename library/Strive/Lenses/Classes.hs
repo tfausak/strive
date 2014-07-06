@@ -58,6 +58,9 @@ class BikesLens a b | a -> b where
 class CaloriesLens a b | a -> b where
   calories :: Lens a b
 
+class CaptionLens a b | a -> b where
+  caption :: Lens a b
+
 class CityLens a b | a -> b where
   city :: Lens a b
 
@@ -181,6 +184,9 @@ class LocationCityLens a b | a -> b where
 class LocationCountryLens a b | a -> b where
   locationCountry :: Lens a b
 
+class LocationLens a b | a -> b where
+  location :: Lens a b
+
 class LocationStateLens a b | a -> b where
   locationState :: Lens a b
 
@@ -253,6 +259,9 @@ class ProfileLens a b | a -> b where
 class ProfileMediumLens a b | a -> b where
   profileMedium :: Lens a b
 
+class RefLens a b | a -> b where
+  ref :: Lens a b
+
 class ResourceStateLens a b | a -> b where
   resourceState :: Lens a b
 
@@ -319,11 +328,17 @@ class TruncatedLens a b | a -> b where
 class TypeLens a b | a -> b where
   type_ :: Lens a b
 
+class UidLens a b | a -> b where
+  uid :: Lens a b
+
 class UpdatedAtLens a b | a -> b where
   updatedAt :: Lens a b
 
 class UploadIdLens a b | a -> b where
   uploadId :: Lens a b
+
+class UploadedAtLens a b | a -> b where
+  uploadedAt :: Lens a b
 
 class WeightLens a b | a -> b where
   weight :: Lens a b

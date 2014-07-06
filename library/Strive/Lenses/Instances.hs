@@ -59,6 +59,12 @@ instance ActivityIdLens EffortDetailed Integer where
     , \ activityId' -> effortDetailed { effortDetailed_activityId = activityId' }
     )
 
+instance ActivityIdLens PhotoSummary Integer where
+  activityId photoSummary =
+    ( photoSummary_activityId photoSummary
+    , \ activityId' -> photoSummary { photoSummary_activityId = activityId' }
+    )
+
 instance ActivityTypeLens SegmentSummary Text where
   activityType segmentSummary =
     ( segmentSummary_activityType segmentSummary
@@ -209,6 +215,12 @@ instance CaloriesLens ActivityDetailed Double where
     , \ calories' -> activityDetailed { activityDetailed_calories = calories' }
     )
 
+instance CaptionLens PhotoSummary Text where
+  caption photoSummary =
+    ( photoSummary_caption photoSummary
+    , \ caption' -> photoSummary { photoSummary_caption = caption' }
+    )
+
 instance CityLens AthleteDetailed Text where
   city athleteDetailed =
     ( athleteDetailed_city athleteDetailed
@@ -315,6 +327,12 @@ instance CreatedAtLens CommentSummary UTCTime where
   createdAt commentSummary =
     ( commentSummary_createdAt commentSummary
     , \ createdAt' -> commentSummary { commentSummary_createdAt = createdAt' }
+    )
+
+instance CreatedAtLens PhotoSummary UTCTime where
+  createdAt photoSummary =
+    ( photoSummary_createdAt photoSummary
+    , \ createdAt' -> photoSummary { photoSummary_createdAt = createdAt' }
     )
 
 instance DatePreferenceLens AthleteDetailed Text where
@@ -659,6 +677,12 @@ instance IdLens GearSummary Text where
     , \ id' -> gearSummary { gearSummary_id = id' }
     )
 
+instance IdLens PhotoSummary Integer where
+  id photoSummary =
+    ( photoSummary_id photoSummary
+    , \ id' -> photoSummary { photoSummary_id = id' }
+    )
+
 instance IdLens PolylineDetailed Text where
   id polylineDetailed =
     ( polylineDetailed_id polylineDetailed
@@ -747,6 +771,12 @@ instance LocationCountryLens ActivitySummary Text where
   locationCountry activitySummary =
     ( activitySummary_locationCountry activitySummary
     , \ locationCountry' -> activitySummary { activitySummary_locationCountry = locationCountry' }
+    )
+
+instance LocationLens PhotoSummary (Maybe (Double, Double)) where
+  location photoSummary =
+    ( photoSummary_location photoSummary
+    , \ location' -> photoSummary { photoSummary_location = location' }
     )
 
 instance LocationStateLens ActivityDetailed (Maybe Text) where
@@ -1145,6 +1175,12 @@ instance ProfileMediumLens ClubSummary Text where
     , \ profileMedium' -> clubSummary { clubSummary_profileMedium = profileMedium' }
     )
 
+instance RefLens PhotoSummary Text where
+  ref photoSummary =
+    ( photoSummary_ref photoSummary
+    , \ ref' -> photoSummary { photoSummary_ref = ref' }
+    )
+
 instance ResourceStateLens ActivityDetailed Integer where
   resourceState activityDetailed =
     ( activityDetailed_resourceState activityDetailed
@@ -1209,6 +1245,12 @@ instance ResourceStateLens GearSummary Integer where
   resourceState gearSummary =
     ( gearSummary_resourceState gearSummary
     , \ resourceState' -> gearSummary { gearSummary_resourceState = resourceState' }
+    )
+
+instance ResourceStateLens PhotoSummary Integer where
+  resourceState photoSummary =
+    ( photoSummary_resourceState photoSummary
+    , \ resourceState' -> photoSummary { photoSummary_resourceState = resourceState' }
     )
 
 instance ResourceStateLens PolylineDetailed Integer where
@@ -1517,10 +1559,22 @@ instance TypeLens ActivityZoneDetailed Text where
     , \ type_' -> activityZoneDetailed { activityZoneDetailed_type = type_' }
     )
 
+instance TypeLens PhotoSummary Text where
+  type_ photoSummary =
+    ( photoSummary_type photoSummary
+    , \ type_' -> photoSummary { photoSummary_type = type_' }
+    )
+
 instance TypeLens UpdateActivityOptions (Maybe String) where
   type_ updateActivityOptions =
     ( updateActivityOptions_type updateActivityOptions
     , \ type_' -> updateActivityOptions { updateActivityOptions_type = type_' }
+    )
+
+instance UidLens PhotoSummary Text where
+  uid photoSummary =
+    ( photoSummary_uid photoSummary
+    , \ uid' -> photoSummary { photoSummary_uid = uid' }
     )
 
 instance UpdatedAtLens AthleteDetailed UTCTime where
@@ -1545,6 +1599,12 @@ instance UploadIdLens ActivitySummary (Maybe Integer) where
   uploadId activitySummary =
     ( activitySummary_uploadId activitySummary
     , \ uploadId' -> activitySummary { activitySummary_uploadId = uploadId' }
+    )
+
+instance UploadedAtLens PhotoSummary UTCTime where
+  uploadedAt photoSummary =
+    ( photoSummary_uploadedAt photoSummary
+    , \ uploadedAt' -> photoSummary { photoSummary_uploadedAt = uploadedAt' }
     )
 
 instance WeightLens UpdateCurrentAthleteOptions (Maybe Double) where
