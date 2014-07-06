@@ -55,8 +55,8 @@ instance ActivityTypeLens SegmentSummary Text where
 
 instance AfterLens GetCurrentActivitiesOptions (Maybe UTCTime) where
   after getCurrentActivitiesOptions =
-    ( getCurrentActivities_after getCurrentActivitiesOptions
-    , \ after' -> getCurrentActivitiesOptions { getCurrentActivities_after = after' }
+    ( getCurrentActivitiesOptions_after getCurrentActivitiesOptions
+    , \ after' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_after = after' }
     )
 
 instance AllEffortsLens GetActivityOptions Bool where
@@ -157,8 +157,8 @@ instance AverageWattsLens EffortDetailed (Maybe Double) where
 
 instance BeforeLens GetCurrentActivitiesOptions (Maybe UTCTime) where
   before getCurrentActivitiesOptions =
-    ( getCurrentActivities_before getCurrentActivitiesOptions
-    , \ before' -> getCurrentActivitiesOptions { getCurrentActivities_before = before' }
+    ( getCurrentActivitiesOptions_before getCurrentActivitiesOptions
+    , \ before' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_before = before' }
     )
 
 instance BikesLens AthleteDetailed [GearSummary] where
@@ -811,8 +811,8 @@ instance PageLens GetCommonFriendsOptions Integer where
 
 instance PageLens GetCurrentActivitiesOptions Integer where
   page getCurrentActivitiesOptions =
-    ( getCurrentActivities_page getCurrentActivitiesOptions
-    , \ page' -> getCurrentActivitiesOptions { getCurrentActivities_page = page' }
+    ( getCurrentActivitiesOptions_page getCurrentActivitiesOptions
+    , \ page' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_page = page' }
     )
 
 instance PageLens GetCurrentFollowersOptions Integer where
@@ -825,6 +825,12 @@ instance PageLens GetCurrentFriendsOptions Integer where
   page getCurrentFriendsOptions =
     ( getCurrentFriendsOptions_page getCurrentFriendsOptions
     , \ page' -> getCurrentFriendsOptions { getCurrentFriendsOptions_page = page' }
+    )
+
+instance PageLens GetFeedOptions Integer where
+  page getFeedOptions =
+    ( getFeedOptions_page getFeedOptions
+    , \ page' -> getFeedOptions { getFeedOptions_page = page' }
     )
 
 instance PageLens GetFollowersOptions Integer where
@@ -853,8 +859,8 @@ instance PerPageLens GetCommonFriendsOptions Integer where
 
 instance PerPageLens GetCurrentActivitiesOptions Integer where
   perPage getCurrentActivitiesOptions =
-    ( getCurrentActivities_perPage getCurrentActivitiesOptions
-    , \ perPage' -> getCurrentActivitiesOptions { getCurrentActivities_perPage = perPage' }
+    ( getCurrentActivitiesOptions_perPage getCurrentActivitiesOptions
+    , \ perPage' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_perPage = perPage' }
     )
 
 instance PerPageLens GetCurrentFollowersOptions Integer where
@@ -867,6 +873,12 @@ instance PerPageLens GetCurrentFriendsOptions Integer where
   perPage getCurrentFriendsOptions =
     ( getCurrentFriendsOptions_perPage getCurrentFriendsOptions
     , \ perPage' -> getCurrentFriendsOptions { getCurrentFriendsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetFeedOptions Integer where
+  perPage getFeedOptions =
+    ( getFeedOptions_perPage getFeedOptions
+    , \ perPage' -> getFeedOptions { getFeedOptions_perPage = perPage' }
     )
 
 instance PerPageLens GetFollowersOptions Integer where

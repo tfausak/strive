@@ -248,24 +248,42 @@ instance QueryLike UpdateActivityOptions where
 
 -- | 'Strive.Actions.getCurrentActivities'
 data GetCurrentActivitiesOptions = GetCurrentActivitiesOptions
-  { getCurrentActivities_before  :: Maybe UTCTime
-  , getCurrentActivities_after   :: Maybe UTCTime
-  , getCurrentActivities_page    :: Integer
-  , getCurrentActivities_perPage :: Integer
+  { getCurrentActivitiesOptions_before  :: Maybe UTCTime
+  , getCurrentActivitiesOptions_after   :: Maybe UTCTime
+  , getCurrentActivitiesOptions_page    :: Integer
+  , getCurrentActivitiesOptions_perPage :: Integer
   } deriving Show
 
 instance Default GetCurrentActivitiesOptions where
   def = GetCurrentActivitiesOptions
-    { getCurrentActivities_before = Nothing
-    , getCurrentActivities_after = Nothing
-    , getCurrentActivities_page = 1
-    , getCurrentActivities_perPage = 200
+    { getCurrentActivitiesOptions_before = Nothing
+    , getCurrentActivitiesOptions_after = Nothing
+    , getCurrentActivitiesOptions_page = 1
+    , getCurrentActivitiesOptions_perPage = 200
     }
 
 instance QueryLike GetCurrentActivitiesOptions where
   toQuery options = toQuery
-    [ ("before", fmap (show . utcTimeToPOSIXSeconds) (getCurrentActivities_before options))
-    , ("after", fmap (show . utcTimeToPOSIXSeconds) (getCurrentActivities_after options))
-    , ("page", Just (show (getCurrentActivities_page options)))
-    , ("per_page", Just (show (getCurrentActivities_perPage options)))
+    [ ("before", fmap (show . utcTimeToPOSIXSeconds) (getCurrentActivitiesOptions_before options))
+    , ("after", fmap (show . utcTimeToPOSIXSeconds) (getCurrentActivitiesOptions_after options))
+    , ("page", Just (show (getCurrentActivitiesOptions_page options)))
+    , ("per_page", Just (show (getCurrentActivitiesOptions_perPage options)))
+    ]
+
+-- | 'Strive.Actions.getFeed'
+data GetFeedOptions = GetFeedOptions
+  { getFeedOptions_page    :: Integer
+  , getFeedOptions_perPage :: Integer
+  } deriving Show
+
+instance Default GetFeedOptions where
+  def = GetFeedOptions
+    { getFeedOptions_page = 1
+    , getFeedOptions_perPage = 200
+    }
+
+instance QueryLike GetFeedOptions where
+  toQuery options = toQuery
+    [ ("page", Just (show (getFeedOptions_page options)))
+    , ("per_page", Just (show (getFeedOptions_perPage options)))
     ]

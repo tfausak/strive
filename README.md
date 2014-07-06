@@ -276,6 +276,11 @@ Many of these examples use the same parameters. They are all given here:
 #### [List friends' activities](http://strava.github.io/api/v3/activities/#get-feed)
 
 ~~~ {.haskell}
+  feed <- getFeed client $ with
+    [ set page 1
+    , set perPage 2
+    ]
+  print (feed :: Either String [ActivitySummary])
 ~~~
 
 #### [List activity zones](http://strava.github.io/api/v3/activities/#zones)

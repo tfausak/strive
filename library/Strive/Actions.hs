@@ -158,3 +158,10 @@ getCurrentActivities client options = get client resource query
  where
   resource = "api/v3/athlete/activities"
   query = toQuery options
+
+-- | <http://strava.github.io/api/v3/activities/#get-feed>
+getFeed :: Client -> O.GetFeedOptions -> IO (Either String [T.ActivitySummary])
+getFeed client options = get client resource query
+ where
+  resource = "api/v3/activities/following"
+  query = toQuery options
