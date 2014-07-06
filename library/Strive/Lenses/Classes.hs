@@ -88,6 +88,9 @@ class DescriptionLens a b | a -> b where
 class DistanceLens a b | a -> b where
   distance :: Lens a b
 
+class DistributionBucketsLens a b | a -> b where
+  distributionBuckets :: Lens a b
+
 class ElapsedTimeLens a b | a -> b where
   elapsedTime :: Lens a b
 
@@ -187,6 +190,9 @@ class MapLens a b | a -> b where
 class MaxHeartrateLens a b | a -> b where
   maxHeartrate :: Lens a b
 
+class MaxLens a b | a -> b where
+  max :: Lens a b
+
 class MaxSpeedLens a b | a -> b where
   maxSpeed :: Lens a b
 
@@ -195,6 +201,9 @@ class MaximumGradeLens a b | a -> b where
 
 class MeasurementPreferenceLens a b | a -> b where
   measurementPreference :: Lens a b
+
+class MinLens a b | a -> b where
+  min :: Lens a b
 
 class MovingTimeLens a b | a -> b where
   movingTime :: Lens a b
@@ -247,6 +256,9 @@ class SegmentEffortsLens a b | a -> b where
 class SegmentLens a b | a -> b where
   segment :: Lens a b
 
+class SensorBasedLens a b | a -> b where
+  sensorBased :: Lens a b
+
 class SexLens a b | a -> b where
   sex :: Lens a b
 
@@ -279,6 +291,9 @@ class StateLens a b | a -> b where
 
 class SummaryPolylineLens a b | a -> b where
   summaryPolyline :: Lens a b
+
+class TimeLens a b | a -> b where
+  time :: Lens a b
 
 class TimezoneLens a b | a -> b where
   timezone :: Lens a b

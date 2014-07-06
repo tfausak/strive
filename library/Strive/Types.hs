@@ -370,6 +370,36 @@ instance FromJSON PolylineSummary where
 
   parseJSON _ = empty
 
+-- | <http://strava.github.io/api/v3/activities/#zones>
+data ActivityZoneDetailed = ActivityZoneDetailed
+  { activityZoneDetailed_distributionBuckets :: [ActivityZoneDistributionBucket]
+  , activityZoneDetailed_resourceState       :: Integer
+  , activityZoneDetailed_sensorBased         :: Bool
+  , activityZoneDetailed_type                :: Text
+  } deriving Show
+
+instance FromJSON ActivityZoneDetailed where
+  parseJSON (Object o) = ActivityZoneDetailed
+    <$> o .: "distribution_buckets"
+    <*> o .: "resource_state"
+    <*> o .: "sensor_based"
+    <*> o .: "type"
+  parseJSON _ = empty
+
+-- | <http://strava.github.io/api/v3/activities/#zones>
+data ActivityZoneDistributionBucket = ActivityZoneDistributionBucket
+  { activityZoneDistributionBucket_max  :: Integer
+  , activityZoneDistributionBucket_min  :: Integer
+  , activityZoneDistributionBucket_time :: Integer
+  } deriving Show
+
+instance FromJSON ActivityZoneDistributionBucket where
+  parseJSON (Object o) = ActivityZoneDistributionBucket
+    <$> o .: "max"
+    <*> o .: "min"
+    <*> o .: "time"
+  parseJSON _ = empty
+
 -- * Clubs
 
 -- | <http://strava.github.io/api/v3/clubs/#summary>

@@ -165,3 +165,10 @@ getFeed client options = get client resource query
  where
   resource = "api/v3/activities/following"
   query = toQuery options
+
+-- | <http://strava.github.io/api/v3/activities/#zones>
+getActivityZones :: Client -> Integer -> IO (Either String [T.ActivityZoneDetailed])
+getActivityZones client activityId = get client resource query
+ where
+  resource = "api/v3/activities/" <> show activityId <> "/zones"
+  query = [] :: Query

@@ -100,7 +100,7 @@ main = do
 Many of these examples use the same parameters. They are all given here:
 
 ~~~ {.haskell}
-  let time = UTCTime (fromGregorian 1970 0 0) 0
+  let epoch = UTCTime (fromGregorian 1970 0 0) 0
 ~~~
 
 ### [Authentication](http://strava.github.io/api/v3/oauth/)
@@ -223,7 +223,7 @@ Many of these examples use the same parameters. They are all given here:
 #### [Create an activity](http://strava.github.io/api/v3/activities/#create)
 
 ~~~ {.haskell}
-  createdActivity <- createActivity client "example" "run" time 10 $ with
+  createdActivity <- createActivity client "example" "run" epoch 10 $ with
     [ set description (Just "example")
     , set distance (Just 100.0)
     ]
@@ -265,8 +265,8 @@ Many of these examples use the same parameters. They are all given here:
 
 ~~~ {.haskell}
   currentActivities <- getCurrentActivities client $ with
-    [ set before (Just time)
-    , set after (Just time)
+    [ set before (Just epoch)
+    , set after (Just epoch)
     , set page 1
     , set perPage 2
     ]
@@ -286,6 +286,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [List activity zones](http://strava.github.io/api/v3/activities/#zones)
 
 ~~~ {.haskell}
+  activityZones <- getActivityZones client 141273622
+  print (activityZones :: Either String [ActivityZoneDetailed])
 ~~~
 
 #### [List activity laps](http://strava.github.io/api/v3/activities/#laps)

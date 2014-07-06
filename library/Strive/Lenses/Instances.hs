@@ -335,6 +335,12 @@ instance DistanceLens SegmentSummary Double where
     , \ distance' -> segmentSummary { segmentSummary_distance = distance' }
     )
 
+instance DistributionBucketsLens ActivityZoneDetailed [ActivityZoneDistributionBucket] where
+  distributionBuckets activityZoneDetailed =
+    ( activityZoneDetailed_distributionBuckets activityZoneDetailed
+    , \ distributionBuckets' -> activityZoneDetailed { activityZoneDetailed_distributionBuckets = distributionBuckets' }
+    )
+
 instance ElapsedTimeLens ActivityDetailed Integer where
   elapsedTime activityDetailed =
     ( activityDetailed_elapsedTime activityDetailed
@@ -707,6 +713,12 @@ instance MaxHeartrateLens EffortDetailed (Maybe Integer) where
     , \ maxHeartrate' -> effortDetailed { effortDetailed_maxHeartrate = maxHeartrate' }
     )
 
+instance MaxLens ActivityZoneDistributionBucket Integer where
+  max activityZoneDistributionBucket =
+    ( activityZoneDistributionBucket_max activityZoneDistributionBucket
+    , \ max' -> activityZoneDistributionBucket { activityZoneDistributionBucket_max = max' }
+    )
+
 instance MaxSpeedLens ActivityDetailed Double where
   maxSpeed activityDetailed =
     ( activityDetailed_maxSpeed activityDetailed
@@ -729,6 +741,12 @@ instance MeasurementPreferenceLens AthleteDetailed Text where
   measurementPreference athleteDetailed =
     ( athleteDetailed_measurementPreference athleteDetailed
     , \ measurementPreference' -> athleteDetailed { athleteDetailed_measurementPreference = measurementPreference' }
+    )
+
+instance MinLens ActivityZoneDistributionBucket Integer where
+  min activityZoneDistributionBucket =
+    ( activityZoneDistributionBucket_min activityZoneDistributionBucket
+    , \ min' -> activityZoneDistributionBucket { activityZoneDistributionBucket_min = min' }
     )
 
 instance MovingTimeLens ActivityDetailed Integer where
@@ -1013,6 +1031,12 @@ instance ResourceStateLens ActivitySummary Integer where
     , \ resourceState' -> activitySummary { activitySummary_resourceState = resourceState' }
     )
 
+instance ResourceStateLens ActivityZoneDetailed Integer where
+  resourceState activityZoneDetailed =
+    ( activityZoneDetailed_resourceState activityZoneDetailed
+    , \ resourceState' -> activityZoneDetailed { activityZoneDetailed_resourceState = resourceState' }
+    )
+
 instance ResourceStateLens AthleteDetailed Integer where
   resourceState athleteDetailed =
     ( athleteDetailed_resourceState athleteDetailed
@@ -1077,6 +1101,12 @@ instance SegmentLens EffortDetailed SegmentSummary where
   segment effortDetailed =
     ( effortDetailed_segment effortDetailed
     , \ segment' -> effortDetailed { effortDetailed_segment = segment' }
+    )
+
+instance SensorBasedLens ActivityZoneDetailed Bool where
+  sensorBased activityZoneDetailed =
+    ( activityZoneDetailed_sensorBased activityZoneDetailed
+    , \ sensorBased' -> activityZoneDetailed { activityZoneDetailed_sensorBased = sensorBased' }
     )
 
 instance SexLens AthleteDetailed (Maybe Char) where
@@ -1247,6 +1277,12 @@ instance SummaryPolylineLens PolylineSummary (Maybe [(Double, Double)]) where
     , \ summaryPolyline' -> polylineSummary { polylineSummary_summaryPolyline = summaryPolyline' }
     )
 
+instance TimeLens ActivityZoneDistributionBucket Integer where
+  time activityZoneDistributionBucket =
+    ( activityZoneDistributionBucket_time activityZoneDistributionBucket
+    , \ time' -> activityZoneDistributionBucket { activityZoneDistributionBucket_time = time' }
+    )
+
 instance TimezoneLens ActivityDetailed Text where
   timezone activityDetailed =
     ( activityDetailed_timezone activityDetailed
@@ -1305,6 +1341,12 @@ instance TypeLens ActivitySummary Text where
   type_ activitySummary =
     ( activitySummary_type activitySummary
     , \ type_' -> activitySummary { activitySummary_type = type_' }
+    )
+
+instance TypeLens ActivityZoneDetailed Text where
+  type_ activityZoneDetailed =
+    ( activityZoneDetailed_type activityZoneDetailed
+    , \ type_' -> activityZoneDetailed { activityZoneDetailed_type = type_' }
     )
 
 instance TypeLens UpdateActivityOptions (Maybe String) where
