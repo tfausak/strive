@@ -447,3 +447,24 @@ instance QueryLike GetSegmentLeaderboardOptions where
     , ("page", Just (show (getSegmentLeaderboard_page options)))
     , ("per_page", Just (show (getSegmentLeaderboard_perPage options)))
     ]
+
+-- | 'Strive.Actions.exploreSegments'
+data ExploreSegmentsOptions = ExploreSegmentsOptions
+  { exploreSegmentsOptions_activityType :: String
+  , exploreSegmentsOptions_minCat       :: Integer
+  , exploreSegmentsOptions_maxCat       :: Integer
+  } deriving Show
+
+instance Default ExploreSegmentsOptions where
+  def = ExploreSegmentsOptions
+    { exploreSegmentsOptions_activityType = "riding"
+    , exploreSegmentsOptions_minCat = 0
+    , exploreSegmentsOptions_maxCat = 5
+    }
+
+instance QueryLike ExploreSegmentsOptions where
+  toQuery options = toQuery
+    [ ("activity_type", exploreSegmentsOptions_activityType options)
+    , ("min_cat", show (exploreSegmentsOptions_minCat options))
+    , ("max_cat", show (exploreSegmentsOptions_maxCat options))
+    ]

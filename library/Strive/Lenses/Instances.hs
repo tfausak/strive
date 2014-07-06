@@ -71,6 +71,12 @@ instance ActivityIdLens SegmentLeaderboardEntry Integer where
     , \ activityId' -> segmentLeaderboardEntry { segmentLeaderboardEntry_activityId = activityId' }
     )
 
+instance ActivityTypeLens ExploreSegmentsOptions String where
+  activityType exploreSegmentsOptions =
+    ( exploreSegmentsOptions_activityType exploreSegmentsOptions
+    , \ activityType' -> exploreSegmentsOptions { exploreSegmentsOptions_activityType = activityType' }
+    )
+
 instance ActivityTypeLens SegmentDetailed Text where
   activityType segmentDetailed =
     ( segmentDetailed_activityType segmentDetailed
@@ -269,6 +275,12 @@ instance AverageWattsLens SegmentLeaderboardEntry Double where
     , \ averageWatts' -> segmentLeaderboardEntry { segmentLeaderboardEntry_averageWatts = averageWatts' }
     )
 
+instance AvgGradeLens SegmentExplorerEntry Double where
+  avgGrade segmentExplorerEntry =
+    ( segmentExplorerEntry_avgGrade segmentExplorerEntry
+    , \ avgGrade' -> segmentExplorerEntry { segmentExplorerEntry_avgGrade = avgGrade' }
+    )
+
 instance BeforeLens GetCurrentActivitiesOptions (Maybe UTCTime) where
   before getCurrentActivitiesOptions =
     ( getCurrentActivitiesOptions_before getCurrentActivitiesOptions
@@ -335,10 +347,22 @@ instance CityLens UpdateCurrentAthleteOptions (Maybe String) where
     , \ city' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_city = city' }
     )
 
+instance ClimbCategoryDescLens SegmentExplorerEntry String where
+  climbCategoryDesc segmentExplorerEntry =
+    ( segmentExplorerEntry_climbCategoryDesc segmentExplorerEntry
+    , \ climbCategoryDesc' -> segmentExplorerEntry { segmentExplorerEntry_climbCategoryDesc = climbCategoryDesc' }
+    )
+
 instance ClimbCategoryLens SegmentDetailed Integer where
   climbCategory segmentDetailed =
     ( segmentDetailed_climbCategory segmentDetailed
     , \ climbCategory' -> segmentDetailed { segmentDetailed_climbCategory = climbCategory' }
+    )
+
+instance ClimbCategoryLens SegmentExplorerEntry Integer where
+  climbCategory segmentExplorerEntry =
+    ( segmentExplorerEntry_climbCategory segmentExplorerEntry
+    , \ climbCategory' -> segmentExplorerEntry { segmentExplorerEntry_climbCategory = climbCategory' }
     )
 
 instance ClimbCategoryLens SegmentSummary Integer where
@@ -551,6 +575,12 @@ instance DistanceLens SegmentDetailed Double where
     , \ distance' -> segmentDetailed { segmentDetailed_distance = distance' }
     )
 
+instance DistanceLens SegmentExplorerEntry Double where
+  distance segmentExplorerEntry =
+    ( segmentExplorerEntry_distance segmentExplorerEntry
+    , \ distance' -> segmentExplorerEntry { segmentExplorerEntry_distance = distance' }
+    )
+
 instance DistanceLens SegmentLeaderboardEntry Double where
   distance segmentLeaderboardEntry =
     ( segmentLeaderboardEntry_distance segmentLeaderboardEntry
@@ -615,6 +645,12 @@ instance ElapsedTimeLens SegmentLeaderboardEntry Integer where
   elapsedTime segmentLeaderboardEntry =
     ( segmentLeaderboardEntry_elapsedTime segmentLeaderboardEntry
     , \ elapsedTime' -> segmentLeaderboardEntry { segmentLeaderboardEntry_elapsedTime = elapsedTime' }
+    )
+
+instance ElevDifferenceLens SegmentExplorerEntry Double where
+  elevDifference segmentExplorerEntry =
+    ( segmentExplorerEntry_elevDifference segmentExplorerEntry
+    , \ elevDifference' -> segmentExplorerEntry { segmentExplorerEntry_elevDifference = elevDifference' }
     )
 
 instance ElevationHighLens SegmentDetailed Double where
@@ -689,6 +725,12 @@ instance EndLatlngLens SegmentDetailed ((Double, Double)) where
     , \ endLatlng' -> segmentDetailed { segmentDetailed_endLatlng = endLatlng' }
     )
 
+instance EndLatlngLens SegmentExplorerEntry ((Double, Double)) where
+  endLatlng segmentExplorerEntry =
+    ( segmentExplorerEntry_endLatlng segmentExplorerEntry
+    , \ endLatlng' -> segmentExplorerEntry { segmentExplorerEntry_endLatlng = endLatlng' }
+    )
+
 instance EndLatlngLens SegmentSummary ((Double, Double)) where
   endLatlng segmentSummary =
     ( segmentSummary_endLatlng segmentSummary
@@ -705,6 +747,12 @@ instance EndLongitudeLens SegmentSummary Double where
   endLongitude segmentSummary =
     ( segmentSummary_endLongitude segmentSummary
     , \ endLongitude' -> segmentSummary { segmentSummary_endLongitude = endLongitude' }
+    )
+
+instance EntriesLens SegmentExplorerResponse [SegmentExplorerEntry] where
+  entries segmentExplorerResponse =
+    ( segmentExplorerResponse_entries segmentExplorerResponse
+    , \ entries' -> segmentExplorerResponse { segmentExplorerResponse_entries = entries' }
     )
 
 instance EntriesLens SegmentLeaderboardResponse [SegmentLeaderboardEntry] where
@@ -965,6 +1013,12 @@ instance IdLens SegmentDetailed Integer where
     , \ id' -> segmentDetailed { segmentDetailed_id = id' }
     )
 
+instance IdLens SegmentExplorerEntry Integer where
+  id segmentExplorerEntry =
+    ( segmentExplorerEntry_id segmentExplorerEntry
+    , \ id' -> segmentExplorerEntry { segmentExplorerEntry_id = id' }
+    )
+
 instance IdLens SegmentSummary Integer where
   id segmentSummary =
     ( segmentSummary_id segmentSummary
@@ -1097,6 +1151,12 @@ instance MarkdownLens GetActivityCommentsOptions Bool where
     , \ markdown' -> getActivityCommentsOptions { getActivityCommentsOptions_markdown = markdown' }
     )
 
+instance MaxCatLens ExploreSegmentsOptions Integer where
+  maxCat exploreSegmentsOptions =
+    ( exploreSegmentsOptions_maxCat exploreSegmentsOptions
+    , \ maxCat' -> exploreSegmentsOptions { exploreSegmentsOptions_maxCat = maxCat' }
+    )
+
 instance MaxHeartrateLens EffortDetailed (Maybe Integer) where
   maxHeartrate effortDetailed =
     ( effortDetailed_maxHeartrate effortDetailed
@@ -1149,6 +1209,12 @@ instance MemberCountLens ClubDetailed Integer where
   memberCount clubDetailed =
     ( clubDetailed_memberCount clubDetailed
     , \ memberCount' -> clubDetailed { clubDetailed_memberCount = memberCount' }
+    )
+
+instance MinCatLens ExploreSegmentsOptions Integer where
+  minCat exploreSegmentsOptions =
+    ( exploreSegmentsOptions_minCat exploreSegmentsOptions
+    , \ minCat' -> exploreSegmentsOptions { exploreSegmentsOptions_minCat = minCat' }
     )
 
 instance MinLens ActivityZoneDistributionBucket Integer where
@@ -1251,6 +1317,12 @@ instance NameLens SegmentDetailed Text where
   name segmentDetailed =
     ( segmentDetailed_name segmentDetailed
     , \ name' -> segmentDetailed { segmentDetailed_name = name' }
+    )
+
+instance NameLens SegmentExplorerEntry Text where
+  name segmentExplorerEntry =
+    ( segmentExplorerEntry_name segmentExplorerEntry
+    , \ name' -> segmentExplorerEntry { segmentExplorerEntry_name = name' }
     )
 
 instance NameLens SegmentSummary Text where
@@ -1455,6 +1527,12 @@ instance PhotoCountLens ActivitySummary Integer where
   photoCount activitySummary =
     ( activitySummary_photoCount activitySummary
     , \ photoCount' -> activitySummary { activitySummary_photoCount = photoCount' }
+    )
+
+instance PointsLens SegmentExplorerEntry Text where
+  points segmentExplorerEntry =
+    ( segmentExplorerEntry_points segmentExplorerEntry
+    , \ points' -> segmentExplorerEntry { segmentExplorerEntry_points = points' }
     )
 
 instance PolylineLens PolylineDetailed ([(Double, Double)]) where
@@ -1703,6 +1781,12 @@ instance ResourceStateLens SegmentDetailed Integer where
     , \ resourceState' -> segmentDetailed { segmentDetailed_resourceState = resourceState' }
     )
 
+instance ResourceStateLens SegmentExplorerEntry Integer where
+  resourceState segmentExplorerEntry =
+    ( segmentExplorerEntry_resourceState segmentExplorerEntry
+    , \ resourceState' -> segmentExplorerEntry { segmentExplorerEntry_resourceState = resourceState' }
+    )
+
 instance ResourceStateLens SegmentSummary Integer where
   resourceState segmentSummary =
     ( segmentSummary_resourceState segmentSummary
@@ -1767,6 +1851,12 @@ instance StarredLens SegmentDetailed Bool where
   starred segmentDetailed =
     ( segmentDetailed_starred segmentDetailed
     , \ starred' -> segmentDetailed { segmentDetailed_starred = starred' }
+    )
+
+instance StarredLens SegmentExplorerEntry Bool where
+  starred segmentExplorerEntry =
+    ( segmentExplorerEntry_starred segmentExplorerEntry
+    , \ starred' -> segmentExplorerEntry { segmentExplorerEntry_starred = starred' }
     )
 
 instance StarredLens SegmentSummary Bool where
@@ -1887,6 +1977,12 @@ instance StartLatlngLens SegmentDetailed ((Double, Double)) where
   startLatlng segmentDetailed =
     ( segmentDetailed_startLatlng segmentDetailed
     , \ startLatlng' -> segmentDetailed { segmentDetailed_startLatlng = startLatlng' }
+    )
+
+instance StartLatlngLens SegmentExplorerEntry ((Double, Double)) where
+  startLatlng segmentExplorerEntry =
+    ( segmentExplorerEntry_startLatlng segmentExplorerEntry
+    , \ startLatlng' -> segmentExplorerEntry { segmentExplorerEntry_startLatlng = startLatlng' }
     )
 
 instance StartLatlngLens SegmentSummary ((Double, Double)) where

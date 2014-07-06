@@ -64,6 +64,9 @@ class AverageSpeedLens a b | a -> b where
 class AverageWattsLens a b | a -> b where
   averageWatts :: Lens a b
 
+class AvgGradeLens a b | a -> b where
+  avgGrade :: Lens a b
+
 class BeforeLens a b | a -> b where
   before :: Lens a b
 
@@ -81,6 +84,9 @@ class CaptionLens a b | a -> b where
 
 class CityLens a b | a -> b where
   city :: Lens a b
+
+class ClimbCategoryDescLens a b | a -> b where
+  climbCategoryDesc :: Lens a b
 
 class ClimbCategoryLens a b | a -> b where
   climbCategory :: Lens a b
@@ -129,6 +135,9 @@ class EffortIdLens a b | a -> b where
 
 class ElapsedTimeLens a b | a -> b where
   elapsedTime :: Lens a b
+
+class ElevDifferenceLens a b | a -> b where
+  elevDifference :: Lens a b
 
 class ElevationHighLens a b | a -> b where
   elevationHigh :: Lens a b
@@ -250,6 +259,9 @@ class MapLens a b | a -> b where
 class MarkdownLens a b | a -> b where
   markdown :: Lens a b
 
+class MaxCatLens a b | a -> b where
+  maxCat :: Lens a b
+
 class MaxHeartrateLens a b | a -> b where
   maxHeartrate :: Lens a b
 
@@ -267,6 +279,9 @@ class MeasurementPreferenceLens a b | a -> b where
 
 class MemberCountLens a b | a -> b where
   memberCount :: Lens a b
+
+class MinCatLens a b | a -> b where
+  minCat :: Lens a b
 
 class MinLens a b | a -> b where
   min :: Lens a b
@@ -291,6 +306,9 @@ class PerPageLens a b | a -> b where
 
 class PhotoCountLens a b | a -> b where
   photoCount :: Lens a b
+
+class PointsLens a b | a -> b where
+  points :: Lens a b
 
 class PolylineLens a b | a -> b where
   polyline :: Lens a b

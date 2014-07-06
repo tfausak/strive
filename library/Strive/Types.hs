@@ -762,6 +762,48 @@ instance FromJSON SegmentLeaderboardEntry where
     <*> o .: "start_date_local"
   parseJSON _ = empty
 
+-- | <http://strava.github.io/api/v3/segments/#explore>
+data SegmentExplorerResponse = SegmentExplorerResponse
+  { segmentExplorerResponse_entries :: [SegmentExplorerEntry]
+  } deriving Show
+
+instance FromJSON SegmentExplorerResponse where
+  parseJSON (Object o) = SegmentExplorerResponse
+    <$> o .: "entries"
+  parseJSON _ = empty
+
+-- | <http://strava.github.io/api/v3/segments/#explore>
+data SegmentExplorerEntry = SegmentExplorerEntry
+  { segmentExplorerEntry_avgGrade          :: Double
+  , segmentExplorerEntry_climbCategory     :: Integer
+  , segmentExplorerEntry_climbCategoryDesc :: String
+  , segmentExplorerEntry_distance          :: Double
+  , segmentExplorerEntry_elevDifference    :: Double
+  , segmentExplorerEntry_endLatlng         :: (Double, Double)
+  , segmentExplorerEntry_id                :: Integer
+  , segmentExplorerEntry_name              :: Text
+  , segmentExplorerEntry_points            :: Text
+  , segmentExplorerEntry_resourceState     :: Integer
+  , segmentExplorerEntry_starred           :: Bool
+  , segmentExplorerEntry_startLatlng       :: (Double, Double)
+  } deriving Show
+
+instance FromJSON SegmentExplorerEntry where
+  parseJSON (Object o) = SegmentExplorerEntry
+    <$> o .: "avg_grade"
+    <*> o .: "climb_category"
+    <*> o .: "climb_category_desc"
+    <*> o .: "distance"
+    <*> o .: "elev_difference"
+    <*> o .: "end_latlng"
+    <*> o .: "id"
+    <*> o .: "name"
+    <*> o .: "points"
+    <*> o .: "resource_state"
+    <*> o .: "starred"
+    <*> o .: "start_latlng"
+  parseJSON _ = empty
+
 -- * Segment Efforts
 
 -- | <http://strava.github.io/api/v3/efforts/#detailed>

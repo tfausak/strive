@@ -410,7 +410,7 @@ Many of these examples use the same parameters. They are all given here:
 #### [Segment leaderboard](http://strava.github.io/api/v3/segments/#leaderboard)
 
 ~~~ {.haskell}
-  segmentLeaderboard <- getSegmentLeaderboard client 4773104 $ with
+  segmentLeaderboardResponse <- getSegmentLeaderboard client 4773104 $ with
     [ set gender (Just 'F')
     , set ageGroup (Just "0_24")
     , set weightClass (Just "0_54")
@@ -420,12 +420,18 @@ Many of these examples use the same parameters. They are all given here:
     , set page 1
     , set perPage 2
     ]
-  print (segmentLeaderboard :: Either String SegmentLeaderboardResponse)
+  print (segmentLeaderboardResponse :: Either String SegmentLeaderboardResponse)
 ~~~
 
 #### [Segment explorer](http://strava.github.io/api/v3/segments/#explore)
 
 ~~~ {.haskell}
+  segmentExplorerResponse <- exploreSegments client (32.0, -96.0, 33.0, -95.0) $ with
+    [ set activityType "riding"
+    , set minCat 0
+    , set maxCat 5
+    ]
+  print (segmentExplorerResponse :: Either String SegmentExplorerResponse)
 ~~~
 
 ### [Segment efforts](http://strava.github.io/api/v3/efforts/)

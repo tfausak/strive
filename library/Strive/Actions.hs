@@ -5,6 +5,7 @@ import Data.Aeson (Value, encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
+import Data.List (intercalate)
 import Data.Monoid ((<>))
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Types (Query, renderQuery, toQuery)
@@ -275,3 +276,12 @@ getSegmentLeaderboard client segmentId options = get client resource query
  where
   resource = "api/v3/segments/" <> show segmentId <> "/leaderboard"
   query = toQuery options
+
+-- | <http://strava.github.io/api/v3/segments/#explore>
+exploreSegments :: Client -> (Double, Double, Double, Double) -> O.ExploreSegmentsOptions -> IO (Either String T.SegmentExplorerResponse)
+exploreSegments client (south, west, north, east) options = get client resource query
+ where
+  resource = "api/v3/segments/explore"
+  query = toQuery
+    [ ("bounds", intercalate "," (fmap show [south, west, north, east]))
+    ] <> toQuery options
