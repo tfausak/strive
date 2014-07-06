@@ -425,6 +425,12 @@ instance PageLens GetCurrentFriendsOptions Integer where
     , \ page' -> getCurrentFriendsOptions { getCurrentFriendsOptions_page = page' }
     )
 
+instance PageLens GetFollowersOptions Integer where
+  page getFollowersOptions =
+    ( getFollowersOptions_page getFollowersOptions
+    , \ page' -> getFollowersOptions { getFollowersOptions_page = page' }
+    )
+
 instance PageLens GetFriendsOptions Integer where
   page getFriendsOptions =
     ( getFriendsOptions_page getFriendsOptions
@@ -447,6 +453,12 @@ instance PerPageLens GetCurrentFriendsOptions Integer where
   perPage getCurrentFriendsOptions =
     ( getCurrentFriendsOptions_perPage getCurrentFriendsOptions
     , \ perPage' -> getCurrentFriendsOptions { getCurrentFriendsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetFollowersOptions Integer where
+  perPage getFollowersOptions =
+    ( getFollowersOptions_perPage getFollowersOptions
+    , \ perPage' -> getFollowersOptions { getFollowersOptions_perPage = perPage' }
     )
 
 instance PerPageLens GetFriendsOptions Integer where
