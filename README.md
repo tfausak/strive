@@ -439,6 +439,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [Retrieve a segment effort](http://strava.github.io/api/v3/efforts/#retrieve)
 
 ~~~ {.haskell}
+  segmentEffort <- getSegmentEffort client 1595370098
+  print (segmentEffort :: Either String EffortDetailed)
 ~~~
 
 ### [Streams](http://strava.github.io/api/v3/streams/)

@@ -285,3 +285,12 @@ exploreSegments client (south, west, north, east) options = get client resource 
   query = toQuery
     [ ("bounds", intercalate "," (fmap show [south, west, north, east]))
     ] <> toQuery options
+
+-- * Segment Efforts
+
+-- | <http://strava.github.io/api/v3/efforts/#retrieve>
+getSegmentEffort :: Client -> Integer -> IO (Either String T.EffortDetailed)
+getSegmentEffort client effortId = get client resource query
+ where
+  resource = "api/v3/segment_efforts/" <> show effortId
+  query = [] :: Query
