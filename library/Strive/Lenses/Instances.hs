@@ -209,6 +209,12 @@ instance BikesLens AthleteDetailed [GearSummary] where
     , \ bikes' -> athleteDetailed { athleteDetailed_bikes = bikes' }
     )
 
+instance BrandNameLens GearDetailed Text where
+  brandName gearDetailed =
+    ( gearDetailed_brandName gearDetailed
+    , \ brandName' -> gearDetailed { gearDetailed_brandName = brandName' }
+    )
+
 instance CaloriesLens ActivityDetailed Double where
   calories activityDetailed =
     ( activityDetailed_calories activityDetailed
@@ -377,6 +383,12 @@ instance DescriptionLens CreateActivityOptions (Maybe String) where
     , \ description' -> createActivityOptions { createActivityOptions_description = description' }
     )
 
+instance DescriptionLens GearDetailed Text where
+  description gearDetailed =
+    ( gearDetailed_description gearDetailed
+    , \ description' -> gearDetailed { gearDetailed_description = description' }
+    )
+
 instance DescriptionLens UpdateActivityOptions (Maybe String) where
   description updateActivityOptions =
     ( updateActivityOptions_description updateActivityOptions
@@ -411,6 +423,12 @@ instance DistanceLens EffortDetailed Double where
   distance effortDetailed =
     ( effortDetailed_distance effortDetailed
     , \ distance' -> effortDetailed { effortDetailed_distance = distance' }
+    )
+
+instance DistanceLens GearDetailed Double where
+  distance gearDetailed =
+    ( gearDetailed_distance gearDetailed
+    , \ distance' -> gearDetailed { gearDetailed_distance = distance' }
     )
 
 instance DistanceLens GearSummary Double where
@@ -569,6 +587,12 @@ instance FollowerLens AthleteSummary (Maybe Text) where
     , \ follower' -> athleteSummary { athleteSummary_follower = follower' }
     )
 
+instance FrameTypeLens GearDetailed (Maybe Integer) where
+  frameType gearDetailed =
+    ( gearDetailed_frameType gearDetailed
+    , \ frameType' -> gearDetailed { gearDetailed_frameType = frameType' }
+    )
+
 instance FriendCountLens AthleteDetailed Integer where
   friendCount athleteDetailed =
     ( athleteDetailed_friendCount athleteDetailed
@@ -699,6 +723,12 @@ instance IdLens EffortDetailed Integer where
   id effortDetailed =
     ( effortDetailed_id effortDetailed
     , \ id' -> effortDetailed { effortDetailed_id = id' }
+    )
+
+instance IdLens GearDetailed Text where
+  id gearDetailed =
+    ( gearDetailed_id gearDetailed
+    , \ id' -> gearDetailed { gearDetailed_id = id' }
     )
 
 instance IdLens GearSummary Text where
@@ -905,6 +935,12 @@ instance MinLens ActivityZoneDistributionBucket Integer where
     , \ min' -> activityZoneDistributionBucket { activityZoneDistributionBucket_min = min' }
     )
 
+instance ModelNameLens GearDetailed Text where
+  modelName gearDetailed =
+    ( gearDetailed_modelName gearDetailed
+    , \ modelName' -> gearDetailed { gearDetailed_modelName = modelName' }
+    )
+
 instance MovingTimeLens ActivityDetailed Integer where
   movingTime activityDetailed =
     ( activityDetailed_movingTime activityDetailed
@@ -969,6 +1005,12 @@ instance NameLens EffortDetailed Text where
   name effortDetailed =
     ( effortDetailed_name effortDetailed
     , \ name' -> effortDetailed { effortDetailed_name = name' }
+    )
+
+instance NameLens GearDetailed Text where
+  name gearDetailed =
+    ( gearDetailed_name gearDetailed
+    , \ name' -> gearDetailed { gearDetailed_name = name' }
     )
 
 instance NameLens GearSummary Text where
@@ -1169,6 +1211,12 @@ instance PremiumLens AthleteSummary Bool where
     , \ premium' -> athleteSummary { athleteSummary_premium = premium' }
     )
 
+instance PrimaryLens GearDetailed Bool where
+  primary gearDetailed =
+    ( gearDetailed_primary gearDetailed
+    , \ primary' -> gearDetailed { gearDetailed_primary = primary' }
+    )
+
 instance PrimaryLens GearSummary Bool where
   primary gearSummary =
     ( gearSummary_primary gearSummary
@@ -1329,6 +1377,12 @@ instance ResourceStateLens EffortDetailed Integer where
   resourceState effortDetailed =
     ( effortDetailed_resourceState effortDetailed
     , \ resourceState' -> effortDetailed { effortDetailed_resourceState = resourceState' }
+    )
+
+instance ResourceStateLens GearDetailed Integer where
+  resourceState gearDetailed =
+    ( gearDetailed_resourceState gearDetailed
+    , \ resourceState' -> gearDetailed { gearDetailed_resourceState = resourceState' }
     )
 
 instance ResourceStateLens GearSummary Integer where

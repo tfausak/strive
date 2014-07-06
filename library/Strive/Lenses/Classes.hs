@@ -55,6 +55,9 @@ class BeforeLens a b | a -> b where
 class BikesLens a b | a -> b where
   bikes :: Lens a b
 
+class BrandNameLens a b | a -> b where
+  brandName :: Lens a b
+
 class CaloriesLens a b | a -> b where
   calories :: Lens a b
 
@@ -135,6 +138,9 @@ class FollowerCountLens a b | a -> b where
 
 class FollowerLens a b | a -> b where
   follower :: Lens a b
+
+class FrameTypeLens a b | a -> b where
+  frameType :: Lens a b
 
 class FriendCountLens a b | a -> b where
   friendCount :: Lens a b
@@ -222,6 +228,9 @@ class MemberCountLens a b | a -> b where
 
 class MinLens a b | a -> b where
   min :: Lens a b
+
+class ModelNameLens a b | a -> b where
+  modelName :: Lens a b
 
 class MovingTimeLens a b | a -> b where
   movingTime :: Lens a b

@@ -372,6 +372,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [Retrieve gear](http://strava.github.io/api/v3/gear/#show)
 
 ~~~ {.haskell}
+  theGear <- getGear client "b387855"
+  print (theGear :: Either String GearDetailed)
 ~~~
 
 ### [Segments](http://strava.github.io/api/v3/segments/)
