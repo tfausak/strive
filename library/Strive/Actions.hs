@@ -1,7 +1,7 @@
 -- | Functions for performing actions against the API.
 module Strive.Actions where
 
-import Data.Aeson (encode)
+import Data.Aeson (Value, encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
@@ -9,7 +9,7 @@ import Data.Monoid ((<>))
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Types (Query, renderQuery, toQuery)
 import Strive.Client (Client, buildClient)
-import Strive.Internal.HTTP (get, post, put)
+import Strive.Internal.HTTP (delete, get, post, put)
 import qualified Strive.Options as O
 import qualified Strive.Types as T
 
@@ -144,3 +144,10 @@ updateActivity client activityId options = put client resource query
  where
   resource = "api/v3/activities/" <> show activityId
   query = toQuery options
+
+-- | <http://strava.github.io/api/v3/activities/#delete>
+deleteActivity :: Client -> Integer -> IO (Either String Value)
+deleteActivity client activityId = delete client resource query
+ where
+  resource = "api/v3/activities/" <> show activityId
+  query = [] :: Query

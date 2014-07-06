@@ -84,6 +84,7 @@ get accessToken (set accessToken "..." client)
 
 <!--
 ~~~ {.haskell}
+import Data.Aeson (Value)
 import Data.Time.Calendar (fromGregorian)
 import Data.Time.Clock (UTCTime (UTCTime))
 import Strive
@@ -256,6 +257,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [Delete an activity](http://strava.github.io/api/v3/activities/#delete)
 
 ~~~ {.haskell}
+  nothing <- deleteActivity client 141273622
+  print (nothing :: Either String Value)
 ~~~
 
 #### [List athlete activities](http://strava.github.io/api/v3/activities/#get-activities)
