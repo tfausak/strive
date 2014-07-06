@@ -206,3 +206,12 @@ getActivityPhotos client activityId = get client resource query
   where
     resource = "api/v3/activities/" <> show activityId <> "/photos"
     query = [] :: Query
+
+-- * Clubs
+
+-- | <http://strava.github.io/api/v3/clubs/#get-details>
+getClub :: Client -> Integer -> IO (Either String T.ClubDetailed)
+getClub client clubId = get client resource query
+ where
+  resource = "api/v3/clubs/" <> show clubId
+  query = [] :: Query

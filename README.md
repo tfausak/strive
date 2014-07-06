@@ -336,6 +336,8 @@ Many of these examples use the same parameters. They are all given here:
 #### [Retrieve a club](http://strava.github.io/api/v3/clubs/#get-details)
 
 ~~~ {.haskell}
+  club <- getClub client 11193
+  print (club :: Either String ClubDetailed)
 ~~~
 
 #### [List athlete clubs](http://strava.github.io/api/v3/clubs/#get-athletes)

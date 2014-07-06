@@ -233,6 +233,12 @@ instance CityLens AthleteSummary (Maybe Text) where
     , \ city' -> athleteSummary { athleteSummary_city = city' }
     )
 
+instance CityLens ClubDetailed Text where
+  city clubDetailed =
+    ( clubDetailed_city clubDetailed
+    , \ city' -> clubDetailed { clubDetailed_city = city' }
+    )
+
 instance CityLens SegmentSummary Text where
   city segmentSummary =
     ( segmentSummary_city segmentSummary
@@ -249,6 +255,12 @@ instance ClimbCategoryLens SegmentSummary Integer where
   climbCategory segmentSummary =
     ( segmentSummary_climbCategory segmentSummary
     , \ climbCategory' -> segmentSummary { segmentSummary_climbCategory = climbCategory' }
+    )
+
+instance ClubTypeLens ClubDetailed Text where
+  clubType clubDetailed =
+    ( clubDetailed_clubType clubDetailed
+    , \ clubType' -> clubDetailed { clubDetailed_clubType = clubType' }
     )
 
 instance ClubsLens AthleteDetailed [ClubSummary] where
@@ -299,6 +311,12 @@ instance CountryLens AthleteSummary (Maybe Text) where
     , \ country' -> athleteSummary { athleteSummary_country = country' }
     )
 
+instance CountryLens ClubDetailed Text where
+  country clubDetailed =
+    ( clubDetailed_country clubDetailed
+    , \ country' -> clubDetailed { clubDetailed_country = country' }
+    )
+
 instance CountryLens SegmentSummary Text where
   country segmentSummary =
     ( segmentSummary_country segmentSummary
@@ -345,6 +363,12 @@ instance DescriptionLens ActivityDetailed Text where
   description activityDetailed =
     ( activityDetailed_description activityDetailed
     , \ description' -> activityDetailed { activityDetailed_description = description' }
+    )
+
+instance DescriptionLens ClubDetailed Text where
+  description clubDetailed =
+    ( clubDetailed_description clubDetailed
+    , \ description' -> clubDetailed { clubDetailed_description = description' }
     )
 
 instance DescriptionLens CreateActivityOptions (Maybe String) where
@@ -653,6 +677,12 @@ instance IdLens AthleteSummary Integer where
     , \ id' -> athleteSummary { athleteSummary_id = id' }
     )
 
+instance IdLens ClubDetailed Integer where
+  id clubDetailed =
+    ( clubDetailed_id clubDetailed
+    , \ id' -> clubDetailed { clubDetailed_id = id' }
+    )
+
 instance IdLens ClubSummary Integer where
   id clubSummary =
     ( clubSummary_id clubSummary
@@ -863,6 +893,12 @@ instance MeasurementPreferenceLens AthleteDetailed Text where
     , \ measurementPreference' -> athleteDetailed { athleteDetailed_measurementPreference = measurementPreference' }
     )
 
+instance MemberCountLens ClubDetailed Integer where
+  memberCount clubDetailed =
+    ( clubDetailed_memberCount clubDetailed
+    , \ memberCount' -> clubDetailed { clubDetailed_memberCount = memberCount' }
+    )
+
 instance MinLens ActivityZoneDistributionBucket Integer where
   min activityZoneDistributionBucket =
     ( activityZoneDistributionBucket_min activityZoneDistributionBucket
@@ -915,6 +951,12 @@ instance NameLens ActivitySummary Text where
   name activitySummary =
     ( activitySummary_name activitySummary
     , \ name' -> activitySummary { activitySummary_name = name' }
+    )
+
+instance NameLens ClubDetailed Text where
+  name clubDetailed =
+    ( clubDetailed_name clubDetailed
+    , \ name' -> clubDetailed { clubDetailed_name = name' }
     )
 
 instance NameLens ClubSummary Text where
@@ -1121,6 +1163,12 @@ instance PrivateLens ActivitySummary Bool where
     , \ private' -> activitySummary { activitySummary_private = private' }
     )
 
+instance PrivateLens ClubDetailed Bool where
+  private clubDetailed =
+    ( clubDetailed_private clubDetailed
+    , \ private' -> clubDetailed { clubDetailed_private = private' }
+    )
+
 instance PrivateLens SegmentSummary Bool where
   private segmentSummary =
     ( segmentSummary_private segmentSummary
@@ -1151,6 +1199,12 @@ instance ProfileLens AthleteSummary Text where
     , \ profile' -> athleteSummary { athleteSummary_profile = profile' }
     )
 
+instance ProfileLens ClubDetailed Text where
+  profile clubDetailed =
+    ( clubDetailed_profile clubDetailed
+    , \ profile' -> clubDetailed { clubDetailed_profile = profile' }
+    )
+
 instance ProfileLens ClubSummary Text where
   profile clubSummary =
     ( clubSummary_profile clubSummary
@@ -1167,6 +1221,12 @@ instance ProfileMediumLens AthleteSummary Text where
   profileMedium athleteSummary =
     ( athleteSummary_profileMedium athleteSummary
     , \ profileMedium' -> athleteSummary { athleteSummary_profileMedium = profileMedium' }
+    )
+
+instance ProfileMediumLens ClubDetailed Text where
+  profileMedium clubDetailed =
+    ( clubDetailed_profileMedium clubDetailed
+    , \ profileMedium' -> clubDetailed { clubDetailed_profileMedium = profileMedium' }
     )
 
 instance ProfileMediumLens ClubSummary Text where
@@ -1221,6 +1281,12 @@ instance ResourceStateLens AthleteSummary Integer where
   resourceState athleteSummary =
     ( athleteSummary_resourceState athleteSummary
     , \ resourceState' -> athleteSummary { athleteSummary_resourceState = resourceState' }
+    )
+
+instance ResourceStateLens ClubDetailed Integer where
+  resourceState clubDetailed =
+    ( clubDetailed_resourceState clubDetailed
+    , \ resourceState' -> clubDetailed { clubDetailed_resourceState = resourceState' }
     )
 
 instance ResourceStateLens ClubSummary Integer where
@@ -1311,6 +1377,12 @@ instance ShoesLens AthleteDetailed [GearSummary] where
   shoes athleteDetailed =
     ( athleteDetailed_shoes athleteDetailed
     , \ shoes' -> athleteDetailed { athleteDetailed_shoes = shoes' }
+    )
+
+instance SportTypeLens ClubDetailed Text where
+  sportType clubDetailed =
+    ( clubDetailed_sportType clubDetailed
+    , \ sportType' -> clubDetailed { clubDetailed_sportType = sportType' }
     )
 
 instance StarredLens SegmentSummary Bool where
@@ -1449,6 +1521,12 @@ instance StateLens BuildAuthorizeUrlOptions String where
   state buildAuthorizeUrlOptions =
     ( buildAuthorizeUrlOptions_state buildAuthorizeUrlOptions
     , \ state' -> buildAuthorizeUrlOptions { buildAuthorizeUrlOptions_state = state' }
+    )
+
+instance StateLens ClubDetailed Text where
+  state clubDetailed =
+    ( clubDetailed_state clubDetailed
+    , \ state' -> clubDetailed { clubDetailed_state = state' }
     )
 
 instance StateLens SegmentSummary Text where

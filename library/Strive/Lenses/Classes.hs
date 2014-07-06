@@ -67,6 +67,9 @@ class CityLens a b | a -> b where
 class ClimbCategoryLens a b | a -> b where
   climbCategory :: Lens a b
 
+class ClubTypeLens a b | a -> b where
+  clubType :: Lens a b
+
 class ClubsLens a b | a -> b where
   clubs :: Lens a b
 
@@ -214,6 +217,9 @@ class MaximumGradeLens a b | a -> b where
 class MeasurementPreferenceLens a b | a -> b where
   measurementPreference :: Lens a b
 
+class MemberCountLens a b | a -> b where
+  memberCount :: Lens a b
+
 class MinLens a b | a -> b where
   min :: Lens a b
 
@@ -279,6 +285,9 @@ class SexLens a b | a -> b where
 
 class ShoesLens a b | a -> b where
   shoes :: Lens a b
+
+class SportTypeLens a b | a -> b where
+  sportType :: Lens a b
 
 class StarredLens a b | a -> b where
   starred :: Lens a b
