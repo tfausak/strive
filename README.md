@@ -350,6 +350,11 @@ Many of these examples use the same parameters. They are all given here:
 #### [List club members](http://strava.github.io/api/v3/clubs/#get-members)
 
 ~~~ {.haskell}
+  clubMembers <- getClubMembers client 11193 $ with
+    [ set page 1
+    , set perPage 2
+    ]
+  print (clubMembers :: Either String [AthleteSummary])
 ~~~
 
 #### [List club activities](http://strava.github.io/api/v3/clubs/#get-activities)
