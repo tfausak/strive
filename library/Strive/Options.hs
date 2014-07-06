@@ -9,7 +9,7 @@ import Network.HTTP.Types.QueryLike (QueryLike, toQuery)
 
 -- * Authentication
 
--- | Options for 'Strive.Actions.buildAuthorizeUrl'.
+-- | 'Strive.Actions.buildAuthorizeUrl'.
 data BuildAuthorizeUrlOptions = BuildAuthorizeUrlOptions
   { buildAuthorizeUrlOptions_approvalPrompt :: Bool
   , buildAuthorizeUrlOptions_privateScope   :: Bool
@@ -39,7 +39,7 @@ instance QueryLike BuildAuthorizeUrlOptions where
 
 -- * Athletes
 
--- | Options for 'Strive.Actions.updateCurrentAthlete'.
+-- | 'Strive.Actions.updateCurrentAthlete'.
 data UpdateCurrentAthleteOptions = UpdateCurrentAthleteOptions
   { updateCurrentAthleteOptions_city    :: Maybe String
   , updateCurrentAthleteOptions_state   :: Maybe String
@@ -66,7 +66,7 @@ instance QueryLike UpdateCurrentAthleteOptions where
     , ("weight", fmap show (updateCurrentAthleteOptions_weight options))
     ]
 
--- | Options for 'Strive.Actions.getAthleteCrs'.
+-- | 'Strive.Actions.getAthleteCrs'.
 data GetAthleteCrsOptions = GetAthleteCrsOptions
   { getAthleteCrsOptions_page    :: Integer
   , getAthleteCrsOptions_perPage :: Integer
@@ -82,4 +82,24 @@ instance QueryLike GetAthleteCrsOptions where
   toQuery options = toQuery
     [ ("page", show (getAthleteCrsOptions_page options))
     , ("per_page", show (getAthleteCrsOptions_perPage options))
+    ]
+
+-- * Friends and Followers
+
+-- | 'Strive.Actions.getCurrentFriends'
+data GetCurrentFriendsOptions = GetCurrentFriendsOptions
+  { getCurrentFriendsOptions_page    :: Integer
+  , getCurrentFriendsOptions_perPage :: Integer
+  } deriving Show
+
+instance Default GetCurrentFriendsOptions where
+  def = GetCurrentFriendsOptions
+    { getCurrentFriendsOptions_page = 1
+    , getCurrentFriendsOptions_perPage = 200
+    }
+
+instance QueryLike GetCurrentFriendsOptions where
+  toQuery options = toQuery
+    [ ("page", show (getCurrentFriendsOptions_page options))
+    , ("per_page", show (getCurrentFriendsOptions_perPage options))
     ]

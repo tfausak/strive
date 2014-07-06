@@ -413,10 +413,22 @@ instance PageLens GetAthleteCrsOptions Integer where
     , \ page' -> getAthleteCrsOptions { getAthleteCrsOptions_page = page' }
     )
 
+instance PageLens GetCurrentFriendsOptions Integer where
+  page getCurrentFriendsOptions =
+    ( getCurrentFriendsOptions_page getCurrentFriendsOptions
+    , \ page' -> getCurrentFriendsOptions { getCurrentFriendsOptions_page = page' }
+    )
+
 instance PerPageLens GetAthleteCrsOptions Integer where
   perPage getAthleteCrsOptions =
     ( getAthleteCrsOptions_perPage getAthleteCrsOptions
     , \ perPage' -> getAthleteCrsOptions { getAthleteCrsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetCurrentFriendsOptions Integer where
+  perPage getCurrentFriendsOptions =
+    ( getCurrentFriendsOptions_perPage getCurrentFriendsOptions
+    , \ perPage' -> getCurrentFriendsOptions { getCurrentFriendsOptions_perPage = perPage' }
     )
 
 instance PrRankLens EffortDetailed (Maybe Integer) where
