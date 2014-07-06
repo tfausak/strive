@@ -315,6 +315,11 @@ Many of these examples use the same parameters. They are all given here:
 #### [List activity kudoers](http://strava.github.io/api/v3/kudos/#list)
 
 ~~~ {.haskell}
+  activityKudoers <- getActivityKudoers client 141273622 $ with
+    [ set page 1
+    , set perPage 2
+    ]
+  print (activityKudoers :: Either String [AthleteSummary])
 ~~~
 
 ### [Photos](http://strava.github.io/api/v3/photos/)

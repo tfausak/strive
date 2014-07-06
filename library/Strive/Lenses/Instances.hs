@@ -923,6 +923,12 @@ instance PageLens GetActivityCommentsOptions Integer where
     , \ page' -> getActivityCommentsOptions { getActivityCommentsOptions_page = page' }
     )
 
+instance PageLens GetActivityKudoersOptions Integer where
+  page getActivityKudoersOptions =
+    ( getActivityKudoersOptions_page getActivityKudoersOptions
+    , \ page' -> getActivityKudoersOptions { getActivityKudoersOptions_page = page' }
+    )
+
 instance PageLens GetAthleteCrsOptions Integer where
   page getAthleteCrsOptions =
     ( getAthleteCrsOptions_page getAthleteCrsOptions
@@ -975,6 +981,12 @@ instance PerPageLens GetActivityCommentsOptions Integer where
   perPage getActivityCommentsOptions =
     ( getActivityCommentsOptions_perPage getActivityCommentsOptions
     , \ perPage' -> getActivityCommentsOptions { getActivityCommentsOptions_perPage = perPage' }
+    )
+
+instance PerPageLens GetActivityKudoersOptions Integer where
+  perPage getActivityKudoersOptions =
+    ( getActivityKudoersOptions_perPage getActivityKudoersOptions
+    , \ perPage' -> getActivityKudoersOptions { getActivityKudoersOptions_perPage = perPage' }
     )
 
 instance PerPageLens GetAthleteCrsOptions Integer where

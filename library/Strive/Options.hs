@@ -310,3 +310,23 @@ instance QueryLike GetActivityCommentsOptions where
     , ("page", show (getActivityCommentsOptions_page options))
     , ("per_page", show (getActivityCommentsOptions_perPage options))
     ]
+
+-- * Kudos
+
+-- | 'Strive.Actions.getActivityKudoers'
+data GetActivityKudoersOptions = GetActivityKudoersOptions
+  { getActivityKudoersOptions_page    :: Integer
+  , getActivityKudoersOptions_perPage :: Integer
+  } deriving Show
+
+instance Default GetActivityKudoersOptions where
+  def = GetActivityKudoersOptions
+    { getActivityKudoersOptions_page = 1
+    , getActivityKudoersOptions_perPage = 200
+    }
+
+instance QueryLike GetActivityKudoersOptions where
+  toQuery options = toQuery
+    [ ("page", Just (show (getActivityKudoersOptions_page options)))
+    , ("per_page", Just (show (getActivityKudoersOptions_perPage options)))
+    ]
