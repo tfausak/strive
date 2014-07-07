@@ -1,11 +1,12 @@
 # Changelog
 
+-   Rewrote everything from the ground up.
 -   Prefixed all fields with type names. For example,
-    `Strive.Objects.Athletes.AthleteMeta.id` became
-    `Strive.Objects.Athletes.athleteMetaId`.
--   Moved all objects up one level. For example,
+    `Strive.Types.Athletes.AthleteMeta.id` became
+    `Strive.Types.Athletes.athleteMeta_id`.
+-   Reduced the number of modules. For example,
     `Strive.Objects.Athletes.AthleteMeta.AthleteMeta` became
-    `Strive.Objects.Athletes.AthleteMeta`.
+    `Strive.Types.AthleteMeta`.
 -   Renamed some types:
     -   `BucketSummary` to `ActivityZoneDistributionBucket`
     -   `EffortLap` to `ActivityLapSummary`
@@ -15,8 +16,8 @@
     -   `UploadDetailed` to `UploadStatus`
     -   `ZoneSummary` to `ActivityZoneDetailed`
 -   Created some types:
-    -   `SegmentExplorer`
-    -   `SegmentLeaderboard`
+    -   `SegmentExplorerResponse`
+    -   `SegmentLeaderboardResponse`
 -   Created `Strive.Lenses`, including classes and lenses for all objects.
 
 ## v0.4.0 (2014-06-28)
