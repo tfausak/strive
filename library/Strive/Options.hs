@@ -9,6 +9,23 @@ import Data.Time.Clock (UTCTime)
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Network.HTTP.Types.QueryLike (QueryLike, toQuery)
 
+data PaginationOptions = PaginationOptions
+  { paginationOptions_page    :: Integer
+  , paginationOptions_perPage :: Integer
+  } deriving Show
+
+instance Default PaginationOptions where
+  def = PaginationOptions
+    { paginationOptions_page = 1
+    , paginationOptions_perPage = 200
+    }
+
+instance QueryLike PaginationOptions where
+  toQuery options = toQuery
+    [ ("page", show (paginationOptions_page options))
+    , ("per_page", show (paginationOptions_perPage options))
+    ]
+
 -- * Authentication
 
 -- | 'Strive.Actions.buildAuthorizeUrl'
@@ -69,114 +86,24 @@ instance QueryLike UpdateCurrentAthleteOptions where
     ]
 
 -- | 'Strive.Actions.getAthleteCrs'
-data GetAthleteCrsOptions = GetAthleteCrsOptions
-  { getAthleteCrsOptions_page    :: Integer
-  , getAthleteCrsOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetAthleteCrsOptions where
-  def = GetAthleteCrsOptions
-    { getAthleteCrsOptions_page = 1
-    , getAthleteCrsOptions_perPage = 200
-    }
-
-instance QueryLike GetAthleteCrsOptions where
-  toQuery options = toQuery
-    [ ("page", show (getAthleteCrsOptions_page options))
-    , ("per_page", show (getAthleteCrsOptions_perPage options))
-    ]
+type GetAthleteCrsOptions = PaginationOptions
 
 -- * Friends and Followers
 
 -- | 'Strive.Actions.getCurrentFriends'
-data GetCurrentFriendsOptions = GetCurrentFriendsOptions
-  { getCurrentFriendsOptions_page    :: Integer
-  , getCurrentFriendsOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetCurrentFriendsOptions where
-  def = GetCurrentFriendsOptions
-    { getCurrentFriendsOptions_page = 1
-    , getCurrentFriendsOptions_perPage = 200
-    }
-
-instance QueryLike GetCurrentFriendsOptions where
-  toQuery options = toQuery
-    [ ("page", show (getCurrentFriendsOptions_page options))
-    , ("per_page", show (getCurrentFriendsOptions_perPage options))
-    ]
+type GetCurrentFriendsOptions = PaginationOptions
 
 -- | 'Strive.Actions.getFriends'
-data GetFriendsOptions = GetFriendsOptions
-  { getFriendsOptions_page    :: Integer
-  , getFriendsOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetFriendsOptions where
-  def = GetFriendsOptions
-    { getFriendsOptions_page = 1
-    , getFriendsOptions_perPage = 200
-    }
-
-instance QueryLike GetFriendsOptions where
-  toQuery options = toQuery
-    [ ("page", show (getFriendsOptions_page options))
-    , ("per_page", show (getFriendsOptions_perPage options))
-    ]
+type GetFriendsOptions = PaginationOptions
 
 -- | 'Strive.Actions.getCurrentFollowers'
-data GetCurrentFollowersOptions = GetCurrentFollowersOptions
-  { getCurrentFollowersOptions_page    :: Integer
-  , getCurrentFollowersOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetCurrentFollowersOptions where
-  def = GetCurrentFollowersOptions
-    { getCurrentFollowersOptions_page = 1
-    , getCurrentFollowersOptions_perPage = 200
-    }
-
-instance QueryLike GetCurrentFollowersOptions where
-  toQuery options = toQuery
-    [ ("page", show (getCurrentFollowersOptions_page options))
-    , ("per_page", show (getCurrentFollowersOptions_perPage options))
-    ]
+type GetCurrentFollowersOptions = PaginationOptions
 
 -- | 'Strive.Actions.getFollowers'
-data GetFollowersOptions = GetFollowersOptions
-  { getFollowersOptions_page    :: Integer
-  , getFollowersOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetFollowersOptions where
-  def = GetFollowersOptions
-    { getFollowersOptions_page = 1
-    , getFollowersOptions_perPage = 200
-    }
-
-instance QueryLike GetFollowersOptions where
-  toQuery options = toQuery
-    [ ("page", show (getFollowersOptions_page options))
-    , ("per_page", show (getFollowersOptions_perPage options))
-    ]
+type GetFollowersOptions = PaginationOptions
 
 -- | 'Strive.Actions.getCommonFriends'
-data GetCommonFriendsOptions = GetCommonFriendsOptions
-  { getCommonFriendsOptions_page    :: Integer
-  , getCommonFriendsOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetCommonFriendsOptions where
-  def = GetCommonFriendsOptions
-    { getCommonFriendsOptions_page = 1
-    , getCommonFriendsOptions_perPage = 200
-    }
-
-instance QueryLike GetCommonFriendsOptions where
-  toQuery options = toQuery
-    [ ("page", show (getCommonFriendsOptions_page options))
-    , ("per_page", show (getCommonFriendsOptions_perPage options))
-    ]
+type GetCommonFriendsOptions = PaginationOptions
 
 -- * Activities
 
@@ -271,22 +198,7 @@ instance QueryLike GetCurrentActivitiesOptions where
     ]
 
 -- | 'Strive.Actions.getFeed'
-data GetFeedOptions = GetFeedOptions
-  { getFeedOptions_page    :: Integer
-  , getFeedOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetFeedOptions where
-  def = GetFeedOptions
-    { getFeedOptions_page = 1
-    , getFeedOptions_perPage = 200
-    }
-
-instance QueryLike GetFeedOptions where
-  toQuery options = toQuery
-    [ ("page", Just (show (getFeedOptions_page options)))
-    , ("per_page", Just (show (getFeedOptions_perPage options)))
-    ]
+type GetFeedOptions = PaginationOptions
 
 -- * Comments
 
@@ -314,78 +226,18 @@ instance QueryLike GetActivityCommentsOptions where
 -- * Kudos
 
 -- | 'Strive.Actions.getActivityKudoers'
-data GetActivityKudoersOptions = GetActivityKudoersOptions
-  { getActivityKudoersOptions_page    :: Integer
-  , getActivityKudoersOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetActivityKudoersOptions where
-  def = GetActivityKudoersOptions
-    { getActivityKudoersOptions_page = 1
-    , getActivityKudoersOptions_perPage = 200
-    }
-
-instance QueryLike GetActivityKudoersOptions where
-  toQuery options = toQuery
-    [ ("page", Just (show (getActivityKudoersOptions_page options)))
-    , ("per_page", Just (show (getActivityKudoersOptions_perPage options)))
-    ]
+type GetActivityKudoersOptions = PaginationOptions
 
 -- * Clubs
 
 -- | 'Strive.Actions.getClubMembers'
-data GetClubMembersOptions = GetClubMembersOptions
-  { getClubMembersOptions_page    :: Integer
-  , getClubMembersOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetClubMembersOptions where
-  def = GetClubMembersOptions
-    { getClubMembersOptions_page = 1
-    , getClubMembersOptions_perPage = 200
-    }
-
-instance QueryLike GetClubMembersOptions where
-  toQuery options = toQuery
-    [ ("page", Just (show (getClubMembersOptions_page options)))
-    , ("per_page", Just (show (getClubMembersOptions_perPage options)))
-    ]
+type GetClubMembersOptions = PaginationOptions
 
 -- | 'Strive.Actions.getClubActivities'
-data GetClubActivitiesOptions = GetClubActivitiesOptions
-  { getClubActivitiesOptions_page    :: Integer
-  , getClubActivitiesOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetClubActivitiesOptions where
-  def = GetClubActivitiesOptions
-    { getClubActivitiesOptions_page = 1
-    , getClubActivitiesOptions_perPage = 200
-    }
-
-instance QueryLike GetClubActivitiesOptions where
-  toQuery options = toQuery
-    [ ("page", Just (show (getClubActivitiesOptions_page options)))
-    , ("per_page", Just (show (getClubActivitiesOptions_perPage options)))
-    ]
+type GetClubActivitiesOptions = PaginationOptions
 
 -- | 'Strive.Actions.getStarredSegments'
-data GetStarredSegmentsOptions = GetStarredSegmentsOptions
-  { getStarredSegmentsOptions_page    :: Integer
-  , getStarredSegmentsOptions_perPage :: Integer
-  } deriving Show
-
-instance Default GetStarredSegmentsOptions where
-  def = GetStarredSegmentsOptions
-    { getStarredSegmentsOptions_page = 1
-    , getStarredSegmentsOptions_perPage = 200
-    }
-
-instance QueryLike GetStarredSegmentsOptions where
-  toQuery options = toQuery
-    [ ("page", Just (show (getStarredSegmentsOptions_page options)))
-    , ("per_page", Just (show (getStarredSegmentsOptions_perPage options)))
-    ]
+type GetStarredSegmentsOptions = PaginationOptions
 
 -- | 'Strive.Actions.getSegmentEfforts'
 data GetSegmentEffortsOptions = GetSegmentEffortsOptions

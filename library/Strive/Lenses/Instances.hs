@@ -1404,70 +1404,10 @@ instance PageLens GetActivityCommentsOptions Integer where
     , \ page' -> getActivityCommentsOptions { getActivityCommentsOptions_page = page' }
     )
 
-instance PageLens GetActivityKudoersOptions Integer where
-  page getActivityKudoersOptions =
-    ( getActivityKudoersOptions_page getActivityKudoersOptions
-    , \ page' -> getActivityKudoersOptions { getActivityKudoersOptions_page = page' }
-    )
-
-instance PageLens GetAthleteCrsOptions Integer where
-  page getAthleteCrsOptions =
-    ( getAthleteCrsOptions_page getAthleteCrsOptions
-    , \ page' -> getAthleteCrsOptions { getAthleteCrsOptions_page = page' }
-    )
-
-instance PageLens GetClubActivitiesOptions Integer where
-  page getClubActivitiesOptions =
-    ( getClubActivitiesOptions_page getClubActivitiesOptions
-    , \ page' -> getClubActivitiesOptions { getClubActivitiesOptions_page = page' }
-    )
-
-instance PageLens GetClubMembersOptions Integer where
-  page getClubMembersOptions =
-    ( getClubMembersOptions_page getClubMembersOptions
-    , \ page' -> getClubMembersOptions { getClubMembersOptions_page = page' }
-    )
-
-instance PageLens GetCommonFriendsOptions Integer where
-  page getCommonFriendsOptions =
-    ( getCommonFriendsOptions_page getCommonFriendsOptions
-    , \ page' -> getCommonFriendsOptions { getCommonFriendsOptions_page = page' }
-    )
-
 instance PageLens GetCurrentActivitiesOptions Integer where
   page getCurrentActivitiesOptions =
     ( getCurrentActivitiesOptions_page getCurrentActivitiesOptions
     , \ page' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_page = page' }
-    )
-
-instance PageLens GetCurrentFollowersOptions Integer where
-  page getCurrentFollowersOptions =
-    ( getCurrentFollowersOptions_page getCurrentFollowersOptions
-    , \ page' -> getCurrentFollowersOptions { getCurrentFollowersOptions_page = page' }
-    )
-
-instance PageLens GetCurrentFriendsOptions Integer where
-  page getCurrentFriendsOptions =
-    ( getCurrentFriendsOptions_page getCurrentFriendsOptions
-    , \ page' -> getCurrentFriendsOptions { getCurrentFriendsOptions_page = page' }
-    )
-
-instance PageLens GetFeedOptions Integer where
-  page getFeedOptions =
-    ( getFeedOptions_page getFeedOptions
-    , \ page' -> getFeedOptions { getFeedOptions_page = page' }
-    )
-
-instance PageLens GetFollowersOptions Integer where
-  page getFollowersOptions =
-    ( getFollowersOptions_page getFollowersOptions
-    , \ page' -> getFollowersOptions { getFollowersOptions_page = page' }
-    )
-
-instance PageLens GetFriendsOptions Integer where
-  page getFriendsOptions =
-    ( getFriendsOptions_page getFriendsOptions
-    , \ page' -> getFriendsOptions { getFriendsOptions_page = page' }
     )
 
 instance PageLens GetSegmentEffortsOptions Integer where
@@ -1482,10 +1422,10 @@ instance PageLens GetSegmentLeaderboardOptions Integer where
     , \ page' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_page = page' }
     )
 
-instance PageLens GetStarredSegmentsOptions Integer where
-  page getStarredSegmentsOptions =
-    ( getStarredSegmentsOptions_page getStarredSegmentsOptions
-    , \ page' -> getStarredSegmentsOptions { getStarredSegmentsOptions_page = page' }
+instance PageLens PaginationOptions Integer where
+  page paginationOptions =
+    ( paginationOptions_page paginationOptions
+    , \ page' -> paginationOptions { paginationOptions_page = page' }
     )
 
 instance PerPageLens GetActivityCommentsOptions Integer where
@@ -1494,70 +1434,10 @@ instance PerPageLens GetActivityCommentsOptions Integer where
     , \ perPage' -> getActivityCommentsOptions { getActivityCommentsOptions_perPage = perPage' }
     )
 
-instance PerPageLens GetActivityKudoersOptions Integer where
-  perPage getActivityKudoersOptions =
-    ( getActivityKudoersOptions_perPage getActivityKudoersOptions
-    , \ perPage' -> getActivityKudoersOptions { getActivityKudoersOptions_perPage = perPage' }
-    )
-
-instance PerPageLens GetAthleteCrsOptions Integer where
-  perPage getAthleteCrsOptions =
-    ( getAthleteCrsOptions_perPage getAthleteCrsOptions
-    , \ perPage' -> getAthleteCrsOptions { getAthleteCrsOptions_perPage = perPage' }
-    )
-
-instance PerPageLens GetClubActivitiesOptions Integer where
-  perPage getClubActivitiesOptions =
-    ( getClubActivitiesOptions_perPage getClubActivitiesOptions
-    , \ perPage' -> getClubActivitiesOptions { getClubActivitiesOptions_perPage = perPage' }
-    )
-
-instance PerPageLens GetClubMembersOptions Integer where
-  perPage getClubMembersOptions =
-    ( getClubMembersOptions_perPage getClubMembersOptions
-    , \ perPage' -> getClubMembersOptions { getClubMembersOptions_perPage = perPage' }
-    )
-
-instance PerPageLens GetCommonFriendsOptions Integer where
-  perPage getCommonFriendsOptions =
-    ( getCommonFriendsOptions_perPage getCommonFriendsOptions
-    , \ perPage' -> getCommonFriendsOptions { getCommonFriendsOptions_perPage = perPage' }
-    )
-
 instance PerPageLens GetCurrentActivitiesOptions Integer where
   perPage getCurrentActivitiesOptions =
     ( getCurrentActivitiesOptions_perPage getCurrentActivitiesOptions
     , \ perPage' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_perPage = perPage' }
-    )
-
-instance PerPageLens GetCurrentFollowersOptions Integer where
-  perPage getCurrentFollowersOptions =
-    ( getCurrentFollowersOptions_perPage getCurrentFollowersOptions
-    , \ perPage' -> getCurrentFollowersOptions { getCurrentFollowersOptions_perPage = perPage' }
-    )
-
-instance PerPageLens GetCurrentFriendsOptions Integer where
-  perPage getCurrentFriendsOptions =
-    ( getCurrentFriendsOptions_perPage getCurrentFriendsOptions
-    , \ perPage' -> getCurrentFriendsOptions { getCurrentFriendsOptions_perPage = perPage' }
-    )
-
-instance PerPageLens GetFeedOptions Integer where
-  perPage getFeedOptions =
-    ( getFeedOptions_perPage getFeedOptions
-    , \ perPage' -> getFeedOptions { getFeedOptions_perPage = perPage' }
-    )
-
-instance PerPageLens GetFollowersOptions Integer where
-  perPage getFollowersOptions =
-    ( getFollowersOptions_perPage getFollowersOptions
-    , \ perPage' -> getFollowersOptions { getFollowersOptions_perPage = perPage' }
-    )
-
-instance PerPageLens GetFriendsOptions Integer where
-  perPage getFriendsOptions =
-    ( getFriendsOptions_perPage getFriendsOptions
-    , \ perPage' -> getFriendsOptions { getFriendsOptions_perPage = perPage' }
     )
 
 instance PerPageLens GetSegmentEffortsOptions Integer where
@@ -1572,10 +1452,10 @@ instance PerPageLens GetSegmentLeaderboardOptions Integer where
     , \ perPage' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_perPage = perPage' }
     )
 
-instance PerPageLens GetStarredSegmentsOptions Integer where
-  perPage getStarredSegmentsOptions =
-    ( getStarredSegmentsOptions_perPage getStarredSegmentsOptions
-    , \ perPage' -> getStarredSegmentsOptions { getStarredSegmentsOptions_perPage = perPage' }
+instance PerPageLens PaginationOptions Integer where
+  perPage paginationOptions =
+    ( paginationOptions_perPage paginationOptions
+    , \ perPage' -> paginationOptions { paginationOptions_perPage = perPage' }
     )
 
 instance PhotoCountLens ActivityDetailed Integer where
