@@ -21,6 +21,11 @@ import qualified Strive.Types as T
 with :: Default a => [a -> a] -> a
 with = foldr ($) def
 
+-- | Infix alias of 'with'.
+infixr 0 ?
+(?) :: Default a => (a -> b) -> [a -> a] -> b
+(?) = (. with)
+
 -- * Authentication
 
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
