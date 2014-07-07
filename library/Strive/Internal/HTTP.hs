@@ -25,7 +25,7 @@ post = http methodPost
 
 -- | Perform an HTTP PUT request.
 put :: (QueryLike q, FromJSON j) => Client -> String -> q -> IO (Either String j)
-put = http methodPost
+put = http methodPut
 
 -- | Perform an HTTP request.
 http :: (QueryLike q, FromJSON j) => Method -> Client -> String -> q -> IO (Either String j)

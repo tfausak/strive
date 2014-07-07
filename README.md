@@ -252,7 +252,7 @@ main = do
 #### [Delete an activity](http://strava.github.io/api/v3/activities/#delete)
 
 ~~~ {.haskell}
-  nothing <- deleteActivity client 141273622
+  nothing <- deleteActivity client 162674281
   print (nothing :: Either String Value)
 ~~~
 

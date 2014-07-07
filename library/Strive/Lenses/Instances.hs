@@ -516,7 +516,7 @@ instance DateRangeLens GetSegmentLeaderboardOptions (Maybe String) where
     , \ dateRange' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_dateRange = dateRange' }
     )
 
-instance DescriptionLens ActivityDetailed Text where
+instance DescriptionLens ActivityDetailed (Maybe Text) where
   description activityDetailed =
     ( activityDetailed_description activityDetailed
     , \ description' -> activityDetailed { activityDetailed_description = description' }
@@ -816,7 +816,7 @@ instance ExternalIdLens UploadActivityOptions (Maybe String) where
     , \ externalId' -> uploadActivityOptions { uploadActivityOptions_externalId = externalId' }
     )
 
-instance ExternalIdLens UploadStatus Text where
+instance ExternalIdLens UploadStatus (Maybe Text) where
   externalId uploadStatus =
     ( uploadStatus_externalId uploadStatus
     , \ externalId' -> uploadStatus { uploadStatus_externalId = externalId' }
@@ -1074,7 +1074,7 @@ instance IdLens UploadStatus Integer where
     , \ id' -> uploadStatus { uploadStatus_id = id' }
     )
 
-instance InstagramPrimaryPhotoLens ActivityDetailed Text where
+instance InstagramPrimaryPhotoLens ActivityDetailed (Maybe Text) where
   instagramPrimaryPhoto activityDetailed =
     ( activityDetailed_instagramPrimaryPhoto activityDetailed
     , \ instagramPrimaryPhoto' -> activityDetailed { activityDetailed_instagramPrimaryPhoto = instagramPrimaryPhoto' }

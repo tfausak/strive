@@ -10,7 +10,7 @@ import Data.List (intercalate)
 import Data.Monoid ((<>))
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
-import Network.HTTP.Types (Query, methodGet, renderQuery, toQuery)
+import Network.HTTP.Types (Query, methodPost, renderQuery, toQuery)
 import Strive.Client (Client, buildClient)
 import Strive.Internal.HTTP (buildRequest, decodeValue, delete, get,
                              performRequest, post, put)
@@ -25,12 +25,12 @@ with = foldr ($) def
 
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
 buildAuthorizeUrl :: Integer -> String -> O.BuildAuthorizeUrlOptions -> String
-buildAuthorizeUrl clientId redirectUrl options =
+buildAuthorizeUrl clientId redirectUri options =
   "https://www.strava.com/oauth/authorize" <> unpack (renderQuery True query)
  where
   query = toQuery
     [ ("client_id", show clientId)
-    , ("redirect_url", redirectUrl)
+    , ("redirect_uri", redirectUri)
     , ("response_type", "code")
     ] <> toQuery options
 
@@ -330,7 +330,7 @@ getStreams client kind id types options = get client resource query
 -- | <http://strava.github.io/api/v3/uploads/#post-file>
 uploadActivity :: Client -> ByteString -> String -> O.UploadActivityOptions -> IO (Either String T.UploadStatus)
 uploadActivity client body dataType options = do
-  initialRequest <- buildRequest methodGet client resource query
+  initialRequest <- buildRequest methodPost client resource query
   let request = initialRequest
         { requestBody = RequestBodyBS body
         }

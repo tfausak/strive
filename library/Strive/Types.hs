@@ -157,7 +157,7 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_calories              :: Double
   , activityDetailed_commentCount          :: Integer
   , activityDetailed_commute               :: Bool
-  , activityDetailed_description           :: Text
+  , activityDetailed_description           :: Maybe Text
   , activityDetailed_distance              :: Double
   , activityDetailed_elapsedTime           :: Integer
   , activityDetailed_endLatlng             :: Maybe (Double, Double)
@@ -167,7 +167,7 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_gearId                :: Maybe Text
   , activityDetailed_hasKudoed             :: Bool
   , activityDetailed_id                    :: Integer
-  , activityDetailed_instagramPrimaryPhoto :: Text
+  , activityDetailed_instagramPrimaryPhoto :: Maybe Text
   , activityDetailed_kilojoules            :: Maybe Double
   , activityDetailed_locationCity          :: Maybe Text
   , activityDetailed_locationCountry       :: Text
@@ -204,7 +204,7 @@ instance FromJSON ActivityDetailed where
     <*> o .: "calories"
     <*> o .: "comment_count"
     <*> o .: "commute"
-    <*> o .: "description"
+    <*> o .:? "description"
     <*> o .: "distance"
     <*> o .: "elapsed_time"
     <*> o .:? "end_latlng"
@@ -214,7 +214,7 @@ instance FromJSON ActivityDetailed where
     <*> o .:? "gear_id"
     <*> o .: "has_kudoed"
     <*> o .: "id"
-    <*> o .: "instagram_primary_photo"
+    <*> o .:? "instagram_primary_photo"
     <*> o .:? "kilojoules"
     <*> o .:? "location_city"
     <*> o .: "location_country"
@@ -723,7 +723,7 @@ instance FromJSON SegmentLeaderboardResponse where
   parseJSON (Object o) = SegmentLeaderboardResponse
     <$> o .: "effort_count"
     <*> o .: "entry_count"
-    <*> o .: "segments"
+    <*> o .: "entries"
   parseJSON _ = empty
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
@@ -769,7 +769,7 @@ data SegmentExplorerResponse = SegmentExplorerResponse
 
 instance FromJSON SegmentExplorerResponse where
   parseJSON (Object o) = SegmentExplorerResponse
-    <$> o .: "entries"
+    <$> o .: "segments"
   parseJSON _ = empty
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
@@ -880,7 +880,7 @@ instance FromJSON StreamDetailed where
 data UploadStatus = UploadStatus
   { uploadStatus_activityId :: Maybe Integer
   , uploadStatus_error      :: Maybe Text
-  , uploadStatus_externalId :: Text
+  , uploadStatus_externalId :: Maybe Text
   , uploadStatus_id         :: Integer
   , uploadStatus_status     :: Text
   } deriving Show
@@ -889,7 +889,7 @@ instance FromJSON UploadStatus where
   parseJSON (Object o) = UploadStatus
     <$> o .:? "activity_id"
     <*> o .:? "error"
-    <*> o .: "external_id"
+    <*> o .:? "external_id"
     <*> o .: "id"
     <*> o .: "status"
   parseJSON _ = empty
