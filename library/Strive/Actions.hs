@@ -9,8 +9,10 @@ import Data.Default (Default, def)
 import Data.List (intercalate)
 import Data.Monoid ((<>))
 import Data.Time.Clock (UTCTime)
-import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
-import Network.HTTP.Types (Query, methodPost, renderQuery, toQuery)
+import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody,
+                             responseBody, responseStatus)
+import Network.HTTP.Types (Query, methodDelete, methodPost, noContent204,
+                           renderQuery, toQuery)
 import Strive.Client (Client, buildClient)
 import Strive.Internal.HTTP (buildRequest, decodeValue, delete, get,
                              performRequest, post, put)
@@ -155,8 +157,13 @@ updateActivity client activityId options = put client resource query
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#delete>
-deleteActivity :: Client -> Integer -> IO (Either String Value)
-deleteActivity client activityId = delete client resource query
+deleteActivity :: Client -> Integer -> IO (Either String ())
+deleteActivity client activityId = do
+  request <- buildRequest methodDelete client resource query
+  response <- performRequest client request
+  return (if responseStatus response == noContent204
+    then Right ()
+    else Left (unpack (toStrict (responseBody response))))
  where
   resource = "api/v3/activities/" <> show activityId
   query = [] :: Query

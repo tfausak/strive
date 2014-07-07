@@ -84,7 +84,6 @@ get accessToken (set accessToken "..." client)
 
 <!--
 ~~~ {.haskell}
-import Data.Aeson (Value)
 import Data.ByteString.Char8 (pack)
 import Data.Time.Calendar (fromGregorian)
 import Data.Time.Clock (UTCTime (UTCTime))
@@ -253,7 +252,7 @@ main = do
 
 ~~~ {.haskell}
   nothing <- deleteActivity client 162674281
-  print (nothing :: Either String Value)
+  print (nothing :: Either String ())
 ~~~
 
 #### [List athlete activities](http://strava.github.io/api/v3/activities/#get-activities)
