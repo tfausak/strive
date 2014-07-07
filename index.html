@@ -4,29 +4,40 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Strive by tfausak</title>
-
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
   </head>
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/tfausak/strive">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/tfausak/strive/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/tfausak/strive/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
     <div class="wrapper">
-      <header>
-        <h1>Strive</h1>
-        <p>A Haskell client for the Strava V3 API.</p>
-        <p class="view"><a href="https://github.com/tfausak/strive">View the Project on GitHub <small>tfausak/strive</small></a></p>
-        <ul>
-          <li><a href="https://github.com/tfausak/strive/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/tfausak/strive/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/tfausak/strive">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
+
       <section>
+        <div id="title">
+          <h1>Strive</h1>
+          <p>A Haskell client for the Strava V3 API.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/tfausak">tfausak</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
         <p><a href="https://travis-ci.org/tfausak/strive"><img src="https://travis-ci.org/tfausak/strive.svg?branch=master" alt="Build Status"></a></p>
 
 <ul>
@@ -185,7 +196,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="request-access" class="anchor" href="#request-access"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/oauth/#get-authorize">Request access</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="kr">let</span> <span class="n">authorizeUrl</span> <span class="ow">=</span> <span class="n">buildAuthorizeUrl</span> <span class="mi">1790</span> <span class="s">"http://localhost"</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="kr">let</span> <span class="n">authorizeUrl</span> <span class="ow">=</span> <span class="n">buildAuthorizeUrl</span> <span class="mi">1790</span> <span class="s">"http://localhost"</span> <span class="o">?</span>
         <span class="p">[</span> <span class="n">set</span> <span class="n">approvalPrompt</span> <span class="kt">False</span>
         <span class="p">,</span> <span class="n">set</span> <span class="n">privateScope</span>   <span class="kt">True</span>
         <span class="p">,</span> <span class="n">set</span> <span class="n">writeScope</span>     <span class="kt">True</span>
@@ -234,7 +245,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="update-current-athlete" class="anchor" href="#update-current-athlete"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/athlete/#update">Update current athlete</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">updatedAthlete</span> <span class="ow">&lt;-</span> <span class="n">updateCurrentAthlete</span> <span class="n">client</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">updatedAthlete</span> <span class="ow">&lt;-</span> <span class="n">updateCurrentAthlete</span> <span class="n">client</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">city</span>    <span class="p">(</span><span class="kt">Just</span> <span class="s">"Dallas"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">state</span>   <span class="p">(</span><span class="kt">Just</span> <span class="s">"Texas"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">country</span> <span class="p">(</span><span class="kt">Just</span> <span class="s">"United States"</span><span class="p">)</span>
@@ -248,7 +259,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-athlete-kqomscrs" class="anchor" href="#list-athlete-kqomscrs"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/athlete/#koms">List athlete K/QOMs/CRs</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">athleteCrs</span> <span class="ow">&lt;-</span> <span class="n">getAthleteCrs</span> <span class="n">client</span> <span class="mi">65516</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">athleteCrs</span> <span class="ow">&lt;-</span> <span class="n">getAthleteCrs</span> <span class="n">client</span> <span class="mi">65516</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
@@ -263,14 +274,14 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-athlete-friends" class="anchor" href="#list-athlete-friends"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/follow/#friends">List athlete friends</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">currentFriends</span> <span class="ow">&lt;-</span> <span class="n">getCurrentFriends</span> <span class="n">client</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">currentFriends</span> <span class="ow">&lt;-</span> <span class="n">getCurrentFriends</span> <span class="n">client</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
   <span class="n">print</span> <span class="p">(</span><span class="n">currentFriends</span> <span class="ow">::</span> <span class="kt">Either</span> <span class="kt">String</span> <span class="p">[</span><span class="kt">AthleteSummary</span><span class="p">])</span>
 </pre></div>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">friends</span> <span class="ow">&lt;-</span> <span class="n">getFriends</span> <span class="n">client</span> <span class="mi">65516</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">friends</span> <span class="ow">&lt;-</span> <span class="n">getFriends</span> <span class="n">client</span> <span class="mi">65516</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
@@ -281,14 +292,14 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-athlete-followers" class="anchor" href="#list-athlete-followers"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/follow/#followers">List athlete followers</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">currentFollowers</span> <span class="ow">&lt;-</span> <span class="n">getCurrentFollowers</span> <span class="n">client</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">currentFollowers</span> <span class="ow">&lt;-</span> <span class="n">getCurrentFollowers</span> <span class="n">client</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
   <span class="n">print</span> <span class="p">(</span><span class="n">currentFollowers</span> <span class="ow">::</span> <span class="kt">Either</span> <span class="kt">String</span> <span class="p">[</span><span class="kt">AthleteSummary</span><span class="p">])</span>
 </pre></div>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">followers</span> <span class="ow">&lt;-</span> <span class="n">getFollowers</span> <span class="n">client</span> <span class="mi">65516</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">followers</span> <span class="ow">&lt;-</span> <span class="n">getFollowers</span> <span class="n">client</span> <span class="mi">65516</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
@@ -299,7 +310,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-both-following" class="anchor" href="#list-both-following"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/follow/#both">List both following</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">commonFriends</span> <span class="ow">&lt;-</span> <span class="n">getCommonFriends</span> <span class="n">client</span> <span class="mi">65516</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">commonFriends</span> <span class="ow">&lt;-</span> <span class="n">getCommonFriends</span> <span class="n">client</span> <span class="mi">65516</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
@@ -314,7 +325,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="create-an-activity" class="anchor" href="#create-an-activity"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#create">Create an activity</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">createdActivity</span> <span class="ow">&lt;-</span> <span class="n">createActivity</span> <span class="n">client</span> <span class="s">"An Example"</span> <span class="s">"run"</span> <span class="p">(</span><span class="kt">UTCTime</span> <span class="p">(</span><span class="n">fromGregorian</span> <span class="mi">1970</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">10</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">createdActivity</span> <span class="ow">&lt;-</span> <span class="n">createActivity</span> <span class="n">client</span> <span class="s">"An Example"</span> <span class="s">"run"</span> <span class="p">(</span><span class="kt">UTCTime</span> <span class="p">(</span><span class="n">fromGregorian</span> <span class="mi">1970</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">10</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">description</span> <span class="p">(</span><span class="kt">Just</span> <span class="s">"..."</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">distance</span>    <span class="p">(</span><span class="kt">Just</span> <span class="mf">100.0</span><span class="p">)</span>
     <span class="p">]</span>
@@ -325,7 +336,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="retrieve-an-activity" class="anchor" href="#retrieve-an-activity"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#get-details">Retrieve an activity</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">activity</span> <span class="ow">&lt;-</span> <span class="n">getActivity</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">activity</span> <span class="ow">&lt;-</span> <span class="n">getActivity</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">allEfforts</span> <span class="kt">True</span>
     <span class="p">]</span>
   <span class="n">print</span> <span class="p">(</span><span class="n">activity</span> <span class="ow">::</span> <span class="kt">Either</span> <span class="kt">String</span> <span class="kt">ActivitySummary</span><span class="p">)</span>
@@ -335,7 +346,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="update-an-activity" class="anchor" href="#update-an-activity"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#put-updates">Update an activity</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">updatedActivity</span> <span class="ow">&lt;-</span> <span class="n">updateActivity</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">updatedActivity</span> <span class="ow">&lt;-</span> <span class="n">updateActivity</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">name</span>        <span class="p">(</span><span class="kt">Just</span> <span class="s">"WedEx Pit Stop"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">type_</span>       <span class="p">(</span><span class="kt">Just</span> <span class="s">"Ride"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">private</span>     <span class="p">(</span><span class="kt">Just</span> <span class="kt">False</span><span class="p">)</span>
@@ -352,14 +363,14 @@ accessing the fields. For instance, instead of doing this:</p>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  <span class="n">nothing</span> <span class="ow">&lt;-</span> <span class="n">deleteActivity</span> <span class="n">client</span> <span class="mi">162674281</span>
-  <span class="n">print</span> <span class="p">(</span><span class="n">nothing</span> <span class="ow">::</span> <span class="kt">Either</span> <span class="kt">String</span> <span class="kt">Value</span><span class="p">)</span>
+  <span class="n">print</span> <span class="p">(</span><span class="n">nothing</span> <span class="ow">::</span> <span class="kt">Either</span> <span class="kt">String</span> <span class="nb">()</span><span class="p">)</span>
 </pre></div>
 
 <h4>
 <a name="list-athlete-activities" class="anchor" href="#list-athlete-activities"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#get-activities">List athlete activities</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">currentActivities</span> <span class="ow">&lt;-</span> <span class="n">getCurrentActivities</span> <span class="n">client</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">currentActivities</span> <span class="ow">&lt;-</span> <span class="n">getCurrentActivities</span> <span class="n">client</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">before</span>  <span class="p">(</span><span class="kt">Just</span> <span class="p">(</span><span class="kt">UTCTime</span> <span class="p">(</span><span class="n">fromGregorian</span> <span class="mi">1970</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">after</span>   <span class="p">(</span><span class="kt">Just</span> <span class="p">(</span><span class="kt">UTCTime</span> <span class="p">(</span><span class="n">fromGregorian</span> <span class="mi">1970</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
@@ -372,7 +383,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-friends-activities" class="anchor" href="#list-friends-activities"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#get-feed">List friends' activities</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">feed</span> <span class="ow">&lt;-</span> <span class="n">getFeed</span> <span class="n">client</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">feed</span> <span class="ow">&lt;-</span> <span class="n">getFeed</span> <span class="n">client</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
@@ -403,7 +414,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-activity-comments" class="anchor" href="#list-activity-comments"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/comments/#list">List activity comments</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">activityComments</span> <span class="ow">&lt;-</span> <span class="n">getActivityComments</span> <span class="n">client</span> <span class="mi">90112360</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">activityComments</span> <span class="ow">&lt;-</span> <span class="n">getActivityComments</span> <span class="n">client</span> <span class="mi">90112360</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">markdown</span> <span class="kt">True</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">page</span>     <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span>  <span class="mi">2</span>
@@ -419,7 +430,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-activity-kudoers" class="anchor" href="#list-activity-kudoers"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/kudos/#list">List activity kudoers</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">activityKudoers</span> <span class="ow">&lt;-</span> <span class="n">getActivityKudoers</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">activityKudoers</span> <span class="ow">&lt;-</span> <span class="n">getActivityKudoers</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
@@ -462,7 +473,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-club-members" class="anchor" href="#list-club-members"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/clubs/#get-members">List club members</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">clubMembers</span> <span class="ow">&lt;-</span> <span class="n">getClubMembers</span> <span class="n">client</span> <span class="mi">11193</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">clubMembers</span> <span class="ow">&lt;-</span> <span class="n">getClubMembers</span> <span class="n">client</span> <span class="mi">11193</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
@@ -473,7 +484,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-club-activities" class="anchor" href="#list-club-activities"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/clubs/#get-activities">List club activities</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">clubActivities</span> <span class="ow">&lt;-</span> <span class="n">getClubActivities</span> <span class="n">client</span> <span class="mi">11193</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">clubActivities</span> <span class="ow">&lt;-</span> <span class="n">getClubActivities</span> <span class="n">client</span> <span class="mi">11193</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
@@ -508,7 +519,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-starred-segments" class="anchor" href="#list-starred-segments"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/segments/#starred">List starred segments</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">starredSegments</span> <span class="ow">&lt;-</span> <span class="n">getStarredSegments</span> <span class="n">client</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">starredSegments</span> <span class="ow">&lt;-</span> <span class="n">getStarredSegments</span> <span class="n">client</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">page</span>    <span class="mi">1</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">perPage</span> <span class="mi">2</span>
     <span class="p">]</span>
@@ -519,7 +530,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="list-efforts" class="anchor" href="#list-efforts"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/segments/#efforts">List efforts</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">theSegmentEfforts</span> <span class="ow">&lt;-</span> <span class="n">getSegmentEfforts</span> <span class="n">client</span> <span class="mi">4773104</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">theSegmentEfforts</span> <span class="ow">&lt;-</span> <span class="n">getSegmentEfforts</span> <span class="n">client</span> <span class="mi">4773104</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">athleteId</span> <span class="p">(</span><span class="kt">Just</span> <span class="mi">65516</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">range</span>     <span class="p">(</span><span class="kt">Just</span> <span class="p">((</span><span class="kt">UTCTime</span> <span class="p">(</span><span class="n">fromGregorian</span> <span class="mi">1970</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="kt">UTCTime</span> <span class="p">(</span><span class="n">fromGregorian</span> <span class="mi">1970</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">)))</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">page</span>      <span class="mi">1</span>
@@ -532,7 +543,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="segment-leaderboard" class="anchor" href="#segment-leaderboard"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/segments/#leaderboard">Segment leaderboard</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">segmentLeaderboardResponse</span> <span class="ow">&lt;-</span> <span class="n">getSegmentLeaderboard</span> <span class="n">client</span> <span class="mi">4773104</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">segmentLeaderboardResponse</span> <span class="ow">&lt;-</span> <span class="n">getSegmentLeaderboard</span> <span class="n">client</span> <span class="mi">4773104</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">gender</span>      <span class="p">(</span><span class="kt">Just</span> <span class="n">'M'</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">ageGroup</span>    <span class="p">(</span><span class="kt">Just</span> <span class="s">"0_24"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">weightClass</span> <span class="p">(</span><span class="kt">Just</span> <span class="s">"65_74"</span><span class="p">)</span>
@@ -549,7 +560,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="segment-explorer" class="anchor" href="#segment-explorer"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/segments/#explore">Segment explorer</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">segmentExplorerResponse</span> <span class="ow">&lt;-</span> <span class="n">exploreSegments</span> <span class="n">client</span> <span class="p">(</span><span class="mf">32.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">96.0</span><span class="p">,</span> <span class="mf">33.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">95.0</span><span class="p">)</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">segmentExplorerResponse</span> <span class="ow">&lt;-</span> <span class="n">exploreSegments</span> <span class="n">client</span> <span class="p">(</span><span class="mf">32.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">96.0</span><span class="p">,</span> <span class="mf">33.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">95.0</span><span class="p">)</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">activityType</span> <span class="s">"riding"</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">minCat</span> <span class="mi">0</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">maxCat</span> <span class="mi">5</span>
@@ -577,7 +588,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="retrieve-activity-streams" class="anchor" href="#retrieve-activity-streams"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/streams/#activity">Retrieve activity streams</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">activityStreams</span> <span class="ow">&lt;-</span> <span class="n">getActivityStreams</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="p">[</span><span class="s">"latlng"</span><span class="p">,</span> <span class="s">"watts"</span><span class="p">]</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">activityStreams</span> <span class="ow">&lt;-</span> <span class="n">getActivityStreams</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="p">[</span><span class="s">"latlng"</span><span class="p">,</span> <span class="s">"watts"</span><span class="p">]</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">resolution</span> <span class="p">(</span><span class="kt">Just</span> <span class="s">"low"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">seriesType</span> <span class="s">"time"</span>
     <span class="p">]</span>
@@ -588,7 +599,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="retrieve-effort-streams" class="anchor" href="#retrieve-effort-streams"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/streams/#effort">Retrieve effort streams</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">effortStreams</span> <span class="ow">&lt;-</span> <span class="n">getEffortStreams</span> <span class="n">client</span> <span class="mi">1595370098</span> <span class="p">[</span><span class="s">"latlng"</span><span class="p">,</span> <span class="s">"watts"</span><span class="p">]</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">effortStreams</span> <span class="ow">&lt;-</span> <span class="n">getEffortStreams</span> <span class="n">client</span> <span class="mi">1595370098</span> <span class="p">[</span><span class="s">"latlng"</span><span class="p">,</span> <span class="s">"watts"</span><span class="p">]</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">resolution</span> <span class="p">(</span><span class="kt">Just</span> <span class="s">"low"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">seriesType</span> <span class="s">"time"</span>
     <span class="p">]</span>
@@ -599,7 +610,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="retrieve-segment-streams" class="anchor" href="#retrieve-segment-streams"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/streams/#segment">Retrieve segment streams</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">segmentStreams</span> <span class="ow">&lt;-</span> <span class="n">getSegmentStreams</span> <span class="n">client</span> <span class="mi">4773104</span> <span class="p">[</span><span class="s">"latlng"</span><span class="p">,</span> <span class="s">"watts"</span><span class="p">]</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">segmentStreams</span> <span class="ow">&lt;-</span> <span class="n">getSegmentStreams</span> <span class="n">client</span> <span class="mi">4773104</span> <span class="p">[</span><span class="s">"latlng"</span><span class="p">,</span> <span class="s">"watts"</span><span class="p">]</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">resolution</span> <span class="p">(</span><span class="kt">Just</span> <span class="s">"low"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">seriesType</span> <span class="s">"time"</span>
     <span class="p">]</span>
@@ -614,7 +625,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="upload-an-activity" class="anchor" href="#upload-an-activity"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/uploads/#post-file">Upload an activity</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">uploadedActivity</span> <span class="ow">&lt;-</span> <span class="n">uploadActivity</span> <span class="n">client</span> <span class="p">(</span><span class="n">pack</span> <span class="s">"..."</span><span class="p">)</span> <span class="s">"gpx.gz"</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">uploadedActivity</span> <span class="ow">&lt;-</span> <span class="n">uploadActivity</span> <span class="n">client</span> <span class="p">(</span><span class="n">pack</span> <span class="s">"..."</span><span class="p">)</span> <span class="s">"gpx.gz"</span> <span class="o">?</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">activityType</span> <span class="p">(</span><span class="kt">Just</span> <span class="s">"ride"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">name</span>         <span class="p">(</span><span class="kt">Just</span> <span class="s">"An Example"</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">description</span>  <span class="p">(</span><span class="kt">Just</span> <span class="s">"..."</span><span class="p">)</span>
@@ -633,11 +644,8 @@ accessing the fields. For instance, instead of doing this:</p>
   <span class="n">print</span> <span class="p">(</span><span class="n">upload</span> <span class="ow">::</span> <span class="kt">Either</span> <span class="kt">String</span> <span class="kt">UploadStatus</span><span class="p">)</span>
 </pre></div>
       </section>
+
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/tfausak">tfausak</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
