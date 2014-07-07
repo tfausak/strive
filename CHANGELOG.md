@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.5.0 (2014-07-07)
+
 - Rewrote everything from the ground up.
 - Prefixed all fields with type names. For example,
   `Strive.Types.Athletes.AthleteMeta.id` became
