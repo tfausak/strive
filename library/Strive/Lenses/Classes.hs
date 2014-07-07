@@ -170,7 +170,7 @@ class EntryCountLens a b | a -> b where
   entryCount :: Lens a b
 
 class ErrorLens a b | a -> b where
-  error :: Lens a b
+  error_ :: Lens a b
 
 class ExternalIdLens a b | a -> b where
   externalId :: Lens a b
@@ -224,7 +224,7 @@ class HttpManagerLens a b | a -> b where
   httpManager :: Lens a b
 
 class IdLens a b | a -> b where
-  id :: Lens a b
+  id_ :: Lens a b
 
 class InstagramPrimaryPhotoLens a b | a -> b where
   instagramPrimaryPhoto :: Lens a b
@@ -272,7 +272,7 @@ class MaxHeartrateLens a b | a -> b where
   maxHeartrate :: Lens a b
 
 class MaxLens a b | a -> b where
-  max :: Lens a b
+  max_ :: Lens a b
 
 class MaxSpeedLens a b | a -> b where
   maxSpeed :: Lens a b
@@ -290,7 +290,7 @@ class MinCatLens a b | a -> b where
   minCat :: Lens a b
 
 class MinLens a b | a -> b where
-  min :: Lens a b
+  min_ :: Lens a b
 
 class ModelNameLens a b | a -> b where
   modelName :: Lens a b

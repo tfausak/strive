@@ -24,7 +24,7 @@ instances = []
     klass[0] = klass[0].upcase
     record = type.dup
     record[0] = record[0].downcase
-    function = "#{function}_" if %w(data type).include?(function)
+    function = "#{function}_" if %w(data error id max min type).include?(function)
 
     instances << <<-HASKELL
 

@@ -793,9 +793,9 @@ instance EntryCountLens SegmentLeaderboardResponse Integer where
     )
 
 instance ErrorLens UploadStatus (Maybe Text) where
-  error uploadStatus =
+  error_ uploadStatus =
     ( uploadStatus_error uploadStatus
-    , \ error' -> uploadStatus { uploadStatus_error = error' }
+    , \ error_' -> uploadStatus { uploadStatus_error = error_' }
     )
 
 instance ExternalIdLens ActivityDetailed (Maybe Text) where
@@ -961,117 +961,117 @@ instance HttpManagerLens Client Manager where
     )
 
 instance IdLens ActivityDetailed Integer where
-  id activityDetailed =
+  id_ activityDetailed =
     ( activityDetailed_id activityDetailed
-    , \ id' -> activityDetailed { activityDetailed_id = id' }
+    , \ id_' -> activityDetailed { activityDetailed_id = id_' }
     )
 
 instance IdLens ActivityLapSummary Integer where
-  id activityLapSummary =
+  id_ activityLapSummary =
     ( activityLapSummary_id activityLapSummary
-    , \ id' -> activityLapSummary { activityLapSummary_id = id' }
+    , \ id_' -> activityLapSummary { activityLapSummary_id = id_' }
     )
 
 instance IdLens ActivitySummary Integer where
-  id activitySummary =
+  id_ activitySummary =
     ( activitySummary_id activitySummary
-    , \ id' -> activitySummary { activitySummary_id = id' }
+    , \ id_' -> activitySummary { activitySummary_id = id_' }
     )
 
 instance IdLens AthleteDetailed Integer where
-  id athleteDetailed =
+  id_ athleteDetailed =
     ( athleteDetailed_id athleteDetailed
-    , \ id' -> athleteDetailed { athleteDetailed_id = id' }
+    , \ id_' -> athleteDetailed { athleteDetailed_id = id_' }
     )
 
 instance IdLens AthleteMeta Integer where
-  id athleteMeta =
+  id_ athleteMeta =
     ( athleteMeta_id athleteMeta
-    , \ id' -> athleteMeta { athleteMeta_id = id' }
+    , \ id_' -> athleteMeta { athleteMeta_id = id_' }
     )
 
 instance IdLens AthleteSummary Integer where
-  id athleteSummary =
+  id_ athleteSummary =
     ( athleteSummary_id athleteSummary
-    , \ id' -> athleteSummary { athleteSummary_id = id' }
+    , \ id_' -> athleteSummary { athleteSummary_id = id_' }
     )
 
 instance IdLens ClubDetailed Integer where
-  id clubDetailed =
+  id_ clubDetailed =
     ( clubDetailed_id clubDetailed
-    , \ id' -> clubDetailed { clubDetailed_id = id' }
+    , \ id_' -> clubDetailed { clubDetailed_id = id_' }
     )
 
 instance IdLens ClubSummary Integer where
-  id clubSummary =
+  id_ clubSummary =
     ( clubSummary_id clubSummary
-    , \ id' -> clubSummary { clubSummary_id = id' }
+    , \ id_' -> clubSummary { clubSummary_id = id_' }
     )
 
 instance IdLens CommentSummary Integer where
-  id commentSummary =
+  id_ commentSummary =
     ( commentSummary_id commentSummary
-    , \ id' -> commentSummary { commentSummary_id = id' }
+    , \ id_' -> commentSummary { commentSummary_id = id_' }
     )
 
 instance IdLens EffortDetailed Integer where
-  id effortDetailed =
+  id_ effortDetailed =
     ( effortDetailed_id effortDetailed
-    , \ id' -> effortDetailed { effortDetailed_id = id' }
+    , \ id_' -> effortDetailed { effortDetailed_id = id_' }
     )
 
 instance IdLens GearDetailed Text where
-  id gearDetailed =
+  id_ gearDetailed =
     ( gearDetailed_id gearDetailed
-    , \ id' -> gearDetailed { gearDetailed_id = id' }
+    , \ id_' -> gearDetailed { gearDetailed_id = id_' }
     )
 
 instance IdLens GearSummary Text where
-  id gearSummary =
+  id_ gearSummary =
     ( gearSummary_id gearSummary
-    , \ id' -> gearSummary { gearSummary_id = id' }
+    , \ id_' -> gearSummary { gearSummary_id = id_' }
     )
 
 instance IdLens PhotoSummary Integer where
-  id photoSummary =
+  id_ photoSummary =
     ( photoSummary_id photoSummary
-    , \ id' -> photoSummary { photoSummary_id = id' }
+    , \ id_' -> photoSummary { photoSummary_id = id_' }
     )
 
 instance IdLens PolylineDetailed Text where
-  id polylineDetailed =
+  id_ polylineDetailed =
     ( polylineDetailed_id polylineDetailed
-    , \ id' -> polylineDetailed { polylineDetailed_id = id' }
+    , \ id_' -> polylineDetailed { polylineDetailed_id = id_' }
     )
 
 instance IdLens PolylineSummary Text where
-  id polylineSummary =
+  id_ polylineSummary =
     ( polylineSummary_id polylineSummary
-    , \ id' -> polylineSummary { polylineSummary_id = id' }
+    , \ id_' -> polylineSummary { polylineSummary_id = id_' }
     )
 
 instance IdLens SegmentDetailed Integer where
-  id segmentDetailed =
+  id_ segmentDetailed =
     ( segmentDetailed_id segmentDetailed
-    , \ id' -> segmentDetailed { segmentDetailed_id = id' }
+    , \ id_' -> segmentDetailed { segmentDetailed_id = id_' }
     )
 
 instance IdLens SegmentExplorerEntry Integer where
-  id segmentExplorerEntry =
+  id_ segmentExplorerEntry =
     ( segmentExplorerEntry_id segmentExplorerEntry
-    , \ id' -> segmentExplorerEntry { segmentExplorerEntry_id = id' }
+    , \ id_' -> segmentExplorerEntry { segmentExplorerEntry_id = id_' }
     )
 
 instance IdLens SegmentSummary Integer where
-  id segmentSummary =
+  id_ segmentSummary =
     ( segmentSummary_id segmentSummary
-    , \ id' -> segmentSummary { segmentSummary_id = id' }
+    , \ id_' -> segmentSummary { segmentSummary_id = id_' }
     )
 
 instance IdLens UploadStatus Integer where
-  id uploadStatus =
+  id_ uploadStatus =
     ( uploadStatus_id uploadStatus
-    , \ id' -> uploadStatus { uploadStatus_id = id' }
+    , \ id_' -> uploadStatus { uploadStatus_id = id_' }
     )
 
 instance InstagramPrimaryPhotoLens ActivityDetailed (Maybe Text) where
@@ -1213,9 +1213,9 @@ instance MaxHeartrateLens EffortDetailed (Maybe Integer) where
     )
 
 instance MaxLens ActivityZoneDistributionBucket Integer where
-  max activityZoneDistributionBucket =
+  max_ activityZoneDistributionBucket =
     ( activityZoneDistributionBucket_max activityZoneDistributionBucket
-    , \ max' -> activityZoneDistributionBucket { activityZoneDistributionBucket_max = max' }
+    , \ max_' -> activityZoneDistributionBucket { activityZoneDistributionBucket_max = max_' }
     )
 
 instance MaxSpeedLens ActivityDetailed Double where
@@ -1267,9 +1267,9 @@ instance MinCatLens ExploreSegmentsOptions Integer where
     )
 
 instance MinLens ActivityZoneDistributionBucket Integer where
-  min activityZoneDistributionBucket =
+  min_ activityZoneDistributionBucket =
     ( activityZoneDistributionBucket_min activityZoneDistributionBucket
-    , \ min' -> activityZoneDistributionBucket { activityZoneDistributionBucket_min = min' }
+    , \ min_' -> activityZoneDistributionBucket { activityZoneDistributionBucket_min = min_' }
     )
 
 instance ModelNameLens GearDetailed Text where
