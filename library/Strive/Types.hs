@@ -8,6 +8,7 @@ import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import GPolyline (decodeline)
+import Strive.Enums
 
 -- * Authentication
 
@@ -58,7 +59,7 @@ data AthleteDetailed = AthleteDetailed
   , athleteDetailed_profile               :: Text
   , athleteDetailed_profileMedium         :: Text
   , athleteDetailed_resourceState         :: Integer
-  , athleteDetailed_sex                   :: Maybe Char
+  , athleteDetailed_sex                   :: Maybe Gender
   , athleteDetailed_shoes                 :: [GearSummary]
   , athleteDetailed_state                 :: Text
   , athleteDetailed_updatedAt             :: UTCTime
@@ -107,7 +108,7 @@ data AthleteSummary = AthleteSummary
   , athleteSummary_profile       :: Text
   , athleteSummary_profileMedium :: Text
   , athleteSummary_resourceState :: Integer
-  , athleteSummary_sex           :: Maybe Char
+  , athleteSummary_sex           :: Maybe Gender
   , athleteSummary_state         :: Text
   , athleteSummary_updatedAt     :: UTCTime
   } deriving Show
@@ -727,7 +728,7 @@ instance FromJSON SegmentLeaderboardResponse where
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
 data SegmentLeaderboardEntry = SegmentLeaderboardEntry
   { segmentLeaderboardEntry_activityId     :: Integer
-  , segmentLeaderboardEntry_athleteGender  :: Maybe Char
+  , segmentLeaderboardEntry_athleteGender  :: Maybe Gender
   , segmentLeaderboardEntry_athleteId      :: Integer
   , segmentLeaderboardEntry_athleteName    :: Text
   , segmentLeaderboardEntry_athleteProfile :: Text

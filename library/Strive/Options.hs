@@ -8,6 +8,7 @@ import Data.Default (Default, def)
 import Data.Time.Clock (UTCTime)
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Network.HTTP.Types.QueryLike (QueryLike, toQuery)
+import Strive.Enums
 
 data PaginationOptions = PaginationOptions
   { paginationOptions_page    :: Integer
@@ -63,7 +64,7 @@ data UpdateCurrentAthleteOptions = UpdateCurrentAthleteOptions
   { updateCurrentAthleteOptions_city    :: Maybe String
   , updateCurrentAthleteOptions_state   :: Maybe String
   , updateCurrentAthleteOptions_country :: Maybe String
-  , updateCurrentAthleteOptions_sex     :: Maybe Char
+  , updateCurrentAthleteOptions_sex     :: Maybe Gender
   , updateCurrentAthleteOptions_weight  :: Maybe Double
   } deriving Show
 
@@ -81,7 +82,7 @@ instance QueryLike UpdateCurrentAthleteOptions where
     [ ("city", updateCurrentAthleteOptions_city options)
     , ("state", updateCurrentAthleteOptions_state options)
     , ("country", updateCurrentAthleteOptions_country options)
-    , ("sex", fmap (: []) (updateCurrentAthleteOptions_sex options))
+    , ("sex", fmap show (updateCurrentAthleteOptions_sex options))
     , ("weight", fmap show (updateCurrentAthleteOptions_weight options))
     ]
 
@@ -266,7 +267,7 @@ instance QueryLike GetSegmentEffortsOptions where
 
 -- | 'Strive.Actions.getSegmentLeaderboard'
 data GetSegmentLeaderboardOptions = GetSegmentLeaderboardOptions
-  { getSegmentLeaderboard_gender      :: Maybe Char
+  { getSegmentLeaderboard_gender      :: Maybe Gender
   , getSegmentLeaderboard_ageGroup    :: Maybe String
   , getSegmentLeaderboard_weightClass :: Maybe String
   , getSegmentLeaderboard_following   :: Maybe Bool
@@ -290,7 +291,7 @@ instance Default GetSegmentLeaderboardOptions where
 
 instance QueryLike GetSegmentLeaderboardOptions where
   toQuery options = toQuery
-    [ ("gender", fmap (: []) (getSegmentLeaderboard_gender options))
+    [ ("gender", fmap show (getSegmentLeaderboard_gender options))
     , ("age_group", getSegmentLeaderboard_ageGroup options)
     , ("weight_class", getSegmentLeaderboard_weightClass options)
     , ("following", fmap (unpack . toStrict . encode) (getSegmentLeaderboard_following options))

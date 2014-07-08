@@ -38,6 +38,7 @@ library
         Strive
         Strive.Actions
         Strive.Client
+        Strive.Enums
         Strive.Lenses
         Strive.Lenses.Classes
         Strive.Lenses.Instances

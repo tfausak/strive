@@ -8,6 +8,7 @@ import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Client.Conduit (Manager)
 import Strive.Client
+import Strive.Enums
 import Strive.Lenses.Classes
 import Strive.Options
 import Strive.Types
@@ -144,7 +145,7 @@ instance AthleteCountLens SegmentDetailed Integer where
     , \ athleteCount' -> segmentDetailed { segmentDetailed_athleteCount = athleteCount' }
     )
 
-instance AthleteGenderLens SegmentLeaderboardEntry (Maybe Char) where
+instance AthleteGenderLens SegmentLeaderboardEntry (Maybe Gender) where
   athleteGender segmentLeaderboardEntry =
     ( segmentLeaderboardEntry_athleteGender segmentLeaderboardEntry
     , \ athleteGender' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteGender = athleteGender' }
@@ -924,7 +925,7 @@ instance GearLens ActivityDetailed GearSummary where
     , \ gear' -> activityDetailed { activityDetailed_gear = gear' }
     )
 
-instance GenderLens GetSegmentLeaderboardOptions (Maybe Char) where
+instance GenderLens GetSegmentLeaderboardOptions (Maybe Gender) where
   gender getSegmentLeaderboardOptions =
     ( getSegmentLeaderboard_gender getSegmentLeaderboardOptions
     , \ gender' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_gender = gender' }
@@ -1782,19 +1783,19 @@ instance SeriesTypeLens StreamDetailed Text where
     , \ seriesType' -> streamDetailed { streamDetailed_seriesType = seriesType' }
     )
 
-instance SexLens AthleteDetailed (Maybe Char) where
+instance SexLens AthleteDetailed (Maybe Gender) where
   sex athleteDetailed =
     ( athleteDetailed_sex athleteDetailed
     , \ sex' -> athleteDetailed { athleteDetailed_sex = sex' }
     )
 
-instance SexLens AthleteSummary (Maybe Char) where
+instance SexLens AthleteSummary (Maybe Gender) where
   sex athleteSummary =
     ( athleteSummary_sex athleteSummary
     , \ sex' -> athleteSummary { athleteSummary_sex = sex' }
     )
 
-instance SexLens UpdateCurrentAthleteOptions (Maybe Char) where
+instance SexLens UpdateCurrentAthleteOptions (Maybe Gender) where
   sex updateCurrentAthleteOptions =
     ( updateCurrentAthleteOptions_sex updateCurrentAthleteOptions
     , \ sex' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_sex = sex' }

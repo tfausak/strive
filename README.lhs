@@ -168,7 +168,7 @@ main = do
     [ set city    (Just "Dallas")
     , set state   (Just "Texas")
     , set country (Just "United States")
-    , set sex     (Just 'M')
+    , set sex     (Just Male)
     , set weight  (Just 72.57)
     ]
   print (updatedAthlete :: Either String AthleteDetailed)
@@ -425,7 +425,7 @@ main = do
 
 ~~~ {.haskell}
   segmentLeaderboardResponse <- getSegmentLeaderboard client 4773104 ?
-    [ set gender      (Just 'M')
+    [ set gender      (Just Male)
     , set ageGroup    (Just "0_24")
     , set weightClass (Just "65_74")
     , set following   (Just True)
