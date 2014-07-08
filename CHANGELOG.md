@@ -1,5 +1,12 @@
 # Changelog
 
+- Avoided clobbering Prelude exports by appending underscores (`id` became
+  `id_`).
+- Created infix operator `?` as a shortcut for `$ with`.
+- Changed return of `deleteActivity` from `Value` to `()`.
+- Created `Show` instance for `Client`.
+- Fixed `README.lhs` on Windows.
+
 ## v0.5.0 (2014-07-07)
 
 - Rewrote everything from the ground up.
