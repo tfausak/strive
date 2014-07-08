@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.5.1 (2014-07-08)
+
 - Avoided clobbering Prelude exports by appending underscores (`id` became
   `id_`).
 - Created infix operator `?` as a shortcut for `$ with`.
