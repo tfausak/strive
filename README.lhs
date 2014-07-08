@@ -4,6 +4,7 @@
 
 A Haskell client for the [Strava V3 API][2].
 
+- [Installation](#installation)
 - [Usage](#usage)
   - [Authentication](#authentication)
     - [Request access](#request-access)
@@ -55,6 +56,25 @@ A Haskell client for the [Strava V3 API][2].
   - [Uploads](#uploads)
     - [Upload an activity](#upload-an-activity)
     - [Check upload status](#check-upload-status)
+
+## Installation
+
+Add it to your Cabal file:
+
+~~~
+library
+  build-depends:
+    strive ==0.5.*
+~~~
+
+Or install it manually:
+
+~~~ {.sh}
+$ cabal update
+$ cabal install strive
+~~~
+
+This package uses [Semantic Versioning][3].
 
 ## Usage
 
@@ -500,3 +520,4 @@ main = do
 
 [1]: https://github.com/tfausak/strive
 [2]: http://strava.github.io/api/
+[3]: http://semver.org/spec/v2.0.0.html
