@@ -41,6 +41,7 @@
         <p><a href="https://travis-ci.org/tfausak/strive"><img src="https://travis-ci.org/tfausak/strive.svg?branch=master" alt="Build Status"></a></p>
 
 <ul>
+<li><a href="#installation">Installation</a></li>
 <li>
 <a href="#usage">Usage</a>
 
@@ -163,6 +164,24 @@
 </ul>
 </li>
 </ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add it to your Cabal file:</p>
+
+<pre><code>library
+  build-depends:
+    strive ==0.5.*
+</code></pre>
+
+<p>Or install it manually:</p>
+
+<div class="highlight highlight-sh"><pre><span class="nv">$ </span>cabal update
+<span class="nv">$ </span>cabal install strive
+</pre></div>
+
+<p>This package uses <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+
+<h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>To use the API, you'll need an access token. Once you have that, create a new
