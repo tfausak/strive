@@ -512,12 +512,6 @@ main = do
   print (upload :: Either String UploadStatus)
 ~~~
 
-<!--
-~~~ {.haskell}
-  return ()
-~~~
--->
-
 [1]: https://github.com/tfausak/strive
 [2]: http://strava.github.io/api/
 [3]: http://semver.org/spec/v2.0.0.html
