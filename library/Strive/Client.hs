@@ -9,6 +9,13 @@ data Client = Client
   , client_httpManager :: Manager
   }
 
+instance Show Client where
+  show client = concat
+    [ "Client {client_accessToken = "
+    , show (client_accessToken client)
+    , "}"
+    ]
+
 -- | Build a client with the default HTTP manager.
 buildClient :: String -> IO Client
 buildClient token = do
