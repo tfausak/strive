@@ -6,7 +6,7 @@ license: MIT
 license-file: LICENSE.txt
 copyright: 2014 Taylor Fausak <taylor@fausak.me>
 maintainer: taylor@fausak.me
-homepage: https://github.com/tfausak/strive
+homepage: http://taylor.fausak.me/strive/
 bug-reports: https://github.com/tfausak/strive/issues
 synopsis: A Haskell client for the Strava V3 API.
 description:
