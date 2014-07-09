@@ -144,7 +144,7 @@ instance QueryLike GetActivityOptions where
 -- | 'Strive.Actions.UpdateActivity'
 data UpdateActivityOptions = UpdateActivityOptions
   { updateActivityOptions_name        :: Maybe String
-  , updateActivityOptions_type        :: Maybe String
+  , updateActivityOptions_type        :: Maybe ActivityType
   , updateActivityOptions_private     :: Maybe Bool
   , updateActivityOptions_commute     :: Maybe Bool
   , updateActivityOptions_trainer     :: Maybe Bool
@@ -166,7 +166,7 @@ instance Default UpdateActivityOptions where
 instance QueryLike UpdateActivityOptions where
   toQuery options = toQuery
     [ ("name", updateActivityOptions_name options)
-    , ("type", updateActivityOptions_type options)
+    , ("type", fmap show (updateActivityOptions_type options))
     , ("private", fmap (unpack . toStrict . encode) (updateActivityOptions_private options))
     , ("commute", fmap (unpack . toStrict . encode) (updateActivityOptions_commute options))
     , ("trainer", fmap (unpack . toStrict . encode) (updateActivityOptions_trainer options))
@@ -346,7 +346,7 @@ instance QueryLike GetStreamsOptions where
 
 -- | 'Strive.Actions.uploadActivity'
 data UploadActivityOptions = UploadActivityOptions
-  { uploadActivityOptions_activityType :: Maybe String
+  { uploadActivityOptions_activityType :: Maybe ActivityType
   , uploadActivityOptions_name         :: Maybe String
   , uploadActivityOptions_description  :: Maybe String
   , uploadActivityOptions_private      :: Bool
@@ -366,7 +366,7 @@ instance Default UploadActivityOptions where
 
 instance QueryLike UploadActivityOptions where
   toQuery options = toQuery
-    [ ("activity_type", uploadActivityOptions_activityType options)
+    [ ("activity_type", fmap show (uploadActivityOptions_activityType options))
     , ("name", uploadActivityOptions_name options)
     , ("description", uploadActivityOptions_description options)
     , ("private", Just (show (fromEnum (uploadActivityOptions_private options))))

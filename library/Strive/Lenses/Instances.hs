@@ -85,19 +85,19 @@ instance ActivityTypeLens ExploreSegmentsOptions String where
     , \ activityType' -> exploreSegmentsOptions { exploreSegmentsOptions_activityType = activityType' }
     )
 
-instance ActivityTypeLens SegmentDetailed Text where
+instance ActivityTypeLens SegmentDetailed ActivityType where
   activityType segmentDetailed =
     ( segmentDetailed_activityType segmentDetailed
     , \ activityType' -> segmentDetailed { segmentDetailed_activityType = activityType' }
     )
 
-instance ActivityTypeLens SegmentSummary Text where
+instance ActivityTypeLens SegmentSummary ActivityType where
   activityType segmentSummary =
     ( segmentSummary_activityType segmentSummary
     , \ activityType' -> segmentSummary { segmentSummary_activityType = activityType' }
     )
 
-instance ActivityTypeLens UploadActivityOptions (Maybe String) where
+instance ActivityTypeLens UploadActivityOptions (Maybe ActivityType) where
   activityType uploadActivityOptions =
     ( uploadActivityOptions_activityType uploadActivityOptions
     , \ activityType' -> uploadActivityOptions { uploadActivityOptions_activityType = activityType' }
@@ -2125,13 +2125,13 @@ instance TruncatedLens ActivityDetailed Integer where
     , \ truncated' -> activityDetailed { activityDetailed_truncated = truncated' }
     )
 
-instance TypeLens ActivityDetailed Text where
+instance TypeLens ActivityDetailed ActivityType where
   type_ activityDetailed =
     ( activityDetailed_type activityDetailed
     , \ type_' -> activityDetailed { activityDetailed_type = type_' }
     )
 
-instance TypeLens ActivitySummary Text where
+instance TypeLens ActivitySummary ActivityType where
   type_ activitySummary =
     ( activitySummary_type activitySummary
     , \ type_' -> activitySummary { activitySummary_type = type_' }
@@ -2155,7 +2155,7 @@ instance TypeLens StreamDetailed Text where
     , \ type_' -> streamDetailed { streamDetailed_type = type_' }
     )
 
-instance TypeLens UpdateActivityOptions (Maybe String) where
+instance TypeLens UpdateActivityOptions (Maybe ActivityType) where
   type_ updateActivityOptions =
     ( updateActivityOptions_type updateActivityOptions
     , \ type_' -> updateActivityOptions { updateActivityOptions_type = type_' }

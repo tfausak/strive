@@ -189,7 +189,7 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_totalElevationGain    :: Double
   , activityDetailed_trainer               :: Bool
   , activityDetailed_truncated             :: Integer
-  , activityDetailed_type                  :: Text
+  , activityDetailed_type                  :: ActivityType
   , activityDetailed_uploadId              :: Maybe Integer
   } deriving Show
 
@@ -278,7 +278,7 @@ data ActivitySummary = ActivitySummary
   , activitySummary_timezone           :: Text
   , activitySummary_totalElevationGain :: Double
   , activitySummary_trainer            :: Bool
-  , activitySummary_type               :: Text
+  , activitySummary_type               :: ActivityType
   , activitySummary_uploadId           :: Maybe Integer
   } deriving Show
 
@@ -597,7 +597,7 @@ instance FromJSON GearSummary where
 
 -- | <http://strava.github.io/api/v3/segments/#detailed>
 data SegmentDetailed = SegmentDetailed
-  { segmentDetailed_activityType       :: Text
+  { segmentDetailed_activityType       :: ActivityType
   , segmentDetailed_athleteCount       :: Integer
   , segmentDetailed_averageGrade       :: Double
   , segmentDetailed_city               :: Text
@@ -663,7 +663,7 @@ instance FromJSON SegmentDetailed where
 
 -- | <http://strava.github.io/api/v3/segments/#summary>
 data SegmentSummary = SegmentSummary
-  { segmentSummary_activityType   :: Text
+  { segmentSummary_activityType   :: ActivityType
   , segmentSummary_averageGrade   :: Double
   , segmentSummary_city           :: Text
   , segmentSummary_climbCategory  :: Integer

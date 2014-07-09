@@ -258,7 +258,7 @@ main = do
 ~~~ {.haskell}
   updatedActivity <- updateActivity client 141273622 ?
     [ set name        (Just "WedEx Pit Stop")
-    , set type_       (Just "Ride")
+    , set type_       (Just Ride)
     , set private     (Just False)
     , set commute     (Just True)
     , set trainer     (Just False)
@@ -495,7 +495,7 @@ main = do
 
 ~~~ {.haskell}
   uploadedActivity <- uploadActivity client (pack "...") "gpx.gz" ?
-    [ set activityType (Just "ride")
+    [ set activityType (Just Ride)
     , set name         (Just "An Example")
     , set description  (Just "...")
     , set private      True
