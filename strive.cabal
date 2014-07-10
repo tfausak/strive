@@ -13,7 +13,7 @@ description:
     A Haskell client for the <http://strava.github.io/api/ Strava V3 API>.
 category: API
 author: Taylor Fausak
-tested-with: GHC ==7.6.3
+tested-with: GHC ==7.6.3 GHC ==7.8.2
 extra-source-files:
     CHANGELOG.md
     CONTRIBUTING.md
@@ -32,7 +32,7 @@ library
         gpolyline ==0.1.*,
         http-conduit ==2.*,
         http-types ==0.8.*,
-        text ==0.11.*,
+        text ==0.11.* || ==1.*,
         time ==1.*
     exposed-modules:
         Strive

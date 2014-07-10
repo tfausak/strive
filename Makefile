@@ -22,7 +22,7 @@ haddock:
 
 install:
 	cabal sandbox init
-	cabal install --enable-tests --jobs --only-dependencies
+	cabal install --allow-newer=base --enable-tests --jobs --only-dependencies
 
 repl:
 	cabal repl lib:strive
