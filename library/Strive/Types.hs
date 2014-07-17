@@ -860,7 +860,7 @@ data StreamDetailed = StreamDetailed
   { streamDetailed_data         :: [Value]
   , streamDetailed_originalSize :: Integer
   , streamDetailed_resolution   :: Resolution
-  , streamDetailed_seriesType   :: Text
+  , streamDetailed_seriesType   :: SeriesType
   , streamDetailed_type         :: Text
   } deriving Show
 

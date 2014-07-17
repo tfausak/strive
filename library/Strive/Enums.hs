@@ -121,3 +121,17 @@ instance FromJSON Resolution where
   parseJSON (String "medium") = return Medium
   parseJSON (String "high") = return High
   parseJSON _ = empty
+
+-- | A series' type in a stream.
+data SeriesType
+  = Distance
+  | Time
+
+instance Show SeriesType where
+  show Distance = "distance"
+  show Time = "time"
+
+instance FromJSON SeriesType where
+  parseJSON (String "distance") = return Distance
+  parseJSON (String "time") = return Time
+  parseJSON _ = empty

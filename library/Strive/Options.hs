@@ -327,19 +327,19 @@ instance QueryLike ExploreSegmentsOptions where
 -- | 'Strive.Actions.getStreams'
 data GetStreamsOptions = GetStreamsOptions
   { getStreamsOptions_resolution :: Maybe Resolution
-  , getStreamsOptions_seriesType :: String
+  , getStreamsOptions_seriesType :: SeriesType
   } deriving Show
 
 instance Default GetStreamsOptions where
   def = GetStreamsOptions
     { getStreamsOptions_resolution = Nothing
-    , getStreamsOptions_seriesType = "distance"
+    , getStreamsOptions_seriesType = Distance
     }
 
 instance QueryLike GetStreamsOptions where
   toQuery options = toQuery
     [ ("resolution", fmap show (getStreamsOptions_resolution options))
-    , ("distance", Just (getStreamsOptions_seriesType options))
+    , ("distance", Just (show (getStreamsOptions_seriesType options)))
     ]
 
 -- * Uploads

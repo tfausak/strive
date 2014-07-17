@@ -1771,13 +1771,13 @@ instance SensorBasedLens ActivityZoneDetailed Bool where
     , \ sensorBased' -> activityZoneDetailed { activityZoneDetailed_sensorBased = sensorBased' }
     )
 
-instance SeriesTypeLens GetStreamsOptions String where
+instance SeriesTypeLens GetStreamsOptions SeriesType where
   seriesType getStreamsOptions =
     ( getStreamsOptions_seriesType getStreamsOptions
     , \ seriesType' -> getStreamsOptions { getStreamsOptions_seriesType = seriesType' }
     )
 
-instance SeriesTypeLens StreamDetailed Text where
+instance SeriesTypeLens StreamDetailed SeriesType where
   seriesType streamDetailed =
     ( streamDetailed_seriesType streamDetailed
     , \ seriesType' -> streamDetailed { streamDetailed_seriesType = seriesType' }
