@@ -859,7 +859,7 @@ instance FromJSON EffortDetailed where
 data StreamDetailed = StreamDetailed
   { streamDetailed_data         :: [Value]
   , streamDetailed_originalSize :: Integer
-  , streamDetailed_resolution   :: Text
+  , streamDetailed_resolution   :: Resolution
   , streamDetailed_seriesType   :: Text
   , streamDetailed_type         :: Text
   } deriving Show

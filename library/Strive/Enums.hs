@@ -104,3 +104,20 @@ data SegmentActivityType
 instance Show SegmentActivityType where
   show Riding = "riding"
   show Running = "running"
+
+-- | A stream's resolution.
+data Resolution
+  = Low
+  | Medium
+  | High
+
+instance Show Resolution where
+  show Low = "low"
+  show Medium = "medium"
+  show High = "high"
+
+instance FromJSON Resolution where
+  parseJSON (String "low") = return Low
+  parseJSON (String "medium") = return Medium
+  parseJSON (String "high") = return High
+  parseJSON _ = empty

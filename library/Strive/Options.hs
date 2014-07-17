@@ -326,7 +326,7 @@ instance QueryLike ExploreSegmentsOptions where
 
 -- | 'Strive.Actions.getStreams'
 data GetStreamsOptions = GetStreamsOptions
-  { getStreamsOptions_resolution :: Maybe String
+  { getStreamsOptions_resolution :: Maybe Resolution
   , getStreamsOptions_seriesType :: String
   } deriving Show
 
@@ -338,7 +338,7 @@ instance Default GetStreamsOptions where
 
 instance QueryLike GetStreamsOptions where
   toQuery options = toQuery
-    [ ("resolution", getStreamsOptions_resolution options)
+    [ ("resolution", fmap show (getStreamsOptions_resolution options))
     , ("distance", Just (getStreamsOptions_seriesType options))
     ]
 

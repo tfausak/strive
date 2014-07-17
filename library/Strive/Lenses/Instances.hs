@@ -1627,13 +1627,13 @@ instance RefLens PhotoSummary Text where
     , \ ref' -> photoSummary { photoSummary_ref = ref' }
     )
 
-instance ResolutionLens GetStreamsOptions (Maybe String) where
+instance ResolutionLens GetStreamsOptions (Maybe Resolution) where
   resolution getStreamsOptions =
     ( getStreamsOptions_resolution getStreamsOptions
     , \ resolution' -> getStreamsOptions { getStreamsOptions_resolution = resolution' }
     )
 
-instance ResolutionLens StreamDetailed Text where
+instance ResolutionLens StreamDetailed Resolution where
   resolution streamDetailed =
     ( streamDetailed_resolution streamDetailed
     , \ resolution' -> streamDetailed { streamDetailed_resolution = resolution' }

@@ -463,7 +463,7 @@ main = do
 
 ~~~ {.haskell}
   activityStreams <- getActivityStreams client 141273622 ["latlng", "watts"] ?
-    [ set resolution (Just "low")
+    [ set resolution (Just Low)
     , set seriesType "time"
     ]
   print (activityStreams :: Either String [StreamDetailed])
@@ -473,7 +473,7 @@ main = do
 
 ~~~ {.haskell}
   effortStreams <- getEffortStreams client 1595370098 ["latlng", "watts"] ?
-    [ set resolution (Just "low")
+    [ set resolution (Just Low)
     , set seriesType "time"
     ]
   print (effortStreams :: Either String [StreamDetailed])
@@ -483,7 +483,7 @@ main = do
 
 ~~~ {.haskell}
   segmentStreams <- getSegmentStreams client 4773104 ["latlng", "watts"] ?
-    [ set resolution (Just "low")
+    [ set resolution (Just Low)
     , set seriesType "time"
     ]
   print (segmentStreams :: Either String [StreamDetailed])
