@@ -95,3 +95,12 @@ instance Show WeightClass where
   show Kilograms75To84 = "75_84"
   show Kilograms85To94 = "85_94"
   show Kilograms95Plus = "95_plus"
+
+-- | A segment's activity type.
+data SegmentActivityType
+  = Riding
+  | Running
+
+instance Show SegmentActivityType where
+  show Riding = "riding"
+  show Running = "running"

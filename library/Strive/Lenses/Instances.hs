@@ -79,7 +79,7 @@ instance ActivityIdLens UploadStatus (Maybe Integer) where
     , \ activityId' -> uploadStatus { uploadStatus_activityId = activityId' }
     )
 
-instance ActivityTypeLens ExploreSegmentsOptions String where
+instance ActivityTypeLens ExploreSegmentsOptions SegmentActivityType where
   activityType exploreSegmentsOptions =
     ( exploreSegmentsOptions_activityType exploreSegmentsOptions
     , \ activityType' -> exploreSegmentsOptions { exploreSegmentsOptions_activityType = activityType' }

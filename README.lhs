@@ -441,7 +441,7 @@ main = do
 
 ~~~ {.haskell}
   segmentExplorerResponse <- exploreSegments client (32.0, -96.0, 33.0, -95.0) ?
-    [ set activityType "riding"
+    [ set activityType Riding
     , set minCat 0
     , set maxCat 5
     ]

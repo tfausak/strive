@@ -303,21 +303,21 @@ instance QueryLike GetSegmentLeaderboardOptions where
 
 -- | 'Strive.Actions.exploreSegments'
 data ExploreSegmentsOptions = ExploreSegmentsOptions
-  { exploreSegmentsOptions_activityType :: String
+  { exploreSegmentsOptions_activityType :: SegmentActivityType
   , exploreSegmentsOptions_minCat       :: Integer
   , exploreSegmentsOptions_maxCat       :: Integer
   } deriving Show
 
 instance Default ExploreSegmentsOptions where
   def = ExploreSegmentsOptions
-    { exploreSegmentsOptions_activityType = "riding"
+    { exploreSegmentsOptions_activityType = Riding
     , exploreSegmentsOptions_minCat = 0
     , exploreSegmentsOptions_maxCat = 5
     }
 
 instance QueryLike ExploreSegmentsOptions where
   toQuery options = toQuery
-    [ ("activity_type", exploreSegmentsOptions_activityType options)
+    [ ("activity_type", show (exploreSegmentsOptions_activityType options))
     , ("min_cat", show (exploreSegmentsOptions_minCat options))
     , ("max_cat", show (exploreSegmentsOptions_maxCat options))
     ]
