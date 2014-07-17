@@ -49,3 +49,20 @@ instance FromJSON ActivityType where
     capitalize [] = []
     capitalize (x : xs) = toUpper x : fmap toLower xs
   parseJSON _ = empty
+
+-- | An athlete's age group.
+data AgeGroup
+  = Ages0To24
+  | Ages25To34
+  | Ages35To44
+  | Ages45To54
+  | Ages55To64
+  | Ages65Plus
+
+instance Show AgeGroup where
+  show Ages0To24 = "0_24"
+  show Ages25To34 = "25_34"
+  show Ages35To44 = "35_44"
+  show Ages45To54 = "45_54"
+  show Ages55To64 = "55_64"
+  show Ages65Plus = "65_plus"

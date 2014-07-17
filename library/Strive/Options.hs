@@ -268,7 +268,7 @@ instance QueryLike GetSegmentEffortsOptions where
 -- | 'Strive.Actions.getSegmentLeaderboard'
 data GetSegmentLeaderboardOptions = GetSegmentLeaderboardOptions
   { getSegmentLeaderboard_gender      :: Maybe Gender
-  , getSegmentLeaderboard_ageGroup    :: Maybe String
+  , getSegmentLeaderboard_ageGroup    :: Maybe AgeGroup
   , getSegmentLeaderboard_weightClass :: Maybe String
   , getSegmentLeaderboard_following   :: Maybe Bool
   , getSegmentLeaderboard_clubId      :: Maybe Integer
@@ -292,7 +292,7 @@ instance Default GetSegmentLeaderboardOptions where
 instance QueryLike GetSegmentLeaderboardOptions where
   toQuery options = toQuery
     [ ("gender", fmap show (getSegmentLeaderboard_gender options))
-    , ("age_group", getSegmentLeaderboard_ageGroup options)
+    , ("age_group", fmap show (getSegmentLeaderboard_ageGroup options))
     , ("weight_class", getSegmentLeaderboard_weightClass options)
     , ("following", fmap (unpack . toStrict . encode) (getSegmentLeaderboard_following options))
     , ("club_id", fmap show (getSegmentLeaderboard_clubId options))

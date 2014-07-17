@@ -426,7 +426,7 @@ main = do
 ~~~ {.haskell}
   segmentLeaderboardResponse <- getSegmentLeaderboard client 4773104 ?
     [ set gender      (Just Male)
-    , set ageGroup    (Just "0_24")
+    , set ageGroup    (Just Ages0To24)
     , set weightClass (Just "65_74")
     , set following   (Just True)
     , set clubId      (Just 11193)

@@ -109,7 +109,7 @@ instance AfterLens GetCurrentActivitiesOptions (Maybe UTCTime) where
     , \ after' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_after = after' }
     )
 
-instance AgeGroupLens GetSegmentLeaderboardOptions (Maybe String) where
+instance AgeGroupLens GetSegmentLeaderboardOptions (Maybe AgeGroup) where
   ageGroup getSegmentLeaderboardOptions =
     ( getSegmentLeaderboard_ageGroup getSegmentLeaderboardOptions
     , \ ageGroup' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_ageGroup = ageGroup' }
