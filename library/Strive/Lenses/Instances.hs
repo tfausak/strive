@@ -1639,115 +1639,115 @@ instance ResolutionLens StreamDetailed Resolution where
     , \ resolution' -> streamDetailed { streamDetailed_resolution = resolution' }
     )
 
-instance ResourceStateLens ActivityDetailed Integer where
+instance ResourceStateLens ActivityDetailed ResourceState where
   resourceState activityDetailed =
     ( activityDetailed_resourceState activityDetailed
     , \ resourceState' -> activityDetailed { activityDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ActivityLapSummary Integer where
+instance ResourceStateLens ActivityLapSummary ResourceState where
   resourceState activityLapSummary =
     ( activityLapSummary_resourceState activityLapSummary
     , \ resourceState' -> activityLapSummary { activityLapSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ActivitySummary Integer where
+instance ResourceStateLens ActivitySummary ResourceState where
   resourceState activitySummary =
     ( activitySummary_resourceState activitySummary
     , \ resourceState' -> activitySummary { activitySummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ActivityZoneDetailed Integer where
+instance ResourceStateLens ActivityZoneDetailed ResourceState where
   resourceState activityZoneDetailed =
     ( activityZoneDetailed_resourceState activityZoneDetailed
     , \ resourceState' -> activityZoneDetailed { activityZoneDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens AthleteDetailed Integer where
+instance ResourceStateLens AthleteDetailed ResourceState where
   resourceState athleteDetailed =
     ( athleteDetailed_resourceState athleteDetailed
     , \ resourceState' -> athleteDetailed { athleteDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens AthleteMeta Integer where
+instance ResourceStateLens AthleteMeta ResourceState where
   resourceState athleteMeta =
     ( athleteMeta_resourceState athleteMeta
     , \ resourceState' -> athleteMeta { athleteMeta_resourceState = resourceState' }
     )
 
-instance ResourceStateLens AthleteSummary Integer where
+instance ResourceStateLens AthleteSummary ResourceState where
   resourceState athleteSummary =
     ( athleteSummary_resourceState athleteSummary
     , \ resourceState' -> athleteSummary { athleteSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ClubDetailed Integer where
+instance ResourceStateLens ClubDetailed ResourceState where
   resourceState clubDetailed =
     ( clubDetailed_resourceState clubDetailed
     , \ resourceState' -> clubDetailed { clubDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ClubSummary Integer where
+instance ResourceStateLens ClubSummary ResourceState where
   resourceState clubSummary =
     ( clubSummary_resourceState clubSummary
     , \ resourceState' -> clubSummary { clubSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens CommentSummary Integer where
+instance ResourceStateLens CommentSummary ResourceState where
   resourceState commentSummary =
     ( commentSummary_resourceState commentSummary
     , \ resourceState' -> commentSummary { commentSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens EffortDetailed Integer where
+instance ResourceStateLens EffortDetailed ResourceState where
   resourceState effortDetailed =
     ( effortDetailed_resourceState effortDetailed
     , \ resourceState' -> effortDetailed { effortDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens GearDetailed Integer where
+instance ResourceStateLens GearDetailed ResourceState where
   resourceState gearDetailed =
     ( gearDetailed_resourceState gearDetailed
     , \ resourceState' -> gearDetailed { gearDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens GearSummary Integer where
+instance ResourceStateLens GearSummary ResourceState where
   resourceState gearSummary =
     ( gearSummary_resourceState gearSummary
     , \ resourceState' -> gearSummary { gearSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens PhotoSummary Integer where
+instance ResourceStateLens PhotoSummary ResourceState where
   resourceState photoSummary =
     ( photoSummary_resourceState photoSummary
     , \ resourceState' -> photoSummary { photoSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens PolylineDetailed Integer where
+instance ResourceStateLens PolylineDetailed ResourceState where
   resourceState polylineDetailed =
     ( polylineDetailed_resourceState polylineDetailed
     , \ resourceState' -> polylineDetailed { polylineDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens PolylineSummary Integer where
+instance ResourceStateLens PolylineSummary ResourceState where
   resourceState polylineSummary =
     ( polylineSummary_resourceState polylineSummary
     , \ resourceState' -> polylineSummary { polylineSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens SegmentDetailed Integer where
+instance ResourceStateLens SegmentDetailed ResourceState where
   resourceState segmentDetailed =
     ( segmentDetailed_resourceState segmentDetailed
     , \ resourceState' -> segmentDetailed { segmentDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens SegmentExplorerEntry Integer where
+instance ResourceStateLens SegmentExplorerEntry ResourceState where
   resourceState segmentExplorerEntry =
     ( segmentExplorerEntry_resourceState segmentExplorerEntry
     , \ resourceState' -> segmentExplorerEntry { segmentExplorerEntry_resourceState = resourceState' }
     )
 
-instance ResourceStateLens SegmentSummary Integer where
+instance ResourceStateLens SegmentSummary ResourceState where
   resourceState segmentSummary =
     ( segmentSummary_resourceState segmentSummary
     , \ resourceState' -> segmentSummary { segmentSummary_resourceState = resourceState' }

@@ -4,7 +4,7 @@
 module Strive.Enums where
 
 import Control.Applicative (empty)
-import Data.Aeson (FromJSON, Value (String), parseJSON)
+import Data.Aeson (FromJSON, Value (Number, String), parseJSON)
 import Data.Char (toLower, toUpper)
 import Data.Text (unpack)
 import Text.Read (readMaybe)
@@ -134,4 +134,17 @@ instance Show SeriesType where
 instance FromJSON SeriesType where
   parseJSON (String "distance") = return Distance
   parseJSON (String "time") = return Time
+  parseJSON _ = empty
+
+-- | A resource's state.
+data ResourceState
+  = Meta
+  | Summary
+  | Detailed
+  deriving Show
+
+instance FromJSON ResourceState where
+  parseJSON (Number 1) = return Meta
+  parseJSON (Number 2) = return Summary
+  parseJSON (Number 3) = return Detailed
   parseJSON _ = empty
