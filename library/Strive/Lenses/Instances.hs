@@ -2203,7 +2203,7 @@ instance UploadedAtLens PhotoSummary UTCTime where
     , \ uploadedAt' -> photoSummary { photoSummary_uploadedAt = uploadedAt' }
     )
 
-instance WeightClassLens GetSegmentLeaderboardOptions (Maybe String) where
+instance WeightClassLens GetSegmentLeaderboardOptions (Maybe WeightClass) where
   weightClass getSegmentLeaderboardOptions =
     ( getSegmentLeaderboard_weightClass getSegmentLeaderboardOptions
     , \ weightClass' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_weightClass = weightClass' }

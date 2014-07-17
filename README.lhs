@@ -427,7 +427,7 @@ main = do
   segmentLeaderboardResponse <- getSegmentLeaderboard client 4773104 ?
     [ set gender      (Just Male)
     , set ageGroup    (Just Ages0To24)
-    , set weightClass (Just "65_74")
+    , set weightClass (Just Kilograms65To74)
     , set following   (Just True)
     , set clubId      (Just 11193)
     , set dateRange   (Just "this_year")

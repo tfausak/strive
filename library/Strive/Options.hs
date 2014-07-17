@@ -269,7 +269,7 @@ instance QueryLike GetSegmentEffortsOptions where
 data GetSegmentLeaderboardOptions = GetSegmentLeaderboardOptions
   { getSegmentLeaderboard_gender      :: Maybe Gender
   , getSegmentLeaderboard_ageGroup    :: Maybe AgeGroup
-  , getSegmentLeaderboard_weightClass :: Maybe String
+  , getSegmentLeaderboard_weightClass :: Maybe WeightClass
   , getSegmentLeaderboard_following   :: Maybe Bool
   , getSegmentLeaderboard_clubId      :: Maybe Integer
   , getSegmentLeaderboard_dateRange   :: Maybe String
@@ -293,7 +293,7 @@ instance QueryLike GetSegmentLeaderboardOptions where
   toQuery options = toQuery
     [ ("gender", fmap show (getSegmentLeaderboard_gender options))
     , ("age_group", fmap show (getSegmentLeaderboard_ageGroup options))
-    , ("weight_class", getSegmentLeaderboard_weightClass options)
+    , ("weight_class", fmap show (getSegmentLeaderboard_weightClass options))
     , ("following", fmap (unpack . toStrict . encode) (getSegmentLeaderboard_following options))
     , ("club_id", fmap show (getSegmentLeaderboard_clubId options))
     , ("date_range", getSegmentLeaderboard_dateRange options)

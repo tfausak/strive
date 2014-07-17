@@ -66,3 +66,32 @@ instance Show AgeGroup where
   show Ages45To54 = "45_54"
   show Ages55To64 = "55_64"
   show Ages65Plus = "65_plus"
+
+-- | An athlete's weight class.
+data WeightClass
+  = Pounds0To124
+  | Pounds125To149
+  | Pounds150To164
+  | Pounds165To179
+  | Pounds180To199
+  | Pounds200Plus
+  | Kilograms0To54
+  | Kilograms55To64
+  | Kilograms65To74
+  | Kilograms75To84
+  | Kilograms85To94
+  | Kilograms95Plus
+
+instance Show WeightClass where
+  show Pounds0To124 = "0_124"
+  show Pounds125To149 = "125_149"
+  show Pounds150To164 = "150_164"
+  show Pounds165To179 = "165_179"
+  show Pounds180To199 = "180_199"
+  show Pounds200Plus = "200_plus"
+  show Kilograms0To54 = "0_54"
+  show Kilograms55To64 = "55_64"
+  show Kilograms65To74 = "65_74"
+  show Kilograms75To84 = "75_84"
+  show Kilograms85To94 = "85_94"
+  show Kilograms95Plus = "95_plus"
