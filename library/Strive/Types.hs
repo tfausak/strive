@@ -474,7 +474,7 @@ data PhotoSummary = PhotoSummary
   , photoSummary_location      :: Maybe (Double, Double)
   , photoSummary_ref           :: Text
   , photoSummary_resourceState :: ResourceState
-  , photoSummary_type          :: Text
+  , photoSummary_type          :: PhotoType
   , photoSummary_uid           :: Text
   , photoSummary_uploadedAt    :: UTCTime
   } deriving Show

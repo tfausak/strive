@@ -169,3 +169,12 @@ data ActivityZoneType
 instance FromJSON ActivityZoneType where
   parseJSON (String "heartrate") = return HeartrateZone
   parseJSON (String "power") = return PowerZone
+
+-- | A photo's type.
+data PhotoType
+  = InstagramPhoto
+  deriving Show
+
+instance FromJSON PhotoType where
+  parseJSON (String "InstagramPhoto") = return InstagramPhoto
+  parseJSON _ = empty
