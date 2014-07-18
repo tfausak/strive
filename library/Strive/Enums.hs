@@ -179,7 +179,7 @@ instance FromJSON PhotoType where
   parseJSON (String "InstagramPhoto") = return InstagramPhoto
   parseJSON _ = empty
 
--- | A club's type
+-- | A club's type.
 data ClubType
   = CasualClub
   | RacingTeam
@@ -196,7 +196,7 @@ instance FromJSON ClubType where
   parseJSON (String "other") = return Other
   parseJSON _ = empty
 
--- | A club's sport type
+-- | A club's sport type.
 data SportType
   = SportCycling
   | SportRunning
@@ -209,4 +209,19 @@ instance FromJSON SportType where
   parseJSON (String "running") = return SportRunning
   parseJSON (String "triathalon") = return SportTriathalon
   parseJSON (String "other") = return SportOther
+  parseJSON _ = empty
+
+-- | A bike's frame type.
+data FrameType
+  = MountainFrame
+  | CrossFrame
+  | RoadFrame
+  | TimeTrialFrame
+  deriving Show
+
+instance FromJSON FrameType where
+  parseJSON (Number 1) = return MountainFrame
+  parseJSON (Number 2) = return CrossFrame
+  parseJSON (Number 3) = return RoadFrame
+  parseJSON (Number 4) = return TimeTrialFrame
   parseJSON _ = empty

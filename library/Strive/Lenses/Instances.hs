@@ -871,7 +871,7 @@ instance FollowingLens GetSegmentLeaderboardOptions (Maybe Bool) where
     , \ following' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_following = following' }
     )
 
-instance FrameTypeLens GearDetailed (Maybe Integer) where
+instance FrameTypeLens GearDetailed (Maybe FrameType) where
   frameType gearDetailed =
     ( gearDetailed_frameType gearDetailed
     , \ frameType' -> gearDetailed { gearDetailed_frameType = frameType' }

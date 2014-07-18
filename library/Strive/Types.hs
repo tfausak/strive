@@ -554,7 +554,7 @@ data GearDetailed = GearDetailed
   { gearDetailed_brandName     :: Text
   , gearDetailed_description   :: Text
   , gearDetailed_distance      :: Double
-  , gearDetailed_frameType     :: Maybe Integer
+  , gearDetailed_frameType     :: Maybe FrameType
   , gearDetailed_id            :: Text
   , gearDetailed_modelName     :: Text
   , gearDetailed_name          :: Text
