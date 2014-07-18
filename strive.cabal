@@ -38,6 +38,19 @@ library
     exposed-modules:
         Strive
         Strive.Actions
+        Strive.Actions.Activities
+        Strive.Actions.Athletes
+        Strive.Actions.Authentication
+        Strive.Actions.Clubs
+        Strive.Actions.Comments
+        Strive.Actions.Efforts
+        Strive.Actions.Friends
+        Strive.Actions.Gear
+        Strive.Actions.Kudos
+        Strive.Actions.Photos
+        Strive.Actions.Segments
+        Strive.Actions.Streams
+        Strive.Actions.Uploads
         Strive.Client
         Strive.Enums
         Strive.Lenses
