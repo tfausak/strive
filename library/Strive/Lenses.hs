@@ -1,13 +1,22 @@
+{-# LANGUAGE Rank2Types #-}
+
 -- | Lenses for easily getting and setting values.
 module Strive.Lenses where
 
--- | A lens for a record, returning a field and a residue.
-type Lens a b = a -> (b, b -> a)
+import Data.Functor.Constant (Constant (Constant), getConstant)
+import Data.Functor.Identity (Identity (Identity), runIdentity)
 
--- | Get a field from a record using a lens.
+-- | A lens for a record.
+type Lens a b = Functor f => (b -> f b) -> a -> f a
+
+-- | Get a field from a record.
 get :: Lens a b -> a -> b
-get = (fst .)
+get lens = getConstant . lens Constant
 
--- | Set a field in a record using a lens.
+-- | Update a field in a record
+update :: Lens a b -> (b -> b) -> a -> a
+update lens f = runIdentity . lens (Identity . f)
+
+-- | Set a field in a record.
 set :: Lens a b -> b -> a -> a
-set = flip . (snd .)
+set lens x = update lens (const x)

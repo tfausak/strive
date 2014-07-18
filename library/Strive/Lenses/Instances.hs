@@ -14,2209 +14,1841 @@ import Strive.Options
 import Strive.Types
 
 instance AccessTokenLens Client String where
-  accessToken client =
-    ( client_accessToken client
-    , \ accessToken' -> client { client_accessToken = accessToken' }
-    )
+  accessToken f x = fmap
+    (\ y -> x { client_accessToken = y })
+    (f (client_accessToken x))
 
 instance AccessTokenLens DeauthorizationResponse Text where
-  accessToken deauthorizationResponse =
-    ( deauthorizationResponse_accessToken deauthorizationResponse
-    , \ accessToken' -> deauthorizationResponse { deauthorizationResponse_accessToken = accessToken' }
-    )
+  accessToken f x = fmap
+    (\ y -> x { deauthorizationResponse_accessToken = y })
+    (f (deauthorizationResponse_accessToken x))
 
 instance AccessTokenLens TokenExchangeResponse Text where
-  accessToken tokenExchangeResponse =
-    ( tokenExchangeResponse_accessToken tokenExchangeResponse
-    , \ accessToken' -> tokenExchangeResponse { tokenExchangeResponse_accessToken = accessToken' }
-    )
+  accessToken f x = fmap
+    (\ y -> x { tokenExchangeResponse_accessToken = y })
+    (f (tokenExchangeResponse_accessToken x))
 
 instance AchievementCountLens ActivityDetailed Integer where
-  achievementCount activityDetailed =
-    ( activityDetailed_achievementCount activityDetailed
-    , \ achievementCount' -> activityDetailed { activityDetailed_achievementCount = achievementCount' }
-    )
+  achievementCount f x = fmap
+    (\ y -> x { activityDetailed_achievementCount = y })
+    (f (activityDetailed_achievementCount x))
 
 instance AchievementCountLens ActivitySummary Integer where
-  achievementCount activitySummary =
-    ( activitySummary_achievementCount activitySummary
-    , \ achievementCount' -> activitySummary { activitySummary_achievementCount = achievementCount' }
-    )
+  achievementCount f x = fmap
+    (\ y -> x { activitySummary_achievementCount = y })
+    (f (activitySummary_achievementCount x))
 
 instance ActivityIdLens ActivityLapSummary Integer where
-  activityId activityLapSummary =
-    ( activityLapSummary_activityId activityLapSummary
-    , \ activityId' -> activityLapSummary { activityLapSummary_activityId = activityId' }
-    )
+  activityId f x = fmap
+    (\ y -> x { activityLapSummary_activityId = y })
+    (f (activityLapSummary_activityId x))
 
 instance ActivityIdLens CommentSummary Integer where
-  activityId commentSummary =
-    ( commentSummary_activityId commentSummary
-    , \ activityId' -> commentSummary { commentSummary_activityId = activityId' }
-    )
+  activityId f x = fmap
+    (\ y -> x { commentSummary_activityId = y })
+    (f (commentSummary_activityId x))
 
 instance ActivityIdLens EffortDetailed Integer where
-  activityId effortDetailed =
-    ( effortDetailed_activityId effortDetailed
-    , \ activityId' -> effortDetailed { effortDetailed_activityId = activityId' }
-    )
+  activityId f x = fmap
+    (\ y -> x { effortDetailed_activityId = y })
+    (f (effortDetailed_activityId x))
 
 instance ActivityIdLens PhotoSummary Integer where
-  activityId photoSummary =
-    ( photoSummary_activityId photoSummary
-    , \ activityId' -> photoSummary { photoSummary_activityId = activityId' }
-    )
+  activityId f x = fmap
+    (\ y -> x { photoSummary_activityId = y })
+    (f (photoSummary_activityId x))
 
 instance ActivityIdLens SegmentLeaderboardEntry Integer where
-  activityId segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_activityId segmentLeaderboardEntry
-    , \ activityId' -> segmentLeaderboardEntry { segmentLeaderboardEntry_activityId = activityId' }
-    )
+  activityId f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_activityId = y })
+    (f (segmentLeaderboardEntry_activityId x))
 
 instance ActivityIdLens UploadStatus (Maybe Integer) where
-  activityId uploadStatus =
-    ( uploadStatus_activityId uploadStatus
-    , \ activityId' -> uploadStatus { uploadStatus_activityId = activityId' }
-    )
+  activityId f x = fmap
+    (\ y -> x { uploadStatus_activityId = y })
+    (f (uploadStatus_activityId x))
 
 instance ActivityTypeLens ExploreSegmentsOptions SegmentActivityType where
-  activityType exploreSegmentsOptions =
-    ( exploreSegmentsOptions_activityType exploreSegmentsOptions
-    , \ activityType' -> exploreSegmentsOptions { exploreSegmentsOptions_activityType = activityType' }
-    )
+  activityType f x = fmap
+    (\ y -> x { exploreSegmentsOptions_activityType = y })
+    (f (exploreSegmentsOptions_activityType x))
 
 instance ActivityTypeLens SegmentDetailed ActivityType where
-  activityType segmentDetailed =
-    ( segmentDetailed_activityType segmentDetailed
-    , \ activityType' -> segmentDetailed { segmentDetailed_activityType = activityType' }
-    )
+  activityType f x = fmap
+    (\ y -> x { segmentDetailed_activityType = y })
+    (f (segmentDetailed_activityType x))
 
 instance ActivityTypeLens SegmentSummary ActivityType where
-  activityType segmentSummary =
-    ( segmentSummary_activityType segmentSummary
-    , \ activityType' -> segmentSummary { segmentSummary_activityType = activityType' }
-    )
+  activityType f x = fmap
+    (\ y -> x { segmentSummary_activityType = y })
+    (f (segmentSummary_activityType x))
 
 instance ActivityTypeLens UploadActivityOptions (Maybe ActivityType) where
-  activityType uploadActivityOptions =
-    ( uploadActivityOptions_activityType uploadActivityOptions
-    , \ activityType' -> uploadActivityOptions { uploadActivityOptions_activityType = activityType' }
-    )
+  activityType f x = fmap
+    (\ y -> x { uploadActivityOptions_activityType = y })
+    (f (uploadActivityOptions_activityType x))
 
 instance AfterLens GetCurrentActivitiesOptions (Maybe UTCTime) where
-  after getCurrentActivitiesOptions =
-    ( getCurrentActivitiesOptions_after getCurrentActivitiesOptions
-    , \ after' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_after = after' }
-    )
+  after f x = fmap
+    (\ y -> x { getCurrentActivitiesOptions_after = y })
+    (f (getCurrentActivitiesOptions_after x))
 
 instance AgeGroupLens GetSegmentLeaderboardOptions (Maybe AgeGroup) where
-  ageGroup getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboardOptions_ageGroup getSegmentLeaderboardOptions
-    , \ ageGroup' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_ageGroup = ageGroup' }
-    )
+  ageGroup f x = fmap
+    (\ y -> x { getSegmentLeaderboardOptions_ageGroup = y })
+    (f (getSegmentLeaderboardOptions_ageGroup x))
 
 instance AllEffortsLens GetActivityOptions Bool where
-  allEfforts getActivityOptions =
-    ( getActivityOptions_allEfforts getActivityOptions
-    , \ allEfforts' -> getActivityOptions { getActivityOptions_allEfforts = allEfforts' }
-    )
+  allEfforts f x = fmap
+    (\ y -> x { getActivityOptions_allEfforts = y })
+    (f (getActivityOptions_allEfforts x))
 
 instance ApprovalPromptLens BuildAuthorizeUrlOptions Bool where
-  approvalPrompt buildAuthorizeUrlOptions =
-    ( buildAuthorizeUrlOptions_approvalPrompt buildAuthorizeUrlOptions
-    , \ approvalPrompt' -> buildAuthorizeUrlOptions { buildAuthorizeUrlOptions_approvalPrompt = approvalPrompt' }
-    )
+  approvalPrompt f x = fmap
+    (\ y -> x { buildAuthorizeUrlOptions_approvalPrompt = y })
+    (f (buildAuthorizeUrlOptions_approvalPrompt x))
 
 instance AthleteCountLens ActivityDetailed Integer where
-  athleteCount activityDetailed =
-    ( activityDetailed_athleteCount activityDetailed
-    , \ athleteCount' -> activityDetailed { activityDetailed_athleteCount = athleteCount' }
-    )
+  athleteCount f x = fmap
+    (\ y -> x { activityDetailed_athleteCount = y })
+    (f (activityDetailed_athleteCount x))
 
 instance AthleteCountLens ActivitySummary Integer where
-  athleteCount activitySummary =
-    ( activitySummary_athleteCount activitySummary
-    , \ athleteCount' -> activitySummary { activitySummary_athleteCount = athleteCount' }
-    )
+  athleteCount f x = fmap
+    (\ y -> x { activitySummary_athleteCount = y })
+    (f (activitySummary_athleteCount x))
 
 instance AthleteCountLens SegmentDetailed Integer where
-  athleteCount segmentDetailed =
-    ( segmentDetailed_athleteCount segmentDetailed
-    , \ athleteCount' -> segmentDetailed { segmentDetailed_athleteCount = athleteCount' }
-    )
+  athleteCount f x = fmap
+    (\ y -> x { segmentDetailed_athleteCount = y })
+    (f (segmentDetailed_athleteCount x))
 
 instance AthleteGenderLens SegmentLeaderboardEntry (Maybe Gender) where
-  athleteGender segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_athleteGender segmentLeaderboardEntry
-    , \ athleteGender' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteGender = athleteGender' }
-    )
+  athleteGender f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_athleteGender = y })
+    (f (segmentLeaderboardEntry_athleteGender x))
 
 instance AthleteIdLens ActivityLapSummary Integer where
-  athleteId activityLapSummary =
-    ( activityLapSummary_athleteId activityLapSummary
-    , \ athleteId' -> activityLapSummary { activityLapSummary_athleteId = athleteId' }
-    )
+  athleteId f x = fmap
+    (\ y -> x { activityLapSummary_athleteId = y })
+    (f (activityLapSummary_athleteId x))
 
 instance AthleteIdLens EffortDetailed Integer where
-  athleteId effortDetailed =
-    ( effortDetailed_athleteId effortDetailed
-    , \ athleteId' -> effortDetailed { effortDetailed_athleteId = athleteId' }
-    )
+  athleteId f x = fmap
+    (\ y -> x { effortDetailed_athleteId = y })
+    (f (effortDetailed_athleteId x))
 
 instance AthleteIdLens GetSegmentEffortsOptions (Maybe Integer) where
-  athleteId getSegmentEffortsOptions =
-    ( getSegmentEffortsOptions_athleteId getSegmentEffortsOptions
-    , \ athleteId' -> getSegmentEffortsOptions { getSegmentEffortsOptions_athleteId = athleteId' }
-    )
+  athleteId f x = fmap
+    (\ y -> x { getSegmentEffortsOptions_athleteId = y })
+    (f (getSegmentEffortsOptions_athleteId x))
 
 instance AthleteIdLens SegmentLeaderboardEntry Integer where
-  athleteId segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_athleteId segmentLeaderboardEntry
-    , \ athleteId' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteId = athleteId' }
-    )
+  athleteId f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_athleteId = y })
+    (f (segmentLeaderboardEntry_athleteId x))
 
 instance AthleteLens ActivityDetailed AthleteMeta where
-  athlete activityDetailed =
-    ( activityDetailed_athlete activityDetailed
-    , \ athlete' -> activityDetailed { activityDetailed_athlete = athlete' }
-    )
+  athlete f x = fmap
+    (\ y -> x { activityDetailed_athlete = y })
+    (f (activityDetailed_athlete x))
 
 instance AthleteLens ActivitySummary AthleteMeta where
-  athlete activitySummary =
-    ( activitySummary_athlete activitySummary
-    , \ athlete' -> activitySummary { activitySummary_athlete = athlete' }
-    )
+  athlete f x = fmap
+    (\ y -> x { activitySummary_athlete = y })
+    (f (activitySummary_athlete x))
 
 instance AthleteLens CommentSummary AthleteSummary where
-  athlete commentSummary =
-    ( commentSummary_athlete commentSummary
-    , \ athlete' -> commentSummary { commentSummary_athlete = athlete' }
-    )
+  athlete f x = fmap
+    (\ y -> x { commentSummary_athlete = y })
+    (f (commentSummary_athlete x))
 
 instance AthleteLens TokenExchangeResponse AthleteDetailed where
-  athlete tokenExchangeResponse =
-    ( tokenExchangeResponse_athlete tokenExchangeResponse
-    , \ athlete' -> tokenExchangeResponse { tokenExchangeResponse_athlete = athlete' }
-    )
+  athlete f x = fmap
+    (\ y -> x { tokenExchangeResponse_athlete = y })
+    (f (tokenExchangeResponse_athlete x))
 
 instance AthleteNameLens SegmentLeaderboardEntry Text where
-  athleteName segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_athleteName segmentLeaderboardEntry
-    , \ athleteName' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteName = athleteName' }
-    )
+  athleteName f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_athleteName = y })
+    (f (segmentLeaderboardEntry_athleteName x))
 
 instance AthleteProfileLens SegmentLeaderboardEntry Text where
-  athleteProfile segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_athleteProfile segmentLeaderboardEntry
-    , \ athleteProfile' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteProfile = athleteProfile' }
-    )
+  athleteProfile f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_athleteProfile = y })
+    (f (segmentLeaderboardEntry_athleteProfile x))
 
 instance AverageCadenceLens EffortDetailed (Maybe Double) where
-  averageCadence effortDetailed =
-    ( effortDetailed_averageCadence effortDetailed
-    , \ averageCadence' -> effortDetailed { effortDetailed_averageCadence = averageCadence' }
-    )
+  averageCadence f x = fmap
+    (\ y -> x { effortDetailed_averageCadence = y })
+    (f (effortDetailed_averageCadence x))
 
 instance AverageGradeLens SegmentDetailed Double where
-  averageGrade segmentDetailed =
-    ( segmentDetailed_averageGrade segmentDetailed
-    , \ averageGrade' -> segmentDetailed { segmentDetailed_averageGrade = averageGrade' }
-    )
+  averageGrade f x = fmap
+    (\ y -> x { segmentDetailed_averageGrade = y })
+    (f (segmentDetailed_averageGrade x))
 
 instance AverageGradeLens SegmentSummary Double where
-  averageGrade segmentSummary =
-    ( segmentSummary_averageGrade segmentSummary
-    , \ averageGrade' -> segmentSummary { segmentSummary_averageGrade = averageGrade' }
-    )
+  averageGrade f x = fmap
+    (\ y -> x { segmentSummary_averageGrade = y })
+    (f (segmentSummary_averageGrade x))
 
 instance AverageHeartrateLens EffortDetailed (Maybe Double) where
-  averageHeartrate effortDetailed =
-    ( effortDetailed_averageHeartrate effortDetailed
-    , \ averageHeartrate' -> effortDetailed { effortDetailed_averageHeartrate = averageHeartrate' }
-    )
+  averageHeartrate f x = fmap
+    (\ y -> x { effortDetailed_averageHeartrate = y })
+    (f (effortDetailed_averageHeartrate x))
 
 instance AverageHrLens SegmentLeaderboardEntry Double where
-  averageHr segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_averageHr segmentLeaderboardEntry
-    , \ averageHr' -> segmentLeaderboardEntry { segmentLeaderboardEntry_averageHr = averageHr' }
-    )
+  averageHr f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_averageHr = y })
+    (f (segmentLeaderboardEntry_averageHr x))
 
 instance AverageSpeedLens ActivityDetailed Double where
-  averageSpeed activityDetailed =
-    ( activityDetailed_averageSpeed activityDetailed
-    , \ averageSpeed' -> activityDetailed { activityDetailed_averageSpeed = averageSpeed' }
-    )
+  averageSpeed f x = fmap
+    (\ y -> x { activityDetailed_averageSpeed = y })
+    (f (activityDetailed_averageSpeed x))
 
 instance AverageSpeedLens ActivityLapSummary Double where
-  averageSpeed activityLapSummary =
-    ( activityLapSummary_averageSpeed activityLapSummary
-    , \ averageSpeed' -> activityLapSummary { activityLapSummary_averageSpeed = averageSpeed' }
-    )
+  averageSpeed f x = fmap
+    (\ y -> x { activityLapSummary_averageSpeed = y })
+    (f (activityLapSummary_averageSpeed x))
 
 instance AverageSpeedLens ActivitySummary Double where
-  averageSpeed activitySummary =
-    ( activitySummary_averageSpeed activitySummary
-    , \ averageSpeed' -> activitySummary { activitySummary_averageSpeed = averageSpeed' }
-    )
+  averageSpeed f x = fmap
+    (\ y -> x { activitySummary_averageSpeed = y })
+    (f (activitySummary_averageSpeed x))
 
 instance AverageWattsLens ActivityDetailed (Maybe Double) where
-  averageWatts activityDetailed =
-    ( activityDetailed_averageWatts activityDetailed
-    , \ averageWatts' -> activityDetailed { activityDetailed_averageWatts = averageWatts' }
-    )
+  averageWatts f x = fmap
+    (\ y -> x { activityDetailed_averageWatts = y })
+    (f (activityDetailed_averageWatts x))
 
 instance AverageWattsLens ActivityLapSummary Double where
-  averageWatts activityLapSummary =
-    ( activityLapSummary_averageWatts activityLapSummary
-    , \ averageWatts' -> activityLapSummary { activityLapSummary_averageWatts = averageWatts' }
-    )
+  averageWatts f x = fmap
+    (\ y -> x { activityLapSummary_averageWatts = y })
+    (f (activityLapSummary_averageWatts x))
 
 instance AverageWattsLens ActivitySummary (Maybe Double) where
-  averageWatts activitySummary =
-    ( activitySummary_averageWatts activitySummary
-    , \ averageWatts' -> activitySummary { activitySummary_averageWatts = averageWatts' }
-    )
+  averageWatts f x = fmap
+    (\ y -> x { activitySummary_averageWatts = y })
+    (f (activitySummary_averageWatts x))
 
 instance AverageWattsLens EffortDetailed (Maybe Double) where
-  averageWatts effortDetailed =
-    ( effortDetailed_averageWatts effortDetailed
-    , \ averageWatts' -> effortDetailed { effortDetailed_averageWatts = averageWatts' }
-    )
+  averageWatts f x = fmap
+    (\ y -> x { effortDetailed_averageWatts = y })
+    (f (effortDetailed_averageWatts x))
 
 instance AverageWattsLens SegmentLeaderboardEntry Double where
-  averageWatts segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_averageWatts segmentLeaderboardEntry
-    , \ averageWatts' -> segmentLeaderboardEntry { segmentLeaderboardEntry_averageWatts = averageWatts' }
-    )
+  averageWatts f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_averageWatts = y })
+    (f (segmentLeaderboardEntry_averageWatts x))
 
 instance AvgGradeLens SegmentExplorerEntry Double where
-  avgGrade segmentExplorerEntry =
-    ( segmentExplorerEntry_avgGrade segmentExplorerEntry
-    , \ avgGrade' -> segmentExplorerEntry { segmentExplorerEntry_avgGrade = avgGrade' }
-    )
+  avgGrade f x = fmap
+    (\ y -> x { segmentExplorerEntry_avgGrade = y })
+    (f (segmentExplorerEntry_avgGrade x))
 
 instance BeforeLens GetCurrentActivitiesOptions (Maybe UTCTime) where
-  before getCurrentActivitiesOptions =
-    ( getCurrentActivitiesOptions_before getCurrentActivitiesOptions
-    , \ before' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_before = before' }
-    )
+  before f x = fmap
+    (\ y -> x { getCurrentActivitiesOptions_before = y })
+    (f (getCurrentActivitiesOptions_before x))
 
 instance BikesLens AthleteDetailed [GearSummary] where
-  bikes athleteDetailed =
-    ( athleteDetailed_bikes athleteDetailed
-    , \ bikes' -> athleteDetailed { athleteDetailed_bikes = bikes' }
-    )
+  bikes f x = fmap
+    (\ y -> x { athleteDetailed_bikes = y })
+    (f (athleteDetailed_bikes x))
 
 instance BrandNameLens GearDetailed Text where
-  brandName gearDetailed =
-    ( gearDetailed_brandName gearDetailed
-    , \ brandName' -> gearDetailed { gearDetailed_brandName = brandName' }
-    )
+  brandName f x = fmap
+    (\ y -> x { gearDetailed_brandName = y })
+    (f (gearDetailed_brandName x))
 
 instance CaloriesLens ActivityDetailed Double where
-  calories activityDetailed =
-    ( activityDetailed_calories activityDetailed
-    , \ calories' -> activityDetailed { activityDetailed_calories = calories' }
-    )
+  calories f x = fmap
+    (\ y -> x { activityDetailed_calories = y })
+    (f (activityDetailed_calories x))
 
 instance CaptionLens PhotoSummary Text where
-  caption photoSummary =
-    ( photoSummary_caption photoSummary
-    , \ caption' -> photoSummary { photoSummary_caption = caption' }
-    )
+  caption f x = fmap
+    (\ y -> x { photoSummary_caption = y })
+    (f (photoSummary_caption x))
 
 instance CityLens AthleteDetailed Text where
-  city athleteDetailed =
-    ( athleteDetailed_city athleteDetailed
-    , \ city' -> athleteDetailed { athleteDetailed_city = city' }
-    )
+  city f x = fmap
+    (\ y -> x { athleteDetailed_city = y })
+    (f (athleteDetailed_city x))
 
 instance CityLens AthleteSummary (Maybe Text) where
-  city athleteSummary =
-    ( athleteSummary_city athleteSummary
-    , \ city' -> athleteSummary { athleteSummary_city = city' }
-    )
+  city f x = fmap
+    (\ y -> x { athleteSummary_city = y })
+    (f (athleteSummary_city x))
 
 instance CityLens ClubDetailed Text where
-  city clubDetailed =
-    ( clubDetailed_city clubDetailed
-    , \ city' -> clubDetailed { clubDetailed_city = city' }
-    )
+  city f x = fmap
+    (\ y -> x { clubDetailed_city = y })
+    (f (clubDetailed_city x))
 
 instance CityLens SegmentDetailed Text where
-  city segmentDetailed =
-    ( segmentDetailed_city segmentDetailed
-    , \ city' -> segmentDetailed { segmentDetailed_city = city' }
-    )
+  city f x = fmap
+    (\ y -> x { segmentDetailed_city = y })
+    (f (segmentDetailed_city x))
 
 instance CityLens SegmentSummary Text where
-  city segmentSummary =
-    ( segmentSummary_city segmentSummary
-    , \ city' -> segmentSummary { segmentSummary_city = city' }
-    )
+  city f x = fmap
+    (\ y -> x { segmentSummary_city = y })
+    (f (segmentSummary_city x))
 
 instance CityLens UpdateCurrentAthleteOptions (Maybe String) where
-  city updateCurrentAthleteOptions =
-    ( updateCurrentAthleteOptions_city updateCurrentAthleteOptions
-    , \ city' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_city = city' }
-    )
+  city f x = fmap
+    (\ y -> x { updateCurrentAthleteOptions_city = y })
+    (f (updateCurrentAthleteOptions_city x))
 
 instance ClimbCategoryDescLens SegmentExplorerEntry String where
-  climbCategoryDesc segmentExplorerEntry =
-    ( segmentExplorerEntry_climbCategoryDesc segmentExplorerEntry
-    , \ climbCategoryDesc' -> segmentExplorerEntry { segmentExplorerEntry_climbCategoryDesc = climbCategoryDesc' }
-    )
+  climbCategoryDesc f x = fmap
+    (\ y -> x { segmentExplorerEntry_climbCategoryDesc = y })
+    (f (segmentExplorerEntry_climbCategoryDesc x))
 
 instance ClimbCategoryLens SegmentDetailed Integer where
-  climbCategory segmentDetailed =
-    ( segmentDetailed_climbCategory segmentDetailed
-    , \ climbCategory' -> segmentDetailed { segmentDetailed_climbCategory = climbCategory' }
-    )
+  climbCategory f x = fmap
+    (\ y -> x { segmentDetailed_climbCategory = y })
+    (f (segmentDetailed_climbCategory x))
 
 instance ClimbCategoryLens SegmentExplorerEntry Integer where
-  climbCategory segmentExplorerEntry =
-    ( segmentExplorerEntry_climbCategory segmentExplorerEntry
-    , \ climbCategory' -> segmentExplorerEntry { segmentExplorerEntry_climbCategory = climbCategory' }
-    )
+  climbCategory f x = fmap
+    (\ y -> x { segmentExplorerEntry_climbCategory = y })
+    (f (segmentExplorerEntry_climbCategory x))
 
 instance ClimbCategoryLens SegmentSummary Integer where
-  climbCategory segmentSummary =
-    ( segmentSummary_climbCategory segmentSummary
-    , \ climbCategory' -> segmentSummary { segmentSummary_climbCategory = climbCategory' }
-    )
+  climbCategory f x = fmap
+    (\ y -> x { segmentSummary_climbCategory = y })
+    (f (segmentSummary_climbCategory x))
 
 instance ClubIdLens GetSegmentLeaderboardOptions (Maybe Integer) where
-  clubId getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboardOptions_clubId getSegmentLeaderboardOptions
-    , \ clubId' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_clubId = clubId' }
-    )
+  clubId f x = fmap
+    (\ y -> x { getSegmentLeaderboardOptions_clubId = y })
+    (f (getSegmentLeaderboardOptions_clubId x))
 
 instance ClubTypeLens ClubDetailed ClubType where
-  clubType clubDetailed =
-    ( clubDetailed_clubType clubDetailed
-    , \ clubType' -> clubDetailed { clubDetailed_clubType = clubType' }
-    )
+  clubType f x = fmap
+    (\ y -> x { clubDetailed_clubType = y })
+    (f (clubDetailed_clubType x))
 
 instance ClubsLens AthleteDetailed [ClubSummary] where
-  clubs athleteDetailed =
-    ( athleteDetailed_clubs athleteDetailed
-    , \ clubs' -> athleteDetailed { athleteDetailed_clubs = clubs' }
-    )
+  clubs f x = fmap
+    (\ y -> x { athleteDetailed_clubs = y })
+    (f (athleteDetailed_clubs x))
 
 instance CommentCountLens ActivityDetailed Integer where
-  commentCount activityDetailed =
-    ( activityDetailed_commentCount activityDetailed
-    , \ commentCount' -> activityDetailed { activityDetailed_commentCount = commentCount' }
-    )
+  commentCount f x = fmap
+    (\ y -> x { activityDetailed_commentCount = y })
+    (f (activityDetailed_commentCount x))
 
 instance CommentCountLens ActivitySummary Integer where
-  commentCount activitySummary =
-    ( activitySummary_commentCount activitySummary
-    , \ commentCount' -> activitySummary { activitySummary_commentCount = commentCount' }
-    )
+  commentCount f x = fmap
+    (\ y -> x { activitySummary_commentCount = y })
+    (f (activitySummary_commentCount x))
 
 instance CommuteLens ActivityDetailed Bool where
-  commute activityDetailed =
-    ( activityDetailed_commute activityDetailed
-    , \ commute' -> activityDetailed { activityDetailed_commute = commute' }
-    )
+  commute f x = fmap
+    (\ y -> x { activityDetailed_commute = y })
+    (f (activityDetailed_commute x))
 
 instance CommuteLens ActivitySummary Bool where
-  commute activitySummary =
-    ( activitySummary_commute activitySummary
-    , \ commute' -> activitySummary { activitySummary_commute = commute' }
-    )
+  commute f x = fmap
+    (\ y -> x { activitySummary_commute = y })
+    (f (activitySummary_commute x))
 
 instance CommuteLens UpdateActivityOptions (Maybe Bool) where
-  commute updateActivityOptions =
-    ( updateActivityOptions_commute updateActivityOptions
-    , \ commute' -> updateActivityOptions { updateActivityOptions_commute = commute' }
-    )
+  commute f x = fmap
+    (\ y -> x { updateActivityOptions_commute = y })
+    (f (updateActivityOptions_commute x))
 
 instance CountryLens AthleteDetailed Text where
-  country athleteDetailed =
-    ( athleteDetailed_country athleteDetailed
-    , \ country' -> athleteDetailed { athleteDetailed_country = country' }
-    )
+  country f x = fmap
+    (\ y -> x { athleteDetailed_country = y })
+    (f (athleteDetailed_country x))
 
 instance CountryLens AthleteSummary (Maybe Text) where
-  country athleteSummary =
-    ( athleteSummary_country athleteSummary
-    , \ country' -> athleteSummary { athleteSummary_country = country' }
-    )
+  country f x = fmap
+    (\ y -> x { athleteSummary_country = y })
+    (f (athleteSummary_country x))
 
 instance CountryLens ClubDetailed Text where
-  country clubDetailed =
-    ( clubDetailed_country clubDetailed
-    , \ country' -> clubDetailed { clubDetailed_country = country' }
-    )
+  country f x = fmap
+    (\ y -> x { clubDetailed_country = y })
+    (f (clubDetailed_country x))
 
 instance CountryLens SegmentDetailed Text where
-  country segmentDetailed =
-    ( segmentDetailed_country segmentDetailed
-    , \ country' -> segmentDetailed { segmentDetailed_country = country' }
-    )
+  country f x = fmap
+    (\ y -> x { segmentDetailed_country = y })
+    (f (segmentDetailed_country x))
 
 instance CountryLens SegmentSummary Text where
-  country segmentSummary =
-    ( segmentSummary_country segmentSummary
-    , \ country' -> segmentSummary { segmentSummary_country = country' }
-    )
+  country f x = fmap
+    (\ y -> x { segmentSummary_country = y })
+    (f (segmentSummary_country x))
 
 instance CountryLens UpdateCurrentAthleteOptions (Maybe String) where
-  country updateCurrentAthleteOptions =
-    ( updateCurrentAthleteOptions_country updateCurrentAthleteOptions
-    , \ country' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_country = country' }
-    )
+  country f x = fmap
+    (\ y -> x { updateCurrentAthleteOptions_country = y })
+    (f (updateCurrentAthleteOptions_country x))
 
 instance CreatedAtLens AthleteDetailed UTCTime where
-  createdAt athleteDetailed =
-    ( athleteDetailed_createdAt athleteDetailed
-    , \ createdAt' -> athleteDetailed { athleteDetailed_createdAt = createdAt' }
-    )
+  createdAt f x = fmap
+    (\ y -> x { athleteDetailed_createdAt = y })
+    (f (athleteDetailed_createdAt x))
 
 instance CreatedAtLens AthleteSummary UTCTime where
-  createdAt athleteSummary =
-    ( athleteSummary_createdAt athleteSummary
-    , \ createdAt' -> athleteSummary { athleteSummary_createdAt = createdAt' }
-    )
+  createdAt f x = fmap
+    (\ y -> x { athleteSummary_createdAt = y })
+    (f (athleteSummary_createdAt x))
 
 instance CreatedAtLens CommentSummary UTCTime where
-  createdAt commentSummary =
-    ( commentSummary_createdAt commentSummary
-    , \ createdAt' -> commentSummary { commentSummary_createdAt = createdAt' }
-    )
+  createdAt f x = fmap
+    (\ y -> x { commentSummary_createdAt = y })
+    (f (commentSummary_createdAt x))
 
 instance CreatedAtLens PhotoSummary UTCTime where
-  createdAt photoSummary =
-    ( photoSummary_createdAt photoSummary
-    , \ createdAt' -> photoSummary { photoSummary_createdAt = createdAt' }
-    )
+  createdAt f x = fmap
+    (\ y -> x { photoSummary_createdAt = y })
+    (f (photoSummary_createdAt x))
 
 instance CreatedAtLens SegmentDetailed UTCTime where
-  createdAt segmentDetailed =
-    ( segmentDetailed_createdAt segmentDetailed
-    , \ createdAt' -> segmentDetailed { segmentDetailed_createdAt = createdAt' }
-    )
+  createdAt f x = fmap
+    (\ y -> x { segmentDetailed_createdAt = y })
+    (f (segmentDetailed_createdAt x))
 
 instance DataLens StreamDetailed [Value] where
-  data_ streamDetailed =
-    ( streamDetailed_data streamDetailed
-    , \ data_' -> streamDetailed { streamDetailed_data = data_' }
-    )
+  data_ f x = fmap
+    (\ y -> x { streamDetailed_data = y })
+    (f (streamDetailed_data x))
 
 instance DatePreferenceLens AthleteDetailed Text where
-  datePreference athleteDetailed =
-    ( athleteDetailed_datePreference athleteDetailed
-    , \ datePreference' -> athleteDetailed { athleteDetailed_datePreference = datePreference' }
-    )
+  datePreference f x = fmap
+    (\ y -> x { athleteDetailed_datePreference = y })
+    (f (athleteDetailed_datePreference x))
 
 instance DateRangeLens GetSegmentLeaderboardOptions (Maybe String) where
-  dateRange getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboardOptions_dateRange getSegmentLeaderboardOptions
-    , \ dateRange' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_dateRange = dateRange' }
-    )
+  dateRange f x = fmap
+    (\ y -> x { getSegmentLeaderboardOptions_dateRange = y })
+    (f (getSegmentLeaderboardOptions_dateRange x))
 
 instance DescriptionLens ActivityDetailed (Maybe Text) where
-  description activityDetailed =
-    ( activityDetailed_description activityDetailed
-    , \ description' -> activityDetailed { activityDetailed_description = description' }
-    )
+  description f x = fmap
+    (\ y -> x { activityDetailed_description = y })
+    (f (activityDetailed_description x))
 
 instance DescriptionLens ClubDetailed Text where
-  description clubDetailed =
-    ( clubDetailed_description clubDetailed
-    , \ description' -> clubDetailed { clubDetailed_description = description' }
-    )
+  description f x = fmap
+    (\ y -> x { clubDetailed_description = y })
+    (f (clubDetailed_description x))
 
 instance DescriptionLens CreateActivityOptions (Maybe String) where
-  description createActivityOptions =
-    ( createActivityOptions_description createActivityOptions
-    , \ description' -> createActivityOptions { createActivityOptions_description = description' }
-    )
+  description f x = fmap
+    (\ y -> x { createActivityOptions_description = y })
+    (f (createActivityOptions_description x))
 
 instance DescriptionLens GearDetailed Text where
-  description gearDetailed =
-    ( gearDetailed_description gearDetailed
-    , \ description' -> gearDetailed { gearDetailed_description = description' }
-    )
+  description f x = fmap
+    (\ y -> x { gearDetailed_description = y })
+    (f (gearDetailed_description x))
 
 instance DescriptionLens UpdateActivityOptions (Maybe String) where
-  description updateActivityOptions =
-    ( updateActivityOptions_description updateActivityOptions
-    , \ description' -> updateActivityOptions { updateActivityOptions_description = description' }
-    )
+  description f x = fmap
+    (\ y -> x { updateActivityOptions_description = y })
+    (f (updateActivityOptions_description x))
 
 instance DescriptionLens UploadActivityOptions (Maybe String) where
-  description uploadActivityOptions =
-    ( uploadActivityOptions_description uploadActivityOptions
-    , \ description' -> uploadActivityOptions { uploadActivityOptions_description = description' }
-    )
+  description f x = fmap
+    (\ y -> x { uploadActivityOptions_description = y })
+    (f (uploadActivityOptions_description x))
 
 instance DistanceLens ActivityDetailed Double where
-  distance activityDetailed =
-    ( activityDetailed_distance activityDetailed
-    , \ distance' -> activityDetailed { activityDetailed_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { activityDetailed_distance = y })
+    (f (activityDetailed_distance x))
 
 instance DistanceLens ActivityLapSummary Double where
-  distance activityLapSummary =
-    ( activityLapSummary_distance activityLapSummary
-    , \ distance' -> activityLapSummary { activityLapSummary_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { activityLapSummary_distance = y })
+    (f (activityLapSummary_distance x))
 
 instance DistanceLens ActivitySummary Double where
-  distance activitySummary =
-    ( activitySummary_distance activitySummary
-    , \ distance' -> activitySummary { activitySummary_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { activitySummary_distance = y })
+    (f (activitySummary_distance x))
 
 instance DistanceLens CreateActivityOptions (Maybe Double) where
-  distance createActivityOptions =
-    ( createActivityOptions_distance createActivityOptions
-    , \ distance' -> createActivityOptions { createActivityOptions_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { createActivityOptions_distance = y })
+    (f (createActivityOptions_distance x))
 
 instance DistanceLens EffortDetailed Double where
-  distance effortDetailed =
-    ( effortDetailed_distance effortDetailed
-    , \ distance' -> effortDetailed { effortDetailed_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { effortDetailed_distance = y })
+    (f (effortDetailed_distance x))
 
 instance DistanceLens GearDetailed Double where
-  distance gearDetailed =
-    ( gearDetailed_distance gearDetailed
-    , \ distance' -> gearDetailed { gearDetailed_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { gearDetailed_distance = y })
+    (f (gearDetailed_distance x))
 
 instance DistanceLens GearSummary Double where
-  distance gearSummary =
-    ( gearSummary_distance gearSummary
-    , \ distance' -> gearSummary { gearSummary_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { gearSummary_distance = y })
+    (f (gearSummary_distance x))
 
 instance DistanceLens SegmentDetailed Double where
-  distance segmentDetailed =
-    ( segmentDetailed_distance segmentDetailed
-    , \ distance' -> segmentDetailed { segmentDetailed_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { segmentDetailed_distance = y })
+    (f (segmentDetailed_distance x))
 
 instance DistanceLens SegmentExplorerEntry Double where
-  distance segmentExplorerEntry =
-    ( segmentExplorerEntry_distance segmentExplorerEntry
-    , \ distance' -> segmentExplorerEntry { segmentExplorerEntry_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { segmentExplorerEntry_distance = y })
+    (f (segmentExplorerEntry_distance x))
 
 instance DistanceLens SegmentLeaderboardEntry Double where
-  distance segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_distance segmentLeaderboardEntry
-    , \ distance' -> segmentLeaderboardEntry { segmentLeaderboardEntry_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_distance = y })
+    (f (segmentLeaderboardEntry_distance x))
 
 instance DistanceLens SegmentSummary Double where
-  distance segmentSummary =
-    ( segmentSummary_distance segmentSummary
-    , \ distance' -> segmentSummary { segmentSummary_distance = distance' }
-    )
+  distance f x = fmap
+    (\ y -> x { segmentSummary_distance = y })
+    (f (segmentSummary_distance x))
 
 instance DistributionBucketsLens ActivityZoneDetailed [ActivityZoneDistributionBucket] where
-  distributionBuckets activityZoneDetailed =
-    ( activityZoneDetailed_distributionBuckets activityZoneDetailed
-    , \ distributionBuckets' -> activityZoneDetailed { activityZoneDetailed_distributionBuckets = distributionBuckets' }
-    )
+  distributionBuckets f x = fmap
+    (\ y -> x { activityZoneDetailed_distributionBuckets = y })
+    (f (activityZoneDetailed_distributionBuckets x))
 
 instance EffortCountLens SegmentDetailed Integer where
-  effortCount segmentDetailed =
-    ( segmentDetailed_effortCount segmentDetailed
-    , \ effortCount' -> segmentDetailed { segmentDetailed_effortCount = effortCount' }
-    )
+  effortCount f x = fmap
+    (\ y -> x { segmentDetailed_effortCount = y })
+    (f (segmentDetailed_effortCount x))
 
 instance EffortCountLens SegmentLeaderboardResponse Integer where
-  effortCount segmentLeaderboardResponse =
-    ( segmentLeaderboard_effortCount segmentLeaderboardResponse
-    , \ effortCount' -> segmentLeaderboardResponse { segmentLeaderboard_effortCount = effortCount' }
-    )
+  effortCount f x = fmap
+    (\ y -> x { segmentLeaderboard_effortCount = y })
+    (f (segmentLeaderboard_effortCount x))
 
 instance EffortIdLens SegmentLeaderboardEntry Integer where
-  effortId segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_effortId segmentLeaderboardEntry
-    , \ effortId' -> segmentLeaderboardEntry { segmentLeaderboardEntry_effortId = effortId' }
-    )
+  effortId f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_effortId = y })
+    (f (segmentLeaderboardEntry_effortId x))
 
 instance ElapsedTimeLens ActivityDetailed Integer where
-  elapsedTime activityDetailed =
-    ( activityDetailed_elapsedTime activityDetailed
-    , \ elapsedTime' -> activityDetailed { activityDetailed_elapsedTime = elapsedTime' }
-    )
+  elapsedTime f x = fmap
+    (\ y -> x { activityDetailed_elapsedTime = y })
+    (f (activityDetailed_elapsedTime x))
 
 instance ElapsedTimeLens ActivityLapSummary Integer where
-  elapsedTime activityLapSummary =
-    ( activityLapSummary_elapsedTime activityLapSummary
-    , \ elapsedTime' -> activityLapSummary { activityLapSummary_elapsedTime = elapsedTime' }
-    )
+  elapsedTime f x = fmap
+    (\ y -> x { activityLapSummary_elapsedTime = y })
+    (f (activityLapSummary_elapsedTime x))
 
 instance ElapsedTimeLens ActivitySummary Integer where
-  elapsedTime activitySummary =
-    ( activitySummary_elapsedTime activitySummary
-    , \ elapsedTime' -> activitySummary { activitySummary_elapsedTime = elapsedTime' }
-    )
+  elapsedTime f x = fmap
+    (\ y -> x { activitySummary_elapsedTime = y })
+    (f (activitySummary_elapsedTime x))
 
 instance ElapsedTimeLens EffortDetailed Integer where
-  elapsedTime effortDetailed =
-    ( effortDetailed_elapsedTime effortDetailed
-    , \ elapsedTime' -> effortDetailed { effortDetailed_elapsedTime = elapsedTime' }
-    )
+  elapsedTime f x = fmap
+    (\ y -> x { effortDetailed_elapsedTime = y })
+    (f (effortDetailed_elapsedTime x))
 
 instance ElapsedTimeLens SegmentLeaderboardEntry Integer where
-  elapsedTime segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_elapsedTime segmentLeaderboardEntry
-    , \ elapsedTime' -> segmentLeaderboardEntry { segmentLeaderboardEntry_elapsedTime = elapsedTime' }
-    )
+  elapsedTime f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_elapsedTime = y })
+    (f (segmentLeaderboardEntry_elapsedTime x))
 
 instance ElevDifferenceLens SegmentExplorerEntry Double where
-  elevDifference segmentExplorerEntry =
-    ( segmentExplorerEntry_elevDifference segmentExplorerEntry
-    , \ elevDifference' -> segmentExplorerEntry { segmentExplorerEntry_elevDifference = elevDifference' }
-    )
+  elevDifference f x = fmap
+    (\ y -> x { segmentExplorerEntry_elevDifference = y })
+    (f (segmentExplorerEntry_elevDifference x))
 
 instance ElevationHighLens SegmentDetailed Double where
-  elevationHigh segmentDetailed =
-    ( segmentDetailed_elevationHigh segmentDetailed
-    , \ elevationHigh' -> segmentDetailed { segmentDetailed_elevationHigh = elevationHigh' }
-    )
+  elevationHigh f x = fmap
+    (\ y -> x { segmentDetailed_elevationHigh = y })
+    (f (segmentDetailed_elevationHigh x))
 
 instance ElevationHighLens SegmentSummary Double where
-  elevationHigh segmentSummary =
-    ( segmentSummary_elevationHigh segmentSummary
-    , \ elevationHigh' -> segmentSummary { segmentSummary_elevationHigh = elevationHigh' }
-    )
+  elevationHigh f x = fmap
+    (\ y -> x { segmentSummary_elevationHigh = y })
+    (f (segmentSummary_elevationHigh x))
 
 instance ElevationLowLens SegmentDetailed Double where
-  elevationLow segmentDetailed =
-    ( segmentDetailed_elevationLow segmentDetailed
-    , \ elevationLow' -> segmentDetailed { segmentDetailed_elevationLow = elevationLow' }
-    )
+  elevationLow f x = fmap
+    (\ y -> x { segmentDetailed_elevationLow = y })
+    (f (segmentDetailed_elevationLow x))
 
 instance ElevationLowLens SegmentSummary Double where
-  elevationLow segmentSummary =
-    ( segmentSummary_elevationLow segmentSummary
-    , \ elevationLow' -> segmentSummary { segmentSummary_elevationLow = elevationLow' }
-    )
+  elevationLow f x = fmap
+    (\ y -> x { segmentSummary_elevationLow = y })
+    (f (segmentSummary_elevationLow x))
 
 instance EmailLens AthleteDetailed Text where
-  email athleteDetailed =
-    ( athleteDetailed_email athleteDetailed
-    , \ email' -> athleteDetailed { athleteDetailed_email = email' }
-    )
+  email f x = fmap
+    (\ y -> x { athleteDetailed_email = y })
+    (f (athleteDetailed_email x))
 
 instance EndIndexLens ActivityLapSummary Integer where
-  endIndex activityLapSummary =
-    ( activityLapSummary_endIndex activityLapSummary
-    , \ endIndex' -> activityLapSummary { activityLapSummary_endIndex = endIndex' }
-    )
+  endIndex f x = fmap
+    (\ y -> x { activityLapSummary_endIndex = y })
+    (f (activityLapSummary_endIndex x))
 
 instance EndIndexLens EffortDetailed Integer where
-  endIndex effortDetailed =
-    ( effortDetailed_endIndex effortDetailed
-    , \ endIndex' -> effortDetailed { effortDetailed_endIndex = endIndex' }
-    )
+  endIndex f x = fmap
+    (\ y -> x { effortDetailed_endIndex = y })
+    (f (effortDetailed_endIndex x))
 
 instance EndLatitudeLens SegmentDetailed Double where
-  endLatitude segmentDetailed =
-    ( segmentDetailed_endLatitude segmentDetailed
-    , \ endLatitude' -> segmentDetailed { segmentDetailed_endLatitude = endLatitude' }
-    )
+  endLatitude f x = fmap
+    (\ y -> x { segmentDetailed_endLatitude = y })
+    (f (segmentDetailed_endLatitude x))
 
 instance EndLatitudeLens SegmentSummary Double where
-  endLatitude segmentSummary =
-    ( segmentSummary_endLatitude segmentSummary
-    , \ endLatitude' -> segmentSummary { segmentSummary_endLatitude = endLatitude' }
-    )
+  endLatitude f x = fmap
+    (\ y -> x { segmentSummary_endLatitude = y })
+    (f (segmentSummary_endLatitude x))
 
 instance EndLatlngLens ActivityDetailed (Maybe (Double, Double)) where
-  endLatlng activityDetailed =
-    ( activityDetailed_endLatlng activityDetailed
-    , \ endLatlng' -> activityDetailed { activityDetailed_endLatlng = endLatlng' }
-    )
+  endLatlng f x = fmap
+    (\ y -> x { activityDetailed_endLatlng = y })
+    (f (activityDetailed_endLatlng x))
 
 instance EndLatlngLens ActivitySummary (Maybe (Double, Double)) where
-  endLatlng activitySummary =
-    ( activitySummary_endLatlng activitySummary
-    , \ endLatlng' -> activitySummary { activitySummary_endLatlng = endLatlng' }
-    )
+  endLatlng f x = fmap
+    (\ y -> x { activitySummary_endLatlng = y })
+    (f (activitySummary_endLatlng x))
 
 instance EndLatlngLens SegmentDetailed ((Double, Double)) where
-  endLatlng segmentDetailed =
-    ( segmentDetailed_endLatlng segmentDetailed
-    , \ endLatlng' -> segmentDetailed { segmentDetailed_endLatlng = endLatlng' }
-    )
+  endLatlng f x = fmap
+    (\ y -> x { segmentDetailed_endLatlng = y })
+    (f (segmentDetailed_endLatlng x))
 
 instance EndLatlngLens SegmentExplorerEntry ((Double, Double)) where
-  endLatlng segmentExplorerEntry =
-    ( segmentExplorerEntry_endLatlng segmentExplorerEntry
-    , \ endLatlng' -> segmentExplorerEntry { segmentExplorerEntry_endLatlng = endLatlng' }
-    )
+  endLatlng f x = fmap
+    (\ y -> x { segmentExplorerEntry_endLatlng = y })
+    (f (segmentExplorerEntry_endLatlng x))
 
 instance EndLatlngLens SegmentSummary ((Double, Double)) where
-  endLatlng segmentSummary =
-    ( segmentSummary_endLatlng segmentSummary
-    , \ endLatlng' -> segmentSummary { segmentSummary_endLatlng = endLatlng' }
-    )
+  endLatlng f x = fmap
+    (\ y -> x { segmentSummary_endLatlng = y })
+    (f (segmentSummary_endLatlng x))
 
 instance EndLongitudeLens SegmentDetailed Double where
-  endLongitude segmentDetailed =
-    ( segmentDetailed_endLongitude segmentDetailed
-    , \ endLongitude' -> segmentDetailed { segmentDetailed_endLongitude = endLongitude' }
-    )
+  endLongitude f x = fmap
+    (\ y -> x { segmentDetailed_endLongitude = y })
+    (f (segmentDetailed_endLongitude x))
 
 instance EndLongitudeLens SegmentSummary Double where
-  endLongitude segmentSummary =
-    ( segmentSummary_endLongitude segmentSummary
-    , \ endLongitude' -> segmentSummary { segmentSummary_endLongitude = endLongitude' }
-    )
+  endLongitude f x = fmap
+    (\ y -> x { segmentSummary_endLongitude = y })
+    (f (segmentSummary_endLongitude x))
 
 instance EntriesLens SegmentExplorerResponse [SegmentExplorerEntry] where
-  entries segmentExplorerResponse =
-    ( segmentExplorerResponse_entries segmentExplorerResponse
-    , \ entries' -> segmentExplorerResponse { segmentExplorerResponse_entries = entries' }
-    )
+  entries f x = fmap
+    (\ y -> x { segmentExplorerResponse_entries = y })
+    (f (segmentExplorerResponse_entries x))
 
 instance EntriesLens SegmentLeaderboardResponse [SegmentLeaderboardEntry] where
-  entries segmentLeaderboardResponse =
-    ( segmentLeaderboard_entries segmentLeaderboardResponse
-    , \ entries' -> segmentLeaderboardResponse { segmentLeaderboard_entries = entries' }
-    )
+  entries f x = fmap
+    (\ y -> x { segmentLeaderboard_entries = y })
+    (f (segmentLeaderboard_entries x))
 
 instance EntryCountLens SegmentLeaderboardResponse Integer where
-  entryCount segmentLeaderboardResponse =
-    ( segmentLeaderboard_entryCount segmentLeaderboardResponse
-    , \ entryCount' -> segmentLeaderboardResponse { segmentLeaderboard_entryCount = entryCount' }
-    )
+  entryCount f x = fmap
+    (\ y -> x { segmentLeaderboard_entryCount = y })
+    (f (segmentLeaderboard_entryCount x))
 
 instance ErrorLens UploadStatus (Maybe Text) where
-  error_ uploadStatus =
-    ( uploadStatus_error uploadStatus
-    , \ error_' -> uploadStatus { uploadStatus_error = error_' }
-    )
+  error_ f x = fmap
+    (\ y -> x { uploadStatus_error = y })
+    (f (uploadStatus_error x))
 
 instance ExternalIdLens ActivityDetailed (Maybe Text) where
-  externalId activityDetailed =
-    ( activityDetailed_externalId activityDetailed
-    , \ externalId' -> activityDetailed { activityDetailed_externalId = externalId' }
-    )
+  externalId f x = fmap
+    (\ y -> x { activityDetailed_externalId = y })
+    (f (activityDetailed_externalId x))
 
 instance ExternalIdLens ActivitySummary (Maybe Text) where
-  externalId activitySummary =
-    ( activitySummary_externalId activitySummary
-    , \ externalId' -> activitySummary { activitySummary_externalId = externalId' }
-    )
+  externalId f x = fmap
+    (\ y -> x { activitySummary_externalId = y })
+    (f (activitySummary_externalId x))
 
 instance ExternalIdLens UploadActivityOptions (Maybe String) where
-  externalId uploadActivityOptions =
-    ( uploadActivityOptions_externalId uploadActivityOptions
-    , \ externalId' -> uploadActivityOptions { uploadActivityOptions_externalId = externalId' }
-    )
+  externalId f x = fmap
+    (\ y -> x { uploadActivityOptions_externalId = y })
+    (f (uploadActivityOptions_externalId x))
 
 instance ExternalIdLens UploadStatus (Maybe Text) where
-  externalId uploadStatus =
-    ( uploadStatus_externalId uploadStatus
-    , \ externalId' -> uploadStatus { uploadStatus_externalId = externalId' }
-    )
+  externalId f x = fmap
+    (\ y -> x { uploadStatus_externalId = y })
+    (f (uploadStatus_externalId x))
 
 instance FirstnameLens AthleteDetailed Text where
-  firstname athleteDetailed =
-    ( athleteDetailed_firstname athleteDetailed
-    , \ firstname' -> athleteDetailed { athleteDetailed_firstname = firstname' }
-    )
+  firstname f x = fmap
+    (\ y -> x { athleteDetailed_firstname = y })
+    (f (athleteDetailed_firstname x))
 
 instance FirstnameLens AthleteSummary Text where
-  firstname athleteSummary =
-    ( athleteSummary_firstname athleteSummary
-    , \ firstname' -> athleteSummary { athleteSummary_firstname = firstname' }
-    )
+  firstname f x = fmap
+    (\ y -> x { athleteSummary_firstname = y })
+    (f (athleteSummary_firstname x))
 
 instance FlaggedLens ActivityDetailed Bool where
-  flagged activityDetailed =
-    ( activityDetailed_flagged activityDetailed
-    , \ flagged' -> activityDetailed { activityDetailed_flagged = flagged' }
-    )
+  flagged f x = fmap
+    (\ y -> x { activityDetailed_flagged = y })
+    (f (activityDetailed_flagged x))
 
 instance FlaggedLens ActivitySummary Bool where
-  flagged activitySummary =
-    ( activitySummary_flagged activitySummary
-    , \ flagged' -> activitySummary { activitySummary_flagged = flagged' }
-    )
+  flagged f x = fmap
+    (\ y -> x { activitySummary_flagged = y })
+    (f (activitySummary_flagged x))
 
 instance FollowerCountLens AthleteDetailed Integer where
-  followerCount athleteDetailed =
-    ( athleteDetailed_followerCount athleteDetailed
-    , \ followerCount' -> athleteDetailed { athleteDetailed_followerCount = followerCount' }
-    )
+  followerCount f x = fmap
+    (\ y -> x { athleteDetailed_followerCount = y })
+    (f (athleteDetailed_followerCount x))
 
 instance FollowerLens AthleteDetailed (Maybe Text) where
-  follower athleteDetailed =
-    ( athleteDetailed_follower athleteDetailed
-    , \ follower' -> athleteDetailed { athleteDetailed_follower = follower' }
-    )
+  follower f x = fmap
+    (\ y -> x { athleteDetailed_follower = y })
+    (f (athleteDetailed_follower x))
 
 instance FollowerLens AthleteSummary (Maybe Text) where
-  follower athleteSummary =
-    ( athleteSummary_follower athleteSummary
-    , \ follower' -> athleteSummary { athleteSummary_follower = follower' }
-    )
+  follower f x = fmap
+    (\ y -> x { athleteSummary_follower = y })
+    (f (athleteSummary_follower x))
 
 instance FollowingLens GetSegmentLeaderboardOptions (Maybe Bool) where
-  following getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboardOptions_following getSegmentLeaderboardOptions
-    , \ following' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_following = following' }
-    )
+  following f x = fmap
+    (\ y -> x { getSegmentLeaderboardOptions_following = y })
+    (f (getSegmentLeaderboardOptions_following x))
 
 instance FrameTypeLens GearDetailed (Maybe FrameType) where
-  frameType gearDetailed =
-    ( gearDetailed_frameType gearDetailed
-    , \ frameType' -> gearDetailed { gearDetailed_frameType = frameType' }
-    )
+  frameType f x = fmap
+    (\ y -> x { gearDetailed_frameType = y })
+    (f (gearDetailed_frameType x))
 
 instance FriendCountLens AthleteDetailed Integer where
-  friendCount athleteDetailed =
-    ( athleteDetailed_friendCount athleteDetailed
-    , \ friendCount' -> athleteDetailed { athleteDetailed_friendCount = friendCount' }
-    )
+  friendCount f x = fmap
+    (\ y -> x { athleteDetailed_friendCount = y })
+    (f (athleteDetailed_friendCount x))
 
 instance FriendLens AthleteDetailed (Maybe Text) where
-  friend athleteDetailed =
-    ( athleteDetailed_friend athleteDetailed
-    , \ friend' -> athleteDetailed { athleteDetailed_friend = friend' }
-    )
+  friend f x = fmap
+    (\ y -> x { athleteDetailed_friend = y })
+    (f (athleteDetailed_friend x))
 
 instance FriendLens AthleteSummary (Maybe Text) where
-  friend athleteSummary =
-    ( athleteSummary_friend athleteSummary
-    , \ friend' -> athleteSummary { athleteSummary_friend = friend' }
-    )
+  friend f x = fmap
+    (\ y -> x { athleteSummary_friend = y })
+    (f (athleteSummary_friend x))
 
 instance FtpLens AthleteDetailed (Maybe Integer) where
-  ftp athleteDetailed =
-    ( athleteDetailed_ftp athleteDetailed
-    , \ ftp' -> athleteDetailed { athleteDetailed_ftp = ftp' }
-    )
+  ftp f x = fmap
+    (\ y -> x { athleteDetailed_ftp = y })
+    (f (athleteDetailed_ftp x))
 
 instance GearIdLens ActivityDetailed (Maybe Text) where
-  gearId activityDetailed =
-    ( activityDetailed_gearId activityDetailed
-    , \ gearId' -> activityDetailed { activityDetailed_gearId = gearId' }
-    )
+  gearId f x = fmap
+    (\ y -> x { activityDetailed_gearId = y })
+    (f (activityDetailed_gearId x))
 
 instance GearIdLens ActivitySummary (Maybe Text) where
-  gearId activitySummary =
-    ( activitySummary_gearId activitySummary
-    , \ gearId' -> activitySummary { activitySummary_gearId = gearId' }
-    )
+  gearId f x = fmap
+    (\ y -> x { activitySummary_gearId = y })
+    (f (activitySummary_gearId x))
 
 instance GearIdLens UpdateActivityOptions (Maybe String) where
-  gearId updateActivityOptions =
-    ( updateActivityOptions_gearId updateActivityOptions
-    , \ gearId' -> updateActivityOptions { updateActivityOptions_gearId = gearId' }
-    )
+  gearId f x = fmap
+    (\ y -> x { updateActivityOptions_gearId = y })
+    (f (updateActivityOptions_gearId x))
 
 instance GearLens ActivityDetailed GearSummary where
-  gear activityDetailed =
-    ( activityDetailed_gear activityDetailed
-    , \ gear' -> activityDetailed { activityDetailed_gear = gear' }
-    )
+  gear f x = fmap
+    (\ y -> x { activityDetailed_gear = y })
+    (f (activityDetailed_gear x))
 
 instance GenderLens GetSegmentLeaderboardOptions (Maybe Gender) where
-  gender getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboardOptions_gender getSegmentLeaderboardOptions
-    , \ gender' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_gender = gender' }
-    )
+  gender f x = fmap
+    (\ y -> x { getSegmentLeaderboardOptions_gender = y })
+    (f (getSegmentLeaderboardOptions_gender x))
 
 instance HasKudoedLens ActivityDetailed Bool where
-  hasKudoed activityDetailed =
-    ( activityDetailed_hasKudoed activityDetailed
-    , \ hasKudoed' -> activityDetailed { activityDetailed_hasKudoed = hasKudoed' }
-    )
+  hasKudoed f x = fmap
+    (\ y -> x { activityDetailed_hasKudoed = y })
+    (f (activityDetailed_hasKudoed x))
 
 instance HasKudoedLens ActivitySummary Bool where
-  hasKudoed activitySummary =
-    ( activitySummary_hasKudoed activitySummary
-    , \ hasKudoed' -> activitySummary { activitySummary_hasKudoed = hasKudoed' }
-    )
+  hasKudoed f x = fmap
+    (\ y -> x { activitySummary_hasKudoed = y })
+    (f (activitySummary_hasKudoed x))
 
 instance HazardousLens SegmentDetailed Bool where
-  hazardous segmentDetailed =
-    ( segmentDetailed_hazardous segmentDetailed
-    , \ hazardous' -> segmentDetailed { segmentDetailed_hazardous = hazardous' }
-    )
+  hazardous f x = fmap
+    (\ y -> x { segmentDetailed_hazardous = y })
+    (f (segmentDetailed_hazardous x))
 
 instance HiddenLens EffortDetailed (Maybe Bool) where
-  hidden effortDetailed =
-    ( effortDetailed_hidden effortDetailed
-    , \ hidden' -> effortDetailed { effortDetailed_hidden = hidden' }
-    )
+  hidden f x = fmap
+    (\ y -> x { effortDetailed_hidden = y })
+    (f (effortDetailed_hidden x))
 
 instance HttpManagerLens Client Manager where
-  httpManager client =
-    ( client_httpManager client
-    , \ httpManager' -> client { client_httpManager = httpManager' }
-    )
+  httpManager f x = fmap
+    (\ y -> x { client_httpManager = y })
+    (f (client_httpManager x))
 
 instance IdLens ActivityDetailed Integer where
-  id_ activityDetailed =
-    ( activityDetailed_id activityDetailed
-    , \ id_' -> activityDetailed { activityDetailed_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { activityDetailed_id = y })
+    (f (activityDetailed_id x))
 
 instance IdLens ActivityLapSummary Integer where
-  id_ activityLapSummary =
-    ( activityLapSummary_id activityLapSummary
-    , \ id_' -> activityLapSummary { activityLapSummary_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { activityLapSummary_id = y })
+    (f (activityLapSummary_id x))
 
 instance IdLens ActivitySummary Integer where
-  id_ activitySummary =
-    ( activitySummary_id activitySummary
-    , \ id_' -> activitySummary { activitySummary_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { activitySummary_id = y })
+    (f (activitySummary_id x))
 
 instance IdLens AthleteDetailed Integer where
-  id_ athleteDetailed =
-    ( athleteDetailed_id athleteDetailed
-    , \ id_' -> athleteDetailed { athleteDetailed_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { athleteDetailed_id = y })
+    (f (athleteDetailed_id x))
 
 instance IdLens AthleteMeta Integer where
-  id_ athleteMeta =
-    ( athleteMeta_id athleteMeta
-    , \ id_' -> athleteMeta { athleteMeta_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { athleteMeta_id = y })
+    (f (athleteMeta_id x))
 
 instance IdLens AthleteSummary Integer where
-  id_ athleteSummary =
-    ( athleteSummary_id athleteSummary
-    , \ id_' -> athleteSummary { athleteSummary_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { athleteSummary_id = y })
+    (f (athleteSummary_id x))
 
 instance IdLens ClubDetailed Integer where
-  id_ clubDetailed =
-    ( clubDetailed_id clubDetailed
-    , \ id_' -> clubDetailed { clubDetailed_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { clubDetailed_id = y })
+    (f (clubDetailed_id x))
 
 instance IdLens ClubSummary Integer where
-  id_ clubSummary =
-    ( clubSummary_id clubSummary
-    , \ id_' -> clubSummary { clubSummary_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { clubSummary_id = y })
+    (f (clubSummary_id x))
 
 instance IdLens CommentSummary Integer where
-  id_ commentSummary =
-    ( commentSummary_id commentSummary
-    , \ id_' -> commentSummary { commentSummary_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { commentSummary_id = y })
+    (f (commentSummary_id x))
 
 instance IdLens EffortDetailed Integer where
-  id_ effortDetailed =
-    ( effortDetailed_id effortDetailed
-    , \ id_' -> effortDetailed { effortDetailed_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { effortDetailed_id = y })
+    (f (effortDetailed_id x))
 
 instance IdLens GearDetailed Text where
-  id_ gearDetailed =
-    ( gearDetailed_id gearDetailed
-    , \ id_' -> gearDetailed { gearDetailed_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { gearDetailed_id = y })
+    (f (gearDetailed_id x))
 
 instance IdLens GearSummary Text where
-  id_ gearSummary =
-    ( gearSummary_id gearSummary
-    , \ id_' -> gearSummary { gearSummary_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { gearSummary_id = y })
+    (f (gearSummary_id x))
 
 instance IdLens PhotoSummary Integer where
-  id_ photoSummary =
-    ( photoSummary_id photoSummary
-    , \ id_' -> photoSummary { photoSummary_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { photoSummary_id = y })
+    (f (photoSummary_id x))
 
 instance IdLens PolylineDetailed Text where
-  id_ polylineDetailed =
-    ( polylineDetailed_id polylineDetailed
-    , \ id_' -> polylineDetailed { polylineDetailed_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { polylineDetailed_id = y })
+    (f (polylineDetailed_id x))
 
 instance IdLens PolylineSummary Text where
-  id_ polylineSummary =
-    ( polylineSummary_id polylineSummary
-    , \ id_' -> polylineSummary { polylineSummary_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { polylineSummary_id = y })
+    (f (polylineSummary_id x))
 
 instance IdLens SegmentDetailed Integer where
-  id_ segmentDetailed =
-    ( segmentDetailed_id segmentDetailed
-    , \ id_' -> segmentDetailed { segmentDetailed_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { segmentDetailed_id = y })
+    (f (segmentDetailed_id x))
 
 instance IdLens SegmentExplorerEntry Integer where
-  id_ segmentExplorerEntry =
-    ( segmentExplorerEntry_id segmentExplorerEntry
-    , \ id_' -> segmentExplorerEntry { segmentExplorerEntry_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { segmentExplorerEntry_id = y })
+    (f (segmentExplorerEntry_id x))
 
 instance IdLens SegmentSummary Integer where
-  id_ segmentSummary =
-    ( segmentSummary_id segmentSummary
-    , \ id_' -> segmentSummary { segmentSummary_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { segmentSummary_id = y })
+    (f (segmentSummary_id x))
 
 instance IdLens UploadStatus Integer where
-  id_ uploadStatus =
-    ( uploadStatus_id uploadStatus
-    , \ id_' -> uploadStatus { uploadStatus_id = id_' }
-    )
+  id_ f x = fmap
+    (\ y -> x { uploadStatus_id = y })
+    (f (uploadStatus_id x))
 
 instance InstagramPrimaryPhotoLens ActivityDetailed (Maybe Text) where
-  instagramPrimaryPhoto activityDetailed =
-    ( activityDetailed_instagramPrimaryPhoto activityDetailed
-    , \ instagramPrimaryPhoto' -> activityDetailed { activityDetailed_instagramPrimaryPhoto = instagramPrimaryPhoto' }
-    )
+  instagramPrimaryPhoto f x = fmap
+    (\ y -> x { activityDetailed_instagramPrimaryPhoto = y })
+    (f (activityDetailed_instagramPrimaryPhoto x))
 
 instance KilojoulesLens ActivityDetailed (Maybe Double) where
-  kilojoules activityDetailed =
-    ( activityDetailed_kilojoules activityDetailed
-    , \ kilojoules' -> activityDetailed { activityDetailed_kilojoules = kilojoules' }
-    )
+  kilojoules f x = fmap
+    (\ y -> x { activityDetailed_kilojoules = y })
+    (f (activityDetailed_kilojoules x))
 
 instance KilojoulesLens ActivitySummary (Maybe Double) where
-  kilojoules activitySummary =
-    ( activitySummary_kilojoules activitySummary
-    , \ kilojoules' -> activitySummary { activitySummary_kilojoules = kilojoules' }
-    )
+  kilojoules f x = fmap
+    (\ y -> x { activitySummary_kilojoules = y })
+    (f (activitySummary_kilojoules x))
 
 instance KomRankLens EffortDetailed (Maybe Integer) where
-  komRank effortDetailed =
-    ( effortDetailed_komRank effortDetailed
-    , \ komRank' -> effortDetailed { effortDetailed_komRank = komRank' }
-    )
+  komRank f x = fmap
+    (\ y -> x { effortDetailed_komRank = y })
+    (f (effortDetailed_komRank x))
 
 instance KudosCountLens ActivitySummary Integer where
-  kudosCount activitySummary =
-    ( activitySummary_kudosCount activitySummary
-    , \ kudosCount' -> activitySummary { activitySummary_kudosCount = kudosCount' }
-    )
+  kudosCount f x = fmap
+    (\ y -> x { activitySummary_kudosCount = y })
+    (f (activitySummary_kudosCount x))
 
 instance LapIndexLens ActivityLapSummary Integer where
-  lapIndex activityLapSummary =
-    ( activityLapSummary_lapIndex activityLapSummary
-    , \ lapIndex' -> activityLapSummary { activityLapSummary_lapIndex = lapIndex' }
-    )
+  lapIndex f x = fmap
+    (\ y -> x { activityLapSummary_lapIndex = y })
+    (f (activityLapSummary_lapIndex x))
 
 instance LastnameLens AthleteDetailed Text where
-  lastname athleteDetailed =
-    ( athleteDetailed_lastname athleteDetailed
-    , \ lastname' -> athleteDetailed { athleteDetailed_lastname = lastname' }
-    )
+  lastname f x = fmap
+    (\ y -> x { athleteDetailed_lastname = y })
+    (f (athleteDetailed_lastname x))
 
 instance LastnameLens AthleteSummary Text where
-  lastname athleteSummary =
-    ( athleteSummary_lastname athleteSummary
-    , \ lastname' -> athleteSummary { athleteSummary_lastname = lastname' }
-    )
+  lastname f x = fmap
+    (\ y -> x { athleteSummary_lastname = y })
+    (f (athleteSummary_lastname x))
 
 instance LocationCityLens ActivityDetailed (Maybe Text) where
-  locationCity activityDetailed =
-    ( activityDetailed_locationCity activityDetailed
-    , \ locationCity' -> activityDetailed { activityDetailed_locationCity = locationCity' }
-    )
+  locationCity f x = fmap
+    (\ y -> x { activityDetailed_locationCity = y })
+    (f (activityDetailed_locationCity x))
 
 instance LocationCityLens ActivitySummary (Maybe Text) where
-  locationCity activitySummary =
-    ( activitySummary_locationCity activitySummary
-    , \ locationCity' -> activitySummary { activitySummary_locationCity = locationCity' }
-    )
+  locationCity f x = fmap
+    (\ y -> x { activitySummary_locationCity = y })
+    (f (activitySummary_locationCity x))
 
 instance LocationCountryLens ActivityDetailed Text where
-  locationCountry activityDetailed =
-    ( activityDetailed_locationCountry activityDetailed
-    , \ locationCountry' -> activityDetailed { activityDetailed_locationCountry = locationCountry' }
-    )
+  locationCountry f x = fmap
+    (\ y -> x { activityDetailed_locationCountry = y })
+    (f (activityDetailed_locationCountry x))
 
 instance LocationCountryLens ActivitySummary Text where
-  locationCountry activitySummary =
-    ( activitySummary_locationCountry activitySummary
-    , \ locationCountry' -> activitySummary { activitySummary_locationCountry = locationCountry' }
-    )
+  locationCountry f x = fmap
+    (\ y -> x { activitySummary_locationCountry = y })
+    (f (activitySummary_locationCountry x))
 
 instance LocationLens PhotoSummary (Maybe (Double, Double)) where
-  location photoSummary =
-    ( photoSummary_location photoSummary
-    , \ location' -> photoSummary { photoSummary_location = location' }
-    )
+  location f x = fmap
+    (\ y -> x { photoSummary_location = y })
+    (f (photoSummary_location x))
 
 instance LocationStateLens ActivityDetailed (Maybe Text) where
-  locationState activityDetailed =
-    ( activityDetailed_locationState activityDetailed
-    , \ locationState' -> activityDetailed { activityDetailed_locationState = locationState' }
-    )
+  locationState f x = fmap
+    (\ y -> x { activityDetailed_locationState = y })
+    (f (activityDetailed_locationState x))
 
 instance LocationStateLens ActivitySummary (Maybe Text) where
-  locationState activitySummary =
-    ( activitySummary_locationState activitySummary
-    , \ locationState' -> activitySummary { activitySummary_locationState = locationState' }
-    )
+  locationState f x = fmap
+    (\ y -> x { activitySummary_locationState = y })
+    (f (activitySummary_locationState x))
 
 instance ManualLens ActivityDetailed Bool where
-  manual activityDetailed =
-    ( activityDetailed_manual activityDetailed
-    , \ manual' -> activityDetailed { activityDetailed_manual = manual' }
-    )
+  manual f x = fmap
+    (\ y -> x { activityDetailed_manual = y })
+    (f (activityDetailed_manual x))
 
 instance ManualLens ActivitySummary Bool where
-  manual activitySummary =
-    ( activitySummary_manual activitySummary
-    , \ manual' -> activitySummary { activitySummary_manual = manual' }
-    )
+  manual f x = fmap
+    (\ y -> x { activitySummary_manual = y })
+    (f (activitySummary_manual x))
 
 instance MapLens ActivityDetailed PolylineDetailed where
-  map activityDetailed =
-    ( activityDetailed_map activityDetailed
-    , \ map' -> activityDetailed { activityDetailed_map = map' }
-    )
+  map f x = fmap
+    (\ y -> x { activityDetailed_map = y })
+    (f (activityDetailed_map x))
 
 instance MapLens ActivitySummary PolylineSummary where
-  map activitySummary =
-    ( activitySummary_map activitySummary
-    , \ map' -> activitySummary { activitySummary_map = map' }
-    )
+  map f x = fmap
+    (\ y -> x { activitySummary_map = y })
+    (f (activitySummary_map x))
 
 instance MapLens SegmentDetailed PolylineDetailed where
-  map segmentDetailed =
-    ( segmentDetailed_map segmentDetailed
-    , \ map' -> segmentDetailed { segmentDetailed_map = map' }
-    )
+  map f x = fmap
+    (\ y -> x { segmentDetailed_map = y })
+    (f (segmentDetailed_map x))
 
 instance MarkdownLens GetActivityCommentsOptions Bool where
-  markdown getActivityCommentsOptions =
-    ( getActivityCommentsOptions_markdown getActivityCommentsOptions
-    , \ markdown' -> getActivityCommentsOptions { getActivityCommentsOptions_markdown = markdown' }
-    )
+  markdown f x = fmap
+    (\ y -> x { getActivityCommentsOptions_markdown = y })
+    (f (getActivityCommentsOptions_markdown x))
 
 instance MaxCatLens ExploreSegmentsOptions Integer where
-  maxCat exploreSegmentsOptions =
-    ( exploreSegmentsOptions_maxCat exploreSegmentsOptions
-    , \ maxCat' -> exploreSegmentsOptions { exploreSegmentsOptions_maxCat = maxCat' }
-    )
+  maxCat f x = fmap
+    (\ y -> x { exploreSegmentsOptions_maxCat = y })
+    (f (exploreSegmentsOptions_maxCat x))
 
 instance MaxHeartrateLens EffortDetailed (Maybe Integer) where
-  maxHeartrate effortDetailed =
-    ( effortDetailed_maxHeartrate effortDetailed
-    , \ maxHeartrate' -> effortDetailed { effortDetailed_maxHeartrate = maxHeartrate' }
-    )
+  maxHeartrate f x = fmap
+    (\ y -> x { effortDetailed_maxHeartrate = y })
+    (f (effortDetailed_maxHeartrate x))
 
 instance MaxLens ActivityZoneDistributionBucket Integer where
-  max_ activityZoneDistributionBucket =
-    ( activityZoneDistributionBucket_max activityZoneDistributionBucket
-    , \ max_' -> activityZoneDistributionBucket { activityZoneDistributionBucket_max = max_' }
-    )
+  max_ f x = fmap
+    (\ y -> x { activityZoneDistributionBucket_max = y })
+    (f (activityZoneDistributionBucket_max x))
 
 instance MaxSpeedLens ActivityDetailed Double where
-  maxSpeed activityDetailed =
-    ( activityDetailed_maxSpeed activityDetailed
-    , \ maxSpeed' -> activityDetailed { activityDetailed_maxSpeed = maxSpeed' }
-    )
+  maxSpeed f x = fmap
+    (\ y -> x { activityDetailed_maxSpeed = y })
+    (f (activityDetailed_maxSpeed x))
 
 instance MaxSpeedLens ActivityLapSummary Double where
-  maxSpeed activityLapSummary =
-    ( activityLapSummary_maxSpeed activityLapSummary
-    , \ maxSpeed' -> activityLapSummary { activityLapSummary_maxSpeed = maxSpeed' }
-    )
+  maxSpeed f x = fmap
+    (\ y -> x { activityLapSummary_maxSpeed = y })
+    (f (activityLapSummary_maxSpeed x))
 
 instance MaxSpeedLens ActivitySummary Double where
-  maxSpeed activitySummary =
-    ( activitySummary_maxSpeed activitySummary
-    , \ maxSpeed' -> activitySummary { activitySummary_maxSpeed = maxSpeed' }
-    )
+  maxSpeed f x = fmap
+    (\ y -> x { activitySummary_maxSpeed = y })
+    (f (activitySummary_maxSpeed x))
 
 instance MaximumGradeLens SegmentDetailed Double where
-  maximumGrade segmentDetailed =
-    ( segmentDetailed_maximumGrade segmentDetailed
-    , \ maximumGrade' -> segmentDetailed { segmentDetailed_maximumGrade = maximumGrade' }
-    )
+  maximumGrade f x = fmap
+    (\ y -> x { segmentDetailed_maximumGrade = y })
+    (f (segmentDetailed_maximumGrade x))
 
 instance MaximumGradeLens SegmentSummary Double where
-  maximumGrade segmentSummary =
-    ( segmentSummary_maximumGrade segmentSummary
-    , \ maximumGrade' -> segmentSummary { segmentSummary_maximumGrade = maximumGrade' }
-    )
+  maximumGrade f x = fmap
+    (\ y -> x { segmentSummary_maximumGrade = y })
+    (f (segmentSummary_maximumGrade x))
 
 instance MeasurementPreferenceLens AthleteDetailed MeasurementPreference where
-  measurementPreference athleteDetailed =
-    ( athleteDetailed_measurementPreference athleteDetailed
-    , \ measurementPreference' -> athleteDetailed { athleteDetailed_measurementPreference = measurementPreference' }
-    )
+  measurementPreference f x = fmap
+    (\ y -> x { athleteDetailed_measurementPreference = y })
+    (f (athleteDetailed_measurementPreference x))
 
 instance MemberCountLens ClubDetailed Integer where
-  memberCount clubDetailed =
-    ( clubDetailed_memberCount clubDetailed
-    , \ memberCount' -> clubDetailed { clubDetailed_memberCount = memberCount' }
-    )
+  memberCount f x = fmap
+    (\ y -> x { clubDetailed_memberCount = y })
+    (f (clubDetailed_memberCount x))
 
 instance MinCatLens ExploreSegmentsOptions Integer where
-  minCat exploreSegmentsOptions =
-    ( exploreSegmentsOptions_minCat exploreSegmentsOptions
-    , \ minCat' -> exploreSegmentsOptions { exploreSegmentsOptions_minCat = minCat' }
-    )
+  minCat f x = fmap
+    (\ y -> x { exploreSegmentsOptions_minCat = y })
+    (f (exploreSegmentsOptions_minCat x))
 
 instance MinLens ActivityZoneDistributionBucket Integer where
-  min_ activityZoneDistributionBucket =
-    ( activityZoneDistributionBucket_min activityZoneDistributionBucket
-    , \ min_' -> activityZoneDistributionBucket { activityZoneDistributionBucket_min = min_' }
-    )
+  min_ f x = fmap
+    (\ y -> x { activityZoneDistributionBucket_min = y })
+    (f (activityZoneDistributionBucket_min x))
 
 instance ModelNameLens GearDetailed Text where
-  modelName gearDetailed =
-    ( gearDetailed_modelName gearDetailed
-    , \ modelName' -> gearDetailed { gearDetailed_modelName = modelName' }
-    )
+  modelName f x = fmap
+    (\ y -> x { gearDetailed_modelName = y })
+    (f (gearDetailed_modelName x))
 
 instance MovingTimeLens ActivityDetailed Integer where
-  movingTime activityDetailed =
-    ( activityDetailed_movingTime activityDetailed
-    , \ movingTime' -> activityDetailed { activityDetailed_movingTime = movingTime' }
-    )
+  movingTime f x = fmap
+    (\ y -> x { activityDetailed_movingTime = y })
+    (f (activityDetailed_movingTime x))
 
 instance MovingTimeLens ActivityLapSummary Double where
-  movingTime activityLapSummary =
-    ( activityLapSummary_movingTime activityLapSummary
-    , \ movingTime' -> activityLapSummary { activityLapSummary_movingTime = movingTime' }
-    )
+  movingTime f x = fmap
+    (\ y -> x { activityLapSummary_movingTime = y })
+    (f (activityLapSummary_movingTime x))
 
 instance MovingTimeLens ActivitySummary Integer where
-  movingTime activitySummary =
-    ( activitySummary_movingTime activitySummary
-    , \ movingTime' -> activitySummary { activitySummary_movingTime = movingTime' }
-    )
+  movingTime f x = fmap
+    (\ y -> x { activitySummary_movingTime = y })
+    (f (activitySummary_movingTime x))
 
 instance MovingTimeLens EffortDetailed Integer where
-  movingTime effortDetailed =
-    ( effortDetailed_movingTime effortDetailed
-    , \ movingTime' -> effortDetailed { effortDetailed_movingTime = movingTime' }
-    )
+  movingTime f x = fmap
+    (\ y -> x { effortDetailed_movingTime = y })
+    (f (effortDetailed_movingTime x))
 
 instance MovingTimeLens SegmentLeaderboardEntry Integer where
-  movingTime segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_movingTime segmentLeaderboardEntry
-    , \ movingTime' -> segmentLeaderboardEntry { segmentLeaderboardEntry_movingTime = movingTime' }
-    )
+  movingTime f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_movingTime = y })
+    (f (segmentLeaderboardEntry_movingTime x))
 
 instance MutualFriendCountLens AthleteDetailed Integer where
-  mutualFriendCount athleteDetailed =
-    ( athleteDetailed_mutualFriendCount athleteDetailed
-    , \ mutualFriendCount' -> athleteDetailed { athleteDetailed_mutualFriendCount = mutualFriendCount' }
-    )
+  mutualFriendCount f x = fmap
+    (\ y -> x { athleteDetailed_mutualFriendCount = y })
+    (f (athleteDetailed_mutualFriendCount x))
 
 instance NameLens ActivityDetailed Text where
-  name activityDetailed =
-    ( activityDetailed_name activityDetailed
-    , \ name' -> activityDetailed { activityDetailed_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { activityDetailed_name = y })
+    (f (activityDetailed_name x))
 
 instance NameLens ActivityLapSummary Text where
-  name activityLapSummary =
-    ( activityLapSummary_name activityLapSummary
-    , \ name' -> activityLapSummary { activityLapSummary_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { activityLapSummary_name = y })
+    (f (activityLapSummary_name x))
 
 instance NameLens ActivitySummary Text where
-  name activitySummary =
-    ( activitySummary_name activitySummary
-    , \ name' -> activitySummary { activitySummary_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { activitySummary_name = y })
+    (f (activitySummary_name x))
 
 instance NameLens ClubDetailed Text where
-  name clubDetailed =
-    ( clubDetailed_name clubDetailed
-    , \ name' -> clubDetailed { clubDetailed_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { clubDetailed_name = y })
+    (f (clubDetailed_name x))
 
 instance NameLens ClubSummary Text where
-  name clubSummary =
-    ( clubSummary_name clubSummary
-    , \ name' -> clubSummary { clubSummary_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { clubSummary_name = y })
+    (f (clubSummary_name x))
 
 instance NameLens EffortDetailed Text where
-  name effortDetailed =
-    ( effortDetailed_name effortDetailed
-    , \ name' -> effortDetailed { effortDetailed_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { effortDetailed_name = y })
+    (f (effortDetailed_name x))
 
 instance NameLens GearDetailed Text where
-  name gearDetailed =
-    ( gearDetailed_name gearDetailed
-    , \ name' -> gearDetailed { gearDetailed_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { gearDetailed_name = y })
+    (f (gearDetailed_name x))
 
 instance NameLens GearSummary Text where
-  name gearSummary =
-    ( gearSummary_name gearSummary
-    , \ name' -> gearSummary { gearSummary_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { gearSummary_name = y })
+    (f (gearSummary_name x))
 
 instance NameLens SegmentDetailed Text where
-  name segmentDetailed =
-    ( segmentDetailed_name segmentDetailed
-    , \ name' -> segmentDetailed { segmentDetailed_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { segmentDetailed_name = y })
+    (f (segmentDetailed_name x))
 
 instance NameLens SegmentExplorerEntry Text where
-  name segmentExplorerEntry =
-    ( segmentExplorerEntry_name segmentExplorerEntry
-    , \ name' -> segmentExplorerEntry { segmentExplorerEntry_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { segmentExplorerEntry_name = y })
+    (f (segmentExplorerEntry_name x))
 
 instance NameLens SegmentSummary Text where
-  name segmentSummary =
-    ( segmentSummary_name segmentSummary
-    , \ name' -> segmentSummary { segmentSummary_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { segmentSummary_name = y })
+    (f (segmentSummary_name x))
 
 instance NameLens UpdateActivityOptions (Maybe String) where
-  name updateActivityOptions =
-    ( updateActivityOptions_name updateActivityOptions
-    , \ name' -> updateActivityOptions { updateActivityOptions_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { updateActivityOptions_name = y })
+    (f (updateActivityOptions_name x))
 
 instance NameLens UploadActivityOptions (Maybe String) where
-  name uploadActivityOptions =
-    ( uploadActivityOptions_name uploadActivityOptions
-    , \ name' -> uploadActivityOptions { uploadActivityOptions_name = name' }
-    )
+  name f x = fmap
+    (\ y -> x { uploadActivityOptions_name = y })
+    (f (uploadActivityOptions_name x))
 
 instance OriginalSizeLens StreamDetailed Integer where
-  originalSize streamDetailed =
-    ( streamDetailed_originalSize streamDetailed
-    , \ originalSize' -> streamDetailed { streamDetailed_originalSize = originalSize' }
-    )
+  originalSize f x = fmap
+    (\ y -> x { streamDetailed_originalSize = y })
+    (f (streamDetailed_originalSize x))
 
 instance PageLens GetActivityCommentsOptions Integer where
-  page getActivityCommentsOptions =
-    ( getActivityCommentsOptions_page getActivityCommentsOptions
-    , \ page' -> getActivityCommentsOptions { getActivityCommentsOptions_page = page' }
-    )
+  page f x = fmap
+    (\ y -> x { getActivityCommentsOptions_page = y })
+    (f (getActivityCommentsOptions_page x))
 
 instance PageLens GetCurrentActivitiesOptions Integer where
-  page getCurrentActivitiesOptions =
-    ( getCurrentActivitiesOptions_page getCurrentActivitiesOptions
-    , \ page' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_page = page' }
-    )
+  page f x = fmap
+    (\ y -> x { getCurrentActivitiesOptions_page = y })
+    (f (getCurrentActivitiesOptions_page x))
 
 instance PageLens GetSegmentEffortsOptions Integer where
-  page getSegmentEffortsOptions =
-    ( getSegmentEffortsOptions_page getSegmentEffortsOptions
-    , \ page' -> getSegmentEffortsOptions { getSegmentEffortsOptions_page = page' }
-    )
+  page f x = fmap
+    (\ y -> x { getSegmentEffortsOptions_page = y })
+    (f (getSegmentEffortsOptions_page x))
 
 instance PageLens GetSegmentLeaderboardOptions Integer where
-  page getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboardOptions_page getSegmentLeaderboardOptions
-    , \ page' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_page = page' }
-    )
+  page f x = fmap
+    (\ y -> x { getSegmentLeaderboardOptions_page = y })
+    (f (getSegmentLeaderboardOptions_page x))
 
 instance PageLens PaginationOptions Integer where
-  page paginationOptions =
-    ( paginationOptions_page paginationOptions
-    , \ page' -> paginationOptions { paginationOptions_page = page' }
-    )
+  page f x = fmap
+    (\ y -> x { paginationOptions_page = y })
+    (f (paginationOptions_page x))
 
 instance PerPageLens GetActivityCommentsOptions Integer where
-  perPage getActivityCommentsOptions =
-    ( getActivityCommentsOptions_perPage getActivityCommentsOptions
-    , \ perPage' -> getActivityCommentsOptions { getActivityCommentsOptions_perPage = perPage' }
-    )
+  perPage f x = fmap
+    (\ y -> x { getActivityCommentsOptions_perPage = y })
+    (f (getActivityCommentsOptions_perPage x))
 
 instance PerPageLens GetCurrentActivitiesOptions Integer where
-  perPage getCurrentActivitiesOptions =
-    ( getCurrentActivitiesOptions_perPage getCurrentActivitiesOptions
-    , \ perPage' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_perPage = perPage' }
-    )
+  perPage f x = fmap
+    (\ y -> x { getCurrentActivitiesOptions_perPage = y })
+    (f (getCurrentActivitiesOptions_perPage x))
 
 instance PerPageLens GetSegmentEffortsOptions Integer where
-  perPage getSegmentEffortsOptions =
-    ( getSegmentEffortsOptions_perPage getSegmentEffortsOptions
-    , \ perPage' -> getSegmentEffortsOptions { getSegmentEffortsOptions_perPage = perPage' }
-    )
+  perPage f x = fmap
+    (\ y -> x { getSegmentEffortsOptions_perPage = y })
+    (f (getSegmentEffortsOptions_perPage x))
 
 instance PerPageLens GetSegmentLeaderboardOptions Integer where
-  perPage getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboardOptions_perPage getSegmentLeaderboardOptions
-    , \ perPage' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_perPage = perPage' }
-    )
+  perPage f x = fmap
+    (\ y -> x { getSegmentLeaderboardOptions_perPage = y })
+    (f (getSegmentLeaderboardOptions_perPage x))
 
 instance PerPageLens PaginationOptions Integer where
-  perPage paginationOptions =
-    ( paginationOptions_perPage paginationOptions
-    , \ perPage' -> paginationOptions { paginationOptions_perPage = perPage' }
-    )
+  perPage f x = fmap
+    (\ y -> x { paginationOptions_perPage = y })
+    (f (paginationOptions_perPage x))
 
 instance PhotoCountLens ActivityDetailed Integer where
-  photoCount activityDetailed =
-    ( activityDetailed_photoCount activityDetailed
-    , \ photoCount' -> activityDetailed { activityDetailed_photoCount = photoCount' }
-    )
+  photoCount f x = fmap
+    (\ y -> x { activityDetailed_photoCount = y })
+    (f (activityDetailed_photoCount x))
 
 instance PhotoCountLens ActivitySummary Integer where
-  photoCount activitySummary =
-    ( activitySummary_photoCount activitySummary
-    , \ photoCount' -> activitySummary { activitySummary_photoCount = photoCount' }
-    )
+  photoCount f x = fmap
+    (\ y -> x { activitySummary_photoCount = y })
+    (f (activitySummary_photoCount x))
 
 instance PointsLens SegmentExplorerEntry Text where
-  points segmentExplorerEntry =
-    ( segmentExplorerEntry_points segmentExplorerEntry
-    , \ points' -> segmentExplorerEntry { segmentExplorerEntry_points = points' }
-    )
+  points f x = fmap
+    (\ y -> x { segmentExplorerEntry_points = y })
+    (f (segmentExplorerEntry_points x))
 
 instance PolylineLens PolylineDetailed ([(Double, Double)]) where
-  polyline polylineDetailed =
-    ( polylineDetailed_polyline polylineDetailed
-    , \ polyline' -> polylineDetailed { polylineDetailed_polyline = polyline' }
-    )
+  polyline f x = fmap
+    (\ y -> x { polylineDetailed_polyline = y })
+    (f (polylineDetailed_polyline x))
 
 instance PrRankLens EffortDetailed (Maybe Integer) where
-  prRank effortDetailed =
-    ( effortDetailed_prRank effortDetailed
-    , \ prRank' -> effortDetailed { effortDetailed_prRank = prRank' }
-    )
+  prRank f x = fmap
+    (\ y -> x { effortDetailed_prRank = y })
+    (f (effortDetailed_prRank x))
 
 instance PremiumLens AthleteDetailed Bool where
-  premium athleteDetailed =
-    ( athleteDetailed_premium athleteDetailed
-    , \ premium' -> athleteDetailed { athleteDetailed_premium = premium' }
-    )
+  premium f x = fmap
+    (\ y -> x { athleteDetailed_premium = y })
+    (f (athleteDetailed_premium x))
 
 instance PremiumLens AthleteSummary Bool where
-  premium athleteSummary =
-    ( athleteSummary_premium athleteSummary
-    , \ premium' -> athleteSummary { athleteSummary_premium = premium' }
-    )
+  premium f x = fmap
+    (\ y -> x { athleteSummary_premium = y })
+    (f (athleteSummary_premium x))
 
 instance PrimaryLens GearDetailed Bool where
-  primary gearDetailed =
-    ( gearDetailed_primary gearDetailed
-    , \ primary' -> gearDetailed { gearDetailed_primary = primary' }
-    )
+  primary f x = fmap
+    (\ y -> x { gearDetailed_primary = y })
+    (f (gearDetailed_primary x))
 
 instance PrimaryLens GearSummary Bool where
-  primary gearSummary =
-    ( gearSummary_primary gearSummary
-    , \ primary' -> gearSummary { gearSummary_primary = primary' }
-    )
+  primary f x = fmap
+    (\ y -> x { gearSummary_primary = y })
+    (f (gearSummary_primary x))
 
 instance PrivateLens ActivityDetailed Bool where
-  private activityDetailed =
-    ( activityDetailed_private activityDetailed
-    , \ private' -> activityDetailed { activityDetailed_private = private' }
-    )
+  private f x = fmap
+    (\ y -> x { activityDetailed_private = y })
+    (f (activityDetailed_private x))
 
 instance PrivateLens ActivitySummary Bool where
-  private activitySummary =
-    ( activitySummary_private activitySummary
-    , \ private' -> activitySummary { activitySummary_private = private' }
-    )
+  private f x = fmap
+    (\ y -> x { activitySummary_private = y })
+    (f (activitySummary_private x))
 
 instance PrivateLens ClubDetailed Bool where
-  private clubDetailed =
-    ( clubDetailed_private clubDetailed
-    , \ private' -> clubDetailed { clubDetailed_private = private' }
-    )
+  private f x = fmap
+    (\ y -> x { clubDetailed_private = y })
+    (f (clubDetailed_private x))
 
 instance PrivateLens SegmentDetailed Bool where
-  private segmentDetailed =
-    ( segmentDetailed_private segmentDetailed
-    , \ private' -> segmentDetailed { segmentDetailed_private = private' }
-    )
+  private f x = fmap
+    (\ y -> x { segmentDetailed_private = y })
+    (f (segmentDetailed_private x))
 
 instance PrivateLens SegmentSummary Bool where
-  private segmentSummary =
-    ( segmentSummary_private segmentSummary
-    , \ private' -> segmentSummary { segmentSummary_private = private' }
-    )
+  private f x = fmap
+    (\ y -> x { segmentSummary_private = y })
+    (f (segmentSummary_private x))
 
 instance PrivateLens UpdateActivityOptions (Maybe Bool) where
-  private updateActivityOptions =
-    ( updateActivityOptions_private updateActivityOptions
-    , \ private' -> updateActivityOptions { updateActivityOptions_private = private' }
-    )
+  private f x = fmap
+    (\ y -> x { updateActivityOptions_private = y })
+    (f (updateActivityOptions_private x))
 
 instance PrivateLens UploadActivityOptions Bool where
-  private uploadActivityOptions =
-    ( uploadActivityOptions_private uploadActivityOptions
-    , \ private' -> uploadActivityOptions { uploadActivityOptions_private = private' }
-    )
+  private f x = fmap
+    (\ y -> x { uploadActivityOptions_private = y })
+    (f (uploadActivityOptions_private x))
 
 instance PrivateScopeLens BuildAuthorizeUrlOptions Bool where
-  privateScope buildAuthorizeUrlOptions =
-    ( buildAuthorizeUrlOptions_privateScope buildAuthorizeUrlOptions
-    , \ privateScope' -> buildAuthorizeUrlOptions { buildAuthorizeUrlOptions_privateScope = privateScope' }
-    )
+  privateScope f x = fmap
+    (\ y -> x { buildAuthorizeUrlOptions_privateScope = y })
+    (f (buildAuthorizeUrlOptions_privateScope x))
 
 instance ProfileLens AthleteDetailed Text where
-  profile athleteDetailed =
-    ( athleteDetailed_profile athleteDetailed
-    , \ profile' -> athleteDetailed { athleteDetailed_profile = profile' }
-    )
+  profile f x = fmap
+    (\ y -> x { athleteDetailed_profile = y })
+    (f (athleteDetailed_profile x))
 
 instance ProfileLens AthleteSummary Text where
-  profile athleteSummary =
-    ( athleteSummary_profile athleteSummary
-    , \ profile' -> athleteSummary { athleteSummary_profile = profile' }
-    )
+  profile f x = fmap
+    (\ y -> x { athleteSummary_profile = y })
+    (f (athleteSummary_profile x))
 
 instance ProfileLens ClubDetailed Text where
-  profile clubDetailed =
-    ( clubDetailed_profile clubDetailed
-    , \ profile' -> clubDetailed { clubDetailed_profile = profile' }
-    )
+  profile f x = fmap
+    (\ y -> x { clubDetailed_profile = y })
+    (f (clubDetailed_profile x))
 
 instance ProfileLens ClubSummary Text where
-  profile clubSummary =
-    ( clubSummary_profile clubSummary
-    , \ profile' -> clubSummary { clubSummary_profile = profile' }
-    )
+  profile f x = fmap
+    (\ y -> x { clubSummary_profile = y })
+    (f (clubSummary_profile x))
 
 instance ProfileMediumLens AthleteDetailed Text where
-  profileMedium athleteDetailed =
-    ( athleteDetailed_profileMedium athleteDetailed
-    , \ profileMedium' -> athleteDetailed { athleteDetailed_profileMedium = profileMedium' }
-    )
+  profileMedium f x = fmap
+    (\ y -> x { athleteDetailed_profileMedium = y })
+    (f (athleteDetailed_profileMedium x))
 
 instance ProfileMediumLens AthleteSummary Text where
-  profileMedium athleteSummary =
-    ( athleteSummary_profileMedium athleteSummary
-    , \ profileMedium' -> athleteSummary { athleteSummary_profileMedium = profileMedium' }
-    )
+  profileMedium f x = fmap
+    (\ y -> x { athleteSummary_profileMedium = y })
+    (f (athleteSummary_profileMedium x))
 
 instance ProfileMediumLens ClubDetailed Text where
-  profileMedium clubDetailed =
-    ( clubDetailed_profileMedium clubDetailed
-    , \ profileMedium' -> clubDetailed { clubDetailed_profileMedium = profileMedium' }
-    )
+  profileMedium f x = fmap
+    (\ y -> x { clubDetailed_profileMedium = y })
+    (f (clubDetailed_profileMedium x))
 
 instance ProfileMediumLens ClubSummary Text where
-  profileMedium clubSummary =
-    ( clubSummary_profileMedium clubSummary
-    , \ profileMedium' -> clubSummary { clubSummary_profileMedium = profileMedium' }
-    )
+  profileMedium f x = fmap
+    (\ y -> x { clubSummary_profileMedium = y })
+    (f (clubSummary_profileMedium x))
 
 instance RangeLens GetSegmentEffortsOptions (Maybe (UTCTime, UTCTime)) where
-  range getSegmentEffortsOptions =
-    ( getSegmentEffortsOptions_range getSegmentEffortsOptions
-    , \ range' -> getSegmentEffortsOptions { getSegmentEffortsOptions_range = range' }
-    )
+  range f x = fmap
+    (\ y -> x { getSegmentEffortsOptions_range = y })
+    (f (getSegmentEffortsOptions_range x))
 
 instance RankLens SegmentLeaderboardEntry Integer where
-  rank segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_rank segmentLeaderboardEntry
-    , \ rank' -> segmentLeaderboardEntry { segmentLeaderboardEntry_rank = rank' }
-    )
+  rank f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_rank = y })
+    (f (segmentLeaderboardEntry_rank x))
 
 instance RefLens PhotoSummary Text where
-  ref photoSummary =
-    ( photoSummary_ref photoSummary
-    , \ ref' -> photoSummary { photoSummary_ref = ref' }
-    )
+  ref f x = fmap
+    (\ y -> x { photoSummary_ref = y })
+    (f (photoSummary_ref x))
 
 instance ResolutionLens GetStreamsOptions (Maybe Resolution) where
-  resolution getStreamsOptions =
-    ( getStreamsOptions_resolution getStreamsOptions
-    , \ resolution' -> getStreamsOptions { getStreamsOptions_resolution = resolution' }
-    )
+  resolution f x = fmap
+    (\ y -> x { getStreamsOptions_resolution = y })
+    (f (getStreamsOptions_resolution x))
 
 instance ResolutionLens StreamDetailed Resolution where
-  resolution streamDetailed =
-    ( streamDetailed_resolution streamDetailed
-    , \ resolution' -> streamDetailed { streamDetailed_resolution = resolution' }
-    )
+  resolution f x = fmap
+    (\ y -> x { streamDetailed_resolution = y })
+    (f (streamDetailed_resolution x))
 
 instance ResourceStateLens ActivityDetailed ResourceState where
-  resourceState activityDetailed =
-    ( activityDetailed_resourceState activityDetailed
-    , \ resourceState' -> activityDetailed { activityDetailed_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { activityDetailed_resourceState = y })
+    (f (activityDetailed_resourceState x))
 
 instance ResourceStateLens ActivityLapSummary ResourceState where
-  resourceState activityLapSummary =
-    ( activityLapSummary_resourceState activityLapSummary
-    , \ resourceState' -> activityLapSummary { activityLapSummary_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { activityLapSummary_resourceState = y })
+    (f (activityLapSummary_resourceState x))
 
 instance ResourceStateLens ActivitySummary ResourceState where
-  resourceState activitySummary =
-    ( activitySummary_resourceState activitySummary
-    , \ resourceState' -> activitySummary { activitySummary_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { activitySummary_resourceState = y })
+    (f (activitySummary_resourceState x))
 
 instance ResourceStateLens ActivityZoneDetailed ResourceState where
-  resourceState activityZoneDetailed =
-    ( activityZoneDetailed_resourceState activityZoneDetailed
-    , \ resourceState' -> activityZoneDetailed { activityZoneDetailed_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { activityZoneDetailed_resourceState = y })
+    (f (activityZoneDetailed_resourceState x))
 
 instance ResourceStateLens AthleteDetailed ResourceState where
-  resourceState athleteDetailed =
-    ( athleteDetailed_resourceState athleteDetailed
-    , \ resourceState' -> athleteDetailed { athleteDetailed_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { athleteDetailed_resourceState = y })
+    (f (athleteDetailed_resourceState x))
 
 instance ResourceStateLens AthleteMeta ResourceState where
-  resourceState athleteMeta =
-    ( athleteMeta_resourceState athleteMeta
-    , \ resourceState' -> athleteMeta { athleteMeta_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { athleteMeta_resourceState = y })
+    (f (athleteMeta_resourceState x))
 
 instance ResourceStateLens AthleteSummary ResourceState where
-  resourceState athleteSummary =
-    ( athleteSummary_resourceState athleteSummary
-    , \ resourceState' -> athleteSummary { athleteSummary_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { athleteSummary_resourceState = y })
+    (f (athleteSummary_resourceState x))
 
 instance ResourceStateLens ClubDetailed ResourceState where
-  resourceState clubDetailed =
-    ( clubDetailed_resourceState clubDetailed
-    , \ resourceState' -> clubDetailed { clubDetailed_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { clubDetailed_resourceState = y })
+    (f (clubDetailed_resourceState x))
 
 instance ResourceStateLens ClubSummary ResourceState where
-  resourceState clubSummary =
-    ( clubSummary_resourceState clubSummary
-    , \ resourceState' -> clubSummary { clubSummary_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { clubSummary_resourceState = y })
+    (f (clubSummary_resourceState x))
 
 instance ResourceStateLens CommentSummary ResourceState where
-  resourceState commentSummary =
-    ( commentSummary_resourceState commentSummary
-    , \ resourceState' -> commentSummary { commentSummary_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { commentSummary_resourceState = y })
+    (f (commentSummary_resourceState x))
 
 instance ResourceStateLens EffortDetailed ResourceState where
-  resourceState effortDetailed =
-    ( effortDetailed_resourceState effortDetailed
-    , \ resourceState' -> effortDetailed { effortDetailed_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { effortDetailed_resourceState = y })
+    (f (effortDetailed_resourceState x))
 
 instance ResourceStateLens GearDetailed ResourceState where
-  resourceState gearDetailed =
-    ( gearDetailed_resourceState gearDetailed
-    , \ resourceState' -> gearDetailed { gearDetailed_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { gearDetailed_resourceState = y })
+    (f (gearDetailed_resourceState x))
 
 instance ResourceStateLens GearSummary ResourceState where
-  resourceState gearSummary =
-    ( gearSummary_resourceState gearSummary
-    , \ resourceState' -> gearSummary { gearSummary_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { gearSummary_resourceState = y })
+    (f (gearSummary_resourceState x))
 
 instance ResourceStateLens PhotoSummary ResourceState where
-  resourceState photoSummary =
-    ( photoSummary_resourceState photoSummary
-    , \ resourceState' -> photoSummary { photoSummary_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { photoSummary_resourceState = y })
+    (f (photoSummary_resourceState x))
 
 instance ResourceStateLens PolylineDetailed ResourceState where
-  resourceState polylineDetailed =
-    ( polylineDetailed_resourceState polylineDetailed
-    , \ resourceState' -> polylineDetailed { polylineDetailed_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { polylineDetailed_resourceState = y })
+    (f (polylineDetailed_resourceState x))
 
 instance ResourceStateLens PolylineSummary ResourceState where
-  resourceState polylineSummary =
-    ( polylineSummary_resourceState polylineSummary
-    , \ resourceState' -> polylineSummary { polylineSummary_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { polylineSummary_resourceState = y })
+    (f (polylineSummary_resourceState x))
 
 instance ResourceStateLens SegmentDetailed ResourceState where
-  resourceState segmentDetailed =
-    ( segmentDetailed_resourceState segmentDetailed
-    , \ resourceState' -> segmentDetailed { segmentDetailed_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { segmentDetailed_resourceState = y })
+    (f (segmentDetailed_resourceState x))
 
 instance ResourceStateLens SegmentExplorerEntry ResourceState where
-  resourceState segmentExplorerEntry =
-    ( segmentExplorerEntry_resourceState segmentExplorerEntry
-    , \ resourceState' -> segmentExplorerEntry { segmentExplorerEntry_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { segmentExplorerEntry_resourceState = y })
+    (f (segmentExplorerEntry_resourceState x))
 
 instance ResourceStateLens SegmentSummary ResourceState where
-  resourceState segmentSummary =
-    ( segmentSummary_resourceState segmentSummary
-    , \ resourceState' -> segmentSummary { segmentSummary_resourceState = resourceState' }
-    )
+  resourceState f x = fmap
+    (\ y -> x { segmentSummary_resourceState = y })
+    (f (segmentSummary_resourceState x))
 
 instance SegmentEffortsLens ActivityDetailed [EffortDetailed] where
-  segmentEfforts activityDetailed =
-    ( activityDetailed_segmentEfforts activityDetailed
-    , \ segmentEfforts' -> activityDetailed { activityDetailed_segmentEfforts = segmentEfforts' }
-    )
+  segmentEfforts f x = fmap
+    (\ y -> x { activityDetailed_segmentEfforts = y })
+    (f (activityDetailed_segmentEfforts x))
 
 instance SegmentLens EffortDetailed SegmentSummary where
-  segment effortDetailed =
-    ( effortDetailed_segment effortDetailed
-    , \ segment' -> effortDetailed { effortDetailed_segment = segment' }
-    )
+  segment f x = fmap
+    (\ y -> x { effortDetailed_segment = y })
+    (f (effortDetailed_segment x))
 
 instance SensorBasedLens ActivityZoneDetailed Bool where
-  sensorBased activityZoneDetailed =
-    ( activityZoneDetailed_sensorBased activityZoneDetailed
-    , \ sensorBased' -> activityZoneDetailed { activityZoneDetailed_sensorBased = sensorBased' }
-    )
+  sensorBased f x = fmap
+    (\ y -> x { activityZoneDetailed_sensorBased = y })
+    (f (activityZoneDetailed_sensorBased x))
 
 instance SeriesTypeLens GetStreamsOptions SeriesType where
-  seriesType getStreamsOptions =
-    ( getStreamsOptions_seriesType getStreamsOptions
-    , \ seriesType' -> getStreamsOptions { getStreamsOptions_seriesType = seriesType' }
-    )
+  seriesType f x = fmap
+    (\ y -> x { getStreamsOptions_seriesType = y })
+    (f (getStreamsOptions_seriesType x))
 
 instance SeriesTypeLens StreamDetailed SeriesType where
-  seriesType streamDetailed =
-    ( streamDetailed_seriesType streamDetailed
-    , \ seriesType' -> streamDetailed { streamDetailed_seriesType = seriesType' }
-    )
+  seriesType f x = fmap
+    (\ y -> x { streamDetailed_seriesType = y })
+    (f (streamDetailed_seriesType x))
 
 instance SexLens AthleteDetailed (Maybe Gender) where
-  sex athleteDetailed =
-    ( athleteDetailed_sex athleteDetailed
-    , \ sex' -> athleteDetailed { athleteDetailed_sex = sex' }
-    )
+  sex f x = fmap
+    (\ y -> x { athleteDetailed_sex = y })
+    (f (athleteDetailed_sex x))
 
 instance SexLens AthleteSummary (Maybe Gender) where
-  sex athleteSummary =
-    ( athleteSummary_sex athleteSummary
-    , \ sex' -> athleteSummary { athleteSummary_sex = sex' }
-    )
+  sex f x = fmap
+    (\ y -> x { athleteSummary_sex = y })
+    (f (athleteSummary_sex x))
 
 instance SexLens UpdateCurrentAthleteOptions (Maybe Gender) where
-  sex updateCurrentAthleteOptions =
-    ( updateCurrentAthleteOptions_sex updateCurrentAthleteOptions
-    , \ sex' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_sex = sex' }
-    )
+  sex f x = fmap
+    (\ y -> x { updateCurrentAthleteOptions_sex = y })
+    (f (updateCurrentAthleteOptions_sex x))
 
 instance ShoesLens AthleteDetailed [GearSummary] where
-  shoes athleteDetailed =
-    ( athleteDetailed_shoes athleteDetailed
-    , \ shoes' -> athleteDetailed { athleteDetailed_shoes = shoes' }
-    )
+  shoes f x = fmap
+    (\ y -> x { athleteDetailed_shoes = y })
+    (f (athleteDetailed_shoes x))
 
 instance SportTypeLens ClubDetailed SportType where
-  sportType clubDetailed =
-    ( clubDetailed_sportType clubDetailed
-    , \ sportType' -> clubDetailed { clubDetailed_sportType = sportType' }
-    )
+  sportType f x = fmap
+    (\ y -> x { clubDetailed_sportType = y })
+    (f (clubDetailed_sportType x))
 
 instance StarCountLens SegmentDetailed Integer where
-  starCount segmentDetailed =
-    ( segmentDetailed_starCount segmentDetailed
-    , \ starCount' -> segmentDetailed { segmentDetailed_starCount = starCount' }
-    )
+  starCount f x = fmap
+    (\ y -> x { segmentDetailed_starCount = y })
+    (f (segmentDetailed_starCount x))
 
 instance StarredLens SegmentDetailed Bool where
-  starred segmentDetailed =
-    ( segmentDetailed_starred segmentDetailed
-    , \ starred' -> segmentDetailed { segmentDetailed_starred = starred' }
-    )
+  starred f x = fmap
+    (\ y -> x { segmentDetailed_starred = y })
+    (f (segmentDetailed_starred x))
 
 instance StarredLens SegmentExplorerEntry Bool where
-  starred segmentExplorerEntry =
-    ( segmentExplorerEntry_starred segmentExplorerEntry
-    , \ starred' -> segmentExplorerEntry { segmentExplorerEntry_starred = starred' }
-    )
+  starred f x = fmap
+    (\ y -> x { segmentExplorerEntry_starred = y })
+    (f (segmentExplorerEntry_starred x))
 
 instance StarredLens SegmentSummary Bool where
-  starred segmentSummary =
-    ( segmentSummary_starred segmentSummary
-    , \ starred' -> segmentSummary { segmentSummary_starred = starred' }
-    )
+  starred f x = fmap
+    (\ y -> x { segmentSummary_starred = y })
+    (f (segmentSummary_starred x))
 
 instance StartDateLens ActivityDetailed UTCTime where
-  startDate activityDetailed =
-    ( activityDetailed_startDate activityDetailed
-    , \ startDate' -> activityDetailed { activityDetailed_startDate = startDate' }
-    )
+  startDate f x = fmap
+    (\ y -> x { activityDetailed_startDate = y })
+    (f (activityDetailed_startDate x))
 
 instance StartDateLens ActivityLapSummary UTCTime where
-  startDate activityLapSummary =
-    ( activityLapSummary_startDate activityLapSummary
-    , \ startDate' -> activityLapSummary { activityLapSummary_startDate = startDate' }
-    )
+  startDate f x = fmap
+    (\ y -> x { activityLapSummary_startDate = y })
+    (f (activityLapSummary_startDate x))
 
 instance StartDateLens ActivitySummary UTCTime where
-  startDate activitySummary =
-    ( activitySummary_startDate activitySummary
-    , \ startDate' -> activitySummary { activitySummary_startDate = startDate' }
-    )
+  startDate f x = fmap
+    (\ y -> x { activitySummary_startDate = y })
+    (f (activitySummary_startDate x))
 
 instance StartDateLens EffortDetailed UTCTime where
-  startDate effortDetailed =
-    ( effortDetailed_startDate effortDetailed
-    , \ startDate' -> effortDetailed { effortDetailed_startDate = startDate' }
-    )
+  startDate f x = fmap
+    (\ y -> x { effortDetailed_startDate = y })
+    (f (effortDetailed_startDate x))
 
 instance StartDateLens SegmentLeaderboardEntry UTCTime where
-  startDate segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_startDate segmentLeaderboardEntry
-    , \ startDate' -> segmentLeaderboardEntry { segmentLeaderboardEntry_startDate = startDate' }
-    )
+  startDate f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_startDate = y })
+    (f (segmentLeaderboardEntry_startDate x))
 
 instance StartDateLocalLens ActivityDetailed UTCTime where
-  startDateLocal activityDetailed =
-    ( activityDetailed_startDateLocal activityDetailed
-    , \ startDateLocal' -> activityDetailed { activityDetailed_startDateLocal = startDateLocal' }
-    )
+  startDateLocal f x = fmap
+    (\ y -> x { activityDetailed_startDateLocal = y })
+    (f (activityDetailed_startDateLocal x))
 
 instance StartDateLocalLens ActivityLapSummary UTCTime where
-  startDateLocal activityLapSummary =
-    ( activityLapSummary_startDateLocal activityLapSummary
-    , \ startDateLocal' -> activityLapSummary { activityLapSummary_startDateLocal = startDateLocal' }
-    )
+  startDateLocal f x = fmap
+    (\ y -> x { activityLapSummary_startDateLocal = y })
+    (f (activityLapSummary_startDateLocal x))
 
 instance StartDateLocalLens ActivitySummary UTCTime where
-  startDateLocal activitySummary =
-    ( activitySummary_startDateLocal activitySummary
-    , \ startDateLocal' -> activitySummary { activitySummary_startDateLocal = startDateLocal' }
-    )
+  startDateLocal f x = fmap
+    (\ y -> x { activitySummary_startDateLocal = y })
+    (f (activitySummary_startDateLocal x))
 
 instance StartDateLocalLens EffortDetailed UTCTime where
-  startDateLocal effortDetailed =
-    ( effortDetailed_startDateLocal effortDetailed
-    , \ startDateLocal' -> effortDetailed { effortDetailed_startDateLocal = startDateLocal' }
-    )
+  startDateLocal f x = fmap
+    (\ y -> x { effortDetailed_startDateLocal = y })
+    (f (effortDetailed_startDateLocal x))
 
 instance StartDateLocalLens SegmentLeaderboardEntry UTCTime where
-  startDateLocal segmentLeaderboardEntry =
-    ( segmentLeaderboardEntry_startDateLocal segmentLeaderboardEntry
-    , \ startDateLocal' -> segmentLeaderboardEntry { segmentLeaderboardEntry_startDateLocal = startDateLocal' }
-    )
+  startDateLocal f x = fmap
+    (\ y -> x { segmentLeaderboardEntry_startDateLocal = y })
+    (f (segmentLeaderboardEntry_startDateLocal x))
 
 instance StartIndexLens ActivityLapSummary Integer where
-  startIndex activityLapSummary =
-    ( activityLapSummary_startIndex activityLapSummary
-    , \ startIndex' -> activityLapSummary { activityLapSummary_startIndex = startIndex' }
-    )
+  startIndex f x = fmap
+    (\ y -> x { activityLapSummary_startIndex = y })
+    (f (activityLapSummary_startIndex x))
 
 instance StartIndexLens EffortDetailed Integer where
-  startIndex effortDetailed =
-    ( effortDetailed_startIndex effortDetailed
-    , \ startIndex' -> effortDetailed { effortDetailed_startIndex = startIndex' }
-    )
+  startIndex f x = fmap
+    (\ y -> x { effortDetailed_startIndex = y })
+    (f (effortDetailed_startIndex x))
 
 instance StartLatitudeLens ActivityDetailed Double where
-  startLatitude activityDetailed =
-    ( activityDetailed_startLatitude activityDetailed
-    , \ startLatitude' -> activityDetailed { activityDetailed_startLatitude = startLatitude' }
-    )
+  startLatitude f x = fmap
+    (\ y -> x { activityDetailed_startLatitude = y })
+    (f (activityDetailed_startLatitude x))
 
 instance StartLatitudeLens ActivitySummary Double where
-  startLatitude activitySummary =
-    ( activitySummary_startLatitude activitySummary
-    , \ startLatitude' -> activitySummary { activitySummary_startLatitude = startLatitude' }
-    )
+  startLatitude f x = fmap
+    (\ y -> x { activitySummary_startLatitude = y })
+    (f (activitySummary_startLatitude x))
 
 instance StartLatitudeLens SegmentDetailed Double where
-  startLatitude segmentDetailed =
-    ( segmentDetailed_startLatitude segmentDetailed
-    , \ startLatitude' -> segmentDetailed { segmentDetailed_startLatitude = startLatitude' }
-    )
+  startLatitude f x = fmap
+    (\ y -> x { segmentDetailed_startLatitude = y })
+    (f (segmentDetailed_startLatitude x))
 
 instance StartLatitudeLens SegmentSummary Double where
-  startLatitude segmentSummary =
-    ( segmentSummary_startLatitude segmentSummary
-    , \ startLatitude' -> segmentSummary { segmentSummary_startLatitude = startLatitude' }
-    )
+  startLatitude f x = fmap
+    (\ y -> x { segmentSummary_startLatitude = y })
+    (f (segmentSummary_startLatitude x))
 
 instance StartLatlngLens ActivityDetailed (Maybe (Double, Double)) where
-  startLatlng activityDetailed =
-    ( activityDetailed_startLatlng activityDetailed
-    , \ startLatlng' -> activityDetailed { activityDetailed_startLatlng = startLatlng' }
-    )
+  startLatlng f x = fmap
+    (\ y -> x { activityDetailed_startLatlng = y })
+    (f (activityDetailed_startLatlng x))
 
 instance StartLatlngLens ActivitySummary (Maybe (Double, Double)) where
-  startLatlng activitySummary =
-    ( activitySummary_startLatlng activitySummary
-    , \ startLatlng' -> activitySummary { activitySummary_startLatlng = startLatlng' }
-    )
+  startLatlng f x = fmap
+    (\ y -> x { activitySummary_startLatlng = y })
+    (f (activitySummary_startLatlng x))
 
 instance StartLatlngLens SegmentDetailed ((Double, Double)) where
-  startLatlng segmentDetailed =
-    ( segmentDetailed_startLatlng segmentDetailed
-    , \ startLatlng' -> segmentDetailed { segmentDetailed_startLatlng = startLatlng' }
-    )
+  startLatlng f x = fmap
+    (\ y -> x { segmentDetailed_startLatlng = y })
+    (f (segmentDetailed_startLatlng x))
 
 instance StartLatlngLens SegmentExplorerEntry ((Double, Double)) where
-  startLatlng segmentExplorerEntry =
-    ( segmentExplorerEntry_startLatlng segmentExplorerEntry
-    , \ startLatlng' -> segmentExplorerEntry { segmentExplorerEntry_startLatlng = startLatlng' }
-    )
+  startLatlng f x = fmap
+    (\ y -> x { segmentExplorerEntry_startLatlng = y })
+    (f (segmentExplorerEntry_startLatlng x))
 
 instance StartLatlngLens SegmentSummary ((Double, Double)) where
-  startLatlng segmentSummary =
-    ( segmentSummary_startLatlng segmentSummary
-    , \ startLatlng' -> segmentSummary { segmentSummary_startLatlng = startLatlng' }
-    )
+  startLatlng f x = fmap
+    (\ y -> x { segmentSummary_startLatlng = y })
+    (f (segmentSummary_startLatlng x))
 
 instance StartLongitudeLens ActivityDetailed Double where
-  startLongitude activityDetailed =
-    ( activityDetailed_startLongitude activityDetailed
-    , \ startLongitude' -> activityDetailed { activityDetailed_startLongitude = startLongitude' }
-    )
+  startLongitude f x = fmap
+    (\ y -> x { activityDetailed_startLongitude = y })
+    (f (activityDetailed_startLongitude x))
 
 instance StartLongitudeLens ActivitySummary Double where
-  startLongitude activitySummary =
-    ( activitySummary_startLongitude activitySummary
-    , \ startLongitude' -> activitySummary { activitySummary_startLongitude = startLongitude' }
-    )
+  startLongitude f x = fmap
+    (\ y -> x { activitySummary_startLongitude = y })
+    (f (activitySummary_startLongitude x))
 
 instance StartLongitudeLens SegmentDetailed Double where
-  startLongitude segmentDetailed =
-    ( segmentDetailed_startLongitude segmentDetailed
-    , \ startLongitude' -> segmentDetailed { segmentDetailed_startLongitude = startLongitude' }
-    )
+  startLongitude f x = fmap
+    (\ y -> x { segmentDetailed_startLongitude = y })
+    (f (segmentDetailed_startLongitude x))
 
 instance StartLongitudeLens SegmentSummary Double where
-  startLongitude segmentSummary =
-    ( segmentSummary_startLongitude segmentSummary
-    , \ startLongitude' -> segmentSummary { segmentSummary_startLongitude = startLongitude' }
-    )
+  startLongitude f x = fmap
+    (\ y -> x { segmentSummary_startLongitude = y })
+    (f (segmentSummary_startLongitude x))
 
 instance StateLens AthleteDetailed Text where
-  state athleteDetailed =
-    ( athleteDetailed_state athleteDetailed
-    , \ state' -> athleteDetailed { athleteDetailed_state = state' }
-    )
+  state f x = fmap
+    (\ y -> x { athleteDetailed_state = y })
+    (f (athleteDetailed_state x))
 
 instance StateLens AthleteSummary Text where
-  state athleteSummary =
-    ( athleteSummary_state athleteSummary
-    , \ state' -> athleteSummary { athleteSummary_state = state' }
-    )
+  state f x = fmap
+    (\ y -> x { athleteSummary_state = y })
+    (f (athleteSummary_state x))
 
 instance StateLens BuildAuthorizeUrlOptions String where
-  state buildAuthorizeUrlOptions =
-    ( buildAuthorizeUrlOptions_state buildAuthorizeUrlOptions
-    , \ state' -> buildAuthorizeUrlOptions { buildAuthorizeUrlOptions_state = state' }
-    )
+  state f x = fmap
+    (\ y -> x { buildAuthorizeUrlOptions_state = y })
+    (f (buildAuthorizeUrlOptions_state x))
 
 instance StateLens ClubDetailed Text where
-  state clubDetailed =
-    ( clubDetailed_state clubDetailed
-    , \ state' -> clubDetailed { clubDetailed_state = state' }
-    )
+  state f x = fmap
+    (\ y -> x { clubDetailed_state = y })
+    (f (clubDetailed_state x))
 
 instance StateLens SegmentDetailed Text where
-  state segmentDetailed =
-    ( segmentDetailed_state segmentDetailed
-    , \ state' -> segmentDetailed { segmentDetailed_state = state' }
-    )
+  state f x = fmap
+    (\ y -> x { segmentDetailed_state = y })
+    (f (segmentDetailed_state x))
 
 instance StateLens SegmentSummary Text where
-  state segmentSummary =
-    ( segmentSummary_state segmentSummary
-    , \ state' -> segmentSummary { segmentSummary_state = state' }
-    )
+  state f x = fmap
+    (\ y -> x { segmentSummary_state = y })
+    (f (segmentSummary_state x))
 
 instance StateLens UpdateCurrentAthleteOptions (Maybe String) where
-  state updateCurrentAthleteOptions =
-    ( updateCurrentAthleteOptions_state updateCurrentAthleteOptions
-    , \ state' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_state = state' }
-    )
+  state f x = fmap
+    (\ y -> x { updateCurrentAthleteOptions_state = y })
+    (f (updateCurrentAthleteOptions_state x))
 
 instance StatusLens UploadStatus Text where
-  status uploadStatus =
-    ( uploadStatus_status uploadStatus
-    , \ status' -> uploadStatus { uploadStatus_status = status' }
-    )
+  status f x = fmap
+    (\ y -> x { uploadStatus_status = y })
+    (f (uploadStatus_status x))
 
 instance SummaryPolylineLens PolylineDetailed (Maybe [(Double, Double)]) where
-  summaryPolyline polylineDetailed =
-    ( polylineDetailed_summaryPolyline polylineDetailed
-    , \ summaryPolyline' -> polylineDetailed { polylineDetailed_summaryPolyline = summaryPolyline' }
-    )
+  summaryPolyline f x = fmap
+    (\ y -> x { polylineDetailed_summaryPolyline = y })
+    (f (polylineDetailed_summaryPolyline x))
 
 instance SummaryPolylineLens PolylineSummary (Maybe [(Double, Double)]) where
-  summaryPolyline polylineSummary =
-    ( polylineSummary_summaryPolyline polylineSummary
-    , \ summaryPolyline' -> polylineSummary { polylineSummary_summaryPolyline = summaryPolyline' }
-    )
+  summaryPolyline f x = fmap
+    (\ y -> x { polylineSummary_summaryPolyline = y })
+    (f (polylineSummary_summaryPolyline x))
 
 instance TextLens CommentSummary Text where
-  text commentSummary =
-    ( commentSummary_text commentSummary
-    , \ text' -> commentSummary { commentSummary_text = text' }
-    )
+  text f x = fmap
+    (\ y -> x { commentSummary_text = y })
+    (f (commentSummary_text x))
 
 instance TimeLens ActivityZoneDistributionBucket Integer where
-  time activityZoneDistributionBucket =
-    ( activityZoneDistributionBucket_time activityZoneDistributionBucket
-    , \ time' -> activityZoneDistributionBucket { activityZoneDistributionBucket_time = time' }
-    )
+  time f x = fmap
+    (\ y -> x { activityZoneDistributionBucket_time = y })
+    (f (activityZoneDistributionBucket_time x))
 
 instance TimezoneLens ActivityDetailed Text where
-  timezone activityDetailed =
-    ( activityDetailed_timezone activityDetailed
-    , \ timezone' -> activityDetailed { activityDetailed_timezone = timezone' }
-    )
+  timezone f x = fmap
+    (\ y -> x { activityDetailed_timezone = y })
+    (f (activityDetailed_timezone x))
 
 instance TimezoneLens ActivitySummary Text where
-  timezone activitySummary =
-    ( activitySummary_timezone activitySummary
-    , \ timezone' -> activitySummary { activitySummary_timezone = timezone' }
-    )
+  timezone f x = fmap
+    (\ y -> x { activitySummary_timezone = y })
+    (f (activitySummary_timezone x))
 
 instance TotalElevationGainLens ActivityDetailed Double where
-  totalElevationGain activityDetailed =
-    ( activityDetailed_totalElevationGain activityDetailed
-    , \ totalElevationGain' -> activityDetailed { activityDetailed_totalElevationGain = totalElevationGain' }
-    )
+  totalElevationGain f x = fmap
+    (\ y -> x { activityDetailed_totalElevationGain = y })
+    (f (activityDetailed_totalElevationGain x))
 
 instance TotalElevationGainLens ActivityLapSummary Double where
-  totalElevationGain activityLapSummary =
-    ( activityLapSummary_totalElevationGain activityLapSummary
-    , \ totalElevationGain' -> activityLapSummary { activityLapSummary_totalElevationGain = totalElevationGain' }
-    )
+  totalElevationGain f x = fmap
+    (\ y -> x { activityLapSummary_totalElevationGain = y })
+    (f (activityLapSummary_totalElevationGain x))
 
 instance TotalElevationGainLens ActivitySummary Double where
-  totalElevationGain activitySummary =
-    ( activitySummary_totalElevationGain activitySummary
-    , \ totalElevationGain' -> activitySummary { activitySummary_totalElevationGain = totalElevationGain' }
-    )
+  totalElevationGain f x = fmap
+    (\ y -> x { activitySummary_totalElevationGain = y })
+    (f (activitySummary_totalElevationGain x))
 
 instance TotalElevationGainLens SegmentDetailed Double where
-  totalElevationGain segmentDetailed =
-    ( segmentDetailed_totalElevationGain segmentDetailed
-    , \ totalElevationGain' -> segmentDetailed { segmentDetailed_totalElevationGain = totalElevationGain' }
-    )
+  totalElevationGain f x = fmap
+    (\ y -> x { segmentDetailed_totalElevationGain = y })
+    (f (segmentDetailed_totalElevationGain x))
 
 instance TrainerLens ActivityDetailed Bool where
-  trainer activityDetailed =
-    ( activityDetailed_trainer activityDetailed
-    , \ trainer' -> activityDetailed { activityDetailed_trainer = trainer' }
-    )
+  trainer f x = fmap
+    (\ y -> x { activityDetailed_trainer = y })
+    (f (activityDetailed_trainer x))
 
 instance TrainerLens ActivitySummary Bool where
-  trainer activitySummary =
-    ( activitySummary_trainer activitySummary
-    , \ trainer' -> activitySummary { activitySummary_trainer = trainer' }
-    )
+  trainer f x = fmap
+    (\ y -> x { activitySummary_trainer = y })
+    (f (activitySummary_trainer x))
 
 instance TrainerLens UpdateActivityOptions (Maybe Bool) where
-  trainer updateActivityOptions =
-    ( updateActivityOptions_trainer updateActivityOptions
-    , \ trainer' -> updateActivityOptions { updateActivityOptions_trainer = trainer' }
-    )
+  trainer f x = fmap
+    (\ y -> x { updateActivityOptions_trainer = y })
+    (f (updateActivityOptions_trainer x))
 
 instance TrainerLens UploadActivityOptions Bool where
-  trainer uploadActivityOptions =
-    ( uploadActivityOptions_trainer uploadActivityOptions
-    , \ trainer' -> uploadActivityOptions { uploadActivityOptions_trainer = trainer' }
-    )
+  trainer f x = fmap
+    (\ y -> x { uploadActivityOptions_trainer = y })
+    (f (uploadActivityOptions_trainer x))
 
 instance TruncatedLens ActivityDetailed Integer where
-  truncated activityDetailed =
-    ( activityDetailed_truncated activityDetailed
-    , \ truncated' -> activityDetailed { activityDetailed_truncated = truncated' }
-    )
+  truncated f x = fmap
+    (\ y -> x { activityDetailed_truncated = y })
+    (f (activityDetailed_truncated x))
 
 instance TypeLens ActivityDetailed ActivityType where
-  type_ activityDetailed =
-    ( activityDetailed_type activityDetailed
-    , \ type_' -> activityDetailed { activityDetailed_type = type_' }
-    )
+  type_ f x = fmap
+    (\ y -> x { activityDetailed_type = y })
+    (f (activityDetailed_type x))
 
 instance TypeLens ActivitySummary ActivityType where
-  type_ activitySummary =
-    ( activitySummary_type activitySummary
-    , \ type_' -> activitySummary { activitySummary_type = type_' }
-    )
+  type_ f x = fmap
+    (\ y -> x { activitySummary_type = y })
+    (f (activitySummary_type x))
 
 instance TypeLens ActivityZoneDetailed ActivityZoneType where
-  type_ activityZoneDetailed =
-    ( activityZoneDetailed_type activityZoneDetailed
-    , \ type_' -> activityZoneDetailed { activityZoneDetailed_type = type_' }
-    )
+  type_ f x = fmap
+    (\ y -> x { activityZoneDetailed_type = y })
+    (f (activityZoneDetailed_type x))
 
 instance TypeLens PhotoSummary PhotoType where
-  type_ photoSummary =
-    ( photoSummary_type photoSummary
-    , \ type_' -> photoSummary { photoSummary_type = type_' }
-    )
+  type_ f x = fmap
+    (\ y -> x { photoSummary_type = y })
+    (f (photoSummary_type x))
 
 instance TypeLens StreamDetailed Text where
-  type_ streamDetailed =
-    ( streamDetailed_type streamDetailed
-    , \ type_' -> streamDetailed { streamDetailed_type = type_' }
-    )
+  type_ f x = fmap
+    (\ y -> x { streamDetailed_type = y })
+    (f (streamDetailed_type x))
 
 instance TypeLens UpdateActivityOptions (Maybe ActivityType) where
-  type_ updateActivityOptions =
-    ( updateActivityOptions_type updateActivityOptions
-    , \ type_' -> updateActivityOptions { updateActivityOptions_type = type_' }
-    )
+  type_ f x = fmap
+    (\ y -> x { updateActivityOptions_type = y })
+    (f (updateActivityOptions_type x))
 
 instance UidLens PhotoSummary Text where
-  uid photoSummary =
-    ( photoSummary_uid photoSummary
-    , \ uid' -> photoSummary { photoSummary_uid = uid' }
-    )
+  uid f x = fmap
+    (\ y -> x { photoSummary_uid = y })
+    (f (photoSummary_uid x))
 
 instance UpdatedAtLens AthleteDetailed UTCTime where
-  updatedAt athleteDetailed =
-    ( athleteDetailed_updatedAt athleteDetailed
-    , \ updatedAt' -> athleteDetailed { athleteDetailed_updatedAt = updatedAt' }
-    )
+  updatedAt f x = fmap
+    (\ y -> x { athleteDetailed_updatedAt = y })
+    (f (athleteDetailed_updatedAt x))
 
 instance UpdatedAtLens AthleteSummary UTCTime where
-  updatedAt athleteSummary =
-    ( athleteSummary_updatedAt athleteSummary
-    , \ updatedAt' -> athleteSummary { athleteSummary_updatedAt = updatedAt' }
-    )
+  updatedAt f x = fmap
+    (\ y -> x { athleteSummary_updatedAt = y })
+    (f (athleteSummary_updatedAt x))
 
 instance UpdatedAtLens SegmentDetailed UTCTime where
-  updatedAt segmentDetailed =
-    ( segmentDetailed_updatedAt segmentDetailed
-    , \ updatedAt' -> segmentDetailed { segmentDetailed_updatedAt = updatedAt' }
-    )
+  updatedAt f x = fmap
+    (\ y -> x { segmentDetailed_updatedAt = y })
+    (f (segmentDetailed_updatedAt x))
 
 instance UploadIdLens ActivityDetailed (Maybe Integer) where
-  uploadId activityDetailed =
-    ( activityDetailed_uploadId activityDetailed
-    , \ uploadId' -> activityDetailed { activityDetailed_uploadId = uploadId' }
-    )
+  uploadId f x = fmap
+    (\ y -> x { activityDetailed_uploadId = y })
+    (f (activityDetailed_uploadId x))
 
 instance UploadIdLens ActivitySummary (Maybe Integer) where
-  uploadId activitySummary =
-    ( activitySummary_uploadId activitySummary
-    , \ uploadId' -> activitySummary { activitySummary_uploadId = uploadId' }
-    )
+  uploadId f x = fmap
+    (\ y -> x { activitySummary_uploadId = y })
+    (f (activitySummary_uploadId x))
 
 instance UploadedAtLens PhotoSummary UTCTime where
-  uploadedAt photoSummary =
-    ( photoSummary_uploadedAt photoSummary
-    , \ uploadedAt' -> photoSummary { photoSummary_uploadedAt = uploadedAt' }
-    )
+  uploadedAt f x = fmap
+    (\ y -> x { photoSummary_uploadedAt = y })
+    (f (photoSummary_uploadedAt x))
 
 instance WeightClassLens GetSegmentLeaderboardOptions (Maybe WeightClass) where
-  weightClass getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboardOptions_weightClass getSegmentLeaderboardOptions
-    , \ weightClass' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_weightClass = weightClass' }
-    )
+  weightClass f x = fmap
+    (\ y -> x { getSegmentLeaderboardOptions_weightClass = y })
+    (f (getSegmentLeaderboardOptions_weightClass x))
 
 instance WeightLens UpdateCurrentAthleteOptions (Maybe Double) where
-  weight updateCurrentAthleteOptions =
-    ( updateCurrentAthleteOptions_weight updateCurrentAthleteOptions
-    , \ weight' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_weight = weight' }
-    )
+  weight f x = fmap
+    (\ y -> x { updateCurrentAthleteOptions_weight = y })
+    (f (updateCurrentAthleteOptions_weight x))
 
 instance WriteScopeLens BuildAuthorizeUrlOptions Bool where
-  writeScope buildAuthorizeUrlOptions =
-    ( buildAuthorizeUrlOptions_writeScope buildAuthorizeUrlOptions
-    , \ writeScope' -> buildAuthorizeUrlOptions { buildAuthorizeUrlOptions_writeScope = writeScope' }
-    )
+  writeScope f x = fmap
+    (\ y -> x { buildAuthorizeUrlOptions_writeScope = y })
+    (f (buildAuthorizeUrlOptions_writeScope x))

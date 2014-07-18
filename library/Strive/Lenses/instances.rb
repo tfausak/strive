@@ -22,17 +22,14 @@ instances = []
     function = field.split('_').last
     klass = "#{function}Lens"
     klass[0] = klass[0].upcase
-    record = type.dup
-    record[0] = record[0].downcase
     function = "#{function}_" if %w(data error id max min type).include?(function)
 
     instances << <<-HASKELL
 
 instance #{klass} #{type} #{field_type} where
-  #{function} #{record} =
-    ( #{field} #{record}
-    , \\ #{function}' -> #{record} { #{field} = #{function}' }
-    )
+  #{function} f x = fmap
+    (\\ y -> x { #{field} = y })
+    (f (#{field} x))
     HASKELL
   end
 end

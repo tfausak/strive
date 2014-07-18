@@ -33,7 +33,8 @@ library
         http-conduit ==2.*,
         http-types ==0.8.*,
         text ==0.11.* || ==1.*,
-        time ==1.*
+        time ==1.*,
+        transformers ==0.3.*
     exposed-modules:
         Strive
         Strive.Actions
