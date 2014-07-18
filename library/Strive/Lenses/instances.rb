@@ -5,8 +5,7 @@ instances = []
 paths = %w(
   library/Strive/Internal/Options.hs
   library/Strive/Client.hs
-  library/Strive/Types.hs
-) + Dir.glob('library/Strive/Options/*.hs')
+) + Dir.glob('library/Strive/Options/*.hs') + Dir.glob('library/Strive/Types/*.hs')
 
 paths.each do |path|
   type = nil
