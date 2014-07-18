@@ -374,7 +374,7 @@ data ActivityZoneDetailed = ActivityZoneDetailed
   { activityZoneDetailed_distributionBuckets :: [ActivityZoneDistributionBucket]
   , activityZoneDetailed_resourceState       :: ResourceState
   , activityZoneDetailed_sensorBased         :: Bool
-  , activityZoneDetailed_type                :: Text
+  , activityZoneDetailed_type                :: ActivityZoneType
   } deriving Show
 
 instance FromJSON ActivityZoneDetailed where

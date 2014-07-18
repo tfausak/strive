@@ -159,3 +159,13 @@ instance FromJSON MeasurementPreference where
   parseJSON (String "feet") = return Feet
   parseJSON (String "meters") = return Meters
   parseJSON _ = empty
+
+-- | An activity zone's type.
+data ActivityZoneType
+  = HeartrateZone
+  | PowerZone
+  deriving Show
+
+instance FromJSON ActivityZoneType where
+  parseJSON (String "heartrate") = return HeartrateZone
+  parseJSON (String "power") = return PowerZone

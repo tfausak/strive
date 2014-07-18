@@ -2137,7 +2137,7 @@ instance TypeLens ActivitySummary ActivityType where
     , \ type_' -> activitySummary { activitySummary_type = type_' }
     )
 
-instance TypeLens ActivityZoneDetailed Text where
+instance TypeLens ActivityZoneDetailed ActivityZoneType where
   type_ activityZoneDetailed =
     ( activityZoneDetailed_type activityZoneDetailed
     , \ type_' -> activityZoneDetailed { activityZoneDetailed_type = type_' }
