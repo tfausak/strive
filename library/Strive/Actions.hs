@@ -31,6 +31,8 @@ import Strive.Actions.Segments
 import Strive.Actions.Streams
 import Strive.Actions.Uploads
 
+import Data.Default (Default, def)
+
 -- | Helper function for easily performing actions.
 with :: Default a => [a -> a] -> a
 with = foldr ($) def

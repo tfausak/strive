@@ -4,10 +4,11 @@ module Strive.Actions.Uploads
   ) where
 
 import Data.ByteString (ByteString)
+import Data.Monoid ((<>))
 import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
 import Network.HTTP.Types (Query, methodPost, toQuery)
 import Strive.Client (Client)
-import Strive.Internal.HTTP (buildRequest, decodeValue, performRequest)
+import Strive.Internal.HTTP (buildRequest, decodeValue, get, performRequest)
 import Strive.Options (UploadActivityOptions)
 import Strive.Types (UploadStatus)
 
