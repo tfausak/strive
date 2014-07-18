@@ -195,3 +195,18 @@ instance FromJSON ClubType where
   parseJSON (String "company") = return Company
   parseJSON (String "other") = return Other
   parseJSON _ = empty
+
+-- | A club's sport type
+data SportType
+  = SportCycling
+  | SportRunning
+  | SportTriathalon
+  | SportOther
+  deriving Show
+
+instance FromJSON SportType where
+  parseJSON (String "cycling") = return SportCycling
+  parseJSON (String "running") = return SportRunning
+  parseJSON (String "triathalon") = return SportTriathalon
+  parseJSON (String "other") = return SportOther
+  parseJSON _ = empty

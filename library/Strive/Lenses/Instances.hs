@@ -1807,7 +1807,7 @@ instance ShoesLens AthleteDetailed [GearSummary] where
     , \ shoes' -> athleteDetailed { athleteDetailed_shoes = shoes' }
     )
 
-instance SportTypeLens ClubDetailed Text where
+instance SportTypeLens ClubDetailed SportType where
   sportType clubDetailed =
     ( clubDetailed_sportType clubDetailed
     , \ sportType' -> clubDetailed { clubDetailed_sportType = sportType' }

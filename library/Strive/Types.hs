@@ -508,7 +508,7 @@ data ClubDetailed = ClubDetailed
   , clubDetailed_profile       :: Text
   , clubDetailed_profileMedium :: Text
   , clubDetailed_resourceState :: ResourceState
-  , clubDetailed_sportType     :: Text
+  , clubDetailed_sportType     :: SportType
   , clubDetailed_state         :: Text
   } deriving Show
 
