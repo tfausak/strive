@@ -110,8 +110,8 @@ instance AfterLens GetCurrentActivitiesOptions (Maybe UTCTime) where
 
 instance AgeGroupLens GetSegmentLeaderboardOptions (Maybe String) where
   ageGroup getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboard_ageGroup getSegmentLeaderboardOptions
-    , \ ageGroup' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_ageGroup = ageGroup' }
+    ( getSegmentLeaderboardOptions_ageGroup getSegmentLeaderboardOptions
+    , \ ageGroup' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_ageGroup = ageGroup' }
     )
 
 instance AllEffortsLens GetActivityOptions Bool where
@@ -386,8 +386,8 @@ instance ClimbCategoryLens SegmentSummary Integer where
 
 instance ClubIdLens GetSegmentLeaderboardOptions (Maybe Integer) where
   clubId getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboard_clubId getSegmentLeaderboardOptions
-    , \ clubId' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_clubId = clubId' }
+    ( getSegmentLeaderboardOptions_clubId getSegmentLeaderboardOptions
+    , \ clubId' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_clubId = clubId' }
     )
 
 instance ClubTypeLens ClubDetailed Text where
@@ -512,8 +512,8 @@ instance DatePreferenceLens AthleteDetailed Text where
 
 instance DateRangeLens GetSegmentLeaderboardOptions (Maybe String) where
   dateRange getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboard_dateRange getSegmentLeaderboardOptions
-    , \ dateRange' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_dateRange = dateRange' }
+    ( getSegmentLeaderboardOptions_dateRange getSegmentLeaderboardOptions
+    , \ dateRange' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_dateRange = dateRange' }
     )
 
 instance DescriptionLens ActivityDetailed (Maybe Text) where
@@ -866,8 +866,8 @@ instance FollowerLens AthleteSummary (Maybe Text) where
 
 instance FollowingLens GetSegmentLeaderboardOptions (Maybe Bool) where
   following getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboard_following getSegmentLeaderboardOptions
-    , \ following' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_following = following' }
+    ( getSegmentLeaderboardOptions_following getSegmentLeaderboardOptions
+    , \ following' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_following = following' }
     )
 
 instance FrameTypeLens GearDetailed (Maybe Integer) where
@@ -926,8 +926,8 @@ instance GearLens ActivityDetailed GearSummary where
 
 instance GenderLens GetSegmentLeaderboardOptions (Maybe Char) where
   gender getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboard_gender getSegmentLeaderboardOptions
-    , \ gender' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_gender = gender' }
+    ( getSegmentLeaderboardOptions_gender getSegmentLeaderboardOptions
+    , \ gender' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_gender = gender' }
     )
 
 instance HasKudoedLens ActivityDetailed Bool where
@@ -1418,8 +1418,8 @@ instance PageLens GetSegmentEffortsOptions Integer where
 
 instance PageLens GetSegmentLeaderboardOptions Integer where
   page getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboard_page getSegmentLeaderboardOptions
-    , \ page' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_page = page' }
+    ( getSegmentLeaderboardOptions_page getSegmentLeaderboardOptions
+    , \ page' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_page = page' }
     )
 
 instance PageLens PaginationOptions Integer where
@@ -1448,8 +1448,8 @@ instance PerPageLens GetSegmentEffortsOptions Integer where
 
 instance PerPageLens GetSegmentLeaderboardOptions Integer where
   perPage getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboard_perPage getSegmentLeaderboardOptions
-    , \ perPage' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_perPage = perPage' }
+    ( getSegmentLeaderboardOptions_perPage getSegmentLeaderboardOptions
+    , \ perPage' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_perPage = perPage' }
     )
 
 instance PerPageLens PaginationOptions Integer where
@@ -2204,8 +2204,8 @@ instance UploadedAtLens PhotoSummary UTCTime where
 
 instance WeightClassLens GetSegmentLeaderboardOptions (Maybe String) where
   weightClass getSegmentLeaderboardOptions =
-    ( getSegmentLeaderboard_weightClass getSegmentLeaderboardOptions
-    , \ weightClass' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_weightClass = weightClass' }
+    ( getSegmentLeaderboardOptions_weightClass getSegmentLeaderboardOptions
+    , \ weightClass' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_weightClass = weightClass' }
     )
 
 instance WeightLens UpdateCurrentAthleteOptions (Maybe Double) where

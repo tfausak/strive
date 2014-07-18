@@ -266,38 +266,38 @@ instance QueryLike GetSegmentEffortsOptions where
 
 -- | 'Strive.Actions.getSegmentLeaderboard'
 data GetSegmentLeaderboardOptions = GetSegmentLeaderboardOptions
-  { getSegmentLeaderboard_gender      :: Maybe Char
-  , getSegmentLeaderboard_ageGroup    :: Maybe String
-  , getSegmentLeaderboard_weightClass :: Maybe String
-  , getSegmentLeaderboard_following   :: Maybe Bool
-  , getSegmentLeaderboard_clubId      :: Maybe Integer
-  , getSegmentLeaderboard_dateRange   :: Maybe String
-  , getSegmentLeaderboard_page        :: Integer
-  , getSegmentLeaderboard_perPage     :: Integer
+  { getSegmentLeaderboardOptions_gender      :: Maybe Char
+  , getSegmentLeaderboardOptions_ageGroup    :: Maybe String
+  , getSegmentLeaderboardOptions_weightClass :: Maybe String
+  , getSegmentLeaderboardOptions_following   :: Maybe Bool
+  , getSegmentLeaderboardOptions_clubId      :: Maybe Integer
+  , getSegmentLeaderboardOptions_dateRange   :: Maybe String
+  , getSegmentLeaderboardOptions_page        :: Integer
+  , getSegmentLeaderboardOptions_perPage     :: Integer
   } deriving Show
 
 instance Default GetSegmentLeaderboardOptions where
   def = GetSegmentLeaderboardOptions
-    { getSegmentLeaderboard_gender = Nothing
-    , getSegmentLeaderboard_ageGroup = Nothing
-    , getSegmentLeaderboard_weightClass = Nothing
-    , getSegmentLeaderboard_following = Nothing
-    , getSegmentLeaderboard_clubId = Nothing
-    , getSegmentLeaderboard_dateRange = Nothing
-    , getSegmentLeaderboard_page = 1
-    , getSegmentLeaderboard_perPage = 200
+    { getSegmentLeaderboardOptions_gender = Nothing
+    , getSegmentLeaderboardOptions_ageGroup = Nothing
+    , getSegmentLeaderboardOptions_weightClass = Nothing
+    , getSegmentLeaderboardOptions_following = Nothing
+    , getSegmentLeaderboardOptions_clubId = Nothing
+    , getSegmentLeaderboardOptions_dateRange = Nothing
+    , getSegmentLeaderboardOptions_page = 1
+    , getSegmentLeaderboardOptions_perPage = 200
     }
 
 instance QueryLike GetSegmentLeaderboardOptions where
   toQuery options = toQuery
-    [ ("gender", fmap (: []) (getSegmentLeaderboard_gender options))
-    , ("age_group", getSegmentLeaderboard_ageGroup options)
-    , ("weight_class", getSegmentLeaderboard_weightClass options)
-    , ("following", fmap (unpack . toStrict . encode) (getSegmentLeaderboard_following options))
-    , ("club_id", fmap show (getSegmentLeaderboard_clubId options))
-    , ("date_range", getSegmentLeaderboard_dateRange options)
-    , ("page", Just (show (getSegmentLeaderboard_page options)))
-    , ("per_page", Just (show (getSegmentLeaderboard_perPage options)))
+    [ ("gender", fmap (: []) (getSegmentLeaderboardOptions_gender options))
+    , ("age_group", getSegmentLeaderboardOptions_ageGroup options)
+    , ("weight_class", getSegmentLeaderboardOptions_weightClass options)
+    , ("following", fmap (unpack . toStrict . encode) (getSegmentLeaderboardOptions_following options))
+    , ("club_id", fmap show (getSegmentLeaderboardOptions_clubId options))
+    , ("date_range", getSegmentLeaderboardOptions_dateRange options)
+    , ("page", Just (show (getSegmentLeaderboardOptions_page options)))
+    , ("per_page", Just (show (getSegmentLeaderboardOptions_perPage options)))
     ]
 
 -- | 'Strive.Actions.exploreSegments'
