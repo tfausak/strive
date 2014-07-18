@@ -57,6 +57,15 @@ library
         Strive.Lenses.Classes
         Strive.Lenses.Instances
         Strive.Options
+        Strive.Options.Activities
+        Strive.Options.Athletes
+        Strive.Options.Authentication
+        Strive.Options.Clubs
+        Strive.Options.Comments
+        Strive.Options.Friends
+        Strive.Options.Kudos
+        Strive.Options.Streams
+        Strive.Options.Uploads
         Strive.Types
     exposed: True
     buildable: True
@@ -66,6 +75,7 @@ library
     hs-source-dirs: library
     other-modules:
         Strive.Internal.HTTP
+        Strive.Internal.Options
  
 test-suite readme
     build-depends:

@@ -2,11 +2,13 @@
 
 instances = []
 
-%w(
+paths = %w(
+  library/Strive/Internal/Options.hs
   library/Strive/Client.hs
-  library/Strive/Options.hs
   library/Strive/Types.hs
-).each do |path|
+) + Dir.glob('library/Strive/Options/*.hs')
+
+paths.each do |path|
   type = nil
 
   File.open(path).each_line do |line|
@@ -46,6 +48,7 @@ import Data.Time.Clock (UTCTime)
 import Network.HTTP.Client.Conduit (Manager)
 import Strive.Client
 import Strive.Enums
+import Strive.Internal.Options
 import Strive.Lenses.Classes
 import Strive.Options
 import Strive.Types

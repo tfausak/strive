@@ -2,11 +2,13 @@
 
 classes = {}
 
-%w(
+paths = %w(
+  library/Strive/Internal/Options.hs
   library/Strive/Client.hs
-  library/Strive/Options.hs
   library/Strive/Types.hs
-).each do |path|
+) + Dir.glob('library/Strive/Options/*.hs')
+
+paths.each do |path|
   File.open(path).each_line do |line|
     match = /[{,] (\w+) +::/.match(line)
     next unless match
