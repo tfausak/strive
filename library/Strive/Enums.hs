@@ -178,3 +178,20 @@ data PhotoType
 instance FromJSON PhotoType where
   parseJSON (String "InstagramPhoto") = return InstagramPhoto
   parseJSON _ = empty
+
+-- | A club's type
+data ClubType
+  = CasualClub
+  | RacingTeam
+  | Shop
+  | Company
+  | Other
+  deriving Show
+
+instance FromJSON ClubType where
+  parseJSON (String "casual_club") = return CasualClub
+  parseJSON (String "racing_team") = return RacingTeam
+  parseJSON (String "shop") = return Shop
+  parseJSON (String "company") = return Company
+  parseJSON (String "other") = return Other
+  parseJSON _ = empty

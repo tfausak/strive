@@ -498,7 +498,7 @@ instance FromJSON PhotoSummary where
 -- | <http://strava.github.io/api/v3/clubs/#detailed>
 data ClubDetailed = ClubDetailed
   { clubDetailed_city          :: Text
-  , clubDetailed_clubType      :: Text
+  , clubDetailed_clubType      :: ClubType
   , clubDetailed_country       :: Text
   , clubDetailed_description   :: Text
   , clubDetailed_id            :: Integer

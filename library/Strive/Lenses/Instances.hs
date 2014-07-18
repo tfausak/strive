@@ -391,7 +391,7 @@ instance ClubIdLens GetSegmentLeaderboardOptions (Maybe Integer) where
     , \ clubId' -> getSegmentLeaderboardOptions { getSegmentLeaderboard_clubId = clubId' }
     )
 
-instance ClubTypeLens ClubDetailed Text where
+instance ClubTypeLens ClubDetailed ClubType where
   clubType clubDetailed =
     ( clubDetailed_clubType clubDetailed
     , \ clubType' -> clubDetailed { clubDetailed_clubType = clubType' }
