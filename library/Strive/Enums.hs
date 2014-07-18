@@ -148,3 +148,14 @@ instance FromJSON ResourceState where
   parseJSON (Number 2) = return Summary
   parseJSON (Number 3) = return Detailed
   parseJSON _ = empty
+
+-- | An athlete's measurement preference.
+data MeasurementPreference
+  = Feet
+  | Meters
+  deriving Show
+
+instance FromJSON MeasurementPreference where
+  parseJSON (String "feet") = return Feet
+  parseJSON (String "meters") = return Meters
+  parseJSON _ = empty

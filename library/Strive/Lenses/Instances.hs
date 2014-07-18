@@ -1249,7 +1249,7 @@ instance MaximumGradeLens SegmentSummary Double where
     , \ maximumGrade' -> segmentSummary { segmentSummary_maximumGrade = maximumGrade' }
     )
 
-instance MeasurementPreferenceLens AthleteDetailed Text where
+instance MeasurementPreferenceLens AthleteDetailed MeasurementPreference where
   measurementPreference athleteDetailed =
     ( athleteDetailed_measurementPreference athleteDetailed
     , \ measurementPreference' -> athleteDetailed { athleteDetailed_measurementPreference = measurementPreference' }

@@ -53,7 +53,7 @@ data AthleteDetailed = AthleteDetailed
   , athleteDetailed_ftp                   :: Maybe Integer
   , athleteDetailed_id                    :: Integer
   , athleteDetailed_lastname              :: Text
-  , athleteDetailed_measurementPreference :: Text
+  , athleteDetailed_measurementPreference :: MeasurementPreference
   , athleteDetailed_mutualFriendCount     :: Integer
   , athleteDetailed_premium               :: Bool
   , athleteDetailed_profile               :: Text
