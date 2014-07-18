@@ -48,6 +48,7 @@ import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Client.Conduit (Manager)
 import Strive.Client
+import Strive.Enums
 import Strive.Lenses.Classes
 import Strive.Options
 import Strive.Types

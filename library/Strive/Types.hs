@@ -8,6 +8,7 @@ import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import GPolyline (decodeline)
+import Strive.Enums
 
 -- * Authentication
 
@@ -52,13 +53,13 @@ data AthleteDetailed = AthleteDetailed
   , athleteDetailed_ftp                   :: Maybe Integer
   , athleteDetailed_id                    :: Integer
   , athleteDetailed_lastname              :: Text
-  , athleteDetailed_measurementPreference :: Text
+  , athleteDetailed_measurementPreference :: MeasurementPreference
   , athleteDetailed_mutualFriendCount     :: Integer
   , athleteDetailed_premium               :: Bool
   , athleteDetailed_profile               :: Text
   , athleteDetailed_profileMedium         :: Text
-  , athleteDetailed_resourceState         :: Integer
-  , athleteDetailed_sex                   :: Maybe Char
+  , athleteDetailed_resourceState         :: ResourceState
+  , athleteDetailed_sex                   :: Maybe Gender
   , athleteDetailed_shoes                 :: [GearSummary]
   , athleteDetailed_state                 :: Text
   , athleteDetailed_updatedAt             :: UTCTime
@@ -106,8 +107,8 @@ data AthleteSummary = AthleteSummary
   , athleteSummary_premium       :: Bool
   , athleteSummary_profile       :: Text
   , athleteSummary_profileMedium :: Text
-  , athleteSummary_resourceState :: Integer
-  , athleteSummary_sex           :: Maybe Char
+  , athleteSummary_resourceState :: ResourceState
+  , athleteSummary_sex           :: Maybe Gender
   , athleteSummary_state         :: Text
   , athleteSummary_updatedAt     :: UTCTime
   } deriving Show
@@ -134,7 +135,7 @@ instance FromJSON AthleteSummary where
 -- | <http://strava.github.io/api/v3/athlete/#meta>
 data AthleteMeta = AthleteMeta
   { athleteMeta_id            :: Integer
-  , athleteMeta_resourceState :: Integer
+  , athleteMeta_resourceState :: ResourceState
   } deriving Show
 
 instance FromJSON AthleteMeta where
@@ -177,7 +178,7 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_name                  :: Text
   , activityDetailed_photoCount            :: Integer
   , activityDetailed_private               :: Bool
-  , activityDetailed_resourceState         :: Integer
+  , activityDetailed_resourceState         :: ResourceState
   , activityDetailed_segmentEfforts        :: [EffortDetailed]
   , activityDetailed_startDate             :: UTCTime
   , activityDetailed_startDateLocal        :: UTCTime
@@ -188,7 +189,7 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_totalElevationGain    :: Double
   , activityDetailed_trainer               :: Bool
   , activityDetailed_truncated             :: Integer
-  , activityDetailed_type                  :: Text
+  , activityDetailed_type                  :: ActivityType
   , activityDetailed_uploadId              :: Maybe Integer
   } deriving Show
 
@@ -268,7 +269,7 @@ data ActivitySummary = ActivitySummary
   , activitySummary_name               :: Text
   , activitySummary_photoCount         :: Integer
   , activitySummary_private            :: Bool
-  , activitySummary_resourceState      :: Integer
+  , activitySummary_resourceState      :: ResourceState
   , activitySummary_startDate          :: UTCTime
   , activitySummary_startDateLocal     :: UTCTime
   , activitySummary_startLatitude      :: Double
@@ -277,7 +278,7 @@ data ActivitySummary = ActivitySummary
   , activitySummary_timezone           :: Text
   , activitySummary_totalElevationGain :: Double
   , activitySummary_trainer            :: Bool
-  , activitySummary_type               :: Text
+  , activitySummary_type               :: ActivityType
   , activitySummary_uploadId           :: Maybe Integer
   } deriving Show
 
@@ -327,7 +328,7 @@ instance FromJSON ActivitySummary where
 data PolylineDetailed = PolylineDetailed
   { polylineDetailed_id              :: Text
   , polylineDetailed_polyline        :: [(Double, Double)]
-  , polylineDetailed_resourceState   :: Integer
+  , polylineDetailed_resourceState   :: ResourceState
   , polylineDetailed_summaryPolyline :: Maybe [(Double, Double)]
   } deriving Show
 
@@ -350,7 +351,7 @@ instance FromJSON PolylineDetailed where
 -- | <http://strava.github.io/api/v3/activities/#summary>
 data PolylineSummary = PolylineSummary
   { polylineSummary_id              :: Text
-  , polylineSummary_resourceState   :: Integer
+  , polylineSummary_resourceState   :: ResourceState
   , polylineSummary_summaryPolyline :: Maybe [(Double, Double)]
   } deriving Show
 
@@ -371,9 +372,9 @@ instance FromJSON PolylineSummary where
 -- | <http://strava.github.io/api/v3/activities/#zones>
 data ActivityZoneDetailed = ActivityZoneDetailed
   { activityZoneDetailed_distributionBuckets :: [ActivityZoneDistributionBucket]
-  , activityZoneDetailed_resourceState       :: Integer
+  , activityZoneDetailed_resourceState       :: ResourceState
   , activityZoneDetailed_sensorBased         :: Bool
-  , activityZoneDetailed_type                :: Text
+  , activityZoneDetailed_type                :: ActivityZoneType
   } deriving Show
 
 instance FromJSON ActivityZoneDetailed where
@@ -412,7 +413,7 @@ data ActivityLapSummary = ActivityLapSummary
     , activityLapSummary_maxSpeed           :: Double
     , activityLapSummary_movingTime         :: Double
     , activityLapSummary_name               :: Text
-    , activityLapSummary_resourceState      :: Integer
+    , activityLapSummary_resourceState      :: ResourceState
     , activityLapSummary_startDate          :: UTCTime
     , activityLapSummary_startDateLocal     :: UTCTime
     , activityLapSummary_startIndex         :: Integer
@@ -448,7 +449,7 @@ data CommentSummary = CommentSummary
   , commentSummary_athlete       :: AthleteSummary
   , commentSummary_createdAt     :: UTCTime
   , commentSummary_id            :: Integer
-  , commentSummary_resourceState :: Integer
+  , commentSummary_resourceState :: ResourceState
   , commentSummary_text          :: Text
   } deriving Show
 
@@ -472,8 +473,8 @@ data PhotoSummary = PhotoSummary
   , photoSummary_id            :: Integer
   , photoSummary_location      :: Maybe (Double, Double)
   , photoSummary_ref           :: Text
-  , photoSummary_resourceState :: Integer
-  , photoSummary_type          :: Text
+  , photoSummary_resourceState :: ResourceState
+  , photoSummary_type          :: PhotoType
   , photoSummary_uid           :: Text
   , photoSummary_uploadedAt    :: UTCTime
   } deriving Show
@@ -497,7 +498,7 @@ instance FromJSON PhotoSummary where
 -- | <http://strava.github.io/api/v3/clubs/#detailed>
 data ClubDetailed = ClubDetailed
   { clubDetailed_city          :: Text
-  , clubDetailed_clubType      :: Text
+  , clubDetailed_clubType      :: ClubType
   , clubDetailed_country       :: Text
   , clubDetailed_description   :: Text
   , clubDetailed_id            :: Integer
@@ -506,8 +507,8 @@ data ClubDetailed = ClubDetailed
   , clubDetailed_private       :: Bool
   , clubDetailed_profile       :: Text
   , clubDetailed_profileMedium :: Text
-  , clubDetailed_resourceState :: Integer
-  , clubDetailed_sportType     :: Text
+  , clubDetailed_resourceState :: ResourceState
+  , clubDetailed_sportType     :: SportType
   , clubDetailed_state         :: Text
   } deriving Show
 
@@ -534,7 +535,7 @@ data ClubSummary = ClubSummary
   , clubSummary_name          :: Text
   , clubSummary_profile       :: Text
   , clubSummary_profileMedium :: Text
-  , clubSummary_resourceState :: Integer
+  , clubSummary_resourceState :: ResourceState
   } deriving Show
 
 instance FromJSON ClubSummary where
@@ -553,12 +554,12 @@ data GearDetailed = GearDetailed
   { gearDetailed_brandName     :: Text
   , gearDetailed_description   :: Text
   , gearDetailed_distance      :: Double
-  , gearDetailed_frameType     :: Maybe Integer
+  , gearDetailed_frameType     :: Maybe FrameType
   , gearDetailed_id            :: Text
   , gearDetailed_modelName     :: Text
   , gearDetailed_name          :: Text
   , gearDetailed_primary       :: Bool
-  , gearDetailed_resourceState :: Integer
+  , gearDetailed_resourceState :: ResourceState
   } deriving Show
 
 instance FromJSON GearDetailed where
@@ -580,7 +581,7 @@ data GearSummary = GearSummary
   , gearSummary_id            :: Text
   , gearSummary_name          :: Text
   , gearSummary_primary       :: Bool
-  , gearSummary_resourceState :: Integer
+  , gearSummary_resourceState :: ResourceState
   } deriving Show
 
 instance FromJSON GearSummary where
@@ -596,7 +597,7 @@ instance FromJSON GearSummary where
 
 -- | <http://strava.github.io/api/v3/segments/#detailed>
 data SegmentDetailed = SegmentDetailed
-  { segmentDetailed_activityType       :: Text
+  { segmentDetailed_activityType       :: ActivityType
   , segmentDetailed_athleteCount       :: Integer
   , segmentDetailed_averageGrade       :: Double
   , segmentDetailed_city               :: Text
@@ -616,7 +617,7 @@ data SegmentDetailed = SegmentDetailed
   , segmentDetailed_maximumGrade       :: Double
   , segmentDetailed_name               :: Text
   , segmentDetailed_private            :: Bool
-  , segmentDetailed_resourceState      :: Integer
+  , segmentDetailed_resourceState      :: ResourceState
   , segmentDetailed_starCount          :: Integer
   , segmentDetailed_starred            :: Bool
   , segmentDetailed_startLatitude      :: Double
@@ -662,7 +663,7 @@ instance FromJSON SegmentDetailed where
 
 -- | <http://strava.github.io/api/v3/segments/#summary>
 data SegmentSummary = SegmentSummary
-  { segmentSummary_activityType   :: Text
+  { segmentSummary_activityType   :: ActivityType
   , segmentSummary_averageGrade   :: Double
   , segmentSummary_city           :: Text
   , segmentSummary_climbCategory  :: Integer
@@ -677,7 +678,7 @@ data SegmentSummary = SegmentSummary
   , segmentSummary_maximumGrade   :: Double
   , segmentSummary_name           :: Text
   , segmentSummary_private        :: Bool
-  , segmentSummary_resourceState  :: Integer
+  , segmentSummary_resourceState  :: ResourceState
   , segmentSummary_starred        :: Bool
   , segmentSummary_startLatitude  :: Double
   , segmentSummary_startLatlng    :: (Double, Double)
@@ -727,7 +728,7 @@ instance FromJSON SegmentLeaderboardResponse where
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
 data SegmentLeaderboardEntry = SegmentLeaderboardEntry
   { segmentLeaderboardEntry_activityId     :: Integer
-  , segmentLeaderboardEntry_athleteGender  :: Maybe Char
+  , segmentLeaderboardEntry_athleteGender  :: Maybe Gender
   , segmentLeaderboardEntry_athleteId      :: Integer
   , segmentLeaderboardEntry_athleteName    :: Text
   , segmentLeaderboardEntry_athleteProfile :: Text
@@ -781,7 +782,7 @@ data SegmentExplorerEntry = SegmentExplorerEntry
   , segmentExplorerEntry_id                :: Integer
   , segmentExplorerEntry_name              :: Text
   , segmentExplorerEntry_points            :: Text
-  , segmentExplorerEntry_resourceState     :: Integer
+  , segmentExplorerEntry_resourceState     :: ResourceState
   , segmentExplorerEntry_starred           :: Bool
   , segmentExplorerEntry_startLatlng       :: (Double, Double)
   } deriving Show
@@ -821,7 +822,7 @@ data EffortDetailed = EffortDetailed
   , effortDetailed_movingTime       :: Integer
   , effortDetailed_name             :: Text
   , effortDetailed_prRank           :: Maybe Integer
-  , effortDetailed_resourceState    :: Integer
+  , effortDetailed_resourceState    :: ResourceState
   , effortDetailed_segment          :: SegmentSummary
   , effortDetailed_startDate        :: UTCTime
   , effortDetailed_startDateLocal   :: UTCTime
@@ -858,8 +859,8 @@ instance FromJSON EffortDetailed where
 data StreamDetailed = StreamDetailed
   { streamDetailed_data         :: [Value]
   , streamDetailed_originalSize :: Integer
-  , streamDetailed_resolution   :: Text
-  , streamDetailed_seriesType   :: Text
+  , streamDetailed_resolution   :: Resolution
+  , streamDetailed_seriesType   :: SeriesType
   , streamDetailed_type         :: Text
   } deriving Show
 

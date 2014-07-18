@@ -8,6 +8,7 @@ import Data.Default (Default, def)
 import Data.Time.Clock (UTCTime)
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Network.HTTP.Types.QueryLike (QueryLike, toQuery)
+import Strive.Enums
 
 data PaginationOptions = PaginationOptions
   { paginationOptions_page    :: Integer
@@ -63,7 +64,7 @@ data UpdateCurrentAthleteOptions = UpdateCurrentAthleteOptions
   { updateCurrentAthleteOptions_city    :: Maybe String
   , updateCurrentAthleteOptions_state   :: Maybe String
   , updateCurrentAthleteOptions_country :: Maybe String
-  , updateCurrentAthleteOptions_sex     :: Maybe Char
+  , updateCurrentAthleteOptions_sex     :: Maybe Gender
   , updateCurrentAthleteOptions_weight  :: Maybe Double
   } deriving Show
 
@@ -81,7 +82,7 @@ instance QueryLike UpdateCurrentAthleteOptions where
     [ ("city", updateCurrentAthleteOptions_city options)
     , ("state", updateCurrentAthleteOptions_state options)
     , ("country", updateCurrentAthleteOptions_country options)
-    , ("sex", fmap (: []) (updateCurrentAthleteOptions_sex options))
+    , ("sex", fmap show (updateCurrentAthleteOptions_sex options))
     , ("weight", fmap show (updateCurrentAthleteOptions_weight options))
     ]
 
@@ -143,7 +144,7 @@ instance QueryLike GetActivityOptions where
 -- | 'Strive.Actions.UpdateActivity'
 data UpdateActivityOptions = UpdateActivityOptions
   { updateActivityOptions_name        :: Maybe String
-  , updateActivityOptions_type        :: Maybe String
+  , updateActivityOptions_type        :: Maybe ActivityType
   , updateActivityOptions_private     :: Maybe Bool
   , updateActivityOptions_commute     :: Maybe Bool
   , updateActivityOptions_trainer     :: Maybe Bool
@@ -165,7 +166,7 @@ instance Default UpdateActivityOptions where
 instance QueryLike UpdateActivityOptions where
   toQuery options = toQuery
     [ ("name", updateActivityOptions_name options)
-    , ("type", updateActivityOptions_type options)
+    , ("type", fmap show (updateActivityOptions_type options))
     , ("private", fmap (unpack . toStrict . encode) (updateActivityOptions_private options))
     , ("commute", fmap (unpack . toStrict . encode) (updateActivityOptions_commute options))
     , ("trainer", fmap (unpack . toStrict . encode) (updateActivityOptions_trainer options))
@@ -266,9 +267,9 @@ instance QueryLike GetSegmentEffortsOptions where
 
 -- | 'Strive.Actions.getSegmentLeaderboard'
 data GetSegmentLeaderboardOptions = GetSegmentLeaderboardOptions
-  { getSegmentLeaderboardOptions_gender      :: Maybe Char
-  , getSegmentLeaderboardOptions_ageGroup    :: Maybe String
-  , getSegmentLeaderboardOptions_weightClass :: Maybe String
+  { getSegmentLeaderboardOptions_gender      :: Maybe Gender
+  , getSegmentLeaderboardOptions_ageGroup    :: Maybe AgeGroup
+  , getSegmentLeaderboardOptions_weightClass :: Maybe WeightClass
   , getSegmentLeaderboardOptions_following   :: Maybe Bool
   , getSegmentLeaderboardOptions_clubId      :: Maybe Integer
   , getSegmentLeaderboardOptions_dateRange   :: Maybe String
@@ -290,9 +291,9 @@ instance Default GetSegmentLeaderboardOptions where
 
 instance QueryLike GetSegmentLeaderboardOptions where
   toQuery options = toQuery
-    [ ("gender", fmap (: []) (getSegmentLeaderboardOptions_gender options))
-    , ("age_group", getSegmentLeaderboardOptions_ageGroup options)
-    , ("weight_class", getSegmentLeaderboardOptions_weightClass options)
+    [ ("gender", fmap show (getSegmentLeaderboardOptions_gender options))
+    , ("age_group", fmap show (getSegmentLeaderboardOptions_ageGroup options))
+    , ("weight_class", fmap show (getSegmentLeaderboardOptions_weightClass options))
     , ("following", fmap (unpack . toStrict . encode) (getSegmentLeaderboardOptions_following options))
     , ("club_id", fmap show (getSegmentLeaderboardOptions_clubId options))
     , ("date_range", getSegmentLeaderboardOptions_dateRange options)
@@ -302,21 +303,21 @@ instance QueryLike GetSegmentLeaderboardOptions where
 
 -- | 'Strive.Actions.exploreSegments'
 data ExploreSegmentsOptions = ExploreSegmentsOptions
-  { exploreSegmentsOptions_activityType :: String
+  { exploreSegmentsOptions_activityType :: SegmentActivityType
   , exploreSegmentsOptions_minCat       :: Integer
   , exploreSegmentsOptions_maxCat       :: Integer
   } deriving Show
 
 instance Default ExploreSegmentsOptions where
   def = ExploreSegmentsOptions
-    { exploreSegmentsOptions_activityType = "riding"
+    { exploreSegmentsOptions_activityType = Riding
     , exploreSegmentsOptions_minCat = 0
     , exploreSegmentsOptions_maxCat = 5
     }
 
 instance QueryLike ExploreSegmentsOptions where
   toQuery options = toQuery
-    [ ("activity_type", exploreSegmentsOptions_activityType options)
+    [ ("activity_type", show (exploreSegmentsOptions_activityType options))
     , ("min_cat", show (exploreSegmentsOptions_minCat options))
     , ("max_cat", show (exploreSegmentsOptions_maxCat options))
     ]
@@ -325,27 +326,27 @@ instance QueryLike ExploreSegmentsOptions where
 
 -- | 'Strive.Actions.getStreams'
 data GetStreamsOptions = GetStreamsOptions
-  { getStreamsOptions_resolution :: Maybe String
-  , getStreamsOptions_seriesType :: String
+  { getStreamsOptions_resolution :: Maybe Resolution
+  , getStreamsOptions_seriesType :: SeriesType
   } deriving Show
 
 instance Default GetStreamsOptions where
   def = GetStreamsOptions
     { getStreamsOptions_resolution = Nothing
-    , getStreamsOptions_seriesType = "distance"
+    , getStreamsOptions_seriesType = Distance
     }
 
 instance QueryLike GetStreamsOptions where
   toQuery options = toQuery
-    [ ("resolution", getStreamsOptions_resolution options)
-    , ("distance", Just (getStreamsOptions_seriesType options))
+    [ ("resolution", fmap show (getStreamsOptions_resolution options))
+    , ("distance", Just (show (getStreamsOptions_seriesType options)))
     ]
 
 -- * Uploads
 
 -- | 'Strive.Actions.uploadActivity'
 data UploadActivityOptions = UploadActivityOptions
-  { uploadActivityOptions_activityType :: Maybe String
+  { uploadActivityOptions_activityType :: Maybe ActivityType
   , uploadActivityOptions_name         :: Maybe String
   , uploadActivityOptions_description  :: Maybe String
   , uploadActivityOptions_private      :: Bool
@@ -365,7 +366,7 @@ instance Default UploadActivityOptions where
 
 instance QueryLike UploadActivityOptions where
   toQuery options = toQuery
-    [ ("activity_type", uploadActivityOptions_activityType options)
+    [ ("activity_type", fmap show (uploadActivityOptions_activityType options))
     , ("name", uploadActivityOptions_name options)
     , ("description", uploadActivityOptions_description options)
     , ("private", Just (show (fromEnum (uploadActivityOptions_private options))))

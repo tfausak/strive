@@ -8,6 +8,7 @@ import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Client.Conduit (Manager)
 import Strive.Client
+import Strive.Enums
 import Strive.Lenses.Classes
 import Strive.Options
 import Strive.Types
@@ -78,25 +79,25 @@ instance ActivityIdLens UploadStatus (Maybe Integer) where
     , \ activityId' -> uploadStatus { uploadStatus_activityId = activityId' }
     )
 
-instance ActivityTypeLens ExploreSegmentsOptions String where
+instance ActivityTypeLens ExploreSegmentsOptions SegmentActivityType where
   activityType exploreSegmentsOptions =
     ( exploreSegmentsOptions_activityType exploreSegmentsOptions
     , \ activityType' -> exploreSegmentsOptions { exploreSegmentsOptions_activityType = activityType' }
     )
 
-instance ActivityTypeLens SegmentDetailed Text where
+instance ActivityTypeLens SegmentDetailed ActivityType where
   activityType segmentDetailed =
     ( segmentDetailed_activityType segmentDetailed
     , \ activityType' -> segmentDetailed { segmentDetailed_activityType = activityType' }
     )
 
-instance ActivityTypeLens SegmentSummary Text where
+instance ActivityTypeLens SegmentSummary ActivityType where
   activityType segmentSummary =
     ( segmentSummary_activityType segmentSummary
     , \ activityType' -> segmentSummary { segmentSummary_activityType = activityType' }
     )
 
-instance ActivityTypeLens UploadActivityOptions (Maybe String) where
+instance ActivityTypeLens UploadActivityOptions (Maybe ActivityType) where
   activityType uploadActivityOptions =
     ( uploadActivityOptions_activityType uploadActivityOptions
     , \ activityType' -> uploadActivityOptions { uploadActivityOptions_activityType = activityType' }
@@ -108,7 +109,7 @@ instance AfterLens GetCurrentActivitiesOptions (Maybe UTCTime) where
     , \ after' -> getCurrentActivitiesOptions { getCurrentActivitiesOptions_after = after' }
     )
 
-instance AgeGroupLens GetSegmentLeaderboardOptions (Maybe String) where
+instance AgeGroupLens GetSegmentLeaderboardOptions (Maybe AgeGroup) where
   ageGroup getSegmentLeaderboardOptions =
     ( getSegmentLeaderboardOptions_ageGroup getSegmentLeaderboardOptions
     , \ ageGroup' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_ageGroup = ageGroup' }
@@ -144,7 +145,7 @@ instance AthleteCountLens SegmentDetailed Integer where
     , \ athleteCount' -> segmentDetailed { segmentDetailed_athleteCount = athleteCount' }
     )
 
-instance AthleteGenderLens SegmentLeaderboardEntry (Maybe Char) where
+instance AthleteGenderLens SegmentLeaderboardEntry (Maybe Gender) where
   athleteGender segmentLeaderboardEntry =
     ( segmentLeaderboardEntry_athleteGender segmentLeaderboardEntry
     , \ athleteGender' -> segmentLeaderboardEntry { segmentLeaderboardEntry_athleteGender = athleteGender' }
@@ -390,7 +391,7 @@ instance ClubIdLens GetSegmentLeaderboardOptions (Maybe Integer) where
     , \ clubId' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_clubId = clubId' }
     )
 
-instance ClubTypeLens ClubDetailed Text where
+instance ClubTypeLens ClubDetailed ClubType where
   clubType clubDetailed =
     ( clubDetailed_clubType clubDetailed
     , \ clubType' -> clubDetailed { clubDetailed_clubType = clubType' }
@@ -870,7 +871,7 @@ instance FollowingLens GetSegmentLeaderboardOptions (Maybe Bool) where
     , \ following' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_following = following' }
     )
 
-instance FrameTypeLens GearDetailed (Maybe Integer) where
+instance FrameTypeLens GearDetailed (Maybe FrameType) where
   frameType gearDetailed =
     ( gearDetailed_frameType gearDetailed
     , \ frameType' -> gearDetailed { gearDetailed_frameType = frameType' }
@@ -924,7 +925,7 @@ instance GearLens ActivityDetailed GearSummary where
     , \ gear' -> activityDetailed { activityDetailed_gear = gear' }
     )
 
-instance GenderLens GetSegmentLeaderboardOptions (Maybe Char) where
+instance GenderLens GetSegmentLeaderboardOptions (Maybe Gender) where
   gender getSegmentLeaderboardOptions =
     ( getSegmentLeaderboardOptions_gender getSegmentLeaderboardOptions
     , \ gender' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_gender = gender' }
@@ -1248,7 +1249,7 @@ instance MaximumGradeLens SegmentSummary Double where
     , \ maximumGrade' -> segmentSummary { segmentSummary_maximumGrade = maximumGrade' }
     )
 
-instance MeasurementPreferenceLens AthleteDetailed Text where
+instance MeasurementPreferenceLens AthleteDetailed MeasurementPreference where
   measurementPreference athleteDetailed =
     ( athleteDetailed_measurementPreference athleteDetailed
     , \ measurementPreference' -> athleteDetailed { athleteDetailed_measurementPreference = measurementPreference' }
@@ -1626,127 +1627,127 @@ instance RefLens PhotoSummary Text where
     , \ ref' -> photoSummary { photoSummary_ref = ref' }
     )
 
-instance ResolutionLens GetStreamsOptions (Maybe String) where
+instance ResolutionLens GetStreamsOptions (Maybe Resolution) where
   resolution getStreamsOptions =
     ( getStreamsOptions_resolution getStreamsOptions
     , \ resolution' -> getStreamsOptions { getStreamsOptions_resolution = resolution' }
     )
 
-instance ResolutionLens StreamDetailed Text where
+instance ResolutionLens StreamDetailed Resolution where
   resolution streamDetailed =
     ( streamDetailed_resolution streamDetailed
     , \ resolution' -> streamDetailed { streamDetailed_resolution = resolution' }
     )
 
-instance ResourceStateLens ActivityDetailed Integer where
+instance ResourceStateLens ActivityDetailed ResourceState where
   resourceState activityDetailed =
     ( activityDetailed_resourceState activityDetailed
     , \ resourceState' -> activityDetailed { activityDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ActivityLapSummary Integer where
+instance ResourceStateLens ActivityLapSummary ResourceState where
   resourceState activityLapSummary =
     ( activityLapSummary_resourceState activityLapSummary
     , \ resourceState' -> activityLapSummary { activityLapSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ActivitySummary Integer where
+instance ResourceStateLens ActivitySummary ResourceState where
   resourceState activitySummary =
     ( activitySummary_resourceState activitySummary
     , \ resourceState' -> activitySummary { activitySummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ActivityZoneDetailed Integer where
+instance ResourceStateLens ActivityZoneDetailed ResourceState where
   resourceState activityZoneDetailed =
     ( activityZoneDetailed_resourceState activityZoneDetailed
     , \ resourceState' -> activityZoneDetailed { activityZoneDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens AthleteDetailed Integer where
+instance ResourceStateLens AthleteDetailed ResourceState where
   resourceState athleteDetailed =
     ( athleteDetailed_resourceState athleteDetailed
     , \ resourceState' -> athleteDetailed { athleteDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens AthleteMeta Integer where
+instance ResourceStateLens AthleteMeta ResourceState where
   resourceState athleteMeta =
     ( athleteMeta_resourceState athleteMeta
     , \ resourceState' -> athleteMeta { athleteMeta_resourceState = resourceState' }
     )
 
-instance ResourceStateLens AthleteSummary Integer where
+instance ResourceStateLens AthleteSummary ResourceState where
   resourceState athleteSummary =
     ( athleteSummary_resourceState athleteSummary
     , \ resourceState' -> athleteSummary { athleteSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ClubDetailed Integer where
+instance ResourceStateLens ClubDetailed ResourceState where
   resourceState clubDetailed =
     ( clubDetailed_resourceState clubDetailed
     , \ resourceState' -> clubDetailed { clubDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens ClubSummary Integer where
+instance ResourceStateLens ClubSummary ResourceState where
   resourceState clubSummary =
     ( clubSummary_resourceState clubSummary
     , \ resourceState' -> clubSummary { clubSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens CommentSummary Integer where
+instance ResourceStateLens CommentSummary ResourceState where
   resourceState commentSummary =
     ( commentSummary_resourceState commentSummary
     , \ resourceState' -> commentSummary { commentSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens EffortDetailed Integer where
+instance ResourceStateLens EffortDetailed ResourceState where
   resourceState effortDetailed =
     ( effortDetailed_resourceState effortDetailed
     , \ resourceState' -> effortDetailed { effortDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens GearDetailed Integer where
+instance ResourceStateLens GearDetailed ResourceState where
   resourceState gearDetailed =
     ( gearDetailed_resourceState gearDetailed
     , \ resourceState' -> gearDetailed { gearDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens GearSummary Integer where
+instance ResourceStateLens GearSummary ResourceState where
   resourceState gearSummary =
     ( gearSummary_resourceState gearSummary
     , \ resourceState' -> gearSummary { gearSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens PhotoSummary Integer where
+instance ResourceStateLens PhotoSummary ResourceState where
   resourceState photoSummary =
     ( photoSummary_resourceState photoSummary
     , \ resourceState' -> photoSummary { photoSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens PolylineDetailed Integer where
+instance ResourceStateLens PolylineDetailed ResourceState where
   resourceState polylineDetailed =
     ( polylineDetailed_resourceState polylineDetailed
     , \ resourceState' -> polylineDetailed { polylineDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens PolylineSummary Integer where
+instance ResourceStateLens PolylineSummary ResourceState where
   resourceState polylineSummary =
     ( polylineSummary_resourceState polylineSummary
     , \ resourceState' -> polylineSummary { polylineSummary_resourceState = resourceState' }
     )
 
-instance ResourceStateLens SegmentDetailed Integer where
+instance ResourceStateLens SegmentDetailed ResourceState where
   resourceState segmentDetailed =
     ( segmentDetailed_resourceState segmentDetailed
     , \ resourceState' -> segmentDetailed { segmentDetailed_resourceState = resourceState' }
     )
 
-instance ResourceStateLens SegmentExplorerEntry Integer where
+instance ResourceStateLens SegmentExplorerEntry ResourceState where
   resourceState segmentExplorerEntry =
     ( segmentExplorerEntry_resourceState segmentExplorerEntry
     , \ resourceState' -> segmentExplorerEntry { segmentExplorerEntry_resourceState = resourceState' }
     )
 
-instance ResourceStateLens SegmentSummary Integer where
+instance ResourceStateLens SegmentSummary ResourceState where
   resourceState segmentSummary =
     ( segmentSummary_resourceState segmentSummary
     , \ resourceState' -> segmentSummary { segmentSummary_resourceState = resourceState' }
@@ -1770,31 +1771,31 @@ instance SensorBasedLens ActivityZoneDetailed Bool where
     , \ sensorBased' -> activityZoneDetailed { activityZoneDetailed_sensorBased = sensorBased' }
     )
 
-instance SeriesTypeLens GetStreamsOptions String where
+instance SeriesTypeLens GetStreamsOptions SeriesType where
   seriesType getStreamsOptions =
     ( getStreamsOptions_seriesType getStreamsOptions
     , \ seriesType' -> getStreamsOptions { getStreamsOptions_seriesType = seriesType' }
     )
 
-instance SeriesTypeLens StreamDetailed Text where
+instance SeriesTypeLens StreamDetailed SeriesType where
   seriesType streamDetailed =
     ( streamDetailed_seriesType streamDetailed
     , \ seriesType' -> streamDetailed { streamDetailed_seriesType = seriesType' }
     )
 
-instance SexLens AthleteDetailed (Maybe Char) where
+instance SexLens AthleteDetailed (Maybe Gender) where
   sex athleteDetailed =
     ( athleteDetailed_sex athleteDetailed
     , \ sex' -> athleteDetailed { athleteDetailed_sex = sex' }
     )
 
-instance SexLens AthleteSummary (Maybe Char) where
+instance SexLens AthleteSummary (Maybe Gender) where
   sex athleteSummary =
     ( athleteSummary_sex athleteSummary
     , \ sex' -> athleteSummary { athleteSummary_sex = sex' }
     )
 
-instance SexLens UpdateCurrentAthleteOptions (Maybe Char) where
+instance SexLens UpdateCurrentAthleteOptions (Maybe Gender) where
   sex updateCurrentAthleteOptions =
     ( updateCurrentAthleteOptions_sex updateCurrentAthleteOptions
     , \ sex' -> updateCurrentAthleteOptions { updateCurrentAthleteOptions_sex = sex' }
@@ -1806,7 +1807,7 @@ instance ShoesLens AthleteDetailed [GearSummary] where
     , \ shoes' -> athleteDetailed { athleteDetailed_shoes = shoes' }
     )
 
-instance SportTypeLens ClubDetailed Text where
+instance SportTypeLens ClubDetailed SportType where
   sportType clubDetailed =
     ( clubDetailed_sportType clubDetailed
     , \ sportType' -> clubDetailed { clubDetailed_sportType = sportType' }
@@ -2124,25 +2125,25 @@ instance TruncatedLens ActivityDetailed Integer where
     , \ truncated' -> activityDetailed { activityDetailed_truncated = truncated' }
     )
 
-instance TypeLens ActivityDetailed Text where
+instance TypeLens ActivityDetailed ActivityType where
   type_ activityDetailed =
     ( activityDetailed_type activityDetailed
     , \ type_' -> activityDetailed { activityDetailed_type = type_' }
     )
 
-instance TypeLens ActivitySummary Text where
+instance TypeLens ActivitySummary ActivityType where
   type_ activitySummary =
     ( activitySummary_type activitySummary
     , \ type_' -> activitySummary { activitySummary_type = type_' }
     )
 
-instance TypeLens ActivityZoneDetailed Text where
+instance TypeLens ActivityZoneDetailed ActivityZoneType where
   type_ activityZoneDetailed =
     ( activityZoneDetailed_type activityZoneDetailed
     , \ type_' -> activityZoneDetailed { activityZoneDetailed_type = type_' }
     )
 
-instance TypeLens PhotoSummary Text where
+instance TypeLens PhotoSummary PhotoType where
   type_ photoSummary =
     ( photoSummary_type photoSummary
     , \ type_' -> photoSummary { photoSummary_type = type_' }
@@ -2154,7 +2155,7 @@ instance TypeLens StreamDetailed Text where
     , \ type_' -> streamDetailed { streamDetailed_type = type_' }
     )
 
-instance TypeLens UpdateActivityOptions (Maybe String) where
+instance TypeLens UpdateActivityOptions (Maybe ActivityType) where
   type_ updateActivityOptions =
     ( updateActivityOptions_type updateActivityOptions
     , \ type_' -> updateActivityOptions { updateActivityOptions_type = type_' }
@@ -2202,7 +2203,7 @@ instance UploadedAtLens PhotoSummary UTCTime where
     , \ uploadedAt' -> photoSummary { photoSummary_uploadedAt = uploadedAt' }
     )
 
-instance WeightClassLens GetSegmentLeaderboardOptions (Maybe String) where
+instance WeightClassLens GetSegmentLeaderboardOptions (Maybe WeightClass) where
   weightClass getSegmentLeaderboardOptions =
     ( getSegmentLeaderboardOptions_weightClass getSegmentLeaderboardOptions
     , \ weightClass' -> getSegmentLeaderboardOptions { getSegmentLeaderboardOptions_weightClass = weightClass' }

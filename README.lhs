@@ -169,7 +169,7 @@ main = do
     [ set city    (Just "Dallas")
     , set state   (Just "Texas")
     , set country (Just "United States")
-    , set sex     (Just 'M')
+    , set sex     (Just Male)
     , set weight  (Just 72.57)
     ]
   print (updatedAthlete :: Either String AthleteDetailed)
@@ -259,7 +259,7 @@ main = do
 ~~~ {.haskell}
   updatedActivity <- updateActivity client 141273622 ?
     [ set name        (Just "WedEx Pit Stop")
-    , set type_       (Just "Ride")
+    , set type_       (Just Ride)
     , set private     (Just False)
     , set commute     (Just True)
     , set trainer     (Just False)
@@ -426,9 +426,9 @@ main = do
 
 ~~~ {.haskell}
   segmentLeaderboardResponse <- getSegmentLeaderboard client 4773104 ?
-    [ set gender      (Just 'M')
-    , set ageGroup    (Just "0_24")
-    , set weightClass (Just "65_74")
+    [ set gender      (Just Male)
+    , set ageGroup    (Just Ages0To24)
+    , set weightClass (Just Kilograms65To74)
     , set following   (Just True)
     , set clubId      (Just 11193)
     , set dateRange   (Just "this_year")
@@ -442,7 +442,7 @@ main = do
 
 ~~~ {.haskell}
   segmentExplorerResponse <- exploreSegments client (32.0, -96.0, 33.0, -95.0) ?
-    [ set activityType "riding"
+    [ set activityType Riding
     , set minCat 0
     , set maxCat 5
     ]
@@ -464,8 +464,8 @@ main = do
 
 ~~~ {.haskell}
   activityStreams <- getActivityStreams client 141273622 ["latlng", "watts"] ?
-    [ set resolution (Just "low")
-    , set seriesType "time"
+    [ set resolution (Just Low)
+    , set seriesType Time
     ]
   print (activityStreams :: Either String [StreamDetailed])
 ~~~
@@ -474,8 +474,8 @@ main = do
 
 ~~~ {.haskell}
   effortStreams <- getEffortStreams client 1595370098 ["latlng", "watts"] ?
-    [ set resolution (Just "low")
-    , set seriesType "time"
+    [ set resolution (Just Low)
+    , set seriesType Time
     ]
   print (effortStreams :: Either String [StreamDetailed])
 ~~~
@@ -484,8 +484,8 @@ main = do
 
 ~~~ {.haskell}
   segmentStreams <- getSegmentStreams client 4773104 ["latlng", "watts"] ?
-    [ set resolution (Just "low")
-    , set seriesType "time"
+    [ set resolution (Just Low)
+    , set seriesType Time
     ]
   print (segmentStreams :: Either String [StreamDetailed])
 ~~~
@@ -496,7 +496,7 @@ main = do
 
 ~~~ {.haskell}
   uploadedActivity <- uploadActivity client (pack "...") "gpx.gz" ?
-    [ set activityType (Just "ride")
+    [ set activityType (Just Ride)
     , set name         (Just "An Example")
     , set description  (Just "...")
     , set private      True
