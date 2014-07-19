@@ -8,7 +8,7 @@ import Network.HTTP.Conduit (Request, Response, checkStatus, httpLbs, method,
                              parseUrl, responseBody)
 import Network.HTTP.Types (Method, Query, QueryLike, methodDelete, methodGet,
                            methodPost, methodPut, renderQuery, toQuery)
-import Strive.Client (Client (client_accessToken, client_httpManager))
+import Strive.Client (Client (client_accessToken, client_requester))
 
 -- | Perform an HTTP DELETE request.
 delete :: (QueryLike q, FromJSON j) => Client -> String -> q -> IO (Either String j)
@@ -58,7 +58,7 @@ buildQuery client = toQuery
 
 -- | Actually perform an HTTP request.
 performRequest :: Client -> Request -> IO (Response ByteString)
-performRequest client request = httpLbs request (client_httpManager client)
+performRequest client request = (client_requester client) request
 
 -- | Decode a response body as JSON.
 decodeValue :: FromJSON j => Response ByteString -> Either String j

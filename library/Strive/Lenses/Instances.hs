@@ -4,9 +4,10 @@
 module Strive.Lenses.Instances where
 
 import Data.Aeson (Value)
+import Data.ByteString.Lazy (ByteString)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
-import Network.HTTP.Client.Conduit (Manager)
+import Network.HTTP.Conduit (Manager, Request, Response)
 import Strive.Client
 import Strive.Enums
 import Strive.Internal.Options
@@ -799,11 +800,6 @@ instance HiddenLens EffortDetailed (Maybe Bool) where
     (\ y -> x { effortDetailed_hidden = y })
     (f (effortDetailed_hidden x))
 
-instance HttpManagerLens Client Manager where
-  httpManager f x = fmap
-    (\ y -> x { client_httpManager = y })
-    (f (client_httpManager x))
-
 instance IdLens ActivityDetailed Integer where
   id_ f x = fmap
     (\ y -> x { activityDetailed_id = y })
@@ -1358,6 +1354,11 @@ instance RefLens PhotoSummary Text where
   ref f x = fmap
     (\ y -> x { photoSummary_ref = y })
     (f (photoSummary_ref x))
+
+instance RequesterLens Client (Request -> IO (Response ByteString)) where
+  requester f x = fmap
+    (\ y -> x { client_requester = y })
+    (f (client_requester x))
 
 instance ResolutionLens GetStreamsOptions (Maybe Resolution) where
   resolution f x = fmap

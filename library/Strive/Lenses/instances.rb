@@ -42,9 +42,10 @@ puts <<-HASKELL
 module Strive.Lenses.Instances where
 
 import Data.Aeson (Value)
+import Data.ByteString.Lazy (ByteString)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
-import Network.HTTP.Client.Conduit (Manager)
+import Network.HTTP.Conduit (Manager, Request, Response)
 import Strive.Client
 import Strive.Enums
 import Strive.Internal.Options

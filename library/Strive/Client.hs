@@ -1,12 +1,17 @@
 -- | Types and functions for dealing with the API client itself.
-module Strive.Client where
+module Strive.Client
+  ( Client (..)
+  , buildClient
+  ) where
 
-import Network.HTTP.Client.Conduit (Manager, newManager)
+import Data.ByteString.Lazy (ByteString)
+import Network.HTTP.Client.Conduit (newManager)
+import Network.HTTP.Conduit (Manager, Request, Response, httpLbs)
 
 -- | Strava V3 API client.
 data Client = Client
   { client_accessToken :: String
-  , client_httpManager :: Manager
+  , client_requester   :: Request -> IO (Response ByteString)
   }
 
 instance Show Client where
@@ -16,11 +21,11 @@ instance Show Client where
     , "}"
     ]
 
--- | Build a client with the default HTTP manager.
+-- | Build a new client using the default HTTP manager to make requests.
 buildClient :: String -> IO Client
-buildClient token = do
+buildClient accessToken = do
   manager <- newManager
   return Client
-    { client_accessToken = token
-    , client_httpManager = manager
+    { client_accessToken = accessToken
+    , client_requester   = flip httpLbs manager
     }

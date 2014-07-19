@@ -220,9 +220,6 @@ class HazardousLens a b | a -> b where
 class HiddenLens a b | a -> b where
   hidden :: Lens a b
 
-class HttpManagerLens a b | a -> b where
-  httpManager :: Lens a b
-
 class IdLens a b | a -> b where
   id_ :: Lens a b
 
@@ -351,6 +348,9 @@ class RankLens a b | a -> b where
 
 class RefLens a b | a -> b where
   ref :: Lens a b
+
+class RequesterLens a b | a -> b where
+  requester :: Lens a b
 
 class ResolutionLens a b | a -> b where
   resolution :: Lens a b
