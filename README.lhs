@@ -84,7 +84,7 @@ client using the default HTTP manager.
 
 ~~~ {.haskell .ignore}
 import Strive
-let token = "..."
+let token = "a token"
 client <- buildClient token
 ~~~
 
@@ -92,15 +92,15 @@ Most types implement lenses for their fields. Lenses are preferred over directly
 accessing the fields. For instance, instead of doing this:
 
 ~~~ {.haskell .ignore}
-client_accessToken (client { client_accessToken = "..." })
--- "..."
+client_accessToken (client { client_accessToken = "record token" })
+-- "record token"
 ~~~
 
 Do this:
 
 ~~~ {.haskell .ignore}
-get accessToken (set accessToken "..." client)
--- "..."
+get accessToken (set accessToken "lens token" client)
+-- "lens token"
 ~~~
 
 <!--
