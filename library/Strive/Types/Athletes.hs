@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell   #-}
 
 module Strive.Types.Athletes
   ( AthleteDetailed (..)
@@ -8,6 +9,9 @@ module Strive.Types.Athletes
 
 import Control.Applicative (empty, (<$>), (<*>))
 import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Aeson.TH (Options, defaultOptions, deriveFromJSON,
+                      fieldLabelModifier)
+import Data.Char (isUpper, toLower)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (Gender, MeasurementPreference, ResourceState)
@@ -116,8 +120,8 @@ data AthleteMeta = AthleteMeta
   , athleteMeta_resourceState :: ResourceState
   } deriving Show
 
-instance FromJSON AthleteMeta where
-  parseJSON (Object o) = AthleteMeta
-    <$> o .: "id"
-    <*> o .: "resource_state"
-  parseJSON _ = empty
+$(deriveFromJSON
+  defaultOptions
+    { fieldLabelModifier = concatMap (\ c -> if isUpper c then ['_', toLower c] else [c]) . tail . dropWhile (/= '_')
+    }
+  ''AthleteMeta)

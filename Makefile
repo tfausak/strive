@@ -14,7 +14,7 @@ configure:
 
 format:
 	cabal format
-	git ls-files '*.hs' | xargs -n 1 scan --inplace-modify --multiple-blanks=0
+	git ls-files '*.hs' | xargs -n 1 scan --inplace-modify --multiple-blanks=0 --template-haskell
 	git ls-files '*.hs' | xargs stylish-haskell --inplace
 
 haddock:
