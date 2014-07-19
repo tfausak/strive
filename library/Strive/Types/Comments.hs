@@ -1,14 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell   #-}
 
 module Strive.Types.Comments
   ( CommentSummary (..)
   ) where
 
-import Control.Applicative (empty, (<$>), (<*>))
-import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (ResourceState)
+import Strive.Internal.TH (options)
 import Strive.Types.Athletes (AthleteSummary)
 
 -- | <http://strava.github.io/api/v3/comments/#summary-and-detailed-representation-attributes>
@@ -21,12 +22,4 @@ data CommentSummary = CommentSummary
   , commentSummary_text          :: Text
   } deriving Show
 
-instance FromJSON CommentSummary where
-  parseJSON (Object o) = CommentSummary
-    <$> o .: "activity_id"
-    <*> o .: "athlete"
-    <*> o .: "created_at"
-    <*> o .: "id"
-    <*> o .: "resource_state"
-    <*> o .: "text"
-  parseJSON _ = empty
+$(deriveFromJSON options ''CommentSummary)

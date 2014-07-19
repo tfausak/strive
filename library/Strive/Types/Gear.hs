@@ -1,14 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell   #-}
 
 module Strive.Types.Gear
   ( GearDetailed (..)
   , GearSummary (..)
   ) where
 
-import Control.Applicative (empty, (<$>), (<*>))
-import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
 import Strive.Enums (FrameType, ResourceState)
+import Strive.Internal.TH (options)
 
 -- | <http://strava.github.io/api/v3/gear/#detailed>
 data GearDetailed = GearDetailed
@@ -23,18 +24,7 @@ data GearDetailed = GearDetailed
   , gearDetailed_resourceState :: ResourceState
   } deriving Show
 
-instance FromJSON GearDetailed where
-  parseJSON (Object o) = GearDetailed
-    <$> o .: "brand_name"
-    <*> o .: "description"
-    <*> o .: "distance"
-    <*> o .:? "frame_type"
-    <*> o .: "id"
-    <*> o .: "model_name"
-    <*> o .: "name"
-    <*> o .: "primary"
-    <*> o .: "resource_state"
-  parseJSON _ = empty
+$(deriveFromJSON options ''GearDetailed)
 
 -- | <http://strava.github.io/api/v3/gear/#summary>
 data GearSummary = GearSummary
@@ -45,11 +35,4 @@ data GearSummary = GearSummary
   , gearSummary_resourceState :: ResourceState
   } deriving Show
 
-instance FromJSON GearSummary where
-  parseJSON (Object o) = GearSummary
-    <$> o .: "distance"
-    <*> o .: "id"
-    <*> o .: "name"
-    <*> o .: "primary"
-    <*> o .: "resource_state"
-  parseJSON _ = empty
+$(deriveFromJSON options ''GearSummary)

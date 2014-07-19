@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell   #-}
 
 module Strive.Types.Activities
   ( ActivityDetailed (..)
@@ -10,10 +11,12 @@ module Strive.Types.Activities
 
 import Control.Applicative (empty, (<$>), (<*>))
 import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import GPolyline (decodeline)
 import Strive.Enums (ActivityType, ActivityZoneType, ResourceState)
+import Strive.Internal.TH (options)
 import Strive.Types.Athletes (AthleteMeta)
 import Strive.Types.Efforts (EffortDetailed)
 import Strive.Types.Gear (GearSummary)
@@ -66,52 +69,7 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_uploadId              :: Maybe Integer
   } deriving Show
 
-instance FromJSON ActivityDetailed where
-  parseJSON (Object o) = ActivityDetailed
-    <$> o .: "achievement_count"
-    <*> o .: "athlete"
-    <*> o .: "athlete_count"
-    <*> o .: "average_speed"
-    <*> o .:? "average_watts"
-    <*> o .: "calories"
-    <*> o .: "comment_count"
-    <*> o .: "commute"
-    <*> o .:? "description"
-    <*> o .: "distance"
-    <*> o .: "elapsed_time"
-    <*> o .:? "end_latlng"
-    <*> o .:? "external_id"
-    <*> o .: "flagged"
-    <*> o .: "gear"
-    <*> o .:? "gear_id"
-    <*> o .: "has_kudoed"
-    <*> o .: "id"
-    <*> o .:? "instagram_primary_photo"
-    <*> o .:? "kilojoules"
-    <*> o .:? "location_city"
-    <*> o .: "location_country"
-    <*> o .:? "location_state"
-    <*> o .: "manual"
-    <*> o .: "map"
-    <*> o .: "max_speed"
-    <*> o .: "moving_time"
-    <*> o .: "name"
-    <*> o .: "photo_count"
-    <*> o .: "private"
-    <*> o .: "resource_state"
-    <*> o .: "segment_efforts"
-    <*> o .: "start_date"
-    <*> o .: "start_date_local"
-    <*> o .: "start_latitude"
-    <*> o .:? "start_latlng"
-    <*> o .: "start_longitude"
-    <*> o .: "timezone"
-    <*> o .: "total_elevation_gain"
-    <*> o .: "trainer"
-    <*> o .: "truncated"
-    <*> o .: "type"
-    <*> o .:? "upload_id"
-  parseJSON _ = empty
+$(deriveFromJSON options ''ActivityDetailed)
 
 -- | <http://strava.github.io/api/v3/activities/#summary>
 data ActivitySummary = ActivitySummary
@@ -155,47 +113,16 @@ data ActivitySummary = ActivitySummary
   , activitySummary_uploadId           :: Maybe Integer
   } deriving Show
 
-instance FromJSON ActivitySummary where
-  parseJSON (Object o) = ActivitySummary
-    <$> o .: "achievement_count"
-    <*> o .: "athlete"
-    <*> o .: "athlete_count"
-    <*> o .: "average_speed"
-    <*> o .:? "average_watts"
-    <*> o .: "comment_count"
-    <*> o .: "commute"
-    <*> o .: "distance"
-    <*> o .: "elapsed_time"
-    <*> o .:? "end_latlng"
-    <*> o .:? "external_id"
-    <*> o .: "flagged"
-    <*> o .:? "gear_id"
-    <*> o .: "has_kudoed"
-    <*> o .: "id"
-    <*> o .:? "kilojoules"
-    <*> o .: "kudos_count"
-    <*> o .:? "location_city"
-    <*> o .: "location_country"
-    <*> o .:? "location_state"
-    <*> o .: "manual"
-    <*> o .: "map"
-    <*> o .: "max_speed"
-    <*> o .: "moving_time"
-    <*> o .: "name"
-    <*> o .: "photo_count"
-    <*> o .: "private"
-    <*> o .: "resource_state"
-    <*> o .: "start_date"
-    <*> o .: "start_date_local"
-    <*> o .: "start_latitude"
-    <*> o .:? "start_latlng"
-    <*> o .: "start_longitude"
-    <*> o .: "timezone"
-    <*> o .: "total_elevation_gain"
-    <*> o .: "trainer"
-    <*> o .: "type"
-    <*> o .:? "upload_id"
-  parseJSON _ = empty
+$(deriveFromJSON options ''ActivitySummary)
+
+-- | <http://strava.github.io/api/v3/activities/#zones>
+data ActivityZoneDistributionBucket = ActivityZoneDistributionBucket
+  { activityZoneDistributionBucket_max  :: Integer
+  , activityZoneDistributionBucket_min  :: Integer
+  , activityZoneDistributionBucket_time :: Integer
+  } deriving Show
+
+$(deriveFromJSON options ''ActivityZoneDistributionBucket)
 
 -- | <http://strava.github.io/api/v3/activities/#zones>
 data ActivityZoneDetailed = ActivityZoneDetailed
@@ -205,27 +132,7 @@ data ActivityZoneDetailed = ActivityZoneDetailed
   , activityZoneDetailed_type                :: ActivityZoneType
   } deriving Show
 
-instance FromJSON ActivityZoneDetailed where
-  parseJSON (Object o) = ActivityZoneDetailed
-    <$> o .: "distribution_buckets"
-    <*> o .: "resource_state"
-    <*> o .: "sensor_based"
-    <*> o .: "type"
-  parseJSON _ = empty
-
--- | <http://strava.github.io/api/v3/activities/#zones>
-data ActivityZoneDistributionBucket = ActivityZoneDistributionBucket
-  { activityZoneDistributionBucket_max  :: Integer
-  , activityZoneDistributionBucket_min  :: Integer
-  , activityZoneDistributionBucket_time :: Integer
-  } deriving Show
-
-instance FromJSON ActivityZoneDistributionBucket where
-  parseJSON (Object o) = ActivityZoneDistributionBucket
-    <$> o .: "max"
-    <*> o .: "min"
-    <*> o .: "time"
-  parseJSON _ = empty
+$(deriveFromJSON options ''ActivityZoneDetailed)
 
 -- | <http://strava.github.io/api/v3/activities/#laps>
 data ActivityLapSummary = ActivityLapSummary

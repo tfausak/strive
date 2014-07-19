@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell   #-}
 
 module Strive.Types.Segments
   ( SegmentDetailed (..)
@@ -9,11 +10,11 @@ module Strive.Types.Segments
   , SegmentExplorerEntry (..)
   ) where
 
-import Control.Applicative (empty, (<$>), (<*>))
-import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (ActivityType, Gender, ResourceState)
+import Strive.Internal.TH (options)
 import Strive.Types.Polylines (PolylineDetailed)
 
 -- | <http://strava.github.io/api/v3/segments/#detailed>
@@ -49,38 +50,7 @@ data SegmentDetailed = SegmentDetailed
   , segmentDetailed_updatedAt          :: UTCTime
   } deriving Show
 
-instance FromJSON SegmentDetailed where
-  parseJSON (Object o) = SegmentDetailed
-    <$> o .: "activity_type"
-    <*> o .: "athlete_count"
-    <*> o .: "average_grade"
-    <*> o .: "city"
-    <*> o .: "climb_category"
-    <*> o .: "country"
-    <*> o .: "created_at"
-    <*> o .: "distance"
-    <*> o .: "effort_count"
-    <*> o .: "elevation_high"
-    <*> o .: "elevation_low"
-    <*> o .: "end_latitude"
-    <*> o .: "end_latlng"
-    <*> o .: "end_longitude"
-    <*> o .: "hazardous"
-    <*> o .: "id"
-    <*> o .: "map"
-    <*> o .: "maximum_grade"
-    <*> o .: "name"
-    <*> o .: "private"
-    <*> o .: "resource_state"
-    <*> o .: "star_count"
-    <*> o .: "starred"
-    <*> o .: "start_latitude"
-    <*> o .: "start_latlng"
-    <*> o .: "start_longitude"
-    <*> o .: "state"
-    <*> o .: "total_elevation_gain"
-    <*> o .: "updated_at"
-  parseJSON _ = empty
+$(deriveFromJSON options ''SegmentDetailed)
 
 -- | <http://strava.github.io/api/v3/segments/#summary>
 data SegmentSummary = SegmentSummary
@@ -107,44 +77,7 @@ data SegmentSummary = SegmentSummary
   , segmentSummary_state          :: Text
   } deriving Show
 
-instance FromJSON SegmentSummary where
-  parseJSON (Object o) = SegmentSummary
-    <$> o .: "activity_type"
-    <*> o .: "average_grade"
-    <*> o .: "city"
-    <*> o .: "climb_category"
-    <*> o .: "country"
-    <*> o .: "distance"
-    <*> o .: "elevation_high"
-    <*> o .: "elevation_low"
-    <*> o .: "end_latitude"
-    <*> o .: "end_latlng"
-    <*> o .: "end_longitude"
-    <*> o .: "id"
-    <*> o .: "maximum_grade"
-    <*> o .: "name"
-    <*> o .: "private"
-    <*> o .: "resource_state"
-    <*> o .: "starred"
-    <*> o .: "start_latitude"
-    <*> o .: "start_latlng"
-    <*> o .: "start_longitude"
-    <*> o .: "state"
-  parseJSON _ = empty
-
--- | <http://strava.github.io/api/v3/segments/#leaderboard>
-data SegmentLeaderboardResponse = SegmentLeaderboardResponse
-  { segmentLeaderboard_effortCount :: Integer
-  , segmentLeaderboard_entryCount  :: Integer
-  , segmentLeaderboard_entries     :: [SegmentLeaderboardEntry]
-  } deriving Show
-
-instance FromJSON SegmentLeaderboardResponse where
-  parseJSON (Object o) = SegmentLeaderboardResponse
-    <$> o .: "effort_count"
-    <*> o .: "entry_count"
-    <*> o .: "entries"
-  parseJSON _ = empty
+$(deriveFromJSON options ''SegmentSummary)
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
 data SegmentLeaderboardEntry = SegmentLeaderboardEntry
@@ -164,33 +97,16 @@ data SegmentLeaderboardEntry = SegmentLeaderboardEntry
   , segmentLeaderboardEntry_startDateLocal :: UTCTime
   } deriving Show
 
-instance FromJSON SegmentLeaderboardEntry where
-  parseJSON (Object o) = SegmentLeaderboardEntry
-    <$> o .: "activity_id"
-    <*> o .: "athlete_gender"
-    <*> o .: "athlete_id"
-    <*> o .: "athlete_name"
-    <*> o .: "athlete_profile"
-    <*> o .: "average_hr"
-    <*> o .: "average_watts"
-    <*> o .: "distance"
-    <*> o .: "effort_id"
-    <*> o .: "elapsed_time"
-    <*> o .: "moving_time"
-    <*> o .: "rank"
-    <*> o .: "start_date"
-    <*> o .: "start_date_local"
-  parseJSON _ = empty
+$(deriveFromJSON options ''SegmentLeaderboardEntry)
 
--- | <http://strava.github.io/api/v3/segments/#explore>
-data SegmentExplorerResponse = SegmentExplorerResponse
-  { segmentExplorerResponse_entries :: [SegmentExplorerEntry]
+-- | <http://strava.github.io/api/v3/segments/#leaderboard>
+data SegmentLeaderboardResponse = SegmentLeaderboardResponse
+  { segmentLeaderboard_effortCount :: Integer
+  , segmentLeaderboard_entryCount  :: Integer
+  , segmentLeaderboard_entries     :: [SegmentLeaderboardEntry]
   } deriving Show
 
-instance FromJSON SegmentExplorerResponse where
-  parseJSON (Object o) = SegmentExplorerResponse
-    <$> o .: "segments"
-  parseJSON _ = empty
+$(deriveFromJSON options ''SegmentLeaderboardResponse)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
 data SegmentExplorerEntry = SegmentExplorerEntry
@@ -208,18 +124,11 @@ data SegmentExplorerEntry = SegmentExplorerEntry
   , segmentExplorerEntry_startLatlng       :: (Double, Double)
   } deriving Show
 
-instance FromJSON SegmentExplorerEntry where
-  parseJSON (Object o) = SegmentExplorerEntry
-    <$> o .: "avg_grade"
-    <*> o .: "climb_category"
-    <*> o .: "climb_category_desc"
-    <*> o .: "distance"
-    <*> o .: "elev_difference"
-    <*> o .: "end_latlng"
-    <*> o .: "id"
-    <*> o .: "name"
-    <*> o .: "points"
-    <*> o .: "resource_state"
-    <*> o .: "starred"
-    <*> o .: "start_latlng"
-  parseJSON _ = empty
+$(deriveFromJSON options ''SegmentExplorerEntry)
+
+-- | <http://strava.github.io/api/v3/segments/#explore>
+data SegmentExplorerResponse = SegmentExplorerResponse
+  { segmentExplorerResponse_entries :: [SegmentExplorerEntry]
+  } deriving Show
+
+$(deriveFromJSON options ''SegmentExplorerResponse)

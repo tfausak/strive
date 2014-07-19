@@ -1,14 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell   #-}
 
 module Strive.Types.Photos
   ( PhotoSummary (..)
   ) where
 
-import Control.Applicative (empty, (<$>), (<*>))
-import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (PhotoType, ResourceState)
+import Strive.Internal.TH (options)
 
 -- | <http://strava.github.io/api/v3/photos/#summary-and-detailed-representation-attributes>
 data PhotoSummary = PhotoSummary
@@ -24,16 +25,4 @@ data PhotoSummary = PhotoSummary
   , photoSummary_uploadedAt    :: UTCTime
   } deriving Show
 
-instance FromJSON PhotoSummary where
-  parseJSON (Object o) = PhotoSummary
-    <$> o .: "activity_id"
-    <*> o .: "caption"
-    <*> o .: "created_at"
-    <*> o .: "id"
-    <*> o .:? "location"
-    <*> o .: "ref"
-    <*> o .: "resource_state"
-    <*> o .: "type"
-    <*> o .: "uid"
-    <*> o .: "uploaded_at"
-  parseJSON _ = empty
+$(deriveFromJSON options ''PhotoSummary)
