@@ -25,7 +25,9 @@ puts <<-HASKELL
 {-# LANGUAGE FunctionalDependencies #-}
 
 -- | Automatically generated lens classes.
-module Strive.Lenses.Classes where
+module Strive.Lenses.Classes
+  ( #{classes.keys.sort.map { |klass| "#{klass} (..)" }.join("\n  , ")}
+  ) where
 
 import Strive.Lenses (Lens)
 HASKELL

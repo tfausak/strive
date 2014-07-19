@@ -2,7 +2,9 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 
 -- | Automatically generated lens instances.
-module Strive.Lenses.Instances where
+module Strive.Lenses.Instances
+  (
+  ) where
 
 import Data.Aeson (Value)
 import Data.ByteString.Lazy (ByteString)

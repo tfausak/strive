@@ -1,5 +1,13 @@
 -- | Helpers for dealing with HTTP requests.
-module Strive.Internal.HTTP where
+module Strive.Internal.HTTP
+  ( delete
+  , get
+  , post
+  , put
+  , buildRequest
+  , performRequest
+  , decodeValue
+  ) where
 
 import Data.Aeson (FromJSON, eitherDecode)
 import Data.ByteString.Char8 (unpack)
