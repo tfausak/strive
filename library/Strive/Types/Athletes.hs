@@ -7,10 +7,7 @@ module Strive.Types.Athletes
   , AthleteMeta (..)
   ) where
 
-import Control.Applicative (empty, (<$>), (<*>))
-import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Aeson.TH (deriveFromJSON)
-import Data.Char (isUpper, toLower)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (Gender, MeasurementPreference, ResourceState)
