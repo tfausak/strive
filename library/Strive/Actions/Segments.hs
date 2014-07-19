@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/segments/>
 module Strive.Actions.Segments
   ( getSegment
   , getStarredSegments

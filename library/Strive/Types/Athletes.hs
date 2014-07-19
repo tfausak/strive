@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell   #-}
 
+-- | <http://strava.github.io/api/v3/athlete/>
 module Strive.Types.Athletes
   ( AthleteDetailed (..)
   , AthleteSummary (..)

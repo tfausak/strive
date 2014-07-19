@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/athlete/>
 module Strive.Actions.Athletes
   ( getCurrentAthlete
   , getAthlete

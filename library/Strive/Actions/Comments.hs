@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/comments/>
 module Strive.Actions.Comments
   ( getActivityComments
   ) where

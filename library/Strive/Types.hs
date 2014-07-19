@@ -1,3 +1,4 @@
+-- | Data types representing responses from the API.
 module Strive.Types
   ( module Strive.Types.Activities
   , module Strive.Types.Athletes

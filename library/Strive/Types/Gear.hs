@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell   #-}
 
+-- | <http://strava.github.io/api/v3/gear/>
 module Strive.Types.Gear
   ( GearDetailed (..)
   , GearSummary (..)

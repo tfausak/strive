@@ -1,3 +1,4 @@
+-- | Optional parameters for actions.
 module Strive.Options
   ( module Strive.Options.Activities
   , module Strive.Options.Athletes

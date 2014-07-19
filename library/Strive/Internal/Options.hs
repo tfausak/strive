@@ -1,3 +1,4 @@
+-- | Common options that apply to many endpoints.
 module Strive.Internal.Options
   ( PaginationOptions (..)
   ) where
@@ -5,6 +6,7 @@ module Strive.Internal.Options
 import Data.Default (Default, def)
 import Network.HTTP.Types (QueryLike, toQuery)
 
+-- | Options for paginating.
 data PaginationOptions = PaginationOptions
   { paginationOptions_page    :: Integer
   , paginationOptions_perPage :: Integer

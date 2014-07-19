@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/uploads/>
 module Strive.Actions.Uploads
   ( uploadActivity
   , getUpload

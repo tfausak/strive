@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- | <http://strava.github.io/api/#polylines>
 module Strive.Types.Polylines
   ( PolylineDetailed (..)
   , PolylineSummary (..)

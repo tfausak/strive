@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/clubs/>
 module Strive.Actions.Clubs
   ( getClub
   , getCurrentClubs

@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/efforts/>
 module Strive.Actions.Efforts
   ( getSegmentEffort
   ) where

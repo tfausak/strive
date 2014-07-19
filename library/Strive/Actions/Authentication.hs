@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/oauth/>
 module Strive.Actions.Authentication
   ( buildAuthorizeUrl
   , exchangeToken

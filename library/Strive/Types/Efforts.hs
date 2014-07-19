@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- | <http://strava.github.io/api/v3/efforts/>
 module Strive.Types.Efforts
   ( EffortDetailed (..)
   ) where

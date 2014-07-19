@@ -1,3 +1,4 @@
+-- | Helper functions for template Haskell, to avoid stage restrictions.
 module Strive.Internal.TH
   ( options
   ) where
@@ -5,6 +6,7 @@ module Strive.Internal.TH
 import Data.Aeson.TH (Options, defaultOptions, fieldLabelModifier)
 import Data.Char (isUpper, toLower)
 
+-- | Default FromJSON options.
 options :: Options
 options = defaultOptions
   { fieldLabelModifier = underscore . dropPrefix

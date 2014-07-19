@@ -39,6 +39,7 @@ puts <<-HASKELL
 {-# LANGUAGE FlexibleInstances     #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
+-- | Automatically generated lens instances.
 module Strive.Lenses.Instances where
 
 import Data.Aeson (Value)

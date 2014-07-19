@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/photos/>
 module Strive.Actions.Photos
   ( getActivityPhotos
   ) where

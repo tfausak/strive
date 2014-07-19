@@ -1,3 +1,4 @@
+-- | <http://strava.github.io/api/v3/follow/>
 module Strive.Actions.Friends
   ( getCurrentFriends
   , getFriends
