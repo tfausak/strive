@@ -83,7 +83,7 @@ library
     buildable: True
     default-language: Haskell2010
     other-extensions: FlexibleInstances FunctionalDependencies
-                      MultiParamTypeClasses OverloadedStrings
+                      MultiParamTypeClasses OverloadedStrings RankNTypes
     hs-source-dirs: library
     other-modules:
         Strive.Internal.HTTP
