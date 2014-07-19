@@ -47,34 +47,7 @@ data AthleteDetailed = AthleteDetailed
   , athleteDetailed_updatedAt             :: UTCTime
   } deriving Show
 
-instance FromJSON AthleteDetailed where
-  parseJSON (Object o) = AthleteDetailed
-    <$> o .: "bikes"
-    <*> o .: "city"
-    <*> o .: "clubs"
-    <*> o .: "country"
-    <*> o .: "created_at"
-    <*> o .: "date_preference"
-    <*> o .: "email"
-    <*> o .: "firstname"
-    <*> o .:? "follower"
-    <*> o .: "follower_count"
-    <*> o .:? "friend"
-    <*> o .: "friend_count"
-    <*> o .:? "ftp"
-    <*> o .: "id"
-    <*> o .: "lastname"
-    <*> o .: "measurement_preference"
-    <*> o .: "mutual_friend_count"
-    <*> o .: "premium"
-    <*> o .: "profile"
-    <*> o .: "profile_medium"
-    <*> o .: "resource_state"
-    <*> o .:? "sex"
-    <*> o .: "shoes"
-    <*> o .: "state"
-    <*> o .: "updated_at"
-  parseJSON _ = empty
+$(deriveFromJSON options ''AthleteDetailed)
 
 -- | <http://strava.github.io/api/v3/athlete/#summary>
 data AthleteSummary = AthleteSummary
