@@ -9,12 +9,12 @@ module Strive.Types.Athletes
 
 import Control.Applicative (empty, (<$>), (<*>))
 import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
-import Data.Aeson.TH (Options, defaultOptions, deriveFromJSON,
-                      fieldLabelModifier)
+import Data.Aeson.TH (deriveFromJSON)
 import Data.Char (isUpper, toLower)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (Gender, MeasurementPreference, ResourceState)
+import Strive.Internal.TH (options)
 import Strive.Types.Clubs (ClubSummary)
 import Strive.Types.Gear (GearSummary)
 
@@ -95,24 +95,7 @@ data AthleteSummary = AthleteSummary
   , athleteSummary_updatedAt     :: UTCTime
   } deriving Show
 
-instance FromJSON AthleteSummary where
-  parseJSON (Object o) = AthleteSummary
-    <$> o .:? "city"
-    <*> o .:? "country"
-    <*> o .: "created_at"
-    <*> o .: "firstname"
-    <*> o .:? "follower"
-    <*> o .:? "friend"
-    <*> o .: "id"
-    <*> o .: "lastname"
-    <*> o .: "premium"
-    <*> o .: "profile"
-    <*> o .: "profile_medium"
-    <*> o .: "resource_state"
-    <*> o .:? "sex"
-    <*> o .: "state"
-    <*> o .: "updated_at"
-  parseJSON _ = empty
+$(deriveFromJSON options ''AthleteSummary)
 
 -- | <http://strava.github.io/api/v3/athlete/#meta>
 data AthleteMeta = AthleteMeta
@@ -120,8 +103,4 @@ data AthleteMeta = AthleteMeta
   , athleteMeta_resourceState :: ResourceState
   } deriving Show
 
-$(deriveFromJSON
-  defaultOptions
-    { fieldLabelModifier = concatMap (\ c -> if isUpper c then ['_', toLower c] else [c]) . tail . dropWhile (/= '_')
-    }
-  ''AthleteMeta)
+$(deriveFromJSON options ''AthleteMeta)

@@ -88,6 +88,7 @@ library
     other-modules:
         Strive.Internal.HTTP
         Strive.Internal.Options
+        Strive.Internal.TH
  
 test-suite readme
     build-depends:
