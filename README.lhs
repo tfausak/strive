@@ -123,7 +123,7 @@ main = do
 #### [Request access](http://strava.github.io/api/v3/oauth/#get-authorize)
 
 ~~~ {.haskell}
-  let authorizeUrl = buildAuthorizeUrl 1790 "http://localhost" ?
+  let authorizeUrl = buildAuthorizeUrl 1790 "http://localhost" $ with
         [ set approvalPrompt False
         , set privateScope   True
         , set writeScope     True
@@ -165,7 +165,7 @@ main = do
 #### [Update current athlete](http://strava.github.io/api/v3/athlete/#update)
 
 ~~~ {.haskell}
-  updatedAthlete <- updateCurrentAthlete client ?
+  updatedAthlete <- updateCurrentAthlete client $ with
     [ set city    (Just "Dallas")
     , set state   (Just "Texas")
     , set country (Just "United States")
@@ -178,7 +178,7 @@ main = do
 #### [List athlete K/QOMs/CRs](http://strava.github.io/api/v3/athlete/#koms)
 
 ~~~ {.haskell}
-  athleteCrs <- getAthleteCrs client 65516 ?
+  athleteCrs <- getAthleteCrs client 65516 $ with
     [ set page    1
     , set perPage 2
     ]
@@ -190,7 +190,7 @@ main = do
 #### [List athlete friends](http://strava.github.io/api/v3/follow/#friends)
 
 ~~~ {.haskell}
-  currentFriends <- getCurrentFriends client ?
+  currentFriends <- getCurrentFriends client $ with
     [ set page    1
     , set perPage 2
     ]
@@ -198,7 +198,7 @@ main = do
 ~~~
 
 ~~~ {.haskell}
-  friends <- getFriends client 65516 ?
+  friends <- getFriends client 65516 $ with
     [ set page    1
     , set perPage 2
     ]
@@ -208,7 +208,7 @@ main = do
 #### [List athlete followers](http://strava.github.io/api/v3/follow/#followers)
 
 ~~~ {.haskell}
-  currentFollowers <- getCurrentFollowers client ?
+  currentFollowers <- getCurrentFollowers client $ with
     [ set page    1
     , set perPage 2
     ]
@@ -216,7 +216,7 @@ main = do
 ~~~
 
 ~~~ {.haskell}
-  followers <- getFollowers client 65516 ?
+  followers <- getFollowers client 65516 $ with
     [ set page    1
     , set perPage 2
     ]
@@ -226,7 +226,7 @@ main = do
 #### [List both following](http://strava.github.io/api/v3/follow/#both)
 
 ~~~ {.haskell}
-  commonFriends <- getCommonFriends client 65516 ?
+  commonFriends <- getCommonFriends client 65516 $ with
     [ set page    1
     , set perPage 2
     ]
@@ -238,7 +238,7 @@ main = do
 #### [Create an activity](http://strava.github.io/api/v3/activities/#create)
 
 ~~~ {.haskell}
-  createdActivity <- createActivity client "An Example" "run" (UTCTime (fromGregorian 1970 0 0) 0) 10 ?
+  createdActivity <- createActivity client "An Example" "run" (UTCTime (fromGregorian 1970 0 0) 0) 10 $ with
     [ set description (Just "...")
     , set distance    (Just 100.0)
     ]
@@ -248,7 +248,7 @@ main = do
 #### [Retrieve an activity](http://strava.github.io/api/v3/activities/#get-details)
 
 ~~~ {.haskell}
-  activity <- getActivity client 141273622 ?
+  activity <- getActivity client 141273622 $ with
     [ set allEfforts True
     ]
   print (activity :: Either String ActivitySummary)
@@ -257,7 +257,7 @@ main = do
 #### [Update an activity](http://strava.github.io/api/v3/activities/#put-updates)
 
 ~~~ {.haskell}
-  updatedActivity <- updateActivity client 141273622 ?
+  updatedActivity <- updateActivity client 141273622 $ with
     [ set name        (Just "WedEx Pit Stop")
     , set type_       (Just Ride)
     , set private     (Just False)
@@ -279,7 +279,7 @@ main = do
 #### [List athlete activities](http://strava.github.io/api/v3/activities/#get-activities)
 
 ~~~ {.haskell}
-  currentActivities <- getCurrentActivities client ?
+  currentActivities <- getCurrentActivities client $ with
     [ set before  (Just (UTCTime (fromGregorian 1970 0 0) 0))
     , set after   (Just (UTCTime (fromGregorian 1970 0 0) 0))
     , set page    1
@@ -291,7 +291,7 @@ main = do
 #### [List friends' activities](http://strava.github.io/api/v3/activities/#get-feed)
 
 ~~~ {.haskell}
-  feed <- getFeed client ?
+  feed <- getFeed client $ with
     [ set page    1
     , set perPage 2
     ]
@@ -317,7 +317,7 @@ main = do
 #### [List activity comments](http://strava.github.io/api/v3/comments/#list)
 
 ~~~ {.haskell}
-  activityComments <- getActivityComments client 90112360 ?
+  activityComments <- getActivityComments client 90112360 $ with
     [ set markdown True
     , set page     1
     , set perPage  2
@@ -330,7 +330,7 @@ main = do
 #### [List activity kudoers](http://strava.github.io/api/v3/kudos/#list)
 
 ~~~ {.haskell}
-  activityKudoers <- getActivityKudoers client 141273622 ?
+  activityKudoers <- getActivityKudoers client 141273622 $ with
     [ set page    1
     , set perPage 2
     ]
@@ -365,7 +365,7 @@ main = do
 #### [List club members](http://strava.github.io/api/v3/clubs/#get-members)
 
 ~~~ {.haskell}
-  clubMembers <- getClubMembers client 11193 ?
+  clubMembers <- getClubMembers client 11193 $ with
     [ set page    1
     , set perPage 2
     ]
@@ -375,7 +375,7 @@ main = do
 #### [List club activities](http://strava.github.io/api/v3/clubs/#get-activities)
 
 ~~~ {.haskell}
-  clubActivities <- getClubActivities client 11193 ?
+  clubActivities <- getClubActivities client 11193 $ with
     [ set page    1
     , set perPage 2
     ]
@@ -403,7 +403,7 @@ main = do
 #### [List starred segments](http://strava.github.io/api/v3/segments/#starred)
 
 ~~~ {.haskell}
-  starredSegments <- getStarredSegments client ?
+  starredSegments <- getStarredSegments client $ with
     [ set page    1
     , set perPage 2
     ]
@@ -413,7 +413,7 @@ main = do
 #### [List efforts](http://strava.github.io/api/v3/segments/#efforts)
 
 ~~~ {.haskell}
-  theSegmentEfforts <- getSegmentEfforts client 4773104 ?
+  theSegmentEfforts <- getSegmentEfforts client 4773104 $ with
     [ set athleteId (Just 65516)
     , set range     (Just ((UTCTime (fromGregorian 1970 0 0) 0), (UTCTime (fromGregorian 1970 0 0) 0)))
     , set page      1
@@ -425,7 +425,7 @@ main = do
 #### [Segment leaderboard](http://strava.github.io/api/v3/segments/#leaderboard)
 
 ~~~ {.haskell}
-  segmentLeaderboardResponse <- getSegmentLeaderboard client 4773104 ?
+  segmentLeaderboardResponse <- getSegmentLeaderboard client 4773104 $ with
     [ set gender      (Just Male)
     , set ageGroup    (Just Ages0To24)
     , set weightClass (Just Kilograms65To74)
@@ -441,7 +441,7 @@ main = do
 #### [Segment explorer](http://strava.github.io/api/v3/segments/#explore)
 
 ~~~ {.haskell}
-  segmentExplorerResponse <- exploreSegments client (32.0, -96.0, 33.0, -95.0) ?
+  segmentExplorerResponse <- exploreSegments client (32.0, -96.0, 33.0, -95.0) $ with
     [ set activityType Riding
     , set minCat 0
     , set maxCat 5
@@ -463,7 +463,7 @@ main = do
 #### [Retrieve activity streams](http://strava.github.io/api/v3/streams/#activity)
 
 ~~~ {.haskell}
-  activityStreams <- getActivityStreams client 141273622 ["latlng", "watts"] ?
+  activityStreams <- getActivityStreams client 141273622 ["latlng", "watts"] $ with
     [ set resolution (Just Low)
     , set seriesType Time
     ]
@@ -473,7 +473,7 @@ main = do
 #### [Retrieve effort streams](http://strava.github.io/api/v3/streams/#effort)
 
 ~~~ {.haskell}
-  effortStreams <- getEffortStreams client 1595370098 ["latlng", "watts"] ?
+  effortStreams <- getEffortStreams client 1595370098 ["latlng", "watts"] $ with
     [ set resolution (Just Low)
     , set seriesType Time
     ]
@@ -483,7 +483,7 @@ main = do
 #### [Retrieve segment streams](http://strava.github.io/api/v3/streams/#segment)
 
 ~~~ {.haskell}
-  segmentStreams <- getSegmentStreams client 4773104 ["latlng", "watts"] ?
+  segmentStreams <- getSegmentStreams client 4773104 ["latlng", "watts"] $ with
     [ set resolution (Just Low)
     , set seriesType Time
     ]
@@ -495,7 +495,7 @@ main = do
 #### [Upload an activity](http://strava.github.io/api/v3/uploads/#post-file)
 
 ~~~ {.haskell}
-  uploadedActivity <- uploadActivity client (pack "...") "gpx.gz" ?
+  uploadedActivity <- uploadActivity client (pack "...") "gpx.gz" $ with
     [ set activityType (Just Ride)
     , set name         (Just "An Example")
     , set description  (Just "...")

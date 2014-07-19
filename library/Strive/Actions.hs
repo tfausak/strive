@@ -14,7 +14,6 @@ module Strive.Actions
   , module Strive.Actions.Streams
   , module Strive.Actions.Uploads
   , with
-  , (?)
   ) where
 
 import Strive.Actions.Activities
@@ -36,8 +35,3 @@ import Data.Default (Default, def)
 -- | Helper function for easily performing actions.
 with :: Default a => [a -> a] -> a
 with = foldr ($) def
-
--- | Infix alias of '$ with'.
-infixr 0 ?
-(?) :: Default a => (a -> b) -> [a -> a] -> b
-(?) = (. with)
