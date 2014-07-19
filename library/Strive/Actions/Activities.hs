@@ -13,7 +13,6 @@ module Strive.Actions.Activities
 import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import Data.Monoid ((<>))
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Conduit (responseBody, responseStatus)
 import Network.HTTP.Types (Query, methodDelete, noContent204, toQuery)
@@ -35,20 +34,20 @@ createActivity client name type_ startDateLocal elapsedTime options = post clien
     , ("type", type_)
     , ("start_date_local", unpack (toStrict (encode startDateLocal)))
     , ("elapsed_time", show elapsedTime)
-    ] <> toQuery options
+    ] ++ toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#get-details>
 getActivity :: Client -> Integer -> GetActivityOptions -> IO (Either String ActivitySummary)
 getActivity client activityId options = get client resource query
  where
-  resource = "api/v3/activities/" <> show activityId
+  resource = "api/v3/activities/" ++ show activityId
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#put-updates>
 updateActivity :: Client -> Integer -> UpdateActivityOptions -> IO (Either String ActivityDetailed)
 updateActivity client activityId options = put client resource query
  where
-  resource = "api/v3/activities/" <> show activityId
+  resource = "api/v3/activities/" ++ show activityId
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#delete>
@@ -60,7 +59,7 @@ deleteActivity client activityId = do
     then Right ()
     else Left (unpack (toStrict (responseBody response))))
  where
-  resource = "api/v3/activities/" <> show activityId
+  resource = "api/v3/activities/" ++ show activityId
   query = [] :: Query
 
 -- | <http://strava.github.io/api/v3/activities/#get-activities>
@@ -81,12 +80,12 @@ getFeed client options = get client resource query
 getActivityZones :: Client -> Integer -> IO (Either String [ActivityZoneDetailed])
 getActivityZones client activityId = get client resource query
  where
-  resource = "api/v3/activities/" <> show activityId <> "/zones"
+  resource = "api/v3/activities/" ++ show activityId ++ "/zones"
   query = [] :: Query
 
 -- | <http://strava.github.io/api/v3/activities/#laps>
 getActivityLaps :: Client -> Integer -> IO (Either String [ActivityLapSummary])
 getActivityLaps client activityId = get client resource query
  where
-  resource = "api/v3/activities/" <> show activityId <> "/laps"
+  resource = "api/v3/activities/" ++ show activityId ++ "/laps"
   query = [] :: Query

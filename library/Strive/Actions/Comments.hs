@@ -2,7 +2,6 @@ module Strive.Actions.Comments
   ( getActivityComments
   ) where
 
-import Data.Monoid ((<>))
 import Network.HTTP.Types (toQuery)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
@@ -13,5 +12,5 @@ import Strive.Types (CommentSummary)
 getActivityComments :: Client -> Integer -> GetActivityCommentsOptions -> IO (Either String [CommentSummary])
 getActivityComments client activityId options = get client resource query
  where
-  resource = "api/v3/activities/" <> show activityId <> "/comments"
+  resource = "api/v3/activities/" ++ show activityId ++ "/comments"
   query = toQuery options

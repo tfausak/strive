@@ -4,7 +4,6 @@ module Strive.Internal.HTTP where
 import Data.Aeson (FromJSON, eitherDecode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (ByteString)
-import Data.Monoid ((<>))
 import Network.HTTP.Conduit (Request, Response, checkStatus, httpLbs, method,
                              parseUrl, responseBody)
 import Network.HTTP.Types (Method, Query, QueryLike, methodDelete, methodGet,
@@ -48,7 +47,7 @@ buildUrl :: QueryLike q => Client -> String -> q -> String
 buildUrl client resource query = concat
   [ "https://www.strava.com/"
   , resource
-  , unpack (renderQuery True (buildQuery client <> toQuery query))
+  , unpack (renderQuery True (buildQuery client ++ toQuery query))
   ]
 
 -- | Build a query.

@@ -5,7 +5,6 @@ module Strive.Actions.Authentication
   ) where
 
 import Data.ByteString.Char8 (unpack)
-import Data.Monoid ((<>))
 import Network.HTTP.Types (Query, renderQuery, toQuery)
 import Strive.Client (Client, buildClient)
 import Strive.Internal.HTTP (post)
@@ -15,13 +14,13 @@ import Strive.Types (DeauthorizationResponse, TokenExchangeResponse)
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
 buildAuthorizeUrl :: Integer -> String -> BuildAuthorizeUrlOptions -> String
 buildAuthorizeUrl clientId redirectUri options =
-  "https://www.strava.com/oauth/authorize" <> unpack (renderQuery True query)
+  "https://www.strava.com/oauth/authorize" ++ unpack (renderQuery True query)
  where
   query = toQuery
     [ ("client_id", show clientId)
     , ("redirect_uri", redirectUri)
     , ("response_type", "code")
-    ] <> toQuery options
+    ] ++ toQuery options
 
 -- | <http://strava.github.io/api/v3/oauth/#post-token>
 exchangeToken :: Integer -> String -> String -> IO (Either String TokenExchangeResponse)

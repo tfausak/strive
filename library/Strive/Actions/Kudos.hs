@@ -2,7 +2,6 @@ module Strive.Actions.Kudos
   ( getActivityKudoers
   ) where
 
-import Data.Monoid ((<>))
 import Network.HTTP.Types (toQuery)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
@@ -13,5 +12,5 @@ import Strive.Types (AthleteSummary)
 getActivityKudoers :: Client -> Integer -> GetActivityKudoersOptions -> IO (Either String [AthleteSummary])
 getActivityKudoers client activityId options = get client resource query
  where
-  resource = "api/v3/activities/" <> show activityId <> "/kudos"
+  resource = "api/v3/activities/" ++ show activityId ++ "/kudos"
   query = toQuery options

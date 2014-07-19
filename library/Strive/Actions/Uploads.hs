@@ -4,7 +4,6 @@ module Strive.Actions.Uploads
   ) where
 
 import Data.ByteString (ByteString)
-import Data.Monoid ((<>))
 import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
 import Network.HTTP.Types (Query, methodPost, toQuery)
 import Strive.Client (Client)
@@ -25,11 +24,11 @@ uploadActivity client body dataType options = do
   resource = "api/v3/uploads"
   query = toQuery
     [ ("data_type", dataType)
-    ] <> toQuery options
+    ] ++ toQuery options
 
 -- | <http://strava.github.io/api/v3/uploads/#get-status>
 getUpload :: Client -> Integer -> IO (Either String UploadStatus)
 getUpload client uploadId = get client resource query
  where
-  resource = "api/v3/uploads/" <> show uploadId
+  resource = "api/v3/uploads/" ++ show uploadId
   query = [] :: Query
