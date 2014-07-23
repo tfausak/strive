@@ -1,11 +1,31 @@
 # Vagrant 1.6.3 <http://www.vagrantup.com/downloads.html>
 # VirtualBox 4.3.14 <https://www.virtualbox.org/wiki/Downloads>
+require 'rbconfig'
 
 Vagrant.require_version '~> 1.6.3'
+
+# How much RAM (in MB) does the host machine have?
+def memory
+  case RbConfig::CONFIG['host_os']
+  when /darwin/
+    Integer(`sysctl -n hw.memsize`) / (1 << 20)
+  when /mingw/
+    `wmic memorychip get capacity`.each_line.map(&:to_i).reduce(0, :+) / (1 << 20)
+  else
+    1024
+  end
+end
 
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/trusty64'
   config.vm.box_version = '~> 14.04'
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize({
+      'modifyvm' => :id,
+      '--memory' => memory / 2
+    }.to_a.flatten)
+  end
 
   config.vm.provision :shell, inline: <<-'SHELL'
     set -e -x
@@ -39,7 +59,6 @@ Vagrant.configure('2') do |config|
       cd ../..
     fi
     cabal update
-    cabal sandbox init
     for package in happy scan stylish-haskell
     do
       which $package ||
