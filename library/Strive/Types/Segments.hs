@@ -101,9 +101,9 @@ $(deriveFromJSON options ''SegmentLeaderboardEntry)
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
 data SegmentLeaderboardResponse = SegmentLeaderboardResponse
-  { segmentLeaderboard_effortCount :: Integer
-  , segmentLeaderboard_entryCount  :: Integer
-  , segmentLeaderboard_entries     :: [SegmentLeaderboardEntry]
+  { segmentLeaderboardResponse_effortCount :: Integer
+  , segmentLeaderboardResponse_entryCount  :: Integer
+  , segmentLeaderboardResponse_entries     :: [SegmentLeaderboardEntry]
   } deriving Show
 
 $(deriveFromJSON options ''SegmentLeaderboardResponse)
