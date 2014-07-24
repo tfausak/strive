@@ -23,7 +23,7 @@ match string = case matchRegex pattern string of
   _ -> Nothing
 
 pattern :: Regex
-pattern = mkRegex "[{,] (\\w+)_(\\w+) +:: (.+)$"
+pattern = mkRegex "[{,] *([^_]+)_([^ ]+) *:: *(.+)"
 
 buildClasses :: [(String, String, String)] -> [String]
 buildClasses = sort . nub . map buildClass

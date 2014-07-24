@@ -29,9 +29,11 @@ library
         aeson ==0.7.*,
         bytestring ==0.10.*,
         data-default ==0.5.*,
+        Glob ==0.7.*,
         gpolyline ==0.1.*,
         http-conduit ==2.*,
         http-types ==0.8.*,
+        regex-compat ==0.95.*,
         text ==0.11.* || ==1.*,
         time ==1.*,
         transformers ==0.3.*
