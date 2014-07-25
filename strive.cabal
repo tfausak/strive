@@ -13,7 +13,7 @@ description:
     A Haskell client for the <http://strava.github.io/api/ Strava V3 API>.
 category: API
 author: Taylor Fausak
-tested-with: GHC ==7.6.3 GHC ==7.8.2
+tested-with: GHC ==7.6.3 GHC ==7.8.3
 extra-source-files:
     CHANGELOG.md
     CONTRIBUTING.md
@@ -34,9 +34,19 @@ library
         http-conduit ==2.*,
         http-types ==0.8.*,
         regex-compat ==0.95.*,
-        text ==0.11.* || ==1.*,
         time ==1.*,
         transformers ==0.3.*
+     
+    if impl(ghc <7.8)
+        build-depends:
+            text ==0.11.*
+        exposed: True
+        buildable: True
+    else
+        build-depends:
+            text ==1.*
+        exposed: True
+        buildable: True
     exposed-modules:
         Strive
         Strive.Actions
