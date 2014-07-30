@@ -1,4 +1,4 @@
-.PHONY: all build clean configure format haddock install lenses repl test
+.PHONY: all build clean configure format haddock install repl test
 
 all: install configure build test haddock
 
@@ -24,11 +24,6 @@ install:
 	cabal sandbox init
 	cabal update
 	cabal install --allow-newer=base --enable-tests --jobs --only-dependencies
-
-lenses:
-	rm library/Strive/Lenses/Classes.hs
-	rm library/Strive/Lenses/Instances.hs
-	cabal exec runhaskell -- -Wall library/Strive/Lenses/lenses.hs
 
 repl:
 	cabal repl lib:strive

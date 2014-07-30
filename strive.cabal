@@ -34,6 +34,7 @@ library
         http-conduit ==2.*,
         http-types ==0.8.*,
         regex-compat ==0.95.*,
+        template-haskell ==2.*,
         time ==1.*,
         transformers ==0.3.*
      
@@ -66,8 +67,6 @@ library
         Strive.Client
         Strive.Enums
         Strive.Lenses
-        Strive.Lenses.Classes
-        Strive.Lenses.Instances
         Strive.Options
         Strive.Options.Activities
         Strive.Options.Athletes
