@@ -3,6 +3,7 @@ module Strive
   ( module Strive.Actions
   , module Strive.Client
   , module Strive.Enums
+  , module Strive.Internal.Lenses
   , module Strive.Lenses
   , module Strive.Options
   , module Strive.Types
@@ -11,6 +12,7 @@ module Strive
 import Strive.Actions
 import Strive.Client
 import Strive.Enums
+import Strive.Internal.Lenses
 import Strive.Lenses
 import Strive.Options
 import Strive.Types

@@ -26,10 +26,9 @@ underscore = concatMap go
     else [c]
 
 dropPrefix :: String -> String
-dropPrefix = tail . dropWhile (/= '_')
+dropPrefix = drop 1 . dropWhile (/= '_')
 
---
-
+-- | Generate lens classes and instances for a type.
 makeLenses :: String -> Q [Dec]
 makeLenses string = do
   maybeName <- lookupTypeName string
@@ -87,7 +86,7 @@ capitalize "" = ""
 capitalize (c : cs) = toUpper c : cs
 
 getFieldName :: VarStrictType -> String
-getFieldName (var, _, _) = (drop 1 . dropWhile (/= '_') . show) var
+getFieldName (var, _, _) = (dropPrefix . show) var
 
 makeLensInstances :: Name -> [VarStrictType] -> Q [Dec]
 makeLensInstances name triples = mapM (makeLensInstance name) triples
