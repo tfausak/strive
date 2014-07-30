@@ -22,6 +22,7 @@ haddock:
 
 install:
 	cabal sandbox init
+	cabal update
 	cabal install --allow-newer=base --enable-tests --jobs --only-dependencies
 
 lenses:
