@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.6.0 (2014-07-30)
+
+- Derived lens classes and instances using template Haskell.
+- Went back to clobbering Prelude exports (and keywords).
+- Added "Response" to `SegmentLeaderboardResponse` field names.
+- Created Vagrant configuration.
+- Derived JSON instances using template Haskell.
+- Replaced `client_httpManager` with `client_requester`.
+- Removed `?` infix operator.
+- Switched to functor-based lenses.
+- Created enums for some options.
+- Added support for GHC 7.8.2.
+
 ## v0.5.1 (2014-07-08)
 
 - Avoided clobbering Prelude exports by appending underscores (`id` became
