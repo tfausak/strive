@@ -2,7 +2,6 @@
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE TemplateHaskell        #-}
 
-
 -- | Lens classes and instances generated with template Haskell.
 module Strive.Internal.Lenses where
 
