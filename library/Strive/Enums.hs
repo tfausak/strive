@@ -15,6 +15,7 @@ module Strive.Enums
   , SegmentActivityType (..)
   , SeriesType (..)
   , SportType (..)
+  , StreamType (..)
   , WeightClass (..)
   ) where
 
@@ -224,6 +225,33 @@ instance FromJSON SportType where
   parseJSON (String "running") = return SportRunning
   parseJSON (String "triathalon") = return SportTriathalon
   parseJSON _ = empty
+
+-- | A stream's type.
+data StreamType
+  = AltitudeStream
+  | CadenceStream
+  | DistanceStream
+  | GradeSmoothStream
+  | HeartrateStream
+  | LatlngStream
+  | MovingStream
+  | TempStream
+  | TimeStream
+  | VelocitySmoothStream
+  | WattsStream
+
+instance Show StreamType where
+  show AltitudeStream = "altitude"
+  show CadenceStream = "cadence"
+  show DistanceStream = "distance"
+  show GradeSmoothStream = "grade_smooth"
+  show HeartrateStream = "heartrate"
+  show LatlngStream = "latlng"
+  show MovingStream = "moving"
+  show TempStream = "temp"
+  show TimeStream = "time"
+  show VelocitySmoothStream = "velocity_smooth"
+  show WattsStream = "watts"
 
 -- | An athlete's weight class.
 data WeightClass

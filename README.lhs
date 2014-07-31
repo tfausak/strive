@@ -463,7 +463,7 @@ main = do
 #### [Retrieve activity streams](http://strava.github.io/api/v3/streams/#activity)
 
 ~~~ {.haskell}
-  activityStreams <- getActivityStreams client 141273622 ["latlng", "watts"] $ with
+  activityStreams <- getActivityStreams client 141273622 [LatlngStream, WattsStream] $ with
     [ set resolution (Just Low)
     , set seriesType Time
     ]
@@ -473,7 +473,7 @@ main = do
 #### [Retrieve effort streams](http://strava.github.io/api/v3/streams/#effort)
 
 ~~~ {.haskell}
-  effortStreams <- getEffortStreams client 1595370098 ["latlng", "watts"] $ with
+  effortStreams <- getEffortStreams client 1595370098 [LatlngStream, WattsStream] $ with
     [ set resolution (Just Low)
     , set seriesType Time
     ]
@@ -483,7 +483,7 @@ main = do
 #### [Retrieve segment streams](http://strava.github.io/api/v3/streams/#segment)
 
 ~~~ {.haskell}
-  segmentStreams <- getSegmentStreams client 4773104 ["latlng", "watts"] $ with
+  segmentStreams <- getSegmentStreams client 4773104 [LatlngStream, WattsStream] $ with
     [ set resolution (Just Low)
     , set seriesType Time
     ]
