@@ -1,4 +1,4 @@
--- | <http://strava.github.io/api/v3/comments/>
+-- | 'Strive.Actions.Comments'
 module Strive.Options.Comments
   ( GetActivityCommentsOptions (..)
   ) where

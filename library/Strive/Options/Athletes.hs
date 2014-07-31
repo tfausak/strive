@@ -1,4 +1,4 @@
--- | <http://strava.github.io/api/v3/athlete/>
+-- | 'Strive.Actions.Athletes'
 module Strive.Options.Athletes
   ( UpdateCurrentAthleteOptions (..)
   , GetAthleteCrsOptions (..)

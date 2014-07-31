@@ -1,4 +1,4 @@
--- | <http://strava.github.io/api/v3/clubs/>
+-- | 'Strive.Actions.Clubs'
 module Strive.Options.Clubs
   ( GetClubMembersOptions (..)
   , GetClubActivitiesOptions (..)

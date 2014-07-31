@@ -1,4 +1,4 @@
--- | <http://strava.github.io/api/v3/uploads/>
+-- | 'Strive.Actions.Uploads'
 module Strive.Options.Uploads
   ( UploadActivityOptions (..)
   ) where

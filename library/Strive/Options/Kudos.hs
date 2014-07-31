@@ -1,4 +1,4 @@
--- | <http://strava.github.io/api/v3/kudos/>
+-- | 'Strive.Actions.Kudos'
 module Strive.Options.Kudos
   ( GetActivityKudoersOptions (..)
   ) where

@@ -1,4 +1,4 @@
--- | <http://strava.github.io/api/v3/oauth/>
+-- | 'Strive.Actions.Authentication'
 module Strive.Options.Authentication
   ( BuildAuthorizeUrlOptions (..)
   ) where

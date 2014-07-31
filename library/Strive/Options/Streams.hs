@@ -1,4 +1,4 @@
--- | <http://strava.github.io/api/v3/streams/>
+-- | 'Strive.Actions.Streams'
 module Strive.Options.Streams
   ( GetStreamsOptions (..)
   ) where

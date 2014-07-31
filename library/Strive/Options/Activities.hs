@@ -1,4 +1,4 @@
--- | <http://strava.github.io/api/v3/activities/>
+-- | 'Strive.Actions.Activities'
 module Strive.Options.Activities
   ( CreateActivityOptions (..)
   , GetActivityOptions (..)
