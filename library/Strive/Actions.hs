@@ -13,7 +13,6 @@ module Strive.Actions
   , module Strive.Actions.Segments
   , module Strive.Actions.Streams
   , module Strive.Actions.Uploads
-  , with
   ) where
 
 import Strive.Actions.Activities
@@ -29,9 +28,3 @@ import Strive.Actions.Photos
 import Strive.Actions.Segments
 import Strive.Actions.Streams
 import Strive.Actions.Uploads
-
-import Data.Default (Default, def)
-
--- | Helper function for easily performing actions.
-with :: Default a => [a -> a] -> a
-with = foldr ($) def

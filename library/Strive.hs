@@ -7,6 +7,7 @@ module Strive
   , module Strive.Lenses
   , module Strive.Options
   , module Strive.Types
+  , module Strive.Utilities
   ) where
 
 import Strive.Actions
@@ -16,3 +17,4 @@ import Strive.Internal.Lenses
 import Strive.Lenses
 import Strive.Options
 import Strive.Types
+import Strive.Utilities
