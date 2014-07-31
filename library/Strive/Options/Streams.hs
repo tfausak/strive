@@ -22,5 +22,5 @@ instance Default GetStreamsOptions where
 instance QueryLike GetStreamsOptions where
   toQuery options = toQuery
     [ ("resolution", fmap show (getStreamsOptions_resolution options))
-    , ("distance", Just (show (getStreamsOptions_seriesType options)))
+    , ("series_type", Just (show (getStreamsOptions_seriesType options)))
     ]
