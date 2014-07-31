@@ -27,5 +27,5 @@ buildClient accessToken = do
   manager <- newManager
   return Client
     { client_accessToken = accessToken
-    , client_requester   = flip httpLbs manager
+    , client_requester = flip httpLbs manager
     }

@@ -125,9 +125,9 @@ main = do
 ~~~ {.haskell}
   let authorizeUrl = buildAuthorizeUrl 1790 "http://localhost" $ with
         [ set approvalPrompt False
-        , set privateScope   True
-        , set writeScope     True
-        , set state          "..."
+        , set privateScope True
+        , set writeScope True
+        , set state "..."
         ]
   print (authorizeUrl :: String)
 ~~~
@@ -166,11 +166,11 @@ main = do
 
 ~~~ {.haskell}
   updatedAthlete <- updateCurrentAthlete client $ with
-    [ set city    (Just "Dallas")
-    , set state   (Just "Texas")
+    [ set city (Just "Dallas")
+    , set state (Just "Texas")
     , set country (Just "United States")
-    , set sex     (Just Male)
-    , set weight  (Just 72.57)
+    , set sex (Just Male)
+    , set weight (Just 72.57)
     ]
   print (updatedAthlete :: Either String AthleteDetailed)
 ~~~
@@ -179,7 +179,7 @@ main = do
 
 ~~~ {.haskell}
   athleteCrs <- getAthleteCrs client 65516 $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (athleteCrs :: Either String [EffortDetailed])
@@ -191,7 +191,7 @@ main = do
 
 ~~~ {.haskell}
   currentFriends <- getCurrentFriends client $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (currentFriends :: Either String [AthleteSummary])
@@ -199,7 +199,7 @@ main = do
 
 ~~~ {.haskell}
   friends <- getFriends client 65516 $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (friends :: Either String [AthleteSummary])
@@ -209,7 +209,7 @@ main = do
 
 ~~~ {.haskell}
   currentFollowers <- getCurrentFollowers client $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (currentFollowers :: Either String [AthleteSummary])
@@ -217,7 +217,7 @@ main = do
 
 ~~~ {.haskell}
   followers <- getFollowers client 65516 $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (followers :: Either String [AthleteSummary])
@@ -227,7 +227,7 @@ main = do
 
 ~~~ {.haskell}
   commonFriends <- getCommonFriends client 65516 $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (commonFriends :: Either String [AthleteSummary])
@@ -240,7 +240,7 @@ main = do
 ~~~ {.haskell}
   createdActivity <- createActivity client "An Example" "run" (UTCTime (fromGregorian 1970 0 0) 0) 10 $ with
     [ set description (Just "...")
-    , set distance    (Just 100.0)
+    , set distance (Just 100.0)
     ]
   print (createdActivity :: Either String ActivityDetailed)
 ~~~
@@ -258,12 +258,12 @@ main = do
 
 ~~~ {.haskell}
   updatedActivity <- updateActivity client 141273622 $ with
-    [ set name        (Just "WedEx Pit Stop")
+    [ set name (Just "WedEx Pit Stop")
     , set Strive.type (Just Ride)
-    , set private     (Just False)
-    , set commute     (Just True)
-    , set trainer     (Just False)
-    , set gearId      (Just "b387882")
+    , set private (Just False)
+    , set commute (Just True)
+    , set trainer (Just False)
+    , set gearId (Just "b387882")
     , set description Nothing
     ]
   print (updatedActivity :: Either String ActivityDetailed)
@@ -280,9 +280,9 @@ main = do
 
 ~~~ {.haskell}
   currentActivities <- getCurrentActivities client $ with
-    [ set before  (Just (UTCTime (fromGregorian 1970 0 0) 0))
-    , set after   (Just (UTCTime (fromGregorian 1970 0 0) 0))
-    , set page    1
+    [ set before (Just (UTCTime (fromGregorian 1970 0 0) 0))
+    , set after (Just (UTCTime (fromGregorian 1970 0 0) 0))
+    , set page 1
     , set perPage 2
     ]
   print (currentActivities :: Either String [ActivitySummary])
@@ -292,7 +292,7 @@ main = do
 
 ~~~ {.haskell}
   feed <- getFeed client $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (feed :: Either String [ActivitySummary])
@@ -319,8 +319,8 @@ main = do
 ~~~ {.haskell}
   activityComments <- getActivityComments client 90112360 $ with
     [ set markdown True
-    , set page     1
-    , set perPage  2
+    , set page 1
+    , set perPage 2
     ]
   print (activityComments :: Either String [CommentSummary])
 ~~~
@@ -331,7 +331,7 @@ main = do
 
 ~~~ {.haskell}
   activityKudoers <- getActivityKudoers client 141273622 $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (activityKudoers :: Either String [AthleteSummary])
@@ -366,7 +366,7 @@ main = do
 
 ~~~ {.haskell}
   clubMembers <- getClubMembers client 11193 $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (clubMembers :: Either String [AthleteSummary])
@@ -376,7 +376,7 @@ main = do
 
 ~~~ {.haskell}
   clubActivities <- getClubActivities client 11193 $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (clubActivities :: Either String [ActivitySummary])
@@ -404,7 +404,7 @@ main = do
 
 ~~~ {.haskell}
   starredSegments <- getStarredSegments client $ with
-    [ set page    1
+    [ set page 1
     , set perPage 2
     ]
   print (starredSegments :: Either String [SegmentSummary])
@@ -415,9 +415,9 @@ main = do
 ~~~ {.haskell}
   theSegmentEfforts <- getSegmentEfforts client 4773104 $ with
     [ set athleteId (Just 65516)
-    , set range     (Just ((UTCTime (fromGregorian 1970 0 0) 0), (UTCTime (fromGregorian 1970 0 0) 0)))
-    , set page      1
-    , set perPage   2
+    , set range (Just ((UTCTime (fromGregorian 1970 0 0) 0), (UTCTime (fromGregorian 1970 0 0) 0)))
+    , set page 1
+    , set perPage 2
     ]
   print (theSegmentEfforts :: Either String [EffortDetailed])
 ~~~
@@ -426,14 +426,14 @@ main = do
 
 ~~~ {.haskell}
   segmentLeaderboardResponse <- getSegmentLeaderboard client 4773104 $ with
-    [ set gender      (Just Male)
-    , set ageGroup    (Just Ages0To24)
+    [ set gender (Just Male)
+    , set ageGroup (Just Ages0To24)
     , set weightClass (Just Kilograms65To74)
-    , set following   (Just True)
-    , set clubId      (Just 11193)
-    , set dateRange   (Just "this_year")
-    , set page        1
-    , set perPage     2
+    , set following (Just True)
+    , set clubId (Just 11193)
+    , set dateRange (Just "this_year")
+    , set page 1
+    , set perPage 2
     ]
   print (segmentLeaderboardResponse :: Either String SegmentLeaderboardResponse)
 ~~~
@@ -497,11 +497,11 @@ main = do
 ~~~ {.haskell}
   uploadedActivity <- uploadActivity client (pack "...") "gpx.gz" $ with
     [ set activityType (Just Ride)
-    , set name         (Just "An Example")
-    , set description  (Just "...")
-    , set private      True
-    , set trainer      False
-    , set externalId   (Just "...")
+    , set name (Just "An Example")
+    , set description (Just "...")
+    , set private True
+    , set trainer False
+    , set externalId (Just "...")
     ]
   print (uploadedActivity :: Either String UploadStatus)
 ~~~
