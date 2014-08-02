@@ -5,9 +5,7 @@ module Strive.Internal.TH
   ) where
 
 import Data.Aeson.TH (Options, defaultOptions, fieldLabelModifier)
-import Data.Char (isUpper, toLower)
-
-import Data.Char (toUpper)
+import Data.Char (isUpper, toLower, toUpper)
 import Data.Maybe (isJust)
 import Language.Haskell.TH
 import Language.Haskell.TH.Syntax
