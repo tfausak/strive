@@ -1,43 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Strive by tfausak</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Strive : A Haskell client for the Strava V3 API.">
 
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Strive</title>
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/tfausak/strive">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/tfausak/strive/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/tfausak/strive/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
 
-    <div class="wrapper">
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/tfausak/strive">View on GitHub</a>
 
-      <section>
-        <div id="title">
-          <h1>Strive</h1>
-          <p>A Haskell client for the Strava V3 API.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/tfausak">tfausak</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+          <h1 id="project_title">Strive</h1>
+          <h2 id="project_tagline">A Haskell client for the Strava V3 API.</h2>
 
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/tfausak/strive/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/tfausak/strive/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <p><a href="http://hackage.haskell.org/package/strive"><img src="http://img.shields.io/hackage/v/strive.svg" alt="Hackage Version"></a>
 <a href="https://travis-ci.org/tfausak/strive"><img src="https://travis-ci.org/tfausak/strive.svg?branch=master" alt="Build Status"></a></p>
 
@@ -610,7 +603,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="retrieve-activity-streams" class="anchor" href="#retrieve-activity-streams"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/streams/#activity">Retrieve activity streams</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">activityStreams</span> <span class="ow">&lt;-</span> <span class="n">getActivityStreams</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="p">[</span><span class="s">"latlng"</span><span class="p">,</span> <span class="s">"watts"</span><span class="p">]</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">activityStreams</span> <span class="ow">&lt;-</span> <span class="n">getActivityStreams</span> <span class="n">client</span> <span class="mi">141273622</span> <span class="p">[</span><span class="kt">LatlngStream</span><span class="p">,</span> <span class="kt">WattsStream</span><span class="p">]</span> <span class="o">$</span> <span class="n">with</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">resolution</span> <span class="p">(</span><span class="kt">Just</span> <span class="kt">Low</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">seriesType</span> <span class="kt">Time</span>
     <span class="p">]</span>
@@ -621,7 +614,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="retrieve-effort-streams" class="anchor" href="#retrieve-effort-streams"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/streams/#effort">Retrieve effort streams</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">effortStreams</span> <span class="ow">&lt;-</span> <span class="n">getEffortStreams</span> <span class="n">client</span> <span class="mi">1595370098</span> <span class="p">[</span><span class="s">"latlng"</span><span class="p">,</span> <span class="s">"watts"</span><span class="p">]</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">effortStreams</span> <span class="ow">&lt;-</span> <span class="n">getEffortStreams</span> <span class="n">client</span> <span class="mi">1595370098</span> <span class="p">[</span><span class="kt">LatlngStream</span><span class="p">,</span> <span class="kt">WattsStream</span><span class="p">]</span> <span class="o">$</span> <span class="n">with</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">resolution</span> <span class="p">(</span><span class="kt">Just</span> <span class="kt">Low</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">seriesType</span> <span class="kt">Time</span>
     <span class="p">]</span>
@@ -632,7 +625,7 @@ accessing the fields. For instance, instead of doing this:</p>
 <a name="retrieve-segment-streams" class="anchor" href="#retrieve-segment-streams"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/streams/#segment">Retrieve segment streams</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="n">segmentStreams</span> <span class="ow">&lt;-</span> <span class="n">getSegmentStreams</span> <span class="n">client</span> <span class="mi">4773104</span> <span class="p">[</span><span class="s">"latlng"</span><span class="p">,</span> <span class="s">"watts"</span><span class="p">]</span> <span class="o">$</span> <span class="n">with</span>
+<div class="highlight highlight-haskell"><pre>  <span class="n">segmentStreams</span> <span class="ow">&lt;-</span> <span class="n">getSegmentStreams</span> <span class="n">client</span> <span class="mi">4773104</span> <span class="p">[</span><span class="kt">LatlngStream</span><span class="p">,</span> <span class="kt">WattsStream</span><span class="p">]</span> <span class="o">$</span> <span class="n">with</span>
     <span class="p">[</span> <span class="n">set</span> <span class="n">resolution</span> <span class="p">(</span><span class="kt">Just</span> <span class="kt">Low</span><span class="p">)</span>
     <span class="p">,</span> <span class="n">set</span> <span class="n">seriesType</span> <span class="kt">Time</span>
     <span class="p">]</span>
@@ -666,9 +659,17 @@ accessing the fields. For instance, instead of doing this:</p>
   <span class="n">print</span> <span class="p">(</span><span class="n">upload</span> <span class="ow">::</span> <span class="kt">Either</span> <span class="kt">String</span> <span class="kt">UploadStatus</span><span class="p">)</span>
 </pre></div>
       </section>
-
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Strive maintained by <a href="https://github.com/tfausak">tfausak</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
     
+
   </body>
 </html>
