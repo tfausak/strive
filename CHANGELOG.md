@@ -1,5 +1,8 @@
 # Changelog
 
+- Moved `Strive.Actions.with` to `Strive.Utilities.with`.
+- Created `Strive.Enums.StreamType`.
+
 ## v0.6.0 (2014-07-30)
 
 - Derived lens classes and instances using template Haskell.
