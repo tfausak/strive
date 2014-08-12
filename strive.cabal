@@ -11,6 +11,8 @@ bug-reports: https://github.com/tfausak/strive/issues
 synopsis: A Haskell client for the Strava V3 API.
 description:
     A Haskell client for the <http://strava.github.io/api/ Strava V3 API>.
+    .
+    Check out <https://github.com/tfausak/strive#readme the readme> for complete documentation.
 category: API
 author: Taylor Fausak
 tested-with: GHC ==7.6.3 GHC ==7.8.3
