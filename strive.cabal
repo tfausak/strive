@@ -29,11 +29,9 @@ library
         aeson ==0.7.*,
         bytestring ==0.10.*,
         data-default ==0.5.*,
-        Glob ==0.7.*,
         gpolyline ==0.1.*,
         http-conduit ==2.*,
         http-types ==0.8.*,
-        regex-compat ==0.95.*,
         template-haskell ==2.*,
         time ==1.*,
         transformers ==0.3.*
@@ -107,11 +105,9 @@ test-suite readme
     build-depends:
         base -any,
         strive -any,
-        aeson ==0.7.*,
-        bytestring ==0.10.*,
-        data-default ==0.5.*,
+        bytestring -any,
         markdown-unlit ==0.2.*,
-        time ==1.*
+        time -any
     type: exitcode-stdio-1.0
     main-is: README.lhs
     buildable: True
@@ -120,7 +116,7 @@ test-suite readme
 test-suite hlint
     build-depends:
         base -any,
-        hlint ==1.*
+        hlint ==1.9.*
     type: exitcode-stdio-1.0
     main-is: HLint.hs
     buildable: True
