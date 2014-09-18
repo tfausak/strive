@@ -3,7 +3,7 @@ version: 0.6.1
 cabal-version: >=1.10
 build-type: Simple
 license: MIT
-license-file: LICENSE.txt
+license-file: LICENSE.md
 copyright: 2014 Taylor Fausak <taylor@fausak.me>
 maintainer: taylor@fausak.me
 homepage: http://taylor.fausak.me/strive/
