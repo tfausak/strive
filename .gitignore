@@ -1,7 +1,8 @@
-.cabal-sandbox/
-.vagrant/
 *.hi
 *.o
+.cabal-sandbox/
+.vagrant/
+README
 cabal.sandbox.config
 dist/
-README
+tmp/
