@@ -518,6 +518,6 @@ main = do
   print (upload :: Either String UploadStatus)
 ~~~
 
-[1]: https://github.com/tfausak/strive
+[1]: http://taylor.fausak.me/strive/
 [2]: http://strava.github.io/api/
 [3]: http://semver.org/spec/v2.0.0.html
