@@ -104,6 +104,10 @@ get accessToken (set accessToken "lens token" client)
 ~~~
 
 <!--
+
+This setup is required for these examples to work, but it isn't required for a
+reader of this file to understand what's going on.
+
 ~~~ {.haskell}
 import Data.ByteString.Char8 (pack)
 import Data.Time.Calendar (fromGregorian)
@@ -116,6 +120,7 @@ main = do
   _ <- exitSuccess
   client <- buildClient "token"
 ~~~
+
 -->
 
 ### [Authentication](http://strava.github.io/api/v3/oauth/)
