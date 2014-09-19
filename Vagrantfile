@@ -1,8 +1,8 @@
-# Vagrant 1.6.3 <http://www.vagrantup.com/downloads.html>
-# VirtualBox 4.3.14 <https://www.virtualbox.org/wiki/Downloads>
+# Vagrant 1.6.5 <http://www.vagrantup.com/downloads.html>
+# VirtualBox 4.3.16 <https://www.virtualbox.org/wiki/Downloads>
 require 'rbconfig'
 
-Vagrant.require_version '~> 1.6.3'
+Vagrant.require_version '~> 1.6.5'
 
 # How much RAM (in MB) does the host machine have?
 def memory
