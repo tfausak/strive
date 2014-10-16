@@ -1,7 +1,8 @@
 # [Strive][1]
 
-[![Hackage Version](http://img.shields.io/hackage/v/strive.svg)](http://hackage.haskell.org/package/strive)
-[![Build Status](https://travis-ci.org/tfausak/strive.svg?branch=master)](https://travis-ci.org/tfausak/strive)
+[![Package version](https://img.shields.io/hackage/v/strive.svg?style=flat)](https://hackage.haskell.org/package/strive)
+[![Build status](https://img.shields.io/travis/tfausak/strive/master.svg?style=flat)](https://travis-ci.org/tfausak/strive)
+[![Dependency status](https://img.shields.io/hackage-deps/v/strive.svg?style=flat)](http://packdeps.haskellers.com/feed?needle=strive)
 
 A Haskell client for the [Strava V3 API][2].
 
