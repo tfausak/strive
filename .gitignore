@@ -1,7 +1,6 @@
 *.hi
 *.o
 .cabal-sandbox/
-.vagrant/
 README
 cabal.sandbox.config
 dist/
