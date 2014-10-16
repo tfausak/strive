@@ -15,7 +15,7 @@ description:
     Check out <https://github.com/tfausak/strive#readme the readme> for complete documentation.
 category: API
 author: Taylor Fausak
-tested-with: GHC ==7.6.3 GHC ==7.8.3
+tested-with: GHC ==7.6.* GHC ==7.8.*
 extra-source-files:
     CHANGELOG.md
     CONTRIBUTING.md
@@ -28,26 +28,16 @@ source-repository head
 library
     build-depends:
         base ==4.*,
-        aeson ==0.7.*,
+        aeson >=0.7 && <0.9,
         bytestring ==0.10.*,
         data-default ==0.5.*,
         gpolyline ==0.1.*,
         http-conduit ==2.*,
         http-types ==0.8.*,
         template-haskell ==2.*,
+        text >=0.11 && <2,
         time ==1.*,
-        transformers ==0.3.*
-     
-    if impl(ghc <7.8)
-        build-depends:
-            text ==0.11.*
-        exposed: True
-        buildable: True
-    else
-        build-depends:
-            text ==1.*
-        exposed: True
-        buildable: True
+        transformers >=0.3 && <0.5
     exposed-modules:
         Strive
         Strive.Actions
