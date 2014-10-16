@@ -1,5 +1,7 @@
 # Changelog
 
+- Exposed `Strive.Internal` modules.
+
 ## v0.6.1 (2014-08-12)
 
 - Moved `Strive.Actions.with` to `Strive.Utilities.with`.

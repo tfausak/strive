@@ -56,6 +56,10 @@ library
         Strive.Actions.Uploads
         Strive.Client
         Strive.Enums
+        Strive.Internal.HTTP
+        Strive.Internal.Lenses
+        Strive.Internal.Options
+        Strive.Internal.TH
         Strive.Lenses
         Strive.Options
         Strive.Options.Activities
@@ -87,11 +91,6 @@ library
     other-extensions: FlexibleInstances FunctionalDependencies
                       OverloadedStrings RankNTypes TemplateHaskell
     hs-source-dirs: library
-    other-modules:
-        Strive.Internal.HTTP
-        Strive.Internal.Lenses
-        Strive.Internal.Options
-        Strive.Internal.TH
  
 test-suite readme
     build-depends:
