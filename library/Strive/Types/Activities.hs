@@ -82,6 +82,7 @@ data ActivitySummary = ActivitySummary
   , activitySummary_averageWatts       :: Maybe Double
   , activitySummary_commentCount       :: Integer
   , activitySummary_commute            :: Bool
+  , activitySummary_deviceWatts        :: Maybe Bool
   , activitySummary_distance           :: Double
   , activitySummary_elapsedTime        :: Integer
   , activitySummary_endLatlng          :: Maybe (Double, Double)
