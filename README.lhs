@@ -43,6 +43,7 @@ A Haskell client for the [Strava V3 API][2].
     - [List club members](#list-club-members)
     - [List club activities](#list-club-activities)
     - [Join a club](#join-a-club)
+    - [Leave a club](#leave-a-club)
   - [Gear](#gear)
     - [Retrieve gear](#retrieve-gear)
   - [Segments](#segments)
