@@ -24,62 +24,62 @@ import Data.Aeson (FromJSON, Value (Number, String), parseJSON)
 
 -- | An activity's type.
 data ActivityType
-  = Alpineski
-  | Backcountryski
+  = AlpineSki
+  | BackcountrySki
   | Canoeing
-  | Crosscountryskiing
+  | CrossCountrySkiing
   | Crossfit
   | Elliptical
   | Hike
-  | Iceskate
-  | Inlineskate
+  | IceSkate
+  | InlineSkate
   | Kayaking
-  | Kitesurf
-  | Nordicski
+  | KiteSurf
+  | NordicSki
   | Ride
-  | Rockclimbing
-  | Rollerski
+  | RockClimbing
+  | RollerSki
   | Rowing
   | Run
   | Snowboard
   | Snowshoe
-  | Stairstepper
-  | Standuppaddling
+  | StairStepper
+  | StandUpPaddling
   | Surfing
   | Swim
   | Walk
-  | Weighttraining
+  | WeightTraining
   | Windsurf
   | Workout
   | Yoga
   deriving Show
 
 instance FromJSON ActivityType where
-  parseJSON (String "AlpineSki") = return Alpineski
-  parseJSON (String "BackcountrySki") = return Backcountryski
+  parseJSON (String "AlpineSki") = return AlpineSki
+  parseJSON (String "BackcountrySki") = return BackcountrySki
   parseJSON (String "Canoeing") = return Canoeing
-  parseJSON (String "CrossCountrySkiing") = return Crosscountryskiing
+  parseJSON (String "CrossCountrySkiing") = return CrossCountrySkiing
   parseJSON (String "Crossfit") = return Crossfit
   parseJSON (String "Elliptical") = return Elliptical
   parseJSON (String "Hike") = return Hike
-  parseJSON (String "IceSkate") = return Iceskate
-  parseJSON (String "InlineSkate") = return Inlineskate
+  parseJSON (String "IceSkate") = return IceSkate
+  parseJSON (String "InlineSkate") = return InlineSkate
   parseJSON (String "Kayaking") = return Kayaking
-  parseJSON (String "KiteSurf") = return Kitesurf
-  parseJSON (String "NordicSki") = return Nordicski
+  parseJSON (String "KiteSurf") = return KiteSurf
+  parseJSON (String "NordicSki") = return NordicSki
   parseJSON (String "Ride") = return Ride
-  parseJSON (String "RockClimbing") = return Rockclimbing
-  parseJSON (String "RollerSki") = return Rollerski
+  parseJSON (String "RockClimbing") = return RockClimbing
+  parseJSON (String "RollerSki") = return RollerSki
   parseJSON (String "Rowing") = return Rowing
   parseJSON (String "Run") = return Run
   parseJSON (String "Snowboard") = return Snowboard
   parseJSON (String "Snowshoe") = return Snowshoe
-  parseJSON (String "StairStepper") = return Stairstepper
-  parseJSON (String "StandUpPaddling") = return Standuppaddling
+  parseJSON (String "StairStepper") = return StairStepper
+  parseJSON (String "StandUpPaddling") = return StandUpPaddling
   parseJSON (String "Surfing") = return Surfing
   parseJSON (String "Swim") = return Swim
   parseJSON (String "Walk") = return Walk
-  parseJSON (String "WeightTraining") = return Weighttraining
+  parseJSON (String "WeightTraining") = return WeightTraining
   parseJSON (String "Windsurf") = return Windsurf
   parseJSON (String "Workout") = return Workout
   parseJSON (String "Yoga") = return Yoga
