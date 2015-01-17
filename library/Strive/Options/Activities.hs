@@ -4,6 +4,7 @@ module Strive.Options.Activities
   , GetActivityOptions (..)
   , UpdateActivityOptions (..)
   , GetCurrentActivitiesOptions (..)
+  , GetRelatedActivitiesOptions
   , GetFeedOptions (..)
   ) where
 
@@ -106,6 +107,9 @@ instance QueryLike GetCurrentActivitiesOptions where
     , ("page", Just (show (getCurrentActivitiesOptions_page options)))
     , ("per_page", Just (show (getCurrentActivitiesOptions_perPage options)))
     ]
+
+-- | 'Strive.Actions.getRelatedActivities'
+type GetRelatedActivitiesOptions = PaginationOptions
 
 -- | 'Strive.Actions.getFeed'
 type GetFeedOptions = PaginationOptions

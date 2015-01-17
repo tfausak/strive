@@ -5,6 +5,7 @@ module Strive.Actions.Activities
   , updateActivity
   , deleteActivity
   , getCurrentActivities
+  , getRelatedActivities
   , getFeed
   , getActivityZones
   , getActivityLaps
@@ -19,8 +20,8 @@ import Network.HTTP.Types (Query, methodDelete, noContent204, toQuery)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (buildRequest, get, performRequest, post, put)
 import Strive.Options (CreateActivityOptions, GetActivityOptions,
-                       GetCurrentActivitiesOptions, GetFeedOptions,
-                       UpdateActivityOptions)
+                       GetCurrentActivitiesOptions, GetRelatedActivitiesOptions,
+                       GetFeedOptions, UpdateActivityOptions)
 import Strive.Types (ActivityDetailed, ActivityLapSummary, ActivitySummary,
                      ActivityZoneDetailed)
 
@@ -67,6 +68,13 @@ getCurrentActivities :: Client -> GetCurrentActivitiesOptions -> IO (Either Stri
 getCurrentActivities client options = get client resource query
  where
   resource = "api/v3/athlete/activities"
+  query = toQuery options
+
+-- | <http://strava.github.io/api/v3/activities/#get-related>
+getRelatedActivities :: Client -> Integer -> GetRelatedActivitiesOptions -> IO (Either String [ActivitySummary])
+getRelatedActivities client activityId options = get client resource query
+ where
+  resource = "api/v3/activities/" ++ show activityId ++ "/related"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#get-feed>
