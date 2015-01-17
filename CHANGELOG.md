@@ -1,5 +1,7 @@
 # Changelog
 
+This package uses [Semantic Versioning][1].
+
 - Added `getRelatedActivities` for getting related activities.
 - Added `leaveClub` for leaving a club.
 - Added `joinClub` for joining a club.
@@ -94,3 +96,5 @@
 ## v0.1.0 (2014-06-24)
 
 - Initial release.
+
+[1]: http://semver.org/spec/v2.0.0.html

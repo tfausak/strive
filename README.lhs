@@ -79,8 +79,6 @@ $ cabal update
 $ cabal install strive
 ~~~
 
-This package uses [Semantic Versioning][3].
-
 ## Usage
 
 To use the API, you'll need an access token. Once you have that, create a new
@@ -548,4 +546,3 @@ main = do
 
 [1]: http://taylor.fausak.me/strive/
 [2]: http://strava.github.io/api/
-[3]: http://semver.org/spec/v2.0.0.html
