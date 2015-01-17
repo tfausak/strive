@@ -29,39 +29,63 @@ import Text.Read (readMaybe)
 data ActivityType
   = Alpineski
   | Backcountryski
+  | Canoeing
+  | Crosscountryskiing
+  | Crossfit
+  | Elliptical
   | Hike
   | Iceskate
   | Inlineskate
+  | Kayaking
   | Kitesurf
   | Nordicski
   | Ride
+  | Rockclimbing
   | Rollerski
+  | Rowing
   | Run
   | Snowboard
   | Snowshoe
+  | Stairstepper
+  | Standuppaddling
+  | Surfing
   | Swim
   | Walk
+  | Weighttraining
   | Windsurf
   | Workout
+  | Yoga
   deriving Show
 
 instance FromJSON ActivityType where
   parseJSON (String "AlpineSki") = return Alpineski
   parseJSON (String "BackcountrySki") = return Backcountryski
+  parseJSON (String "Canoeing") = return Canoeing
+  parseJSON (String "CrossCountrySkiing") = return Crosscountryskiing
+  parseJSON (String "Crossfit") = return Crossfit
+  parseJSON (String "Elliptical") = return Elliptical
   parseJSON (String "Hike") = return Hike
   parseJSON (String "IceSkate") = return Iceskate
   parseJSON (String "InlineSkate") = return Inlineskate
+  parseJSON (String "Kayaking") = return Kayaking
   parseJSON (String "KiteSurf") = return Kitesurf
   parseJSON (String "NordicSki") = return Nordicski
   parseJSON (String "Ride") = return Ride
+  parseJSON (String "RockClimbing") = return Rockclimbing
   parseJSON (String "RollerSki") = return Rollerski
+  parseJSON (String "Rowing") = return Rowing
   parseJSON (String "Run") = return Run
   parseJSON (String "Snowboard") = return Snowboard
   parseJSON (String "Snowshoe") = return Snowshoe
+  parseJSON (String "StairStepper") = return Stairstepper
+  parseJSON (String "StandUpPaddling") = return Standuppaddling
+  parseJSON (String "Surfing") = return Surfing
   parseJSON (String "Swim") = return Swim
   parseJSON (String "Walk") = return Walk
+  parseJSON (String "WeightTraining") = return Weighttraining
   parseJSON (String "Windsurf") = return Windsurf
   parseJSON (String "Workout") = return Workout
+  parseJSON (String "Yoga") = return Yoga
   parseJSON _ = empty
 
 -- | An activity zone's type.
