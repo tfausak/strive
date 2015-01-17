@@ -76,45 +76,45 @@ $(deriveFromJSON options ''ActivityDetailed)
 
 -- | <http://strava.github.io/api/v3/activities/#summary>
 data ActivitySummary = ActivitySummary
-  { activitySummary_achievementCount   :: Integer
-  , activitySummary_athlete            :: AthleteMeta
-  , activitySummary_athleteCount       :: Integer
-  , activitySummary_averageSpeed       :: Double
-  , activitySummary_averageWatts       :: Maybe Double
-  , activitySummary_commentCount       :: Integer
-  , activitySummary_commute            :: Bool
-  , activitySummary_deviceWatts        :: Maybe Bool
-  , activitySummary_distance           :: Double
-  , activitySummary_elapsedTime        :: Integer
-  , activitySummary_endLatlng          :: Maybe (Double, Double)
-  , activitySummary_externalId         :: Maybe Text
-  , activitySummary_flagged            :: Bool
-  , activitySummary_gearId             :: Maybe Text
-  , activitySummary_hasKudoed          :: Bool
-  , activitySummary_id                 :: Integer
-  , activitySummary_kilojoules         :: Maybe Double
-  , activitySummary_kudosCount         :: Integer
-  , activitySummary_locationCity       :: Maybe Text
-  , activitySummary_locationCountry    :: Text
-  , activitySummary_locationState      :: Maybe Text
-  , activitySummary_manual             :: Bool
-  , activitySummary_map                :: PolylineSummary
-  , activitySummary_maxSpeed           :: Double
-  , activitySummary_movingTime         :: Integer
-  , activitySummary_name               :: Text
-  , activitySummary_photoCount         :: Integer
-  , activitySummary_private            :: Bool
-  , activitySummary_resourceState      :: ResourceState
-  , activitySummary_startDate          :: UTCTime
-  , activitySummary_startDateLocal     :: UTCTime
-  , activitySummary_startLatitude      :: Double
-  , activitySummary_startLatlng        :: Maybe (Double, Double)
-  , activitySummary_startLongitude     :: Double
-  , activitySummary_timezone           :: Text
-  , activitySummary_totalElevationGain :: Double
-  , activitySummary_trainer            :: Bool
-  , activitySummary_type               :: ActivityType
-  , activitySummary_uploadId           :: Maybe Integer
+  { activitySummary_achievementCount     :: Integer
+  , activitySummary_athlete              :: AthleteMeta
+  , activitySummary_athleteCount         :: Integer
+  , activitySummary_averageSpeed         :: Double
+  , activitySummary_averageWatts         :: Maybe Double
+  , activitySummary_commentCount         :: Integer
+  , activitySummary_commute              :: Bool
+  , activitySummary_deviceWatts          :: Maybe Bool
+  , activitySummary_distance             :: Double
+  , activitySummary_elapsedTime          :: Integer
+  , activitySummary_endLatlng            :: Maybe (Double, Double)
+  , activitySummary_externalId           :: Maybe Text
+  , activitySummary_flagged              :: Bool
+  , activitySummary_gearId               :: Maybe Text
+  , activitySummary_hasKudoed            :: Bool
+  , activitySummary_id                   :: Integer
+  , activitySummary_kilojoules           :: Maybe Double
+  , activitySummary_kudosCount           :: Integer
+  , activitySummary_locationCity         :: Maybe Text
+  , activitySummary_locationCountry      :: Text
+  , activitySummary_locationState        :: Maybe Text
+  , activitySummary_manual               :: Bool
+  , activitySummary_map                  :: PolylineSummary
+  , activitySummary_maxSpeed             :: Double
+  , activitySummary_movingTime           :: Integer
+  , activitySummary_name                 :: Text
+  , activitySummary_photoCount           :: Integer
+  , activitySummary_private              :: Bool
+  , activitySummary_resourceState        :: ResourceState
+  , activitySummary_startDate            :: UTCTime
+  , activitySummary_startDateLocal       :: UTCTime
+  , activitySummary_startLatitude        :: Double
+  , activitySummary_startLatlng          :: Maybe (Double, Double)
+  , activitySummary_startLongitude       :: Double
+  , activitySummary_timezone             :: Text
+  , activitySummary_totalElevationGain   :: Double
+  , activitySummary_trainer              :: Bool
+  , activitySummary_type                 :: ActivityType
+  , activitySummary_uploadId             :: Maybe Integer
   , activitySummary_weightedAverageWatts :: Maybe Integer
   } deriving Show
 
