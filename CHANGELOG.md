@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.6.2 (2015-01-17)
+
 - Fixed parsing of activity types.
 - Exposed `Strive.Internal` modules.
 
