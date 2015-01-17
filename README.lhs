@@ -27,6 +27,7 @@ A Haskell client for the [Strava V3 API][2].
     - [Update an activity](#update-an-activity)
     - [Delete an activity](#delete-an-activity)
     - [List athlete activities](#list-athlete-activities)
+    - [List related activities](#list-related-activities)
     - [List friends' activities](#list-friends-activities)
     - [List activity zones](#list-activity-zones)
     - [List activity laps](#list-activity-laps)
@@ -292,6 +293,16 @@ main = do
     , set perPage 2
     ]
   print (currentActivities :: Either String [ActivitySummary])
+~~~
+
+#### [List related activities](http://strava.github.io/api/v3/activities/#get-related)
+
+~~~ {.haskell}
+  relatedActivities <- getRelatedActivities client 141273622 $ with
+    [ set page 1
+    , set perPage 2
+    ]
+  print (relatedActivities :: Either String [ActivitySummary])
 ~~~
 
 #### [List friends' activities](http://strava.github.io/api/v3/activities/#get-feed)
