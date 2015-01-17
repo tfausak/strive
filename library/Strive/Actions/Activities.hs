@@ -20,8 +20,8 @@ import Network.HTTP.Types (Query, methodDelete, noContent204, toQuery)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (buildRequest, get, performRequest, post, put)
 import Strive.Options (CreateActivityOptions, GetActivityOptions,
-                       GetCurrentActivitiesOptions, GetRelatedActivitiesOptions,
-                       GetFeedOptions, UpdateActivityOptions)
+                       GetCurrentActivitiesOptions, GetFeedOptions,
+                       GetRelatedActivitiesOptions, UpdateActivityOptions)
 import Strive.Types (ActivityDetailed, ActivityLapSummary, ActivitySummary,
                      ActivityZoneDetailed)
 
