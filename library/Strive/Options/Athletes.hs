@@ -1,7 +1,7 @@
 -- | 'Strive.Actions.Athletes'
 module Strive.Options.Athletes
   ( UpdateCurrentAthleteOptions (..)
-  , GetAthleteCrsOptions (..)
+  , GetAthleteCrsOptions
   ) where
 
 import Data.Default (Default, def)

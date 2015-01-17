@@ -27,13 +27,13 @@ getSegmentStreams :: Client -> Integer -> [StreamType] -> GetStreamsOptions -> I
 getSegmentStreams = flip getStreams "segments"
 
 getStreams :: FromJSON a => Client -> String -> Integer -> [StreamType] -> GetStreamsOptions -> IO (Either String a)
-getStreams client kind id types options = get client resource query
+getStreams client kind id_ types options = get client resource query
   where
     resource = concat
         [ "api/v3/"
         , kind
         , "/"
-        , show id
+        , show id_
         , "/streams/"
         , intercalate "," (map show types)
         ]

@@ -11,11 +11,10 @@ module Strive.Types.Activities
   ) where
 
 import Control.Applicative (empty, (<$>), (<*>))
-import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
 import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
-import GPolyline (decodeline)
 import Strive.Enums (ActivityType, ActivityZoneType, ResourceState)
 import Strive.Internal.TH (options)
 import Strive.Types.Athletes (AthleteMeta)

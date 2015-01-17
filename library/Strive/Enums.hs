@@ -21,9 +21,6 @@ module Strive.Enums
 
 import Control.Applicative (empty)
 import Data.Aeson (FromJSON, Value (Number, String), parseJSON)
-import Data.Char (toLower, toUpper)
-import Data.Text (unpack)
-import Text.Read (readMaybe)
 
 -- | An activity's type.
 data ActivityType

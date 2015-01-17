@@ -5,7 +5,7 @@ module Strive.Options.Activities
   , UpdateActivityOptions (..)
   , GetCurrentActivitiesOptions (..)
   , GetRelatedActivitiesOptions
-  , GetFeedOptions (..)
+  , GetFeedOptions
   ) where
 
 import Data.Aeson (encode)

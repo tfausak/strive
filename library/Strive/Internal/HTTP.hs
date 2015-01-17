@@ -12,8 +12,8 @@ module Strive.Internal.HTTP
 import Data.Aeson (FromJSON, eitherDecode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (ByteString)
-import Network.HTTP.Conduit (Request, Response, checkStatus, httpLbs, method,
-                             parseUrl, responseBody)
+import Network.HTTP.Conduit (Request, Response, checkStatus, method, parseUrl,
+                             responseBody)
 import Network.HTTP.Types (Method, Query, QueryLike, methodDelete, methodGet,
                            methodPost, methodPut, renderQuery, toQuery)
 import Strive.Client (Client (client_accessToken, client_requester))
