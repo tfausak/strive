@@ -115,6 +115,7 @@ data ActivitySummary = ActivitySummary
   , activitySummary_trainer            :: Bool
   , activitySummary_type               :: ActivityType
   , activitySummary_uploadId           :: Maybe Integer
+  , activitySummary_weightedAverageWatts :: Maybe Integer
   } deriving Show
 
 $(deriveFromJSON options ''ActivitySummary)
