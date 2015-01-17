@@ -407,6 +407,13 @@ main = do
   print (unit :: Either String ())
 ~~~
 
+#### [Leave a club](http://strava.github.io/api/v3/clubs/#leave)
+
+~~~ {.haskell}
+  leftClub <- leaveClub client 165
+  print (leftClub :: Either String ())
+~~~
+
 ### [Gear](http://strava.github.io/api/v3/gear/)
 
 #### [Retrieve gear](http://strava.github.io/api/v3/gear/#show)
