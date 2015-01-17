@@ -280,8 +280,8 @@ main = do
 #### [Delete an activity](http://strava.github.io/api/v3/activities/#delete)
 
 ~~~ {.haskell}
-  nothing <- deleteActivity client 162674281
-  print (nothing :: Either String ())
+  deletedActivity <- deleteActivity client 162674281
+  print (deletedActivity :: Either String ())
 ~~~
 
 #### [List athlete activities](http://strava.github.io/api/v3/activities/#get-activities)
@@ -403,8 +403,8 @@ main = do
 #### [Join a club](http://strava.github.io/api/v3/clubs/#join)
 
 ~~~ {.haskell}
-  unit <- joinClub client 165
-  print (unit :: Either String ())
+  joinedClub <- joinClub client 165
+  print (joinedClub :: Either String ())
 ~~~
 
 #### [Leave a club](http://strava.github.io/api/v3/clubs/#leave)
