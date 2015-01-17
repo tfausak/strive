@@ -6,7 +6,7 @@ module Strive.Types.Polylines
   , PolylineSummary (..)
   ) where
 
-import Control.Applicative (empty, (<$>), (<*>))
+import Control.Applicative (empty)
 import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Text (Text)
 import GPolyline (decodeline)
@@ -22,13 +22,13 @@ data PolylineDetailed = PolylineDetailed
 
 instance FromJSON PolylineDetailed where
   parseJSON (Object o) = do
-    id <- o .: "id"
+    id_ <- o .: "id"
     polyline <- o .: "polyline"
     resourceState <- o .: "resource_state"
     summaryPolyline <- o .:? "summary_polyline"
 
     return PolylineDetailed
-      { polylineDetailed_id = id
+      { polylineDetailed_id = id_
       , polylineDetailed_polyline = decodeline polyline
       , polylineDetailed_resourceState = resourceState
       , polylineDetailed_summaryPolyline = fmap decodeline summaryPolyline
@@ -45,12 +45,12 @@ data PolylineSummary = PolylineSummary
 
 instance FromJSON PolylineSummary where
   parseJSON (Object o) = do
-    id <- o .: "id"
+    id_ <- o .: "id"
     resourceState <- o .: "resource_state"
     summaryPolyline <- o .:? "summary_polyline"
 
     return PolylineSummary
-      { polylineSummary_id = id
+      { polylineSummary_id = id_
       , polylineSummary_resourceState = resourceState
       , polylineSummary_summaryPolyline = fmap decodeline summaryPolyline
       }

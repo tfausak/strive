@@ -6,7 +6,7 @@ module Strive.Client
 
 import Data.ByteString.Lazy (ByteString)
 import Network.HTTP.Client.Conduit (newManager)
-import Network.HTTP.Conduit (Manager, Request, Response, httpLbs)
+import Network.HTTP.Conduit (Request, Response, httpLbs)
 
 -- | Strava V3 API client.
 data Client = Client

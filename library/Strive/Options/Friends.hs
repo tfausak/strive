@@ -1,10 +1,10 @@
 -- | 'Strive.Actions.Friends'
 module Strive.Options.Friends
-  ( GetCurrentFriendsOptions (..)
-  , GetFriendsOptions (..)
-  , GetCurrentFollowersOptions (..)
-  , GetFollowersOptions (..)
-  , GetCommonFriendsOptions (..)
+  ( GetCurrentFriendsOptions
+  , GetFriendsOptions
+  , GetCurrentFollowersOptions
+  , GetFollowersOptions
+  , GetCommonFriendsOptions
   ) where
 
 import Strive.Internal.Options (PaginationOptions)

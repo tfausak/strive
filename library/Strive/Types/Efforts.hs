@@ -9,7 +9,7 @@ import Control.Applicative (empty, (<$>), (<*>))
 import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
-import Strive.Enums (PhotoType, ResourceState)
+import Strive.Enums (ResourceState)
 import Strive.Types.Segments (SegmentSummary)
 
 -- | <http://strava.github.io/api/v3/efforts/#detailed>

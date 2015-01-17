@@ -1,8 +1,8 @@
 -- | 'Strive.Actions.Clubs'
 module Strive.Options.Clubs
-  ( GetClubMembersOptions (..)
-  , GetClubActivitiesOptions (..)
-  , GetStarredSegmentsOptions (..)
+  ( GetClubMembersOptions
+  , GetClubActivitiesOptions
+  , GetStarredSegmentsOptions
   , GetSegmentEffortsOptions (..)
   , GetSegmentLeaderboardOptions (..)
   , ExploreSegmentsOptions (..)

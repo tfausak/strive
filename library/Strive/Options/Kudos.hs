@@ -1,6 +1,6 @@
 -- | 'Strive.Actions.Kudos'
 module Strive.Options.Kudos
-  ( GetActivityKudoersOptions (..)
+  ( GetActivityKudoersOptions
   ) where
 
 import Strive.Internal.Options (PaginationOptions)
