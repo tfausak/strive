@@ -34,6 +34,7 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_commentCount          :: Integer
   , activityDetailed_commute               :: Bool
   , activityDetailed_description           :: Maybe Text
+  , activityDetailed_deviceWatts           :: Maybe Bool
   , activityDetailed_distance              :: Double
   , activityDetailed_elapsedTime           :: Integer
   , activityDetailed_endLatlng             :: Maybe (Double, Double)
