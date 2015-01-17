@@ -69,7 +69,7 @@ Add it to your Cabal file:
 ~~~
 library
   build-depends:
-    strive ==0.6.*
+    strive ==0.7.*
 ~~~
 
 Or install it manually:
