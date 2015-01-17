@@ -69,6 +69,7 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_truncated             :: Integer
   , activityDetailed_type                  :: ActivityType
   , activityDetailed_uploadId              :: Maybe Integer
+  , activityDetailed_weightedAverageWatts  :: Maybe Integer
   } deriving Show
 
 $(deriveFromJSON options ''ActivityDetailed)
