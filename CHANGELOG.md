@@ -1,5 +1,12 @@
 # Changelog
 
+- Added `getRelatedActivities` for getting related activities.
+- Added `leaveClub` for leaving a club.
+- Added `joinClub` for joining a club.
+- Added `weighted_average_watts` to activities.
+- Added `device_watts` to activities.
+- Added some new activity types.
+
 ## v0.6.2 (2015-01-17)
 
 - Fixed parsing of activity types.
