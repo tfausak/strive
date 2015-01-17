@@ -42,6 +42,7 @@ A Haskell client for the [Strava V3 API][2].
     - [List athlete clubs](#list-athlete-clubs)
     - [List club members](#list-club-members)
     - [List club activities](#list-club-activities)
+    - [Join a club](#join-a-club)
   - [Gear](#gear)
     - [Retrieve gear](#retrieve-gear)
   - [Segments](#segments)
@@ -397,6 +398,13 @@ main = do
     , set perPage 2
     ]
   print (clubActivities :: Either String [ActivitySummary])
+~~~
+
+#### [Join a club](http://strava.github.io/api/v3/clubs/#join)
+
+~~~ {.haskell}
+  unit <- joinClub client 165
+  print (unit :: Either String ())
 ~~~
 
 ### [Gear](http://strava.github.io/api/v3/gear/)
