@@ -5,6 +5,7 @@ module Strive.Actions.Clubs
   , getClubMembers
   , getClubActivities
   , joinClub
+  , leaveClub
   ) where
 
 import Data.ByteString.Char8 (unpack)
@@ -55,4 +56,16 @@ joinClub client clubId = do
     else Left ((unpack . toStrict . responseBody) response))
  where
   resource = "api/v3/clubs/" ++ show clubId ++ "/join"
+  query = [] :: Query
+
+-- | <http://strava.github.io/api/v3/clubs/#leave>
+leaveClub :: Client -> Integer -> IO (Either String ())
+leaveClub client clubId = do
+  request <- buildRequest methodPost client resource query
+  response <- performRequest client request
+  return (if responseStatus response == ok200
+    then Right ()
+    else Left ((unpack . toStrict . responseBody) response))
+ where
+  resource = "api/v3/clubs/" ++ show clubId ++ "/leave"
   query = [] :: Query
