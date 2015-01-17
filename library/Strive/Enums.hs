@@ -46,22 +46,22 @@ data ActivityType
   deriving Show
 
 instance FromJSON ActivityType where
-  parseJSON (String "alpineski") = return Alpineski
-  parseJSON (String "backcountryski") = return Backcountryski
-  parseJSON (String "hike") = return Hike
-  parseJSON (String "iceskate") = return Iceskate
-  parseJSON (String "inlineskate") = return Inlineskate
-  parseJSON (String "kitesurf") = return Kitesurf
-  parseJSON (String "nordicski") = return Nordicski
-  parseJSON (String "ride") = return Ride
-  parseJSON (String "rollerski") = return Rollerski
-  parseJSON (String "run") = return Run
-  parseJSON (String "snowboard") = return Snowboard
-  parseJSON (String "snowshoe") = return Snowshoe
-  parseJSON (String "swim") = return Swim
-  parseJSON (String "walk") = return Walk
-  parseJSON (String "windsurf") = return Windsurf
-  parseJSON (String "workout") = return Workout
+  parseJSON (String "AlpineSki") = return Alpineski
+  parseJSON (String "BackcountrySki") = return Backcountryski
+  parseJSON (String "Hike") = return Hike
+  parseJSON (String "IceSkate") = return Iceskate
+  parseJSON (String "InlineSkate") = return Inlineskate
+  parseJSON (String "KiteSurf") = return Kitesurf
+  parseJSON (String "NordicSki") = return Nordicski
+  parseJSON (String "Ride") = return Ride
+  parseJSON (String "RollerSki") = return Rollerski
+  parseJSON (String "Run") = return Run
+  parseJSON (String "Snowboard") = return Snowboard
+  parseJSON (String "Snowshoe") = return Snowshoe
+  parseJSON (String "Swim") = return Swim
+  parseJSON (String "Walk") = return Walk
+  parseJSON (String "Windsurf") = return Windsurf
+  parseJSON (String "Workout") = return Workout
   parseJSON _ = empty
 
 -- | An activity zone's type.
