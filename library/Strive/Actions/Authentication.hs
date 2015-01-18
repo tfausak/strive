@@ -7,6 +7,7 @@ module Strive.Actions.Authentication
 
 import Data.ByteString.Char8 (unpack)
 import Network.HTTP.Types (Query, renderQuery, toQuery)
+import Strive.Aliases (Result)
 import Strive.Client (Client, buildClient)
 import Strive.Internal.HTTP (post)
 import Strive.Options (BuildAuthorizeUrlOptions)
@@ -24,7 +25,7 @@ buildAuthorizeUrl clientId redirectUri options =
     ] ++ toQuery options
 
 -- | <http://strava.github.io/api/v3/oauth/#post-token>
-exchangeToken :: Integer -> String -> String -> IO (Either String TokenExchangeResponse)
+exchangeToken :: Integer -> String -> String -> Result TokenExchangeResponse
 exchangeToken clientId clientSecret code = do
   client <- buildClient ""
   post client resource query
@@ -37,7 +38,7 @@ exchangeToken clientId clientSecret code = do
     ]
 
 -- | <http://strava.github.io/api/v3/oauth/#deauthorize>
-deauthorize :: Client -> IO (Either String DeauthorizationResponse)
+deauthorize :: Client -> Result DeauthorizationResponse
 deauthorize client = post client resource query
  where
   resource = "oauth/deauthorize"

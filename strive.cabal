@@ -54,6 +54,7 @@ library
         Strive.Actions.Segments
         Strive.Actions.Streams
         Strive.Actions.Uploads
+        Strive.Aliases
         Strive.Client
         Strive.Enums
         Strive.Internal.HTTP

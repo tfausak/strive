@@ -7,13 +7,14 @@ module Strive.Actions.Uploads
 import Data.ByteString (ByteString)
 import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
 import Network.HTTP.Types (Query, methodPost, toQuery)
+import Strive.Aliases (Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (buildRequest, decodeValue, get, performRequest)
 import Strive.Options (UploadActivityOptions)
 import Strive.Types (UploadStatus)
 
 -- | <http://strava.github.io/api/v3/uploads/#post-file>
-uploadActivity :: Client -> ByteString -> String -> UploadActivityOptions -> IO (Either String UploadStatus)
+uploadActivity :: Client -> ByteString -> String -> UploadActivityOptions -> Result UploadStatus
 uploadActivity client body dataType options = do
   initialRequest <- buildRequest methodPost client resource query
   let request = initialRequest
@@ -28,7 +29,7 @@ uploadActivity client body dataType options = do
     ] ++ toQuery options
 
 -- | <http://strava.github.io/api/v3/uploads/#get-status>
-getUpload :: Client -> Integer -> IO (Either String UploadStatus)
+getUpload :: Client -> Integer -> Result UploadStatus
 getUpload client uploadId = get client resource query
  where
   resource = "api/v3/uploads/" ++ show uploadId
