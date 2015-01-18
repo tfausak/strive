@@ -2,6 +2,10 @@
 
 This package uses [Semantic Versioning][1].
 
+## v0.7.1 (2015-01-18)
+
+- Fixed `Setup.hs`.
+
 ## v0.7.0 (2015-01-17)
 
 - Added `getRelatedActivities` for getting related activities.
