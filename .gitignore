@@ -1,7 +1,5 @@
-*.hi
-*.o
-.cabal-sandbox/
-README
-cabal.sandbox.config
-dist/
-tmp/
+/.cabal-sandbox/
+/README
+/cabal.sandbox.config
+/dist/
+/tmp/
