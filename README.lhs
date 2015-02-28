@@ -1,10 +1,26 @@
-# [Strive][1]
+<h1 align="center">
+    <a href="http://taylor.fausak.me/strive/">
+        Strive
+    </a>
+</h1>
 
-[![Package version](https://img.shields.io/hackage/v/strive.svg)](https://hackage.haskell.org/package/strive)
-[![Build status](https://img.shields.io/travis/tfausak/strive/master.svg)](https://travis-ci.org/tfausak/strive)
-[![Dependency status](https://img.shields.io/hackage-deps/v/strive.svg)](http://packdeps.haskellers.com/feed?needle=strive)
+<p align="center">
+    Strive is a Haskell client for the <a href="http://strava.github.io/api/">Strava V3 API</a>.
+</p>
 
-A Haskell client for the [Strava V3 API][2].
+<p align="center">
+    <a href="https://hackage.haskell.org/package/strive">
+        <img alt="" src="https://img.shields.io/hackage/v/strive.svg">
+    </a>
+    <a href="https://travis-ci.org/tfausak/strive">
+        <img alt="" src="https://img.shields.io/travis/tfausak/strive/master.svg">
+    </a>
+    <a href="http://packdeps.haskellers.com/feed?needle=strive">
+        <img alt="" src="https://img.shields.io/hackage-deps/v/strive.svg">
+    </a>
+</p>
+
+<hr>
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -543,6 +559,3 @@ main = do
   upload <- getUpload client 16486788
   print (upload :: Either String UploadStatus)
 ~~~
-
-[1]: http://taylor.fausak.me/strive/
-[2]: http://strava.github.io/api/
