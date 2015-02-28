@@ -76,7 +76,7 @@ Or install it manually:
 
 ~~~ {.sh}
 $ cabal update
-$ cabal install strive
+$ cabal install 'strive ==0.7.*'
 ~~~
 
 ## Usage
