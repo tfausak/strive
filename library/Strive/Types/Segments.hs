@@ -15,7 +15,7 @@ import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (ActivityType, Gender, ResourceState)
 import Strive.Internal.TH (options)
-import Strive.Types.Polylines (PolylineDetailed)
+import Strive.Types.Polylines (Polyline, PolylineDetailed)
 
 -- | <http://strava.github.io/api/v3/segments/#detailed>
 data SegmentDetailed = SegmentDetailed
@@ -118,7 +118,7 @@ data SegmentExplorerEntry = SegmentExplorerEntry
   , segmentExplorerEntry_endLatlng         :: (Double, Double)
   , segmentExplorerEntry_id                :: Integer
   , segmentExplorerEntry_name              :: Text
-  , segmentExplorerEntry_points            :: Text
+  , segmentExplorerEntry_points            :: Polyline
   , segmentExplorerEntry_resourceState     :: ResourceState
   , segmentExplorerEntry_starred           :: Bool
   , segmentExplorerEntry_startLatlng       :: (Double, Double)

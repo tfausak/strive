@@ -2,7 +2,8 @@
 
 -- | <http://strava.github.io/api/#polylines>
 module Strive.Types.Polylines
-  ( PolylineDetailed (..)
+  ( Polyline (..)
+  , PolylineDetailed (..)
   , PolylineSummary (..)
   ) where
 
@@ -11,6 +12,11 @@ import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Text (Text)
 import GPolyline (decodeline)
 import Strive.Enums (ResourceState)
+
+newtype Polyline = Polyline { unPolyline :: [(Double, Double)] } deriving Show
+
+instance FromJSON Polyline where
+  parseJSON = fmap (Polyline . decodeline) . parseJSON
 
 -- | <http://strava.github.io/api/v3/activities/#detailed>
 data PolylineDetailed = PolylineDetailed
