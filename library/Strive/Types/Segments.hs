@@ -128,7 +128,7 @@ $(deriveFromJSON options ''SegmentExplorerEntry)
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
 data SegmentExplorerResponse = SegmentExplorerResponse
-  { segmentExplorerResponse_entries :: [SegmentExplorerEntry]
+  { segmentExplorerResponse_segments :: [SegmentExplorerEntry]
   } deriving Show
 
 $(deriveFromJSON options ''SegmentExplorerResponse)
