@@ -2,6 +2,9 @@
 
 This package uses [Semantic Versioning][1].
 
+- Fixed capitalization of activity types. For example, `Alpineski` is now
+  `AlpineSki`.
+
 ## v0.7.1 (2015-01-18)
 
 - Fixed `Setup.hs`.
