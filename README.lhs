@@ -32,6 +32,7 @@
     - [Retrieve current athlete](#retrieve-current-athlete)
     - [Retrieve another athlete](#retrieve-another-athlete)
     - [Update current athlete](#update-current-athlete)
+    - [Totals and stats](#totals-and-stats)
     - [List athlete K/QOMs/CRs](#list-athlete-kqomscrs)
   - [Friends and followers](#friends-and-followers)
     - [List athlete friends](#list-athlete-friends)
@@ -196,6 +197,13 @@ main = do
     , set weight (Just 72.57)
     ]
   print (updatedAthlete :: Either String AthleteDetailed)
+~~~
+
+#### [Totals and stats](http://strava.github.io/api/v3/athlete/#stats)
+
+~~~ {.haskell}
+  athleteStats <- getAthleteStats client 65516
+  print (athleteStats :: Either String AthleteStats)
 ~~~
 
 #### [List athlete K/QOMs/CRs](http://strava.github.io/api/v3/athlete/#koms)
