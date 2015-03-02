@@ -1,5 +1,5 @@
 name: strive
-version: 0.7.1
+version: 0.8.0
 cabal-version: >=1.10
 build-type: Simple
 license: MIT
