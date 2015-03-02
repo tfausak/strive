@@ -2,6 +2,7 @@
 
 This package uses [Semantic Versioning][1].
 
+- Fixed `FromJSON` instances of polylines.
 - Added `getAthleteStats` for getting athlete stats.
 - Added `contextEntries` option to `getSegmentLeaderboard`.
 - Fixed capitalization of activity types. For example, `Alpineski` is now
