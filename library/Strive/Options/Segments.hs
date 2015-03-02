@@ -45,15 +45,15 @@ instance QueryLike GetSegmentEffortsOptions where
 
 -- | 'Strive.Actions.getSegmentLeaderboard'
 data GetSegmentLeaderboardOptions = GetSegmentLeaderboardOptions
-  { getSegmentLeaderboardOptions_gender      :: Maybe Gender
-  , getSegmentLeaderboardOptions_ageGroup    :: Maybe AgeGroup
-  , getSegmentLeaderboardOptions_weightClass :: Maybe WeightClass
-  , getSegmentLeaderboardOptions_following   :: Maybe Bool
-  , getSegmentLeaderboardOptions_clubId      :: Maybe Integer
-  , getSegmentLeaderboardOptions_dateRange   :: Maybe String
+  { getSegmentLeaderboardOptions_gender         :: Maybe Gender
+  , getSegmentLeaderboardOptions_ageGroup       :: Maybe AgeGroup
+  , getSegmentLeaderboardOptions_weightClass    :: Maybe WeightClass
+  , getSegmentLeaderboardOptions_following      :: Maybe Bool
+  , getSegmentLeaderboardOptions_clubId         :: Maybe Integer
+  , getSegmentLeaderboardOptions_dateRange      :: Maybe String
   , getSegmentLeaderboardOptions_contextEntries :: Maybe Integer
-  , getSegmentLeaderboardOptions_page        :: Integer
-  , getSegmentLeaderboardOptions_perPage     :: Integer
+  , getSegmentLeaderboardOptions_page           :: Integer
+  , getSegmentLeaderboardOptions_perPage        :: Integer
   } deriving Show
 
 instance Default GetSegmentLeaderboardOptions where
