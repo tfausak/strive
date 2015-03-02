@@ -2,6 +2,8 @@
 
 This package uses [Semantic Versioning][1].
 
+- Added `getAthleteStats` for getting athlete stats.
+- Added `contextEntries` option to `getSegmentLeaderboard`.
 - Fixed capitalization of activity types. For example, `Alpineski` is now
   `AlpineSki`.
 
