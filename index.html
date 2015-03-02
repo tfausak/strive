@@ -31,11 +31,23 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p><a href="https://hackage.haskell.org/package/strive"><img src="https://img.shields.io/hackage/v/strive.svg?style=flat" alt="Package version"></a>
-<a href="https://travis-ci.org/tfausak/strive"><img src="https://img.shields.io/travis/tfausak/strive/master.svg?style=flat" alt="Build status"></a>
-<a href="http://packdeps.haskellers.com/feed?needle=strive"><img src="https://img.shields.io/hackage-deps/v/strive.svg?style=flat" alt="Dependency status"></a></p>
+        <p align="center">
+    Strive is a Haskell client for the <a href="http://strava.github.io/api/">Strava V3 API</a>.
+</p>
 
-<p>A Haskell client for the <a href="http://strava.github.io/api/">Strava V3 API</a>.</p>
+<p align="center">
+    <a href="https://hackage.haskell.org/package/strive">
+        <img alt="" src="https://img.shields.io/hackage/v/strive.svg">
+    </a>
+    <a href="https://travis-ci.org/tfausak/strive">
+        <img alt="" src="https://img.shields.io/travis/tfausak/strive/master.svg">
+    </a>
+    <a href="http://packdeps.haskellers.com/feed?needle=strive">
+        <img alt="" src="https://img.shields.io/hackage-deps/v/strive.svg">
+    </a>
+</p>
+
+<hr>
 
 <ul>
 <li><a href="#installation">Installation</a></li>
@@ -59,6 +71,7 @@
 <li><a href="#retrieve-current-athlete">Retrieve current athlete</a></li>
 <li><a href="#retrieve-another-athlete">Retrieve another athlete</a></li>
 <li><a href="#update-current-athlete">Update current athlete</a></li>
+<li><a href="#totals-and-stats">Totals and stats</a></li>
 <li><a href="#list-athlete-kqomscrs">List athlete K/QOMs/CRs</a></li>
 </ul>
 </li>
@@ -172,13 +185,13 @@
 
 <pre><code>library
   build-depends:
-    strive ==0.7.*
+    strive ==0.8.*
 </code></pre>
 
 <p>Or install it manually:</p>
 
 <div class="highlight highlight-sh"><pre>$ cabal update
-$ cabal install strive</pre></div>
+$ cabal install <span class="pl-s1"><span class="pl-pds">'</span>strive ==0.8.*<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
@@ -263,6 +276,13 @@ accessing the fields. For instance, instead of doing this:</p>
     , set weight (<span class="pl-sc">Just</span> <span class="pl-c1">72.57</span>)
     ]
   <span class="pl-s3">print</span> (updatedAthlete :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">AthleteDetailed</span>)</pre></div>
+
+<h4>
+<a id="totals-and-stats" class="anchor" href="#totals-and-stats" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/athlete/#stats">Totals and stats</a>
+</h4>
+
+<div class="highlight highlight-haskell"><pre>  athleteStats &lt;- getAthleteStats client <span class="pl-c1">65516</span>
+  <span class="pl-s3">print</span> (athleteStats :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">AthleteStats</span>)</pre></div>
 
 <h4>
 <a id="list-athlete-kqomscrs" class="anchor" href="#list-athlete-kqomscrs" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/athlete/#koms">List athlete K/QOMs/CRs</a>
@@ -558,6 +578,7 @@ accessing the fields. For instance, instead of doing this:</p>
     , set following (<span class="pl-sc">Just</span> <span class="pl-sc">True</span>)
     , set clubId (<span class="pl-sc">Just</span> <span class="pl-c1">11193</span>)
     , set dateRange (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>this_year<span class="pl-pds">"</span></span>)
+    , set contextEntries (<span class="pl-sc">Just</span> <span class="pl-c1">15</span>)
     , set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
