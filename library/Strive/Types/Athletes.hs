@@ -5,6 +5,8 @@ module Strive.Types.Athletes
   ( AthleteDetailed (..)
   , AthleteSummary (..)
   , AthleteMeta (..)
+  , ActivityTotals (..)
+  , AthleteStats (..)
   ) where
 
 import Data.Aeson.TH (deriveFromJSON)
@@ -74,3 +76,29 @@ data AthleteMeta = AthleteMeta
   } deriving Show
 
 $(deriveFromJSON options ''AthleteMeta)
+
+-- | <http://strava.github.io/api/v3/athlete/#stats>
+data ActivityTotals = ActivityTotals
+  { activityTotals_count            :: Integer
+  , activityTotals_distance         :: Double
+  , activityTotals_movingTime       :: Double
+  , activityTotals_elapsedTime      :: Double
+  , activityTotals_elevationGain    :: Double
+  , activityTotals_achievementCount :: Double
+  } deriving Show
+
+$(deriveFromJSON options ''ActivityTotals)
+
+-- | <http://strava.github.io/api/v3/athlete/#stats>
+data AthleteStats = AthleteStats
+  { athleteStats_biggestRideDistance       :: Double
+  , athleteStats_biggestClimbElevationGain :: Double
+  , athleteStats_recentRideTotals          :: ActivityTotals
+  , athleteStats_recentRunTotals           :: ActivityTotals
+  , athleteStats_ytdRideTotals             :: ActivityTotals
+  , athleteStats_ytdRunTotals              :: ActivityTotals
+  , athleteStats_allRideTotals             :: ActivityTotals
+  , athleteStats_allRunTotals              :: ActivityTotals
+  } deriving Show
+
+$(deriveFromJSON options ''AthleteStats)
