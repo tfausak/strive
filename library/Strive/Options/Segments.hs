@@ -51,6 +51,7 @@ data GetSegmentLeaderboardOptions = GetSegmentLeaderboardOptions
     , getSegmentLeaderboardOptions_following   :: Maybe Bool
     , getSegmentLeaderboardOptions_clubId      :: Maybe Integer
     , getSegmentLeaderboardOptions_dateRange   :: Maybe String
+    , getSegmentLeaderboardOptions_contextEntries :: Maybe Integer
     , getSegmentLeaderboardOptions_page        :: Integer
     , getSegmentLeaderboardOptions_perPage     :: Integer
     } deriving Show
@@ -63,6 +64,7 @@ instance Default GetSegmentLeaderboardOptions where
         , getSegmentLeaderboardOptions_following = Nothing
         , getSegmentLeaderboardOptions_clubId = Nothing
         , getSegmentLeaderboardOptions_dateRange = Nothing
+        , getSegmentLeaderboardOptions_contextEntries = Nothing
         , getSegmentLeaderboardOptions_page = 1
         , getSegmentLeaderboardOptions_perPage = 200
         }
@@ -75,6 +77,7 @@ instance QueryLike GetSegmentLeaderboardOptions where
         , ("following", fmap (unpack . toStrict . encode) (getSegmentLeaderboardOptions_following options))
         , ("club_id", fmap show (getSegmentLeaderboardOptions_clubId options))
         , ("date_range", getSegmentLeaderboardOptions_dateRange options)
+        , ("context_entries", fmap show (getSegmentLeaderboardOptions_contextEntries options))
         , ("page", Just (show (getSegmentLeaderboardOptions_page options)))
         , ("per_page", Just (show (getSegmentLeaderboardOptions_perPage options)))
         ]

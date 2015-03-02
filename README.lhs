@@ -479,6 +479,7 @@ main = do
     , set following (Just True)
     , set clubId (Just 11193)
     , set dateRange (Just "this_year")
+    , set contextEntries (Just 15)
     , set page 1
     , set perPage 2
     ]
