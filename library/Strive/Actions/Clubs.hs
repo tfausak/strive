@@ -19,8 +19,11 @@ import Strive.Options (GetClubActivitiesOptions, GetClubMembersOptions)
 import Strive.Types (ActivitySummary, AthleteSummary, ClubDetailed,
                      ClubSummary)
 
+-- TODO: Move to Strive.Aliases.
+type ClubId = Integer
+
 -- | <http://strava.github.io/api/v3/clubs/#get-details>
-getClub :: Client -> Integer -> Result ClubDetailed
+getClub :: Client -> ClubId -> Result ClubDetailed
 getClub client clubId = get client resource query
  where
   resource = "api/v3/clubs/" ++ show clubId
@@ -34,21 +37,21 @@ getCurrentClubs client = get client resource query
     query = [] :: Query
 
 -- | <http://strava.github.io/api/v3/clubs/#get-members>
-getClubMembers :: Client -> Integer -> GetClubMembersOptions -> Result [AthleteSummary]
+getClubMembers :: Client -> ClubId -> GetClubMembersOptions -> Result [AthleteSummary]
 getClubMembers client clubId options = get client resource query
   where
     resource = "api/v3/clubs/" ++ show clubId ++ "/members"
     query = toQuery options
 
 -- | <http://strava.github.io/api/v3/clubs/#get-activities>
-getClubActivities :: Client -> Integer -> GetClubActivitiesOptions -> Result [ActivitySummary]
+getClubActivities :: Client -> ClubId -> GetClubActivitiesOptions -> Result [ActivitySummary]
 getClubActivities client clubId options = get client resource query
  where
   resource = "api/v3/clubs/" ++ show clubId ++ "/activities"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/clubs/#join>
-joinClub :: Client -> Integer -> Result ()
+joinClub :: Client -> ClubId -> Result ()
 joinClub client clubId = do
   request <- buildRequest methodPost client resource query
   response <- performRequest client request
@@ -60,7 +63,7 @@ joinClub client clubId = do
   query = [] :: Query
 
 -- | <http://strava.github.io/api/v3/clubs/#leave>
-leaveClub :: Client -> Integer -> Result ()
+leaveClub :: Client -> ClubId -> Result ()
 leaveClub client clubId = do
   request <- buildRequest methodPost client resource query
   response <- performRequest client request
