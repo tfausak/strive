@@ -10,8 +10,11 @@ import Strive.Internal.HTTP (get)
 import Strive.Options (GetActivityCommentsOptions)
 import Strive.Types (CommentSummary)
 
+-- TODO: Move to Strive.Aliases.
+type ActivityId = Integer
+
 -- | <http://strava.github.io/api/v3/comments/#list>
-getActivityComments :: Client -> Integer -> GetActivityCommentsOptions -> Result [CommentSummary]
+getActivityComments :: Client -> ActivityId -> GetActivityCommentsOptions -> Result [CommentSummary]
 getActivityComments client activityId options = get client resource query
  where
   resource = "api/v3/activities/" ++ show activityId ++ "/comments"
