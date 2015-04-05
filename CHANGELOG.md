@@ -2,6 +2,7 @@
 
 This package uses [Semantic Versioning][1].
 
+- Added weight to detailed athlete representation.
 - Created type aliases for action inputs.
 
 ## v0.8.0 (2015-03-02)

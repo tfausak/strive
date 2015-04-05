@@ -44,6 +44,7 @@ data AthleteDetailed = AthleteDetailed
   , athleteDetailed_shoes                 :: [GearSummary]
   , athleteDetailed_state                 :: Text
   , athleteDetailed_updatedAt             :: UTCTime
+  , athleteDetailed_weight                :: Maybe Double
   } deriving Show
 
 $(deriveFromJSON options ''AthleteDetailed)
