@@ -17,8 +17,13 @@ import Strive.Options (ExploreSegmentsOptions, GetSegmentEffortsOptions,
 import Strive.Types (EffortDetailed, SegmentDetailed, SegmentExplorerResponse,
                      SegmentLeaderboardResponse, SegmentSummary)
 
+-- TODO: Move to Strive.Aliases
+type SegmentId = Integer
+type Latitude = Double
+type Longitude = Double
+
 -- | <http://strava.github.io/api/v3/segments/#retrieve>
-getSegment :: Client -> Integer -> Result SegmentDetailed
+getSegment :: Client -> SegmentId -> Result SegmentDetailed
 getSegment client segmentId = get client resource query
  where
   resource = "api/v3/segments/" ++ show segmentId
@@ -32,21 +37,21 @@ getStarredSegments client options = get client resource query
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/segments/#efforts>
-getSegmentEfforts :: Client -> Integer -> GetSegmentEffortsOptions -> Result [EffortDetailed]
+getSegmentEfforts :: Client -> SegmentId -> GetSegmentEffortsOptions -> Result [EffortDetailed]
 getSegmentEfforts client segmentId options = get client resource query
  where
   resource = "api/v3/segments/" ++ show segmentId ++ "/all_efforts"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
-getSegmentLeaderboard :: Client -> Integer -> GetSegmentLeaderboardOptions -> Result SegmentLeaderboardResponse
+getSegmentLeaderboard :: Client -> SegmentId -> GetSegmentLeaderboardOptions -> Result SegmentLeaderboardResponse
 getSegmentLeaderboard client segmentId options = get client resource query
  where
   resource = "api/v3/segments/" ++ show segmentId ++ "/leaderboard"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
-exploreSegments :: Client -> (Double, Double, Double, Double) -> ExploreSegmentsOptions -> Result SegmentExplorerResponse
+exploreSegments :: Client -> (Latitude, Longitude, Latitude, Longitude) -> ExploreSegmentsOptions -> Result SegmentExplorerResponse
 exploreSegments client (south, west, north, east) options = get client resource query
  where
   resource = "api/v3/segments/explore"
