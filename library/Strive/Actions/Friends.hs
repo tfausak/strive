@@ -16,6 +16,9 @@ import Strive.Options (GetCommonFriendsOptions, GetCurrentFollowersOptions,
                        GetFriendsOptions)
 import Strive.Types (AthleteSummary)
 
+-- TODO: Move to Strive.Aliases
+type AthleteId= Integer
+
 -- | <http://strava.github.io/api/v3/follow/#friends>
 getCurrentFriends :: Client -> GetCurrentFriendsOptions -> Result [AthleteSummary]
 getCurrentFriends client options = get client resource query
@@ -24,7 +27,7 @@ getCurrentFriends client options = get client resource query
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/follow/#friends>
-getFriends :: Client -> Integer -> GetFriendsOptions -> Result [AthleteSummary]
+getFriends :: Client -> AthleteId -> GetFriendsOptions -> Result [AthleteSummary]
 getFriends client athleteId options = get client resource query
  where
   resource = "api/v3/athletes/" ++ show athleteId ++ "/friends"
@@ -38,14 +41,14 @@ getCurrentFollowers client options = get client resource query
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
-getFollowers :: Client -> Integer -> GetFollowersOptions -> Result [AthleteSummary]
+getFollowers :: Client -> AthleteId -> GetFollowersOptions -> Result [AthleteSummary]
 getFollowers client athleteId options = get client resource query
  where
   resource = "api/v3/athletes/" ++ show athleteId ++ "/followers"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/follow/#both>
-getCommonFriends :: Client -> Integer -> GetCommonFriendsOptions -> Result [AthleteSummary]
+getCommonFriends :: Client -> AthleteId -> GetCommonFriendsOptions -> Result [AthleteSummary]
 getCommonFriends client athleteId options = get client resource query
  where
   resource = "api/v3/athletes/" ++ show athleteId ++ "/both-following"
