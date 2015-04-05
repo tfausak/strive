@@ -37,7 +37,7 @@ updateCurrentAthlete client options = put client resource query
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/athlete/#stats>
-getAthleteStats :: Client -> Integer -> IO (Either String AthleteStats)
+getAthleteStats :: Client -> Integer -> Result AthleteStats
 getAthleteStats client athleteId = get client resource query
  where
   resource = "api/v3/athletes/" ++ show athleteId ++ "/stats"
