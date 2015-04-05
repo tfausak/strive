@@ -245,7 +245,7 @@ main = do
 #### [Create an activity](http://strava.github.io/api/v3/activities/#create)
 
 ~~~ {.haskell}
-  createdActivity <- createActivity client "An Example" "run" (UTCTime (fromGregorian 1970 0 0) 0) 10 $ with
+  createdActivity <- createActivity client "An Example" Run (UTCTime (fromGregorian 1970 0 0) 0) 10 $ with
     [ set description (Just "...")
     , set distance (Just 100.0)
     ]
