@@ -9,8 +9,11 @@ import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
 import Strive.Types (GearDetailed)
 
+-- TODO: Move to Strive.Aliases
+type GearId = String
+
 -- | <http://strava.github.io/api/v3/gear/#show>
-getGear :: Client -> String -> Result GearDetailed
+getGear :: Client -> GearId -> Result GearDetailed
 getGear client gearId = get client resource query
  where
   resource = "api/v3/gear/" ++ gearId
