@@ -1,6 +1,7 @@
 -- | A Haskell client for the <http://strava.github.io/api/ Strava V3 API>.
 module Strive
   ( module Strive.Actions
+  , module Strive.Aliases
   , module Strive.Client
   , module Strive.Enums
   , module Strive.Internal.Lenses
@@ -11,6 +12,7 @@ module Strive
   ) where
 
 import Strive.Actions
+import Strive.Aliases
 import Strive.Client
 import Strive.Enums
 import Strive.Internal.Lenses

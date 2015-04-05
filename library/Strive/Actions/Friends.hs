@@ -8,6 +8,7 @@ module Strive.Actions.Friends
   ) where
 
 import Network.HTTP.Types (toQuery)
+import Strive.Aliases (AthleteId, Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
 import Strive.Options (GetCommonFriendsOptions, GetCurrentFollowersOptions,
@@ -16,35 +17,35 @@ import Strive.Options (GetCommonFriendsOptions, GetCurrentFollowersOptions,
 import Strive.Types (AthleteSummary)
 
 -- | <http://strava.github.io/api/v3/follow/#friends>
-getCurrentFriends :: Client -> GetCurrentFriendsOptions -> IO (Either String [AthleteSummary])
+getCurrentFriends :: Client -> GetCurrentFriendsOptions -> Result [AthleteSummary]
 getCurrentFriends client options = get client resource query
  where
   resource = "api/v3/athlete/friends"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/follow/#friends>
-getFriends :: Client -> Integer -> GetFriendsOptions -> IO (Either String [AthleteSummary])
+getFriends :: Client -> AthleteId -> GetFriendsOptions -> Result [AthleteSummary]
 getFriends client athleteId options = get client resource query
  where
   resource = "api/v3/athletes/" ++ show athleteId ++ "/friends"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
-getCurrentFollowers :: Client -> GetCurrentFollowersOptions -> IO (Either String [AthleteSummary])
+getCurrentFollowers :: Client -> GetCurrentFollowersOptions -> Result [AthleteSummary]
 getCurrentFollowers client options = get client resource query
  where
   resource = "api/v3/athlete/followers"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/follow/#followers>
-getFollowers :: Client -> Integer -> GetFollowersOptions -> IO (Either String [AthleteSummary])
+getFollowers :: Client -> AthleteId -> GetFollowersOptions -> Result [AthleteSummary]
 getFollowers client athleteId options = get client resource query
  where
   resource = "api/v3/athletes/" ++ show athleteId ++ "/followers"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/follow/#both>
-getCommonFriends :: Client -> Integer -> GetCommonFriendsOptions -> IO (Either String [AthleteSummary])
+getCommonFriends :: Client -> AthleteId -> GetCommonFriendsOptions -> Result [AthleteSummary]
 getCommonFriends client athleteId options = get client resource query
  where
   resource = "api/v3/athletes/" ++ show athleteId ++ "/both-following"
