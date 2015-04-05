@@ -13,6 +13,9 @@ import Strive.Internal.HTTP (get, put)
 import Strive.Options (GetAthleteCrsOptions, UpdateCurrentAthleteOptions)
 import Strive.Types (AthleteDetailed, AthleteSummary, EffortDetailed)
 
+-- TODO: Move to Strive.Aliases.
+type AthleteId = Integer
+
 -- | <http://strava.github.io/api/v3/athlete/#get-details>
 getCurrentAthlete :: Client -> Result AthleteDetailed
 getCurrentAthlete client = get client resource query
@@ -21,7 +24,7 @@ getCurrentAthlete client = get client resource query
   query = [] :: Query
 
 -- | <http://strava.github.io/api/v3/athlete/#get-another-details>
-getAthlete :: Client -> Integer -> Result AthleteSummary
+getAthlete :: Client -> AthleteId -> Result AthleteSummary
 getAthlete client athleteId = get client resource query
  where
   resource = "api/v3/athletes/" ++ show athleteId
@@ -35,7 +38,7 @@ updateCurrentAthlete client options = put client resource query
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/athlete/#koms>
-getAthleteCrs :: Client -> Integer -> GetAthleteCrsOptions -> Result [EffortDetailed]
+getAthleteCrs :: Client -> AthleteId -> GetAthleteCrsOptions -> Result [EffortDetailed]
 getAthleteCrs client athleteId options = get client resource query
  where
   resource = "api/v3/athletes/" ++ show athleteId ++ "/koms"
