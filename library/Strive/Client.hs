@@ -5,6 +5,7 @@ module Strive.Client
   ) where
 
 import Data.ByteString.Lazy (ByteString)
+import Data.Text (Text, unpack)
 import Network.HTTP.Client.Conduit (newManager)
 import Network.HTTP.Conduit (Request, Response, httpLbs)
 
@@ -22,10 +23,10 @@ instance Show Client where
     ]
 
 -- | Build a new client using the default HTTP manager to make requests.
-buildClient :: String -> IO Client
+buildClient :: Maybe Text -> IO Client
 buildClient accessToken = do
   manager <- newManager
   return Client
-    { client_accessToken = accessToken
+    { client_accessToken = maybe "" unpack accessToken
     , client_requester = flip httpLbs manager
     }

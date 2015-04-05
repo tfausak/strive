@@ -128,6 +128,8 @@ This setup is required for these examples to work, but it isn't required for a
 reader of this file to understand what's going on.
 
 ~~~ {.haskell}
+{-# LANGUAGE OverloadedStrings #-}
+
 import Data.ByteString.Char8 (pack)
 import Data.Time.Calendar (fromGregorian)
 import Data.Time.Clock (UTCTime (UTCTime))
@@ -137,7 +139,7 @@ import System.Exit (exitSuccess)
 main :: IO ()
 main = do
   _ <- exitSuccess
-  client <- buildClient "token"
+  client <- buildClient (Just "token")
 ~~~
 
 -->

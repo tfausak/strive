@@ -28,7 +28,7 @@ buildAuthorizeUrl clientId redirectUri options =
 -- | <http://strava.github.io/api/v3/oauth/#post-token>
 exchangeToken :: ApplicationId -> ApplicationSecret -> AuthorizationCode -> Result TokenExchangeResponse
 exchangeToken clientId clientSecret code = do
-  client <- buildClient ""
+  client <- buildClient Nothing
   post client resource query
  where
   resource = "oauth/token"
