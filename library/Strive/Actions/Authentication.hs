@@ -13,8 +13,14 @@ import Strive.Internal.HTTP (post)
 import Strive.Options (BuildAuthorizeUrlOptions)
 import Strive.Types (DeauthorizationResponse, TokenExchangeResponse)
 
+-- TODO: Move to Strive.Aliases.
+type ApplicationId = Integer
+type RedirectUri = String
+type ApplicationSecret = String
+type AuthorizationCode = String
+
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
-buildAuthorizeUrl :: Integer -> String -> BuildAuthorizeUrlOptions -> String
+buildAuthorizeUrl :: ApplicationId -> RedirectUri -> BuildAuthorizeUrlOptions -> String
 buildAuthorizeUrl clientId redirectUri options =
   "https://www.strava.com/oauth/authorize" ++ unpack (renderQuery True query)
  where
@@ -25,7 +31,7 @@ buildAuthorizeUrl clientId redirectUri options =
     ] ++ toQuery options
 
 -- | <http://strava.github.io/api/v3/oauth/#post-token>
-exchangeToken :: Integer -> String -> String -> Result TokenExchangeResponse
+exchangeToken :: ApplicationId -> ApplicationSecret -> AuthorizationCode -> Result TokenExchangeResponse
 exchangeToken clientId clientSecret code = do
   client <- buildClient ""
   post client resource query
