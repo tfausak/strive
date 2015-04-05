@@ -4,13 +4,10 @@ module Strive.Actions.Efforts
   ) where
 
 import Network.HTTP.Types (Query)
-import Strive.Aliases (Result)
+import Strive.Aliases (EffortId, Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
 import Strive.Types (EffortDetailed)
-
--- TODO: Move to Strive.Aliases
-type EffortId = Integer
 
 -- | <http://strava.github.io/api/v3/efforts/#retrieve>
 getSegmentEffort :: Client -> EffortId -> Result EffortDetailed

@@ -7,15 +7,11 @@ module Strive.Actions.Uploads
 import Data.ByteString (ByteString)
 import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
 import Network.HTTP.Types (Query, methodPost, toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (Extension, Result, UploadId)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (buildRequest, decodeValue, get, performRequest)
 import Strive.Options (UploadActivityOptions)
 import Strive.Types (UploadStatus)
-
--- TODO: Move to Strive.Aliases
-type Extension = String
-type UploadId = Integer
 
 -- | <http://strava.github.io/api/v3/uploads/#post-file>
 uploadActivity :: Client -> ByteString -> Extension -> UploadActivityOptions -> Result UploadStatus

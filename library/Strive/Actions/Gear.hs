@@ -4,13 +4,10 @@ module Strive.Actions.Gear
   ) where
 
 import Network.HTTP.Types (Query)
-import Strive.Aliases (Result)
+import Strive.Aliases (GearId, Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
 import Strive.Types (GearDetailed)
-
--- TODO: Move to Strive.Aliases
-type GearId = String
 
 -- | <http://strava.github.io/api/v3/gear/#show>
 getGear :: Client -> GearId -> Result GearDetailed

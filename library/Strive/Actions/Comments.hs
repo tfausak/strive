@@ -4,14 +4,11 @@ module Strive.Actions.Comments
   ) where
 
 import Network.HTTP.Types (toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (ActivityId, Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
 import Strive.Options (GetActivityCommentsOptions)
 import Strive.Types (CommentSummary)
-
--- TODO: Move to Strive.Aliases.
-type ActivityId = Integer
 
 -- | <http://strava.github.io/api/v3/comments/#list>
 getActivityComments :: Client -> ActivityId -> GetActivityCommentsOptions -> Result [CommentSummary]

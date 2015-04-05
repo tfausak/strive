@@ -12,15 +12,12 @@ import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Network.HTTP.Conduit (responseBody, responseStatus)
 import Network.HTTP.Types (Query, methodPost, ok200, toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (ClubId, Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (buildRequest, get, performRequest)
 import Strive.Options (GetClubActivitiesOptions, GetClubMembersOptions)
 import Strive.Types (ActivitySummary, AthleteSummary, ClubDetailed,
                      ClubSummary)
-
--- TODO: Move to Strive.Aliases.
-type ClubId = Integer
 
 -- | <http://strava.github.io/api/v3/clubs/#get-details>
 getClub :: Client -> ClubId -> Result ClubDetailed

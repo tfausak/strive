@@ -8,15 +8,12 @@ module Strive.Actions.Streams
 import Data.Aeson (FromJSON)
 import Data.List (intercalate)
 import Network.HTTP.Types (toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (Result, StreamId)
 import Strive.Client (Client)
 import Strive.Enums (StreamType)
 import Strive.Internal.HTTP (get)
 import Strive.Options (GetStreamsOptions)
 import Strive.Types (StreamDetailed)
-
--- TODO: Move to Strive.Aliases
-type StreamId = Integer
 
 -- | <http://strava.github.io/api/v3/streams/#activity>
 getActivityStreams :: Client -> StreamId -> [StreamType] -> GetStreamsOptions -> Result [StreamDetailed]

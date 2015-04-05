@@ -8,16 +8,13 @@ module Strive.Actions.Friends
   ) where
 
 import Network.HTTP.Types (toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (AthleteId, Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
 import Strive.Options (GetCommonFriendsOptions, GetCurrentFollowersOptions,
                        GetCurrentFriendsOptions, GetFollowersOptions,
                        GetFriendsOptions)
 import Strive.Types (AthleteSummary)
-
--- TODO: Move to Strive.Aliases
-type AthleteId= Integer
 
 -- | <http://strava.github.io/api/v3/follow/#friends>
 getCurrentFriends :: Client -> GetCurrentFriendsOptions -> Result [AthleteSummary]

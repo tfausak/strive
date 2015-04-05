@@ -4,14 +4,11 @@ module Strive.Actions.Kudos
   ) where
 
 import Network.HTTP.Types (toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (ActivityId, Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
 import Strive.Options (GetActivityKudoersOptions)
 import Strive.Types (AthleteSummary)
-
--- TODO: Move to Strive.Aliases
-type ActivityId = Integer
 
 -- | <http://strava.github.io/api/v3/kudos/#list>
 getActivityKudoers :: Client -> ActivityId -> GetActivityKudoersOptions -> Result [AthleteSummary]

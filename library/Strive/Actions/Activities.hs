@@ -14,24 +14,17 @@ module Strive.Actions.Activities
 import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import Data.Time.Clock (UTCTime)
 import Network.HTTP.Conduit (responseBody, responseStatus)
 import Network.HTTP.Types (Query, methodDelete, noContent204, toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (ActivityId, ElapsedTime, Name, Result, StartTime)
 import Strive.Client (Client)
-import Strive.Internal.HTTP (buildRequest, get, performRequest, post, put)
 import Strive.Enums (ActivityType)
+import Strive.Internal.HTTP (buildRequest, get, performRequest, post, put)
 import Strive.Options (CreateActivityOptions, GetActivityOptions,
                        GetCurrentActivitiesOptions, GetFeedOptions,
                        GetRelatedActivitiesOptions, UpdateActivityOptions)
 import Strive.Types (ActivityDetailed, ActivityLapSummary, ActivitySummary,
                      ActivityZoneDetailed)
-
--- TODO: Move to Strive.Aliases
-type Name = String
-type StartTime = UTCTime
-type ElapsedTime = Integer
-type ActivityId = Integer
 
 -- | <http://strava.github.io/api/v3/activities/#create>
 createActivity :: Client -> Name -> ActivityType -> StartTime -> ElapsedTime -> CreateActivityOptions -> Result ActivityDetailed

@@ -9,18 +9,13 @@ module Strive.Actions.Segments
 
 import Data.List (intercalate)
 import Network.HTTP.Types (Query, toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (Latitude, Longitude, Result, SegmentId)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
 import Strive.Options (ExploreSegmentsOptions, GetSegmentEffortsOptions,
                        GetSegmentLeaderboardOptions, GetStarredSegmentsOptions)
 import Strive.Types (EffortDetailed, SegmentDetailed, SegmentExplorerResponse,
                      SegmentLeaderboardResponse, SegmentSummary)
-
--- TODO: Move to Strive.Aliases
-type SegmentId = Integer
-type Latitude = Double
-type Longitude = Double
 
 -- | <http://strava.github.io/api/v3/segments/#retrieve>
 getSegment :: Client -> SegmentId -> Result SegmentDetailed

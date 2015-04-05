@@ -7,14 +7,11 @@ module Strive.Actions.Athletes
   ) where
 
 import Network.HTTP.Types (Query, toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (AthleteId, Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get, put)
 import Strive.Options (GetAthleteCrsOptions, UpdateCurrentAthleteOptions)
 import Strive.Types (AthleteDetailed, AthleteSummary, EffortDetailed)
-
--- TODO: Move to Strive.Aliases.
-type AthleteId = Integer
 
 -- | <http://strava.github.io/api/v3/athlete/#get-details>
 getCurrentAthlete :: Client -> Result AthleteDetailed

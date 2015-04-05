@@ -4,13 +4,10 @@ module Strive.Actions.Photos
   ) where
 
 import Network.HTTP.Types (Query)
-import Strive.Aliases (Result)
+import Strive.Aliases (ActivityId, Result)
 import Strive.Client (Client)
 import Strive.Internal.HTTP (get)
 import Strive.Types (PhotoSummary)
-
--- TODO: Move to Strive.Aliases
-type ActivityId = Integer
 
 -- | <http://strava.github.io/api/v3/photos/#list>
 getActivityPhotos :: Client -> ActivityId -> Result [PhotoSummary]

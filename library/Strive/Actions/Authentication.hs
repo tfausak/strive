@@ -7,17 +7,12 @@ module Strive.Actions.Authentication
 
 import Data.ByteString.Char8 (unpack)
 import Network.HTTP.Types (Query, renderQuery, toQuery)
-import Strive.Aliases (Result)
+import Strive.Aliases (ApplicationId, ApplicationSecret, AuthorizationCode,
+                       RedirectUri, Result)
 import Strive.Client (Client, buildClient)
 import Strive.Internal.HTTP (post)
 import Strive.Options (BuildAuthorizeUrlOptions)
 import Strive.Types (DeauthorizationResponse, TokenExchangeResponse)
-
--- TODO: Move to Strive.Aliases.
-type ApplicationId = Integer
-type RedirectUri = String
-type ApplicationSecret = String
-type AuthorizationCode = String
 
 -- | <http://strava.github.io/api/v3/oauth/#get-authorize>
 buildAuthorizeUrl :: ApplicationId -> RedirectUri -> BuildAuthorizeUrlOptions -> String
