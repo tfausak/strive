@@ -2,6 +2,8 @@
 
 This package uses [Semantic Versioning][1].
 
+- Created type aliases for action inputs.
+
 ## v0.8.0 (2015-03-02)
 
 - Fixed `FromJSON` instances of polylines.
