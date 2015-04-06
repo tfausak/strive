@@ -102,9 +102,10 @@ To use the API, you'll need an access token. Once you have that, create a new
 client using the default HTTP manager.
 
 ~~~ {.haskell .ignore}
+{-# LANGUAGE OverloadedStrings #-}
 import Strive
-let token = "a token"
-client <- buildClient token
+let token = "..."
+client <- buildClient (Just token)
 ~~~
 
 Most types implement lenses for their fields. Lenses are preferred over directly
