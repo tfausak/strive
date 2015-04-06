@@ -14,6 +14,7 @@ import GPolyline (decodeline)
 import Strive.Enums (ResourceState)
 import Strive.Internal.TH (options)
 
+-- | <http://strava.github.io/api/#polylines>
 newtype Polyline = Polyline { unPolyline :: [(Double, Double)] } deriving Show
 
 instance FromJSON Polyline where

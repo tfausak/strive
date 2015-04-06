@@ -1,3 +1,4 @@
+-- | 'Strive.Actions.Segments'
 module Strive.Options.Segments
   ( GetStarredSegmentsOptions
   , GetSegmentEffortsOptions (..)

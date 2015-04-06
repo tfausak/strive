@@ -2,6 +2,8 @@
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE TemplateHaskell        #-}
 
+{-# OPTIONS_HADDOCK hide #-}
+
 -- | Lens classes and instances generated with template Haskell.
 module Strive.Internal.Lenses where
 
@@ -13,11 +15,7 @@ import Strive.Internal.Options
 import Strive.Options
 import Strive.Types
 
--- * Client
-
 $(makeLenses "Client")
-
--- * Options
 
 $(makeLenses "BuildAuthorizeUrlOptions")
 $(makeLenses "CreateActivityOptions")
@@ -32,8 +30,6 @@ $(makeLenses "PaginationOptions")
 $(makeLenses "UpdateActivityOptions")
 $(makeLenses "UpdateCurrentAthleteOptions")
 $(makeLenses "UploadActivityOptions")
-
--- * Types
 
 $(makeLenses "ActivityDetailed")
 $(makeLenses "ActivityLapSummary")
