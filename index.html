@@ -187,9 +187,10 @@ $ cabal install <span class="pl-s"><span class="pl-pds">'</span>strive ==1.*<spa
 <p>To use the API, you'll need an access token. Once you have that, create a new
 client using the default HTTP manager.</p>
 
-<div class="highlight highlight-haskell"><pre><span class="pl-k">import</span> <span class="pl-c1">Strive</span>
-<span class="pl-k">let</span> token = <span class="pl-s"><span class="pl-pds">"</span>a token<span class="pl-pds">"</span></span>
-client &lt;- buildClient token</pre></div>
+<div class="highlight highlight-haskell"><pre>{-# <span class="pl-k">LANGUAGE</span> OverloadedStrings #-}
+<span class="pl-k">import</span> <span class="pl-c1">Strive</span>
+<span class="pl-k">let</span> token = <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>
+client &lt;- buildClient (<span class="pl-c1">Just</span> token)</pre></div>
 
 <p>Most types implement lenses for their fields. Lenses are preferred over directly
 accessing the fields. For instance, instead of doing this:</p>
