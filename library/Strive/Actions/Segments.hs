@@ -18,35 +18,35 @@ import Strive.Types (EffortDetailed, SegmentDetailed, SegmentExplorerResponse,
                      SegmentLeaderboardResponse, SegmentSummary)
 
 -- | <http://strava.github.io/api/v3/segments/#retrieve>
-getSegment :: Client -> SegmentId -> Result SegmentDetailed
+getSegment :: Client -> SegmentId -> IO (Result SegmentDetailed)
 getSegment client segmentId = get client resource query
  where
   resource = "api/v3/segments/" ++ show segmentId
   query = [] :: Query
 
 -- | <http://strava.github.io/api/v3/segments/#starred>
-getStarredSegments :: Client -> GetStarredSegmentsOptions -> Result [SegmentSummary]
+getStarredSegments :: Client -> GetStarredSegmentsOptions -> IO (Result [SegmentSummary])
 getStarredSegments client options = get client resource query
  where
   resource = "api/v3/segments/starred"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/segments/#efforts>
-getSegmentEfforts :: Client -> SegmentId -> GetSegmentEffortsOptions -> Result [EffortDetailed]
+getSegmentEfforts :: Client -> SegmentId -> GetSegmentEffortsOptions -> IO (Result [EffortDetailed])
 getSegmentEfforts client segmentId options = get client resource query
  where
   resource = "api/v3/segments/" ++ show segmentId ++ "/all_efforts"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/segments/#leaderboard>
-getSegmentLeaderboard :: Client -> SegmentId -> GetSegmentLeaderboardOptions -> Result SegmentLeaderboardResponse
+getSegmentLeaderboard :: Client -> SegmentId -> GetSegmentLeaderboardOptions -> IO (Result SegmentLeaderboardResponse)
 getSegmentLeaderboard client segmentId options = get client resource query
  where
   resource = "api/v3/segments/" ++ show segmentId ++ "/leaderboard"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/segments/#explore>
-exploreSegments :: Client -> (Latitude, Longitude, Latitude, Longitude) -> ExploreSegmentsOptions -> Result SegmentExplorerResponse
+exploreSegments :: Client -> (Latitude, Longitude, Latitude, Longitude) -> ExploreSegmentsOptions -> IO (Result SegmentExplorerResponse)
 exploreSegments client (south, west, north, east) options = get client resource query
  where
   resource = "api/v3/segments/explore"

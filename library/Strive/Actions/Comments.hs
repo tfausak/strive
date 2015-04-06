@@ -11,7 +11,7 @@ import Strive.Options (GetActivityCommentsOptions)
 import Strive.Types (CommentSummary)
 
 -- | <http://strava.github.io/api/v3/comments/#list>
-getActivityComments :: Client -> ActivityId -> GetActivityCommentsOptions -> Result [CommentSummary]
+getActivityComments :: Client -> ActivityId -> GetActivityCommentsOptions -> IO (Result [CommentSummary])
 getActivityComments client activityId options = get client resource query
  where
   resource = "api/v3/activities/" ++ show activityId ++ "/comments"

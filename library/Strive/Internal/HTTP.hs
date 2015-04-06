@@ -20,23 +20,23 @@ import Strive.Aliases (Result)
 import Strive.Client (Client (client_accessToken, client_requester))
 
 -- | Perform an HTTP DELETE request.
-delete :: (QueryLike q, FromJSON j) => Client -> String -> q -> Result j
+delete :: (QueryLike q, FromJSON j) => Client -> String -> q -> IO (Result j)
 delete = http methodDelete
 
 -- | Perform an HTTP GET request.
-get :: (QueryLike q, FromJSON j) => Client -> String -> q -> Result j
+get :: (QueryLike q, FromJSON j) => Client -> String -> q -> IO (Result j)
 get = http methodGet
 
 -- | Perform an HTTP POST request.
-post :: (QueryLike q, FromJSON j) => Client -> String -> q -> Result j
+post :: (QueryLike q, FromJSON j) => Client -> String -> q -> IO (Result j)
 post = http methodPost
 
 -- | Perform an HTTP PUT request.
-put :: (QueryLike q, FromJSON j) => Client -> String -> q -> Result j
+put :: (QueryLike q, FromJSON j) => Client -> String -> q -> IO (Result j)
 put = http methodPut
 
 -- | Perform an HTTP request.
-http :: (QueryLike q, FromJSON j) => Method -> Client -> String -> q -> Result j
+http :: (QueryLike q, FromJSON j) => Method -> Client -> String -> q -> IO (Result j)
 http httpMethod client resource query = do
   request <- buildRequest httpMethod client resource query
   response <- performRequest client request

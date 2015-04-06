@@ -27,7 +27,7 @@ import Strive.Types (ActivityDetailed, ActivityLapSummary, ActivitySummary,
                      ActivityZoneDetailed)
 
 -- | <http://strava.github.io/api/v3/activities/#create>
-createActivity :: Client -> Name -> ActivityType -> StartTime -> ElapsedTime -> CreateActivityOptions -> Result ActivityDetailed
+createActivity :: Client -> Name -> ActivityType -> StartTime -> ElapsedTime -> CreateActivityOptions -> IO (Result ActivityDetailed)
 createActivity client name type_ startDateLocal elapsedTime options = post client resource query
  where
   resource = "api/v3/activities"
@@ -39,21 +39,21 @@ createActivity client name type_ startDateLocal elapsedTime options = post clien
     ] ++ toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#get-details>
-getActivity :: Client -> ActivityId -> GetActivityOptions -> Result ActivitySummary
+getActivity :: Client -> ActivityId -> GetActivityOptions -> IO (Result ActivitySummary)
 getActivity client activityId options = get client resource query
  where
   resource = "api/v3/activities/" ++ show activityId
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#put-updates>
-updateActivity :: Client -> ActivityId -> UpdateActivityOptions -> Result ActivityDetailed
+updateActivity :: Client -> ActivityId -> UpdateActivityOptions -> IO (Result ActivityDetailed)
 updateActivity client activityId options = put client resource query
  where
   resource = "api/v3/activities/" ++ show activityId
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#delete>
-deleteActivity :: Client -> ActivityId -> Result ()
+deleteActivity :: Client -> ActivityId -> IO (Result ())
 deleteActivity client activityId = do
   request <- buildRequest methodDelete client resource query
   response <- performRequest client request
@@ -65,35 +65,35 @@ deleteActivity client activityId = do
   query = [] :: Query
 
 -- | <http://strava.github.io/api/v3/activities/#get-activities>
-getCurrentActivities :: Client -> GetCurrentActivitiesOptions -> Result [ActivitySummary]
+getCurrentActivities :: Client -> GetCurrentActivitiesOptions -> IO (Result [ActivitySummary])
 getCurrentActivities client options = get client resource query
  where
   resource = "api/v3/athlete/activities"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#get-related>
-getRelatedActivities :: Client -> ActivityId -> GetRelatedActivitiesOptions -> Result [ActivitySummary]
+getRelatedActivities :: Client -> ActivityId -> GetRelatedActivitiesOptions -> IO (Result [ActivitySummary])
 getRelatedActivities client activityId options = get client resource query
  where
   resource = "api/v3/activities/" ++ show activityId ++ "/related"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#get-feed>
-getFeed :: Client -> GetFeedOptions -> Result [ActivitySummary]
+getFeed :: Client -> GetFeedOptions -> IO (Result [ActivitySummary])
 getFeed client options = get client resource query
  where
   resource = "api/v3/activities/following"
   query = toQuery options
 
 -- | <http://strava.github.io/api/v3/activities/#zones>
-getActivityZones :: Client -> ActivityId -> Result [ActivityZoneDetailed]
+getActivityZones :: Client -> ActivityId -> IO (Result [ActivityZoneDetailed])
 getActivityZones client activityId = get client resource query
  where
   resource = "api/v3/activities/" ++ show activityId ++ "/zones"
   query = [] :: Query
 
 -- | <http://strava.github.io/api/v3/activities/#laps>
-getActivityLaps :: Client -> ActivityId -> Result [ActivityLapSummary]
+getActivityLaps :: Client -> ActivityId -> IO (Result [ActivityLapSummary])
 getActivityLaps client activityId = get client resource query
  where
   resource = "api/v3/activities/" ++ show activityId ++ "/laps"

@@ -10,7 +10,7 @@ import Strive.Internal.HTTP (get)
 import Strive.Types (EffortDetailed)
 
 -- | <http://strava.github.io/api/v3/efforts/#retrieve>
-getSegmentEffort :: Client -> EffortId -> Result EffortDetailed
+getSegmentEffort :: Client -> EffortId -> IO (Result EffortDetailed)
 getSegmentEffort client effortId = get client resource query
  where
   resource = "api/v3/segment_efforts/" ++ show effortId

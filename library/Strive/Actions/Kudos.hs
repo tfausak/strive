@@ -11,7 +11,7 @@ import Strive.Options (GetActivityKudoersOptions)
 import Strive.Types (AthleteSummary)
 
 -- | <http://strava.github.io/api/v3/kudos/#list>
-getActivityKudoers :: Client -> ActivityId -> GetActivityKudoersOptions -> Result [AthleteSummary]
+getActivityKudoers :: Client -> ActivityId -> GetActivityKudoersOptions -> IO (Result [AthleteSummary])
 getActivityKudoers client activityId options = get client resource query
  where
   resource = "api/v3/activities/" ++ show activityId ++ "/kudos"

@@ -26,7 +26,7 @@ buildAuthorizeUrl clientId redirectUri options =
     ] ++ toQuery options
 
 -- | <http://strava.github.io/api/v3/oauth/#post-token>
-exchangeToken :: ApplicationId -> ApplicationSecret -> AuthorizationCode -> Result TokenExchangeResponse
+exchangeToken :: ApplicationId -> ApplicationSecret -> AuthorizationCode -> IO (Result TokenExchangeResponse)
 exchangeToken clientId clientSecret code = do
   client <- buildClient Nothing
   post client resource query
@@ -39,7 +39,7 @@ exchangeToken clientId clientSecret code = do
     ]
 
 -- | <http://strava.github.io/api/v3/oauth/#deauthorize>
-deauthorize :: Client -> Result DeauthorizationResponse
+deauthorize :: Client -> IO (Result DeauthorizationResponse)
 deauthorize client = post client resource query
  where
   resource = "oauth/deauthorize"
