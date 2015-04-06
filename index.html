@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Strive : A Haskell client for the Strava V3 API.">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Strive</title>
+    <meta charset="UTF-8">
+    <title>Strive by tfausak</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Strive</h1>
+      <h2 class="project-tagline">A Haskell client for the Strava V3 API.</h2>
+      <a href="https://github.com/tfausak/strive" class="btn">View on GitHub</a>
+      <a href="https://github.com/tfausak/strive/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/tfausak/strive/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/tfausak/strive">View on GitHub</a>
-
-          <h1 id="project_title">Strive</h1>
-          <h2 id="project_tagline">A Haskell client for the Strava V3 API.</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/tfausak/strive/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/tfausak/strive/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p align="center">
+    <section class="main-content">
+      <p align="center">
     Strive is a Haskell client for the <a href="http://strava.github.io/api/">Strava V3 API</a>.
 </p>
 
@@ -185,13 +173,13 @@
 
 <pre><code>library
   build-depends:
-    strive ==0.8.*
+    strive ==1.*
 </code></pre>
 
 <p>Or install it manually:</p>
 
 <div class="highlight highlight-sh"><pre>$ cabal update
-$ cabal install <span class="pl-s1"><span class="pl-pds">'</span>strive ==0.8.*<span class="pl-pds">'</span></span></pre></div>
+$ cabal install <span class="pl-s"><span class="pl-pds">'</span>strive ==1.*<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
@@ -199,19 +187,19 @@ $ cabal install <span class="pl-s1"><span class="pl-pds">'</span>strive ==0.8.*<
 <p>To use the API, you'll need an access token. Once you have that, create a new
 client using the default HTTP manager.</p>
 
-<div class="highlight highlight-haskell"><pre><span class="pl-k">import</span> <span class="pl-s3">Strive</span>
-<span class="pl-k">let</span> token = <span class="pl-s1"><span class="pl-pds">"</span>a token<span class="pl-pds">"</span></span>
+<div class="highlight highlight-haskell"><pre><span class="pl-k">import</span> <span class="pl-c1">Strive</span>
+<span class="pl-k">let</span> token = <span class="pl-s"><span class="pl-pds">"</span>a token<span class="pl-pds">"</span></span>
 client &lt;- buildClient token</pre></div>
 
 <p>Most types implement lenses for their fields. Lenses are preferred over directly
 accessing the fields. For instance, instead of doing this:</p>
 
-<div class="highlight highlight-haskell"><pre>client_accessToken (client { client_accessToken = <span class="pl-s1"><span class="pl-pds">"</span>record token<span class="pl-pds">"</span></span> })
+<div class="highlight highlight-haskell"><pre>client_accessToken (client { client_accessToken = <span class="pl-s"><span class="pl-pds">"</span>record token<span class="pl-pds">"</span></span> })
 <span class="pl-c">-- "record token"</span></pre></div>
 
 <p>Do this:</p>
 
-<div class="highlight highlight-haskell"><pre>get accessToken (set accessToken <span class="pl-s1"><span class="pl-pds">"</span>lens token<span class="pl-pds">"</span></span> client)
+<div class="highlight highlight-haskell"><pre>get accessToken (set accessToken <span class="pl-s"><span class="pl-pds">"</span>lens token<span class="pl-pds">"</span></span> client)
 <span class="pl-c">-- "lens token"</span></pre></div>
 
 
@@ -224,27 +212,27 @@ accessing the fields. For instance, instead of doing this:</p>
 <a id="request-access" class="anchor" href="#request-access" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/oauth/#get-authorize">Request access</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  <span class="pl-k">let</span> authorizeUrl = buildAuthorizeUrl <span class="pl-c1">1790</span> <span class="pl-s1"><span class="pl-pds">"</span>http://localhost<span class="pl-pds">"</span></span> $ with
-        [ set approvalPrompt <span class="pl-sc">False</span>
-        , set privateScope <span class="pl-sc">True</span>
-        , set writeScope <span class="pl-sc">True</span>
-        , set state <span class="pl-s1"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>
+<div class="highlight highlight-haskell"><pre>  <span class="pl-k">let</span> authorizeUrl = buildAuthorizeUrl <span class="pl-c1">1790</span> <span class="pl-s"><span class="pl-pds">"</span>http://localhost<span class="pl-pds">"</span></span> $ with
+        [ set approvalPrompt <span class="pl-c1">False</span>
+        , set privateScope <span class="pl-c1">True</span>
+        , set writeScope <span class="pl-c1">True</span>
+        , set state <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>
         ]
-  <span class="pl-s3">print</span> (authorizeUrl :: <span class="pl-c1">String</span>)</pre></div>
+  <span class="pl-c1">print</span> (authorizeUrl :: <span class="pl-c1">String</span>)</pre></div>
 
 <h4>
 <a id="token-exchange" class="anchor" href="#token-exchange" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/oauth/#post-token">Token exchange</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  tokenExchangeResponse &lt;- exchangeToken <span class="pl-c1">1790</span> <span class="pl-s1"><span class="pl-pds">"</span>secret<span class="pl-pds">"</span></span> <span class="pl-s1"><span class="pl-pds">"</span>code<span class="pl-pds">"</span></span>
-  <span class="pl-s3">print</span> (tokenExchangeResponse :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">TokenExchangeResponse</span>)</pre></div>
+<div class="highlight highlight-haskell"><pre>  tokenExchangeResponse &lt;- exchangeToken <span class="pl-c1">1790</span> <span class="pl-s"><span class="pl-pds">"</span>secret<span class="pl-pds">"</span></span> <span class="pl-s"><span class="pl-pds">"</span>code<span class="pl-pds">"</span></span>
+  <span class="pl-c1">print</span> (tokenExchangeResponse :: <span class="pl-c1">Result</span> <span class="pl-c1">TokenExchangeResponse</span>)</pre></div>
 
 <h4>
 <a id="deauthorization" class="anchor" href="#deauthorization" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/oauth/#deauthorize">Deauthorization</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  deauthorizationResponse &lt;- deauthorize client
-  <span class="pl-s3">print</span> (deauthorizationResponse :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">DeauthorizationResponse</span>)</pre></div>
+  <span class="pl-c1">print</span> (deauthorizationResponse :: <span class="pl-c1">Result</span> <span class="pl-c1">DeauthorizationResponse</span>)</pre></div>
 
 <h3>
 <a id="athletes" class="anchor" href="#athletes" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/athlete/">Athletes</a>
@@ -255,34 +243,34 @@ accessing the fields. For instance, instead of doing this:</p>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  currentAthlete &lt;- getCurrentAthlete client
-  <span class="pl-s3">print</span> (currentAthlete :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">AthleteDetailed</span>)</pre></div>
+  <span class="pl-c1">print</span> (currentAthlete :: <span class="pl-c1">Result</span> <span class="pl-c1">AthleteDetailed</span>)</pre></div>
 
 <h4>
 <a id="retrieve-another-athlete" class="anchor" href="#retrieve-another-athlete" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/athlete/#get-another-details">Retrieve another athlete</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  anotherAthlete &lt;- getAthlete client <span class="pl-c1">65516</span>
-  <span class="pl-s3">print</span> (anotherAthlete :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">AthleteSummary</span>)</pre></div>
+  <span class="pl-c1">print</span> (anotherAthlete :: <span class="pl-c1">Result</span> <span class="pl-c1">AthleteSummary</span>)</pre></div>
 
 <h4>
 <a id="update-current-athlete" class="anchor" href="#update-current-athlete" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/athlete/#update">Update current athlete</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  updatedAthlete &lt;- updateCurrentAthlete client $ with
-    [ set city (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>Dallas<span class="pl-pds">"</span></span>)
-    , set state (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>Texas<span class="pl-pds">"</span></span>)
-    , set country (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>United States<span class="pl-pds">"</span></span>)
-    , set sex (<span class="pl-sc">Just</span> <span class="pl-c1">Male</span>)
-    , set weight (<span class="pl-sc">Just</span> <span class="pl-c1">72.57</span>)
+    [ set city (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>Dallas<span class="pl-pds">"</span></span>)
+    , set state (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>Texas<span class="pl-pds">"</span></span>)
+    , set country (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>United States<span class="pl-pds">"</span></span>)
+    , set sex (<span class="pl-c1">Just</span> <span class="pl-c1">Male</span>)
+    , set weight (<span class="pl-c1">Just</span> <span class="pl-c1">72.57</span>)
     ]
-  <span class="pl-s3">print</span> (updatedAthlete :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">AthleteDetailed</span>)</pre></div>
+  <span class="pl-c1">print</span> (updatedAthlete :: <span class="pl-c1">Result</span> <span class="pl-c1">AthleteDetailed</span>)</pre></div>
 
 <h4>
 <a id="totals-and-stats" class="anchor" href="#totals-and-stats" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/athlete/#stats">Totals and stats</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  athleteStats &lt;- getAthleteStats client <span class="pl-c1">65516</span>
-  <span class="pl-s3">print</span> (athleteStats :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">AthleteStats</span>)</pre></div>
+  <span class="pl-c1">print</span> (athleteStats :: <span class="pl-c1">Result</span> <span class="pl-c1">AthleteStats</span>)</pre></div>
 
 <h4>
 <a id="list-athlete-kqomscrs" class="anchor" href="#list-athlete-kqomscrs" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/athlete/#koms">List athlete K/QOMs/CRs</a>
@@ -292,7 +280,7 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (athleteCrs :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">EffortDetailed</span>])</pre></div>
+  <span class="pl-c1">print</span> (athleteCrs :: <span class="pl-c1">Result</span> [<span class="pl-c1">EffortDetailed</span>])</pre></div>
 
 <h3>
 <a id="friends-and-followers" class="anchor" href="#friends-and-followers" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/follow/">Friends and followers</a>
@@ -306,13 +294,13 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (currentFriends :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (currentFriends :: <span class="pl-c1">Result</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
 
 <div class="highlight highlight-haskell"><pre>  friends &lt;- getFriends client <span class="pl-c1">65516</span> $ with
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (friends :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (friends :: <span class="pl-c1">Result</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
 
 <h4>
 <a id="list-athlete-followers" class="anchor" href="#list-athlete-followers" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/follow/#followers">List athlete followers</a>
@@ -322,13 +310,13 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (currentFollowers :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (currentFollowers :: <span class="pl-c1">Result</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
 
 <div class="highlight highlight-haskell"><pre>  followers &lt;- getFollowers client <span class="pl-c1">65516</span> $ with
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (followers :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (followers :: <span class="pl-c1">Result</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
 
 <h4>
 <a id="list-both-following" class="anchor" href="#list-both-following" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/follow/#both">List both following</a>
@@ -338,7 +326,7 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (commonFriends :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (commonFriends :: <span class="pl-c1">Result</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
 
 <h3>
 <a id="activities" class="anchor" href="#activities" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/">Activities</a>
@@ -348,54 +336,54 @@ accessing the fields. For instance, instead of doing this:</p>
 <a id="create-an-activity" class="anchor" href="#create-an-activity" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#create">Create an activity</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  createdActivity &lt;- createActivity client <span class="pl-s1"><span class="pl-pds">"</span>An Example<span class="pl-pds">"</span></span> <span class="pl-s1"><span class="pl-pds">"</span>run<span class="pl-pds">"</span></span> (<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>) <span class="pl-c1">10</span> $ with
-    [ set description (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>)
-    , set distance (<span class="pl-sc">Just</span> <span class="pl-c1">100.0</span>)
+<div class="highlight highlight-haskell"><pre>  createdActivity &lt;- createActivity client <span class="pl-s"><span class="pl-pds">"</span>An Example<span class="pl-pds">"</span></span> <span class="pl-c1">Run</span> (<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>) <span class="pl-c1">10</span> $ with
+    [ set description (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>)
+    , set distance (<span class="pl-c1">Just</span> <span class="pl-c1">100.0</span>)
     ]
-  <span class="pl-s3">print</span> (createdActivity :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">ActivityDetailed</span>)</pre></div>
+  <span class="pl-c1">print</span> (createdActivity :: <span class="pl-c1">Result</span> <span class="pl-c1">ActivityDetailed</span>)</pre></div>
 
 <h4>
 <a id="retrieve-an-activity" class="anchor" href="#retrieve-an-activity" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#get-details">Retrieve an activity</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  activity &lt;- getActivity client <span class="pl-c1">141273622</span> $ with
-    [ set allEfforts <span class="pl-sc">True</span>
+    [ set allEfforts <span class="pl-c1">True</span>
     ]
-  <span class="pl-s3">print</span> (activity :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">ActivitySummary</span>)</pre></div>
+  <span class="pl-c1">print</span> (activity :: <span class="pl-c1">Result</span> <span class="pl-c1">ActivitySummary</span>)</pre></div>
 
 <h4>
 <a id="update-an-activity" class="anchor" href="#update-an-activity" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#put-updates">Update an activity</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  updatedActivity &lt;- updateActivity client <span class="pl-c1">141273622</span> $ with
-    [ set name (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>WedEx Pit Stop<span class="pl-pds">"</span></span>)
-    , set <span class="pl-c1">Strive</span>.<span class="pl-k">type</span> (<span class="pl-sc">Just</span> <span class="pl-c1">Ride</span>)
-    , set private (<span class="pl-sc">Just</span> <span class="pl-sc">False</span>)
-    , set commute (<span class="pl-sc">Just</span> <span class="pl-sc">True</span>)
-    , set trainer (<span class="pl-sc">Just</span> <span class="pl-sc">False</span>)
-    , set gearId (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>b387882<span class="pl-pds">"</span></span>)
-    , set description <span class="pl-sc">Nothing</span>
+    [ set name (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>WedEx Pit Stop<span class="pl-pds">"</span></span>)
+    , set <span class="pl-c1">Strive</span>.<span class="pl-k">type</span> (<span class="pl-c1">Just</span> <span class="pl-c1">Ride</span>)
+    , set private (<span class="pl-c1">Just</span> <span class="pl-c1">False</span>)
+    , set commute (<span class="pl-c1">Just</span> <span class="pl-c1">True</span>)
+    , set trainer (<span class="pl-c1">Just</span> <span class="pl-c1">False</span>)
+    , set gearId (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>b387882<span class="pl-pds">"</span></span>)
+    , set description <span class="pl-c1">Nothing</span>
     ]
-  <span class="pl-s3">print</span> (updatedActivity :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">ActivityDetailed</span>)</pre></div>
+  <span class="pl-c1">print</span> (updatedActivity :: <span class="pl-c1">Result</span> <span class="pl-c1">ActivityDetailed</span>)</pre></div>
 
 <h4>
 <a id="delete-an-activity" class="anchor" href="#delete-an-activity" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#delete">Delete an activity</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  deletedActivity &lt;- deleteActivity client <span class="pl-c1">162674281</span>
-  <span class="pl-s3">print</span> (deletedActivity :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">()</span>)</pre></div>
+  <span class="pl-c1">print</span> (deletedActivity :: <span class="pl-c1">Result</span> <span class="pl-c1">()</span>)</pre></div>
 
 <h4>
 <a id="list-athlete-activities" class="anchor" href="#list-athlete-activities" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#get-activities">List athlete activities</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  currentActivities &lt;- getCurrentActivities client $ with
-    [ set before (<span class="pl-sc">Just</span> (<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>))
-    , set after (<span class="pl-sc">Just</span> (<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>))
+    [ set before (<span class="pl-c1">Just</span> (<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>))
+    , set after (<span class="pl-c1">Just</span> (<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>))
     , set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (currentActivities :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">ActivitySummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (currentActivities :: <span class="pl-c1">Result</span> [<span class="pl-c1">ActivitySummary</span>])</pre></div>
 
 <h4>
 <a id="list-related-activities" class="anchor" href="#list-related-activities" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#get-related">List related activities</a>
@@ -405,7 +393,7 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (relatedActivities :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">ActivitySummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (relatedActivities :: <span class="pl-c1">Result</span> [<span class="pl-c1">ActivitySummary</span>])</pre></div>
 
 <h4>
 <a id="list-friends-activities" class="anchor" href="#list-friends-activities" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#get-feed">List friends' activities</a>
@@ -415,21 +403,21 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (feed :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">ActivitySummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (feed :: <span class="pl-c1">Result</span> [<span class="pl-c1">ActivitySummary</span>])</pre></div>
 
 <h4>
 <a id="list-activity-zones" class="anchor" href="#list-activity-zones" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#zones">List activity zones</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  activityZones &lt;- getActivityZones client <span class="pl-c1">141273622</span>
-  <span class="pl-s3">print</span> (activityZones :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">ActivityZoneDetailed</span>])</pre></div>
+  <span class="pl-c1">print</span> (activityZones :: <span class="pl-c1">Result</span> [<span class="pl-c1">ActivityZoneDetailed</span>])</pre></div>
 
 <h4>
 <a id="list-activity-laps" class="anchor" href="#list-activity-laps" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/activities/#laps">List activity laps</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  activityLaps &lt;- getActivityLaps client <span class="pl-c1">141273622</span>
-  <span class="pl-s3">print</span> (activityLaps :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">ActivityLapSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (activityLaps :: <span class="pl-c1">Result</span> [<span class="pl-c1">ActivityLapSummary</span>])</pre></div>
 
 <h3>
 <a id="comments" class="anchor" href="#comments" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/comments/">Comments</a>
@@ -440,11 +428,11 @@ accessing the fields. For instance, instead of doing this:</p>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  activityComments &lt;- getActivityComments client <span class="pl-c1">90112360</span> $ with
-    [ set markdown <span class="pl-sc">True</span>
+    [ set markdown <span class="pl-c1">True</span>
     , set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (activityComments :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">CommentSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (activityComments :: <span class="pl-c1">Result</span> [<span class="pl-c1">CommentSummary</span>])</pre></div>
 
 <h3>
 <a id="kudos" class="anchor" href="#kudos" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/kudos/">Kudos</a>
@@ -458,7 +446,7 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (activityKudoers :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (activityKudoers :: <span class="pl-c1">Result</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
 
 <h3>
 <a id="photos" class="anchor" href="#photos" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/photos/">Photos</a>
@@ -469,7 +457,7 @@ accessing the fields. For instance, instead of doing this:</p>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  activityPhotos &lt;- getActivityPhotos client <span class="pl-c1">141273622</span>
-  <span class="pl-s3">print</span> (activityPhotos :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">PhotoSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (activityPhotos :: <span class="pl-c1">Result</span> [<span class="pl-c1">PhotoSummary</span>])</pre></div>
 
 <h3>
 <a id="clubs" class="anchor" href="#clubs" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/clubs/">Clubs</a>
@@ -480,14 +468,14 @@ accessing the fields. For instance, instead of doing this:</p>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  club &lt;- getClub client <span class="pl-c1">11193</span>
-  <span class="pl-s3">print</span> (club :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">ClubDetailed</span>)</pre></div>
+  <span class="pl-c1">print</span> (club :: <span class="pl-c1">Result</span> <span class="pl-c1">ClubDetailed</span>)</pre></div>
 
 <h4>
 <a id="list-athlete-clubs" class="anchor" href="#list-athlete-clubs" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/clubs/#get-athletes">List athlete clubs</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  currentClubs &lt;- getCurrentClubs client
-  <span class="pl-s3">print</span> (currentClubs :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">ClubSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (currentClubs :: <span class="pl-c1">Result</span> [<span class="pl-c1">ClubSummary</span>])</pre></div>
 
 <h4>
 <a id="list-club-members" class="anchor" href="#list-club-members" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/clubs/#get-members">List club members</a>
@@ -497,7 +485,7 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (clubMembers :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (clubMembers :: <span class="pl-c1">Result</span> [<span class="pl-c1">AthleteSummary</span>])</pre></div>
 
 <h4>
 <a id="list-club-activities" class="anchor" href="#list-club-activities" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/clubs/#get-activities">List club activities</a>
@@ -507,21 +495,21 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (clubActivities :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">ActivitySummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (clubActivities :: <span class="pl-c1">Result</span> [<span class="pl-c1">ActivitySummary</span>])</pre></div>
 
 <h4>
 <a id="join-a-club" class="anchor" href="#join-a-club" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/clubs/#join">Join a club</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  joinedClub &lt;- joinClub client <span class="pl-c1">165</span>
-  <span class="pl-s3">print</span> (joinedClub :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">()</span>)</pre></div>
+  <span class="pl-c1">print</span> (joinedClub :: <span class="pl-c1">Result</span> <span class="pl-c1">()</span>)</pre></div>
 
 <h4>
 <a id="leave-a-club" class="anchor" href="#leave-a-club" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/clubs/#leave">Leave a club</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  leftClub &lt;- leaveClub client <span class="pl-c1">165</span>
-  <span class="pl-s3">print</span> (leftClub :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">()</span>)</pre></div>
+  <span class="pl-c1">print</span> (leftClub :: <span class="pl-c1">Result</span> <span class="pl-c1">()</span>)</pre></div>
 
 <h3>
 <a id="gear" class="anchor" href="#gear" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/gear/">Gear</a>
@@ -531,8 +519,8 @@ accessing the fields. For instance, instead of doing this:</p>
 <a id="retrieve-gear" class="anchor" href="#retrieve-gear" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/gear/#show">Retrieve gear</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  theGear &lt;- getGear client <span class="pl-s1"><span class="pl-pds">"</span>b387855<span class="pl-pds">"</span></span>
-  <span class="pl-s3">print</span> (theGear :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">GearDetailed</span>)</pre></div>
+<div class="highlight highlight-haskell"><pre>  theGear &lt;- getGear client <span class="pl-s"><span class="pl-pds">"</span>b387855<span class="pl-pds">"</span></span>
+  <span class="pl-c1">print</span> (theGear :: <span class="pl-c1">Result</span> <span class="pl-c1">GearDetailed</span>)</pre></div>
 
 <h3>
 <a id="segments" class="anchor" href="#segments" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/segments/">Segments</a>
@@ -543,7 +531,7 @@ accessing the fields. For instance, instead of doing this:</p>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  theSegment &lt;- getSegment client <span class="pl-c1">4773104</span>
-  <span class="pl-s3">print</span> (theSegment :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">SegmentDetailed</span>)</pre></div>
+  <span class="pl-c1">print</span> (theSegment :: <span class="pl-c1">Result</span> <span class="pl-c1">SegmentDetailed</span>)</pre></div>
 
 <h4>
 <a id="list-starred-segments" class="anchor" href="#list-starred-segments" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/segments/#starred">List starred segments</a>
@@ -553,36 +541,36 @@ accessing the fields. For instance, instead of doing this:</p>
     [ set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (starredSegments :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">SegmentSummary</span>])</pre></div>
+  <span class="pl-c1">print</span> (starredSegments :: <span class="pl-c1">Result</span> [<span class="pl-c1">SegmentSummary</span>])</pre></div>
 
 <h4>
 <a id="list-efforts" class="anchor" href="#list-efforts" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/segments/#efforts">List efforts</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  theSegmentEfforts &lt;- getSegmentEfforts client <span class="pl-c1">4773104</span> $ with
-    [ set athleteId (<span class="pl-sc">Just</span> <span class="pl-c1">65516</span>)
-    , set range (<span class="pl-sc">Just</span> ((<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>), (<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>)))
+    [ set athleteId (<span class="pl-c1">Just</span> <span class="pl-c1">65516</span>)
+    , set range (<span class="pl-c1">Just</span> ((<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>), (<span class="pl-c1">UTCTime</span> (fromGregorian <span class="pl-c1">1970</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>) <span class="pl-c1">0</span>)))
     , set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (theSegmentEfforts :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">EffortDetailed</span>])</pre></div>
+  <span class="pl-c1">print</span> (theSegmentEfforts :: <span class="pl-c1">Result</span> [<span class="pl-c1">EffortDetailed</span>])</pre></div>
 
 <h4>
 <a id="segment-leaderboard" class="anchor" href="#segment-leaderboard" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/segments/#leaderboard">Segment leaderboard</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  segmentLeaderboardResponse &lt;- getSegmentLeaderboard client <span class="pl-c1">4773104</span> $ with
-    [ set gender (<span class="pl-sc">Just</span> <span class="pl-c1">Male</span>)
-    , set ageGroup (<span class="pl-sc">Just</span> <span class="pl-c1">Ages0To24</span>)
-    , set weightClass (<span class="pl-sc">Just</span> <span class="pl-c1">Kilograms65To74</span>)
-    , set following (<span class="pl-sc">Just</span> <span class="pl-sc">True</span>)
-    , set clubId (<span class="pl-sc">Just</span> <span class="pl-c1">11193</span>)
-    , set dateRange (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>this_year<span class="pl-pds">"</span></span>)
-    , set contextEntries (<span class="pl-sc">Just</span> <span class="pl-c1">15</span>)
+    [ set gender (<span class="pl-c1">Just</span> <span class="pl-c1">Male</span>)
+    , set ageGroup (<span class="pl-c1">Just</span> <span class="pl-c1">Ages0To24</span>)
+    , set weightClass (<span class="pl-c1">Just</span> <span class="pl-c1">Kilograms65To74</span>)
+    , set following (<span class="pl-c1">Just</span> <span class="pl-c1">True</span>)
+    , set clubId (<span class="pl-c1">Just</span> <span class="pl-c1">11193</span>)
+    , set dateRange (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>this_year<span class="pl-pds">"</span></span>)
+    , set contextEntries (<span class="pl-c1">Just</span> <span class="pl-c1">15</span>)
     , set page <span class="pl-c1">1</span>
     , set perPage <span class="pl-c1">2</span>
     ]
-  <span class="pl-s3">print</span> (segmentLeaderboardResponse :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">SegmentLeaderboardResponse</span>)</pre></div>
+  <span class="pl-c1">print</span> (segmentLeaderboardResponse :: <span class="pl-c1">Result</span> <span class="pl-c1">SegmentLeaderboardResponse</span>)</pre></div>
 
 <h4>
 <a id="segment-explorer" class="anchor" href="#segment-explorer" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/segments/#explore">Segment explorer</a>
@@ -593,7 +581,7 @@ accessing the fields. For instance, instead of doing this:</p>
     , set minCat <span class="pl-c1">0</span>
     , set maxCat <span class="pl-c1">5</span>
     ]
-  <span class="pl-s3">print</span> (segmentExplorerResponse :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">SegmentExplorerResponse</span>)</pre></div>
+  <span class="pl-c1">print</span> (segmentExplorerResponse :: <span class="pl-c1">Result</span> <span class="pl-c1">SegmentExplorerResponse</span>)</pre></div>
 
 <h3>
 <a id="segment-efforts" class="anchor" href="#segment-efforts" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/efforts/">Segment efforts</a>
@@ -604,7 +592,7 @@ accessing the fields. For instance, instead of doing this:</p>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  segmentEffort &lt;- getSegmentEffort client <span class="pl-c1">1595370098</span>
-  <span class="pl-s3">print</span> (segmentEffort :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">EffortDetailed</span>)</pre></div>
+  <span class="pl-c1">print</span> (segmentEffort :: <span class="pl-c1">Result</span> <span class="pl-c1">EffortDetailed</span>)</pre></div>
 
 <h3>
 <a id="streams" class="anchor" href="#streams" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/streams/">Streams</a>
@@ -615,30 +603,30 @@ accessing the fields. For instance, instead of doing this:</p>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  activityStreams &lt;- getActivityStreams client <span class="pl-c1">141273622</span> [<span class="pl-c1">LatlngStream</span>, <span class="pl-c1">WattsStream</span>] $ with
-    [ set resolution (<span class="pl-sc">Just</span> <span class="pl-c1">Low</span>)
+    [ set resolution (<span class="pl-c1">Just</span> <span class="pl-c1">Low</span>)
     , set seriesType <span class="pl-c1">Time</span>
     ]
-  <span class="pl-s3">print</span> (activityStreams :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">StreamDetailed</span>])</pre></div>
+  <span class="pl-c1">print</span> (activityStreams :: <span class="pl-c1">Result</span> [<span class="pl-c1">StreamDetailed</span>])</pre></div>
 
 <h4>
 <a id="retrieve-effort-streams" class="anchor" href="#retrieve-effort-streams" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/streams/#effort">Retrieve effort streams</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  effortStreams &lt;- getEffortStreams client <span class="pl-c1">1595370098</span> [<span class="pl-c1">LatlngStream</span>, <span class="pl-c1">WattsStream</span>] $ with
-    [ set resolution (<span class="pl-sc">Just</span> <span class="pl-c1">Low</span>)
+    [ set resolution (<span class="pl-c1">Just</span> <span class="pl-c1">Low</span>)
     , set seriesType <span class="pl-c1">Time</span>
     ]
-  <span class="pl-s3">print</span> (effortStreams :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">StreamDetailed</span>])</pre></div>
+  <span class="pl-c1">print</span> (effortStreams :: <span class="pl-c1">Result</span> [<span class="pl-c1">StreamDetailed</span>])</pre></div>
 
 <h4>
 <a id="retrieve-segment-streams" class="anchor" href="#retrieve-segment-streams" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/streams/#segment">Retrieve segment streams</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  segmentStreams &lt;- getSegmentStreams client <span class="pl-c1">4773104</span> [<span class="pl-c1">LatlngStream</span>, <span class="pl-c1">WattsStream</span>] $ with
-    [ set resolution (<span class="pl-sc">Just</span> <span class="pl-c1">Low</span>)
+    [ set resolution (<span class="pl-c1">Just</span> <span class="pl-c1">Low</span>)
     , set seriesType <span class="pl-c1">Time</span>
     ]
-  <span class="pl-s3">print</span> (segmentStreams :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> [<span class="pl-c1">StreamDetailed</span>])</pre></div>
+  <span class="pl-c1">print</span> (segmentStreams :: <span class="pl-c1">Result</span> [<span class="pl-c1">StreamDetailed</span>])</pre></div>
 
 <h3>
 <a id="uploads" class="anchor" href="#uploads" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/uploads/">Uploads</a>
@@ -648,34 +636,32 @@ accessing the fields. For instance, instead of doing this:</p>
 <a id="upload-an-activity" class="anchor" href="#upload-an-activity" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/uploads/#post-file">Upload an activity</a>
 </h4>
 
-<div class="highlight highlight-haskell"><pre>  uploadedActivity &lt;- uploadActivity client (pack <span class="pl-s1"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>) <span class="pl-s1"><span class="pl-pds">"</span>gpx.gz<span class="pl-pds">"</span></span> $ with
-    [ set activityType (<span class="pl-sc">Just</span> <span class="pl-c1">Ride</span>)
-    , set name (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>An Example<span class="pl-pds">"</span></span>)
-    , set description (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>)
-    , set private <span class="pl-sc">True</span>
-    , set trainer <span class="pl-sc">False</span>
-    , set externalId (<span class="pl-sc">Just</span> <span class="pl-s1"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>)
+<div class="highlight highlight-haskell"><pre>  uploadedActivity &lt;- uploadActivity client (pack <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>) <span class="pl-s"><span class="pl-pds">"</span>gpx.gz<span class="pl-pds">"</span></span> $ with
+    [ set activityType (<span class="pl-c1">Just</span> <span class="pl-c1">Ride</span>)
+    , set name (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>An Example<span class="pl-pds">"</span></span>)
+    , set description (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>)
+    , set private <span class="pl-c1">True</span>
+    , set trainer <span class="pl-c1">False</span>
+    , set externalId (<span class="pl-c1">Just</span> <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>)
     ]
-  <span class="pl-s3">print</span> (uploadedActivity :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">UploadStatus</span>)</pre></div>
+  <span class="pl-c1">print</span> (uploadedActivity :: <span class="pl-c1">Result</span> <span class="pl-c1">UploadStatus</span>)</pre></div>
 
 <h4>
 <a id="check-upload-status" class="anchor" href="#check-upload-status" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://strava.github.io/api/v3/uploads/#get-status">Check upload status</a>
 </h4>
 
 <div class="highlight highlight-haskell"><pre>  upload &lt;- getUpload client <span class="pl-c1">16486788</span>
-  <span class="pl-s3">print</span> (upload :: <span class="pl-c1">Either</span> <span class="pl-c1">String</span> <span class="pl-c1">UploadStatus</span>)</pre></div>
-      </section>
-    </div>
+  <span class="pl-c1">print</span> (upload :: <span class="pl-c1">Result</span> <span class="pl-c1">UploadStatus</span>)</pre></div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Strive maintained by <a href="https://github.com/tfausak">tfausak</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/tfausak/strive">Strive</a> is maintained by <a href="https://github.com/tfausak">tfausak</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
+
