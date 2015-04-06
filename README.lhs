@@ -86,14 +86,14 @@ Add it to your Cabal file:
 ~~~
 library
   build-depends:
-    strive ==0.8.*
+    strive ==1.*
 ~~~
 
 Or install it manually:
 
 ~~~ {.sh}
 $ cabal update
-$ cabal install 'strive ==0.8.*'
+$ cabal install 'strive ==1.*'
 ~~~
 
 ## Usage
