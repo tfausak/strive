@@ -162,14 +162,14 @@ main = do
 
 ~~~ {.haskell}
   tokenExchangeResponse <- exchangeToken 1790 "secret" "code"
-  print (tokenExchangeResponse :: Either String TokenExchangeResponse)
+  print (tokenExchangeResponse :: Result TokenExchangeResponse)
 ~~~
 
 #### [Deauthorization](http://strava.github.io/api/v3/oauth/#deauthorize)
 
 ~~~ {.haskell}
   deauthorizationResponse <- deauthorize client
-  print (deauthorizationResponse :: Either String DeauthorizationResponse)
+  print (deauthorizationResponse :: Result DeauthorizationResponse)
 ~~~
 
 ### [Athletes](http://strava.github.io/api/v3/athlete/)
@@ -178,14 +178,14 @@ main = do
 
 ~~~ {.haskell}
   currentAthlete <- getCurrentAthlete client
-  print (currentAthlete :: Either String AthleteDetailed)
+  print (currentAthlete :: Result AthleteDetailed)
 ~~~
 
 #### [Retrieve another athlete](http://strava.github.io/api/v3/athlete/#get-another-details)
 
 ~~~ {.haskell}
   anotherAthlete <- getAthlete client 65516
-  print (anotherAthlete :: Either String AthleteSummary)
+  print (anotherAthlete :: Result AthleteSummary)
 ~~~
 
 #### [Update current athlete](http://strava.github.io/api/v3/athlete/#update)
@@ -198,14 +198,14 @@ main = do
     , set sex (Just Male)
     , set weight (Just 72.57)
     ]
-  print (updatedAthlete :: Either String AthleteDetailed)
+  print (updatedAthlete :: Result AthleteDetailed)
 ~~~
 
 #### [Totals and stats](http://strava.github.io/api/v3/athlete/#stats)
 
 ~~~ {.haskell}
   athleteStats <- getAthleteStats client 65516
-  print (athleteStats :: Either String AthleteStats)
+  print (athleteStats :: Result AthleteStats)
 ~~~
 
 #### [List athlete K/QOMs/CRs](http://strava.github.io/api/v3/athlete/#koms)
@@ -215,7 +215,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (athleteCrs :: Either String [EffortDetailed])
+  print (athleteCrs :: Result [EffortDetailed])
 ~~~
 
 ### [Friends and followers](http://strava.github.io/api/v3/follow/)
@@ -227,7 +227,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (currentFriends :: Either String [AthleteSummary])
+  print (currentFriends :: Result [AthleteSummary])
 ~~~
 
 ~~~ {.haskell}
@@ -235,7 +235,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (friends :: Either String [AthleteSummary])
+  print (friends :: Result [AthleteSummary])
 ~~~
 
 #### [List athlete followers](http://strava.github.io/api/v3/follow/#followers)
@@ -245,7 +245,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (currentFollowers :: Either String [AthleteSummary])
+  print (currentFollowers :: Result [AthleteSummary])
 ~~~
 
 ~~~ {.haskell}
@@ -253,7 +253,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (followers :: Either String [AthleteSummary])
+  print (followers :: Result [AthleteSummary])
 ~~~
 
 #### [List both following](http://strava.github.io/api/v3/follow/#both)
@@ -263,7 +263,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (commonFriends :: Either String [AthleteSummary])
+  print (commonFriends :: Result [AthleteSummary])
 ~~~
 
 ### [Activities](http://strava.github.io/api/v3/activities/)
@@ -275,7 +275,7 @@ main = do
     [ set description (Just "...")
     , set distance (Just 100.0)
     ]
-  print (createdActivity :: Either String ActivityDetailed)
+  print (createdActivity :: Result ActivityDetailed)
 ~~~
 
 #### [Retrieve an activity](http://strava.github.io/api/v3/activities/#get-details)
@@ -284,7 +284,7 @@ main = do
   activity <- getActivity client 141273622 $ with
     [ set allEfforts True
     ]
-  print (activity :: Either String ActivitySummary)
+  print (activity :: Result ActivitySummary)
 ~~~
 
 #### [Update an activity](http://strava.github.io/api/v3/activities/#put-updates)
@@ -299,14 +299,14 @@ main = do
     , set gearId (Just "b387882")
     , set description Nothing
     ]
-  print (updatedActivity :: Either String ActivityDetailed)
+  print (updatedActivity :: Result ActivityDetailed)
 ~~~
 
 #### [Delete an activity](http://strava.github.io/api/v3/activities/#delete)
 
 ~~~ {.haskell}
   deletedActivity <- deleteActivity client 162674281
-  print (deletedActivity :: Either String ())
+  print (deletedActivity :: Result ())
 ~~~
 
 #### [List athlete activities](http://strava.github.io/api/v3/activities/#get-activities)
@@ -318,7 +318,7 @@ main = do
     , set page 1
     , set perPage 2
     ]
-  print (currentActivities :: Either String [ActivitySummary])
+  print (currentActivities :: Result [ActivitySummary])
 ~~~
 
 #### [List related activities](http://strava.github.io/api/v3/activities/#get-related)
@@ -328,7 +328,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (relatedActivities :: Either String [ActivitySummary])
+  print (relatedActivities :: Result [ActivitySummary])
 ~~~
 
 #### [List friends' activities](http://strava.github.io/api/v3/activities/#get-feed)
@@ -338,21 +338,21 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (feed :: Either String [ActivitySummary])
+  print (feed :: Result [ActivitySummary])
 ~~~
 
 #### [List activity zones](http://strava.github.io/api/v3/activities/#zones)
 
 ~~~ {.haskell}
   activityZones <- getActivityZones client 141273622
-  print (activityZones :: Either String [ActivityZoneDetailed])
+  print (activityZones :: Result [ActivityZoneDetailed])
 ~~~
 
 #### [List activity laps](http://strava.github.io/api/v3/activities/#laps)
 
 ~~~ {.haskell}
   activityLaps <- getActivityLaps client 141273622
-  print (activityLaps :: Either String [ActivityLapSummary])
+  print (activityLaps :: Result [ActivityLapSummary])
 ~~~
 
 ### [Comments](http://strava.github.io/api/v3/comments/)
@@ -365,7 +365,7 @@ main = do
     , set page 1
     , set perPage 2
     ]
-  print (activityComments :: Either String [CommentSummary])
+  print (activityComments :: Result [CommentSummary])
 ~~~
 
 ### [Kudos](http://strava.github.io/api/v3/kudos/)
@@ -377,7 +377,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (activityKudoers :: Either String [AthleteSummary])
+  print (activityKudoers :: Result [AthleteSummary])
 ~~~
 
 ### [Photos](http://strava.github.io/api/v3/photos/)
@@ -386,7 +386,7 @@ main = do
 
 ~~~ {.haskell}
   activityPhotos <- getActivityPhotos client 141273622
-  print (activityPhotos :: Either String [PhotoSummary])
+  print (activityPhotos :: Result [PhotoSummary])
 ~~~
 
 ### [Clubs](http://strava.github.io/api/v3/clubs/)
@@ -395,14 +395,14 @@ main = do
 
 ~~~ {.haskell}
   club <- getClub client 11193
-  print (club :: Either String ClubDetailed)
+  print (club :: Result ClubDetailed)
 ~~~
 
 #### [List athlete clubs](http://strava.github.io/api/v3/clubs/#get-athletes)
 
 ~~~ {.haskell}
   currentClubs <- getCurrentClubs client
-  print (currentClubs :: Either String [ClubSummary])
+  print (currentClubs :: Result [ClubSummary])
 ~~~
 
 #### [List club members](http://strava.github.io/api/v3/clubs/#get-members)
@@ -412,7 +412,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (clubMembers :: Either String [AthleteSummary])
+  print (clubMembers :: Result [AthleteSummary])
 ~~~
 
 #### [List club activities](http://strava.github.io/api/v3/clubs/#get-activities)
@@ -422,21 +422,21 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (clubActivities :: Either String [ActivitySummary])
+  print (clubActivities :: Result [ActivitySummary])
 ~~~
 
 #### [Join a club](http://strava.github.io/api/v3/clubs/#join)
 
 ~~~ {.haskell}
   joinedClub <- joinClub client 165
-  print (joinedClub :: Either String ())
+  print (joinedClub :: Result ())
 ~~~
 
 #### [Leave a club](http://strava.github.io/api/v3/clubs/#leave)
 
 ~~~ {.haskell}
   leftClub <- leaveClub client 165
-  print (leftClub :: Either String ())
+  print (leftClub :: Result ())
 ~~~
 
 ### [Gear](http://strava.github.io/api/v3/gear/)
@@ -445,7 +445,7 @@ main = do
 
 ~~~ {.haskell}
   theGear <- getGear client "b387855"
-  print (theGear :: Either String GearDetailed)
+  print (theGear :: Result GearDetailed)
 ~~~
 
 ### [Segments](http://strava.github.io/api/v3/segments/)
@@ -454,7 +454,7 @@ main = do
 
 ~~~ {.haskell}
   theSegment <- getSegment client 4773104
-  print (theSegment :: Either String SegmentDetailed)
+  print (theSegment :: Result SegmentDetailed)
 ~~~
 
 #### [List starred segments](http://strava.github.io/api/v3/segments/#starred)
@@ -464,7 +464,7 @@ main = do
     [ set page 1
     , set perPage 2
     ]
-  print (starredSegments :: Either String [SegmentSummary])
+  print (starredSegments :: Result [SegmentSummary])
 ~~~
 
 #### [List efforts](http://strava.github.io/api/v3/segments/#efforts)
@@ -476,7 +476,7 @@ main = do
     , set page 1
     , set perPage 2
     ]
-  print (theSegmentEfforts :: Either String [EffortDetailed])
+  print (theSegmentEfforts :: Result [EffortDetailed])
 ~~~
 
 #### [Segment leaderboard](http://strava.github.io/api/v3/segments/#leaderboard)
@@ -493,7 +493,7 @@ main = do
     , set page 1
     , set perPage 2
     ]
-  print (segmentLeaderboardResponse :: Either String SegmentLeaderboardResponse)
+  print (segmentLeaderboardResponse :: Result SegmentLeaderboardResponse)
 ~~~
 
 #### [Segment explorer](http://strava.github.io/api/v3/segments/#explore)
@@ -504,7 +504,7 @@ main = do
     , set minCat 0
     , set maxCat 5
     ]
-  print (segmentExplorerResponse :: Either String SegmentExplorerResponse)
+  print (segmentExplorerResponse :: Result SegmentExplorerResponse)
 ~~~
 
 ### [Segment efforts](http://strava.github.io/api/v3/efforts/)
@@ -513,7 +513,7 @@ main = do
 
 ~~~ {.haskell}
   segmentEffort <- getSegmentEffort client 1595370098
-  print (segmentEffort :: Either String EffortDetailed)
+  print (segmentEffort :: Result EffortDetailed)
 ~~~
 
 ### [Streams](http://strava.github.io/api/v3/streams/)
@@ -525,7 +525,7 @@ main = do
     [ set resolution (Just Low)
     , set seriesType Time
     ]
-  print (activityStreams :: Either String [StreamDetailed])
+  print (activityStreams :: Result [StreamDetailed])
 ~~~
 
 #### [Retrieve effort streams](http://strava.github.io/api/v3/streams/#effort)
@@ -535,7 +535,7 @@ main = do
     [ set resolution (Just Low)
     , set seriesType Time
     ]
-  print (effortStreams :: Either String [StreamDetailed])
+  print (effortStreams :: Result [StreamDetailed])
 ~~~
 
 #### [Retrieve segment streams](http://strava.github.io/api/v3/streams/#segment)
@@ -545,7 +545,7 @@ main = do
     [ set resolution (Just Low)
     , set seriesType Time
     ]
-  print (segmentStreams :: Either String [StreamDetailed])
+  print (segmentStreams :: Result [StreamDetailed])
 ~~~
 
 ### [Uploads](http://strava.github.io/api/v3/uploads/)
@@ -561,12 +561,12 @@ main = do
     , set trainer False
     , set externalId (Just "...")
     ]
-  print (uploadedActivity :: Either String UploadStatus)
+  print (uploadedActivity :: Result UploadStatus)
 ~~~
 
 #### [Check upload status](http://strava.github.io/api/v3/uploads/#get-status)
 
 ~~~ {.haskell}
   upload <- getUpload client 16486788
-  print (upload :: Either String UploadStatus)
+  print (upload :: Result UploadStatus)
 ~~~
