@@ -1,7 +1,9 @@
 -- | Aliases for common types.
 module Strive.Aliases where
 
+import Data.ByteString.Lazy (ByteString)
 import Data.Time.Clock (UTCTime)
+import Network.HTTP.Conduit (Response)
 
 type ActivityId = Integer
 type ApplicationId = Integer
@@ -17,7 +19,7 @@ type Latitude = Double
 type Longitude = Double
 type Name = String
 type RedirectUri = String
-type Result a = Either String a
+type Result a = Either (Response ByteString, String) a
 type SegmentId = Integer
 type StartTime = UTCTime
 type StreamId = Integer

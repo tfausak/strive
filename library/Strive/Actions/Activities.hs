@@ -59,7 +59,7 @@ deleteActivity client activityId = do
   response <- performRequest client request
   return (if responseStatus response == noContent204
     then Right ()
-    else Left (unpack (toStrict (responseBody response))))
+    else Left (response, unpack (toStrict (responseBody response))))
  where
   resource = "api/v3/activities/" ++ show activityId
   query = [] :: Query

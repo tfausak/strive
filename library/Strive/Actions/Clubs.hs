@@ -54,7 +54,7 @@ joinClub client clubId = do
   response <- performRequest client request
   return (if responseStatus response == ok200
     then Right ()
-    else Left ((unpack . toStrict . responseBody) response))
+    else Left (response, (unpack . toStrict . responseBody) response))
  where
   resource = "api/v3/clubs/" ++ show clubId ++ "/join"
   query = [] :: Query
@@ -66,7 +66,7 @@ leaveClub client clubId = do
   response <- performRequest client request
   return (if responseStatus response == ok200
     then Right ()
-    else Left ((unpack . toStrict . responseBody) response))
+    else Left (response, (unpack . toStrict . responseBody) response))
  where
   resource = "api/v3/clubs/" ++ show clubId ++ "/leave"
   query = [] :: Query

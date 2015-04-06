@@ -2,6 +2,7 @@
 
 This package uses [Semantic Versioning][1].
 
+- Added the response to the error message when decoding fails.
 - Changed the input of `buildClient` from a `String` to a `Maybe Text`.
 - Added weight to detailed athlete representation.
 - Created type aliases for action inputs.

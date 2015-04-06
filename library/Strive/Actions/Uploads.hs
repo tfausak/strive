@@ -9,7 +9,7 @@ import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
 import Network.HTTP.Types (Query, methodPost, toQuery)
 import Strive.Aliases (Extension, Result, UploadId)
 import Strive.Client (Client)
-import Strive.Internal.HTTP (buildRequest, decodeValue, get, performRequest)
+import Strive.Internal.HTTP (buildRequest, get, handleResponse, performRequest)
 import Strive.Options (UploadActivityOptions)
 import Strive.Types (UploadStatus)
 
@@ -21,7 +21,7 @@ uploadActivity client body dataType options = do
         { requestBody = RequestBodyBS body
         }
   response <- performRequest client request
-  return (decodeValue response)
+  return (handleResponse response)
  where
   resource = "api/v3/uploads"
   query = toQuery

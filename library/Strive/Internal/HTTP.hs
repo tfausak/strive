@@ -6,6 +6,7 @@ module Strive.Internal.HTTP
   , put
   , buildRequest
   , performRequest
+  , handleResponse
   , decodeValue
   ) where
 
@@ -40,7 +41,7 @@ http :: (QueryLike q, FromJSON j) => Method -> Client -> String -> q -> IO (Resu
 http httpMethod client resource query = do
   request <- buildRequest httpMethod client resource query
   response <- performRequest client request
-  return (decodeValue response)
+  return (handleResponse response)
 
 -- | Build a request.
 buildRequest :: QueryLike q => Method -> Client -> String -> q -> IO Request
@@ -68,6 +69,12 @@ buildQuery client = toQuery
 -- | Actually perform an HTTP request.
 performRequest :: Client -> Request -> IO (Response ByteString)
 performRequest client request = (client_requester client) request
+
+-- | Handle decoding a potentially failed response.
+handleResponse :: (FromJSON j) => Response ByteString -> Result j
+handleResponse response = case decodeValue response of
+  Left message -> Left (response, message)
+  Right value -> Right value
 
 -- | Decode a response body as JSON.
 decodeValue :: FromJSON j => Response ByteString -> Either String j
