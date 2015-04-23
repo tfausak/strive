@@ -2,6 +2,8 @@
 
 This package uses [Semantic Versioning][1].
 
+## v1.0.1 (2015-04-23)
+
 - #97: Fixed a bug that incorrectly separated OAuth scopes with spaces instead
   of commas. Thanks @liskin for the patch!
 
