@@ -7,6 +7,7 @@ import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Data.Default (Default, def)
+import Data.List (intercalate)
 import Network.HTTP.Types (QueryLike, toQuery)
 
 -- | 'Strive.Actions.buildAuthorizeUrl'
@@ -26,13 +27,12 @@ instance Default BuildAuthorizeUrlOptions where
     }
 
 instance QueryLike BuildAuthorizeUrlOptions where
-  toQuery options = toQuery
+  toQuery options = toQuery $
     [ ("approval_prompt", unpack (toStrict (encode (buildAuthorizeUrlOptions_approvalPrompt options))))
-    , ("scope", scopes)
     , ("state", buildAuthorizeUrlOptions_state options)
-    ]
+    ] ++
+    [ ("scope", intercalate "," scopes) | not (null scopes) ]
    where
-    scopes = unwords
-      [ if buildAuthorizeUrlOptions_privateScope options then "view_private" else ""
-      , if buildAuthorizeUrlOptions_writeScope options then "write" else ""
-      ]
+    scopes =
+      [ "view_private" | buildAuthorizeUrlOptions_privateScope options ] ++
+      [ "write" | buildAuthorizeUrlOptions_writeScope options ]
