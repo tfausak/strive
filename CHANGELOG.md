@@ -2,6 +2,9 @@
 
 This package uses [Semantic Versioning][1].
 
+- #97: Fixed a bug that incorrectly separated OAuth scopes with spaces instead
+  of commas. Thanks @liskin for the patch!
+
 ## v1.0.0 (2015-04-05)
 
 - Added the response to the error message when decoding fails.
