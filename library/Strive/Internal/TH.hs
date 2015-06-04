@@ -26,6 +26,18 @@ underscore = concatMap go
 dropPrefix :: String -> String
 dropPrefix = drop 1 . dropWhile (/= '_')
 
+
+-- data and type seem to be reserved words for
+-- ghc 7.10, we postfix them with an underscore
+-- for now. 
+lenseName :: String -> String
+lenseName str = 
+  let varName = dropPrefix str
+  in case varName of
+    "data" -> "data_"
+    "type" -> "type_"
+    _      -> varName
+
 -- | Generate lens classes and instances for a type.
 makeLenses :: String -> Q [Dec]
 makeLenses string = do
@@ -84,7 +96,7 @@ capitalize "" = ""
 capitalize (c : cs) = toUpper c : cs
 
 getFieldName :: VarStrictType -> String
-getFieldName (var, _, _) = (dropPrefix . show) var
+getFieldName (var, _, _) = (lenseName . show) var
 
 makeLensInstances :: Name -> [VarStrictType] -> Q [Dec]
 makeLensInstances name triples = mapM (makeLensInstance name) triples
