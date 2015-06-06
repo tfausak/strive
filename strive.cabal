@@ -76,7 +76,7 @@ library
         Strive.Utilities
     build-depends:
         base ==4.*,
-        aeson >=0.7 && <0.9,
+        aeson >=0.7 && <0.10,
         bytestring ==0.10.*,
         data-default ==0.5.*,
         gpolyline ==0.1.*,
