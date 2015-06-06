@@ -293,7 +293,7 @@ main = do
 ~~~ {.haskell}
   updatedActivity <- updateActivity client 141273622 $ with
     [ set name (Just "WedEx Pit Stop")
-    , set Strive.type (Just Ride)
+    , set type_ (Just Ride)
     , set private (Just False)
     , set commute (Just True)
     , set trainer (Just False)
