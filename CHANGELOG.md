@@ -2,6 +2,11 @@
 
 Strive uses [Semantic Versioning][].
 
+## v2.0.0 (2015-06-05)
+
+- #99: Fixed a bug that created lens names as keywords. Thanks @MarcusWalz for
+  the patch!
+
 ## v1.0.1 (2015-04-23)
 
 - #97: Fixed a bug that incorrectly separated OAuth scopes with spaces instead
