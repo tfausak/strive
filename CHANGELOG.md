@@ -2,6 +2,11 @@
 
 Strive uses [Semantic Versioning][].
 
+## v2.0.1 (2015-06-05)
+
+- Added support for Aeson version 0.9.
+- Fixed GHC 7.10 warnings.
+
 ## v2.0.0 (2015-06-05)
 
 - #99: Fixed a bug that created lens names as keywords. Thanks @MarcusWalz for
