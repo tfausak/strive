@@ -29,7 +29,6 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_athleteCount          :: Integer
   , activityDetailed_averageSpeed          :: Double
   , activityDetailed_averageWatts          :: Maybe Double
-  , activityDetailed_averageHeartrate      :: Maybe Double
   , activityDetailed_calories              :: Double
   , activityDetailed_commentCount          :: Integer
   , activityDetailed_commute               :: Bool
@@ -51,7 +50,6 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_locationState         :: Maybe Text
   , activityDetailed_manual                :: Bool
   , activityDetailed_map                   :: PolylineDetailed
-  , activityDetailed_maxHeartrate          :: Maybe Double
   , activityDetailed_maxSpeed              :: Double
   , activityDetailed_movingTime            :: Integer
   , activityDetailed_name                  :: Text
@@ -82,7 +80,6 @@ data ActivitySummary = ActivitySummary
   , activitySummary_athleteCount         :: Integer
   , activitySummary_averageSpeed         :: Double
   , activitySummary_averageWatts         :: Maybe Double
-  , activitySummary_averageHeartrate     :: Maybe Double
   , activitySummary_commentCount         :: Integer
   , activitySummary_commute              :: Bool
   , activitySummary_deviceWatts          :: Maybe Bool
@@ -101,7 +98,6 @@ data ActivitySummary = ActivitySummary
   , activitySummary_locationState        :: Maybe Text
   , activitySummary_manual               :: Bool
   , activitySummary_map                  :: PolylineSummary
-  , activitySummary_maxHeartrate         :: Maybe Double
   , activitySummary_maxSpeed             :: Double
   , activitySummary_movingTime           :: Integer
   , activitySummary_name                 :: Text
