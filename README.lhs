@@ -563,7 +563,7 @@ main = do
 [strive]: http://taylor.fausak.me/strive/
 [strava v3 api]: http://strava.github.io/api/
 [version]: https://img.shields.io/hackage/v/strive.svg?label=version&amp;style=flat-square
-[build]: https://img.shields.io/travis/tfausak/strive/master.svg?label=version&amp;style=flat-square
-[dependencies]: https://img.shields.io/hackage-deps/v/strive.svg?label=version&amp;style=flat-square
+[build]: https://img.shields.io/travis/tfausak/strive/master.svg?label=build&amp;style=flat-square
+[dependencies]: https://img.shields.io/hackage-deps/v/strive.svg?label=dependencies&amp;style=flat-square
 [semantic versioning]: http://semver.org/spec/v2.0.0.html
 [the change log]: CHANGELOG.md
