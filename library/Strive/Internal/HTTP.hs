@@ -71,7 +71,7 @@ performRequest :: Client -> Request -> IO (Response ByteString)
 performRequest client request = (client_requester client) request
 
 -- | Handle decoding a potentially failed response.
-handleResponse :: (FromJSON j) => Response ByteString -> Result j
+handleResponse :: FromJSON j => Response ByteString -> Result j
 handleResponse response = case decodeValue response of
   Left message -> Left (response, message)
   Right value -> Right value
