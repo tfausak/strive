@@ -2,6 +2,11 @@
 
 Strive uses [Semantic Versioning][].
 
+## v2.1.0 (2015-06-05)
+
+- Added heart rate information to activity types. Thanks again to @MarcusWalz
+  for adding these fields!
+
 ## v2.0.1 (2015-06-05)
 
 - Added support for Aeson version 0.9.
