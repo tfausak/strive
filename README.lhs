@@ -1,26 +1,12 @@
-<h1 align="center">
-    <a href="http://taylor.fausak.me/strive/">
-        Strive
-    </a>
-</h1>
+# [Strive][]
 
-<p align="center">
-    Strive is a Haskell client for the <a href="http://strava.github.io/api/">Strava V3 API</a>.
-</p>
+Strive is a Haskell client for the [Strava V3 API][].
 
-<p align="center">
-    <a href="https://hackage.haskell.org/package/strive">
-        <img alt="" src="https://img.shields.io/hackage/v/strive.svg">
-    </a>
-    <a href="https://travis-ci.org/tfausak/strive">
-        <img alt="" src="https://img.shields.io/travis/tfausak/strive/master.svg">
-    </a>
-    <a href="http://packdeps.haskellers.com/feed?needle=strive">
-        <img alt="" src="https://img.shields.io/hackage-deps/v/strive.svg">
-    </a>
-</p>
+[![Version][]](https://hackage.haskell.org/package/strive)
+[![Build][]](https://travis-ci.org/tfausak/strive)
+[![Dependencies][]](http://packdeps.haskellers.com/feed?needle=strive)
 
-<hr>
+---
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -84,17 +70,19 @@
 Add it to your Cabal file:
 
 ~~~
-library
-  build-depends:
-    strive ==1.*
+build-depends:
+  strive ==1.0.*
 ~~~
 
 Or install it manually:
 
 ~~~ {.sh}
 $ cabal update
-$ cabal install 'strive ==1.*'
+$ cabal install 'strive ==1.0.*'
 ~~~
+
+Strive uses [Semantic Versioning][]. See [the change log][] for a detailed list
+of changes.
 
 ## Usage
 
@@ -571,3 +559,11 @@ main = do
   upload <- getUpload client 16486788
   print (upload :: Result UploadStatus)
 ~~~
+
+[strive]: http://taylor.fausak.me/strive/
+[strava v3 api]: http://strava.github.io/api/
+[version]: https://img.shields.io/hackage/v/strive.svg?label=version&amp;style=flat-square
+[build]: https://img.shields.io/travis/tfausak/strive/master.svg?label=version&amp;style=flat-square
+[dependencies]: https://img.shields.io/hackage-deps/v/strive.svg?label=version&amp;style=flat-square
+[semantic versioning]: http://semver.org/spec/v2.0.0.html
+[the change log]: CHANGELOG.md

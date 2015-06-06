@@ -18,7 +18,6 @@ author: Taylor Fausak
 tested-with: GHC ==7.6.* GHC ==7.8.*
 extra-source-files:
     CHANGELOG.md
-    CONTRIBUTING.md
     README.md
 
 source-repository head
@@ -26,18 +25,6 @@ source-repository head
     location: git://github.com/tfausak/strive.git
 
 library
-    build-depends:
-        base ==4.*,
-        aeson >=0.7 && <0.9,
-        bytestring ==0.10.*,
-        data-default ==0.5.*,
-        gpolyline ==0.1.*,
-        http-conduit ==2.*,
-        http-types ==0.8.*,
-        template-haskell ==2.*,
-        text >=0.11 && <2,
-        time ==1.*,
-        transformers >=0.3 && <0.5
     exposed-modules:
         Strive
         Strive.Actions
@@ -87,30 +74,38 @@ library
         Strive.Types.Streams
         Strive.Types.Uploads
         Strive.Utilities
-    exposed: True
-    buildable: True
+    build-depends:
+        base ==4.*,
+        aeson >=0.7 && <0.9,
+        bytestring ==0.10.*,
+        data-default ==0.5.*,
+        gpolyline ==0.1.*,
+        http-conduit ==2.*,
+        http-types ==0.8.*,
+        template-haskell ==2.*,
+        text >=0.11 && <2,
+        time ==1.*,
+        transformers >=0.3 && <0.5
     default-language: Haskell2010
     hs-source-dirs: library
     ghc-options: -Wall
 
 test-suite readme
+    type: exitcode-stdio-1.0
+    main-is: README.lhs
     build-depends:
         base -any,
         strive -any,
         bytestring -any,
         markdown-unlit ==0.2.*,
         time -any
-    type: exitcode-stdio-1.0
-    main-is: README.lhs
-    buildable: True
     default-language: Haskell2010
     ghc-options: -pgmL markdown-unlit -Wall -Werror
 test-suite hlint
+    type: exitcode-stdio-1.0
+    main-is: HLint.hs
     build-depends:
         base -any,
         hlint ==1.9.*
-    type: exitcode-stdio-1.0
-    main-is: HLint.hs
-    buildable: True
     default-language: Haskell2010
     hs-source-dirs: test-suite

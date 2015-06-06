@@ -1,6 +1,6 @@
 # Changelog
 
-This package uses [Semantic Versioning][1].
+Strive uses [Semantic Versioning][].
 
 ## v1.0.1 (2015-04-23)
 
@@ -123,4 +123,4 @@ This package uses [Semantic Versioning][1].
 
 - Initial release.
 
-[1]: http://semver.org/spec/v2.0.0.html
+[semantic versioning]: http://semver.org/spec/v2.0.0.html
