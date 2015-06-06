@@ -100,7 +100,7 @@ test-suite readme
         markdown-unlit ==0.2.*,
         time -any
     default-language: Haskell2010
-    ghc-options: -pgmL markdown-unlit -Wall -Werror
+    ghc-options: -pgmL markdown-unlit -Wall
 test-suite hlint
     type: exitcode-stdio-1.0
     main-is: HLint.hs

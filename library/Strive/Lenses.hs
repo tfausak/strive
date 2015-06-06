@@ -12,7 +12,7 @@ import Data.Functor.Constant (Constant (Constant), getConstant)
 import Data.Functor.Identity (Identity (Identity), runIdentity)
 
 -- | A lens for a record.
-type Lens a b = Functor f => (b -> f b) -> a -> f a
+type Lens a b = forall f . Functor f => (b -> f b) -> a -> f a
 
 -- | Get a field from a record.
 get :: Lens a b -> a -> b
