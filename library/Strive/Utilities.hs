@@ -25,37 +25,37 @@ import Strive.Types (StreamDetailed (..))
 with :: Default a => [a -> a] -> a
 with = foldr ($) def
 
-altitudeStream :: [StreamDetailed] -> Maybe [Int]
+altitudeStream :: [StreamDetailed] -> Maybe [Double]
 altitudeStream = lookupStream AltitudeStream
 
-cadenceStream :: [StreamDetailed] -> Maybe [Int]
+cadenceStream :: [StreamDetailed] -> Maybe [Integer]
 cadenceStream = lookupStream CadenceStream
 
-distanceStream :: [StreamDetailed] -> Maybe [Float]
+distanceStream :: [StreamDetailed] -> Maybe [Double]
 distanceStream = lookupStream DistanceStream
 
-gradeSmoothStream :: [StreamDetailed] -> Maybe [Float]
+gradeSmoothStream :: [StreamDetailed] -> Maybe [Double]
 gradeSmoothStream = lookupStream GradeSmoothStream
 
-heartrateStream :: [StreamDetailed] -> Maybe [Int]
+heartrateStream :: [StreamDetailed] -> Maybe [Integer]
 heartrateStream = lookupStream HeartrateStream
 
-latlngStream :: [StreamDetailed] -> Maybe [(Float, Float)]
+latlngStream :: [StreamDetailed] -> Maybe [(Double, Double)]
 latlngStream = lookupStream LatlngStream
 
 movingStream :: [StreamDetailed] -> Maybe [Bool]
 movingStream = lookupStream MovingStream
 
-tempStream :: [StreamDetailed] -> Maybe [Int]
+tempStream :: [StreamDetailed] -> Maybe [Integer]
 tempStream = lookupStream TempStream
 
-timeStream :: [StreamDetailed] -> Maybe [Int]
+timeStream :: [StreamDetailed] -> Maybe [Integer]
 timeStream = lookupStream TimeStream
 
-velocitySmoothStream :: [StreamDetailed] -> Maybe [Float]
+velocitySmoothStream :: [StreamDetailed] -> Maybe [Double]
 velocitySmoothStream = lookupStream VelocitySmoothStream
 
-wattsStream :: [StreamDetailed] -> Maybe [Int]
+wattsStream :: [StreamDetailed] -> Maybe [Integer]
 wattsStream = lookupStream WattsStream
 
 lookupStream :: FromJSON a => StreamType -> [StreamDetailed] -> Maybe [a]
