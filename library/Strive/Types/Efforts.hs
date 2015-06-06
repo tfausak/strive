@@ -5,12 +5,15 @@ module Strive.Types.Efforts
   ( EffortDetailed (..)
   ) where
 
-import Control.Applicative (empty, (<$>), (<*>))
 import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (ResourceState)
 import Strive.Types.Segments (SegmentSummary)
+
+-- https://ghc.haskell.org/trac/ghc/wiki/Migration/7.10#GHCsaysTheimportof...isredundant
+import Control.Applicative
+import Prelude
 
 -- | <http://strava.github.io/api/v3/efforts/#detailed>
 data EffortDetailed = EffortDetailed

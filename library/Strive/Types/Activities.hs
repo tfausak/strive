@@ -10,7 +10,6 @@ module Strive.Types.Activities
   , ActivityLapSummary (..)
   ) where
 
-import Control.Applicative (empty, (<$>), (<*>))
 import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
 import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
@@ -21,6 +20,10 @@ import Strive.Types.Athletes (AthleteMeta)
 import Strive.Types.Efforts (EffortDetailed)
 import Strive.Types.Gear (GearSummary)
 import Strive.Types.Polylines (PolylineDetailed, PolylineSummary)
+
+-- https://ghc.haskell.org/trac/ghc/wiki/Migration/7.10#GHCsaysTheimportof...isredundant
+import Control.Applicative
+import Prelude
 
 -- | <http://strava.github.io/api/v3/activities/#detailed>
 data ActivityDetailed = ActivityDetailed
