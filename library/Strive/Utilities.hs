@@ -2,6 +2,7 @@
 module Strive.Utilities
   ( with
   -- * Streams
+  , lookupStream
   , altitudeStream
   , cadenceStream
   , distanceStream
@@ -17,7 +18,8 @@ module Strive.Utilities
 
 import Data.Aeson (FromJSON, Result (Error, Success), fromJSON)
 import Data.Default (Default, def)
-import Data.Maybe (mapMaybe)
+import Data.Maybe (mapMaybe, isJust)
+import Data.List (find)
 import Data.Text (pack)
 import qualified Strive.Enums as Enums
 import Strive.Types (StreamDetailed, streamDetailed_data, streamDetailed_type)
@@ -26,41 +28,45 @@ import Strive.Types (StreamDetailed, streamDetailed_data, streamDetailed_type)
 with :: Default a => [a -> a] -> a
 with = foldr ($) def
 
+-- | Extract a stream from a list of StreamDetailed
+lookupStream :: [StreamDetailed] -> (StreamDetailed -> Maybe [a]) -> Maybe [a]
+lookupStream streams f = (find (isJust . f) streams) >>= f
+
 altitudeStream :: StreamDetailed -> Maybe [Double]
-altitudeStream = lookupStream Enums.AltitudeStream
+altitudeStream = lookupStream' Enums.AltitudeStream
 
 cadenceStream :: StreamDetailed -> Maybe [Integer]
-cadenceStream = lookupStream Enums.CadenceStream
+cadenceStream = lookupStream' Enums.CadenceStream
 
 distanceStream :: StreamDetailed -> Maybe [Double]
-distanceStream = lookupStream Enums.DistanceStream
+distanceStream = lookupStream' Enums.DistanceStream
 
 gradeSmoothStream :: StreamDetailed -> Maybe [Double]
-gradeSmoothStream = lookupStream Enums.GradeSmoothStream
+gradeSmoothStream = lookupStream' Enums.GradeSmoothStream
 
 heartrateStream :: StreamDetailed -> Maybe [Integer]
-heartrateStream = lookupStream Enums.HeartrateStream
+heartrateStream = lookupStream' Enums.HeartrateStream
 
 latlngStream :: StreamDetailed -> Maybe [(Double, Double)]
-latlngStream = lookupStream Enums.LatlngStream
+latlngStream = lookupStream' Enums.LatlngStream
 
 movingStream :: StreamDetailed -> Maybe [Bool]
-movingStream = lookupStream Enums.MovingStream
+movingStream = lookupStream' Enums.MovingStream
 
 tempStream :: StreamDetailed -> Maybe [Integer]
-tempStream = lookupStream Enums.TempStream
+tempStream = lookupStream' Enums.TempStream
 
 timeStream :: StreamDetailed -> Maybe [Integer]
-timeStream = lookupStream Enums.TimeStream
+timeStream = lookupStream' Enums.TimeStream
 
 velocitySmoothStream :: StreamDetailed -> Maybe [Double]
-velocitySmoothStream = lookupStream Enums.VelocitySmoothStream
+velocitySmoothStream = lookupStream' Enums.VelocitySmoothStream
 
 wattsStream :: StreamDetailed -> Maybe [Integer]
-wattsStream = lookupStream Enums.WattsStream
+wattsStream = lookupStream' Enums.WattsStream
 
-lookupStream :: FromJSON a => Enums.StreamType -> StreamDetailed -> Maybe [a]
-lookupStream streamType stream =
+lookupStream' :: FromJSON a => Enums.StreamType -> StreamDetailed -> Maybe [a]
+lookupStream' streamType stream =
   if streamDetailed_type stream == pack (show streamType)
     then Just (mapMaybe f (streamDetailed_data stream))
     else Nothing
