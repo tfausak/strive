@@ -1,4 +1,5 @@
 /.cabal-sandbox/
+/.stack-work/
 /README
 /cabal.sandbox.config
 /dist/

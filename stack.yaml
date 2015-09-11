@@ -1,0 +1,5 @@
+packages: [.]
+extra-deps:
+- gpolyline-0.1.0.1
+- markdown-unlit-0.2.0.1
+resolver: lts-3.4
