@@ -2,4 +2,6 @@ packages: [.]
 extra-deps:
 - gpolyline-0.1.0.1
 - markdown-unlit-0.2.0.1
-resolver: lts-3.4
+install-ghc: true
+require-stack-version: '>=1.0'
+resolver: nightly-2016-01-07
