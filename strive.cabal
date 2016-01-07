@@ -4,7 +4,7 @@ cabal-version: >=1.10
 build-type: Simple
 license: MIT
 license-file: LICENSE.md
-copyright: 2015 Taylor Fausak <taylor@fausak.me>
+copyright: 2016 Taylor Fausak <taylor@fausak.me>
 maintainer: taylor@fausak.me
 homepage: http://taylor.fausak.me/strive/
 bug-reports: https://github.com/tfausak/strive/issues
