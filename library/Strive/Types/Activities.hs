@@ -50,7 +50,7 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_instagramPrimaryPhoto :: Maybe Text
   , activityDetailed_kilojoules            :: Maybe Double
   , activityDetailed_locationCity          :: Maybe Text
-  , activityDetailed_locationCountry       :: Text
+  , activityDetailed_locationCountry       :: Maybe Text
   , activityDetailed_locationState         :: Maybe Text
   , activityDetailed_manual                :: Bool
   , activityDetailed_map                   :: PolylineDetailed
@@ -100,7 +100,7 @@ data ActivitySummary = ActivitySummary
   , activitySummary_kilojoules           :: Maybe Double
   , activitySummary_kudosCount           :: Integer
   , activitySummary_locationCity         :: Maybe Text
-  , activitySummary_locationCountry      :: Text
+  , activitySummary_locationCountry      :: Maybe Text
   , activitySummary_locationState        :: Maybe Text
   , activitySummary_manual               :: Bool
   , activitySummary_map                  :: PolylineSummary
