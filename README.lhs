@@ -71,14 +71,14 @@ Add it to your Cabal file:
 
 ~~~
 build-depends:
-  strive ==2.1.*
+  strive
 ~~~
 
 Or install it manually:
 
 ~~~ {.sh}
 $ cabal update
-$ cabal install 'strive ==2.1.*'
+$ cabal install strive
 ~~~
 
 Strive uses [Semantic Versioning][]. See [the change log][] for a detailed list
