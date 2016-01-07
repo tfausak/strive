@@ -4,3 +4,6 @@ ghc:
 - '7.6'
 before_install:
 - cabal install happy
+cache:
+  directories:
+  - $HOME/.cabal
