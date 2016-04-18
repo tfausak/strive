@@ -14,7 +14,7 @@ library:
   - aeson >=0.7 && <0.12
   - base ==4.*
   - bytestring ==0.10.*
-  - data-default ==0.5.*
+  - data-default >=0.5 && <0.7
   - gpolyline ==0.1.*
   - http-conduit ==2.*
   - http-types >=0.8 && <0.10
