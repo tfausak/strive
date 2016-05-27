@@ -2,4 +2,4 @@ extra-deps:
 - gpolyline-0.1.0.1
 install-ghc: true
 require-stack-version: ! '>=1.0.4'
-resolver: lts-5.13
+resolver: nightly-2016-05-27

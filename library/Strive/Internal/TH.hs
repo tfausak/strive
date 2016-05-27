@@ -34,7 +34,7 @@ makeLenses string = do
     Just name -> do
       info <- reify name
       case info of
-        TyConI (DataD _ _ _ [RecC _ triples] _) -> do
+        TyConI (DataD _ _ _ _ [RecC _ triples] _) -> do
           classes <- makeLensClasses triples
           instances <- makeLensInstances name triples
           return (classes ++ instances)
@@ -103,6 +103,7 @@ makeLensInstance name triple@(var, _, typ) = do
   Just fmap' <- lookupValueName "fmap"
   let field = mkName (getFieldName triple)
   return $ InstanceD
+    Nothing
     []
     (AppT (AppT (ConT (mkName (getLensName triple))) (ConT name)) typ)
     [FunD field [Clause [VarP f, VarP x] (NormalB (AppE (AppE (VarE fmap') (LamE [VarP a] (RecUpdE (VarE x) [(var, VarE a)]))) (AppE (VarE f) (AppE (VarE var) (VarE x))))) []]]
