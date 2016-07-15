@@ -32,7 +32,7 @@ tests:
     dependencies:
     - base
     - bytestring
-    - markdown-unlit >=0.2 && <0.6
+    - markdown-unlit ==0.4.*
     - strive
     - time
     ghc-options:
