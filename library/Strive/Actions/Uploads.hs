@@ -5,7 +5,7 @@ module Strive.Actions.Uploads
   ) where
 
 import Data.ByteString (ByteString)
-import Network.HTTP.Conduit (RequestBody (RequestBodyBS), requestBody)
+import Network.HTTP.Client (RequestBody (RequestBodyBS), requestBody)
 import Network.HTTP.Types (Query, methodPost, toQuery)
 import Strive.Aliases (Extension, Result, UploadId)
 import Strive.Client (Client)

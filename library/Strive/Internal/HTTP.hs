@@ -13,8 +13,8 @@ module Strive.Internal.HTTP
 import Data.Aeson (FromJSON, eitherDecode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (ByteString)
-import Network.HTTP.Conduit (Request, Response, checkStatus, method, parseUrl,
-                             responseBody)
+import Network.HTTP.Client (Request, Response, method, parseRequest,
+                            responseBody)
 import Network.HTTP.Types (Method, Query, QueryLike, methodDelete, methodGet,
                            methodPost, methodPut, renderQuery, toQuery)
 import Strive.Aliases (Result)
@@ -46,10 +46,9 @@ http httpMethod client resource query = do
 -- | Build a request.
 buildRequest :: QueryLike q => Method -> Client -> String -> q -> IO Request
 buildRequest httpMethod client resource query = do
-  request <- parseUrl (buildUrl client resource query)
+  request <- parseRequest (buildUrl client resource query)
   return request
-    { checkStatus = \ _ _ _ -> Nothing
-    , method = httpMethod
+    { method = httpMethod
     }
 
 -- | Build a URL.

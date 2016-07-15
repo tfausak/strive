@@ -6,8 +6,8 @@ module Strive.Client
 
 import Data.ByteString.Lazy (ByteString)
 import Data.Text (Text, unpack)
-import Network.HTTP.Client.Conduit (newManager)
-import Network.HTTP.Conduit (Request, Response, httpLbs)
+import Network.HTTP.Client (Request, Response, httpLbs, newManager)
+import Network.HTTP.Client.TLS (tlsManagerSettings)
 
 -- | Strava V3 API client.
 data Client = Client
@@ -25,7 +25,7 @@ instance Show Client where
 -- | Build a new client using the default HTTP manager to make requests.
 buildClient :: Maybe Text -> IO Client
 buildClient accessToken = do
-  manager <- newManager
+  manager <- newManager tlsManagerSettings
   return Client
     { client_accessToken = maybe "" unpack accessToken
     , client_requester = flip httpLbs manager

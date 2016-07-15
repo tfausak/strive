@@ -3,7 +3,7 @@ module Strive.Aliases where
 
 import Data.ByteString.Lazy (ByteString)
 import Data.Time.Clock (UTCTime)
-import Network.HTTP.Conduit (Response)
+import Network.HTTP.Client (Response)
 
 type ActivityId = Integer
 type ApplicationId = Integer

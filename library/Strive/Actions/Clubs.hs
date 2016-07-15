@@ -10,7 +10,7 @@ module Strive.Actions.Clubs
 
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import Network.HTTP.Conduit (responseBody, responseStatus)
+import Network.HTTP.Client (responseBody, responseStatus)
 import Network.HTTP.Types (Query, methodPost, ok200, toQuery)
 import Strive.Aliases (ClubId, Result)
 import Strive.Client (Client)

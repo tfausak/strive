@@ -14,7 +14,7 @@ module Strive.Actions.Activities
 import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import Network.HTTP.Conduit (responseBody, responseStatus)
+import Network.HTTP.Client (responseBody, responseStatus)
 import Network.HTTP.Types (Query, methodDelete, noContent204, toQuery)
 import Strive.Aliases (ActivityId, ElapsedTime, Name, Result, StartTime)
 import Strive.Client (Client)

@@ -13,9 +13,10 @@ library:
   - aeson ==0.11.*
   - base ==4.9.*
   - bytestring ==0.10.*
-  - data-default ==0.6.*
+  - data-default ==0.7.*
   - gpolyline ==0.1.*
-  - http-conduit ==2.1.*
+  - http-client >=0.4.30 && <0.6
+  - http-client-tls >=0.2 && <0.4
   - http-types ==0.9.*
   - template-haskell ==2.11.*
   - text ==1.2.*
