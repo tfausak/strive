@@ -24,7 +24,13 @@ underscore = concatMap go
     else [c]
 
 dropPrefix :: String -> String
-dropPrefix = drop 1 . dropWhile (/= '_')
+dropPrefix s =
+  let unprefixed = (drop 1 . dropWhile (/= '_')) s
+  in case unprefixed of
+    "type" -> "stype"
+    "data" -> "sdata"
+    _      -> unprefixed
+
 
 -- | Generate lens classes and instances for a type.
 makeLenses :: String -> Q [Dec]
