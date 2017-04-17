@@ -10,7 +10,7 @@ ghc-options:
 github: tfausak/strive
 library:
   dependencies:
-  - aeson >=0.11 && <1.2
+  - aeson >=0.11 && <1.3
   - base ==4.9.*
   - bytestring ==0.10.*
   - data-default ==0.7.*
