@@ -20,7 +20,7 @@ library:
   - http-types ==0.9.*
   - template-haskell >=2.11 && <2.13
   - text ==1.2.*
-  - time ==1.6.*
+  - time >=1.6 && <1.9
   - transformers ==0.5.*
   source-dirs: library
 license: MIT
