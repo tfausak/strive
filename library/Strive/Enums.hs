@@ -52,7 +52,7 @@ data ActivityType
   | Windsurf
   | Workout
   | Yoga
-  deriving Show
+  deriving (Eq, Show)
 
 instance FromJSON ActivityType where
   parseJSON (String "AlpineSki") = return AlpineSki
@@ -89,7 +89,7 @@ instance FromJSON ActivityType where
 data ActivityZoneType
   = HeartrateZone
   | PowerZone
-  deriving Show
+  deriving (Eq, Show)
 
 instance FromJSON ActivityZoneType where
   parseJSON (String "heartrate") = return HeartrateZone
@@ -104,6 +104,7 @@ data AgeGroup
   | Ages45To54
   | Ages55To64
   | Ages65Plus
+  deriving Eq
 
 instance Show AgeGroup where
   show Ages0To24 = "0_24"
@@ -120,7 +121,7 @@ data ClubType
   | Other
   | RacingTeam
   | Shop
-  deriving Show
+  deriving (Eq, Show)
 
 instance FromJSON ClubType where
   parseJSON (String "casual_club") = return CasualClub
@@ -136,7 +137,7 @@ data FrameType
   | MountainFrame
   | RoadFrame
   | TimeTrialFrame
-  deriving Show
+  deriving (Eq, Show)
 
 instance FromJSON FrameType where
   parseJSON (Number 2) = return CrossFrame
@@ -149,6 +150,7 @@ instance FromJSON FrameType where
 data Gender
   = Female
   | Male
+  deriving Eq
 
 instance Show Gender where
   show Female = "F"
@@ -163,7 +165,7 @@ instance FromJSON Gender where
 data MeasurementPreference
   = Feet
   | Meters
-  deriving Show
+  deriving (Eq, Show)
 
 instance FromJSON MeasurementPreference where
   parseJSON (String "feet") = return Feet
@@ -173,7 +175,7 @@ instance FromJSON MeasurementPreference where
 -- | A photo's type.
 data PhotoType
   = InstagramPhoto
-  deriving Show
+  deriving (Eq, Show)
 
 instance FromJSON PhotoType where
   parseJSON (String "InstagramPhoto") = return InstagramPhoto
@@ -184,6 +186,7 @@ data Resolution
   = Low
   | Medium
   | High
+  deriving Eq
 
 instance Show Resolution where
   show Low = "low"
@@ -201,7 +204,7 @@ data ResourceState
   = Meta
   | Summary
   | Detailed
-  deriving Show
+  deriving (Eq, Show)
 
 instance FromJSON ResourceState where
   parseJSON (Number 1) = return Meta
@@ -213,6 +216,7 @@ instance FromJSON ResourceState where
 data SegmentActivityType
   = Riding
   | Running
+  deriving Eq
 
 instance Show SegmentActivityType where
   show Riding = "riding"
@@ -222,6 +226,7 @@ instance Show SegmentActivityType where
 data SeriesType
   = Distance
   | Time
+  deriving Eq
 
 instance Show SeriesType where
   show Distance = "distance"
@@ -238,7 +243,7 @@ data SportType
   | SportOther
   | SportRunning
   | SportTriathalon
-  deriving Show
+  deriving (Eq, Show)
 
 instance FromJSON SportType where
   parseJSON (String "cycling") = return SportCycling
@@ -260,6 +265,7 @@ data StreamType
   | TimeStream
   | VelocitySmoothStream
   | WattsStream
+  deriving Eq
 
 instance Show StreamType where
   show AltitudeStream = "altitude"
@@ -288,6 +294,7 @@ data WeightClass
   | Pounds165To179
   | Pounds180To199
   | Pounds200Plus
+  deriving Eq
 
 instance Show WeightClass where
   show Kilograms0To54 = "0_54"
