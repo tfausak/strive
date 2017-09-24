@@ -9,12 +9,12 @@ module Strive.Types.Authentication
 import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
 import Strive.Internal.TH (options)
-import Strive.Types.Athletes (AthleteDetailed)
+import Strive.Types.Athletes (AthleteSummary)
 
 -- | <http://strava.github.io/api/v3/oauth/#example-response>
 data TokenExchangeResponse = TokenExchangeResponse
   { tokenExchangeResponse_accessToken :: Text
-  , tokenExchangeResponse_athlete     :: AthleteDetailed
+  , tokenExchangeResponse_athlete     :: AthleteSummary
   } deriving Show
 
 $(deriveFromJSON options ''TokenExchangeResponse)
