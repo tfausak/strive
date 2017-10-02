@@ -47,6 +47,7 @@ data ActivityType
   | StandUpPaddling
   | Surfing
   | Swim
+  | VirtualRide
   | Walk
   | WeightTraining
   | Windsurf
@@ -78,6 +79,7 @@ instance FromJSON ActivityType where
   parseJSON (String "StandUpPaddling") = return StandUpPaddling
   parseJSON (String "Surfing") = return Surfing
   parseJSON (String "Swim") = return Swim
+  parseJSON (String "VirtualRide") = return VirtualRide
   parseJSON (String "Walk") = return Walk
   parseJSON (String "WeightTraining") = return WeightTraining
   parseJSON (String "Windsurf") = return Windsurf
