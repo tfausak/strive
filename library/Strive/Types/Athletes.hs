@@ -42,7 +42,7 @@ data AthleteDetailed = AthleteDetailed
   , athleteDetailed_resourceState         :: ResourceState
   , athleteDetailed_sex                   :: Maybe Gender
   , athleteDetailed_shoes                 :: [GearSummary]
-  , athleteDetailed_state                 :: Text
+  , athleteDetailed_state                 :: Maybe Text
   , athleteDetailed_updatedAt             :: UTCTime
   , athleteDetailed_weight                :: Maybe Double
   } deriving Show
@@ -64,7 +64,7 @@ data AthleteSummary = AthleteSummary
   , athleteSummary_profileMedium :: Text
   , athleteSummary_resourceState :: ResourceState
   , athleteSummary_sex           :: Maybe Gender
-  , athleteSummary_state         :: Text
+  , athleteSummary_state         :: Maybe Text
   , athleteSummary_updatedAt     :: UTCTime
   } deriving Show
 
