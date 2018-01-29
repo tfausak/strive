@@ -17,7 +17,7 @@ library:
   - gpolyline ==0.1.*
   - http-client >=0.4.30 && <0.6
   - http-client-tls >=0.2 && <0.4
-  - http-types >=0.9 && <0.12
+  - http-types >=0.9 && <0.13
   - template-haskell >=2.11 && <2.13
   - text ==1.2.*
   - time >=1.6 && <1.9
