@@ -1,7 +1,7 @@
 {-# LANGUAGE FlexibleInstances      #-}
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE TemplateHaskell        #-}
-
+{-# OPTIONS_GHC -Wno-missing-import-lists #-}
 {-# OPTIONS_HADDOCK hide #-}
 
 -- | Lens classes and instances generated with template Haskell.

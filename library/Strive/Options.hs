@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-missing-import-lists #-}
+
 -- | Optional parameters for actions.
 module Strive.Options
   ( module Strive.Options.Activities

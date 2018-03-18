@@ -15,7 +15,7 @@ module Strive.Utilities
   , wattsStream
   ) where
 
-import Data.Aeson (FromJSON, Result (Error, Success), fromJSON)
+import Data.Aeson (FromJSON, Result (Error, Success), Value, fromJSON)
 import Data.Default (Default, def)
 import Data.Maybe (mapMaybe)
 import Data.Text (pack)
@@ -62,9 +62,10 @@ wattsStream = lookupStream Enums.WattsStream
 lookupStream :: FromJSON a => Enums.StreamType -> StreamDetailed -> Maybe [a]
 lookupStream streamType stream =
   if streamDetailed_type stream == pack (show streamType)
-    then Just (mapMaybe f (streamDetailed_data stream))
+    then Just (mapMaybe maybeFromJson (streamDetailed_data stream))
     else Nothing
- where
-  f value = case fromJSON value of
-    Success x -> Just x
-    Error _ -> Nothing
+
+maybeFromJson :: FromJSON a => Value -> Maybe a
+maybeFromJson value = case fromJSON value of
+  Success x -> Just x
+  Error _ -> Nothing

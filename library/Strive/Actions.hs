@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-missing-import-lists #-}
+
 -- | Functions for performing actions against the API.
 module Strive.Actions
   ( module Strive.Actions.Activities

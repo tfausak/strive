@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-missing-import-lists #-}
+
 -- | Data types representing responses from the API.
 module Strive.Types
   ( module Strive.Types.Activities
