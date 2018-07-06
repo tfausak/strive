@@ -1,5 +1,25 @@
 -- | Aliases for common types.
-module Strive.Aliases where
+module Strive.Aliases
+  ( ActivityId
+  , ApplicationId
+  , ApplicationSecret
+  , AthleteId
+  , AuthorizationCode
+  , ClubId
+  , EffortId
+  , ElapsedTime
+  , Extension
+  , GearId
+  , Latitude
+  , Longitude
+  , Name
+  , RedirectUri
+  , Result
+  , SegmentId
+  , StartTime
+  , StreamId
+  , UploadId
+  ) where
 
 import Data.ByteString.Lazy (ByteString)
 import Data.Time.Clock (UTCTime)
