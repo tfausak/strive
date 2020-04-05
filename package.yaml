@@ -1,5 +1,5 @@
 name: strive
-version: 5.0.9
+version: 5.0.10
 
 category: API
 description: Strive is a client for the Strava V3 API.
