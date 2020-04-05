@@ -1,7 +1,8 @@
-# [Strive][]
+# Strive
 
-[![Version badge][]][version]
-[![Build badge][]][build]
+[![Travis CI](https://travis-ci.org/tfausak/strive.svg?branch=master)](https://travis-ci.org/tfausak/strive)
+[![Hackage](https://img.shields.io/hackage/v/strive)](https://hackage.haskell.org/package/strive)
+[![Stackage](https://www.stackage.org/package/strive/badge/nightly?label=stackage)](https://www.stackage.org/package/strive)
 
 Strive is a Haskell client for the [Strava V3 API][].
 
@@ -559,11 +560,6 @@ main = do
   print (upload :: Result UploadStatus)
 ~~~
 
-[Strive]: http://taylor.fausak.me/strive/
-[Version badge]: https://www.stackage.org/package/strive/badge/nightly?label=version
-[version]: https://www.stackage.org/package/strive
-[Build badge]: https://travis-ci.org/tfausak/strive.svg?branch=master
-[build]: https://travis-ci.org/tfausak/strive
 [Strava V3 API]: http://strava.github.io/api/
 [Semantic Versioning]: http://semver.org/spec/v2.0.0.html
 [the change log]: CHANGELOG.md

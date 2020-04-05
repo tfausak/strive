@@ -1,0 +1,109 @@
+name: strive
+version: 5.0.10
+
+synopsis: A client for the Strava V3 API.
+description: Strive is a client for the Strava V3 API.
+
+build-type: Simple
+cabal-version: >= 1.10
+category: API
+extra-source-files: README.markdown
+license-file: LICENSE.markdown
+license: MIT
+maintainer: Taylor Fausak
+
+source-repository head
+  location: https://github.com/tfausak/strive
+  type: git
+
+library
+  build-depends:
+    base >= 4.9.0 && < 4.15
+    , aeson >= 0.11.2 && < 0.12 || >= 1.0.2 && < 1.5
+    , bytestring >= 0.10.8 && < 0.11
+    , data-default >= 0.7.1 && < 0.8
+    , gpolyline >= 0.1.0 && < 0.2
+    , http-client >= 0.4.31 && < 0.7
+    , http-client-tls >= 0.2.4 && < 0.4
+    , http-types >= 0.9.1 && < 0.13
+    , template-haskell >= 2.11.0 && < 2.17
+    , text >= 1.2.2 && < 1.3
+    , time >= 1.6.0 && < 1.10
+    , transformers >= 0.5.2 && < 0.6
+  default-language: Haskell98
+  exposed-modules:
+    Strive
+    Strive.Actions
+    Strive.Actions.Activities
+    Strive.Actions.Athletes
+    Strive.Actions.Authentication
+    Strive.Actions.Clubs
+    Strive.Actions.Comments
+    Strive.Actions.Efforts
+    Strive.Actions.Friends
+    Strive.Actions.Gear
+    Strive.Actions.Kudos
+    Strive.Actions.Photos
+    Strive.Actions.Segments
+    Strive.Actions.Streams
+    Strive.Actions.Uploads
+    Strive.Aliases
+    Strive.Client
+    Strive.Enums
+    Strive.Internal.HTTP
+    Strive.Internal.Lenses
+    Strive.Internal.Options
+    Strive.Internal.TH
+    Strive.Lenses
+    Strive.Options
+    Strive.Options.Activities
+    Strive.Options.Athletes
+    Strive.Options.Authentication
+    Strive.Options.Clubs
+    Strive.Options.Comments
+    Strive.Options.Friends
+    Strive.Options.Kudos
+    Strive.Options.Segments
+    Strive.Options.Streams
+    Strive.Options.Uploads
+    Strive.Types
+    Strive.Types.Activities
+    Strive.Types.Athletes
+    Strive.Types.Authentication
+    Strive.Types.Clubs
+    Strive.Types.Comments
+    Strive.Types.Efforts
+    Strive.Types.Gear
+    Strive.Types.Photos
+    Strive.Types.Polylines
+    Strive.Types.Segments
+    Strive.Types.Streams
+    Strive.Types.Uploads
+    Strive.Utilities
+  hs-source-dirs: src/lib
+  ghc-options:
+    -Weverything
+    -Wno-implicit-prelude
+    -Wno-safe
+    -Wno-unsafe
+
+  if impl(ghc >= 8.8)
+    ghc-options:
+      -Wno-missing-deriving-strategies
+
+  if impl(ghc >= 8.10)
+    ghc-options:
+      -Wno-missing-safe-haskell-mode
+      -Wno-prepositive-qualified-module
+
+test-suite test
+  build-depends:
+    base -any
+    , bytestring -any
+    , markdown-unlit >= 0.4.0 && < 0.6
+    , strive
+    , time -any
+  default-language: Haskell98
+  ghc-options: -pgmL markdown-unlit
+  main-is: README.lhs
+  type: exitcode-stdio-1.0
