@@ -1,54 +1,48 @@
-sudo: false
+os: linux
+dist: bionic
 language: generic
 addons:
   apt:
     packages:
       - libgmp-dev
+env:
+  global:
+    - HACKAGE_USERNAME=fozworth
+    # HACKAGE_PASSWORD
+    - secure: iJ6KEE2QFTGSOHOjIKoN4e4zTojGxC1CmzXtZSlhGWyWR3r7YsWsb6437ARxxdcyYSJZH2xu421OmdwuZTgc4+Tuij9Tz7hcpCkzM+O9JZtmd2+JGtXE5QdBSP+3N6DxZYctqv5QtWDf3lvPM+SuG68gUVW9Onzecv7cVugFPEE=
+
 cache:
   directories:
     - $HOME/.local/bin
     - $HOME/.stack
-env:
-  global:
-    - HACKAGE_USERNAME=fozworth
-    - secure: iJ6KEE2QFTGSOHOjIKoN4e4zTojGxC1CmzXtZSlhGWyWR3r7YsWsb6437ARxxdcyYSJZH2xu421OmdwuZTgc4+Tuij9Tz7hcpCkzM+O9JZtmd2+JGtXE5QdBSP+3N6DxZYctqv5QtWDf3lvPM+SuG68gUVW9Onzecv7cVugFPEE=
+
 before_install:
   - |
-    if test ! -f "$HOME/.local/bin/stack"
+    if ! test -f "$HOME/.local/bin/stack"
     then
-      VERSION=1.9.1
-      URL="https://github.com/commercialhaskell/stack/releases/download/v$VERSION/stack-$VERSION-$TRAVIS_OS_NAME-x86_64.tar.gz"
-      cd /tmp
-      curl --location "$URL" > stack.tar.gz
+      VERSION=2.3.0.1
+      URL="https://github.com/commercialhaskell/stack/releases/download/v$VERSION/stack-$VERSION-linux-x86_64-static.tar.gz"
+      curl --location --output stack.tar.gz "$URL"
       gunzip stack.tar.gz
       tar --extract --file stack.tar --strip-components 1
       mkdir --parents "$HOME/.local/bin"
       mv stack "$HOME/.local/bin"
-      cd -
+      rm stack.tar
     fi
   - stack --version
+
 install:
   - stack setup
   - stack build --only-dependencies --test
+
 script:
-  - stack build --pedantic --test
+  - stack build --no-run-tests --pedantic --test
+  - stack build --test
   - stack sdist
-after_success:
-  - mkdir -p deploy
-  - cp -v "$(stack path --dist-dir)/strive-$TRAVIS_TAG.tar.gz" deploy/strive.tgz
-  - mkdir -p "$HOME/.stack/upload"
-  - >-
-    echo "{
-    \"username\": \"$HACKAGE_USERNAME\",
-    \"password\": \"$HACKAGE_PASSWORD\"
-    }" > "$HOME/.stack/upload/credentials.json"
+
 deploy:
-  - skip_cleanup: true
-    on: { tags: true }
-    provider: releases
-    api_key: { secure: WJ6/5heEz5SsO6xiSfIDLhsUJ8MZbWJ2wIAYlBqRk6Nehjn4VgzHDMIY3Pnqh7plPQQu+cYAzd8/j5Sufpx3twI0SYOWLSj7KY9qicNjQ2uzIdgqxmFVXo1z90Zq5xA4ey2SqadDden290sLTms8TJMrjePXIpQ+/fh2v/jPrZ0= }
-    file: deploy/strive.tgz
-  - skip_cleanup: true
-    on: { tags: true }
-    provider: script
-    script: stack upload --no-signature .
+  provider: script
+  on:
+    tags: true
+  skip_cleanup: true
+  script: yes | stack upload .
