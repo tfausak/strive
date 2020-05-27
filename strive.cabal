@@ -1,7 +1,7 @@
 cabal-version: 2.2
 
 name: strive
-version: 5.0.11
+version: 5.0.12
 
 synopsis: A client for the Strava V3 API.
 description: Strive is a client for the Strava V3 API.
