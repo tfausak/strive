@@ -1,6 +1,6 @@
 # Strive
 
-[![Travis CI](https://travis-ci.org/tfausak/strive.svg?branch=master)](https://travis-ci.org/tfausak/strive)
+[![CI](https://github.com/tfausak/strive/workflows/CI/badge.svg)](https://github.com/tfausak/strive/actions/new)
 [![Hackage](https://img.shields.io/hackage/v/strive)](https://hackage.haskell.org/package/strive)
 [![Stackage](https://www.stackage.org/package/strive/badge/nightly?label=stackage)](https://www.stackage.org/package/strive)
 
