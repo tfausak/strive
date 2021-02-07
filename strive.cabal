@@ -94,15 +94,3 @@ library
     ghc-options:
       -Wno-missing-safe-haskell-mode
       -Wno-prepositive-qualified-module
-
-test-suite test
-  build-depends:
-    base -any
-    , bytestring -any
-    , markdown-unlit >= 0.5.1 && < 0.6
-    , strive
-    , time -any
-  default-language: Haskell2010
-  ghc-options: -pgmL markdown-unlit
-  main-is: README.lhs
-  type: exitcode-stdio-1.0
