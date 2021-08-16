@@ -1,3 +1,4 @@
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell   #-}
 
@@ -13,7 +14,7 @@ module Strive.Types.Activities
 import Control.Applicative (empty)
 import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Aeson.TH (deriveFromJSON)
-import Data.Aeson.Types (Array, Parser, withObject)
+import Data.Aeson.Types (Parser, withObject)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (ActivityType, ActivityZoneType, ResourceState)
@@ -22,7 +23,13 @@ import Strive.Types.Athletes (AthleteMeta)
 import Strive.Types.Efforts (EffortDetailed)
 import Strive.Types.Gear (GearSummary)
 import Strive.Types.Polylines (PolylineDetailed, PolylineSummary)
-import qualified Data.Vector as Vector
+
+parseLatlng :: Maybe [Double] -> Parser (Maybe (Double, Double))
+parseLatlng = \case
+  Nothing -> pure Nothing
+  Just [] -> pure Nothing
+  Just [lat, lng] -> pure $ Just (lat, lng)
+  _ -> fail "Invalid array length when parsing a Latlng"
 
 -- | <http://strava.github.io/api/v3/activities/#detailed>
 data ActivityDetailed = ActivityDetailed
