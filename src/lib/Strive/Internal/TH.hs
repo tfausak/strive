@@ -1,3 +1,5 @@
+{-# LANGUAGE CPP #-}
+
 -- | Helper functions for template Haskell, to avoid stage restrictions.
 module Strive.Internal.TH
   ( options
@@ -62,12 +64,20 @@ makeLensClass triple = do
       b <- TH.newName "b"
       let klass = TH.ClassD [] name types dependencies declarations
           name = TH.mkName (getLensName triple)
-          types = [TH.PlainTV a, TH.PlainTV b]
+          types = [plainTV a, plainTV b]
           dependencies = [TH.FunDep [a] [b]]
           declarations = [TH.SigD field typ]
           field = TH.mkName (getFieldName triple)
           typ = TH.AppT (TH.AppT (TH.ConT (TH.mkName "Lens")) (TH.VarT a)) (TH.VarT b)
       return klass
+
+# if MIN_VERSION_template_haskell(2, 17, 0)
+plainTV :: TH.Name -> TH.TyVarBndr ()
+plainTV = flip TH.PlainTV ()
+# else
+plainTV :: TH.Name -> TH.TyVarBndr
+plainTV = TH.PlainTV
+# endif
 
 lensExists :: TH.VarStrictType -> TH.Q Bool
 lensExists triple = do
