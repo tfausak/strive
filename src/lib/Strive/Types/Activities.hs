@@ -1,3 +1,4 @@
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell   #-}
 
@@ -11,8 +12,9 @@ module Strive.Types.Activities
   ) where
 
 import Control.Applicative (empty)
-import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:))
+import Data.Aeson (FromJSON, Value (Object), parseJSON, (.:), (.:?))
 import Data.Aeson.TH (deriveFromJSON)
+import Data.Aeson.Types (Parser, withObject)
 import Data.Text (Text)
 import Data.Time.Clock (UTCTime)
 import Strive.Enums (ActivityType, ActivityZoneType, ResourceState)
@@ -21,6 +23,13 @@ import Strive.Types.Athletes (AthleteMeta)
 import Strive.Types.Efforts (EffortDetailed)
 import Strive.Types.Gear (GearSummary)
 import Strive.Types.Polylines (PolylineDetailed, PolylineSummary)
+
+parseLatlng :: Maybe [Double] -> Parser (Maybe (Double, Double))
+parseLatlng = \case
+  Nothing -> pure Nothing
+  Just [] -> pure Nothing
+  Just [lat, lng] -> pure $ Just (lat, lng)
+  _ -> fail "Invalid array length when parsing a Latlng"
 
 -- | <http://strava.github.io/api/v3/activities/#detailed>
 data ActivityDetailed = ActivityDetailed
@@ -73,7 +82,55 @@ data ActivityDetailed = ActivityDetailed
   , activityDetailed_weightedAverageWatts  :: Maybe Integer
   } deriving Show
 
-$(deriveFromJSON options ''ActivityDetailed)
+instance FromJSON ActivityDetailed where
+  parseJSON = withObject "ActivityDetailed" $ \v -> ActivityDetailed
+    <$> v .: "achievement_count"
+    <*> v .: "athlete"
+    <*> v .: "athlete_count"
+    <*> v .: "average_speed"
+    <*> v .:? "average_watts"
+    <*> v .:? "average_heartrate"
+    <*> v .: "calories"
+    <*> v .: "comment_count"
+    <*> v .: "commute"
+    <*> v .:? "description"
+    <*> v .:? "device_watts"
+    <*> v .: "distance"
+    <*> v .: "elapsed_time"
+    <*> (v .:? "end_latlng" >>= parseLatlng)
+    <*> v .:? "external_id"
+    <*> v .: "flagged"
+    <*> v .: "gear"
+    <*> v .:? "gear_id"
+    <*> v .: "has_kudoed"
+    <*> v .: "id"
+    <*> v .:? "instagram_primary_photo"
+    <*> v .:? "kilojoules"
+    <*> v .:? "location_city"
+    <*> v .:? "location_country"
+    <*> v .:? "location_state"
+    <*> v .: "manual"
+    <*> v .: "map"
+    <*> v .:? "max_heartrate"
+    <*> v .: "max_speed"
+    <*> v .: "moving_time"
+    <*> v .: "name"
+    <*> v .: "photo_count"
+    <*> v .: "private"
+    <*> v .: "resource_state"
+    <*> v .: "segment_efforts"
+    <*> v .: "start_date"
+    <*> v .: "start_date_local"
+    <*> v .: "start_latitude"
+    <*> (v .:? "start_latlng" >>= parseLatlng)
+    <*> v .: "start_longitude"
+    <*> v .: "timezone"
+    <*> v .: "total_elevation_gain"
+    <*> v .: "trainer"
+    <*> v .: "truncated"
+    <*> v .: "type"
+    <*> v .:? "upload_id"
+    <*> v .:? "weighted_average_watts"
 
 -- | <http://strava.github.io/api/v3/activities/#summary>
 data ActivitySummary = ActivitySummary
@@ -121,7 +178,50 @@ data ActivitySummary = ActivitySummary
   , activitySummary_weightedAverageWatts :: Maybe Integer
   } deriving Show
 
-$(deriveFromJSON options ''ActivitySummary)
+instance FromJSON ActivitySummary where
+  parseJSON = withObject "ActivitySummary" $ \v -> ActivitySummary
+    <$> v .: "achievement_count"
+    <*> v .: "athlete"
+    <*> v .: "athlete_count"
+    <*> v .: "average_speed"
+    <*> v .:? "average_watts"
+    <*> v .:? "average_heartrate"
+    <*> v .: "comment_count"
+    <*> v .: "commute"
+    <*> v .:? "device_watts"
+    <*> v .: "distance"
+    <*> v .: "elapsed_time"
+    <*> (v .:? "end_latlng" >>= parseLatlng)
+    <*> v .:? "external_id"
+    <*> v .: "flagged"
+    <*> v .:? "gear_id"
+    <*> v .: "has_kudoed"
+    <*> v .: "id"
+    <*> v .:? "kilojoules"
+    <*> v .: "kudos_count"
+    <*> v .:? "location_city"
+    <*> v .:? "location_country"
+    <*> v .:? "location_state"
+    <*> v .: "manual"
+    <*> v .: "map"
+    <*> v .:? "max_heartrate"
+    <*> v .: "max_speed"
+    <*> v .: "moving_time"
+    <*> v .: "name"
+    <*> v .: "photo_count"
+    <*> v .: "private"
+    <*> v .: "resource_state"
+    <*> v .: "start_date"
+    <*> v .: "start_date_local"
+    <*> v .: "start_latitude"
+    <*> (v .:? "start_latlng" >>= parseLatlng)
+    <*> v .: "start_longitude"
+    <*> v .: "timezone"
+    <*> v .: "total_elevation_gain"
+    <*> v .: "trainer"
+    <*> v .: "type"
+    <*> v .:? "upload_id"
+    <*> v .:? "weighted_average_watts"
 
 -- | <http://strava.github.io/api/v3/activities/#zones>
 data ActivityZoneDistributionBucket = ActivityZoneDistributionBucket
