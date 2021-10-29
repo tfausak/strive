@@ -97,7 +97,7 @@ instance FromJSON ActivityDetailed where
     <*> v .:? "device_watts"
     <*> v .: "distance"
     <*> v .: "elapsed_time"
-    <*> (v .: "end_latlng" >>= parseLatlng)
+    <*> (v .:? "end_latlng" >>= parseLatlng)
     <*> v .:? "external_id"
     <*> v .: "flagged"
     <*> v .: "gear"
@@ -122,7 +122,7 @@ instance FromJSON ActivityDetailed where
     <*> v .: "start_date"
     <*> v .: "start_date_local"
     <*> v .: "start_latitude"
-    <*> (v .: "start_latlng" >>= parseLatlng)
+    <*> (v .:? "start_latlng" >>= parseLatlng)
     <*> v .: "start_longitude"
     <*> v .: "timezone"
     <*> v .: "total_elevation_gain"
