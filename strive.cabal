@@ -25,7 +25,7 @@ flag pedantic
 common library
   build-depends:
     , base >= 4.13.0 && < 4.17
-    , aeson >= 1.4.7 && < 1.6 || >= 2.0.0 && < 2.1
+    , aeson >= 1.4.7 && < 1.6 || >= 2.0.0 && < 2.2
     , bytestring >= 0.10.10 && < 0.12
     , data-default >= 0.7.1 && < 0.8
     , gpolyline >= 0.1.0 && < 0.2
