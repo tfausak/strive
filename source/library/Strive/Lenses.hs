@@ -2,17 +2,18 @@
 
 -- | Lenses for easily getting and setting values.
 module Strive.Lenses
-  ( Lens
-  , get
-  , set
-  , update
-  ) where
+  ( Lens,
+    get,
+    set,
+    update,
+  )
+where
 
-import Data.Functor.Constant (Constant(Constant), getConstant)
-import Data.Functor.Identity (Identity(Identity), runIdentity)
+import Data.Functor.Constant (Constant (Constant), getConstant)
+import Data.Functor.Identity (Identity (Identity), runIdentity)
 
 -- | A lens for a record.
-type Lens a b = forall f . Functor f => (b -> f b) -> a -> f a
+type Lens a b = forall f. (Functor f) => (b -> f b) -> a -> f a
 
 -- | Get a field from a record.
 get :: Lens a b -> a -> b

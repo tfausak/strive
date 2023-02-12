@@ -2,9 +2,10 @@
 
 -- | <http://strava.github.io/api/v3/oauth/>
 module Strive.Types.Authentication
-  ( TokenExchangeResponse(..)
-  , DeauthorizationResponse(..)
-  ) where
+  ( TokenExchangeResponse (..),
+    DeauthorizationResponse (..),
+  )
+where
 
 import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
@@ -13,10 +14,10 @@ import Strive.Types.Athletes (AthleteSummary)
 
 -- | <http://strava.github.io/api/v3/oauth/#example-response>
 data TokenExchangeResponse = TokenExchangeResponse
-  { tokenExchangeResponse_accessToken :: Text
-  , tokenExchangeResponse_athlete :: AthleteSummary
+  { tokenExchangeResponse_accessToken :: Text,
+    tokenExchangeResponse_athlete :: AthleteSummary
   }
-  deriving Show
+  deriving (Show)
 
 $(deriveFromJSON options ''TokenExchangeResponse)
 
@@ -24,6 +25,6 @@ $(deriveFromJSON options ''TokenExchangeResponse)
 data DeauthorizationResponse = DeauthorizationResponse
   { deauthorizationResponse_accessToken :: Text
   }
-  deriving Show
+  deriving (Show)
 
 $(deriveFromJSON options ''DeauthorizationResponse)

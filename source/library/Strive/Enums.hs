@@ -2,25 +2,26 @@
 
 -- | Types for choosing an option from a limited set.
 module Strive.Enums
-  ( ActivityType(..)
-  , ActivityZoneType(..)
-  , AgeGroup(..)
-  , ClubType(..)
-  , FrameType(..)
-  , Gender(..)
-  , MeasurementPreference(..)
-  , PhotoType(..)
-  , Resolution(..)
-  , ResourceState(..)
-  , SegmentActivityType(..)
-  , SeriesType(..)
-  , SportType(..)
-  , StreamType(..)
-  , WeightClass(..)
-  ) where
+  ( ActivityType (..),
+    ActivityZoneType (..),
+    AgeGroup (..),
+    ClubType (..),
+    FrameType (..),
+    Gender (..),
+    MeasurementPreference (..),
+    PhotoType (..),
+    Resolution (..),
+    ResourceState (..),
+    SegmentActivityType (..),
+    SeriesType (..),
+    SportType (..),
+    StreamType (..),
+    WeightClass (..),
+  )
+where
 
 import Control.Applicative (empty)
-import Data.Aeson (FromJSON, Value(Number, String), parseJSON)
+import Data.Aeson (FromJSON, Value (Number, String), parseJSON)
 
 -- | An activity's type.
 data ActivityType
@@ -106,7 +107,7 @@ data AgeGroup
   | Ages45To54
   | Ages55To64
   | Ages65Plus
-  deriving Eq
+  deriving (Eq)
 
 instance Show AgeGroup where
   show Ages0To24 = "0_24"
@@ -152,7 +153,7 @@ instance FromJSON FrameType where
 data Gender
   = Female
   | Male
-  deriving Eq
+  deriving (Eq)
 
 instance Show Gender where
   show Female = "F"
@@ -187,7 +188,7 @@ data Resolution
   = Low
   | Medium
   | High
-  deriving Eq
+  deriving (Eq)
 
 instance Show Resolution where
   show Low = "low"
@@ -217,7 +218,7 @@ instance FromJSON ResourceState where
 data SegmentActivityType
   = Riding
   | Running
-  deriving Eq
+  deriving (Eq)
 
 instance Show SegmentActivityType where
   show Riding = "riding"
@@ -227,7 +228,7 @@ instance Show SegmentActivityType where
 data SeriesType
   = Distance
   | Time
-  deriving Eq
+  deriving (Eq)
 
 instance Show SeriesType where
   show Distance = "distance"
@@ -266,7 +267,7 @@ data StreamType
   | TimeStream
   | VelocitySmoothStream
   | WattsStream
-  deriving Eq
+  deriving (Eq)
 
 instance Show StreamType where
   show AltitudeStream = "altitude"
@@ -295,7 +296,7 @@ data WeightClass
   | Pounds165To179
   | Pounds180To199
   | Pounds200Plus
-  deriving Eq
+  deriving (Eq)
 
 instance Show WeightClass where
   show Kilograms0To54 = "0_54"

@@ -2,8 +2,9 @@
 
 -- | <http://strava.github.io/api/v3/comments/>
 module Strive.Types.Comments
-  ( CommentSummary(..)
-  ) where
+  ( CommentSummary (..),
+  )
+where
 
 import Data.Aeson.TH (deriveFromJSON)
 import Data.Text (Text)
@@ -14,13 +15,13 @@ import Strive.Types.Athletes (AthleteSummary)
 
 -- | <http://strava.github.io/api/v3/comments/#summary-and-detailed-representation-attributes>
 data CommentSummary = CommentSummary
-  { commentSummary_activityId :: Integer
-  , commentSummary_athlete :: AthleteSummary
-  , commentSummary_createdAt :: UTCTime
-  , commentSummary_id :: Integer
-  , commentSummary_resourceState :: ResourceState
-  , commentSummary_text :: Text
+  { commentSummary_activityId :: Integer,
+    commentSummary_athlete :: AthleteSummary,
+    commentSummary_createdAt :: UTCTime,
+    commentSummary_id :: Integer,
+    commentSummary_resourceState :: ResourceState,
+    commentSummary_text :: Text
   }
-  deriving Show
+  deriving (Show)
 
 $(deriveFromJSON options ''CommentSummary)
