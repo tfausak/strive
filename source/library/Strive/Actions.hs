@@ -2,20 +2,21 @@
 
 -- | Functions for performing actions against the API.
 module Strive.Actions
-  ( module Strive.Actions.Activities
-  , module Strive.Actions.Athletes
-  , module Strive.Actions.Authentication
-  , module Strive.Actions.Clubs
-  , module Strive.Actions.Comments
-  , module Strive.Actions.Efforts
-  , module Strive.Actions.Friends
-  , module Strive.Actions.Gear
-  , module Strive.Actions.Kudos
-  , module Strive.Actions.Photos
-  , module Strive.Actions.Segments
-  , module Strive.Actions.Streams
-  , module Strive.Actions.Uploads
-  ) where
+  ( module Strive.Actions.Activities,
+    module Strive.Actions.Athletes,
+    module Strive.Actions.Authentication,
+    module Strive.Actions.Clubs,
+    module Strive.Actions.Comments,
+    module Strive.Actions.Efforts,
+    module Strive.Actions.Friends,
+    module Strive.Actions.Gear,
+    module Strive.Actions.Kudos,
+    module Strive.Actions.Photos,
+    module Strive.Actions.Segments,
+    module Strive.Actions.Streams,
+    module Strive.Actions.Uploads,
+  )
+where
 
 import Strive.Actions.Activities
 import Strive.Actions.Athletes

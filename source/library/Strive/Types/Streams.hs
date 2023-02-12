@@ -2,8 +2,9 @@
 
 -- | <http://strava.github.io/api/v3/streams/>
 module Strive.Types.Streams
-  ( StreamDetailed(..)
-  ) where
+  ( StreamDetailed (..),
+  )
+where
 
 import Data.Aeson (Value)
 import Data.Aeson.TH (deriveFromJSON)
@@ -13,12 +14,12 @@ import Strive.Internal.TH (options)
 
 -- | <http://strava.github.io/api/v3/streams/#detailed>
 data StreamDetailed = StreamDetailed
-  { streamDetailed_data :: [Value]
-  , streamDetailed_originalSize :: Integer
-  , streamDetailed_resolution :: Resolution
-  , streamDetailed_seriesType :: SeriesType
-  , streamDetailed_type :: Text
+  { streamDetailed_data :: [Value],
+    streamDetailed_originalSize :: Integer,
+    streamDetailed_resolution :: Resolution,
+    streamDetailed_seriesType :: SeriesType,
+    streamDetailed_type :: Text
   }
-  deriving Show
+  deriving (Show)
 
 $(deriveFromJSON options ''StreamDetailed)

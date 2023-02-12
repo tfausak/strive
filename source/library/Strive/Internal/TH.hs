@@ -2,9 +2,10 @@
 
 -- | Helper functions for template Haskell, to avoid stage restrictions.
 module Strive.Internal.TH
-  ( options
-  , makeLenses
-  ) where
+  ( options,
+    makeLenses,
+  )
+where
 
 import Data.Aeson.TH (Options, defaultOptions, fieldLabelModifier)
 import Data.Char (isUpper, toLower, toUpper)
@@ -14,11 +15,12 @@ import qualified Language.Haskell.TH.Syntax as TH
 
 -- | Default FromJSON options.
 options :: Options
-options = defaultOptions { fieldLabelModifier = underscore . dropPrefix }
+options = defaultOptions {fieldLabelModifier = underscore . dropPrefix}
 
 underscore :: String -> String
 underscore = concatMap go
-  where go c = if isUpper c then ['_', toLower c] else [c]
+  where
+    go c = if isUpper c then ['_', toLower c] else [c]
 
 dropPrefix :: String -> String
 dropPrefix = drop 1 . dropWhile (/= '_')
@@ -57,16 +59,16 @@ makeLensClass triple = do
     else do
       a <- TH.newName "a"
       b <- TH.newName "b"
-      let
-        klass = TH.ClassD [] name types dependencies declarations
-        name = TH.mkName (getLensName triple)
-        types = [TH.plainTV a, TH.plainTV b]
-        dependencies = [TH.FunDep [a] [b]]
-        declarations = [TH.SigD field typ]
-        field = TH.mkName (getFieldName triple)
-        typ = TH.AppT
-          (TH.AppT (TH.ConT (TH.mkName "Lens")) (TH.VarT a))
-          (TH.VarT b)
+      let klass = TH.ClassD [] name types dependencies declarations
+          name = TH.mkName (getLensName triple)
+          types = [TH.plainTV a, TH.plainTV b]
+          dependencies = [TH.FunDep [a] [b]]
+          declarations = [TH.SigD field typ]
+          field = TH.mkName (getFieldName triple)
+          typ =
+            TH.AppT
+              (TH.AppT (TH.ConT (TH.mkName "Lens")) (TH.VarT a))
+              (TH.VarT b)
       return klass
 
 lensExists :: TH.VarStrictType -> TH.Q Bool
@@ -87,9 +89,9 @@ getFieldName (var, _, _) = (lensName . show) var
 
 lensName :: String -> String
 lensName x = if y `elem` keywords then y <> "_" else y
- where
-  y = dropPrefix x
-  keywords = ["data", "type"]
+  where
+    y = dropPrefix x
+    keywords = ["data", "type"]
 
 makeLensInstances :: TH.Name -> [TH.VarStrictType] -> TH.Q [TH.Dec]
 makeLensInstances name = mapM (makeLensInstance name)
@@ -101,29 +103,30 @@ makeLensInstance name triple@(var, _, typ) = do
   a <- TH.newName "a"
   Just fmap' <- TH.lookupValueName "fmap"
   let field = TH.mkName (getFieldName triple)
-  return $ TH.InstanceD
-    Nothing
-    []
-    (TH.AppT
-      (TH.AppT (TH.ConT (TH.mkName (getLensName triple))) (TH.ConT name))
-      typ
-    )
-    [ TH.FunD
-        field
-        [ TH.Clause
-            [TH.VarP f, TH.VarP x]
-            (TH.NormalB
-              (TH.AppE
-                (TH.AppE
-                  (TH.VarE fmap')
-                  (TH.LamE
-                    [TH.VarP a]
-                    (TH.RecUpdE (TH.VarE x) [(var, TH.VarE a)])
+  return $
+    TH.InstanceD
+      Nothing
+      []
+      ( TH.AppT
+          (TH.AppT (TH.ConT (TH.mkName (getLensName triple))) (TH.ConT name))
+          typ
+      )
+      [ TH.FunD
+          field
+          [ TH.Clause
+              [TH.VarP f, TH.VarP x]
+              ( TH.NormalB
+                  ( TH.AppE
+                      ( TH.AppE
+                          (TH.VarE fmap')
+                          ( TH.LamE
+                              [TH.VarP a]
+                              (TH.RecUpdE (TH.VarE x) [(var, TH.VarE a)])
+                          )
+                      )
+                      (TH.AppE (TH.VarE f) (TH.AppE (TH.VarE var) (TH.VarE x)))
                   )
-                )
-                (TH.AppE (TH.VarE f) (TH.AppE (TH.VarE var) (TH.VarE x)))
               )
-            )
-            []
-        ]
-    ]
+              []
+          ]
+      ]

@@ -1,33 +1,39 @@
 -- | Helpers for dealing with HTTP requests.
 module Strive.Internal.HTTP
-  ( delete
-  , get
-  , post
-  , put
-  , buildRequest
-  , performRequest
-  , handleResponse
-  , decodeValue
-  ) where
+  ( delete,
+    get,
+    post,
+    put,
+    buildRequest,
+    performRequest,
+    handleResponse,
+    decodeValue,
+  )
+where
 
 import Data.Aeson (FromJSON, eitherDecode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (ByteString)
 import Network.HTTP.Client
-  (Request, Response, method, parseRequest, responseBody)
+  ( Request,
+    Response,
+    method,
+    parseRequest,
+    responseBody,
+  )
 import Network.HTTP.Types
-  ( Method
-  , Query
-  , QueryLike
-  , methodDelete
-  , methodGet
-  , methodPost
-  , methodPut
-  , renderQuery
-  , toQuery
+  ( Method,
+    Query,
+    QueryLike,
+    methodDelete,
+    methodGet,
+    methodPost,
+    methodPut,
+    renderQuery,
+    toQuery,
   )
 import Strive.Aliases (Result)
-import Strive.Client (Client(client_accessToken, client_requester))
+import Strive.Client (Client (client_accessToken, client_requester))
 
 -- | Perform an HTTP DELETE request.
 delete :: (QueryLike q, FromJSON j) => Client -> String -> q -> IO (Result j)
@@ -46,31 +52,32 @@ put :: (QueryLike q, FromJSON j) => Client -> String -> q -> IO (Result j)
 put = http methodPut
 
 -- | Perform an HTTP request.
-http
-  :: (QueryLike q, FromJSON j)
-  => Method
-  -> Client
-  -> String
-  -> q
-  -> IO (Result j)
+http ::
+  (QueryLike q, FromJSON j) =>
+  Method ->
+  Client ->
+  String ->
+  q ->
+  IO (Result j)
 http httpMethod client resource query = do
   request <- buildRequest httpMethod client resource query
   response <- performRequest client request
   return (handleResponse response)
 
 -- | Build a request.
-buildRequest :: QueryLike q => Method -> Client -> String -> q -> IO Request
+buildRequest :: (QueryLike q) => Method -> Client -> String -> q -> IO Request
 buildRequest httpMethod client resource query = do
   request <- parseRequest (buildUrl client resource query)
-  return request { method = httpMethod }
+  return request {method = httpMethod}
 
 -- | Build a URL.
-buildUrl :: QueryLike q => Client -> String -> q -> String
-buildUrl client resource query = concat
-  [ "https://www.strava.com/"
-  , resource
-  , unpack (renderQuery True (buildQuery client <> toQuery query))
-  ]
+buildUrl :: (QueryLike q) => Client -> String -> q -> String
+buildUrl client resource query =
+  concat
+    [ "https://www.strava.com/",
+      resource,
+      unpack (renderQuery True (buildQuery client <> toQuery query))
+    ]
 
 -- | Build a query.
 buildQuery :: Client -> Query
@@ -81,11 +88,11 @@ performRequest :: Client -> Request -> IO (Response ByteString)
 performRequest = client_requester
 
 -- | Handle decoding a potentially failed response.
-handleResponse :: FromJSON j => Response ByteString -> Result j
+handleResponse :: (FromJSON j) => Response ByteString -> Result j
 handleResponse response = case decodeValue response of
   Left message -> Left (response, message)
   Right value -> Right value
 
 -- | Decode a response body as JSON.
-decodeValue :: FromJSON j => Response ByteString -> Either String j
+decodeValue :: (FromJSON j) => Response ByteString -> Either String j
 decodeValue response = eitherDecode (responseBody response)
