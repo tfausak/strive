@@ -25,7 +25,7 @@ uploadActivity client body dataType options = do
   initialRequest <- buildRequest methodPost client resource query
   let request = initialRequest {requestBody = RequestBodyBS body}
   response <- performRequest client request
-  return (handleResponse response)
+  pure (handleResponse response)
   where
     resource = "api/v3/uploads"
     query = toQuery [("data_type", dataType)] <> toQuery options

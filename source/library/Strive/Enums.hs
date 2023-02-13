@@ -57,35 +57,35 @@ data ActivityType
   deriving (Eq, Show)
 
 instance FromJSON ActivityType where
-  parseJSON (String "AlpineSki") = return AlpineSki
-  parseJSON (String "BackcountrySki") = return BackcountrySki
-  parseJSON (String "Canoeing") = return Canoeing
-  parseJSON (String "CrossCountrySkiing") = return CrossCountrySkiing
-  parseJSON (String "Crossfit") = return Crossfit
-  parseJSON (String "Elliptical") = return Elliptical
-  parseJSON (String "Hike") = return Hike
-  parseJSON (String "IceSkate") = return IceSkate
-  parseJSON (String "InlineSkate") = return InlineSkate
-  parseJSON (String "Kayaking") = return Kayaking
-  parseJSON (String "KiteSurf") = return KiteSurf
-  parseJSON (String "NordicSki") = return NordicSki
-  parseJSON (String "Ride") = return Ride
-  parseJSON (String "RockClimbing") = return RockClimbing
-  parseJSON (String "RollerSki") = return RollerSki
-  parseJSON (String "Rowing") = return Rowing
-  parseJSON (String "Run") = return Run
-  parseJSON (String "Snowboard") = return Snowboard
-  parseJSON (String "Snowshoe") = return Snowshoe
-  parseJSON (String "StairStepper") = return StairStepper
-  parseJSON (String "StandUpPaddling") = return StandUpPaddling
-  parseJSON (String "Surfing") = return Surfing
-  parseJSON (String "Swim") = return Swim
-  parseJSON (String "VirtualRide") = return VirtualRide
-  parseJSON (String "Walk") = return Walk
-  parseJSON (String "WeightTraining") = return WeightTraining
-  parseJSON (String "Windsurf") = return Windsurf
-  parseJSON (String "Workout") = return Workout
-  parseJSON (String "Yoga") = return Yoga
+  parseJSON (String "AlpineSki") = pure AlpineSki
+  parseJSON (String "BackcountrySki") = pure BackcountrySki
+  parseJSON (String "Canoeing") = pure Canoeing
+  parseJSON (String "CrossCountrySkiing") = pure CrossCountrySkiing
+  parseJSON (String "Crossfit") = pure Crossfit
+  parseJSON (String "Elliptical") = pure Elliptical
+  parseJSON (String "Hike") = pure Hike
+  parseJSON (String "IceSkate") = pure IceSkate
+  parseJSON (String "InlineSkate") = pure InlineSkate
+  parseJSON (String "Kayaking") = pure Kayaking
+  parseJSON (String "KiteSurf") = pure KiteSurf
+  parseJSON (String "NordicSki") = pure NordicSki
+  parseJSON (String "Ride") = pure Ride
+  parseJSON (String "RockClimbing") = pure RockClimbing
+  parseJSON (String "RollerSki") = pure RollerSki
+  parseJSON (String "Rowing") = pure Rowing
+  parseJSON (String "Run") = pure Run
+  parseJSON (String "Snowboard") = pure Snowboard
+  parseJSON (String "Snowshoe") = pure Snowshoe
+  parseJSON (String "StairStepper") = pure StairStepper
+  parseJSON (String "StandUpPaddling") = pure StandUpPaddling
+  parseJSON (String "Surfing") = pure Surfing
+  parseJSON (String "Swim") = pure Swim
+  parseJSON (String "VirtualRide") = pure VirtualRide
+  parseJSON (String "Walk") = pure Walk
+  parseJSON (String "WeightTraining") = pure WeightTraining
+  parseJSON (String "Windsurf") = pure Windsurf
+  parseJSON (String "Workout") = pure Workout
+  parseJSON (String "Yoga") = pure Yoga
   parseJSON _ = empty
 
 -- | An activity zone's type.
@@ -95,8 +95,8 @@ data ActivityZoneType
   deriving (Eq, Show)
 
 instance FromJSON ActivityZoneType where
-  parseJSON (String "heartrate") = return HeartrateZone
-  parseJSON (String "power") = return PowerZone
+  parseJSON (String "heartrate") = pure HeartrateZone
+  parseJSON (String "power") = pure PowerZone
   parseJSON _ = empty
 
 -- | An athlete's age group.
@@ -127,11 +127,11 @@ data ClubType
   deriving (Eq, Show)
 
 instance FromJSON ClubType where
-  parseJSON (String "casual_club") = return CasualClub
-  parseJSON (String "company") = return Company
-  parseJSON (String "other") = return Other
-  parseJSON (String "racing_team") = return RacingTeam
-  parseJSON (String "shop") = return Shop
+  parseJSON (String "casual_club") = pure CasualClub
+  parseJSON (String "company") = pure Company
+  parseJSON (String "other") = pure Other
+  parseJSON (String "racing_team") = pure RacingTeam
+  parseJSON (String "shop") = pure Shop
   parseJSON _ = empty
 
 -- | A bike's frame type.
@@ -143,10 +143,10 @@ data FrameType
   deriving (Eq, Show)
 
 instance FromJSON FrameType where
-  parseJSON (Number 2) = return CrossFrame
-  parseJSON (Number 1) = return MountainFrame
-  parseJSON (Number 3) = return RoadFrame
-  parseJSON (Number 4) = return TimeTrialFrame
+  parseJSON (Number 2) = pure CrossFrame
+  parseJSON (Number 1) = pure MountainFrame
+  parseJSON (Number 3) = pure RoadFrame
+  parseJSON (Number 4) = pure TimeTrialFrame
   parseJSON _ = empty
 
 -- | An athlete's gender.
@@ -160,8 +160,8 @@ instance Show Gender where
   show Male = "M"
 
 instance FromJSON Gender where
-  parseJSON (String "F") = return Female
-  parseJSON (String "M") = return Male
+  parseJSON (String "F") = pure Female
+  parseJSON (String "M") = pure Male
   parseJSON _ = empty
 
 -- | An athlete's measurement preference.
@@ -171,8 +171,8 @@ data MeasurementPreference
   deriving (Eq, Show)
 
 instance FromJSON MeasurementPreference where
-  parseJSON (String "feet") = return Feet
-  parseJSON (String "meters") = return Meters
+  parseJSON (String "feet") = pure Feet
+  parseJSON (String "meters") = pure Meters
   parseJSON _ = empty
 
 -- | A photo's type.
@@ -180,7 +180,7 @@ data PhotoType = InstagramPhoto
   deriving (Eq, Show)
 
 instance FromJSON PhotoType where
-  parseJSON (String "InstagramPhoto") = return InstagramPhoto
+  parseJSON (String "InstagramPhoto") = pure InstagramPhoto
   parseJSON _ = empty
 
 -- | A stream's resolution.
@@ -196,9 +196,9 @@ instance Show Resolution where
   show High = "high"
 
 instance FromJSON Resolution where
-  parseJSON (String "low") = return Low
-  parseJSON (String "medium") = return Medium
-  parseJSON (String "high") = return High
+  parseJSON (String "low") = pure Low
+  parseJSON (String "medium") = pure Medium
+  parseJSON (String "high") = pure High
   parseJSON _ = empty
 
 -- | A resource's state.
@@ -209,9 +209,9 @@ data ResourceState
   deriving (Eq, Show)
 
 instance FromJSON ResourceState where
-  parseJSON (Number 1) = return Meta
-  parseJSON (Number 2) = return Summary
-  parseJSON (Number 3) = return Detailed
+  parseJSON (Number 1) = pure Meta
+  parseJSON (Number 2) = pure Summary
+  parseJSON (Number 3) = pure Detailed
   parseJSON _ = empty
 
 -- | A segment's activity type.
@@ -235,8 +235,8 @@ instance Show SeriesType where
   show Time = "time"
 
 instance FromJSON SeriesType where
-  parseJSON (String "distance") = return Distance
-  parseJSON (String "time") = return Time
+  parseJSON (String "distance") = pure Distance
+  parseJSON (String "time") = pure Time
   parseJSON _ = empty
 
 -- | A club's sport type.
@@ -248,10 +248,10 @@ data SportType
   deriving (Eq, Show)
 
 instance FromJSON SportType where
-  parseJSON (String "cycling") = return SportCycling
-  parseJSON (String "other") = return SportOther
-  parseJSON (String "running") = return SportRunning
-  parseJSON (String "triathalon") = return SportTriathalon
+  parseJSON (String "cycling") = pure SportCycling
+  parseJSON (String "other") = pure SportOther
+  parseJSON (String "running") = pure SportRunning
+  parseJSON (String "triathalon") = pure SportTriathalon
   parseJSON _ = empty
 
 -- | A stream's type.

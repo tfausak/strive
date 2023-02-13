@@ -41,7 +41,7 @@ instance QueryLike CreateActivityOptions where
       ]
 
 -- | 'Strive.Actions.GetActivity'
-data GetActivityOptions = GetActivityOptions
+newtype GetActivityOptions = GetActivityOptions
   { getActivityOptions_allEfforts :: Bool
   }
   deriving (Show)

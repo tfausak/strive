@@ -32,16 +32,17 @@ makeLenses string = do
   case maybeName of
     Just name -> do
       info <- TH.reify name
-      case info of
-        TH.TyConI (TH.DataD _ _ _ _ [TH.RecC _ triples] _) -> do
-          classes <- makeLensClasses triples
-          instances <- makeLensInstances name triples
-          return (classes <> instances)
+      triples <- case info of
+        TH.TyConI (TH.DataD _ _ _ _ [TH.RecC _ x] _) -> pure x
+        TH.TyConI (TH.NewtypeD _ _ _ _ (TH.RecC _ x) _) -> pure x
         _ -> fail "reify failed"
+      classes <- makeLensClasses triples
+      instances <- makeLensInstances name triples
+      pure (classes <> instances)
     _ -> fail "lookupTypeName failed"
 
 makeLensClasses :: [TH.VarStrictType] -> TH.Q [TH.Dec]
-makeLensClasses [] = return []
+makeLensClasses [] = pure []
 makeLensClasses (triple : triples) = do
   exists <- lensExists triple
   if exists
@@ -49,7 +50,7 @@ makeLensClasses (triple : triples) = do
     else do
       klass <- makeLensClass triple
       classes <- makeLensClasses triples
-      return (klass : classes)
+      pure (klass : classes)
 
 makeLensClass :: TH.VarStrictType -> TH.Q TH.Dec
 makeLensClass triple = do
@@ -69,13 +70,13 @@ makeLensClass triple = do
             TH.AppT
               (TH.AppT (TH.ConT (TH.mkName "Lens")) (TH.VarT a))
               (TH.VarT b)
-      return klass
+      pure klass
 
 lensExists :: TH.VarStrictType -> TH.Q Bool
 lensExists triple = do
   let name = getLensName triple
   maybeName <- TH.lookupTypeName name
-  return (isJust maybeName)
+  pure (isJust maybeName)
 
 getLensName :: TH.VarStrictType -> String
 getLensName triple = capitalize (getFieldName triple) <> "Lens"
@@ -103,7 +104,7 @@ makeLensInstance name triple@(var, _, typ) = do
   a <- TH.newName "a"
   Just fmap' <- TH.lookupValueName "fmap"
   let field = TH.mkName (getFieldName triple)
-  return $
+  pure $
     TH.InstanceD
       Nothing
       []

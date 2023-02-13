@@ -62,13 +62,13 @@ http ::
 http httpMethod client resource query = do
   request <- buildRequest httpMethod client resource query
   response <- performRequest client request
-  return (handleResponse response)
+  pure (handleResponse response)
 
 -- | Build a request.
 buildRequest :: (QueryLike q) => Method -> Client -> String -> q -> IO Request
 buildRequest httpMethod client resource query = do
   request <- parseRequest (buildUrl client resource query)
-  return request {method = httpMethod}
+  pure request {method = httpMethod}
 
 -- | Build a URL.
 buildUrl :: (QueryLike q) => Client -> String -> q -> String

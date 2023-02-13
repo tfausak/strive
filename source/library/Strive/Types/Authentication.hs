@@ -22,7 +22,7 @@ data TokenExchangeResponse = TokenExchangeResponse
 $(deriveFromJSON options ''TokenExchangeResponse)
 
 -- | <http://strava.github.io/api/v3/oauth/#example-response-1>
-data DeauthorizationResponse = DeauthorizationResponse
+newtype DeauthorizationResponse = DeauthorizationResponse
   { deauthorizationResponse_accessToken :: Text
   }
   deriving (Show)

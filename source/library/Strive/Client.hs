@@ -25,7 +25,7 @@ instance Show Client where
 buildClient :: Maybe Text -> IO Client
 buildClient accessToken = do
   manager <- newManager tlsManagerSettings
-  return
+  pure
     Client
       { client_accessToken = maybe "" unpack accessToken,
         client_requester = flip httpLbs manager

@@ -85,7 +85,7 @@ deleteActivity :: Client -> ActivityId -> IO (Result ())
 deleteActivity client activityId = do
   request <- buildRequest methodDelete client resource query
   response <- performRequest client request
-  return
+  pure
     ( if responseStatus response == noContent204
         then Right ()
         else Left (response, unpack (toStrict (responseBody response)))

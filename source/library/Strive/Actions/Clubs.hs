@@ -62,7 +62,7 @@ joinClub :: Client -> ClubId -> IO (Result ())
 joinClub client clubId = do
   request <- buildRequest methodPost client resource query
   response <- performRequest client request
-  return
+  pure
     ( if responseStatus response == ok200
         then Right ()
         else Left (response, (unpack . toStrict . responseBody) response)
@@ -76,7 +76,7 @@ leaveClub :: Client -> ClubId -> IO (Result ())
 leaveClub client clubId = do
   request <- buildRequest methodPost client resource query
   response <- performRequest client request
-  return
+  pure
     ( if responseStatus response == ok200
         then Right ()
         else Left (response, (unpack . toStrict . responseBody) response)
