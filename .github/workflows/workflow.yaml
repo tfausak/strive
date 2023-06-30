@@ -164,7 +164,8 @@
           "uses": "svenstaro/upload-release-action@v2",
           "with": {
             "asset_name": "strive-${{ github.event.release.tag_name }}.tar.gz",
-            "file": "artifact/ubuntu-9.4.4/strive-${{ github.event.release.tag_name }}.tar.gz"
+            "file": "artifact/ubuntu-9.4.4/strive-${{ github.event.release.tag_name }}.tar.gz",
+            "tag": "${{ github.event.release.tag_name }}"
           }
         },
         {
