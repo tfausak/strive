@@ -60,10 +60,8 @@ makeLensClass triple = do
     else do
       a <- TH.newName "a"
       b <- TH.newName "b"
-      let klass = TH.ClassD [] name types dependencies declarations
+      let klass = TH.ClassD [] name [TH.plainTV a, TH.plainTV b] dependencies declarations
           name = TH.mkName (getLensName triple)
-          types :: [TH.TyVarBndr TH.BndrVis]
-          types = [TH.plainTV a, TH.plainTV b]
           dependencies = [TH.FunDep [a] [b]]
           declarations = [TH.SigD field typ]
           field = TH.mkName (getFieldName triple)
