@@ -1,8 +1,7 @@
 # Strive
 
-[![Workflow](https://github.com/tfausak/strive/actions/workflows/workflow.yaml/badge.svg)](https://github.com/tfausak/strive/actions/workflows/workflow.yaml)
-[![Hackage](https://img.shields.io/hackage/v/strive)](https://hackage.haskell.org/package/strive)
-[![Stackage](https://www.stackage.org/package/strive/badge/nightly?label=stackage)](https://www.stackage.org/package/strive)
+[![CI](https://github.com/tfausak/strive/actions/workflows/ci.yml/badge.svg)](https://github.com/tfausak/strive/actions/workflows/ci.yml)
+[![Hackage](https://badgen.net/hackage/v/strive)](https://hackage.haskell.org/package/strive)
 
 Strive is a Haskell client for the [Strava V3 API][].
 
@@ -80,9 +79,6 @@ Or install it manually:
 $ cabal update
 $ cabal install strive
 ```
-
-Strive uses [Semantic Versioning][]. See [the change log][] for a detailed list
-of changes.
 
 ## Usage
 
