@@ -2,15 +2,17 @@
 module Strive.Options.Segments
   ( GetStarredSegmentsOptions,
     GetSegmentEffortsOptions (..),
+    defaultGetSegmentEffortsOptions,
     GetSegmentLeaderboardOptions (..),
+    defaultGetSegmentLeaderboardOptions,
     ExploreSegmentsOptions (..),
+    defaultExploreSegmentsOptions,
   )
 where
 
 import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import Data.Default (Default, def)
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Types (QueryLike, toQuery)
 import Strive.Enums
@@ -33,14 +35,14 @@ data GetSegmentEffortsOptions = GetSegmentEffortsOptions
   }
   deriving (Show)
 
-instance Default GetSegmentEffortsOptions where
-  def =
-    GetSegmentEffortsOptions
-      { getSegmentEffortsOptions_athleteId = Nothing,
-        getSegmentEffortsOptions_range = Nothing,
-        getSegmentEffortsOptions_page = 1,
-        getSegmentEffortsOptions_perPage = 200
-      }
+defaultGetSegmentEffortsOptions :: GetSegmentEffortsOptions
+defaultGetSegmentEffortsOptions =
+  GetSegmentEffortsOptions
+    { getSegmentEffortsOptions_athleteId = Nothing,
+      getSegmentEffortsOptions_range = Nothing,
+      getSegmentEffortsOptions_page = 1,
+      getSegmentEffortsOptions_perPage = 200
+    }
 
 instance QueryLike GetSegmentEffortsOptions where
   toQuery options =
@@ -74,19 +76,19 @@ data GetSegmentLeaderboardOptions = GetSegmentLeaderboardOptions
   }
   deriving (Show)
 
-instance Default GetSegmentLeaderboardOptions where
-  def =
-    GetSegmentLeaderboardOptions
-      { getSegmentLeaderboardOptions_gender = Nothing,
-        getSegmentLeaderboardOptions_ageGroup = Nothing,
-        getSegmentLeaderboardOptions_weightClass = Nothing,
-        getSegmentLeaderboardOptions_following = Nothing,
-        getSegmentLeaderboardOptions_clubId = Nothing,
-        getSegmentLeaderboardOptions_dateRange = Nothing,
-        getSegmentLeaderboardOptions_contextEntries = Nothing,
-        getSegmentLeaderboardOptions_page = 1,
-        getSegmentLeaderboardOptions_perPage = 200
-      }
+defaultGetSegmentLeaderboardOptions :: GetSegmentLeaderboardOptions
+defaultGetSegmentLeaderboardOptions =
+  GetSegmentLeaderboardOptions
+    { getSegmentLeaderboardOptions_gender = Nothing,
+      getSegmentLeaderboardOptions_ageGroup = Nothing,
+      getSegmentLeaderboardOptions_weightClass = Nothing,
+      getSegmentLeaderboardOptions_following = Nothing,
+      getSegmentLeaderboardOptions_clubId = Nothing,
+      getSegmentLeaderboardOptions_dateRange = Nothing,
+      getSegmentLeaderboardOptions_contextEntries = Nothing,
+      getSegmentLeaderboardOptions_page = 1,
+      getSegmentLeaderboardOptions_perPage = 200
+    }
 
 instance QueryLike GetSegmentLeaderboardOptions where
   toQuery options =
@@ -118,13 +120,13 @@ data ExploreSegmentsOptions = ExploreSegmentsOptions
   }
   deriving (Show)
 
-instance Default ExploreSegmentsOptions where
-  def =
-    ExploreSegmentsOptions
-      { exploreSegmentsOptions_activityType = Riding,
-        exploreSegmentsOptions_minCat = 0,
-        exploreSegmentsOptions_maxCat = 5
-      }
+defaultExploreSegmentsOptions :: ExploreSegmentsOptions
+defaultExploreSegmentsOptions =
+  ExploreSegmentsOptions
+    { exploreSegmentsOptions_activityType = Riding,
+      exploreSegmentsOptions_minCat = 0,
+      exploreSegmentsOptions_maxCat = 5
+    }
 
 instance QueryLike ExploreSegmentsOptions where
   toQuery options =

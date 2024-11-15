@@ -1,13 +1,13 @@
 -- | 'Strive.Actions.Authentication'
 module Strive.Options.Authentication
   ( BuildAuthorizeUrlOptions (..),
+    defaultBuildAuthorizeUrlOptions,
   )
 where
 
 import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import Data.Default (Default, def)
 import Data.List (intercalate)
 import Data.Maybe (catMaybes)
 import Network.HTTP.Types (QueryLike, toQuery)
@@ -21,14 +21,14 @@ data BuildAuthorizeUrlOptions = BuildAuthorizeUrlOptions
   }
   deriving (Show)
 
-instance Default BuildAuthorizeUrlOptions where
-  def =
-    BuildAuthorizeUrlOptions
-      { buildAuthorizeUrlOptions_approvalPrompt = False,
-        buildAuthorizeUrlOptions_privateScope = False,
-        buildAuthorizeUrlOptions_writeScope = False,
-        buildAuthorizeUrlOptions_state = ""
-      }
+defaultBuildAuthorizeUrlOptions :: BuildAuthorizeUrlOptions
+defaultBuildAuthorizeUrlOptions =
+  BuildAuthorizeUrlOptions
+    { buildAuthorizeUrlOptions_approvalPrompt = False,
+      buildAuthorizeUrlOptions_privateScope = False,
+      buildAuthorizeUrlOptions_writeScope = False,
+      buildAuthorizeUrlOptions_state = ""
+    }
 
 instance QueryLike BuildAuthorizeUrlOptions where
   toQuery options =

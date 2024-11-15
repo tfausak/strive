@@ -2,10 +2,10 @@
 module Strive.Options.Clubs
   ( GetClubMembersOptions,
     GetClubActivitiesOptions (..),
+    defaultGetClubActivitiesOptions,
   )
 where
 
-import Data.Default (Default, def)
 import Data.Time.Clock (UTCTime)
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Network.HTTP.Types (QueryLike, toQuery)
@@ -23,14 +23,14 @@ data GetClubActivitiesOptions = GetClubActivitiesOptions
   }
   deriving (Show)
 
-instance Default GetClubActivitiesOptions where
-  def =
-    GetClubActivitiesOptions
-      { getClubActivitiesOptions_before = Nothing,
-        getClubActivitiesOptions_after = Nothing,
-        getClubActivitiesOptions_page = 1,
-        getClubActivitiesOptions_perPage = 200
-      }
+defaultGetClubActivitiesOptions :: GetClubActivitiesOptions
+defaultGetClubActivitiesOptions =
+  GetClubActivitiesOptions
+    { getClubActivitiesOptions_before = Nothing,
+      getClubActivitiesOptions_after = Nothing,
+      getClubActivitiesOptions_page = 1,
+      getClubActivitiesOptions_perPage = 200
+    }
 
 instance QueryLike GetClubActivitiesOptions where
   toQuery options =

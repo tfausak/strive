@@ -1,8 +1,6 @@
 -- | Utility functions for making common actions easier.
 module Strive.Utilities
-  ( with,
-
-    -- * Streams
+  ( -- * Streams
     altitudeStream,
     cadenceStream,
     distanceStream,
@@ -18,15 +16,10 @@ module Strive.Utilities
 where
 
 import Data.Aeson (FromJSON, Result (Error, Success), Value, fromJSON)
-import Data.Default (Default, def)
 import Data.Maybe (mapMaybe)
 import Data.Text (pack)
 import qualified Strive.Enums as Enums
 import Strive.Types (StreamDetailed, streamDetailed_data, streamDetailed_type)
-
--- | Modify an action's default options by listing changes to it.
-with :: (Default a) => [a -> a] -> a
-with = foldr ($) def
 
 altitudeStream :: StreamDetailed -> Maybe [Double]
 altitudeStream = lookupStream Enums.AltitudeStream

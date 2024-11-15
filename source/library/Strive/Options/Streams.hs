@@ -1,10 +1,10 @@
 -- | 'Strive.Actions.Streams'
 module Strive.Options.Streams
   ( GetStreamsOptions (..),
+    defaultGetStreamsOptions,
   )
 where
 
-import Data.Default (Default, def)
 import Network.HTTP.Types (QueryLike, toQuery)
 import Strive.Enums (Resolution, SeriesType (Distance))
 
@@ -15,12 +15,12 @@ data GetStreamsOptions = GetStreamsOptions
   }
   deriving (Show)
 
-instance Default GetStreamsOptions where
-  def =
-    GetStreamsOptions
-      { getStreamsOptions_resolution = Nothing,
-        getStreamsOptions_seriesType = Distance
-      }
+defaultGetStreamsOptions :: GetStreamsOptions
+defaultGetStreamsOptions =
+  GetStreamsOptions
+    { getStreamsOptions_resolution = Nothing,
+      getStreamsOptions_seriesType = Distance
+    }
 
 instance QueryLike GetStreamsOptions where
   toQuery options =

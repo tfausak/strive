@@ -1,13 +1,13 @@
 -- | 'Strive.Actions.Comments'
 module Strive.Options.Comments
   ( GetActivityCommentsOptions (..),
+    defaultGetActivityCommentsOptions,
   )
 where
 
 import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import Data.Default (Default, def)
 import Network.HTTP.Types (QueryLike, toQuery)
 
 -- | 'Strive.Actions.getActivityComments'
@@ -18,13 +18,13 @@ data GetActivityCommentsOptions = GetActivityCommentsOptions
   }
   deriving (Show)
 
-instance Default GetActivityCommentsOptions where
-  def =
-    GetActivityCommentsOptions
-      { getActivityCommentsOptions_markdown = False,
-        getActivityCommentsOptions_page = 1,
-        getActivityCommentsOptions_perPage = 200
-      }
+defaultGetActivityCommentsOptions :: GetActivityCommentsOptions
+defaultGetActivityCommentsOptions =
+  GetActivityCommentsOptions
+    { getActivityCommentsOptions_markdown = False,
+      getActivityCommentsOptions_page = 1,
+      getActivityCommentsOptions_perPage = 200
+    }
 
 instance QueryLike GetActivityCommentsOptions where
   toQuery options =

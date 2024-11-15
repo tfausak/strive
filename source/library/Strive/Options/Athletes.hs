@@ -1,11 +1,11 @@
 -- | 'Strive.Actions.Athletes'
 module Strive.Options.Athletes
   ( UpdateCurrentAthleteOptions (..),
+    defaultUpdateCurrentAthleteOptions,
     GetAthleteCrsOptions,
   )
 where
 
-import Data.Default (Default, def)
 import Network.HTTP.Types (QueryLike, toQuery)
 import Strive.Enums (Gender)
 import Strive.Internal.Options (PaginationOptions)
@@ -20,15 +20,15 @@ data UpdateCurrentAthleteOptions = UpdateCurrentAthleteOptions
   }
   deriving (Show)
 
-instance Default UpdateCurrentAthleteOptions where
-  def =
-    UpdateCurrentAthleteOptions
-      { updateCurrentAthleteOptions_city = Nothing,
-        updateCurrentAthleteOptions_state = Nothing,
-        updateCurrentAthleteOptions_country = Nothing,
-        updateCurrentAthleteOptions_sex = Nothing,
-        updateCurrentAthleteOptions_weight = Nothing
-      }
+defaultUpdateCurrentAthleteOptions :: UpdateCurrentAthleteOptions
+defaultUpdateCurrentAthleteOptions =
+  UpdateCurrentAthleteOptions
+    { updateCurrentAthleteOptions_city = Nothing,
+      updateCurrentAthleteOptions_state = Nothing,
+      updateCurrentAthleteOptions_country = Nothing,
+      updateCurrentAthleteOptions_sex = Nothing,
+      updateCurrentAthleteOptions_weight = Nothing
+    }
 
 instance QueryLike UpdateCurrentAthleteOptions where
   toQuery options =

@@ -1,10 +1,10 @@
 -- | 'Strive.Actions.Uploads'
 module Strive.Options.Uploads
   ( UploadActivityOptions (..),
+    defaultUploadActivityOptions,
   )
 where
 
-import Data.Default (Default, def)
 import Network.HTTP.Types (QueryLike, toQuery)
 import Strive.Enums (ActivityType)
 
@@ -19,16 +19,16 @@ data UploadActivityOptions = UploadActivityOptions
   }
   deriving (Show)
 
-instance Default UploadActivityOptions where
-  def =
-    UploadActivityOptions
-      { uploadActivityOptions_activityType = Nothing,
-        uploadActivityOptions_name = Nothing,
-        uploadActivityOptions_description = Nothing,
-        uploadActivityOptions_private = False,
-        uploadActivityOptions_trainer = False,
-        uploadActivityOptions_externalId = Nothing
-      }
+defaultUploadActivityOptions :: UploadActivityOptions
+defaultUploadActivityOptions =
+  UploadActivityOptions
+    { uploadActivityOptions_activityType = Nothing,
+      uploadActivityOptions_name = Nothing,
+      uploadActivityOptions_description = Nothing,
+      uploadActivityOptions_private = False,
+      uploadActivityOptions_trainer = False,
+      uploadActivityOptions_externalId = Nothing
+    }
 
 instance QueryLike UploadActivityOptions where
   toQuery options =

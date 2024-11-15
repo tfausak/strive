@@ -1,9 +1,13 @@
 -- | 'Strive.Actions.Activities'
 module Strive.Options.Activities
   ( CreateActivityOptions (..),
+    defaultCreateActivityOptions,
     GetActivityOptions (..),
+    defaultGetActivityOptions,
     UpdateActivityOptions (..),
+    defaultUpdateActivityOptions,
     GetCurrentActivitiesOptions (..),
+    defaultGetCurrentActivitiesOptions,
     GetRelatedActivitiesOptions,
     GetFeedOptions,
   )
@@ -12,7 +16,6 @@ where
 import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import Data.Default (Default, def)
 import Data.Time.Clock (UTCTime)
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Network.HTTP.Types (QueryLike, toQuery)
@@ -26,12 +29,12 @@ data CreateActivityOptions = CreateActivityOptions
   }
   deriving (Show)
 
-instance Default CreateActivityOptions where
-  def =
-    CreateActivityOptions
-      { createActivityOptions_description = Nothing,
-        createActivityOptions_distance = Nothing
-      }
+defaultCreateActivityOptions :: CreateActivityOptions
+defaultCreateActivityOptions =
+  CreateActivityOptions
+    { createActivityOptions_description = Nothing,
+      createActivityOptions_distance = Nothing
+    }
 
 instance QueryLike CreateActivityOptions where
   toQuery options =
@@ -46,8 +49,8 @@ newtype GetActivityOptions = GetActivityOptions
   }
   deriving (Show)
 
-instance Default GetActivityOptions where
-  def = GetActivityOptions {getActivityOptions_allEfforts = False}
+defaultGetActivityOptions :: GetActivityOptions
+defaultGetActivityOptions = GetActivityOptions {getActivityOptions_allEfforts = False}
 
 instance QueryLike GetActivityOptions where
   toQuery options =
@@ -69,17 +72,17 @@ data UpdateActivityOptions = UpdateActivityOptions
   }
   deriving (Show)
 
-instance Default UpdateActivityOptions where
-  def =
-    UpdateActivityOptions
-      { updateActivityOptions_name = Nothing,
-        updateActivityOptions_type = Nothing,
-        updateActivityOptions_private = Nothing,
-        updateActivityOptions_commute = Nothing,
-        updateActivityOptions_trainer = Nothing,
-        updateActivityOptions_gearId = Nothing,
-        updateActivityOptions_description = Nothing
-      }
+defaultUpdateActivityOptions :: UpdateActivityOptions
+defaultUpdateActivityOptions =
+  UpdateActivityOptions
+    { updateActivityOptions_name = Nothing,
+      updateActivityOptions_type = Nothing,
+      updateActivityOptions_private = Nothing,
+      updateActivityOptions_commute = Nothing,
+      updateActivityOptions_trainer = Nothing,
+      updateActivityOptions_gearId = Nothing,
+      updateActivityOptions_description = Nothing
+    }
 
 instance QueryLike UpdateActivityOptions where
   toQuery options =
@@ -114,14 +117,14 @@ data GetCurrentActivitiesOptions = GetCurrentActivitiesOptions
   }
   deriving (Show)
 
-instance Default GetCurrentActivitiesOptions where
-  def =
-    GetCurrentActivitiesOptions
-      { getCurrentActivitiesOptions_before = Nothing,
-        getCurrentActivitiesOptions_after = Nothing,
-        getCurrentActivitiesOptions_page = 1,
-        getCurrentActivitiesOptions_perPage = 200
-      }
+defaultGetCurrentActivitiesOptions :: GetCurrentActivitiesOptions
+defaultGetCurrentActivitiesOptions =
+  GetCurrentActivitiesOptions
+    { getCurrentActivitiesOptions_before = Nothing,
+      getCurrentActivitiesOptions_after = Nothing,
+      getCurrentActivitiesOptions_page = 1,
+      getCurrentActivitiesOptions_perPage = 200
+    }
 
 instance QueryLike GetCurrentActivitiesOptions where
   toQuery options =
