@@ -4,26 +4,33 @@ module Strive.Internal.Options
   )
 where
 
-import Data.Default (Default, def)
+import qualified Data.Monoid as Monoid
 import Network.HTTP.Types (QueryLike, toQuery)
 
 -- | Options for paginating.
 data PaginationOptions = PaginationOptions
-  { paginationOptions_page :: Integer,
-    paginationOptions_perPage :: Integer
+  { paginationOptions_page :: Monoid.Last Integer,
+    paginationOptions_perPage :: Monoid.Last Integer
   }
   deriving (Show)
 
-instance Default PaginationOptions where
-  def =
+instance Semigroup PaginationOptions where
+  x <> y =
     PaginationOptions
-      { paginationOptions_page = 1,
-        paginationOptions_perPage = 200
+      { paginationOptions_page = paginationOptions_page x <> paginationOptions_page y,
+        paginationOptions_perPage = paginationOptions_perPage x <> paginationOptions_perPage y
+      }
+
+instance Monoid PaginationOptions where
+  mempty =
+    PaginationOptions
+      { paginationOptions_page = mempty,
+        paginationOptions_perPage = mempty
       }
 
 instance QueryLike PaginationOptions where
   toQuery options =
     toQuery
-      [ ("page", show (paginationOptions_page options)),
-        ("per_page", show (paginationOptions_perPage options))
+      [ fmap ((,) "page" . show) . Monoid.getLast $ paginationOptions_page options,
+        fmap ((,) "per_page" . show) . Monoid.getLast $ paginationOptions_perPage options
       ]

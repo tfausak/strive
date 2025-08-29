@@ -7,32 +7,37 @@ where
 import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import Data.Default (Default, def)
+import qualified Data.Monoid as Monoid
 import Network.HTTP.Types (QueryLike, toQuery)
 
 -- | 'Strive.Actions.getActivityComments'
 data GetActivityCommentsOptions = GetActivityCommentsOptions
-  { getActivityCommentsOptions_markdown :: Bool,
-    getActivityCommentsOptions_page :: Integer,
-    getActivityCommentsOptions_perPage :: Integer
+  { getActivityCommentsOptions_markdown :: Monoid.Last Bool,
+    getActivityCommentsOptions_page :: Monoid.Last Integer,
+    getActivityCommentsOptions_perPage :: Monoid.Last Integer
   }
   deriving (Show)
 
-instance Default GetActivityCommentsOptions where
-  def =
+instance Semigroup GetActivityCommentsOptions where
+  x <> y =
     GetActivityCommentsOptions
-      { getActivityCommentsOptions_markdown = False,
-        getActivityCommentsOptions_page = 1,
-        getActivityCommentsOptions_perPage = 200
+      { getActivityCommentsOptions_markdown = getActivityCommentsOptions_markdown x <> getActivityCommentsOptions_markdown y,
+        getActivityCommentsOptions_page = getActivityCommentsOptions_page x <> getActivityCommentsOptions_page y,
+        getActivityCommentsOptions_perPage = getActivityCommentsOptions_perPage x <> getActivityCommentsOptions_perPage y
+      }
+
+instance Monoid GetActivityCommentsOptions where
+  mempty =
+    GetActivityCommentsOptions
+      { getActivityCommentsOptions_markdown = pure False,
+        getActivityCommentsOptions_page = pure 1,
+        getActivityCommentsOptions_perPage = pure 200
       }
 
 instance QueryLike GetActivityCommentsOptions where
   toQuery options =
     toQuery
-      [ ( "before",
-          unpack
-            (toStrict (encode (getActivityCommentsOptions_markdown options)))
-        ),
-        ("page", show (getActivityCommentsOptions_page options)),
-        ("per_page", show (getActivityCommentsOptions_perPage options))
+      [ fmap ((,) "before" . unpack . toStrict . encode) . Monoid.getLast $ getActivityCommentsOptions_markdown options,
+        fmap ((,) "page" . show) . Monoid.getLast $ getActivityCommentsOptions_page options,
+        fmap ((,) "per_page" . show) . Monoid.getLast $ getActivityCommentsOptions_perPage options
       ]

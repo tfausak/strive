@@ -5,7 +5,7 @@ module Strive.Options.Clubs
   )
 where
 
-import Data.Default (Default, def)
+import qualified Data.Monoid as Monoid
 import Data.Time.Clock (UTCTime)
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Network.HTTP.Types (QueryLike, toQuery)
@@ -16,35 +16,36 @@ type GetClubMembersOptions = PaginationOptions
 
 -- | 'Strive.Actions.getClubActivities'
 data GetClubActivitiesOptions = GetClubActivitiesOptions
-  { getClubActivitiesOptions_before :: Maybe UTCTime,
-    getClubActivitiesOptions_after :: Maybe UTCTime,
-    getClubActivitiesOptions_page :: Integer,
-    getClubActivitiesOptions_perPage :: Integer
+  { getClubActivitiesOptions_before :: Monoid.Last UTCTime,
+    getClubActivitiesOptions_after :: Monoid.Last UTCTime,
+    getClubActivitiesOptions_page :: Monoid.Last Integer,
+    getClubActivitiesOptions_perPage :: Monoid.Last Integer
   }
   deriving (Show)
 
-instance Default GetClubActivitiesOptions where
-  def =
+instance Semigroup GetClubActivitiesOptions where
+  x <> y =
     GetClubActivitiesOptions
-      { getClubActivitiesOptions_before = Nothing,
-        getClubActivitiesOptions_after = Nothing,
-        getClubActivitiesOptions_page = 1,
-        getClubActivitiesOptions_perPage = 200
+      { getClubActivitiesOptions_before = getClubActivitiesOptions_before x <> getClubActivitiesOptions_before y,
+        getClubActivitiesOptions_after = getClubActivitiesOptions_after x <> getClubActivitiesOptions_after y,
+        getClubActivitiesOptions_page = getClubActivitiesOptions_page x <> getClubActivitiesOptions_page y,
+        getClubActivitiesOptions_perPage = getClubActivitiesOptions_perPage x <> getClubActivitiesOptions_perPage y
+      }
+
+instance Monoid GetClubActivitiesOptions where
+  mempty =
+    GetClubActivitiesOptions
+      { getClubActivitiesOptions_before = mempty,
+        getClubActivitiesOptions_after = mempty,
+        getClubActivitiesOptions_page = mempty,
+        getClubActivitiesOptions_perPage = mempty
       }
 
 instance QueryLike GetClubActivitiesOptions where
   toQuery options =
     toQuery
-      [ ( "before",
-          fmap
-            (show . utcTimeToPOSIXSeconds)
-            (getClubActivitiesOptions_before options)
-        ),
-        ( "after",
-          fmap
-            (show . utcTimeToPOSIXSeconds)
-            (getClubActivitiesOptions_after options)
-        ),
-        ("page", Just (show (getClubActivitiesOptions_page options))),
-        ("per_page", Just (show (getClubActivitiesOptions_perPage options)))
+      [ fmap ((,) "before" . show . utcTimeToPOSIXSeconds) . Monoid.getLast $ getClubActivitiesOptions_before options,
+        fmap ((,) "after" . show . utcTimeToPOSIXSeconds) . Monoid.getLast $ getClubActivitiesOptions_after options,
+        fmap ((,) "page" . show) . Monoid.getLast $ getClubActivitiesOptions_page options,
+        fmap ((,) "per_page" . show) . Monoid.getLast $ getClubActivitiesOptions_perPage options
       ]
