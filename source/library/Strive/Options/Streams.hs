@@ -5,14 +5,13 @@ module Strive.Options.Streams
 where
 
 import qualified Data.Monoid as Monoid
-import qualified Data.Semigroup as Semigroup
 import Network.HTTP.Types (QueryLike, toQuery)
-import Strive.Enums (Resolution, SeriesType (Distance))
+import Strive.Enums (Resolution, SeriesType)
 
 -- | 'Strive.Actions.getStreams'
 data GetStreamsOptions = GetStreamsOptions
   { getStreamsOptions_resolution :: Monoid.Last Resolution,
-    getStreamsOptions_seriesType :: Semigroup.Last SeriesType
+    getStreamsOptions_seriesType :: Monoid.Last SeriesType
   }
   deriving (Show)
 
@@ -27,12 +26,12 @@ instance Monoid GetStreamsOptions where
   mempty =
     GetStreamsOptions
       { getStreamsOptions_resolution = mempty,
-        getStreamsOptions_seriesType = pure Distance
+        getStreamsOptions_seriesType = mempty
       }
 
 instance QueryLike GetStreamsOptions where
   toQuery options =
     toQuery
-      [ ("resolution", fmap show (Monoid.getLast (getStreamsOptions_resolution options))),
-        ("series_type", Just (show (Semigroup.getLast (getStreamsOptions_seriesType options))))
+      [ fmap ((,) "resolution" . show) . Monoid.getLast $ getStreamsOptions_resolution options,
+        fmap ((,) "series_type" . show) . Monoid.getLast $ getStreamsOptions_seriesType options
       ]

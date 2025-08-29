@@ -13,7 +13,6 @@ import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import qualified Data.Monoid as Monoid
-import qualified Data.Semigroup as Semigroup
 import Data.Time.Clock (UTCTime)
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Network.HTTP.Types (QueryLike, toQuery)
@@ -44,13 +43,13 @@ instance Monoid CreateActivityOptions where
 instance QueryLike CreateActivityOptions where
   toQuery options =
     toQuery
-      [ ("description", Monoid.getLast (createActivityOptions_description options)),
-        ("distance", fmap show (Monoid.getLast (createActivityOptions_distance options)))
+      [ fmap ((,) "description") . Monoid.getLast $ createActivityOptions_description options,
+        fmap ((,) "distance" . show) . Monoid.getLast $ createActivityOptions_distance options
       ]
 
 -- | 'Strive.Actions.GetActivity'
 newtype GetActivityOptions = GetActivityOptions
-  { getActivityOptions_allEfforts :: Semigroup.Last Bool
+  { getActivityOptions_allEfforts :: Monoid.Last Bool
   }
   deriving (Show)
 
@@ -63,15 +62,13 @@ instance Semigroup GetActivityOptions where
 instance Monoid GetActivityOptions where
   mempty =
     GetActivityOptions
-      { getActivityOptions_allEfforts = pure False
+      { getActivityOptions_allEfforts = mempty
       }
 
 instance QueryLike GetActivityOptions where
   toQuery options =
     toQuery
-      [ ( "approval_prompt",
-          unpack (toStrict (encode (Semigroup.getLast (getActivityOptions_allEfforts options))))
-        )
+      [ fmap ((,) "approval_prompt" . unpack . toStrict . encode) . Monoid.getLast $ getActivityOptions_allEfforts options
       ]
 
 -- | 'Strive.Actions.UpdateActivity'
@@ -113,33 +110,21 @@ instance Monoid UpdateActivityOptions where
 instance QueryLike UpdateActivityOptions where
   toQuery options =
     toQuery
-      [ ("name", Monoid.getLast (updateActivityOptions_name options)),
-        ("type", fmap show (Monoid.getLast (updateActivityOptions_type options))),
-        ( "private",
-          fmap
-            (unpack . toStrict . encode)
-            (Monoid.getLast (updateActivityOptions_private options))
-        ),
-        ( "commute",
-          fmap
-            (unpack . toStrict . encode)
-            (Monoid.getLast (updateActivityOptions_commute options))
-        ),
-        ( "trainer",
-          fmap
-            (unpack . toStrict . encode)
-            (Monoid.getLast (updateActivityOptions_trainer options))
-        ),
-        ("gear_id", Monoid.getLast (updateActivityOptions_gearId options)),
-        ("description", Monoid.getLast (updateActivityOptions_description options))
+      [ fmap ((,) "name") . Monoid.getLast $ updateActivityOptions_name options,
+        fmap ((,) "type" . show) . Monoid.getLast $ updateActivityOptions_type options,
+        fmap ((,) "private" . unpack . toStrict . encode) . Monoid.getLast $ updateActivityOptions_private options,
+        fmap ((,) "commute" . unpack . toStrict . encode) . Monoid.getLast $ updateActivityOptions_commute options,
+        fmap ((,) "trainer" . unpack . toStrict . encode) . Monoid.getLast $ updateActivityOptions_trainer options,
+        fmap ((,) "gear_id") . Monoid.getLast $ updateActivityOptions_gearId options,
+        fmap ((,) "description") . Monoid.getLast $ updateActivityOptions_description options
       ]
 
 -- | 'Strive.Actions.getCurrentActivities'
 data GetCurrentActivitiesOptions = GetCurrentActivitiesOptions
   { getCurrentActivitiesOptions_before :: Monoid.Last UTCTime,
     getCurrentActivitiesOptions_after :: Monoid.Last UTCTime,
-    getCurrentActivitiesOptions_page :: Semigroup.Last Integer,
-    getCurrentActivitiesOptions_perPage :: Semigroup.Last Integer
+    getCurrentActivitiesOptions_page :: Monoid.Last Integer,
+    getCurrentActivitiesOptions_perPage :: Monoid.Last Integer
   }
   deriving (Show)
 
@@ -157,25 +142,17 @@ instance Monoid GetCurrentActivitiesOptions where
     GetCurrentActivitiesOptions
       { getCurrentActivitiesOptions_before = mempty,
         getCurrentActivitiesOptions_after = mempty,
-        getCurrentActivitiesOptions_page = pure 1,
-        getCurrentActivitiesOptions_perPage = pure 200
+        getCurrentActivitiesOptions_page = mempty,
+        getCurrentActivitiesOptions_perPage = mempty
       }
 
 instance QueryLike GetCurrentActivitiesOptions where
   toQuery options =
     toQuery
-      [ ( "before",
-          fmap
-            (show . utcTimeToPOSIXSeconds)
-            (Monoid.getLast (getCurrentActivitiesOptions_before options))
-        ),
-        ( "after",
-          fmap
-            (show . utcTimeToPOSIXSeconds)
-            (Monoid.getLast (getCurrentActivitiesOptions_after options))
-        ),
-        ("page", Just (show (Semigroup.getLast (getCurrentActivitiesOptions_page options)))),
-        ("per_page", Just (show (Semigroup.getLast (getCurrentActivitiesOptions_perPage options))))
+      [ fmap ((,) "before" . show . utcTimeToPOSIXSeconds) . Monoid.getLast $ getCurrentActivitiesOptions_before options,
+        fmap ((,) "after" . show . utcTimeToPOSIXSeconds) . Monoid.getLast $ getCurrentActivitiesOptions_after options,
+        fmap ((,) "page" . show) . Monoid.getLast $ getCurrentActivitiesOptions_page options,
+        fmap ((,) "per_page" . show) . Monoid.getLast $ getCurrentActivitiesOptions_perPage options
       ]
 
 -- | 'Strive.Actions.getRelatedActivities'

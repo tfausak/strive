@@ -9,15 +9,15 @@ import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import Data.List (intercalate)
 import Data.Maybe (catMaybes)
-import qualified Data.Semigroup as Semigroup
+import qualified Data.Monoid as Monoid
 import Network.HTTP.Types (QueryLike, toQuery)
 
 -- | 'Strive.Actions.buildAuthorizeUrl'
 data BuildAuthorizeUrlOptions = BuildAuthorizeUrlOptions
-  { buildAuthorizeUrlOptions_approvalPrompt :: Semigroup.Last Bool,
-    buildAuthorizeUrlOptions_privateScope :: Semigroup.Last Bool,
-    buildAuthorizeUrlOptions_writeScope :: Semigroup.Last Bool,
-    buildAuthorizeUrlOptions_state :: Semigroup.Last String
+  { buildAuthorizeUrlOptions_approvalPrompt :: Monoid.Last Bool,
+    buildAuthorizeUrlOptions_privateScope :: Monoid.Last Bool,
+    buildAuthorizeUrlOptions_writeScope :: Monoid.Last Bool,
+    buildAuthorizeUrlOptions_state :: Monoid.Last String
   }
   deriving (Show)
 
@@ -42,22 +42,13 @@ instance Monoid BuildAuthorizeUrlOptions where
 instance QueryLike BuildAuthorizeUrlOptions where
   toQuery options =
     toQuery $
-      [ ( "approval_prompt",
-          unpack
-            ( toStrict
-                (encode (Semigroup.getLast (buildAuthorizeUrlOptions_approvalPrompt options)))
-            )
-        ),
-        ("state", Semigroup.getLast (buildAuthorizeUrlOptions_state options))
+      [ fmap ((,) "approval_prompt" . unpack . toStrict . encode) . Monoid.getLast $ buildAuthorizeUrlOptions_approvalPrompt options,
+        fmap ((,) "state") . Monoid.getLast $ buildAuthorizeUrlOptions_state options
       ]
-        <> if null scopes then [] else [("scope", intercalate "," scopes)]
+        <> if null scopes then [] else [Just ("scope", intercalate "," scopes)]
     where
       scopes =
         catMaybes
-          [ if Semigroup.getLast (buildAuthorizeUrlOptions_privateScope options)
-              then Just "view_private"
-              else Nothing,
-            if Semigroup.getLast (buildAuthorizeUrlOptions_writeScope options)
-              then Just "write"
-              else Nothing
+          [ fmap (const "view_private") . Monoid.getLast $ buildAuthorizeUrlOptions_privateScope options,
+            fmap (const "write") . Monoid.getLast $ buildAuthorizeUrlOptions_writeScope options
           ]

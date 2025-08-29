@@ -7,14 +7,14 @@ where
 import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
-import qualified Data.Semigroup as Semigroup
+import qualified Data.Monoid as Monoid
 import Network.HTTP.Types (QueryLike, toQuery)
 
 -- | 'Strive.Actions.getActivityComments'
 data GetActivityCommentsOptions = GetActivityCommentsOptions
-  { getActivityCommentsOptions_markdown :: Semigroup.Last Bool,
-    getActivityCommentsOptions_page :: Semigroup.Last Integer,
-    getActivityCommentsOptions_perPage :: Semigroup.Last Integer
+  { getActivityCommentsOptions_markdown :: Monoid.Last Bool,
+    getActivityCommentsOptions_page :: Monoid.Last Integer,
+    getActivityCommentsOptions_perPage :: Monoid.Last Integer
   }
   deriving (Show)
 
@@ -37,10 +37,7 @@ instance Monoid GetActivityCommentsOptions where
 instance QueryLike GetActivityCommentsOptions where
   toQuery options =
     toQuery
-      [ ( "before",
-          unpack
-            (toStrict (encode (Semigroup.getLast (getActivityCommentsOptions_markdown options))))
-        ),
-        ("page", show (Semigroup.getLast (getActivityCommentsOptions_page options))),
-        ("per_page", show (Semigroup.getLast (getActivityCommentsOptions_perPage options)))
+      [ fmap ((,) "before" . unpack . toStrict . encode) . Monoid.getLast $ getActivityCommentsOptions_markdown options,
+        fmap ((,) "page" . show) . Monoid.getLast $ getActivityCommentsOptions_page options,
+        fmap ((,) "per_page" . show) . Monoid.getLast $ getActivityCommentsOptions_perPage options
       ]

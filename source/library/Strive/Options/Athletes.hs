@@ -43,11 +43,11 @@ instance Monoid UpdateCurrentAthleteOptions where
 instance QueryLike UpdateCurrentAthleteOptions where
   toQuery options =
     toQuery
-      [ ("city", Monoid.getLast (updateCurrentAthleteOptions_city options)),
-        ("state", Monoid.getLast (updateCurrentAthleteOptions_state options)),
-        ("country", Monoid.getLast (updateCurrentAthleteOptions_country options)),
-        ("sex", fmap show (Monoid.getLast (updateCurrentAthleteOptions_sex options))),
-        ("weight", fmap show (Monoid.getLast (updateCurrentAthleteOptions_weight options)))
+      [ fmap ((,) "city") . Monoid.getLast $ updateCurrentAthleteOptions_city options,
+        fmap ((,) "state") . Monoid.getLast $ updateCurrentAthleteOptions_state options,
+        fmap ((,) "country") . Monoid.getLast $ updateCurrentAthleteOptions_country options,
+        fmap ((,) "sex" . show) . Monoid.getLast $ updateCurrentAthleteOptions_sex options,
+        fmap ((,) "weight" . show) . Monoid.getLast $ updateCurrentAthleteOptions_weight options
       ]
 
 -- | 'Strive.Actions.getAthleteCrs'

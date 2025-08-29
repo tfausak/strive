@@ -6,7 +6,6 @@ module Strive.Options.Clubs
 where
 
 import qualified Data.Monoid as Monoid
-import qualified Data.Semigroup as Semigroup
 import Data.Time.Clock (UTCTime)
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Network.HTTP.Types (QueryLike, toQuery)
@@ -19,8 +18,8 @@ type GetClubMembersOptions = PaginationOptions
 data GetClubActivitiesOptions = GetClubActivitiesOptions
   { getClubActivitiesOptions_before :: Monoid.Last UTCTime,
     getClubActivitiesOptions_after :: Monoid.Last UTCTime,
-    getClubActivitiesOptions_page :: Semigroup.Last Integer,
-    getClubActivitiesOptions_perPage :: Semigroup.Last Integer
+    getClubActivitiesOptions_page :: Monoid.Last Integer,
+    getClubActivitiesOptions_perPage :: Monoid.Last Integer
   }
   deriving (Show)
 
@@ -38,23 +37,15 @@ instance Monoid GetClubActivitiesOptions where
     GetClubActivitiesOptions
       { getClubActivitiesOptions_before = mempty,
         getClubActivitiesOptions_after = mempty,
-        getClubActivitiesOptions_page = pure 1,
-        getClubActivitiesOptions_perPage = pure 200
+        getClubActivitiesOptions_page = mempty,
+        getClubActivitiesOptions_perPage = mempty
       }
 
 instance QueryLike GetClubActivitiesOptions where
   toQuery options =
     toQuery
-      [ ( "before",
-          fmap
-            (show . utcTimeToPOSIXSeconds)
-            (Monoid.getLast (getClubActivitiesOptions_before options))
-        ),
-        ( "after",
-          fmap
-            (show . utcTimeToPOSIXSeconds)
-            (Monoid.getLast (getClubActivitiesOptions_after options))
-        ),
-        ("page", Just (show (Semigroup.getLast (getClubActivitiesOptions_page options)))),
-        ("per_page", Just (show (Semigroup.getLast (getClubActivitiesOptions_perPage options))))
+      [ fmap ((,) "before" . show . utcTimeToPOSIXSeconds) . Monoid.getLast $ getClubActivitiesOptions_before options,
+        fmap ((,) "after" . show . utcTimeToPOSIXSeconds) . Monoid.getLast $ getClubActivitiesOptions_after options,
+        fmap ((,) "page" . show) . Monoid.getLast $ getClubActivitiesOptions_page options,
+        fmap ((,) "per_page" . show) . Monoid.getLast $ getClubActivitiesOptions_perPage options
       ]

@@ -11,13 +11,12 @@ import Data.Aeson (encode)
 import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy (toStrict)
 import qualified Data.Monoid as Monoid
-import qualified Data.Semigroup as Semigroup
 import Data.Time.Clock (UTCTime)
 import Network.HTTP.Types (QueryLike, toQuery)
 import Strive.Enums
   ( AgeGroup,
     Gender,
-    SegmentActivityType (Riding),
+    SegmentActivityType,
     WeightClass,
   )
 import Strive.Internal.Options (PaginationOptions)
@@ -29,8 +28,8 @@ type GetStarredSegmentsOptions = PaginationOptions
 data GetSegmentEffortsOptions = GetSegmentEffortsOptions
   { getSegmentEffortsOptions_athleteId :: Monoid.Last Integer,
     getSegmentEffortsOptions_range :: Monoid.Last (UTCTime, UTCTime),
-    getSegmentEffortsOptions_page :: Semigroup.Last Integer,
-    getSegmentEffortsOptions_perPage :: Semigroup.Last Integer
+    getSegmentEffortsOptions_page :: Monoid.Last Integer,
+    getSegmentEffortsOptions_perPage :: Monoid.Last Integer
   }
   deriving (Show)
 
@@ -48,26 +47,18 @@ instance Monoid GetSegmentEffortsOptions where
     GetSegmentEffortsOptions
       { getSegmentEffortsOptions_athleteId = mempty,
         getSegmentEffortsOptions_range = mempty,
-        getSegmentEffortsOptions_page = pure 1,
-        getSegmentEffortsOptions_perPage = pure 200
+        getSegmentEffortsOptions_page = mempty,
+        getSegmentEffortsOptions_perPage = mempty
       }
 
 instance QueryLike GetSegmentEffortsOptions where
   toQuery options =
     toQuery
-      [ ("athlete_id", fmap show (Monoid.getLast (getSegmentEffortsOptions_athleteId options))),
-        ( "start_date_local",
-          fmap
-            (unpack . toStrict . encode . fst)
-            (Monoid.getLast (getSegmentEffortsOptions_range options))
-        ),
-        ( "end_date_local",
-          fmap
-            (unpack . toStrict . encode . snd)
-            (Monoid.getLast (getSegmentEffortsOptions_range options))
-        ),
-        ("page", Just (show (Semigroup.getLast (getSegmentEffortsOptions_page options)))),
-        ("per_page", Just (show (Semigroup.getLast (getSegmentEffortsOptions_perPage options))))
+      [ fmap ((,) "athlete_id" . show) . Monoid.getLast $ getSegmentEffortsOptions_athleteId options,
+        fmap ((,) "start_date_local" . unpack . toStrict . encode . fst) . Monoid.getLast $ getSegmentEffortsOptions_range options,
+        fmap ((,) "end_date_local" . unpack . toStrict . encode . snd) . Monoid.getLast $ getSegmentEffortsOptions_range options,
+        fmap ((,) "page" . show) . Monoid.getLast $ getSegmentEffortsOptions_page options,
+        fmap ((,) "per_page" . show) . Monoid.getLast $ getSegmentEffortsOptions_perPage options
       ]
 
 -- | 'Strive.Actions.getSegmentLeaderboard'
@@ -79,8 +70,8 @@ data GetSegmentLeaderboardOptions = GetSegmentLeaderboardOptions
     getSegmentLeaderboardOptions_clubId :: Monoid.Last Integer,
     getSegmentLeaderboardOptions_dateRange :: Monoid.Last String,
     getSegmentLeaderboardOptions_contextEntries :: Monoid.Last Integer,
-    getSegmentLeaderboardOptions_page :: Semigroup.Last Integer,
-    getSegmentLeaderboardOptions_perPage :: Semigroup.Last Integer
+    getSegmentLeaderboardOptions_page :: Monoid.Last Integer,
+    getSegmentLeaderboardOptions_perPage :: Monoid.Last Integer
   }
   deriving (Show)
 
@@ -108,37 +99,29 @@ instance Monoid GetSegmentLeaderboardOptions where
         getSegmentLeaderboardOptions_clubId = mempty,
         getSegmentLeaderboardOptions_dateRange = mempty,
         getSegmentLeaderboardOptions_contextEntries = mempty,
-        getSegmentLeaderboardOptions_page = pure 1,
-        getSegmentLeaderboardOptions_perPage = pure 200
+        getSegmentLeaderboardOptions_page = mempty,
+        getSegmentLeaderboardOptions_perPage = mempty
       }
 
 instance QueryLike GetSegmentLeaderboardOptions where
   toQuery options =
     toQuery
-      [ ("gender", fmap show (Monoid.getLast (getSegmentLeaderboardOptions_gender options))),
-        ("age_group", fmap show (Monoid.getLast (getSegmentLeaderboardOptions_ageGroup options))),
-        ( "weight_class",
-          fmap show (Monoid.getLast (getSegmentLeaderboardOptions_weightClass options))
-        ),
-        ( "following",
-          fmap
-            (unpack . toStrict . encode)
-            (Monoid.getLast (getSegmentLeaderboardOptions_following options))
-        ),
-        ("club_id", fmap show (Monoid.getLast (getSegmentLeaderboardOptions_clubId options))),
-        ("date_range", Monoid.getLast (getSegmentLeaderboardOptions_dateRange options)),
-        ( "context_entries",
-          fmap show (Monoid.getLast (getSegmentLeaderboardOptions_contextEntries options))
-        ),
-        ("page", Just (show (Semigroup.getLast (getSegmentLeaderboardOptions_page options)))),
-        ("per_page", Just (show (Semigroup.getLast (getSegmentLeaderboardOptions_perPage options))))
+      [ fmap ((,) "gender" . show) . Monoid.getLast $ getSegmentLeaderboardOptions_gender options,
+        fmap ((,) "age_group" . show) . Monoid.getLast $ getSegmentLeaderboardOptions_ageGroup options,
+        fmap ((,) "weight_class" . show) . Monoid.getLast $ getSegmentLeaderboardOptions_weightClass options,
+        fmap ((,) "following" . unpack . toStrict . encode) . Monoid.getLast $ getSegmentLeaderboardOptions_following options,
+        fmap ((,) "club_id" . show) . Monoid.getLast $ getSegmentLeaderboardOptions_clubId options,
+        fmap ((,) "date_range") . Monoid.getLast $ getSegmentLeaderboardOptions_dateRange options,
+        fmap ((,) "context_entries" . show) . Monoid.getLast $ getSegmentLeaderboardOptions_contextEntries options,
+        fmap ((,) "page" . show) . Monoid.getLast $ getSegmentLeaderboardOptions_page options,
+        fmap ((,) "per_page" . show) . Monoid.getLast $ getSegmentLeaderboardOptions_perPage options
       ]
 
 -- | 'Strive.Actions.exploreSegments'
 data ExploreSegmentsOptions = ExploreSegmentsOptions
-  { exploreSegmentsOptions_activityType :: Semigroup.Last SegmentActivityType,
-    exploreSegmentsOptions_minCat :: Semigroup.Last Integer,
-    exploreSegmentsOptions_maxCat :: Semigroup.Last Integer
+  { exploreSegmentsOptions_activityType :: Monoid.Last SegmentActivityType,
+    exploreSegmentsOptions_minCat :: Monoid.Last Integer,
+    exploreSegmentsOptions_maxCat :: Monoid.Last Integer
   }
   deriving (Show)
 
@@ -153,15 +136,15 @@ instance Semigroup ExploreSegmentsOptions where
 instance Monoid ExploreSegmentsOptions where
   mempty =
     ExploreSegmentsOptions
-      { exploreSegmentsOptions_activityType = pure Riding,
-        exploreSegmentsOptions_minCat = pure 0,
-        exploreSegmentsOptions_maxCat = pure 5
+      { exploreSegmentsOptions_activityType = mempty,
+        exploreSegmentsOptions_minCat = mempty,
+        exploreSegmentsOptions_maxCat = mempty
       }
 
 instance QueryLike ExploreSegmentsOptions where
   toQuery options =
     toQuery
-      [ ("activity_type", show (Semigroup.getLast (exploreSegmentsOptions_activityType options))),
-        ("min_cat", show (Semigroup.getLast (exploreSegmentsOptions_minCat options))),
-        ("max_cat", show (Semigroup.getLast (exploreSegmentsOptions_maxCat options)))
+      [ fmap ((,) "activity_type" . show) . Monoid.getLast $ exploreSegmentsOptions_activityType options,
+        fmap ((,) "min_cat" . show) . Monoid.getLast $ exploreSegmentsOptions_minCat options,
+        fmap ((,) "max_cat" . show) . Monoid.getLast $ exploreSegmentsOptions_maxCat options
       ]
