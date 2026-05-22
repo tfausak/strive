@@ -24,7 +24,7 @@ flag pedantic
 common library
   build-depends: base ^>=4.20.0.0 || ^>=4.21.0.0 || ^>=4.22.0.0
   build-depends:
-    aeson ^>=2.1.2.1 || ^>=2.2.2.0,
+    aeson ^>=2.1.2 || ^>=2.2.2 || ^>=2.3.0,
     bytestring ^>=0.12.0.2,
     gpolyline ^>=0.1.0.1,
     http-client ^>=0.7.17,
